@@ -1,0 +1,246 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  NAVIGATION
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.main-navigation {
+    background: color(primary);
+    .container {
+        @include below($nav-expands) {
+            padding: 0;
+            width: 100%;
+        }
+    }
+}
+.nav-primary {
+    display: none; // Hide the navigation until we need it
+    float: left;
+    width: 100%;
+    @include above($nav-expands) {
+        display: block !important;
+        width: auto;
+    }
+    ul {
+        text-align: center;
+        width: 100%;
+        margin: 0;
+        @include above($nav-expands) {
+            width: auto;
+            margin: 0;
+        }
+    }
+    li {
+        margin: 0;
+        display: inline-block;
+        border-top: rem(1px) solid rgba(color(primary), 0.2);
+
+        width: 100%;
+        &.drop-active > ul {
+            @include below($nav-expands - 1) {
+                display: block;
+                visibility: visible;
+	            opacity: 1;
+            }
+        }
+        &.menu-item-has-children>a:after {
+            @include below($nav-expands - 1) {
+                content: "∨";
+                @include rem(margin-left, 5px);
+            }
+        }
+        @include above($nav-expands) {
+            float: left;
+            position: relative;
+            width: auto;
+            border: 0;
+            &:hover > ul {
+                visibility: visible;
+                opacity: 1;
+            }
+            
+        }
+        // Sub Navigation
+        $sub-nav-width: rem(220px);
+        ul {
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            z-index: 9999;
+            position: relative;
+            background-color: color(tertiary);
+            margin: 0;
+            width: 100%;
+            @include smooth(all);
+            @include above($nav-expands) {
+                
+                //Sub Navigation
+                $sub-nav-width: rem(180px); // not sure if this is redundant
+                position: absolute;
+                left: 50%; // Get the sub nav to the mid point of it's parent
+                margin-left: -$sub-nav-width/2;
+                width: auto;
+                display: block;
+                border: rem(1px) solid color(primary);
+                border-top: none;
+                &::before {
+                    $wedge-width: rem(8px);
+                    // Add a wedge to sub navs to denote parent
+                    content:"";
+                    width: 0px;
+                    height: 0px;
+                    border-left: $wedge-width solid transparent;
+                    border-right: $wedge-width solid transparent;
+                    border-bottom: $wedge-width solid rgba(color(primary), 0.2);
+                    margin-bottom:$wedge-width;
+                    position: absolute;
+                    top: rem(-$wedge-width);
+                    left: $sub-nav-width/2-$wedge-width/2;
+                } 
+            }
+            li {
+                display: inline-block;
+                &:first-child {
+                    border: none;
+                }
+                @include above($nav-expands) {
+                    padding: 0;
+                    margin: 0;
+                    @include rem(border-top, 1px solid rgba(255, 255, 255, 0.3));
+                }
+                a {
+                    @include above($nav-expands) {
+                        width: $sub-nav-width;
+                        display: block;
+                    }
+                }
+                ul {
+                    @include above($nav-expands) {
+                        // Third and Nested Nav
+                        left: 100%;
+                        top: 0;
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+    a {
+        box-sizing: border-box;
+        font-size: 1.2em;
+        font-weight: 300;
+        @include rem(padding, 8px 0px);
+        @include smooth(all);
+        @extend %nav-padding;
+        text-decoration: none;
+        display: block;
+        &,
+        &:visited {
+            color: white;
+        }
+        &:hover,
+        &:active {
+           background-color: darken(color(primary), 3%);
+        }
+        @include above($nav-expands) {
+            padding: rem(10px);
+            &,&:hover, &:active, &:visited {
+                background: transparent;
+            }
+        }
+        @include above(md) {
+            padding: rem(8px);
+        }
+        @include above(lg) {
+            padding: rem(12px);
+        }
+        @include above(xl) {
+            padding: rem(25px);
+        }
+    }
+    .current-menu-item {
+        background-color: color(background);
+        body.home &, body.has-featured-image & {
+            background-color: color(secondary);
+            a {
+                color: white;
+            }
+        }
+        a {
+            font-weight: bold;
+            color: color(primary);
+        }
+        &:hover {
+            a {
+                color: white;
+            }
+        }
+    }
+}
+$burger-width: 25px;
+.nav-button {
+    @include smooth(all);
+    width: 100%;
+    display: block;
+    //float: right;
+    background-color: transparent;
+    cursor: pointer;
+    outline: 0;
+    color: white;
+    font-size: 1.2em;
+    //color: color(primary-alt);
+    @include rem(height, $burger-width*2);
+   // @include rem(width, $burger-width*2);
+    @extend %nav-padding;
+    &:hover, &:active {
+        background-color: darken(color(primary), 3%);
+    }
+    @include above($nav-expands) {
+        /* Hide the burger menu */
+        display: none;
+    }
+}
+
+.burger {
+    // Burger Menu
+    @include rem(right, $burger-width/2);
+    @include rem(top, 22px);
+    .nav-expanded & {
+        background: transparent !important;
+    }
+    &,
+    &::before,
+    &::after {
+        display: inline-block;
+        position: absolute;
+        background: white;
+        @include border-radius(rem(2px));
+        @include rem(width, $burger-width);
+        @include rem(height, 3px);
+        @include transition(all .2s ease-out);
+    }
+    &::before {
+        margin: -$burger-width/2;
+        content: "";
+        @include rem(top, $burger-width*.2);
+        .nav-expanded & {
+            @include rem(top, $burger-width/2);
+            @include transform(rotate3d(0, 0, 1, -135deg));
+        }
+    }
+    &::after {
+        margin: -$burger-width/2;
+        content: "";
+        @include rem(top, $burger-width*.8);
+        .nav-expanded & {
+            @include rem(top, $burger-width/2);
+            @include transform(rotate3d(0, 0, 1, 135deg));
+        }
+    }
+}
+%nav-padding {
+    @include rem(padding-top, 10px);
+    @include rem(padding-bottom, 10px);
+    @include above($nav-expands) {
+        @include rem(padding-top, 15px);
+        @include rem(padding-bottom, 15px);     
+    }
+}

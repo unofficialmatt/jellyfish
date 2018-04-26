@@ -1,0 +1,69 @@
+// grid
+$cols: 12; // !required
+$has_push_pull: true;
+$has_offset: true;
+$debug-mode-on: true;
+
+// colors
+$colors: (
+    text: #403F41,
+    background: #fff,
+    primary: #708EAB,
+    secondary: #88A6C4,
+    tertiary: #AAB7C4
+);
+
+// fonts
+$font-primary: 'Nunito', 'Arial', sans-serif;
+$font-secondary: 'Poppins', 'Arial', sans-serif;
+
+// base sizes (used before breakpoints are applied)
+$base-font-size: 1.6em;
+$base-line-height: 1.5;
+$base-container-gutter: 15px;
+
+// breakpoints
+$nav-expands: 600px; // !required Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
+
+$breakpoints: (
+    // Define our breakpoints. Comment out a whole size to prevent it being iterated, or individual elements to inherit from the previously defined point
+    // The shorthand names are used in column classes. Usually start the grid at .sm reserving .xs for special cases
+    // Breakpoints are converted to em values through breakpoint mixin
+    // Use rem() or em() on this level to convert appropriately for the useage
+    sm: (
+        breakpoint: 550px,
+        container-width: 100%,
+        container-gutter: rem(0px),      
+        col-gutter: rem(20px),
+        base-font-size: 1.4em,
+        base-line-height: 1.48
+        ),
+    md: (
+        breakpoint: 600px,
+        container-width: 96%,
+        //container-gutter: rem(20px),      
+        col-gutter: rem(20px),
+        base-font-size: 1.6em,
+        //base-line-height: 1.48em
+        ),
+    lg: (
+        breakpoint: 800px,
+        container-width: 900px,
+        //container-gutter: rem(40px),      
+        col-gutter: rem(20px),
+        //base-font-size: 1em,
+        //base-line-height: 1.48em
+        )
+);
+
+@if $debug-mode-on {
+/*! 
+------------------------------
+CSS DEBUG MODE IS ON
+All rows and columns will be highlighted.
+Elements affected by push, pull and offset will be highlighted.
+Grid system will be overlayed.
+------------------------------
+*/
+    
+}

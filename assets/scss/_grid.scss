@@ -1,0 +1,166 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  GRID
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 rem($base-container-gutter);
+}
+
+.row {
+    @extend .clearfix;
+    &.col {
+        width: 100%;
+    }
+    & .row {
+        padding: 0;
+    }
+    &-padded {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    }
+}
+.full-width {
+    width: 100%;
+}
+.flex {
+   //@extend .row;
+    @include display(flex);
+    @include flex-wrap(wrap);
+    &.flex-align-center {
+        align-items: center;
+    }
+    .col { 
+        @include display(flex);
+        @include flex-direction(column);
+    }
+}
+
+.col {
+    display: block;
+    float: left;
+    min-height: 1px;
+    width: 100%;
+    position: relative;
+    &:last-of-type {
+        float: right;
+    }
+    &.reset-float {
+        float: left;
+    }
+    &.flex-align-center {
+        align-self: center;
+    }
+}
+.col.collapse,
+.row.collapse > .col {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+@each $point,
+$i in $breakpoints {
+    // for each breakpoint defined...
+    @include above($point) {
+        // if a breakpoint is found, set media query min-width
+        .container {
+            // give our container a width/max width, and padding to border content
+            width: bp-query($point, container-width);
+            max-width: bp-query($point, container-max-width);
+            padding: 0 bp-query($point, container-gutter);
+        }
+        .row .row {
+            // give our nested rows negative margin equal to half col gutter
+            margin-left: -.5*(bp-query($point, col-gutter));
+            margin-right: -.5*(bp-query($point, col-gutter));
+        }
+        .col {
+            // give our cols l-r margin equal to half col gutter
+            padding-left: .5*bp-query($point, col-gutter);
+            padding-right: .5*bp-query($point, col-gutter);
+        }
+        $one_col: (100% / $cols);
+        
+        @for $i from 1 through ($cols) {
+            .#{$point}-#{$i} {
+                 width: ($one_col * $i);
+            }
+            @if $has_push_pull {
+                $diff: 100% - ($one_col * $i);
+                .push-#{$point}-#{$cols - $i} {
+                    left: $diff;
+                }
+                .pull-#{$point}-#{$cols - $i} {
+                    right: $diff;
+                }
+            }
+            @if $has_offset {
+                $offset: 100% - ($one_col * $i);
+                .offset-#{$point}-#{$cols - $i} {
+                    margin-left: $offset;
+                }
+            }
+        }
+        @if $debug-mode-on {
+            
+            @if $has_push_pull {
+                [class*='pull-#{$point}'] {
+                    border: rem(2px) solid red;
+                    border-left-width: rem(8px);
+                }
+                [class*='push-#{$point}'] {
+                    border: rem(2px) solid red;
+                    border-right-width: rem(8px);
+                }
+                [class*='pull-#{$point}-0'], [class*='push-#{$point}-0'] {
+                    border: 0; //Remove border on reset elements
+                }
+            }
+            @if $has_offset {
+                [class*='offset-#{$point}'] {
+                    border: rem(2px) solid red;
+                    border-right-width: rem(8px);
+                } 
+            }
+        }
+    }
+    .hide-below {
+        &-#{$point} {
+            @include below($point) {
+                display: none !important;
+            }
+        }
+    }
+    .hide-above {
+        &-#{$point} {
+            @include above($point) {
+                display: none !important;
+            }
+        }
+    }
+}
+@if $debug-mode-on {
+    .col {
+        box-shadow: 0 1px 3px 1px rgba(#35fff0, .7);
+
+    }
+    .row  {
+        box-shadow: 0 1px 3px 1px rgba(#ff00ff, .7);
+
+    }
+    $one_col: (100% / $cols);
+    .row {
+       background: repeating-linear-gradient(
+          to right,
+          rgb(250,250,250),
+          rgb(250,250,250) $one-col,
+          rgb(245,245,245) $one-col,
+          rgb(245,245,245) $one-col*2
+        );
+        background-origin: content-box;
+        .row {
+            background: none;
+        }
+    }
+}

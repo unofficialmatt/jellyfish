@@ -1,0 +1,62 @@
+@import 'mixins/rem';
+@import 'mixins/bourbon/bourbon';
+// Vertically align any element in a known height parent
+@mixin vertical-align {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+@function bp-query($point, $var) { 
+    // Function to query our breakpoint map
+    // Accepts args $breakpoint-size, $variable
+    @return map-get(map-get($breakpoints, $point), $var);
+}
+
+@function color($color) { 
+    // Function to query our color map
+    // Accepts args $color
+    @return map-get($colors, $color);
+}
+
+// Media queries check the breakpoint map to see if a given string exists, else they convert a given pixel value to em.
+@mixin above($min) {
+    $bp-min: $min;
+    @if map-has-key($breakpoints, $min) {
+        $bp-min: bp-query($min, breakpoint);
+    }
+    @warn "Unknown `#{$min}` in $breakpoints";
+    @media (min-width: em($bp-min)) { 
+        @content; 
+    }
+}
+@mixin between($min, $max) {
+    $bp-min: $min;
+    @if map-has-key($breakpoints, $min) { 
+        $bp-min: bp-query($min, breakpoint);
+    } 
+    @warn "Unknown `#{$min}` in $breakpoints";
+    $bp-max: $max;
+    @if map-has-key($breakpoints, $max) {
+        $bp-max: bp-query($max, breakpoint);
+    }
+    @warn "Unknown `#{$max}` in $breakpoints";
+    @media (min-width: em($bp-min)) and (max-width: em($bp-max - 1px)) { 
+        @content;
+    }
+}
+@mixin below($max) {
+    $bp-max: $max;
+    @if map-has-key($breakpoints, $max) {
+        $bp-max: bp-query($max, breakpoint);
+    }
+    @warn "Unknown `#{$max}` in $breakpoints";
+    @media (max-width: em($bp-max - 1px)) {
+        @content;
+    }
+} 
+
+@mixin smooth($var) { // Global transition
+    @include transition($var 0.3s ease);
+}

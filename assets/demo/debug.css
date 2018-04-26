@@ -1,0 +1,21 @@
+[class*='pull-sm'] {
+    border: 0.2rem solid red;
+    border-left-width: 0.8rem; }
+  [class*='push-sm'] {
+    border: 0.2rem solid red;
+    border-right-width: 0.8rem; }
+  [class*='offset-sm'] {
+    border: 0.2rem solid red;
+    border-right-width: 0.8rem; }
+
+.col {
+  box-shadow: 0 1px 3px 1px rgba(53, 255, 240, 0.7); }
+
+.row {
+  box-shadow: 0 1px 3px 1px rgba(255, 0, 255, 0.7); }
+
+.row {
+  background: repeating-linear-gradient(to right, #fafafa, #fafafa 8.33333%, whitesmoke 8.33333%, whitesmoke 16.66667%);
+  background-origin: content-box; }
+  .row .row {
+    background: none; }

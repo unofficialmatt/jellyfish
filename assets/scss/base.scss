@@ -1,0 +1,89 @@
+@charset "UTF-8"; 
+@import "mixins"; 
+@import "settings";
+@import "reset"; 
+@import "global"; 
+@import "grid";
+@import "nav"; // needs to be completed - lift from HOCt/HFarm
+//@import "header";
+//@import "content"; 
+//@import "sidebar";  
+//@import "footer"; 
+
+/*  
+Useage Notes:
+• All font sizes should be set in .em values, as with any margins/padding related to text
+• Media Queries are set in em
+• Site wide margin/padding should be set with rem
+#clean up
+
+TO DO:  
+• Fix the nav issues experienced on touch
+• Add a mixin/util for generating different burger menu closing animations (can add to this in time) - or save this locally elsewhere in a snippet file?
+• Do the margins of things like blockquotes, lists etc need to be set iteratively based on the gutter width of the breakpoint?
+• Set up better breakpoints and sizing - more real world.
+• Make the index.html a better instructor (including all this info basically)
+  • Do full documentation detailing what ervery bit of css does and why/how to use it/how to format grid. Can put some code in the head to style code etc. Should I drop anything to make it more lean - eg. the mark, blockquote etc as these should be styled for the site design itself. Get back to basics with a solid customisable grid framework?         
+*/
+
+//For demo only - add to demo.scss
+
+$color-lightgrey: #EBF2F2;
+$color-midgrey: #D9DBDB;
+
+.boxed {
+    background: $color-lightgrey;
+    border: rem(1px) solid $color-midgrey;
+    padding: 1.4em;
+    margin: 1em 0;
+}
+    
+code, pre, .code {
+    font-family: Consolas, monaco, monospace;
+    @extend .bold;
+}
+pre {
+    @extend .boxed;
+    width: auto;
+    display: block;
+    white-space: pre-wrap;
+}
+%reference {
+    display: inline-block;
+    color: white;
+    padding: .3em;
+    border-radius: rem(4px);
+    @extend %font-size--small;
+    line-height: 1;
+}
+.css-ref {
+    @extend %reference;
+    background: #4ECDC4;
+}
+.scss-ref {
+    @extend %reference;
+    background: #556270;
+}
+.variable-ref {
+    @extend %reference;
+    background: #FF6B6B;
+}
+
+.grid-ex {
+    @extend .css-ref;
+    width: 100%;
+    text-align: center;
+}
+
+td {
+    padding: 1rem;
+    border: rem(1px) solid $color-midgrey;
+}
+
+.lead {
+    @extend %font-size--large;
+}
+
+.grid-ex {
+    width: 100%;
+}
