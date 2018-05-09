@@ -392,7 +392,7 @@ img {
                 <div class="col">
                     <h3 id="settings-debug">Debug mode</h3>
                     <p>This grid system comes with a handy debug mode that can be enabled by setting  <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="scss-ref">_settings.scss</span>. When debug mode is enabled, all <span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 1px rgba(255, 0, 255, 0.7);">glow in pink</span> and all <span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 1px rgba(53, 255, 240, 0.7)">glow in turquoise</span>.</p><p>Additionally, all <span class="css-ref">.row</span> elements will have their background striped to show the number of columns in the grid structure.</p>
-                    <p>Providing that <span class="variable-ref">$has_push_pull</span> is set to <strong>true</strong> in <span class="scss-ref">_settings.scss</span>, any element affected by a <span class="css-ref">.push</span>, <span class="css-ref">.pull</span> or <span class="css-ref">.offset</span> at the active breakpoint will be highlighted with a red border; the heavier stroke indicating the direction to which the action has occured.</p>
+                    <p>Providing that <span class="variable-ref">$has_push_pull</span> and/or <span class="variable-ref">$has_offset</span> are set to <strong>true</strong> in <span class="scss-ref">_settings.scss</span>, any element affected by a <span class="css-ref">.push</span>, <span class="css-ref">.pull</span> or <span class="css-ref">.offset</span> at the active breakpoint will be highlighted with a red border; the heavier stroke indicating the direction to which the action has occured.</p>
                     
                     <div class="row">
                         <div class="col md-4">
@@ -618,6 +618,19 @@ img {
             </section>
         </div>
     </section>
+    
+    <h2 id="mixins">Mixins and Functions</h2>
+    <h3 id="mixins-remem">Rem / Em</h3>
+    <p>The functions <span class="variable-ref">rem($value)</span> and <span class="variable-ref">em($value)</span> defined in <span class="scss-ref">mixins/_rem.scss</span> can be used to convert pixel measurements into rem and em respectively.</p>
+    <p>The <span class="variable-ref">rem()</span> </p>
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="container row" style="margin-top:300px;background: grey;">
     
         <div class="row">

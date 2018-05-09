@@ -223,7 +223,7 @@ img {
   padding-bottom: 7rem; }
 
 .full-width {
-  width: 100%; }
+  width: 100% !important; }
 
 .flex {
   display: -webkit-box;
@@ -884,8 +884,5 @@ pre {
 td {
   padding: 1rem;
   border: 0.1rem solid #D9DBDB; }
-
-.grid-ex {
-  width: 100%; }
 
 /*# sourceMappingURL=../scss/scss.css.map */
