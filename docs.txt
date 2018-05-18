@@ -241,6 +241,40 @@ body {
  
  
  
+ NAVIGATION
+ 
+ Jellyfish comes with a horizontal style primary navigation menu, which has a small amount of styling applied by default. The key features of the navigation menu are:
+- responsive with customisable breakpoint
+- single level or nested (out-of-the-box to one level, however  easy to extend)
+- smooth animation on drop down
+- collapse to burger menu on smaller screens 
+- no duplication of HTML for smaller screens
+
+
+Navigation structure
+
+&how it works well with Wordpress
+
+
+
+Navigation breakpoint
+Jellyfish's navigation can be customised to 'kick in' at a breakpoint of your choosing - ie. changing from a collapsed burger menu to a full width tabbed design.
+To customise the breakpoint, you will need to adjust $nav-expands in the _settings.scss file (must be a px value) as well as variable navPoint in assets/js/scripts.js
+
+{Example}
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  Demo specific files
  
  .demo

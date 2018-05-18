@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Responsive Grid Template | Matt Weet Design</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--[if lt IE 9]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="assets/css/style.css" media="all">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,700|Poppins:600' rel='stylesheet' type='text/css'>
+    <style type="text/css">.row {padding-top: 7rem;padding-bottom:7rem;}</style>
+</head>
+
+<body>
+    <h2 class="container">.col elements inside a .row.container</h2>
+    <div class="row container">
+        <div class="col md-4">.col .md-4</div>
+        <div class="col md-4">.col .md-4</div>
+        <div class="col md-4">.col .md-4</div>
+    </div>
+    
+    <h2 class="container">.col elements inside a .container .row</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col md-4">.col .md-4</div>
+            <div class="col md-4">.col .md-4</div>
+            <div class="col md-4">.col .md-4</div>
+        </div>
+    </div>
+    
+    <h2 class="container">.row.col element inside a .container</h2>
+    <div class="container">
+        <div class="row col">
+            .row .col
+        </div>
+    </div>
+    
+    <h2 class="container">nested .row (one level)</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col md-6">
+                <div class="row">
+                    <div class="col md-6">
+                    .row .col .row .col.md-6
+                    </div>
+                    <div class="col md-6">
+                    .row .col .row .col.md-6
+                    </div>
+                </div>
+            </div>
+            <div class="col md-6">
+                <div class="row">
+                    <div class="col md-6">
+                    .row .col .row .col.md-6
+                    </div>
+                    <div class="col md-6">
+                    .row .col .row .col.md-6
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2 class="container">super nested .row</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col md-6">
+                <div class="row">
+                    <div class="col md-12">
+                        <div class="row">
+                            <div class="col md-6">
+                            .row .col .row .col .row .col.md-6
+                            </div>
+                            <div class="col md-6">
+                            .row .col .row .col .row .col.md-6
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col md-6">
+                <div class="row">
+                    <div class="col md-12">
+                        <div class="row">
+                            <div class="col md-6">
+                            .row .col .row .col .row .col.md-6
+                            </div>
+                            <div class="col md-6">
+                            .row .col .row .col .row .col.md-6
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>

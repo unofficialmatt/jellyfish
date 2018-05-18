@@ -1,4 +1,12 @@
 @charset "UTF-8";
+/*! 
+------------------------------
+CSS DEBUG MODE IS ON
+All rows and columns will be highlighted.
+Elements affected by push, pull and offset will be highlighted.
+Grid system will be overlayed.
+------------------------------
+*/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   CSS RESET - ERIC MEYER
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -283,7 +291,7 @@ img {
   .container {
     width: 100%;
     padding: 0 0rem; }
-  .row .row {
+  .row {
     margin-left: -1rem;
     margin-right: -1rem; }
   .col {
@@ -384,7 +392,18 @@ img {
   .pull-sm-0 {
     right: 0%; }
   .offset-sm-0 {
-    margin-left: 0%; } }
+    margin-left: 0%; }
+  [class*='pull-sm'] {
+    border: 0.2rem solid red;
+    border-left-width: 0.8rem; }
+  [class*='push-sm'] {
+    border: 0.2rem solid red;
+    border-right-width: 0.8rem; }
+  [class*='pull-sm-0'], [class*='push-sm-0'] {
+    border: 0; }
+  [class*='offset-sm'] {
+    border: 0.2rem solid red;
+    border-right-width: 0.8rem; } }
 
 @media (max-width: 34.3125em) {
   .hide-below-sm {
@@ -398,7 +417,7 @@ img {
   .container {
     width: 96%;
     padding: 0; }
-  .row .row {
+  .row {
     margin-left: -1rem;
     margin-right: -1rem; }
   .col {
@@ -499,7 +518,18 @@ img {
   .pull-md-0 {
     right: 0%; }
   .offset-md-0 {
-    margin-left: 0%; } }
+    margin-left: 0%; }
+  [class*='pull-md'] {
+    border: 0.2rem solid red;
+    border-left-width: 0.8rem; }
+  [class*='push-md'] {
+    border: 0.2rem solid red;
+    border-right-width: 0.8rem; }
+  [class*='pull-md-0'], [class*='push-md-0'] {
+    border: 0; }
+  [class*='offset-md'] {
+    border: 0.2rem solid red;
+    border-right-width: 0.8rem; } }
 
 @media (max-width: 37.4375em) {
   .hide-below-md {
@@ -513,7 +543,7 @@ img {
   .container {
     width: 900px;
     padding: 0; }
-  .row .row {
+  .row {
     margin-left: -1rem;
     margin-right: -1rem; }
   .col {
@@ -614,7 +644,18 @@ img {
   .pull-lg-0 {
     right: 0%; }
   .offset-lg-0 {
-    margin-left: 0%; } }
+    margin-left: 0%; }
+  [class*='pull-lg'] {
+    border: 0.2rem solid red;
+    border-left-width: 0.8rem; }
+  [class*='push-lg'] {
+    border: 0.2rem solid red;
+    border-right-width: 0.8rem; }
+  [class*='pull-lg-0'], [class*='push-lg-0'] {
+    border: 0; }
+  [class*='offset-lg'] {
+    border: 0.2rem solid red;
+    border-right-width: 0.8rem; } }
 
 @media (max-width: 49.9375em) {
   .hide-below-lg {
@@ -623,6 +664,18 @@ img {
 @media (min-width: 50em) {
   .hide-above-lg {
     display: none !important; } }
+
+.col {
+  box-shadow: 0 1px 3px 1px rgba(53, 255, 240, 0.7); }
+
+.row {
+  box-shadow: 0 1px 3px 1px rgba(255, 0, 255, 0.7); }
+
+.row {
+  background: repeating-linear-gradient(to right, rgba(250, 250, 250, 0.5), rgba(250, 250, 250, 0.5) 8.33333%, rgba(245, 245, 245, 0.5) 8.33333%, rgba(245, 245, 245, 0.5) 16.66667%);
+  background-origin: content-box; }
+  .row .row {
+    background: none; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   NAVIGATION
