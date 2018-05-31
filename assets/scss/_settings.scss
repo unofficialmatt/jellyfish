@@ -2,7 +2,7 @@
 $cols: 12; // !required
 $has_push_pull: true;
 $has_offset: true;
-$debug-mode-on: true;
+$debug-mode-on: false;
 
 // colors
 $colors: (
@@ -33,7 +33,7 @@ $breakpoints: (
     sm: (
         breakpoint: 550px,
         container-width: 100%,
-        container-gutter: rem(0px),      
+        container-gutter: rem(50px),      
         col-gutter: rem(20px),
         base-font-size: 1.4em,
         base-line-height: 1.48
@@ -41,7 +41,7 @@ $breakpoints: (
     md: (
         breakpoint: 600px,
         container-width: 96%,
-        //container-gutter: rem(20px),      
+        container-gutter: rem(50px),      
         col-gutter: rem(20px),
         base-font-size: 1.6em,
         //base-line-height: 1.48em
@@ -49,8 +49,8 @@ $breakpoints: (
     lg: (
         breakpoint: 800px,
         container-width: 900px,
-        //container-gutter: rem(40px),      
-        col-gutter: rem(20px),
+        container-gutter: rem(50px),      
+        col-gutter: rem(40px),
         //base-font-size: 1em,
         //base-line-height: 1.48em
         )

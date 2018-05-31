@@ -12,19 +12,26 @@
     <![endif]-->
     <link rel="stylesheet" href="assets/css/style.css" media="all">
     <link href='https://fonts.googleapis.com/css?family=Nunito:400,700|Poppins:600' rel='stylesheet' type='text/css'>
-    <style type="text/css">.row {padding-top: 7rem;padding-bottom:7rem;}</style>
+    <style type="text/css">.row {padding-top: 7rem;padding-bottom:7rem;background-color: beige;} .container{overflow:hidden;}
+    
+        .row.col {margin-left:0; margin-right:0;padding-left:0; padding-right:0;}
+    
+    
+    </style>
 </head>
 
 <body>
-    <h2 class="container">.col elements inside a .row.container</h2>
-    <div class="row container">
+    <main class="container">
+    <h2 >.col elements inside a .row.container</h2>
+    <div class=" container">
         <div class="col md-4">.col .md-4</div>
         <div class="col md-4">.col .md-4</div>
         <div class="col md-4">.col .md-4</div>
     </div>
+    <p class="container small">DONT DO THIS</p>
     
-    <h2 class="container">.col elements inside a .container .row</h2>
-    <div class="container">
+    <h2 >.col elements inside a .container .row</h2>
+    <div >
         <div class="row">
             <div class="col md-4">.col .md-4</div>
             <div class="col md-4">.col .md-4</div>
@@ -32,15 +39,15 @@
         </div>
     </div>
     
-    <h2 class="container">.row.col element inside a .container</h2>
-    <div class="container">
+    <h2 >.row.col element inside a .container</h2>
+    <div >
         <div class="row col">
             .row .col
         </div>
     </div>
     
-    <h2 class="container">nested .row (one level)</h2>
-    <div class="container">
+    <h2 >nested .row (one level)</h2>
+    <div >
         <div class="row">
             <div class="col md-6">
                 <div class="row">
@@ -65,8 +72,8 @@
         </div>
     </div>
     
-    <h2 class="container">super nested .row</h2>
-    <div class="container">
+    <h2 >super nested .row</h2>
+    <div >
         <div class="row">
             <div class="col md-6">
                 <div class="row">
@@ -98,7 +105,7 @@
             </div>
         </div>
     </div>
-    
+    </div>
 </body>
 
 </html>

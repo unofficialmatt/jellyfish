@@ -50,597 +50,614 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <section>
-        <div class="container row">
-            <div class="col">
-                <h1>Jellyfish Grid System Documentation</h1>
-                <p>Jellyfish is a very bare-bones HTML/SCSS grid system designed for flexible layouts and with only the most essential elements and utilities built in. This grid system allows for a solid base for web development work, reducing the bloat and clutter of commercial products such as Bootstrap and Foundation. Jellyfish is designed for ease-of-use expansion and is a constantly evolving product.</p>
-                <p><strong>Framework last updated: April 2018</strong></p>
+    </header>  
+    
+    <main class="container">
+        
+        <!-- Intro -->
+        <section>        
+            <div class="row">
+                <div class="col">
+                    <h1>Jellyfish Grid System Documentation</h1>
+                    <p>Jellyfish is a very bare-bones HTML/SCSS grid system designed for flexible layouts and with only the most essential elements and utilities built in. This grid system allows for a solid base for web development work, reducing the bloat and clutter of commercial products such as Bootstrap and Foundation. Jellyfish is designed for ease-of-use expansion and is a constantly evolving product.</p>
+                    <p><strong>Framework last updated: April 2018</strong></p>
+                </div>
             </div>
-        </div>
-    </section><!-- Intro -->
-    <section>
-        <div class="container">
-            
-            
-            <div class="row col reset-float"><h2 id="basic">Basic HTML elements</h2></div>
-            <section class="row">
-                <div class="col">
-                    <h3 id="basic-typography">Typography</h3>
-                    <p>Global font families, line height and size are defined in <span class="scss-ref">_settings.scss</span>. With the <a href="#grid-breakpoints">grid breakpoint settings</a>, a new <span class="variable-ref">$base-font-size</span> and <span class="variable-ref">$base-line-height</span> can be defined for each breakpoint. These settings are applied via a loop in the <span class="css-ref">body</span> selector in <span class="scss-ref">_global.scss</span>.</p>
-<pre>
-// fonts
-$font-primary: 'Nunito', 'Arial', sans-serif;
-$font-secondary: 'Poppins', 'Arial', sans-serif;
+        </section>
+        <!-- / Intro -->
 
-// base sizes (used before breakpoints are applied)
-$base-font-size: 1.6em;
-$base-line-height: 1.5;
-</pre>              
-                    <h4>Hierarchy</h4>
-                    <p>All text will default to the global <span class="variable-ref">$base-font-size</span> unless otherwise specified. Font size hierarchy is defined in <span class="scss-ref">_global.scss</span> and can be implemented by extending the <span class="variable-ref">%font-size</span> placeholder via <code>@extend %font-size{$size}</code>. This is predominantly used in <a href="#basic-headings">Headings</a> but can be used with any element.</p>
-<pre>
-// Font Sizes
-%font-size{
-    &--xsmall { font-size: 0.6em}
-    &--small { font-size: 0.8em }
-    &--normal { font-size: 1em}
-    &--medium { font-size: 1.5em}
-    &--large { font-size: 1.75em}
-    &--xlarge { font-size: 2em}
-    &--xxlarge { font-size: 2.5em}
-    &--xxxlarge { font-size: 3em}
-}
-</pre>
-                </div>
-            </section><!-- Basic: Typography -->
-            <section class="row">
-                
-                <div class="col">
-                    <h3 id="basic-headings">Headings</h3>
-                    <p>All of the basic HTML headings are catered for h1-h6. Headings are defined and should be further styled via <span class="scss-ref">_global.scss</span> with the placeholder class <span class="variable-ref">%headings</span> specifying some basic constistency. To prevent excess white space, the first heading in a <span class="css-ref">.col</span> or <span class="css-ref">.row</span> has it's top margin reset to 0.</p>
-                    <div class="row">
-                        <div class="col md-7">
-                            <h1>This is a h1 heading</h1>
-                            <p>Accompanying text.</p>
-                            <h2>This is a h2 heading</h2>
-                            <p>Accompanying text.</p>
-                            <h3>This is a h3 heading</h3>
-                            <p>Accompanying text.</p>
-                            <h4>This is a h4 heading</h4>
-                            <p>Accompanying text.</p>
-                            <h5>This is a h5 heading</h5>
-                            <p>Accompanying text.</p>
-                            <h6>This is a h6 heading</h6>
-                            <p>Accompanying text.</p>
-                            
-                        </div>
-                        <div class="col md-5">
-<pre>
-// Headings and Paragraphs
 
-%headings {
-    font-family: $font-secondary;
-    margin: 1em 0 0 0;
-    line-height: 1.2;    
-}
 
-h1 {
-    @extend %headings;
-    @extend %font-size--xlarge;
-}
 
-......
+        
+        
+        
+        
+        
 
-// Reset the top margin on first header in a .row or .col
-.row >,
-.col > {
-    & h1:first-child,
-    & h2:first-child,
-    & h3:first-child,
-    & h4:first-child,
-    & h5:first-child,
-    & h6:first-child {
-        margin-top: 0;
-    }
-}
-</pre>
-                        </div>
-                        </div>
-                </div>
-            </section><!-- Basic: Headings -->
-            <section class="row">
-                <div class="col">
-                    <h3 id="basic-text">Text</h3>
-                    <p>Paragraphs have a margin applied top and bottom by default, defined in <span class="scss-ref">_global.scss</span>. </p>
-                        <h4>Paragraph alignment</h4>
-                        <p>Text can be aligned through the utility classes <span class="css-ref">.text-left</span>, <span class="css-ref">.text-right</span>, <span class="css-ref">.text-center</span> and <span class="css-ref">.text-justify</span> as demonstrated below.</p>
-                    <h6>.text-left</h6>
-                    <p class="text-left">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi.</p>
-                    <h6 class="text-right">.text-right</h6>
-                    <p class="text-right">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi.</p>
-                    <h6 class="text-center">.text-center</h6>
-                    <p class="text-center">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi.</p>
-                    <h6 class="text-justify">.text-justify</h6>
-                    <p class="text-justify">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi.</p>
-            <h4>Text transform</h4>    
-            <p>Standard text transform options are included, defined in <span class="scss-ref">_global.scss</span>:</p>
-                    <table>
-                    <tbody>
-                        <tr><td class="code">small, .small</td><td><p class="small">This text has been defined via .small but you can also use the <span class="css-ref">small</span> tag where appropriate.</p></td></tr>
-                        <tr><td class="code">strong, .bold</td><td><p><strong>This text is important</strong> however the <span class="css-ref">.bold</span> class can be applied for the <span class="bold">same effect without the implied semantics.</span></p></td></tr>
-                        <tr><td class="code">em, .italic</td><td><p><em>This text has emphasis</em> however the <span class="css-ref">.italic</span> class can be applied for the <span class="italic">same effect without the implied semantics.</span></p></td></tr>
-                    </tbody>
-                    </table>
-                </div>
-            </section><!-- Basic: Text -->
-            <section class="row">
-                <div class="col">
-                    <h3 id="basic-links">Links</h3>
-                    <p>Text links are styled via <span class="scss-ref">_global.scss</span> with a simple hover animation applied. The <span class="variable-ref">smooth(color)</span> mixin is used to apply consistent transition to the text color - see <a href="#advanced-mixins">mixins</a> for more information. By default, colour is applied via global <span class="variable-ref">color()</span> map settings and should be considered in all projects. See <a href="#settings-color">colour settings</a> for details. The grid system does not currently support default button styles.<br><a class="lead" href="http://www.definitelynotasiteiveeevervisited.com">This is a text link</a><br><a class="lead" href="http://www.google.com">This is a visited text link</a></p>
-<pre>
-a {
-    @include smooth(color);
-    color: color(primary);
-    text-decoration: underline;
-    &:visited {
-        color: color(secondary);
-        text-decoration: none;
-    }
-    &:hover {
-        color: color(tertiary);
-    }    
-    &:focus, &:active {
-        color: color(tertiary);
-    }
-}
-</pre>
-                </div>
-            </section><!-- Basic: Links -->
-            <section class="row">
-                <div class="col">
-                    <h3 id="basic-lists">Lists</h3>
-                    <p>Support for basic lists is included for <span class="css-ref">ul</span>, <span class="css-ref">ol</span> and <span class="css-ref">dl</span>. Minimal styling is included, with lists styled via <span class="scss-ref">_global.scss</span>. The placeholder class <span class="variable-ref">%lists</span> is used to output consistent styling to both <span class="css-ref">ul</span> and <span class="css-ref">ol</span> lists:</p>
-<pre>
-%lists {
-    margin: .5em 0 1.25em 2.5em;
-    list-style-position: outside;
-    ul, ol {
-        margin: 0 0 0 2em;
-    }
-}
-</pre>
-                    <p>Nested lists are also supported, with additional styling to indent the left margin for visual separation.</p>
-                </div>
-                <div class="col md-6">
-                    <h4>Unordered List example</h4>
-                    <ul>
-                        <li>Pisone in eo gymnasio, quod Ptolomaeum vocatur, unaque nobiscum Q.</li>
-                        <li>Vitae autem degendae ratio maxime quidem illis placuit quieta.</li>
-                        <li>Dicet pro me ipsa virtus nec dubitabit isti vestro beato M.</li>
-                    </ul>
-                </div>
-                <div class="col md-6">
-                    <h4>Ordered List example</h4>
-                    <ol>
-                        <li>Utrum igitur tibi litteram videor an totas paginas commovere?</li>
-                        <li>Mihi vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius.</li>
-                        <li>Quicquid porro animo cernimus, id omne oritur a sensibus;</li>
-                    </ol>
-                </div>
-                <div class="col md-6">
-                    <h4>Description List example</h4>
-                    <dl>
-                        <dt>Immo alio genere;</dt>
-                        <dd>Sed quanta sit alias, nunc tantum possitne esse tanta.</dd>
-                        <dt>Quonam, inquit, modo?</dt>
-                        <dd>Nam si propter voluptatem, quae est ista laus, quae possit e macello peti?</dd>
-                        <dt>Quis negat?</dt>
-                        <dd>Nam, ut sint illa vendibiliora, haec uberiora certe sunt.</dd>
-                        <dt>Etiam beatissimum?</dt>
-                        <dd>Et certamen honestum et disputatio splendida! omnis est enim de virtutis dignitate contentio.</dd>
-                    </dl>
-                </div>
-                <div class="col md-6">
-                    <h4>Nested List example</h4>
-                    <ol>
-                        <li>Utrum igitur tibi litteram videor an totas paginas commovere?</li>
-                        <li>Mihi vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius.</li>
-                            <ol>
-                                <li>Quicquid porro animo cernimus, id omne oritur a sensibus;</li>
-                                <li>Sed ad haec, nisi molestum est, habeo quae velim.</li>
-                                <ol>
-                                <li>Quicquid porro animo cernimus, id omne oritur a sensibus;</li>
-                                </ol>
-                            </ol>
-                        <li>Stuprata per vim Lucretia a regis filio testata civis se ipsa interemit.</li>
-                    </ol>
-                </div>
-            </section><!-- Basic: Lists -->
-            
-        </div>
-    </section><!-- Basic HTML elements-->
-    <section>
-        <div class="container">
-        <div class="row col reset-float"><h2 id="utilities">Utilities</h2></div>
-            <section class="row">
-                <div class="col">
-                    <h3 id="utilities-hiding">Hiding elements</h3>
-                    <p>Elements can be hidden via <span class="css-ref">.hide</span> to hide them on all devices, or by using breakpoint selectors to target specific screen sizes - see <a href="#grid-breakpoints">breakpoint settings</a>. The grid system will automatically generate the classes as required, and name them according to the class names defined in the <span class="variable-ref">$breakpoints</span> map in <span class="scss-ref">_settings.scss</span>. An element can also be set to be hidden (but still take up space on the page) with the class <span class="css-ref">.invisible</span>. These css classes can be chained to hide/show elements at different breakpoints.</p>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td class="code">.invisible</td>
-                            <td><span class="invisible">This text is invisible but still takes up space on the page. So if it falls across multiple lines, the table cell will grow to fit it.</span></td>
-                        </tr>
-                        <tr>
-                            <td class="code">.hide</td>
-                            <td><span class="hide">This text will be hidden on all devices.</span></td>
-                        </tr>
-                        <tr>
-                            <td class="code">.hide-below-sm</td>
-                            <td><span class="hide-below-sm">This text will be hidden below the <span class="variable-ref">sm</span> breakpoint.</span></td>
-                        </tr>
-                        <tr>
-                            <td class="code">.hide-above-sm</td>
-                            <td><span class="hide-above-sm">This text will be hidden above the <span class="variable-ref">sm</span> breakpoint.</span></td>
-                        </tr>
-                        <tr>
-                            <td class="code">.hide-below-md</td>
-                            <td><span class="hide-below-md">This text will be hidden below the <span class="variable-ref">md</span> breakpoint.</span></td>
-                        </tr>
-                        <tr>
-                            <td class="code">.hide-above-md</td>
-                            <td><span class="hide-above-md">This text will be hidden above the <span class="variable-ref">md</span> breakpoint.</span></td>
-                        </tr>
-                        <tr>
-                            <td class="code">.hide-below-lg</td>
-                            <td><span class="hide-below-lg">This text will be hidden below the <span class="variable-ref">lg</span> breakpoint.</span></td>
-                        </tr>
-                        <tr>
-                            <td class="code">.hide-above-lg</td>
-                            <td><span class="hide-above-lg">This text will be hidden above the <span class="variable-ref">lg</span> breakpoint.</span></td>
-                        </tr>
-                        <tr>
-                            <td class="code">.hide-below-sm .hide-above-lg</td>
-                            <td><span class="hide-below-sm hide-above-lg">This text will only be shown in the <span class="variable-ref">md</span> breakpoint.</span></td>
-                        </tr>
-                    </tbody>    
-                </table>
-                
-                </div>
-            </section><!-- Utilities: Hiding Elements -->
-            <section class="row">
-                <div class="col">
-                    <h3 id="utilities-floats">Floats</h3>
-                    <p>Floats are defined in <span class="scss-ref">_global.scss</span> and allow an element to be floated to the left or right using <span class="css-ref">.alignleft</span> and <span class="css-ref">.alignright</span> respectively. <strong>!important</strong> is used to avoid specificity issues.</p>           
-                    <p>Floats can be cleared by adding <span class="css-ref">.clearfix</span> to the parent container, or by extending the class via <code>@extend .clearfix</code></p>         
-                    <div class="alignnone boxed">
-                        <h6>.alignnone</h6>
-                        <p>This div does not float, and appears where it is in the flow of the document.</p>
-                    </div>
-                    <div class="clearfix">
-                        <div class="alignleft boxed">
-                            <h6>.alignleft</h6>
-                            <p>This div is floated to the left.</p>
-                        </div>
-                        <div class="alignright boxed">
-                            <h6>.alignright</h6>
-                            <p>This div is floated to the right.</p>
-                        </div>
-                    </div>
-                    <h4>Floating images</h4>
-                    <p>Images, like all elements, can be floated by applying these utility classes. Additional styling automatically applies margins to create white space alongside text. These styles are defined in <span class="scss-ref">_global.scss</span>.</p><p>The <span class="variable-ref">%embedded-content</span> placeholder variable will center an image and clear floats below a certain breakpoint (default <span class="variable-ref">sm</span>) to prevent tiny columns of text.</p>
-<pre>
-img {
-    &.alignleft {
-        @extend %embedded-content;
-        @include rem(margin, 0 15px 15px 0);
-    }
-    &.alignright {
-        @extend %embedded-content;
-        @include rem(margin, 0 0 15px 15px);
-    }
-    &.alignnone {
-        @extend %embedded-content;
-        @include rem(margin, 15px 0);
-    }
-    &.aligncenter {
-        @extend %embedded-content;
-        display: block;
-        @include rem(margin, 15px auto);
-    }
-}
 
-%embedded-content {
-    @include below(sm) {
-        float:none !important;
-        @include rem(margin, 10px auto);
-        display: block;
+        <section>
+            <div class="container">
+
+
+                <div class="row col reset-float"><h2 id="basic">Basic HTML elements</h2></div>
+                <section class="row">
+                    <div class="col">
+                        <h3 id="basic-typography">Typography</h3>
+                        <p>Global font families, line height and size are defined in <span class="scss-ref">_settings.scss</span>. With the <a href="#grid-breakpoints">grid breakpoint settings</a>, a new <span class="variable-ref">$base-font-size</span> and <span class="variable-ref">$base-line-height</span> can be defined for each breakpoint. These settings are applied via a loop in the <span class="css-ref">body</span> selector in <span class="scss-ref">_global.scss</span>.</p>
+    <pre>
+    // fonts
+    $font-primary: 'Nunito', 'Arial', sans-serif;
+    $font-secondary: 'Poppins', 'Arial', sans-serif;
+
+    // base sizes (used before breakpoints are applied)
+    $base-font-size: 1.6em;
+    $base-line-height: 1.5;
+    </pre>              
+                        <h4>Hierarchy</h4>
+                        <p>All text will default to the global <span class="variable-ref">$base-font-size</span> unless otherwise specified. Font size hierarchy is defined in <span class="scss-ref">_global.scss</span> and can be implemented by extending the <span class="variable-ref">%font-size</span> placeholder via <code>@extend %font-size{$size}</code>. This is predominantly used in <a href="#basic-headings">Headings</a> but can be used with any element.</p>
+    <pre>
+    // Font Sizes
+    %font-size{
+        &--xsmall { font-size: 0.6em}
+        &--small { font-size: 0.8em }
+        &--normal { font-size: 1em}
+        &--medium { font-size: 1.5em}
+        &--large { font-size: 1.75em}
+        &--xlarge { font-size: 2em}
+        &--xxlarge { font-size: 2.5em}
+        &--xxxlarge { font-size: 3em}
     }
-}
-</pre>
-                    <div class="clearfix">
-                        <h6>img.alignright</h6>
-                        <img src="http://www.unsplash.it/240/150" class="alignright">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ALIO MODO. Utilitatis causa amicitia est quaesita. Similiter sensus, cum accessit ad naturam, tuetur illam quidem, sed etiam se tuetur; Duo Reges: constructio interrete. Universa enim illorum ratione cum tota vestra confligendum puto. </p>
+    </pre>
                     </div>
-                    <div class="clearfix">
-                        <h6>img.alignleft</h6>
-                        <img src="http://www.unsplash.it/250/150" class="alignleft"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ALIO MODO. Utilitatis causa amicitia est quaesita. Similiter sensus, cum accessit ad naturam, tuetur illam quidem, sed etiam se tuetur; Duo Reges: constructio interrete. Universa enim illorum ratione cum tota vestra confligendum puto. </p>
-                    </div>
-                    <div class="clearfix">
-                        <h6>img.alignnone</h6>
-                        <img src="http://www.unsplash.it/220/150" class="alignnone">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ALIO MODO. Utilitatis causa amicitia est quaesita. Similiter sensus, cum accessit ad naturam, tuetur illam quidem, sed etiam se tuetur; Duo Reges: constructio interrete. Universa enim illorum ratione cum tota vestra confligendum puto. </p>
-                    </div>
-                    <div class="clearfix">
-                        <h6>img.aligncenter</h6>
-                        <img src="http://www.unsplash.it/210/150" class="aligncenter">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ALIO MODO. Utilitatis causa amicitia est quaesita. Similiter sensus, cum accessit ad naturam, tuetur illam quidem, sed etiam se tuetur; Duo Reges: constructio interrete. Universa enim illorum ratione cum tota vestra confligendum puto. </p>
-                    </div>
-                </div>
-            </section><!-- Utilities: Floats -->
-        </div>
-    </section><!-- Utilities -->
-    <div class="container" style="margin-top: 100px;margin-bottom:100px;"><hr>Spacer - everything below WIP<hr></div>
-    <section>
-        <div class="container">
-            <div class="row col reset-float"><h2 id="settings">Settings</h2></div>
-            <section class="row">
-                <div class="col">
-                    <h3 id="settings-debug">Debug mode</h3>
-                    <p>This grid system comes with a handy debug mode that can be enabled by setting  <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="scss-ref">_settings.scss</span>. When debug mode is enabled, all <span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 1px rgba(255, 0, 255, 0.7);">glow in pink</span> and all <span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 1px rgba(53, 255, 240, 0.7)">glow in turquoise</span>.</p><p>Additionally, all <span class="css-ref">.row</span> elements will have their background striped to show the number of columns in the grid structure.</p>
-                    <p>Providing that <span class="variable-ref">$has_push_pull</span> and/or <span class="variable-ref">$has_offset</span> are set to <strong>true</strong> in <span class="scss-ref">_settings.scss</span>, any element affected by a <span class="css-ref">.push</span>, <span class="css-ref">.pull</span> or <span class="css-ref">.offset</span> at the active breakpoint will be highlighted with a red border; the heavier stroke indicating the direction to which the action has occured.</p>
-                    
-                    <div class="row">
-                        <div class="col md-4">
-                            <div style="border: 0.2rem solid red;border-left-width: 0.8rem;padding:.5em;">
-                                <p>This element is simulating being 'pulled' to the left via a <span class="css-ref">.pull</span> class.</p>
+                </section><!-- Basic: Typography -->
+                <section class="row">
+
+                    <div class="col">
+                        <h3 id="basic-headings">Headings</h3>
+                        <p>All of the basic HTML headings are catered for h1-h6. Headings are defined and should be further styled via <span class="scss-ref">_global.scss</span> with the placeholder class <span class="variable-ref">%headings</span> specifying some basic constistency. To prevent excess white space, the first heading in a <span class="css-ref">.col</span> or <span class="css-ref">.row</span> has it's top margin reset to 0.</p>
+                        <div class="row">
+                            <div class="col md-7">
+                                <h1>This is a h1 heading</h1>
+                                <p>Accompanying text.</p>
+                                <h2>This is a h2 heading</h2>
+                                <p>Accompanying text.</p>
+                                <h3>This is a h3 heading</h3>
+                                <p>Accompanying text.</p>
+                                <h4>This is a h4 heading</h4>
+                                <p>Accompanying text.</p>
+                                <h5>This is a h5 heading</h5>
+                                <p>Accompanying text.</p>
+                                <h6>This is a h6 heading</h6>
+                                <p>Accompanying text.</p>
+
                             </div>
-                        </div>
-                        <div class="col md-4">
-                            <div style="border: 0.2rem solid red;border-right-width: 0.8rem;padding:.5em;">
-                                <p>This element is simulating being 'pushed' to the right via a <span class="css-ref">.push</span> class.</p>
+                            <div class="col md-5">
+    <pre>
+    // Headings and Paragraphs
+
+    %headings {
+        font-family: $font-secondary;
+        margin: 1em 0 0 0;
+        line-height: 1.2;    
+    }
+
+    h1 {
+        @extend %headings;
+        @extend %font-size--xlarge;
+    }
+
+    ......
+
+    // Reset the top margin on first header in a .row or .col
+    .row >,
+    .col > {
+        & h1:first-child,
+        & h2:first-child,
+        & h3:first-child,
+        & h4:first-child,
+        & h5:first-child,
+        & h6:first-child {
+            margin-top: 0;
+        }
+    }
+    </pre>
                             </div>
-                        </div>
-                        <div class="col md-4">
-                            <div style="border: 0.2rem solid red;border-right-width: 0.8rem;padding:.5em;">
-                                <p>This element is simulating being 'offset' to the right via an <span class="css-ref">.offset</span> class.</p>
                             </div>
-                        </div>
                     </div>
-                    <h4>Debug demo</h4>
-                    <p>Try it out - click here to toggle debug mode on and off onto this page.</p>
-                </div>
-            </section>
-            
-            
-            <section>
-                <div class="container">
-                    <div class="row col reset-float"><h2 id="grid">Grid</h2>
-                    <p>At the heart of this framework is a grid that is completely customisable with the following settings:</p>
+                </section><!-- Basic: Headings -->
+                <section class="row">
+                    <div class="col">
+                        <h3 id="basic-text">Text</h3>
+                        <p>Paragraphs have a margin applied top and bottom by default, defined in <span class="scss-ref">_global.scss</span>. </p>
+                            <h4>Paragraph alignment</h4>
+                            <p>Text can be aligned through the utility classes <span class="css-ref">.text-left</span>, <span class="css-ref">.text-right</span>, <span class="css-ref">.text-center</span> and <span class="css-ref">.text-justify</span> as demonstrated below.</p>
+                        <h6>.text-left</h6>
+                        <p class="text-left">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi.</p>
+                        <h6 class="text-right">.text-right</h6>
+                        <p class="text-right">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi.</p>
+                        <h6 class="text-center">.text-center</h6>
+                        <p class="text-center">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi.</p>
+                        <h6 class="text-justify">.text-justify</h6>
+                        <p class="text-justify">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi.</p>
+                <h4>Text transform</h4>    
+                <p>Standard text transform options are included, defined in <span class="scss-ref">_global.scss</span>:</p>
+                        <table>
+                        <tbody>
+                            <tr><td class="code">small, .small</td><td><p class="small">This text has been defined via .small but you can also use the <span class="css-ref">small</span> tag where appropriate.</p></td></tr>
+                            <tr><td class="code">strong, .bold</td><td><p><strong>This text is important</strong> however the <span class="css-ref">.bold</span> class can be applied for the <span class="bold">same effect without the implied semantics.</span></p></td></tr>
+                            <tr><td class="code">em, .italic</td><td><p><em>This text has emphasis</em> however the <span class="css-ref">.italic</span> class can be applied for the <span class="italic">same effect without the implied semantics.</span></p></td></tr>
+                        </tbody>
+                        </table>
+                    </div>
+                </section><!-- Basic: Text -->
+                <section class="row">
+                    <div class="col">
+                        <h3 id="basic-links">Links</h3>
+                        <p>Text links are styled via <span class="scss-ref">_global.scss</span> with a simple hover animation applied. The <span class="variable-ref">smooth(color)</span> mixin is used to apply consistent transition to the text color - see <a href="#advanced-mixins">mixins</a> for more information. By default, colour is applied via global <span class="variable-ref">color()</span> map settings and should be considered in all projects. See <a href="#settings-color">colour settings</a> for details. The grid system does not currently support default button styles.<br><a class="lead" href="http://www.definitelynotasiteiveeevervisited.com">This is a text link</a><br><a class="lead" href="http://www.google.com">This is a visited text link</a></p>
+    <pre>
+    a {
+        @include smooth(color);
+        color: color(primary);
+        text-decoration: underline;
+        &:visited {
+            color: color(secondary);
+            text-decoration: none;
+        }
+        &:hover {
+            color: color(tertiary);
+        }    
+        &:focus, &:active {
+            color: color(tertiary);
+        }
+    }
+    </pre>
+                    </div>
+                </section><!-- Basic: Links -->
+                <section class="row">
+                    <div class="col">
+                        <h3 id="basic-lists">Lists</h3>
+                        <p>Support for basic lists is included for <span class="css-ref">ul</span>, <span class="css-ref">ol</span> and <span class="css-ref">dl</span>. Minimal styling is included, with lists styled via <span class="scss-ref">_global.scss</span>. The placeholder class <span class="variable-ref">%lists</span> is used to output consistent styling to both <span class="css-ref">ul</span> and <span class="css-ref">ol</span> lists:</p>
+    <pre>
+    %lists {
+        margin: .5em 0 1.25em 2.5em;
+        list-style-position: outside;
+        ul, ol {
+            margin: 0 0 0 2em;
+        }
+    }
+    </pre>
+                        <p>Nested lists are also supported, with additional styling to indent the left margin for visual separation.</p>
+                    </div>
+                    <div class="col md-6">
+                        <h4>Unordered List example</h4>
                         <ul>
-                            <li>Columns</li>
-                            <li>Push/Pull include y/n</li>
-                            <li>Offset include y/n</li>
-                            <li>Debug mode on/off</li>
-                            <li>Endless breakpoints with customisable names</li>
-                            <li>For each user-defined breakpoint:
-                            <ul>
-                                <li>Container width</li>
-                                <li>Container gutter</li>
-                                <li>Column gutter</li>
-                                <li>Base font size</li>
-                                <li>Base line height</li>
-                            </ul>
-                            </li>
+                            <li>Pisone in eo gymnasio, quod Ptolomaeum vocatur, unaque nobiscum Q.</li>
+                            <li>Vitae autem degendae ratio maxime quidem illis placuit quieta.</li>
+                            <li>Dicet pro me ipsa virtus nec dubitabit isti vestro beato M.</li>
                         </ul>
                     </div>
-                    <section>
-                        <section class="row col">
-                                <div class="grid-ex">
-                                    .row.col
-                                </div>
-                        </section>
-                        <section class="row">
-                            <div class="col md-1">
-                                <div class="grid-ex">
-                                    .col.md-1
-                                </div>
+                    <div class="col md-6">
+                        <h4>Ordered List example</h4>
+                        <ol>
+                            <li>Utrum igitur tibi litteram videor an totas paginas commovere?</li>
+                            <li>Mihi vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius.</li>
+                            <li>Quicquid porro animo cernimus, id omne oritur a sensibus;</li>
+                        </ol>
+                    </div>
+                    <div class="col md-6">
+                        <h4>Description List example</h4>
+                        <dl>
+                            <dt>Immo alio genere;</dt>
+                            <dd>Sed quanta sit alias, nunc tantum possitne esse tanta.</dd>
+                            <dt>Quonam, inquit, modo?</dt>
+                            <dd>Nam si propter voluptatem, quae est ista laus, quae possit e macello peti?</dd>
+                            <dt>Quis negat?</dt>
+                            <dd>Nam, ut sint illa vendibiliora, haec uberiora certe sunt.</dd>
+                            <dt>Etiam beatissimum?</dt>
+                            <dd>Et certamen honestum et disputatio splendida! omnis est enim de virtutis dignitate contentio.</dd>
+                        </dl>
+                    </div>
+                    <div class="col md-6">
+                        <h4>Nested List example</h4>
+                        <ol>
+                            <li>Utrum igitur tibi litteram videor an totas paginas commovere?</li>
+                            <li>Mihi vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius.</li>
+                                <ol>
+                                    <li>Quicquid porro animo cernimus, id omne oritur a sensibus;</li>
+                                    <li>Sed ad haec, nisi molestum est, habeo quae velim.</li>
+                                    <ol>
+                                    <li>Quicquid porro animo cernimus, id omne oritur a sensibus;</li>
+                                    </ol>
+                                </ol>
+                            <li>Stuprata per vim Lucretia a regis filio testata civis se ipsa interemit.</li>
+                        </ol>
+                    </div>
+                </section><!-- Basic: Lists -->
+
+            </div>
+        </section><!-- Basic HTML elements-->
+        <section>
+            <div class="container">
+            <div class="row col reset-float"><h2 id="utilities">Utilities</h2></div>
+                <section class="row">
+                    <div class="col">
+                        <h3 id="utilities-hiding">Hiding elements</h3>
+                        <p>Elements can be hidden via <span class="css-ref">.hide</span> to hide them on all devices, or by using breakpoint selectors to target specific screen sizes - see <a href="#grid-breakpoints">breakpoint settings</a>. The grid system will automatically generate the classes as required, and name them according to the class names defined in the <span class="variable-ref">$breakpoints</span> map in <span class="scss-ref">_settings.scss</span>. An element can also be set to be hidden (but still take up space on the page) with the class <span class="css-ref">.invisible</span>. These css classes can be chained to hide/show elements at different breakpoints.</p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="code">.invisible</td>
+                                <td><span class="invisible">This text is invisible but still takes up space on the page. So if it falls across multiple lines, the table cell will grow to fit it.</span></td>
+                            </tr>
+                            <tr>
+                                <td class="code">.hide</td>
+                                <td><span class="hide">This text will be hidden on all devices.</span></td>
+                            </tr>
+                            <tr>
+                                <td class="code">.hide-below-sm</td>
+                                <td><span class="hide-below-sm">This text will be hidden below the <span class="variable-ref">sm</span> breakpoint.</span></td>
+                            </tr>
+                            <tr>
+                                <td class="code">.hide-above-sm</td>
+                                <td><span class="hide-above-sm">This text will be hidden above the <span class="variable-ref">sm</span> breakpoint.</span></td>
+                            </tr>
+                            <tr>
+                                <td class="code">.hide-below-md</td>
+                                <td><span class="hide-below-md">This text will be hidden below the <span class="variable-ref">md</span> breakpoint.</span></td>
+                            </tr>
+                            <tr>
+                                <td class="code">.hide-above-md</td>
+                                <td><span class="hide-above-md">This text will be hidden above the <span class="variable-ref">md</span> breakpoint.</span></td>
+                            </tr>
+                            <tr>
+                                <td class="code">.hide-below-lg</td>
+                                <td><span class="hide-below-lg">This text will be hidden below the <span class="variable-ref">lg</span> breakpoint.</span></td>
+                            </tr>
+                            <tr>
+                                <td class="code">.hide-above-lg</td>
+                                <td><span class="hide-above-lg">This text will be hidden above the <span class="variable-ref">lg</span> breakpoint.</span></td>
+                            </tr>
+                            <tr>
+                                <td class="code">.hide-below-sm .hide-above-lg</td>
+                                <td><span class="hide-below-sm hide-above-lg">This text will only be shown in the <span class="variable-ref">md</span> breakpoint.</span></td>
+                            </tr>
+                        </tbody>    
+                    </table>
+
+                    </div>
+                </section><!-- Utilities: Hiding Elements -->
+                <section class="row">
+                    <div class="col">
+                        <h3 id="utilities-floats">Floats</h3>
+                        <p>Floats are defined in <span class="scss-ref">_global.scss</span> and allow an element to be floated to the left or right using <span class="css-ref">.alignleft</span> and <span class="css-ref">.alignright</span> respectively. <strong>!important</strong> is used to avoid specificity issues.</p>           
+                        <p>Floats can be cleared by adding <span class="css-ref">.clearfix</span> to the parent container, or by extending the class via <code>@extend .clearfix</code></p>         
+                        <div class="alignnone boxed">
+                            <h6>.alignnone</h6>
+                            <p>This div does not float, and appears where it is in the flow of the document.</p>
+                        </div>
+                        <div class="clearfix">
+                            <div class="alignleft boxed">
+                                <h6>.alignleft</h6>
+                                <p>This div is floated to the left.</p>
                             </div>
-                            <div class="col md-11">
-                                <div class="grid-ex">
-                                    .col.md-11
-                                </div>
+                            <div class="alignright boxed">
+                                <h6>.alignright</h6>
+                                <p>This div is floated to the right.</p>
                             </div>
-                        </section>
-                        <section class="row">
-                            <div class="col md-2">
-                                <div class="grid-ex">
-                                    .col.md-2
-                                </div>
-                            </div>
-                            <div class="col md-10">
-                                <div class="grid-ex">
-                                    .col.md-10
-                                </div>
-                            </div>
-                        </section>
-                        <section class="row">
-                            <div class="col md-3">
-                                <div class="grid-ex">
-                                    .col.md-3
-                                </div>
-                            </div>
-                            <div class="col md-9">
-                                <div class="grid-ex">
-                                    .col.md-9
-                                </div>
-                            </div>
-                        </section>
-                        <section class="row">
+                        </div>
+                        <h4>Floating images</h4>
+                        <p>Images, like all elements, can be floated by applying these utility classes. Additional styling automatically applies margins to create white space alongside text. These styles are defined in <span class="scss-ref">_global.scss</span>.</p><p>The <span class="variable-ref">%embedded-content</span> placeholder variable will center an image and clear floats below a certain breakpoint (default <span class="variable-ref">sm</span>) to prevent tiny columns of text.</p>
+    <pre>
+    img {
+        &.alignleft {
+            @extend %embedded-content;
+            @include rem(margin, 0 15px 15px 0);
+        }
+        &.alignright {
+            @extend %embedded-content;
+            @include rem(margin, 0 0 15px 15px);
+        }
+        &.alignnone {
+            @extend %embedded-content;
+            @include rem(margin, 15px 0);
+        }
+        &.aligncenter {
+            @extend %embedded-content;
+            display: block;
+            @include rem(margin, 15px auto);
+        }
+    }
+
+    %embedded-content {
+        @include below(sm) {
+            float:none !important;
+            @include rem(margin, 10px auto);
+            display: block;
+        }
+    }
+    </pre>
+                        <div class="clearfix">
+                            <h6>img.alignright</h6>
+                            <img src="http://www.unsplash.it/240/150" class="alignright">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ALIO MODO. Utilitatis causa amicitia est quaesita. Similiter sensus, cum accessit ad naturam, tuetur illam quidem, sed etiam se tuetur; Duo Reges: constructio interrete. Universa enim illorum ratione cum tota vestra confligendum puto. </p>
+                        </div>
+                        <div class="clearfix">
+                            <h6>img.alignleft</h6>
+                            <img src="http://www.unsplash.it/250/150" class="alignleft"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ALIO MODO. Utilitatis causa amicitia est quaesita. Similiter sensus, cum accessit ad naturam, tuetur illam quidem, sed etiam se tuetur; Duo Reges: constructio interrete. Universa enim illorum ratione cum tota vestra confligendum puto. </p>
+                        </div>
+                        <div class="clearfix">
+                            <h6>img.alignnone</h6>
+                            <img src="http://www.unsplash.it/220/150" class="alignnone">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ALIO MODO. Utilitatis causa amicitia est quaesita. Similiter sensus, cum accessit ad naturam, tuetur illam quidem, sed etiam se tuetur; Duo Reges: constructio interrete. Universa enim illorum ratione cum tota vestra confligendum puto. </p>
+                        </div>
+                        <div class="clearfix">
+                            <h6>img.aligncenter</h6>
+                            <img src="http://www.unsplash.it/210/150" class="aligncenter">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ALIO MODO. Utilitatis causa amicitia est quaesita. Similiter sensus, cum accessit ad naturam, tuetur illam quidem, sed etiam se tuetur; Duo Reges: constructio interrete. Universa enim illorum ratione cum tota vestra confligendum puto. </p>
+                        </div>
+                    </div>
+                </section><!-- Utilities: Floats -->
+            </div>
+        </section><!-- Utilities -->
+        <div class="container" style="margin-top: 100px;margin-bottom:100px;"><hr>Spacer - everything below WIP<hr></div>
+        <section>
+            <div class="container">
+                <div class="row col reset-float"><h2 id="settings">Settings</h2></div>
+                <section class="row">
+                    <div class="col">
+                        <h3 id="settings-debug">Debug mode</h3>
+                        <p>This grid system comes with a handy debug mode that can be enabled by setting  <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="scss-ref">_settings.scss</span>. When debug mode is enabled, all <span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 1px rgba(255, 0, 255, 0.7);">glow in pink</span> and all <span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 1px rgba(53, 255, 240, 0.7)">glow in turquoise</span>.</p><p>Additionally, all <span class="css-ref">.row</span> elements will have their background striped to show the number of columns in the grid structure.</p>
+                        <p>Providing that <span class="variable-ref">$has_push_pull</span> and/or <span class="variable-ref">$has_offset</span> are set to <strong>true</strong> in <span class="scss-ref">_settings.scss</span>, any element affected by a <span class="css-ref">.push</span>, <span class="css-ref">.pull</span> or <span class="css-ref">.offset</span> at the active breakpoint will be highlighted with a red border; the heavier stroke indicating the direction to which the action has occured.</p>
+
+                        <div class="row">
                             <div class="col md-4">
-                                <div class="grid-ex">
-                                    .col.md-4
-                                </div>
-                            </div>
-                            <div class="col md-8">
-                                <div class="grid-ex">
-                                    .col.md-8
-                                </div>
-                            </div>
-                        </section>
-                        <section class="row">
-                            <div class="col md-5">
-                                <div class="grid-ex">
-                                    .col.md-5
-                                </div>
-                            </div>
-                            <div class="col md-7">
-                                <div class="grid-ex">
-                                    .col.md-7
-                                </div>
-                            </div>
-                        </section>
-                        <section class="row">
-                            <div class="col md-6">
-                                <div class="grid-ex">
-                                    .col.md-6
-                                </div>
-                            </div>
-                            <div class="col md-6">
-                                <div class="grid-ex">
-                                    .col.md-6
-                                </div>
-                            </div>
-                        </section>
-                        <section class="row">
-                            <div class="col md-7">
-                                <div class="grid-ex">
-                                    .col.md-7
-                                </div>
-                            </div>
-                            <div class="col md-5">
-                                <div class="grid-ex">
-                                    .col.md-5
-                                </div>
-                            </div>
-                        </section>
-                        <section class="row">
-                            <div class="col md-8">
-                                <div class="grid-ex">
-                                    .col.md-8
+                                <div style="border: 0.2rem solid red;border-left-width: 0.8rem;padding:.5em;">
+                                    <p>This element is simulating being 'pulled' to the left via a <span class="css-ref">.pull</span> class.</p>
                                 </div>
                             </div>
                             <div class="col md-4">
-                                <div class="grid-ex">
-                                    .col.md-4
+                                <div style="border: 0.2rem solid red;border-right-width: 0.8rem;padding:.5em;">
+                                    <p>This element is simulating being 'pushed' to the right via a <span class="css-ref">.push</span> class.</p>
                                 </div>
                             </div>
+                            <div class="col md-4">
+                                <div style="border: 0.2rem solid red;border-right-width: 0.8rem;padding:.5em;">
+                                    <p>This element is simulating being 'offset' to the right via an <span class="css-ref">.offset</span> class.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h4>Debug demo</h4>
+                        <p>Try it out - click here to toggle debug mode on and off onto this page.</p>
+                    </div>
+                </section>
+
+
+                <section>
+                    <div class="container">
+                        <div class="row col reset-float"><h2 id="grid">Grid</h2>
+                        <p>At the heart of this framework is a grid that is completely customisable with the following settings:</p>
+                            <ul>
+                                <li>Columns</li>
+                                <li>Push/Pull include y/n</li>
+                                <li>Offset include y/n</li>
+                                <li>Debug mode on/off</li>
+                                <li>Endless breakpoints with customisable names</li>
+                                <li>For each user-defined breakpoint:
+                                <ul>
+                                    <li>Container width</li>
+                                    <li>Container gutter</li>
+                                    <li>Column gutter</li>
+                                    <li>Base font size</li>
+                                    <li>Base line height</li>
+                                </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <section>
+                            <section class="row col">
+                                    <div class="grid-ex">
+                                        .row.col
+                                    </div>
+                            </section>
+                            <section class="row">
+                                <div class="col md-1">
+                                    <div class="grid-ex">
+                                        .col.md-1
+                                    </div>
+                                </div>
+                                <div class="col md-11">
+                                    <div class="grid-ex">
+                                        .col.md-11
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row">
+                                <div class="col md-2">
+                                    <div class="grid-ex">
+                                        .col.md-2
+                                    </div>
+                                </div>
+                                <div class="col md-10">
+                                    <div class="grid-ex">
+                                        .col.md-10
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row">
+                                <div class="col md-3">
+                                    <div class="grid-ex">
+                                        .col.md-3
+                                    </div>
+                                </div>
+                                <div class="col md-9">
+                                    <div class="grid-ex">
+                                        .col.md-9
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row">
+                                <div class="col md-4">
+                                    <div class="grid-ex">
+                                        .col.md-4
+                                    </div>
+                                </div>
+                                <div class="col md-8">
+                                    <div class="grid-ex">
+                                        .col.md-8
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row">
+                                <div class="col md-5">
+                                    <div class="grid-ex">
+                                        .col.md-5
+                                    </div>
+                                </div>
+                                <div class="col md-7">
+                                    <div class="grid-ex">
+                                        .col.md-7
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row">
+                                <div class="col md-6">
+                                    <div class="grid-ex">
+                                        .col.md-6
+                                    </div>
+                                </div>
+                                <div class="col md-6">
+                                    <div class="grid-ex">
+                                        .col.md-6
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row">
+                                <div class="col md-7">
+                                    <div class="grid-ex">
+                                        .col.md-7
+                                    </div>
+                                </div>
+                                <div class="col md-5">
+                                    <div class="grid-ex">
+                                        .col.md-5
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row">
+                                <div class="col md-8">
+                                    <div class="grid-ex">
+                                        .col.md-8
+                                    </div>
+                                </div>
+                                <div class="col md-4">
+                                    <div class="grid-ex">
+                                        .col.md-4
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row">
+                                <div class="col md-9">
+                                    <div class="grid-ex">
+                                        .col.md-9
+                                    </div>
+                                </div>
+                                <div class="col md-3">
+                                    <div class="grid-ex">
+                                        .col.md-3
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row">
+                                <div class="col md-10">
+                                    <div class="grid-ex">
+                                        .col.md-10
+                                    </div>
+                                </div>
+                                <div class="col md-2">
+                                    <div class="grid-ex">
+                                        .col.md-2
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row">
+                                <div class="col md-11">
+                                    <div class="grid-ex">
+                                        .col.md-11
+                                    </div>
+                                </div>
+                                <div class="col md-1">
+                                    <div class="grid-ex">
+                                        .col.md-1
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row">
+                                <div class="col">
+                                    <div class="grid-ex">
+                                        .col
+                                    </div>
+                                </div>
+                            </section>
                         </section>
+                        <section>
                         <section class="row">
-                            <div class="col md-9">
-                                <div class="grid-ex">
-                                    .col.md-9
+                                <div class="col md-3">
+                                    <div class="grid-ex">
+                                        .col.md-3
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col md-3">
-                                <div class="grid-ex">
-                                    .col.md-3
+                             <div class="col md-3">
+                                    <div class="grid-ex">
+                                        .col.md-3
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="col md-3">
+                                    <div class="grid-ex">
+                                        .col.md-5
+                                    </div>
+                                </div>
+                            </section>
                         </section>
-                        <section class="row">
-                            <div class="col md-10">
-                                <div class="grid-ex">
-                                    .col.md-10
-                                </div>
-                            </div>
-                            <div class="col md-2">
-                                <div class="grid-ex">
-                                    .col.md-2
-                                </div>
-                            </div>
-                        </section>
-                        <section class="row">
-                            <div class="col md-11">
-                                <div class="grid-ex">
-                                    .col.md-11
-                                </div>
-                            </div>
-                            <div class="col md-1">
-                                <div class="grid-ex">
-                                    .col.md-1
-                                </div>
-                            </div>
-                        </section>
-                        <section class="row">
-                            <div class="col">
-                                <div class="grid-ex">
-                                    .col
-                                </div>
-                            </div>
-                        </section>
-                    </section>
-                    <section>
-                    <section class="row">
-                            <div class="col md-3">
-                                <div class="grid-ex">
-                                    .col.md-3
-                                </div>
-                            </div>
-                         <div class="col md-3">
-                                <div class="grid-ex">
-                                    .col.md-3
-                                </div>
-                            </div>
-                            <div class="col md-3">
-                                <div class="grid-ex">
-                                    .col.md-5
-                                </div>
-                            </div>
-                        </section>
-                    </section>
-                </div>                        
-            </section>
-            
-            <section class="row">
-                <div class="col">
-                    <h3 id="grid-pushpull">Push / Pull</h3>
-                    <p>Setting <span class="variable-ref">$has_push_pull</span> to <strong>true</strong> in <span class="scss-ref">_settings.scss</span> enables the use of <span class="css-ref">.push</span> and <span class="css-ref">.pull</span> utilities, which allow you to move a column to the right (push) or left (pull) at the breakpoint(s) of your choice. The grid system will automatically generate the classes as required, and name them according to the class names defined in the <span class="variable-ref">$breakpoints</span> map in <span class="scss-ref">_settings.scss</span>.</p><p>Using a push/pull of 0 effectively resets any previously defined overrides. <span class="css-ref">.push</span> and <span class="css-ref">.pull</span> utilities can be chained as demonstrated below.</p>
-                </div>
-                    <div class="col sm-6 md-3 push-sm-6 push-lg-0">.col .sm-6 .md-2 .push-sm-6 .push-lg-0</div>
-                    <div class="col sm-6 md-3 pull-sm-6 push-md-6 push-lg-3">.col .sm-6 .md-2 .pull-sm-6 .push-md-6 .push-lg-3</div>
-                    <div class="col sm-6 md-3 pull-md-6 push-lg-3">.col .sm-6 .md-2 .pull-md-6 .push-lg-3</div>
-                    <div class="col sm-6 md-3 pull-md-6">.col .sm-6 .md-2 .pull-md-6</div>
-            </section>
+                    </div>                        
+                </section>
+
+                <section class="row">
+                    <div class="col">
+                        <h3 id="grid-pushpull">Push / Pull</h3>
+                        <p>Setting <span class="variable-ref">$has_push_pull</span> to <strong>true</strong> in <span class="scss-ref">_settings.scss</span> enables the use of <span class="css-ref">.push</span> and <span class="css-ref">.pull</span> utilities, which allow you to move a column to the right (push) or left (pull) at the breakpoint(s) of your choice. The grid system will automatically generate the classes as required, and name them according to the class names defined in the <span class="variable-ref">$breakpoints</span> map in <span class="scss-ref">_settings.scss</span>.</p><p>Using a push/pull of 0 effectively resets any previously defined overrides. <span class="css-ref">.push</span> and <span class="css-ref">.pull</span> utilities can be chained as demonstrated below.</p>
+                    </div>
+                        <div class="col sm-6 md-3 push-sm-6 push-lg-0">.col .sm-6 .md-2 .push-sm-6 .push-lg-0</div>
+                        <div class="col sm-6 md-3 pull-sm-6 push-md-6 push-lg-3">.col .sm-6 .md-2 .pull-sm-6 .push-md-6 .push-lg-3</div>
+                        <div class="col sm-6 md-3 pull-md-6 push-lg-3">.col .sm-6 .md-2 .pull-md-6 .push-lg-3</div>
+                        <div class="col sm-6 md-3 pull-md-6">.col .sm-6 .md-2 .pull-md-6</div>
+                </section>
+            </div>
+        </section>
+
+        <h2 id="mixins">Mixins and Functions</h2>
+        <h3 id="mixins-remem">Rem / Em</h3>
+        <p>The functions <span class="variable-ref">rem($value)</span> and <span class="variable-ref">em($value)</span> defined in <span class="scss-ref">mixins/_rem.scss</span> can be used to convert pixel measurements into rem and em respectively.</p>
+        <p>The <span class="variable-ref">rem()</span> </p>
+
+
+
+
+
+
+
+
+        <div class="container row" style="margin-top:300px;background: grey;">
+
+            <div class="row">
+                        <div class="col md-3">WHY</div>
+                        <div class="col md-3">WONT</div>
+                        <div class="col md-3">YOU </div>
+                        <div class="col md-3">NEST?!</div>
+            </div>
+
         </div>
-    </section>
-    
-    <h2 id="mixins">Mixins and Functions</h2>
-    <h3 id="mixins-remem">Rem / Em</h3>
-    <p>The functions <span class="variable-ref">rem($value)</span> and <span class="variable-ref">em($value)</span> defined in <span class="scss-ref">mixins/_rem.scss</span> can be used to convert pixel measurements into rem and em respectively.</p>
-    <p>The <span class="variable-ref">rem()</span> </p>
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="container row" style="margin-top:300px;background: grey;">
-    
-        <div class="row">
-                    <div class="col md-3">WHY</div>
-                    <div class="col md-3">WONT</div>
-                    <div class="col md-3">YOU </div>
-                    <div class="col md-3">NEST?!</div>
-        </div>
-    
-    </div>
+    </main>
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
     <script type="text/javascript" src="assets/js/scripts.js"></script>
 </body>
