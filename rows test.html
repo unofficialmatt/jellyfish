@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Responsive Grid Template | Matt Weet Design</title>
+    <title>Testing the grid stuff</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,18 +12,85 @@
     <![endif]-->
     <link rel="stylesheet" href="assets/css/style.css" media="all">
     <link href='https://fonts.googleapis.com/css?family=Nunito:400,700|Poppins:600' rel='stylesheet' type='text/css'>
-    <style type="text/css">.row {padding-top: 7rem;padding-bottom:7rem;background-color: beige;} .container{overflow:hidden;}
     
-        .row.col {margin-left:0; margin-right:0;padding-left:0; padding-right:0;}
-    
-    
-    </style>
 </head>
 
 <body>
+    <main>
+        <h1>Main</h1>
+        <h2 >.col elements inside a .row.container</h2>
+        <div class="row container">
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+        </div>
+    </main>
+    <br><br>
     <main class="container">
+        <h1>Main.container</h1>
+        <h2 >.col elements inside a .row</h2>
+        <div class="row">
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+        </div>
+        <h2 >.col elements inside a .row with negative margin</h2>
+        <div class="row" style="margin-left:-2rem;margin-right:-2rem;">
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+        </div>
+        <h2 >.col elements inside a .row.collapse</h2>
+        <div class="row collapse">
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+            <div class="col md-4"><div class="inner">.col .md-4</div></div>
+        </div>
+        
+        <h2 >super nested .row</h2>
+    <div >
+        <div class="row">
+            <div class="col md-6">
+                <div class="row">
+                    <div class="col md-12">
+                        <div class="row">
+                            <div class="col md-6">
+                            .row .col .row .col .row .col.md-6
+                            </div>
+                            <div class="col md-6">
+                            .row .col .row .col .row .col.md-6
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col md-6">
+                <div class="row">
+                    <div class="col md-12">
+                        <div class="row">
+                            <div class="col md-6">
+                            .row .col .row .col .row .col.md-6
+                            </div>
+                            <div class="col md-6">
+                            .row .col .row .col .row .col.md-6
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </main>
+        <!--
     <h2 >.col elements inside a .row.container</h2>
-    <div class=" container">
+    <div class="row container">
         <div class="col md-4">.col .md-4</div>
         <div class="col md-4">.col .md-4</div>
         <div class="col md-4">.col .md-4</div>
@@ -105,7 +172,8 @@
             </div>
         </div>
     </div>
-    </div>
+    </div>-->
+        
 </body>
 
 </html>

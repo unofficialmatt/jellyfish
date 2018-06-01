@@ -65,15 +65,13 @@ $i in $breakpoints {
             // give our container a width/max width, and padding to border content
             width: bp-query($point, container-width);
             max-width: bp-query($point, container-max-width);
-            padding: 0 bp-query($point, container-gutter);
+            padding-left: bp-query($point, container-gutter);
+            padding-right: bp-query($point, container-gutter);
         }
-        .row .row { 
-            // give our nested rows negative margin equal to half col gutter
+        .row { 
+            // give our rows negative margin equal to half col gutter
             margin-left: -.5*(bp-query($point, col-gutter));
             margin-right: -.5*(bp-query($point, col-gutter));
-            // give our nested rows negative margin equal to half col gutter
-            margin-left: (bp-query($point, col-gutter));
-            margin-right: (bp-query($point, col-gutter));
         }
         .col {
             // give our cols l-r margin equal to half col gutter

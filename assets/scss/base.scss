@@ -25,7 +25,7 @@ TO DO:
 • Make the index.html a better instructor (including all this info basically)
   • Do full documentation detailing what ervery bit of css does and why/how to use it/how to format grid. Can put some code in the head to style code etc. Should I drop anything to make it more lean - eg. the mark, blockquote etc as these should be styled for the site design itself. Get back to basics with a solid customisable grid framework?        
 
-
+DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
 */
 
 //For demo only - add to demo.scss
@@ -86,14 +86,13 @@ td {
     @extend %font-size--large;
 }
 
-// Temporary for Debugging
 
-body {
-    background: cornsilk;
-}
-
-main {background: white;}
-
-.col {
-    border: 1px solid grey;
-}
+// Temp only
+.row {padding-top: 7rem;padding-bottom:7rem;background-color: #efefef;} 
+        .container{border: 1px solid red;}
+        .col{border: 1px solid blue;padding-top: 10px;padding-bottoM:10px;}
+        .row{border: 1px solid orange;}
+        .row.col {margin-left:0; margin-right:0;padding-left:0; padding-right:0;}
+        body {background: ghostwhite;}
+        main {background: white;}
+        .inner {border:1px solid green;}
