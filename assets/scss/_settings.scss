@@ -33,7 +33,7 @@ $breakpoints: (
     sm: (
         breakpoint: 550px,
         container-width: 100%,
-        container-gutter: rem(50px),      
+        //container-gutter: rem(50px),      
         col-gutter: rem(20px),
         base-font-size: 1.4em,
         base-line-height: 1.48
@@ -49,7 +49,7 @@ $breakpoints: (
     lg: (
         breakpoint: 800px,
         container-width: 900px,
-        container-gutter: rem(50px),      
+        //container-gutter: rem(50px),      
         col-gutter: rem(40px),
         //base-font-size: 1em,
         //base-line-height: 1.48em

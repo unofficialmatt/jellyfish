@@ -88,11 +88,11 @@ td {
 
 
 // Temp only
-.row {padding-top: 7rem;padding-bottom:7rem;background-color: #efefef;} 
+.row {padding-top: 1rem;padding-bottom:1rem;background-color: #efefef;} 
         .container{border: 1px solid red;}
         .col{border: 1px solid blue;padding-top: 10px;padding-bottoM:10px;}
         .row{border: 1px solid orange;}
-        .row.col {margin-left:0; margin-right:0;padding-left:0; padding-right:0;}
+        //.row.col {margin-left:0; margin-right:0;padding-left:0; padding-right:0;}
         body {background: ghostwhite;}
         main {background: white;}
         .inner {border:1px solid green;}
