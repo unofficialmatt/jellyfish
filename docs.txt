@@ -149,10 +149,6 @@ sm: (
  See _grid.scss for reference to how the JELLYFISH grid is compiled
  
  
- At the fundamental level, a grid is comprised of three elements:
- .container - a containing element with a fixed width
- .row - houses a number of .col elements and is automatically cleared with .clearfix to prevent flow issues
- .col - a single column element which can be extended with breakpoint based modifiers
  
  {EXAMPLE HERE}
  
@@ -169,7 +165,7 @@ sm: (
  
  
  MENTION HERE THAT AN ELEMENT CAN BE BOTH A CONTAINER AND ROW or a ROW and COL(!?)
- 
+ And how this saves code
  
  Collapsing Rows/Columns
  

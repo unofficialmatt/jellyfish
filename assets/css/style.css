@@ -63,7 +63,7 @@ body {
     body {
       font-size: 1.6em; } }
 
-small, .small, .css-ref, .grid-ex, .scss-ref, .variable-ref {
+small, .small, .docs code, .docs pre, .docs .code, .docs .css-ref, .docs .grid-ex, .docs .scss-ref, .docs .variable-ref {
   font-size: 0.8em; }
 
 h6 {
@@ -72,7 +72,7 @@ h6 {
 h5 {
   font-size: 1.5em; }
 
-h4, .lead {
+h4, .docs .lead {
   font-size: 1.75em; }
 
 h3 {
@@ -120,7 +120,7 @@ a {
   a:focus, a:active {
     color: #AAB7C4; }
 
-strong, .bold, code, pre, .code {
+strong, .bold, .docs code, .docs pre, .docs .code {
   font-weight: bold; }
 
 em, .italic {
@@ -849,67 +849,54 @@ TO DO:
 
 DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
 */
-.boxed, pre {
-  background: #EBF2F2;
-  border: 0.1rem solid #D9DBDB;
-  padding: 1.4em;
-  margin: 1em 0; }
+.docs {
+  /*
+    .row {padding-top: 1rem;padding-bottom:1rem;background-color: #efefef;} 
+            .container{border: 1px solid red;}
+            .col{border: 1px solid blue;padding-top: 10px;padding-bottoM:10px;}
+            .row{border: 1px solid orange;}
+            //.row.col {margin-left:0; margin-right:0;padding-left:0; padding-right:0;}
+            body {background: ghostwhite;}
+            main {background: white;}
 
-code, pre, .code {
-  font-family: Consolas, monaco, monospace; }
-
-pre {
-  width: auto;
-  display: block;
-  white-space: pre-wrap; }
-
-.css-ref, .grid-ex, .scss-ref, .variable-ref {
-  display: inline-block;
-  color: white;
-  padding: .3em;
-  border-radius: 0.4rem;
-  line-height: 1; }
-
-.css-ref, .grid-ex {
-  background: #4ECDC4; }
-
-.scss-ref {
-  background: #556270; }
-
-.variable-ref {
-  background: #FF6B6B; }
-
-.grid-ex {
-  width: 100%;
-  text-align: center; }
-
-td {
-  padding: 1rem;
-  border: 0.1rem solid #D9DBDB; }
-
-.row {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  background-color: #efefef; }
-
-.container {
-  border: 1px solid red; }
-
-.col {
-  border: 1px solid blue;
-  padding-top: 10px;
-  padding-bottoM: 10px; }
-
-.row {
-  border: 1px solid orange; }
-
-body {
-  background: ghostwhite; }
-
-main {
-  background: white; }
-
-.inner {
-  border: 1px solid green; }
+            .inner {border:1px solid green;}
+    .container .container {padding:0;width: 100%}
+    */ }
+  .docs .boxed, .docs pre {
+    background: #EBF2F2;
+    border: 0.1rem solid #D9DBDB;
+    padding: 1.4em;
+    margin: 2rem 0; }
+  .docs table {
+    margin: 2rem 0; }
+    .docs table h1, .docs table h2, .docs table h3, .docs table h4, .docs table h5, .docs table h6 {
+      margin: 0; }
+  .docs code, .docs pre, .docs .code {
+    font-family: Consolas, monaco, monospace; }
+  .docs pre {
+    width: auto;
+    display: block;
+    white-space: pre-wrap; }
+  .docs .css-ref, .docs .grid-ex, .docs .scss-ref, .docs .variable-ref {
+    display: inline-block;
+    color: white;
+    padding: .3em;
+    border-radius: 0.4rem;
+    line-height: 1; }
+  .docs .css-ref, .docs .grid-ex {
+    background: #4ECDC4; }
+  .docs .scss-ref {
+    background: #556270; }
+  .docs .variable-ref {
+    background: #FF6B6B; }
+  .docs .grid-ex {
+    width: 100%;
+    text-align: center; }
+  .docs td {
+    padding: 1rem;
+    border: 0.1rem solid #D9DBDB; }
+  .docs .docs-section {
+    margin-top: 4rem;
+    margin-bottom: 4rem; }
 
 /*# sourceMappingURL=../scss/scss.css.map */
