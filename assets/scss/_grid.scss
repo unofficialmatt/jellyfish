@@ -13,12 +13,13 @@
     &.col {
         width: 100%;
     }
-    & .row {
-        padding: 0;
-    }
     &-padded {
     padding-top: 7rem;
     padding-bottom: 7rem;
+    }
+    & .row.collapse {
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 .full-width {
@@ -68,9 +69,10 @@ $i in $breakpoints {
             // give our container a width/max width, and padding to border content
             width: bp-query($point, container-width);
             max-width: bp-query($point, container-max-width);
-            padding: 0 bp-query($point, container-gutter);
+            padding-left: bp-query($point, container-gutter);
+            padding-right: bp-query($point, container-gutter);
         }
-        .row .row {
+        .row  .row{ 
             // give our nested rows negative margin equal to half col gutter
             margin-left: -.5*(bp-query($point, col-gutter));
             margin-right: -.5*(bp-query($point, col-gutter));

@@ -63,7 +63,7 @@ body {
     body {
       font-size: 1.6em; } }
 
-small, .small, .css-ref, .grid-ex, .scss-ref, .variable-ref {
+small, .small, .docs code, .docs pre, .docs .code, .docs .css-ref, .docs .grid-ex, .docs .scss-ref, .docs .variable-ref {
   font-size: 0.8em; }
 
 h6 {
@@ -72,7 +72,7 @@ h6 {
 h5 {
   font-size: 1.5em; }
 
-h4, .lead {
+h4, .docs .lead {
   font-size: 1.75em; }
 
 h3 {
@@ -120,7 +120,7 @@ a {
   a:focus, a:active {
     color: #AAB7C4; }
 
-strong, .bold, code, pre, .code {
+strong, .bold, .docs code, .docs pre, .docs .code {
   font-weight: bold; }
 
 em, .italic {
@@ -215,12 +215,13 @@ img {
 .row.col {
   width: 100%; }
 
-.row .row {
-  padding: 0; }
-
 .row-padded {
   padding-top: 7rem;
   padding-bottom: 7rem; }
+
+.row .row.collapse {
+  margin-left: 0;
+  margin-right: 0; }
 
 .full-width {
   width: 100% !important; }
@@ -281,8 +282,7 @@ img {
 
 @media (min-width: 34.375em) {
   .container {
-    width: 100%;
-    padding: 0 0rem; }
+    width: 100%; }
   .row .row {
     margin-left: -1rem;
     margin-right: -1rem; }
@@ -397,7 +397,8 @@ img {
 @media (min-width: 37.5em) {
   .container {
     width: 96%;
-    padding: 0; }
+    padding-left: 5rem;
+    padding-right: 5rem; }
   .row .row {
     margin-left: -1rem;
     margin-right: -1rem; }
@@ -511,14 +512,13 @@ img {
 
 @media (min-width: 50em) {
   .container {
-    width: 900px;
-    padding: 0; }
+    width: 900px; }
   .row .row {
-    margin-left: -1rem;
-    margin-right: -1rem; }
+    margin-left: -2rem;
+    margin-right: -2rem; }
   .col {
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    padding-left: 2rem;
+    padding-right: 2rem; }
   .lg-1 {
     width: 8.33333%; }
   .push-lg-11 {
@@ -845,44 +845,58 @@ TO DO:
 • Do the margins of things like blockquotes, lists etc need to be set iteratively based on the gutter width of the breakpoint?
 • Set up better breakpoints and sizing - more real world.
 • Make the index.html a better instructor (including all this info basically)
-  • Do full documentation detailing what ervery bit of css does and why/how to use it/how to format grid. Can put some code in the head to style code etc. Should I drop anything to make it more lean - eg. the mark, blockquote etc as these should be styled for the site design itself. Get back to basics with a solid customisable grid framework?         
+  • Do full documentation detailing what ervery bit of css does and why/how to use it/how to format grid. Can put some code in the head to style code etc. Should I drop anything to make it more lean - eg. the mark, blockquote etc as these should be styled for the site design itself. Get back to basics with a solid customisable grid framework?        
+
+DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
 */
-.boxed, pre {
-  background: #EBF2F2;
-  border: 0.1rem solid #D9DBDB;
-  padding: 1.4em;
-  margin: 1em 0; }
+.docs {
+  /*
+    .row {padding-top: 1rem;padding-bottom:1rem;background-color: #efefef;} 
+            .container{border: 1px solid red;}
+            .col{border: 1px solid blue;padding-top: 10px;padding-bottoM:10px;}
+            .row{border: 1px solid orange;}
+            //.row.col {margin-left:0; margin-right:0;padding-left:0; padding-right:0;}
+            body {background: ghostwhite;}
+            main {background: white;}
 
-code, pre, .code {
-  font-family: Consolas, monaco, monospace; }
-
-pre {
-  width: auto;
-  display: block;
-  white-space: pre-wrap; }
-
-.css-ref, .grid-ex, .scss-ref, .variable-ref {
-  display: inline-block;
-  color: white;
-  padding: .3em;
-  border-radius: 0.4rem;
-  line-height: 1; }
-
-.css-ref, .grid-ex {
-  background: #4ECDC4; }
-
-.scss-ref {
-  background: #556270; }
-
-.variable-ref {
-  background: #FF6B6B; }
-
-.grid-ex {
-  width: 100%;
-  text-align: center; }
-
-td {
-  padding: 1rem;
-  border: 0.1rem solid #D9DBDB; }
+            .inner {border:1px solid green;}
+    .container .container {padding:0;width: 100%}
+    */ }
+  .docs .boxed, .docs pre {
+    background: #EBF2F2;
+    border: 0.1rem solid #D9DBDB;
+    padding: 1.4em;
+    margin: 2rem 0; }
+  .docs table {
+    margin: 2rem 0; }
+    .docs table h1, .docs table h2, .docs table h3, .docs table h4, .docs table h5, .docs table h6 {
+      margin: 0; }
+  .docs code, .docs pre, .docs .code {
+    font-family: Consolas, monaco, monospace; }
+  .docs pre {
+    width: auto;
+    display: block;
+    white-space: pre-wrap; }
+  .docs .css-ref, .docs .grid-ex, .docs .scss-ref, .docs .variable-ref {
+    display: inline-block;
+    color: white;
+    padding: .3em;
+    border-radius: 0.4rem;
+    line-height: 1; }
+  .docs .css-ref, .docs .grid-ex {
+    background: #4ECDC4; }
+  .docs .scss-ref {
+    background: #556270; }
+  .docs .variable-ref {
+    background: #FF6B6B; }
+  .docs .grid-ex {
+    width: 100%;
+    text-align: center; }
+  .docs td {
+    padding: 1rem;
+    border: 0.1rem solid #D9DBDB; }
+  .docs .docs-section {
+    margin-top: 4rem;
+    margin-bottom: 4rem; }
 
 /*# sourceMappingURL=../scss/scss.css.map */

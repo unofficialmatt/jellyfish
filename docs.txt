@@ -1,3 +1,8 @@
+WORK OUT WHAT COMBINATION OF container/row/col are possible
+
+
+
+
 /* 
 
 _global.scss - ALL DOCUMENTED
@@ -144,10 +149,6 @@ sm: (
  See _grid.scss for reference to how the JELLYFISH grid is compiled
  
  
- At the fundamental level, a grid is comprised of three elements:
- .container - a containing element with a fixed width
- .row - houses a number of .col elements and is automatically cleared with .clearfix to prevent flow issues
- .col - a single column element which can be extended with breakpoint based modifiers
  
  {EXAMPLE HERE}
  
@@ -164,7 +165,7 @@ sm: (
  
  
  MENTION HERE THAT AN ELEMENT CAN BE BOTH A CONTAINER AND ROW or a ROW and COL(!?)
- 
+ And how this saves code
  
  Collapsing Rows/Columns
  
@@ -238,6 +239,40 @@ etc
 body {
  color: color(text);
  }
+ 
+ 
+ 
+ NAVIGATION
+ 
+ Jellyfish comes with a horizontal style primary navigation menu, which has a small amount of styling applied by default. The key features of the navigation menu are:
+- responsive with customisable breakpoint
+- single level or nested (out-of-the-box to one level, however  easy to extend)
+- smooth animation on drop down
+- collapse to burger menu on smaller screens 
+- no duplication of HTML for smaller screens
+
+
+Navigation structure
+
+&how it works well with Wordpress
+
+
+
+Navigation breakpoint
+Jellyfish's navigation can be customised to 'kick in' at a breakpoint of your choosing - ie. changing from a collapsed burger menu to a full width tabbed design.
+To customise the breakpoint, you will need to adjust $nav-expands in the _settings.scss file (must be a px value) as well as variable navPoint in assets/js/scripts.js
+
+{Example}
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  

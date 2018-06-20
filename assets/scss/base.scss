@@ -8,7 +8,7 @@
 //@import "header";
 //@import "content"; 
 //@import "sidebar";  
-//@import "footer"; 
+//@import "footer";
 
 /*  
 Useage Notes:
@@ -23,7 +23,9 @@ TO DO:
 • Do the margins of things like blockquotes, lists etc need to be set iteratively based on the gutter width of the breakpoint?
 • Set up better breakpoints and sizing - more real world.
 • Make the index.html a better instructor (including all this info basically)
-  • Do full documentation detailing what ervery bit of css does and why/how to use it/how to format grid. Can put some code in the head to style code etc. Should I drop anything to make it more lean - eg. the mark, blockquote etc as these should be styled for the site design itself. Get back to basics with a solid customisable grid framework?         
+  • Do full documentation detailing what ervery bit of css does and why/how to use it/how to format grid. Can put some code in the head to style code etc. Should I drop anything to make it more lean - eg. the mark, blockquote etc as these should be styled for the site design itself. Get back to basics with a solid customisable grid framework?        
+
+DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
 */
 
 //For demo only - add to demo.scss
@@ -31,55 +33,87 @@ TO DO:
 $color-lightgrey: #EBF2F2;
 $color-midgrey: #D9DBDB;
 
-.boxed {
-    background: $color-lightgrey;
-    border: rem(1px) solid $color-midgrey;
-    padding: 1.4em;
-    margin: 1em 0;
-}
+
+.docs {
+
+    .boxed {
+        background: $color-lightgrey;
+        border: rem(1px) solid $color-midgrey;
+        padding: 1.4em;
+        margin: 2rem 0;
+    }
+
+    table {
+        margin: 2rem 0;
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+    }
+
+    code, pre, .code {
+        font-family: Consolas, monaco, monospace;
+        @extend .bold;
+        @extend %font-size--small;
+    }
+    pre {
+        @extend .boxed;
+        width: auto;
+        display: block;
+        white-space: pre-wrap;
+    }
+    %reference {
+        display: inline-block;
+        color: white;
+        padding: .3em;
+        border-radius: rem(4px);
+        @extend %font-size--small;
+        line-height: 1;
+    }
+    .css-ref {
+        @extend %reference;
+        background: #4ECDC4;
+    }
+    .scss-ref {
+        @extend %reference;
+        background: #556270;
+    }
+    .variable-ref {
+        @extend %reference;
+        background: #FF6B6B;
+    }
+
+    .grid-ex {
+        @extend .css-ref;
+        width: 100%;
+        text-align: center;
+    }
+
+    td {
+        padding: 1rem;
+        border: rem(1px) solid $color-midgrey;
+    }
+
+    .lead {
+        @extend %font-size--large;
+    }
+
+    .docs-section {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    // Temp only
+    /*
+    .row {padding-top: 1rem;padding-bottom:1rem;background-color: #efefef;} 
+            .container{border: 1px solid red;}
+            .col{border: 1px solid blue;padding-top: 10px;padding-bottoM:10px;}
+            .row{border: 1px solid orange;}
+            //.row.col {margin-left:0; margin-right:0;padding-left:0; padding-right:0;}
+            body {background: ghostwhite;}
+            main {background: white;}
+
+            .inner {border:1px solid green;}
+    .container .container {padding:0;width: 100%}
+    */
     
-code, pre, .code {
-    font-family: Consolas, monaco, monospace;
-    @extend .bold;
-}
-pre {
-    @extend .boxed;
-    width: auto;
-    display: block;
-    white-space: pre-wrap;
-}
-%reference {
-    display: inline-block;
-    color: white;
-    padding: .3em;
-    border-radius: rem(4px);
-    @extend %font-size--small;
-    line-height: 1;
-}
-.css-ref {
-    @extend %reference;
-    background: #4ECDC4;
-}
-.scss-ref {
-    @extend %reference;
-    background: #556270;
-}
-.variable-ref {
-    @extend %reference;
-    background: #FF6B6B;
-}
-
-.grid-ex {
-    @extend .css-ref;
-    width: 100%;
-    text-align: center;
-}
-
-td {
-    padding: 1rem;
-    border: rem(1px) solid $color-midgrey;
-}
-
-.lead {
-    @extend %font-size--large;
 }
