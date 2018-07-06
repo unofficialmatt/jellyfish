@@ -20,6 +20,9 @@ body {
            line-height: bp-query($point, base-line-height);
        }
    }
+   @if $debug-mode-on {
+       @extend .jf-debug;
+   }
 }
 
 // Font Sizes
@@ -38,7 +41,7 @@ body {
 
 %headings {
     font-family: $font-secondary;
-    margin: 1em 0 0 0;
+    margin: 1em 0 .25em 0;
     line-height: 1.2;    
 }
 
@@ -191,14 +194,16 @@ dl {
     }
 }
 
+.full-width {
+    width: 100% !important;
+}
+
 // Images
 
 img {
     width: auto;
     max-width: 100%;
     height: auto;
-    vertical-align: middle;
-
     &.alignleft {
         @extend %embedded-content;
         @include rem(margin, 0 15px 15px 0);

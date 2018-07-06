@@ -109,11 +109,6 @@ Push/Pull
 Perhaps rework so each row has one column only
 
 
-Grid System
-
-The underlying benefit of JELLYFISH is it's flexible approach to grid layout. You can define the precise amount of columns required, and on compile, the scss will produce all of the required code. So whether you want a 4 column , 7 column, 12 column or 3000 column grid (Not sure why you would want this...)  JELLYFISH has you covered. For the purposes of this demo, we are using the industry-standard 12 column grid - but feel free to go wild with a 5 column grid if your project requires it.
-
-Column quantity is defined by the variable $cols in _settings.scss
 
 Breakpoints
 

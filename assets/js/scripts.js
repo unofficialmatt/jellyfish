@@ -4,7 +4,7 @@ jQuery(document).ready(function ($) {
     $(".nav-button").click(function () {
         $(".nav-primary").toggle(); // toggle the navigation when the burger menu is clicked
         $(this).toggleClass('nav-expanded');
-        
+
         // reset sub-navigation menus
         $('.drop-active').removeClass("drop-active");
         $('.clicked').removeClass("clicked");

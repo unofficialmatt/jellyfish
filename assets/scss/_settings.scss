@@ -31,7 +31,7 @@ $breakpoints: (
     // Breakpoints are converted to em values through breakpoint mixin
     // Use rem() or em() on this level to convert appropriately for the useage
     sm: (
-        breakpoint: 550px,
+        breakpoint: 400px,
         container-width: 100%,
         //container-gutter: rem(50px),      
         col-gutter: rem(20px),

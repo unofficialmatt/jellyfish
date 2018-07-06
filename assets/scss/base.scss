@@ -41,6 +41,7 @@ $color-midgrey: #D9DBDB;
         border: rem(1px) solid $color-midgrey;
         padding: 1.4em;
         margin: 2rem 0;
+        display: inherit;
     }
 
     table {
@@ -115,5 +116,4 @@ $color-midgrey: #D9DBDB;
             .inner {border:1px solid green;}
     .container .container {padding:0;width: 100%}
     */
-    
 }

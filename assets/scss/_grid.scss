@@ -22,9 +22,6 @@
         margin-right: 0;
     }
 }
-.full-width {
-    width: 100% !important;
-}
 .flex {
    //@extend .row;
     @include display(flex);
@@ -72,7 +69,7 @@ $i in $breakpoints {
             padding-left: bp-query($point, container-gutter);
             padding-right: bp-query($point, container-gutter);
         }
-        .row  .row{ 
+        .row .row{ 
             // give our nested rows negative margin equal to half col gutter
             margin-left: -.5*(bp-query($point, col-gutter));
             margin-right: -.5*(bp-query($point, col-gutter));
@@ -104,16 +101,15 @@ $i in $breakpoints {
                 }
             }
         }
-        @if $debug-mode-on {
-            
+        .jf-debug {
             @if $has_push_pull {
                 [class*='pull-#{$point}'] {
-                    border: rem(2px) solid red;
-                    border-left-width: rem(8px);
+                    border: rem(2px) solid red !important;
+                    border-left-width: rem(8px) !important;
                 }
                 [class*='push-#{$point}'] {
-                    border: rem(2px) solid red;
-                    border-right-width: rem(8px);
+                    border: rem(2px) solid red !important;
+                    border-right-width: rem(8px) !important;
                 }
                 [class*='pull-#{$point}-0'], [class*='push-#{$point}-0'] {
                     border: 0; //Remove border on reset elements
@@ -121,8 +117,8 @@ $i in $breakpoints {
             }
             @if $has_offset {
                 [class*='offset-#{$point}'] {
-                    border: rem(2px) solid red;
-                    border-right-width: rem(8px);
+                    border: rem(2px) solid red !important;
+                    border-right-width: rem(8px) !important;
                 } 
             }
         }
@@ -142,13 +138,13 @@ $i in $breakpoints {
         }
     }
 }
-@if $debug-mode-on {
+.jf-debug {
     .col {
-        box-shadow: 0 1px 3px 1px rgba(#35fff0, .7);
+        box-shadow: 0 1px 3px 1px rgba(#35fff0, .7) !important;
 
     }
     .row  {
-        box-shadow: 0 1px 3px 1px rgba(#ff00ff, .7);
+        box-shadow: 0 1px 3px 1px rgba(#ff00ff, .7) !important;
 
     }
     $one_col: (100% / $cols);
@@ -159,7 +155,7 @@ $i in $breakpoints {
           rgba(250,250,250,0.5) $one-col,
           rgba(245,245,245,0.5) $one-col,
           rgba(245,245,245,0.5) $one-col*2
-        );
+        ) !important;
         background-origin: content-box;
         .row {
             background: none;

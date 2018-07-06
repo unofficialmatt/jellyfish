@@ -22,11 +22,44 @@
             <div class="row">
                 <div class="col">
                     <h1>Jellyfish Documentation</h1>
-                    <p>Jellyfish is a very bare-bones HTML/SCSS framework designed to create flexible grid-based layouts, with only the most essential elements and utilities built in. Jellyfish allows for a solid base for web development work, reducing the bloat and clutter of more commercial and well-known products. Jellyfish is designed for ease-of-use expansion and is a constantly evolving product.</p>
-                    <p><strong>Framework last updated: June 2018</strong></p>
+                    <p>Jellyfish is a bare-bones <em>(kinda like a Jellyfish!)</em> HTML/SCSS framework designed to create flexible grid-based layouts, with only the most essential elements and utilities built in. Jellyfish allows for a solid base for web development work, reducing the bloat and clutter of more commercial and well-known products. Jellyfish is designed for ease-of-use expansion and is a constantly evolving product ready to adapt to any web project.</p>
+                    <p><strong>Framework last updated: July 2018</strong></p>
                 </div>
             </div>
         </section><!-- #intro -->
+        <section id="structure" class="docs-section">
+            <div class="row">
+                <div class="col reset-float">
+                    <h2>Directory Structure</h2>
+                    <section>
+                        <p>Jellyfish uses a fairly straightforward directory structure, detailed below. Partials are used to split the scss into manageable sections.</p>
+                    </section>
+                    <table>
+                        <tbody>                    
+                            <tr><td class="code">.brackets.json</td><td>Settings for <a href="http://brackets.io/" rel="external">Adobe Brackets</a>. Can be safely removed if using a different IDE.</td></tr>
+                            <tr><td class="code">/assets</td><td>Holds all required assets.</td></tr>
+                            <tr><td class="code">-/css/style.css</td><td>Core stylesheet as compiled by <span class="scss-ref">base.scss</span>.</td></tr>
+                            <tr><td class="code">-/js/scripts.css</td><td>By default, only contains jQuery required by the navigation menu.</td></tr>
+                            <tr><td class="code">-/scss</td><td>Holds scss files. Files are listed below in the order that they are @included in <span class="scss-ref">base.scss</span></td></tr>
+                            <tr><td class="code">--/base.scss</td><td>Compiles all partials into ../css/style.css .</td></tr>
+                            <tr><td class="code">--/_mixins.scss and /mixins</td><td>Contains mixins to aid in the development of scss files.</td></tr>
+                            <tr><td class="code">--/_settings.scss</td><td>Stores Jellyfish settings including grid settings, breakpoint settings, default font settings, color map and base sizes.</td></tr>
+                            <tr><td class="code">--/_reset.scss</td><td>Contains the fantastic CSS reset by Eric Meyer as well as setting all elements to box-sizing: border-box</td></tr>
+                            <tr><td class="code">--/_global.scss</td><td>Contains scss that modifies elements found across all areas of a website, including typography, links, images and utilities.</td></tr>
+                            <tr><td class="code">--/_grid.scss</td><td>Builds the grid system.</td></tr>
+                            <tr><td class="code">--/_nav.scss</td><td>Contains scss that modifies elements found in the main navigation area of a website.</td></tr>
+                            <tr><td class="code">--/header.scss</td><td>Contains scss that modifies elements found in the main header area of a website.</td></tr>
+                            <tr><td class="code">--/_content.scss</td><td>Contains scss that modifies elements found in the main content area of a website.</td></tr>
+                            <tr><td class="code">--/_sidebar.scss</td><td>Contains scss that modifies elements found in the sidebar / widgets area of a website.</td></tr>
+                            <tr><td class="code">--/_footer.scss</td><td>Contains scss that modifies elements found in the main footer area of a website.</td></tr>
+                            <tr><td class="code">/docs</td><td>Holds files required by the documentation and can be safely removed for live builds.</td></tr>
+                            <tr><td class="code">-/docs.js</td><td>jQuery required by the documentation</td></tr>
+                            <tr><td class="code">index.html</td><td>Documentation. Can be safely removed for live builds.</td></tr>             
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section><!-- #structure -->        
         <section id="basic" class="docs-section">
             <div class="row">
                 <div class="col reset-float">
@@ -155,6 +188,14 @@ a {
 </pre>
                         </section><!-- #basic-links -->
                     </section><!-- #basic-text -->
+                    <section id="basic-images">
+                    <h3>Images</h3>
+                        <p>As defined in <span class="scss-ref">_global.scss</span>, all <span class="css-ref">img</span> elements have height and width set to auto, and max-width set to 100%. This prevents images from breaking out of their containers, and also allows width/height to scale as appropriate when a more specific dimension is defined.</p>
+                        <p>Example: the image below has an actual size of 300px x 200px however the fixed size of the container (200px x 200px) forces the image to scale down to fit.</p>
+                        <div style="width:200px;height:200px;" class="boxed">
+                            <img src="http://unsplash.it/300/200">
+                        </div>
+                    </section>
                     <section id="basic-lists">
                         <h3>Lists</h3>
                         <p>Support for basic lists is included for <span class="css-ref">ul</span>, <span class="css-ref">ol</span> and <span class="css-ref">dl</span>. Minimal styling is included, with lists styled via <span class="scss-ref">_global.scss</span>. The placeholder class <span class="variable-ref">%lists</span> is used to output consistent styling to both <span class="css-ref">ul</span> and <span class="css-ref">ol</span> lists:</p>
@@ -340,6 +381,12 @@ img {
                         </tbody>    
                         </table>
                     </section><!-- #utilities-floats -->
+                    <section id="utilities-fullwidth">
+                        <h3>Full Width</h3>
+                        <p>The class <span class="css-ref">.full-width</span> can be applied to an element to give it a width of 100%. <strong>!important</strong> is used to avoid specificity issues.</p>
+                        <p>The image below spans 100% width of it's parent.</p>
+                        <img src="http://unsplash.it/400/70" class="full-width">
+                    </section><!-- #utilities-fullwidth -->
                 </div>
             </div>
         </section><!-- #utilities -->
@@ -348,29 +395,60 @@ img {
             <div class="row">
                 <div class="col reset-float">
                     <h2>Grid</h2>
-                    <p>At the heart of this framework is a grid that is completely customisable with the following settings:</p>
-                    <ul>
-                        <li>Columns</li>
-                        <li>Push/Pull include y/n</li>
-                        <li>Offset include y/n</li>
-                        <li>Debug mode on/off</li>
-                        <li>Endless breakpoints with customisable names</li>
-                        <li>For each user-defined breakpoint:
+                    
+                    <section id="grid-settings">
+                        <h3>Grid Settings</h3>
+                        <p>At the heart of this framework is a grid that is completely customisable with the following settings:</p>
                         <ul>
-                            <li>Container width</li>
-                            <li>Container gutter</li>
-                            <li>Column gutter</li>
-                            <li>Base font size</li>
-                            <li>Base line height</li>
+                            <li>Columns</li>
+                            <li>Push/Pull include y/n</li>
+                            <li>Offset include y/n</li>
+                            <li>Debug mode on/off</li>
+                            <li>Endless breakpoints with customisable names</li>
+                            <li>For each user-defined breakpoint:
+                            <ul>
+                                <li>Container width</li>
+                                <li>Container gutter</li>
+                                <li>Column gutter</li>
+                                <li>Base font size</li>
+                                <li>Base line height</li>
+                            </ul>
+                            </li>
                         </ul>
-                        </li>
-                    </ul>
+                    </section><!-- #grid-settings -->
+                    <section id="grid-cols">
+                        <h3>Column amount</h3>
+                        <p>The underlying benefit of Jellyfish is it's flexible approach to grid layout. You can define the precise amount of columns required, and on compile, the scss logic will produce all of the required css styling. So whether you want a 4 column, 7 column, 12 column or 3000 column grid <span class="italic">(Not sure why you would want this, but knock yourself out...)</span> Jellyfish has you covered. For the purposes of this documentation, we are using a 12 column grid - but feel free to go wild with a 5 column grid if your project requires it.</p><p>This ability to define only the required amount of columns allows the compiled code to be optimised and lean, reducing unnecessary bloat.</p><p>Column quantity is<strong>required</strong> and is defined by the variable <span class="variable-ref">$cols</span> in <span class="scss-ref">_settings.scss</span> and the logic for generating the grid is defined in <span class="scss-ref">_grid.scss</span>.</p>
+                    </section><!-- #grid-cols -->
+                    <section id="grid-pushpull">
+                        <h3>Push / Pull</h3>
+                        <p>Columns can be pushed (to the right) or pulled (to the left) by a certain number of columns, if <span class="variable-ref">$has_push_pull</span> is set to <span class="bold">true</span> in <span class="scss-ref">_settings.scss</span>. <span class="css-ref">.push</span> and <span class="css-ref">.pull</span> classes are generated automatically by <span class="scss-ref">_grid.scss</span></p>
+                        <p>Elements can be pushed/pulled at different breakpoints as defined in the breakpoint settings by using the classes <span class="css-ref">.push-$breakpoint-$cols</span> and <span class="css-ref">.pull-$breakpoint-$cols</span> respectively. Push and pull can also be reset at a breakpoint with the classes <span class="css-ref">.push-$breakpoint-0</span> and <span class="css-ref">.pull-$breakpoint-0</span> respectively.</p>
+                        <p><span class="css-ref">.push</span> and <span class="css-ref">.pull</span> classes can be chained eg. <span class="code">.push-sm-2 .push-md-5 .push-lg-0</span></p>
+                        <div class="row">
+                            <div class="col sm-6 md-4 push-sm-6 push-md-8">
+                                <div class="boxed">
+                                    <code>.push-sm-6 .push-md-8 .push-lg-4</code>
+                                </div>
+                            </div>
+                            <div class="col sm-6 md-4 pull-sm-6 pull-md-0 pull-lg-4">
+                                <div class="boxed">
+                                    <code>.pull-sm-6 .pull-md-0. pull-lg-4</code>
+                                </div>
+                            </div>
+                            <div class="col md-4 pull-md-8 pull-lg-4">
+                                <div class="boxed">
+                                    <code>.pull-md-8 .pull-lg-4</code>
+                                </div>
+                            </div>
+                        </div>
+                    </section><!-- #grid-pushpull -->
                     <section id="grid-structure">
                         <h3>Grid Structure</h3>
-                        <p>Jellyfish uses a simple grid structure, consisting of a <span class="css-ref">.container</span>, <span class="css-ref">.row</span> and several <span class="css-ref">.col </span> elements.</p>
+                        <p>Jellyfish uses a simple grid structure, consisting of a <span class="css-ref">.container</span>, <span class="css-ref">.row</span> and several <span class="css-ref">.col </span> elements. These elements are defined in <span class="scss-ref">_grid.scss</span></p>
                         <table>
                             <tbody>
-                                <tr><td class="code">.container</td><td>By default, the grid will fill all available space (ie 100% width). To restrict the width of the grid, a <span class="css-ref">.container</span> should be used. The container is centered and can be customised at each breakpoint with the following settings: width, max-width, padding (left/right).</td></tr>
+                                <tr><td class="code">.container</td><td>By default, the grid will fill all available space (ie 100% width). To restrict the width of the grid, a <span class="css-ref">.container</span> should be used. The container is centered and can be customised at each breakpoint with the following settings: width, max-width, padding (left/right). See <a href="#grid-breakpoints">grid breakpoint settings</a> for information.</td></tr>
                                 <tr><td class="code">.row</td><td>Houses a number of <span class="css-ref">.col</span> elements and is automatically cleared with <span class="css-ref">.clearfix</span> to prevent flow issues. A <span class="css-ref">.row</span> can be used on the same element in conjunction with a <span class="css-ref">.container</span>. To preserve equal margins on the left and right, the only elements inside a <span class="css-ref">.row</span> should be <span class="css-ref">.col</span> elements</td></tr>
                                 <tr><td class="code">.col</td><td>A single vertical column. Can be used with breakpoint based modifiers as below to change size at different breakpoints. With no modifiers, a <span class="css-ref">.col</span> element will be 100% width.</td></tr>
                             </tbody>
@@ -386,8 +464,14 @@ img {
                     <h2>Settings</h2>
                     <section id="settings-debug">
                         <h3>Debug mode</h3>
-                        <p>This grid system comes with a handy debug mode that can be enabled by setting  <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="scss-ref">_settings.scss</span>. When debug mode is enabled, all <span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 1px rgba(255, 0, 255, 0.7);">glow in pink</span> and all <span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 1px rgba(53, 255, 240, 0.7)">glow in turquoise</span>.</p><p>Additionally, all <span class="css-ref">.row</span> elements will have their background striped to show the number of columns in the grid structure.</p>
-                        <p>Providing that <span class="variable-ref">$has_push_pull</span> and/or <span class="variable-ref">$has_offset</span> are set to <strong>true</strong> in <span class="scss-ref">_settings.scss</span>, any element affected by a <span class="css-ref">.push</span>, <span class="css-ref">.pull</span> or <span class="css-ref">.offset</span> at the active breakpoint will be highlighted with a red border; the heavier stroke indicating the direction to which the action has occured.</p>
+                        <p>Jellyfish comes with a handy debug mode that can be enabled in two ways:</p>
+                        <ol>
+                            <li>by setting  <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="scss-ref">_settings.scss</span>.</li>
+                            <li>by adding the class <span class="css-ref">.jf-debug</span> to the body element (either within the code itself or through a browser inspector).</li>
+                        </ol>
+                        <p>Debug mode allows you to quickly see the structure of the grid, and diagnose any layout issues.</p>
+                        <p>When debug mode is enabled, all <span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 1px rgba(255, 0, 255, 0.7);">glow in pink</span> and all <span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 1px rgba(53, 255, 240, 0.7)">glow in turquoise</span>.</p><p>Additionally, all <span class="css-ref">.row</span> elements will have their background striped to show the number of columns in the grid structure.</p>
+                        <p>Providing that <span class="variable-ref">$has_push_pull</span> and/or <span class="variable-ref">$has_offset</span> are set to <strong>true</strong> in <span class="scss-ref">_settings.scss</span>, any element affected by a <span class="css-ref">.push</span>, <span class="css-ref">.pull</span> or <span class="css-ref">.offset</span> at the active breakpoint will be highlighted with a red border; the side with the heavier stroke indicating the direction to which the action has occured.</p>
                         <div class="row">
                             <div class="col md-4">
                                 <div style="border: 0.2rem solid red;border-left-width: 0.8rem;padding:.5em;">
@@ -406,16 +490,19 @@ img {
                             </div>
                         </div>
                         <h4>Debug demo</h4>
-                        <p>Try it out - click here to toggle debug mode on and off onto this page.</p>
+                        <p>Try it out - <a href="#" id="toggle-debug">click here</a> to toggle debug mode on and off onto this page.</p>
                     </section><!-- #settings-debug -->
+                
                     
                 </div>
             </div>
         </section><!-- #settings -->
         
+        
     </main>
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
     <script type="text/javascript" src="assets/js/scripts.js"></script>
+    <script type="text/javascript" src="docs/docs.js"></script>
 </body>
 
 </html>
