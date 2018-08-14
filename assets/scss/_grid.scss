@@ -10,16 +10,9 @@
 
 .row {
     @extend .clearfix;
-    &.col {
-        width: 100%;
-    }
     &-padded {
     padding-top: 7rem;
     padding-bottom: 7rem;
-    }
-    & .row.collapse {
-        margin-left: 0;
-        margin-right: 0;
     }
 }
 .flex {
@@ -53,8 +46,8 @@
 }
 .col.collapse,
 .row.collapse > .col {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 @each $point,

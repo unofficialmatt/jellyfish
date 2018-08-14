@@ -16,14 +16,13 @@
 </head>
 
 <body class="docs">
-    
     <main class="container">
         <section id="intro" class="docs-section">        
             <div class="row">
                 <div class="col">
                     <h1>Jellyfish Documentation</h1>
                     <p>Jellyfish is a bare-bones <em>(kinda like a Jellyfish!)</em> HTML/SCSS framework designed to create flexible grid-based layouts, with only the most essential elements and utilities built in. Jellyfish allows for a solid base for web development work, reducing the bloat and clutter of more commercial and well-known products. Jellyfish is designed for ease-of-use expansion and is a constantly evolving product ready to adapt to any web project.</p>
-                    <p><strong>Framework last updated: July 2018</strong></p>
+                    <p><strong>Framework last updated: August 2018</strong></p>
                 </div>
             </div>
         </section><!-- #intro -->
@@ -32,28 +31,26 @@
                 <div class="col reset-float">
                     <h2>Directory Structure</h2>
                     <section>
-                        <p>Jellyfish uses a fairly straightforward directory structure, detailed below. Partials are used to split the scss into manageable sections.</p>
+                        <p>Jellyfish uses a fairly straightforward directory structure, outlined below. Partials are used to split the scss into manageable sections.</p>
                     </section>
                     <table>
                         <tbody>                    
                             <tr><td class="code">.brackets.json</td><td>Settings for <a href="http://brackets.io/" rel="external">Adobe Brackets</a>. Can be safely removed if using a different IDE.</td></tr>
                             <tr><td class="code">/assets</td><td>Holds all required assets.</td></tr>
-                            <tr><td class="code">-/css/style.css</td><td>Core stylesheet as compiled by <span class="scss-ref">base.scss</span>.</td></tr>
-                            <tr><td class="code">-/js/scripts.css</td><td>By default, only contains jQuery required by the navigation menu.</td></tr>
-                            <tr><td class="code">-/scss</td><td>Holds scss files. Files are listed below in the order that they are @included in <span class="scss-ref">base.scss</span></td></tr>
-                            <tr><td class="code">--/base.scss</td><td>Compiles all partials into ../css/style.css .</td></tr>
-                            <tr><td class="code">--/_mixins.scss and /mixins</td><td>Contains mixins to aid in the development of scss files.</td></tr>
-                            <tr><td class="code">--/_settings.scss</td><td>Stores Jellyfish settings including grid settings, breakpoint settings, default font settings, color map and base sizes.</td></tr>
-                            <tr><td class="code">--/_reset.scss</td><td>Contains the fantastic CSS reset by Eric Meyer as well as setting all elements to box-sizing: border-box</td></tr>
-                            <tr><td class="code">--/_global.scss</td><td>Contains scss that modifies elements found across all areas of a website, including typography, links, images and utilities.</td></tr>
-                            <tr><td class="code">--/_grid.scss</td><td>Builds the grid system.</td></tr>
-                            <tr><td class="code">--/_nav.scss</td><td>Contains scss that modifies elements found in the main navigation area of a website.</td></tr>
-                            <tr><td class="code">--/header.scss</td><td>Contains scss that modifies elements found in the main header area of a website.</td></tr>
-                            <tr><td class="code">--/_content.scss</td><td>Contains scss that modifies elements found in the main content area of a website.</td></tr>
-                            <tr><td class="code">--/_sidebar.scss</td><td>Contains scss that modifies elements found in the sidebar / widgets area of a website.</td></tr>
-                            <tr><td class="code">--/_footer.scss</td><td>Contains scss that modifies elements found in the main footer area of a website.</td></tr>
-                            <tr><td class="code">/docs</td><td>Holds files required by the documentation and can be safely removed for live builds.</td></tr>
-                            <tr><td class="code">-/docs.js</td><td>jQuery required by the documentation</td></tr>
+                            <tr><td class="code nest-1">/css/style.css</td><td>Core stylesheet as compiled by <span class="scss-ref">base.scss</span>.</td></tr>
+                            <tr><td class="code nest-1">/js/scripts.css</td><td>By default, only contains jQuery required by the navigation menu.</td></tr>
+                            <tr><td class="code nest-1">/scss</td><td>Holds scss files. Files are listed below in the order that they are @included in <span class="scss-ref">base.scss</span></td></tr>
+                            <tr><td class="code nest-2">/base.scss</td><td>Compiles all partials into ../css/style.css .</td></tr>
+                            <tr><td class="code nest-2">/_mixins.scss and /mixins</td><td>Contains mixins to aid in the development of scss files.</td></tr>
+                            <tr><td class="code nest-2">/_settings.scss</td><td>Stores Jellyfish settings including grid settings, breakpoint settings, default font settings, color map and base sizes.</td></tr>
+                            <tr><td class="code nest-2">_reset.scss</td><td>Contains the fantastic CSS reset by Eric Meyer as well as setting all elements to box-sizing: border-box</td></tr>
+                            <tr><td class="code nest-2">/_global.scss</td><td>Contains scss that modifies elements found across all areas of a website, including typography, links, images and utilities.</td></tr>
+                            <tr><td class="code nest-2">/_grid.scss</td><td>Builds the grid system.</td></tr>
+                            <tr><td class="code nest-2">/_nav.scss</td><td>Contains scss that modifies elements found in the main navigation area of a website.</td></tr>
+                            <tr><td class="code nest-2">/header.scss</td><td>Contains scss that modifies elements found in the main header area of a website.</td></tr>
+                            <tr><td class="code nest-2">/_content.scss</td><td>Contains scss that modifies elements found in the main content area of a website.</td></tr>
+                            <tr><td class="code nest-2">/_sidebar.scss</td><td>Contains scss that modifies elements found in the sidebar / widgets area of a website.</td></tr>
+                            <tr><td class="code nest-2">/_footer.scss</td><td>Contains scss that modifies elements found in the main footer area of a website.</td></tr>
                             <tr><td class="code">index.html</td><td>Documentation. Can be safely removed for live builds.</td></tr>             
                         </tbody>
                     </table>
@@ -74,22 +71,22 @@ $font-secondary: 'Poppins', 'Arial', sans-serif;
 
 // base sizes (used before breakpoints are applied)
 $base-font-size: 1.6em;
-$base-line-height: 1.5;
+$base-line-height: 1.5;<label>_settings.scss</label>
 </pre>              
                         <h4>Hierarchy</h4>
                         <p>All text will default to the global <span class="variable-ref">$base-font-size</span> unless otherwise specified. Font size hierarchy is defined in <span class="scss-ref">_global.scss</span> and can be implemented by extending the <span class="variable-ref">%font-size</span> placeholder via <code>@extend %font-size{$size}</code>. This is predominantly used in <a href="#basic-headings">Headings</a> but can be used with any element.</p>
 <pre>
 // Font Sizes
 %font-size{
-    &--xsmall { font-size: 0.6em}
-    &--small { font-size: 0.8em }
-    &--normal { font-size: 1em}
-    &--medium { font-size: 1.5em}
-    &--large { font-size: 1.75em}
-    &--xlarge { font-size: 2em}
-    &--xxlarge { font-size: 2.5em}
-    &--xxxlarge { font-size: 3em}
-}
+    &--xsmall { font-size: 0.6em};
+    &--small { font-size: 0.8em };
+    &--normal { font-size: 1em};
+    &--medium { font-size: 1.5em};
+    &--large { font-size: 1.75em};
+    &--xlarge { font-size: 2em};
+    &--xxlarge { font-size: 2.5em};
+    &--xxxlarge { font-size: 3em};
+}<label>_global.scss</label>
 </pre>
                     </section><!-- #basic-typography -->
                     <section id="basic-headings">
@@ -136,7 +133,7 @@ h1 {
     & h6:first-child {
         margin-top: 0;
     }
-}
+}<label>_global.scss</label>
 </pre>
                             </div>
                         </div>
@@ -184,7 +181,7 @@ a {
     &:focus, &:active {
         color: color(tertiary);
     }
-}
+}<label>_global.scss</label>
 </pre>
                         </section><!-- #basic-links -->
                     </section><!-- #basic-text -->
@@ -206,7 +203,7 @@ a {
     ul, ol {
         margin: 0 0 0 2em;
     }
-}
+}<label>_global.scss</label>
 </pre>
                         <p>Nested lists are also supported, with additional styling to indent the left margin for visual separation.</p>
                         <div class="row">
@@ -354,7 +351,7 @@ img {
         @include rem(margin, 10px auto);
         display: block;
     }
-}
+}<label>_global.scss</label>
 </pre>
                         <table>
                         <tbody>
@@ -418,7 +415,7 @@ img {
                     </section><!-- #grid-settings -->
                     <section id="grid-cols">
                         <h3>Column amount</h3>
-                        <p>The underlying benefit of Jellyfish is it's flexible approach to grid layout. You can define the precise amount of columns required, and on compile, the scss logic will produce all of the required css styling. So whether you want a 4 column, 7 column, 12 column or 3000 column grid <span class="italic">(Not sure why you would want this, but knock yourself out...)</span> Jellyfish has you covered. For the purposes of this documentation, we are using a 12 column grid - but feel free to go wild with a 5 column grid if your project requires it.</p><p>This ability to define only the required amount of columns allows the compiled code to be optimised and lean, reducing unnecessary bloat.</p><p>Column quantity is<strong>required</strong> and is defined by the variable <span class="variable-ref">$cols</span> in <span class="scss-ref">_settings.scss</span> and the logic for generating the grid is defined in <span class="scss-ref">_grid.scss</span>.</p>
+                        <p>The underlying benefit of Jellyfish is it's flexible approach to grid layout. You can define the precise amount of columns required, and on compile, the scss logic will produce all of the required css styling. So whether you want a 4 column, 7 column, 12 column or 3000 column grid <span class="italic">(Not sure why you would want this, but knock yourself out...)</span> Jellyfish has you covered. For the purposes of this documentation, we are using a 12 column grid - but feel free to go wild with a 5 column grid if your project requires it.</p><p>This ability to define only the required amount of columns allows the compiled code to be optimised and lean, reducing unnecessary bloat.</p><p>Column quantity is <strong>required</strong> and is defined by the variable <span class="variable-ref">$cols</span> in <span class="scss-ref">_settings.scss</span> and the logic for generating the grid is defined in <span class="scss-ref">_grid.scss</span>.</p>
                     </section><!-- #grid-cols -->
                     <section id="grid-pushpull">
                         <h3>Push / Pull</h3>
@@ -442,18 +439,322 @@ img {
                                 </div>
                             </div>
                         </div>
+                        <h4>Relevant Code</h4>
+<pre>
+//Found within the @each loop
+@if $has_push_pull {
+    $diff: 100% - ($one_col * $i);
+    .push-#{$point}-#{$cols - $i} {
+        left: $diff;
+    }
+    .pull-#{$point}-#{$cols - $i} {
+        right: $diff;
+    }
+}<label>_grid.scss</label>
+</pre>                        
                     </section><!-- #grid-pushpull -->
+                    <section id="grid-offset">
+                        <h3>Offset</h3>
+                        <p>Similar to push / pull, an <span class="css-ref">.offset</span> can be applied to a column to move it (and any elements that follow it) to the right. Offset is enabled by setting <span class="variable-ref">$has_offset</span> to <span class="bold">true</span> in <span class="scss-ref">_settings.scss</span></p>
+                        <p>Where <span class="css-ref">.push</span> uses <code>left</code> positioning to move, this can cause columns to overlap. <span class="css-ref">.offset</span> avoids this by using <code>margin</code>, which forces neighbouring columns to move accordingly.</p>
+                        <p>Elements can be offset at different breakpoints as defined in the breakpoint settings by using the class <span class="css-ref">.offset-$breakpoint-$cols</span>. Offset can also be reset at a breakpoint with the class <span class="css-ref">.offset-$breakpoint-0</span>. <span class="css-ref">.offset</span> can also be chained eg. <span class="code">.offset-sm-3 .offset-md-6 .offset-lg-0</span></p>
+                        <div class="row code">
+                            <div class="col sm-6">
+                                <div class="boxed">
+                                    .sm-6
+                                </div>
+                            </div>
+                            <div class="col sm-2 reset-float">
+                                <div class="boxed">
+                                    .sm-2
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row code">
+                            <div class="col sm-6 offset-sm-2">
+                                <div class="boxed">
+                                    .sm-6.offset-sm-2
+                                </div>
+                            </div>
+                            <div class="col sm-2 reset-float">
+                                <div class="boxed">
+                                    .sm-2
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row code">
+                            <div class="col sm-6 offset-sm-2 offset-md-4">
+                                <div class="boxed">
+                                    .sm-6.offset-sm-2.offset-md-4
+                                </div>
+                            </div>
+                            <div class="col sm-2 reset-float">
+                                <div class="boxed">
+                                    .sm-2
+                                </div>
+                            </div>
+                        </div>
+                        <h4>Relevant Code</h4>
+<pre>
+//Found within the @each loop
+@if $has_offset {
+        $offset: 100% - ($one_col * $i);
+        .offset-#{$point}-#{$cols - $i} {
+            margin-left: $offset;
+        }
+    }
+}<label>_grid.scss</label>
+</pre>                        
+                    </section><!-- #grid-offset -->
                     <section id="grid-structure">
                         <h3>Grid Structure</h3>
                         <p>Jellyfish uses a simple grid structure, consisting of a <span class="css-ref">.container</span>, <span class="css-ref">.row</span> and several <span class="css-ref">.col </span> elements. These elements are defined in <span class="scss-ref">_grid.scss</span></p>
                         <table>
                             <tbody>
-                                <tr><td class="code">.container</td><td>By default, the grid will fill all available space (ie 100% width). To restrict the width of the grid, a <span class="css-ref">.container</span> should be used. The container is centered and can be customised at each breakpoint with the following settings: width, max-width, padding (left/right). See <a href="#grid-breakpoints">grid breakpoint settings</a> for information.</td></tr>
+                                <tr><td class="code">.container</td><td>By default, the grid will fill all available space (ie 100% width). To restrict the width of the grid and keep elements neatly aligned, a <span class="css-ref">.container</span> should be used. The container is centered and can be customised at each breakpoint with the following settings: width, max-width, padding (left/right). See <a href="#grid-breakpoints">grid breakpoint settings</a> for information.</td></tr>
                                 <tr><td class="code">.row</td><td>Houses a number of <span class="css-ref">.col</span> elements and is automatically cleared with <span class="css-ref">.clearfix</span> to prevent flow issues. A <span class="css-ref">.row</span> can be used on the same element in conjunction with a <span class="css-ref">.container</span>. To preserve equal margins on the left and right, the only elements inside a <span class="css-ref">.row</span> should be <span class="css-ref">.col</span> elements</td></tr>
-                                <tr><td class="code">.col</td><td>A single vertical column. Can be used with breakpoint based modifiers as below to change size at different breakpoints. With no modifiers, a <span class="css-ref">.col</span> element will be 100% width.</td></tr>
+                                <tr><td class="code">.col</td><td>A single vertical column. Can be used with breakpoint based modifiers to change width at different breakpoints. With no modifiers, a <span class="css-ref">.col</span> element will be 100% width.</td></tr>
                             </tbody>
                         </table>
+                        <h4>Valid examples</h4>
+<pre>
+&lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col"&gt;
+            .col element inside a .container .row
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row container"&gt;
+    &lt;div class="col"&gt;
+        .col element inside a .row.container
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
                     </section><!-- #grid-structure -->
+                    <section id="grid-collapse">
+                        <h3>Collapsing Rows/Columns</h3>
+                        <p><span class="css-ref">.row</span> and <span class="css-ref">.col</span> elements can be collapsed (ie. left and right margin/padding set to 0) by applying the utility class <span class="css-ref">.collapse</span> as per the examples below. Collapsing elements will but their left and right edges up to the edge of the <span class="css-ref">.container</span> element. <strong>!important</strong> is used to avoid specificity issues.</p>
+                        <p>When applied to a <span class="css-ref">.row</span> element, all child <span class="css-ref">.col</span> elements will be collapsed. When applied to a <span class="css-ref">.col</span> element, only that element will be collapsed.</p>
+                        <p>The code for collapsing elements is defined in <span class="scss-ref">_grid.scss</span>.</p>
+                        <div class="row code">
+                            <div class="col md-4 collapse boxed">.col.md-4.collapse</div>
+                            <div class="col md-4 boxed">.col.md-4</div>
+                            <div class="col md-4 collapse boxed">.col.md-4.collapse</div>
+                        </div>
+                        <div class="row collapse code">
+                            <div class="col md-6 collapse boxed">.col.md-6 inside a .row.collapse</div>
+                            <div class="col md-6 collapse boxed">.col.md-6 inside a .row.collapse</div>
+                        </div>
+<pre>
+.col.collapse,
+.row.collapse > .col {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}<label>_grid.scss</label>
+</pre>
+                    </section><!-- #grid-collapse -->
+                    <section id="grid-padding">
+                        <h3>Padding Rows</h3>
+                        <p>Padding can be added quickly to a <span class="css-ref">.row</span> element with the class <span class="css-ref">.row-padded</span> to create white space around rows. By default, 7rem padding is added to the top and bottom of the <span class="css-ref">.row</span>; this can be changed via <span class="scss-ref">_grid.scss</span>.</p>
+                        <div class="row row-padded code">
+                            <div class="col boxed">.row.row-padded</div>
+                        </div>
+<pre>
+.row {
+    &-padded {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    }
+}<label>_grid.scss</label>
+</pre>
+                    </section><!-- #grid-padding -->
+                    <section id="grid-cols">
+                        <h3>Columns</h3>
+                        <p>A <span class="css-ref">.row</span> consists of several <span class="css-ref">.col</span> elements, which (usually) add up to the quantity determined by the <a href="#grid-cols">column amount</a> variable (<span class="variable-ref">$cols</span>). These elements are the building blocks of any layout.</p>
+                        <h4>Too many / too few columns</h4>
+                        <p>Should the number of a row's columns total more than defined by <span class="variable-ref">$cols</span>, excess <span class="css-ref">.col</span> elements will simply wrap onto the next line.</p>
+                        <p>If the total number of used columns is not the same as the column amount defined by <span class="variable-ref">$cols</span> (or a multiple thereof), the last <span class="css-ref">.col</span> element will appear floated to the right. This behaviour can be reset by adding the class <span class="css-ref">.reset-float</span> to the element, to float it to the left. This class can not currently target breakpoints.</p>
+                        <p>Columns are floated in this way to force all browsers to align the right edges of rows neatly. As column widths are calculated with percentages, this can cause alignment issues on some browsers, should this styling not be applied.</p>
+                        <div class="row small code">
+                            <div class="col sm-4">
+                                <div class="boxed no-margin">.col.sm-4</div>
+                            </div>
+                            <div class="col sm-4">
+                                <div class="boxed no-margin">.col.sm-4</div>
+                            </div>
+                        </div>
+                        <div class="row small code">
+                            <div class="col sm-4">
+                                <div class="boxed no-margin">.col.sm-4</div>
+                            </div>
+                            <div class="col sm-4 reset-float">
+                                <div class="boxed no-margin">.col.sm-4.reset-float</div>
+                            </div>
+                        </div>
+                        <h4>Adjusting column width via breakpoints</h4>
+                        <p>A column's width can be altered at different breakpoints, by using breakpoint modifiers as determined by the <a href="#grid-breakpoints">grid breakpoint settings</a>. For example, a single column can change from being full-width, to half-width, to quarter-width as the browser width increases. If no breakpoints are defined, or at the smallest browser width (before any <a href="#grid-breakpoints">breakpoint settings</a> take effect), a <span class="css-ref">.col</span> element will span 100% width.</p>
+                        <p>Modifiers are formatted as such: <span class="css-ref">.$breakpoint-$cols</span> and can be chained eg. <code>.sm-12 .md-6 .lg-4</code></p>
+                        <p>Jellyfish will automatically generate all required code for columns, based on the variables defined in <span class="scss-ref">_settings.scss</span> (<span class="variable-ref">$cols</span> and <span class="variable-ref">$breakpoints</span>). The code that generates columns is defined within an <code>@each</code> loop found inside <span class="scss-ref">_grid.scss</span>.</p>
+                        <h4>Example layouts</h4>
+                        <p>As this documentation uses a 12 column grid, the following examples reflect a 12 column width <span class="italic">(i.e. all rows add to 12)</span>. The same principle would apply if the grid was set to any other <a href="#grid-cols">column amount</a>.</p>
+                        <div class="code small">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="boxed no-margin">.col</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col sm-1">
+                                    <div class="boxed no-margin">.col.sm-1</div>
+                                </div>
+                                <div class="col sm-11">
+                                    <div class="boxed no-margin">.col.sm-11</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col sm-2">
+                                    <div class="boxed no-margin">.col.sm-2</div>
+                                </div>
+                                <div class="col sm-10">
+                                    <div class="boxed no-margin">.col.sm-10</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col sm-3">
+                                    <div class="boxed no-margin">.col.sm-3</div>
+                                </div>
+                                <div class="col sm-9">
+                                    <div class="boxed no-margin">.col.sm-9</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col sm-4">
+                                    <div class="boxed no-margin">.col.sm-4</div>
+                                </div>
+                                <div class="col sm-8">
+                                    <div class="boxed no-margin">.col.sm-8</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col sm-5">
+                                    <div class="boxed no-margin">.col.sm-5</div>
+                                </div>
+                                <div class="col sm-7">
+                                    <div class="boxed no-margin">.col.sm-7</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col sm-6">
+                                    <div class="boxed no-margin">.col.sm-6</div>
+                                </div>
+                                <div class="col sm-6">
+                                    <div class="boxed no-margin">.col.sm-6</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col sm-4">
+                                    <div class="boxed no-margin">.col.sm-4</div>
+                                </div>
+                                <div class="col sm-4">
+                                    <div class="boxed no-margin">.col.sm-4</div>
+                                </div>
+                                <div class="col sm-4">
+                                    <div class="boxed no-margin">.col.sm-4</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col sm-3">
+                                    <div class="boxed no-margin">.col.sm-3</div>
+                                </div>
+                                <div class="col sm-6">
+                                    <div class="boxed no-margin">.col.sm-6</div>
+                                </div>
+                                <div class="col sm-3">
+                                    <div class="boxed no-margin">.col.sm-3</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col sm-3">
+                                    <div class="boxed no-margin">.col.sm-3</div>
+                                </div>
+                                <div class="col sm-3">
+                                    <div class="boxed no-margin">.col.sm-3</div>
+                                </div>
+                                <div class="col sm-3">
+                                    <div class="boxed no-margin">.col.sm-3</div>
+                                </div>
+                                <div class="col sm-3">
+                                    <div class="boxed no-margin">.col.sm-3</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col sm-4">
+                                    <div class="boxed no-margin">.col.sm-4</div>
+                                </div>
+                                <div class="col sm-3">
+                                    <div class="boxed no-margin">.col.sm-3</div>
+                                </div>
+                                <div class="col sm-5">
+                                    <div class="boxed no-margin">.col.sm-5</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section><!-- #grid-cols -->
+                    <section id="grid-nesting">
+                        <h3>Nesting .row and .col elements</h3>
+                        <p><span class="css-ref">.row</span> and <span class="css-ref">.col</span> elements can be infinitely nested within each other, so long as one golden rule is followed: <strong>All immediate child elements of a .row must be .col elements.</strong> A .col element can contain a .row but that must follow this same rule.</p>
+                        <p>Note that because column widths are defined as percentages, when you nest a row, it's child columns will span XX% of the parent column's width. i.e. if you nest a row in a .col-sm6, adding a .col.sm-6 will effectively make that element a .col.sm-3 of the parent row.</p>
+                        <h4>Example layouts</h4>
+                        <div class="row code">
+                            <div class="col sm-8">
+                                <div class="row">
+                                    <div class="col sm-6">
+                                        <div class="boxed no-margin">.col.sm-6 nested in a row nested in a .col.sm-8</div>
+                                    </div>
+                                    <div class="col sm-6">
+                                        <div class="boxed no-margin">.col.sm-6 nested in a row nested in a .col.sm-8</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col sm-4">
+                                <div class="row">
+                                    <div class="col sm-12">
+                                        <div class="boxed no-margin">.col.sm-12 nested in a row nested in a .col.sm-4</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row code">
+                            <div class="col sm-10">
+                                <div class="row">
+                                    <div class="col sm-8">
+                                        <div class="row">
+                                            <div class="col sm-12">
+                                                <div class="boxed no-margin">.col.sm-12 nested in a row, nested in a .col.sm-8, nested in a row, nested in a .col-sm-10</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col sm-4">
+                                        <div class="boxed no-margin">.col.sm-4</div>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="col sm-2">
+                                    <div class="boxed no-margin">.col.sm-2</div>
+                                </div>
+                            </div>
+                        <h4>Relevant Code</h4>
+<pre>
+// Found within the @each loop
+.row .row { 
+    // give our nested rows negative margin equal to half col gutter
+    margin-left: -.5*(bp-query($point, col-gutter));
+    margin-right: -.5*(bp-query($point, col-gutter));
+}<label>_grid.scss</label>
+</pre>                        
+                    </section><!-- #grid-nesting -->
                 </div>
             </div>
         </section><!-- #grid -->
@@ -467,7 +768,7 @@ img {
                         <p>Jellyfish comes with a handy debug mode that can be enabled in two ways:</p>
                         <ol>
                             <li>by setting  <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="scss-ref">_settings.scss</span>.</li>
-                            <li>by adding the class <span class="css-ref">.jf-debug</span> to the body element (either within the code itself or through a browser inspector).</li>
+                            <li>by adding the class <span class="css-ref">.jf-debug</span> to the body element, or a parent element (either within the code itself or through a browser inspector).</li>
                         </ol>
                         <p>Debug mode allows you to quickly see the structure of the grid, and diagnose any layout issues.</p>
                         <p>When debug mode is enabled, all <span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 1px rgba(255, 0, 255, 0.7);">glow in pink</span> and all <span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 1px rgba(53, 255, 240, 0.7)">glow in turquoise</span>.</p><p>Additionally, all <span class="css-ref">.row</span> elements will have their background striped to show the number of columns in the grid structure.</p>
@@ -502,7 +803,14 @@ img {
     </main>
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
     <script type="text/javascript" src="assets/js/scripts.js"></script>
-    <script type="text/javascript" src="docs/docs.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {   
+            $("#toggle-debug").click(function (e) {
+                e.preventDefault();
+                $("body").toggleClass('jf-debug');
+            });
+        });
+    </script>
 </body>
 
 </html>

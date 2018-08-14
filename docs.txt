@@ -159,14 +159,12 @@ sm: (
  
  
  
- MENTION HERE THAT AN ELEMENT CAN BE BOTH A CONTAINER AND ROW or a ROW and COL(!?)
- And how this saves code
- 
- Collapsing Rows/Columns
- 
- .collapse can be applied to a .row or .col element to collapse padding allowing edge-to-edge columns. When applied to a .row element it takes affect on all child .col elements. When applied to a .col element it applies to only that element.
- 
- 
+
+
+
+
+
+
  TO ADD
  
  .flex
