@@ -1,4 +1,11 @@
 @charset "UTF-8";
+.vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%); }
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   CSS RESET - ERIC MEYER
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -55,7 +62,7 @@ body {
   line-height: 1.5;
   color: #403F41;
   background-color: #fff; }
-  @media (min-width: 25em) {
+  @media (min-width: 18.75em) {
     body {
       font-size: 1.4em;
       line-height: 1.48; } }
@@ -200,7 +207,7 @@ img {
     display: block;
     margin: 1.5rem auto; }
 
-@media (max-width: 24.9375em) {
+@media (max-width: 18.6875em) {
   img.alignleft, img.alignright, img.alignnone, img.aligncenter {
     float: none !important;
     margin: 1rem auto;
@@ -272,7 +279,7 @@ img {
   padding-left: 0 !important;
   padding-right: 0 !important; }
 
-@media (min-width: 25em) {
+@media (min-width: 18.75em) {
   .container {
     width: 100%; }
   .row .row {
@@ -389,11 +396,11 @@ img {
     border: 0.2rem solid red !important;
     border-right-width: 0.8rem !important; } }
 
-@media (max-width: 24.9375em) {
+@media (max-width: 18.6875em) {
   .hide-below-sm {
     display: none !important; } }
 
-@media (min-width: 25em) {
+@media (min-width: 18.75em) {
   .hide-above-sm {
     display: none !important; } }
 
@@ -526,7 +533,7 @@ img {
 
 @media (min-width: 75em) {
   .container {
-    width: 1080px; }
+    width: 108rem; }
   .row .row {
     margin-left: -1.5rem;
     margin-right: -1.5rem; }
@@ -910,6 +917,8 @@ DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
     display: inherit; }
     .docs .boxed.no-margin, .docs pre.no-margin {
       margin: 0; }
+    .docs .boxed .boxed, .docs pre .boxed, .docs .boxed pre, .docs pre pre {
+      background: #fff; }
   .docs table {
     margin: 2rem 0; }
     .docs table h1, .docs table h2, .docs table h3, .docs table h4, .docs table h5, .docs table h6 {
@@ -945,9 +954,12 @@ DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
   .docs .grid-ex {
     width: 100%;
     text-align: center; }
-  .docs td {
+  .docs td, .docs th {
     padding: 1rem;
     border: 0.1rem solid #D9DBDB; }
+  .docs th {
+    font-weight: bold;
+    text-align: left; }
   .docs .docs-section {
     margin-top: 4rem;
     margin-bottom: 4rem; }
@@ -957,5 +969,21 @@ DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
   .docs .nest-2 {
     box-shadow: inset 1rem 0px 0px 0px #D9DBDB;
     padding-left: 2rem; }
+  .docs .smooth-transform {
+    -webkit-transition: -webkit-transform 0.3s ease;
+    -moz-transition: -moz-transform 0.3s ease;
+    transition: transform 0.3s ease; }
+    .docs .smooth-transform:hover, .docs .smooth-transform:active {
+      -webkit-transform: scale(1.1);
+      -moz-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      -o-transform: scale(1.1);
+      transform: scale(1.1); }
+  .docs .smooth-background {
+    -webkit-transition: background 0.3s ease;
+    -moz-transition: background 0.3s ease;
+    transition: background 0.3s ease; }
+    .docs .smooth-background:hover, .docs .smooth-background:active {
+      background-color: #4ECDC4; }
 
 /*# sourceMappingURL=../scss/scss.css.map */

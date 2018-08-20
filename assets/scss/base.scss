@@ -34,7 +34,6 @@ $color-ghost: #f7f8f9;
 $color-lightgrey: #EBF2F2;
 $color-midgrey: #D9DBDB;
 
-
 .docs {
     background-color: $color-ghost; 
     .container {
@@ -48,6 +47,9 @@ $color-midgrey: #D9DBDB;
         display: inherit;
         &.no-margin {
             margin: 0;
+        }
+        .boxed {
+            background: #fff;
         }
     }
 
@@ -108,9 +110,14 @@ $color-midgrey: #D9DBDB;
         text-align: center;
     }
 
-    td {
+    td, th {
         padding: 1rem;
         border: rem(1px) solid $color-midgrey;
+    }
+    th {
+        font-weight: bold;
+        text-align: left; 
+        
     }
 
     .lead {
@@ -130,6 +137,20 @@ $color-midgrey: #D9DBDB;
         &2 {
             box-shadow: inset 1rem 0px 0px 0px $color-midgrey;
             padding-left: 2rem;
+        }
+    }
+    .smooth- {
+        &transform {
+            @include smooth(transform);
+            &:hover, &:active {
+                @include transform(scale(1.1));
+            }
+        }
+        &background {
+            @include smooth(background);
+            &:hover, &:active {
+                background-color: #4ECDC4;
+            }
         }
     }
 

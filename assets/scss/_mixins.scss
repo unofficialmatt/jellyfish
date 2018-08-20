@@ -8,6 +8,9 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+.vertical-align {
+    @include vertical-align;
+}
 @function bp-query($point, $var) { 
     // Function to query our breakpoint map
     // Accepts args $breakpoint-size, $variable

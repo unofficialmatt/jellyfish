@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col">
                     <h1>Jellyfish Documentation</h1>
-                    <p>Jellyfish is a bare-bones <em>(kinda like a Jellyfish!)</em> HTML/SCSS framework designed to create flexible grid-based layouts, with only the most essential elements and utilities built in. Jellyfish allows for a solid base for web development work, reducing the bloat and clutter of more commercial and well-known products. Jellyfish is designed for ease-of-use expansion and is a constantly evolving product ready to adapt to any web project.</p>
+                    <p>Jellyfish is a bare-bones <em>(kinda like a Jellyfish!)</em> mobile-first HTML/SCSS framework designed to create flexible grid-based layouts, with only the most essential elements and utilities built in. Jellyfish allows for a solid base for web development work, reducing the bloat and clutter of more commercial and well-known products. Jellyfish is designed for ease-of-use expansion and is a constantly evolving product ready to adapt to any web project.</p>
                     <p><strong>Framework last updated: August 2018</strong></p>
                 </div>
             </div>
@@ -397,22 +397,83 @@ img {
                         <h3>Grid Settings</h3>
                         <p>At the heart of this framework is a grid that is completely customisable with the following settings:</p>
                         <ul>
-                            <li>Columns</li>
+                            <li>Column quantity</li>
                             <li>Push/Pull include y/n</li>
                             <li>Offset include y/n</li>
                             <li>Debug mode on/off</li>
-                            <li>Endless breakpoints with customisable names</li>
-                            <li>For each user-defined breakpoint:
-                            <ul>
-                                <li>Container width</li>
-                                <li>Container gutter</li>
-                                <li>Column gutter</li>
-                                <li>Base font size</li>
-                                <li>Base line height</li>
-                            </ul>
+                            <li>Endless user-defined breakpoints with customisable names (Jellyfish does not force you to conform to any naming or sizing conventions) and settings:
+                                <ul>
+                                    <li>Container width</li>
+                                    <li>Container gutter</li>
+                                    <li>Column gutter</li>
+                                    <li>Base font size</li>
+                                    <li>Base line height</li>
+                                </ul>
                             </li>
                         </ul>
                     </section><!-- #grid-settings -->
+                    <section id="grid-breakpoints">
+                        <h3>Breakpoint settings</h3>
+                        <p>Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints - declared through the <span class="variable-ref">$breakpoints</span> map in <span class="scss-ref">_settings.scss</span>. When compiled, the css  will automatically be created for any breakpoints defined in this map (<span class="css-ref">.col-$breakpoint</span> and utilities i.e. <span class="css-ref">.push</span>/<span class="css-ref">.pull</span>/<span class="css-ref">.offset</span>/<span class="css-ref">.hide</span>).
+                        <h4>Example breakpoint code</h4>
+<pre>
+sm: (
+    breakpoint: 400px, // px
+    container-width: 100%, // % or rem
+    container-gutter: rem(10px), // rem     
+    col-gutter: rem(20px), // rem
+    base-font-size: 1.4em, // em
+    base-line-height: 1.48 // number, % or em
+)<label>_settings.scss</label>
+ </pre>       
+ 
+                        <p>By default breakpoints are named <span class="variable-ref">sm</span>, <span class="variable-ref">md</span> and <span class="variable-ref">lg</span> however you can name breakpoints as you wish to suit your project requirements and personal naming conventions (e.g. small, medium, large, gigantic, mammoth, microscope, mobile, tablet, laptop, desktop). Jellyfish will use these names to generate the code for columns and modifiers as detailed above.</p>
+                        <h4>Required Variables</h4>
+                        <p>For each breakpoint, the following variables <strong>must be defined</strong> (all others are optional -  any absences will simply inherit settings from the previous breakpoint):</p>
+                            <ul>
+                                <li>breakpoint</li>
+                                <li>container-width</li>
+                                <li>col-gutter</li>
+                            </ul>
+                        <h4>Terminology</h4>
+                        <table>
+                            <tbody>
+                                <tr><td class="code">breakpoint</td><td>The width at which the breakpoint will take affect. This must be provided in px and will be converted to an em value through the breakpoint mixin. <strong>This variable is required.</strong></td></tr>
+                                <tr><td class="code">container-width</td><td>The width of the <span class="css-ref">.container</span> element at this breakpoint - should be provided as %, or rem. px can be converted to rem through the rem() mixin. <strong>This variable is required.</strong></td></tr>
+                                <tr><td class="code">container-gutter</td><td>Padding applied to the left and right of the <span class="css-ref">.container</span> element - this should be provided as rem value - px can be converted via the rem() mixin.</td></tr>
+                                <tr><td class="code">col-gutter</td><td>Padding applied to the left and right of <span class="css-ref">.col</span> elements - this should be provided as a rem value - px can be converted via the rem() mixin. <strong>This variable is required.</strong></td></tr>
+                                <tr><td class="code">base-font-size</td><td>Global base font size (applied to <span class="css-ref">body</span>) which will affect all elements sized with em. Useful for improving legibility at different breakpoints. This must be provided as an em value and can be converted from px via em().</td></tr>
+                                <tr><td class="code">base-line-height</td><td>Global base line-height (applied to <span class="css-ref">body</span>) which will affect all elements that do not have a  line-height applied. Can be provided as a number, percent, em or rem</td></tr>
+                            </tbody>
+                        </table>
+                        <h4>Relevant code</h4>
+<pre>
+body {
+    @each $point, $i in $breakpoints {
+    // set base font size and line height for each specified media query
+   @include above($point) {
+       font-size: bp-query($point, base-font-size);
+       line-height: bp-query($point, base-line-height);
+   }
+}<label>_global.scss</label>
+</pre> 
+<pre>
+@each $point,
+$i in $breakpoints {
+    // for each breakpoint defined...
+    @include above($point) {
+        // if a breakpoint is found, set media query min-width
+        .container {
+            // give our container a width/max width, and padding to border content
+            width: bp-query($point, container-width);
+            max-width: bp-query($point, container-max-width);
+            padding-left: bp-query($point, container-gutter);
+            padding-right: bp-query($point, container-gutter);
+        }
+    }
+}<label>_grid.scss</label>
+</pre>                         
+                    </section><!-- #grid-breakpoints -->
                     <section id="grid-cols">
                         <h3>Column amount</h3>
                         <p>The underlying benefit of Jellyfish is it's flexible approach to grid layout. You can define the precise amount of columns required, and on compile, the scss logic will produce all of the required css styling. So whether you want a 4 column, 7 column, 12 column or 3000 column grid <span class="italic">(Not sure why you would want this, but knock yourself out...)</span> Jellyfish has you covered. For the purposes of this documentation, we are using a 12 column grid - but feel free to go wild with a 5 column grid if your project requires it.</p><p>This ability to define only the required amount of columns allows the compiled code to be optimised and lean, reducing unnecessary bloat.</p><p>Column quantity is <strong>required</strong> and is defined by the variable <span class="variable-ref">$cols</span> in <span class="scss-ref">_settings.scss</span> and the logic for generating the grid is defined in <span class="scss-ref">_grid.scss</span>.</p>
@@ -759,11 +820,11 @@ img {
             </div>
         </section><!-- #grid -->
         <hr>
-        <section id="settings" class="docs-section">
+        <section id="misc" class="docs-section">
             <div class="row">
                 <div class="col reset-float">
                     <h2>Settings</h2>
-                    <section id="settings-debug">
+                    <section id="misc-debug">
                         <h3>Debug mode</h3>
                         <p>Jellyfish comes with a handy debug mode that can be enabled in two ways:</p>
                         <ol>
@@ -790,16 +851,181 @@ img {
                                 </div>
                             </div>
                         </div>
-                        <h4>Debug demo</h4>
+                        <h4>Demo</h4>
                         <p>Try it out - <a href="#" id="toggle-debug">click here</a> to toggle debug mode on and off onto this page.</p>
-                    </section><!-- #settings-debug -->
-                
-                    
+                    </section><!-- #misc-debug -->
+                    <section id="misc-mixins">
+                    <h3>Mixins and Functions</h3>
+                        <p>Jellyfish comes with a number of mixins, to help aid faster development. These include those available through <a href="https://www.bourbon.io/" rel="external">Bourbon</a> (see external site for documentation) as well as a number of others. Mixins are included through the file <span class="scss-ref">_mixins.scss</span>.</p>
+                        <h4>Vertical Align</h4>
+                        <p>Any element contained within a parent of known height can be vertically-centered with <code>@include vertical-align;</code> or by applying the class <span class="css-ref">.vertical-align</span>.</p>
+                        <div class="row boxed code no-margin" style="height:300px;">
+                            <div class="col sm-6 boxed no-margin">
+                                .col
+                            </div>
+                            <div class="col sm-6 vertical-align boxed no-margin">
+                                .col.vertical-align
+                            </div>
+                        </div>
+                        
+<pre>
+@mixin vertical-align {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}<label>_mixins.scss</label></pre>
+                        <h4>Rem and Em conversion</h4>
+                        <p>The functions <code>rem($value)</code> and <code>em($value)</code> defined in <span class="scss-ref">mixins/_rem.scss</span> can be used to convert pixel measurements into rem and em respectively. As pixels do not scale with font-size, rem and em should always be used to specify measurements.</p>
+                        <table>
+                            <tr>
+                                <th>Unit</th>
+                                <th>Based on</th>
+                                <th>Use for</th>
+                            </tr>
+                            <tr>
+                                <td>Rem</td>
+                                <td><strong>HTML document font size.</strong> By default this is set to 62.5%, meaning that all rem values are based on a font size of 10px, making rem values very easy to interpret - e.g. 4rem is 40px. See the mixin <code>rem-baseline</code> in <span class="scss-ref">mixins/_rem.scss</span> for more information.</td>
+                                <td>Elements that should scale with the browser font settings with a view to be consistent across the site, regardless of parent font size. e.g. layout, margins, etc</td>
+                            </tr>
+                            <tr>
+                                <td>Em</td>
+                                <td><strong>Body font size</strong> or the font-size of the element/parent (whichever is the closest in the cascade). The variable <span class="variable-ref">$base-font-size</span> in the breakpoint map can be used to change the font-size of the body element at different breakpoints, allowing good control over font size changes.</td>
+                                <td>Text hierarchy and related margins, padding, etc</td>
+                            </tr>
+                        </table>
+                            <p>The <code>rem()</code> function / mixin was written by Pierre Burel. For source code and documentation visit the <a href="https://github.com/pierreburel/sass-rem" rel="external">GitHub repository</a></p>
+                        <h5>Examples</h5>                                  
+                        <p>Rem can be used as both a mixin and function. All of the below uses are valid markup.</p>
+<pre>
+img {
+    @include rem(margin, 15px 0);
+}
+h1 {
+    font-size: rem(20px);
+}
+span {
+    font-size: em(25px);
+}
+</pre>                        
+                        <h4>Global smooth() transition</h4>
+                        <p>Use the mixin <code>@include smooth(<span class="variable-ref">$property</span>)</code> to apply a global transition for a consistent UI feel. By default, the transition is <span class="italic">0.3s ease</span> however this can be changed in <span class="scss-ref">_mixins.scss</span>.</p>
+                        <p>This mixin currently accepts only one property variable - eg. all, width, color, font-size, etc and uses <a href="https://www.bourbon.io/" rel="external">Bourbon</a> to produce all vendor prefixes. By default, Jellyfish uses this mixin on anchor tags and the navigation menu.</p>
+                        <h5>Examples</h5>
+                        <div class="boxed"><p>Anchor tags have <code>smooth(color)</code> applied by default - <a href="#">hover here to preview</a>.</p></div>
+                        <div class="smooth-transform boxed"><p>This element has <code>smooth(transform)</code> applied to it. Hover to preview.</p></div>
+                        <div class="smooth-background boxed"><p>This element has <code>smooth(background)</code> applied to it. Hover to preview.</p></div>
+                        <h5>Relevant Code</h5>
+<pre>
+@mixin smooth($var) { // Global transition
+    @include transition($var 0.3s ease);
+}<label>_mixins.scss</label></pre>    
+                        <h4>Colour Map</h4>
+                        <p>Jellyfish makes use of a map for color values, to allow consistent and easy styling of elements. Colors are defined in the <span class="variable-ref">$colors</span> map in <span class="scss-ref">_settings.scss</span> and the function is defined in <span class="scss-ref">_mixins.scss</span>. Colors can be applied to an property with the function <code>color(<span class="variable-ref">$color</span>)</code>. The color() function is used throughout Jellyfish' codebase.</p>
+                        <h5>Example usage</h5>
+<pre>
+$colors: (
+    text: #403F41;
+    primary: #cc0000;
+);
+body {
+ color: color(text);
+ background: color(primary);
+}</pre>
+                        <h4>Global smooth() transition</h4>
+                        <p>Use the mixin <code>@include smooth(<span class="variable-ref">$property</span>)</code> to apply a global transition for a consistent UI feel. By default, the transition is <span class="italic">0.3s ease</span> however this can be changed in <span class="scss-ref">_mixins.scss</span>.</p>
+                        <p>This mixin currently accepts only one property variable - eg. all, width, color, font-size, etc and uses <a href="https://www.bourbon.io/" rel="external">Bourbon</a> to produce all vendor prefixes. By default, Jellyfish uses this mixin on anchor tags and the navigation menu.</p>
+                        <h5>Examples</h5>
+                        <div class="boxed"><p>Anchor tags have <code>smooth(color)</code> applied by default - <a href="#">hover here to preview</a>.</p></div>
+                        <div class="smooth-transform boxed"><p>This element has <code>smooth(transform)</code> applied to it. Hover to preview.</p></div>
+                        <div class="smooth-background boxed"><p>This element has <code>smooth(background)</code> applied to it. Hover to preview.</p></div>
+                        <h5>Relevant Code</h5>
+<pre>
+@mixin smooth($var) { // Global transition
+    @include transition($var 0.3s ease);
+}<label>_mixins.scss</label></pre>                         
+                        <h4>Breakpoint Queries</h4>
+                        <p>Jellyfish comes with three breakpoint query mixins, allowing you to target styles to specific breakpoints. The codebase for these is defined in <span class="scss-ref">_mixins.scss</span>. These mixins are flexible, allowing you to specify either a <span class="variable-ref">$breakpoint</span> name (e.g. <span class="italic">sm</span>) or a px value (which is converted automatically by the em() mixin.</p>
+                        <table>
+                        <tbody>                    
+                            <tr><td class="code">@include above($min) {...}</td><td>CSS contained within the brackets will apply above the given breakpoint, until overwritten by specificity or a higher breakpoint.</td></tr>
+                            <tr><td class="code">@include between($min, $max) {...}</td><td>CSS will apply between the two specified breakpoints only.</td></tr>
+                            <tr><td class="code">@include below($max) {...}</td><td>CSS applies below the given breakpoint, unless overridden by specificity. As a general rule, it's best to use <code>above()</code> rather than <code>below()</code>.</td></tr>
+                        </tbody>
+                    </table>
+                        <h5>Example usage</h5>
+<pre>
+body {
+    @include above(sm) {
+        background-color: blue;
+    }
+}
+@include between(sm,md) {
+    h1 {
+        font-size: 3em;
+    }
+}
+.element {
+    @include below(600px) {
+        display: block;
+    }
+    @include between(600px,lg) {
+        display: inline-block;
+    }
+    @include above(lg) {
+        display: none;
+    }
+}
+</pre>
+                        <h5>Relevant Code</h5>
+<pre>
+@function bp-query($point, $var) { 
+    // Function to query our breakpoint map
+    // Accepts args $breakpoint-size, $variable
+    @return map-get(map-get($breakpoints, $point), $var);
+}
+
+// Media queries check the breakpoint map to see if a given string exists, else they convert a given pixel value to em.
+@mixin above($min) {
+    $bp-min: $min;
+    @if map-has-key($breakpoints, $min) {
+        $bp-min: bp-query($min, breakpoint);
+    }
+    @warn "Unknown `#{$min}` in $breakpoints";
+    @media (min-width: em($bp-min)) { 
+        @content; 
+    }
+}
+@mixin between($min, $max) {
+    $bp-min: $min;
+    @if map-has-key($breakpoints, $min) { 
+        $bp-min: bp-query($min, breakpoint);
+    } 
+    @warn "Unknown `#{$min}` in $breakpoints";
+    $bp-max: $max;
+    @if map-has-key($breakpoints, $max) {
+        $bp-max: bp-query($max, breakpoint);
+    }
+    @warn "Unknown `#{$max}` in $breakpoints";
+    @media (min-width: em($bp-min)) and (max-width: em($bp-max - 1px)) { 
+        @content;
+    }
+}
+@mixin below($max) {
+    $bp-max: $max;
+    @if map-has-key($breakpoints, $max) {
+        $bp-max: bp-query($max, breakpoint);
+    }
+    @warn "Unknown `#{$max}` in $breakpoints";
+    @media (max-width: em($bp-max - 1px)) {
+        @content;
+    }
+}<label>_mixins.scss</label></pre>                        
+                    </section><!-- #misc-mixins -->                    
                 </div>
             </div>
-        </section><!-- #settings -->
-        
-        
+        </section><!-- #misc -->
     </main>
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
     <script type="text/javascript" src="assets/js/scripts.js"></script>
