@@ -1,0 +1,22 @@
+{
+  "name": "jellyfish_grid",
+  "version": "1.0.0",
+  "description": "Jellyfish Grid Framework",
+  "private": true,
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "author": "Matt Weet",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "autoprefixer": "^9.4.9",
+    "cssnano": "^4.1.10",
+    "grunt": "^1.0.3",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-postcss": "^0.9.0",
+    "grunt-sass": "^2.0.0",
+    "jquery": "^3.3.1",
+    "reset-css": "^4.0.1"
+  }
+}

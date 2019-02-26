@@ -1,14 +1,10 @@
 @charset "UTF-8"; 
 @import "mixins"; 
 @import "settings";
-@import "reset"; 
+@import "../../node_modules/reset-css/sass/reset"; 
 @import "global"; 
 @import "grid";
 @import "nav"; // needs to be completed - lift from HOCt/HFarm
-//@import "header";
-//@import "content"; 
-//@import "sidebar";  
-//@import "footer";
 
 /*  
 Useage Notes:

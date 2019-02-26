@@ -24,14 +24,14 @@
 }
 .flex {
    //@extend .row;
-    @include display(flex);
-    @include flex-wrap(wrap);
+    display: flex;
+    flex-wrap: wrap;
     &.flex-align-center {
         align-items: center;
     }
     .col { 
-        @include display(flex);
-        @include flex-direction(column);
+        display: flex;
+        flex-direction: column;
     }
 }
 

@@ -212,10 +212,10 @@ $burger-width: 25px;
         display: inline-block;
         position: absolute;
         background: white;
-        @include border-radius(rem(2px));
+        border-radius: rem(2px);
         @include rem(width, $burger-width);
         @include rem(height, 3px);
-        @include transition(all .2s ease-out);
+        transition: all .2s ease-out;
     }
     &::before {
         margin: -$burger-width/2;
@@ -223,7 +223,7 @@ $burger-width: 25px;
         @include rem(top, $burger-width*.2);
         .nav-expanded & {
             @include rem(top, $burger-width/2);
-            @include transform(rotate3d(0, 0, 1, -135deg));
+            transform: rotate3d(0, 0, 1, -135deg);
         }
     }
     &::after {
@@ -232,7 +232,7 @@ $burger-width: 25px;
         @include rem(top, $burger-width*.8);
         .nav-expanded & {
             @include rem(top, $burger-width/2);
-            @include transform(rotate3d(0, 0, 1, 135deg));
+            transform: rotate3d(0, 0, 1, 135deg);
         }
     }
 }

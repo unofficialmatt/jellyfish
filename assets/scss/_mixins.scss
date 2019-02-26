@@ -1,11 +1,8 @@
-@import 'mixins/rem';
-@import 'mixins/bourbon/bourbon';
+@import 'mixins/rem'; // remove in favour of using npm rem eventually
 // Vertically align any element in a known height parent
 @mixin vertical-align {
     position: relative;
     top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
 @function bp-query($point, $var) { 
@@ -26,7 +23,7 @@
     @if map-has-key($breakpoints, $min) {
         $bp-min: bp-query($min, breakpoint);
     }
-    @warn "Unknown `#{$min}` in $breakpoints";
+    //@warn "Unknown `#{$min}` in $breakpoints";
     @media (min-width: em($bp-min)) { 
         @content; 
     }
@@ -36,12 +33,12 @@
     @if map-has-key($breakpoints, $min) { 
         $bp-min: bp-query($min, breakpoint);
     } 
-    @warn "Unknown `#{$min}` in $breakpoints";
+    //@warn "Unknown `#{$min}` in $breakpoints";
     $bp-max: $max;
     @if map-has-key($breakpoints, $max) {
         $bp-max: bp-query($max, breakpoint);
     }
-    @warn "Unknown `#{$max}` in $breakpoints";
+    //@warn "Unknown `#{$max}` in $breakpoints";
     @media (min-width: em($bp-min)) and (max-width: em($bp-max - 1px)) { 
         @content;
     }
@@ -51,12 +48,12 @@
     @if map-has-key($breakpoints, $max) {
         $bp-max: bp-query($max, breakpoint);
     }
-    @warn "Unknown `#{$max}` in $breakpoints";
+    //@warn "Unknown `#{$max}` in $breakpoints";
     @media (max-width: em($bp-max - 1px)) {
         @content;
     }
 } 
 
 @mixin smooth($var) { // Global transition
-    @include transition($var 0.3s ease);
+   transition: $var 0.3s ease;
 }
