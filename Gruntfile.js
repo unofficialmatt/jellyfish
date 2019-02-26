@@ -5,7 +5,7 @@ module.exports = function (grunt) {
         // Define which sass files should be compiled
         sass: {
             options: {
-                outputStyle: 'expanded', //expanded
+                outputStyle: 'expanded',
                 sourceMap: true
             },
             dist: {
