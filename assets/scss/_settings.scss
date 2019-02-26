@@ -26,17 +26,17 @@ $base-container-gutter: 15px;
 $nav-expands: 600px; // !required Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
 
 $breakpoints: (
-    // Define our breakpoints. Comment out a whole size to prevent it being iterated, or individual elements to inherit from the previously defined point
+    // Define our breakpoints. Comment out or remove a whole size to prevent it being iterated, or individual elements to inherit from the previously defined point
     // The shorthand names are used in column classes. Usually start the grid at .sm reserving .xs for special cases
     // Breakpoints are converted to em values through breakpoint mixin
     // Use rem() or em() on this level to convert appropriately for the useage
     sm: (
-        breakpoint: 400px,
-        container-width: 100%,
-        //container-gutter: rem(50px),      
-        col-gutter: rem(20px),
-        base-font-size: 1.4em,
-        base-line-height: 1.48
+        breakpoint: 300px, // px
+        container-width: 100%, // % or rem
+        //container-gutter: rem(50px), // rem     
+        col-gutter: rem(20px), // rem
+        base-font-size: 1.4em, // em
+        base-line-height: 1.48 // number, % or em
         ),
     md: (
         breakpoint: 600px,
@@ -47,10 +47,10 @@ $breakpoints: (
         //base-line-height: 1.48em
         ),
     lg: (
-        breakpoint: 800px,
-        container-width: 900px,
+        breakpoint: 1200px,
+        container-width: rem(1080px),
         //container-gutter: rem(50px),      
-        col-gutter: rem(40px),
+        col-gutter: rem(30px),
         //base-font-size: 1em,
         //base-line-height: 1.48em
         )
@@ -59,10 +59,10 @@ $breakpoints: (
 @if $debug-mode-on {
 /*! 
 ------------------------------
-CSS DEBUG MODE IS ON
-All rows and columns will be highlighted.
-Elements affected by push, pull and offset will be highlighted.
-Grid system will be overlayed.
+JELLYFISH CSS DEBUG MODE IS ON
+-> All rows and columns will be highlighted.
+-> Elements affected by push, pull and offset will be highlighted.
+-> Grid system will be overlayed.
 ------------------------------
 */
     

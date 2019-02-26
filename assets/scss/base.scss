@@ -26,18 +26,27 @@ DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
 
 //For demo only - add to demo.scss
 
+$color-ghost: #f7f8f9;
 $color-lightgrey: #EBF2F2;
 $color-midgrey: #D9DBDB;
 
-
 .docs {
-
+    background-color: $color-ghost; 
+    .container {
+        background-color: #fff; 
+    }
     .boxed {
         background: $color-lightgrey;
         border: rem(1px) solid $color-midgrey;
         padding: 1.4em;
         margin: 2rem 0;
         display: inherit;
+        &.no-margin {
+            margin: 0;
+        }
+        .boxed {
+            background: #fff;
+        }
     }
 
     table {
@@ -57,6 +66,18 @@ $color-midgrey: #D9DBDB;
         width: auto;
         display: block;
         white-space: pre-wrap;
+        position: relative;
+        label {
+            @extend small;
+            top:0;
+            right:0;
+            position: absolute;
+            float: right;
+            display: block;
+            background-color: #556270;
+            color: #fff;
+            padding: .3em;
+        }
     }
     %reference {
         display: inline-block;
@@ -85,9 +106,14 @@ $color-midgrey: #D9DBDB;
         text-align: center;
     }
 
-    td {
+    td, th {
         padding: 1rem;
         border: rem(1px) solid $color-midgrey;
+    }
+    th {
+        font-weight: bold;
+        text-align: left; 
+        
     }
 
     .lead {
@@ -97,6 +123,31 @@ $color-midgrey: #D9DBDB;
     .docs-section {
         margin-top: 4rem;
         margin-bottom: 4rem;
+    }
+    
+    .nest- {
+        &1 {
+            box-shadow: inset .5rem 0px 0px 0px $color-midgrey;
+            padding-left: 1.5rem;
+        }
+        &2 {
+            box-shadow: inset 1rem 0px 0px 0px $color-midgrey;
+            padding-left: 2rem;
+        }
+    }
+    .smooth- {
+        &transform {
+            @include smooth(transform);
+            &:hover, &:active {
+                transform: scale(1.1);
+            }
+        }
+        &background {
+            @include smooth(background);
+            &:hover, &:active {
+                background-color: #4ECDC4;
+            }
+        }
     }
 
     // Temp only
