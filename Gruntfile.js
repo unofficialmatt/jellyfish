@@ -11,7 +11,7 @@ module.exports = function (grunt) {
             dist: {
                 files: [
                     {
-                        src: 'assets/scss/base.scss',
+                        src: 'src/scss/base.scss',
                         dest: 'assets/css/style.min.css'
                     }
                 ]
@@ -33,10 +33,22 @@ module.exports = function (grunt) {
                 src: 'assets/css/*.css'
             }
         },
+        
+        // Compress images in src/img/, output to assets/img
+        imagemin: {
+            dynamic: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/img/',
+                    src: ['**/*.{png,jpg,JPG,JPEG,jpeg,svg,gif}'],
+                    dest: 'assets/img/'
+                }]
+            }
+        },
 
-        // watch Gruntfile.js and all scss files in assets/scss and re-run tasks on file changes
         watch: {
-
+            
+            // rerun $ grunt when the Gruntfile is edited
             gruntfile: {
                 files: ['Gruntfile.js'],
                 tasks: ['default'],
@@ -44,7 +56,8 @@ module.exports = function (grunt) {
                     reload: true
                 }
             },
-
+            
+            // run 'sass' and 'postcss' tasks when any scss file is edited
             sass: {
                 options: {
                     reload: true,
@@ -52,6 +65,15 @@ module.exports = function (grunt) {
                 },
                 files: ['assets/scss/**/*.scss'],
                 tasks: [ 'sass', 'postcss']
+            },
+            
+            images: {
+                options: {
+                    reload: true,
+                    event: ['changed', 'added', 'deleted']
+                },
+                files: ['src/img/**/*.{png,jpg,JPG,JPEG,jpeg,svg,gif}'],
+                tasks: [ 'imagemin' ]
             }
 
         }
@@ -63,14 +85,15 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-postcss');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
 
-    // Copy scripts
+    // Copy required scripts from node_modules to assets
     grunt.registerTask('copyScripts', function () {
         var jquery = grunt.file.read('node_modules/jquery/dist/jquery.min.js');
         grunt.file.write('assets/js/jquery.min.js', jquery);
     });
     
     // Default Grunt task, runs via $ grunt
-    grunt.registerTask('default', ['copyScripts', 'sass', 'postcss', 'watch']);
+    grunt.registerTask('default', ['copyScripts', 'sass', 'postcss', 'imagemin', 'watch']);
 
 };
