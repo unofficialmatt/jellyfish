@@ -72,6 +72,17 @@ module.exports = function (grunt) {
           }
         },           
         
+        express: {
+            // go to http://localhost:9000 for live reloading
+            all:{
+                options:{
+                    port:9000,
+                    hostname:'localhost',
+                    bases:['.'],
+                    livereload: true
+                }
+            }
+        },
         watch: {
             
             // rerun $ grunt when the Gruntfile is edited
@@ -79,14 +90,14 @@ module.exports = function (grunt) {
                 files: ['Gruntfile.js'],
                 tasks: ['default'],
                 options: {
-                    reload: true
+                    livereload: true
                 }
             },
             
             // run 'sass' and 'postcss' tasks when any scss file is edited
             sass: {
                 options: {
-                    reload: true,
+                    livereload: true,
                     event: ['changed', 'added', 'deleted']
                 },
                 files: ['build/scss/**/*.scss'],
@@ -94,13 +105,16 @@ module.exports = function (grunt) {
             },
 
             concat_js: {
+                options: {
+                    livereload: true
+                },
                 files: ['build/js/**/*.js'],
                 tasks: ['concat', 'uglify']
             },            
             
             images: {
                 options: {
-                    reload: true,
+                    livereload: true,
                     event: ['changed', 'added', 'deleted']
                 },
                 files: ['build/img/**/*.{png,jpg,JPG,JPEG,jpeg,svg,gif}'],
@@ -120,6 +134,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-express');
     
 
     // Copy required scripts from node_modules to assets
@@ -130,7 +145,7 @@ module.exports = function (grunt) {
     });
     
     // Default Grunt task, runs via $ grunt
-    grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['copyScripts', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin', 'watch']);
+    grunt.registerTask('default', ['copyScripts', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin','express', 'watch']);
+    grunt.registerTask('server', ['express', 'watch']);
 
 };
