@@ -147,5 +147,6 @@ module.exports = function (grunt) {
     // Default Grunt task, runs via $ grunt
     grunt.registerTask('default', ['copyScripts', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin','express', 'watch']);
     grunt.registerTask('server', ['express', 'watch']);
+    grunt.registerTask('css', ['sass', 'postcss']);
 
 };

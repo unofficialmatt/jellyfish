@@ -1,0 +1,88 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  HELPERS
+  Useful helper classes
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+// Display State
+.show {
+    display: block !important;
+}
+.hide {
+    display: none !important;
+}
+.invisible {
+    visibility: hidden;
+}
+
+// Alignment
+.alignleft {
+    float: left !important;
+}
+.alignright {
+    float: right !important;
+} 
+.alignnone {
+    float: none !important;
+} 
+
+// Text Alignment
+.text-left {
+    text-align: left;
+}
+.text-right {
+     text-align: right;
+}
+.text--center {
+    text-align: center;
+}
+.text--justify {
+    text-align: justify;
+}
+
+// Wrap text in a .nowrap span to keep it together when otherwise it would break over two lines
+.nowrap{
+    white-space: nowrap;
+}
+
+// Width
+.full-width {
+    width: 100% !important;
+}
+
+// Vertical center with flex
+.vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Consistent Padding
+.padded {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+}
+
+// Embed videos responsively by wrapping them in an .embed-container 
+.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    margin: .25rem 0 .75rem 0;    
+}
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

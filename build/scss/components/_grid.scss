@@ -1,5 +1,8 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   GRID
+  Contains the logic that builds
+  Jellyfish's customisable grid 
+  system.
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .container {
@@ -10,15 +13,12 @@
 
 .row {
     @extend .clearfix;
-    &-padded {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-    }
 }
 .flex {
    //@extend .row;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     &.flex-align-center {
         align-items: center;
     }
@@ -34,12 +34,15 @@
     min-height: 1px;
     width: 100%;
     position: relative;
+    /*
+    // Is this still required?
     &:last-of-type {
         float: right;
     }
     &.reset-float {
         float: left;
     }
+    */
     &.flex-align-center {
         align-self: center;
     }

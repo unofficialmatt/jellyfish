@@ -1,0 +1,169 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  TYPOGRAPHY
+  Contains typographic styles
+  for common elements as well 
+  as semantic elements eg. code,
+  mark, small, var, strong, etc
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+// Headings
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-secondary;
+    margin: 1em 0 .25em 0;
+    line-height: 1.2;    
+    // Remove the top margin on any heading that immediately follows another
+    & + h1,
+    & + h2,
+    & + h3,
+    & + h4,
+    & + h5,
+    & + h6 {
+        margin-top: 0;
+    }
+}
+
+h1 {
+    font-size: $font-size-xxxlarge;
+}
+
+h2 { 
+    font-size: $font-size-xxlarge;
+}
+
+h3 { 
+    font-size: $font-size-xlarge;
+}
+
+h4 { 
+    font-size: $font-size-large;
+}
+
+h5 { 
+    font-size: $font-size-medium;
+}
+
+h6 { 
+    font-size: $font-size-normal;
+}
+
+// Reset the top margin on first header in a .row or .col
+
+.row >,
+.col > {
+    & h1:first-child,
+    & h2:first-child,
+    & h3:first-child,
+    & h4:first-child,
+    & h5:first-child,
+    & h6:first-child {
+        margin-top: 0;
+    }
+}
+
+/* TEXT TRANSFORM */
+
+small, .small {
+    font-size: $font-size-small;
+}
+strong, .bold, b {
+    font-weight: bold;
+}
+em, .italic, i {
+    font-style: italic;
+}
+
+// Highlighted
+mark {
+    background: color(tertiary);
+    padding: .15em .3em;
+    display: inline-block;
+}
+
+// Inserted text
+ins {
+    text-decoration: underline;
+}
+
+// Deleted text
+del {
+    text-decoration: line-through;
+}
+
+// Computer Output
+samp {
+    @extend %code;
+}
+
+// Abbreviation
+abbr {
+    border-bottom: $border-width dotted color(text);
+    cursor: help;
+}
+
+// Definition
+dfn {
+    font-style: italic;
+}
+
+// Citation
+cite {
+    font-style: italic;
+}
+
+// Inline Quote
+q {
+    font-style: italic;
+    &::before, &::after {
+        content:'"';
+    }
+}
+
+%inline-code {
+    @extend %code;
+    font-size: $font-size-small;
+    line-height: 1;
+    border-radius: $border-radius;
+    padding: .5em;
+    display: inline-block;
+}
+
+// Keyboard Input
+kbd {
+    @extend %inline-code;
+    background-color: #222;
+    color: white;
+}
+    
+// Code
+:not(pre)>code {
+    @extend %inline-code;
+    border: $borders;
+}
+    
+// Variable
+var {
+    @extend %inline-code;
+    font-style: italic;
+    color: white;
+    background-color: color(secondary);
+}
+
+// Subscript and Superscript
+sub, sup {
+    font-size: $font-size-xsmall;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+sub {
+    bottom: -0.25em;
+}
+sup {
+    top: -.75em;
+}

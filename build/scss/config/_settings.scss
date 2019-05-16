@@ -1,26 +1,61 @@
-// grid
+// Grid
 $cols: 12; // !required
 $has_push_pull: true;
 $has_offset: true;
 $debug-mode-on: false;
 
-// colors
+// Colours
 $colors: (
     text: #403F41,
+    text-light: #aaa,
     background: #fff,
-    primary: #708EAB,
-    secondary: #88A6C4,
-    tertiary: #AAB7C4
+    background-alt: #EBF2F2,
+    primary: #7f4782,
+    primary-alt: #aa5c9f,
+    secondary: #e2598b,
+    tertiary: #fdd043
 );
 
-// fonts
+// Typefaces
 $font-primary: 'Nunito', 'Arial', sans-serif;
 $font-secondary: 'Poppins', 'Arial', sans-serif;
+$font-code: Consolas, monaco, monospace;
 
-// base sizes (used before breakpoints are applied)
-$base-font-size: 1.6em;
+// Font Sizes
+$font-size-xsmall: 0.6em;
+$font-size-small: 0.8em;
+$font-size-normal: 1em;
+$font-size-medium:1.5em;
+$font-size-large: 1.75em;
+$font-size-xlarge: 2em;
+$font-size-xxlarge: 2.5em;
+$font-size-xxxlarge: 3em;
+
+// Global padding/margins
+$element-padding: 2rem !default;
+$element-margin: 3rem !default;
+
+// Borders
+$border-width: 0.1rem;
+$border-style: solid;
+$border-color: color(text-light);
+$border-radius: rem(4px);
+$borders: $border-width $border-style $border-color;
+
+// Forms
+$forms: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea');
+$buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]');
+$input-background: transparent;
+$placeholder: color(text-light);
+$form-border-hover: darken($border-color, 10%);
+$form-border-focus: color(primary);
+
+// ------------------ JELLYFISH CORE SETTINGS ------------------ //
+
+// Base Sizes (used before breakpoints are applied)
+$base-font-size: 1.6em; // used on the body element, all document font sizes are based on this value
 $base-line-height: 1.5;
-$base-container-gutter: 15px;
+$base-container-gutter: 15px; // define in px
 
 // breakpoints
 $nav-expands: 600px; // !required Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive

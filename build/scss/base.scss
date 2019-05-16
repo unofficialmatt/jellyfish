@@ -1,9 +1,36 @@
+// Configuration
 @charset "UTF-8"; 
-@import "mixins"; 
-@import "settings";
+@import "config/mixins"; 
+@import "config/settings";
+
+// Reset
 @import "../../node_modules/reset-css/sass/reset"; 
-@import "global"; 
-@import "grid";
+ 
+// Components
+@import "components/scaffolding";
+@import "components/typography";
+@import "components/helpers";
+@import "components/grid";
+@import "components/tables";
+@import "components/forms";
+@import "components/buttons";
+
+
+
+
+// Look at the way primitive grid uses  !default - this can be used to keep the Jellyfish config the same, and you could do an override one for each project
+
+
+// Compare with foundation, bootstrap, material, skeleton
+
+
+
+
+// GLOBAL TRANSITION STILL N OT WORKING
+// Last-child margin 0 on .col?
+
+
+
 //@import "nav"; // needs to be completed - lift from HOCt/HFarm
 
 /* IGNORE THE DOCS FOR NOW - THEY NEED SOME WORK! */
@@ -15,19 +42,11 @@ prettify html and php files on save
 livereload
 */
 /*  
-Useage Notes:
-• All font sizes should be set in .em values, as with any margins/padding related to text
-• Media Queries are set in em
-• Site wide margin/padding should be set with rem
-#clean up
+
 
 TO DO:  
 • Fix the nav issues experienced on touch
 • Add a mixin/util for generating different burger menu closing animations (can add to this in time) - or save this locally elsewhere in a snippet file?
-• Do the margins of things like blockquotes, lists etc need to be set iteratively based on the gutter width of the breakpoint?
-• Set up better breakpoints and sizing - more real world.
-• Make the index.html a better instructor (including all this info basically)
-  • Do full documentation detailing what ervery bit of css does and why/how to use it/how to format grid. Can put some code in the head to style code etc. Should I drop anything to make it more lean - eg. the mark, blockquote etc as these should be styled for the site design itself. Get back to basics with a solid customisable grid framework?        
 
 DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
 */
@@ -64,11 +83,6 @@ $color-midgrey: #D9DBDB;
         }
     }
 
-    code, pre, .code {
-        font-family: Consolas, monaco, monospace;
-        @extend .bold;
-        @extend %font-size--small;
-    }
     pre {
         @extend .boxed;
         width: auto;
@@ -87,12 +101,13 @@ $color-midgrey: #D9DBDB;
             padding: .3em;
         }
     }
+    // replace with var semantic element
     %reference {
         display: inline-block;
         color: white;
         padding: .3em;
         border-radius: rem(4px);
-        @extend %font-size--small;
+        font-size: $font-size-small;
         line-height: 1;
     }
     .css-ref {
@@ -125,7 +140,7 @@ $color-midgrey: #D9DBDB;
     }
 
     .lead {
-        @extend %font-size--large;
+        font-size: $font-size-large;
     }
 
     .docs-section {
