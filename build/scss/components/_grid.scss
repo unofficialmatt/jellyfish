@@ -14,19 +14,20 @@
 .row {
     @extend .clearfix;
 }
-.flex {
+.flex-row {
    //@extend .row;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    &.flex-align-center {
-        align-items: center;
-    }
+    &
     .col { 
         display: flex;
         flex-direction: column;
     }
 }
+.flex-align-center {
+        align-items: center;
+    }
 
 .col {
     display: block;

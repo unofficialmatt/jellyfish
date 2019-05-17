@@ -35,6 +35,9 @@ $font-size-xxxlarge: 3em;
 $element-padding: 2rem !default;
 $element-margin: 3rem !default;
 
+// Global transition used in smooth()
+$global-transition: 1.2s ease;
+
 // Borders
 $border-width: 0.1rem;
 $border-style: solid;

@@ -21,7 +21,7 @@
 
 %forms-focus {
     border-color: $form-border-focus;
-    box-shadow: inset 0 2px 2px rgba(0, 0, 0, .1), 0 0 5px lighten(color(primary), 30%);
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, .1), 0 0 3px 1px lighten(color(primary), 30%);
 }
 
 // Forms stack defined in settings.scss 
