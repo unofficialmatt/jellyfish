@@ -37,7 +37,6 @@ h1 {
 
 
 
-// GLOBAL TRANSITION STILL N OT WORKING
 // Last-child margin 0 on .col?
 
 
@@ -75,9 +74,9 @@ $color-midgrey: #D9DBDB;
     }
     .boxed {
         background: $color-lightgrey;
-        border: rem(1px) solid $color-midgrey;
+        border: 1px solid $color-midgrey;
         padding: 1.4em;
-        margin: 2rem 0;
+        margin: 20px 0;
         display: inherit;
         &.no-margin {
             margin: 0;
@@ -88,7 +87,7 @@ $color-midgrey: #D9DBDB;
     }
 
     table {
-        margin: 2rem 0;
+        margin: 20px 0;
         h1, h2, h3, h4, h5, h6 {
             margin: 0;
         }
@@ -117,7 +116,7 @@ $color-midgrey: #D9DBDB;
         display: inline-block;
         color: white;
         padding: .3em;
-        border-radius: rem(4px);
+        border-radius: 4px;
         font-size: $font-size-small;
         line-height: 1;
     }
@@ -141,8 +140,8 @@ $color-midgrey: #D9DBDB;
     }
 
     td, th {
-        padding: 1rem;
-        border: rem(1px) solid $color-midgrey;
+        padding: 10px;
+        border: 1px solid $color-midgrey;
     }
     th {
         font-weight: bold;
@@ -155,18 +154,18 @@ $color-midgrey: #D9DBDB;
     }
 
     .docs-section {
-        margin-top: 4rem;
-        margin-bottom: 4rem;
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
     
     .nest- {
         &1 {
-            box-shadow: inset .5rem 0px 0px 0px $color-midgrey;
-            padding-left: 1.5rem;
+            box-shadow: inset 5px 0px 0px 0px $color-midgrey;
+            padding-left: 15px;
         }
         &2 {
-            box-shadow: inset 1rem 0px 0px 0px $color-midgrey;
-            padding-left: 2rem;
+            box-shadow: inset 10px 0px 0px 0px $color-midgrey;
+            padding-left: 20px;
         }
     }
     .smooth- {
@@ -187,7 +186,7 @@ $color-midgrey: #D9DBDB;
 
     // Temp only
     /*
-    .row {padding-top: 1rem;padding-bottom:1rem;background-color: #efefef;} 
+    .row {padding-top:10px;padding-bottom:10px;background-color: #efefef;} 
             .container{border: 1px solid red;}
             .col{border: 1px solid blue;padding-top: 10px;padding-bottoM:10px;}
             .row{border: 1px solid orange;}

@@ -22,6 +22,7 @@ $font-secondary: 'Poppins', 'Arial', sans-serif;
 $font-code: Consolas, monaco, monospace;
 
 // Font Sizes
+$font-size-browser: 16px;
 $font-size-xsmall: 0.6em;
 $font-size-small: 0.8em;
 $font-size-normal: 1em;
@@ -32,22 +33,23 @@ $font-size-xxlarge: 2.5em;
 $font-size-xxxlarge: 3em;
 
 // Global padding/margins
-$element-padding: 2rem !default;
-$element-margin: 3rem !default;
+$element-padding: 20px !default;
+$element-margin: 30px !default;
 
 // Global transition used in smooth()
 $global-transition: 1.2s ease;
 
 // Borders
-$border-width: 0.1rem;
+$border-width: 1px;
 $border-style: solid;
 $border-color: color(text-light);
-$border-radius: rem(4px);
+$border-radius: 4px;
 $borders: $border-width $border-style $border-color;
 
 // Forms
 $forms: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea');
 $buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]');
+$button-border-radius: 6px;
 $input-background: transparent;
 $placeholder: color(text-light);
 $form-border-hover: darken($border-color, 10%);
@@ -56,7 +58,6 @@ $form-border-focus: color(primary);
 // ------------------ JELLYFISH CORE SETTINGS ------------------ //
 
 // Base Sizes (used before breakpoints are applied)
-$base-font-size: 1.6em; // used on the body element, all document font sizes are based on this value
 $base-line-height: 1.5;
 $base-container-gutter: 15px; // define in px
 
@@ -67,28 +68,28 @@ $breakpoints: (
     // Define our breakpoints. Comment out or remove a whole size to prevent it being iterated, or individual elements to inherit from the previously defined point
     // The shorthand names are used in column classes. Usually start the grid at .sm reserving .xs for special cases
     // Breakpoints are converted to em values through breakpoint mixin
-    // Use rem() or em() on this level to convert appropriately for the useage
+    // Anything else in px is converted to rem via grunt
     sm: (
-        breakpoint: 300px, // px
-        container-width: 100%, // % or rem
-        //container-gutter: rem(50px), // rem     
-        col-gutter: rem(20px), // rem
-        base-font-size: 1.4em, // em
-        base-line-height: 1.48 // number, % or em
+        breakpoint: 300px,
+        container-width: 100%,
+        //container-gutter: 50px,
+        col-gutter: 20px,
+        base-font-size: 14px,
+        base-line-height: 1.48
         ),
     md: (
         breakpoint: 600px,
         container-width: 96%,
-        container-gutter: rem(50px),      
-        col-gutter: rem(20px),
-        base-font-size: 1.6em,
+        container-gutter: 50px,      
+        col-gutter: 20px,
+        base-font-size: 16px,
         //base-line-height: 1.48em
         ),
     lg: (
         breakpoint: 1200px,
-        container-width: rem(1080px),
-        //container-gutter: rem(50px),      
-        col-gutter: rem(30px),
+        container-width: 1080px,
+        //container-gutter: 50px,      
+        col-gutter: 30px,
         //base-font-size: 1em,
         //base-line-height: 1.48em
         )

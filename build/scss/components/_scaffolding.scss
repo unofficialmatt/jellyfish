@@ -15,13 +15,12 @@
 html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;    
-    @include rem-baseline;
 }
 
 body {
     font: {
         family: $font-primary;
-        size: $base-font-size;
+        size: 1rem;
     }
     line-height: $base-line-height;   
     color: color(text);

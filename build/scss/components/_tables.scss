@@ -21,14 +21,14 @@ th {
 th,
 td {
     text-align: left;
-    padding: .5rem;
+    padding: 5px;
 }
 
 thead th {
-    border-bottom: rem(2px) solid $border-color;
+    border-bottom: 2px solid $border-color;
     background-color: color(background-alt);
 }
 
 tfoot th {
-    border-top: rem(2px) solid $border-color;
+    border-top: 2px solid $border-color;
 }

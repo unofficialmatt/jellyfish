@@ -8,7 +8,7 @@
 .container {
     margin: 0 auto;
     width: 100%;
-    padding: 0 rem($base-container-gutter);
+    padding: 0 $base-container-gutter;
 }
 
 .row {
@@ -101,12 +101,12 @@ $i in $breakpoints {
         .jf-debug {
             @if $has_push_pull {
                 [class*='pull-#{$point}'] {
-                    border: rem(2px) solid red !important;
-                    border-left-width: rem(8px) !important;
+                    border: 2px solid red !important;
+                    border-left-width: 8px !important;
                 }
                 [class*='push-#{$point}'] {
-                    border: rem(2px) solid red !important;
-                    border-right-width: rem(8px) !important;
+                    border: 2px solid red !important;
+                    border-right-width: 8px !important;
                 }
                 [class*='pull-#{$point}-0'], [class*='push-#{$point}-0'] {
                     border: 0; //Remove border on reset elements
@@ -114,8 +114,8 @@ $i in $breakpoints {
             }
             @if $has_offset {
                 [class*='offset-#{$point}'] {
-                    border: rem(2px) solid red !important;
-                    border-right-width: rem(8px) !important;
+                    border: 2px solid red !important;
+                    border-right-width: 8px !important;
                 } 
             }
         }
@@ -136,6 +136,23 @@ $i in $breakpoints {
     }
 }
 .jf-debug {
+    &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 10000;
+    background: white;
+    font-size: 12px;
+    color: color(text-light);
+    font-family: $font-secondary;
+    @each $point, $i in $breakpoints {
+       @include above($point) {
+           content: "#{$point}";
+       }
+    }
+    }
     .col {
         box-shadow: 0 1px 3px 1px rgba(#35fff0, .7) !important;
 

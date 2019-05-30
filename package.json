@@ -9,7 +9,9 @@
   },
   "author": "Matt Weet",
   "license": "UNLICENSED",
-  "dependencies": {},
+  "dependencies": {
+    "postcss-pxtorem": "^4.0.1"
+  },
   "devDependencies": {
     "autoprefixer": "^9.4.9",
     "cssnano": "^4.1.10",
@@ -25,7 +27,7 @@
     "grunt-parallel": "^0.5.1",
     "grunt-postcss": "^0.9.0",
     "grunt-sass": "^2.1.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "reset-css": "^4.0.1"
   }
 }

@@ -26,9 +26,17 @@ module.exports = function (grunt) {
             options: {
                 map: true,
                 processors: [
-                      require('autoprefixer')({
-                        browsers: 'last 5 versions'
+                    require('autoprefixer')({
+                      browsers: 'last 5 versions'
                     }), // add vendor prefixes
+                    require('postcss-pxtorem')({
+                      rootValue: 16,
+                      unitPrecision: 2, // Decimal places
+                      propList: ['*'], // Apply to all elements
+                      replace: true, // False enables px fallback
+                      mediaQuery: false, // Do not apply within media queries (we use em instead)
+                      minPixelValue: 0
+                    }),
                     require('cssnano')() // minify the result
                 ]
             },
