@@ -4,7 +4,7 @@
 @import "config/settings";
 
 // Reset
-@import "../../node_modules/reset-css/sass/reset"; 
+@import "vendor/reset"; 
  
 // Components
 @import "components/scaffolding";
@@ -15,19 +15,6 @@
 @import "components/forms";
 @import "components/buttons";
 
-// NAV
-// Etc
-
-h1 {
-    @include smooth(color, transform, opacity, letter-spacing);
-    transform-origin: left top;
-    &:hover {
-        color: blue;
-        transform:scale(1.15);
-        opacity: .8;
-        letter-spacing: 12px;
-    }
-}
 
 // Look at the way primitive grid uses  !default - this can be used to keep the Jellyfish config the same, and you could do an override one for each project
 
@@ -49,7 +36,6 @@ h1 {
 /*
 Add via npm/grunt later:
 prettify html and php files on save
-livereload
 */
 /*  
 

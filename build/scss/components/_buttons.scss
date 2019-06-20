@@ -20,7 +20,7 @@
     padding: .75em 1.5em;
     margin: 5px 5px 2.5px 0;
     border-radius: $button-border-radius;
-    @include smooth(background, border-color);
+    @include smooth(background, border-color, color);
     &::-moz-focus-inner {
         border: 0;
         padding: 0;

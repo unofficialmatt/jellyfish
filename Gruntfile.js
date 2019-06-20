@@ -1,27 +1,46 @@
 module.exports = function (grunt) {
+    
+    // Set up global variables
+    var globalConfig = {
+        build_dir: 'build',
+        dist_dir: 'assets',
+    };
+    
     // Project configuration
     grunt.initConfig({
         
-        // Remove old images
-        clean: ['assets/img/*'], 
+        globalConfig: globalConfig,
         
+        // Remove old images
+        clean: ['<%= globalConfig.dist_dir %>/img/*'], 
+
+        copy: {
+          // Copy scripts from node_modules
+          npm: {
+            files: [
+              {src: ['node_modules/jquery/dist/jquery.js'], dest: '<%= globalConfig.build_dir %>/js/vendor/jquery.js'},
+              {src: ['node_modules/reset-css/sass/_reset.scss'], dest: '<%= globalConfig.build_dir %>/scss/vendor/_reset.scss'}
+            ],
+          },
+        },
+                
         // Define which sass files should be compiled
         sass: {
             options: {
-                outputStyle: 'expanded',
+               // outputStyle: 'expanded',
                 sourceMap: true
             },
             dist: {
                 files: [
                     {
-                        src: 'build/scss/base.scss',
-                        dest: 'assets/css/style.min.css'
+                        src: '<%= globalConfig.build_dir %>/scss/base.scss',
+                        dest: '<%= globalConfig.dist_dir %>/css/style.css'
                     }
                 ]
             }
         },
         
-        // Run postcss on files in assets/css/ to apply autoprefix and minify
+        // Run postcss on files in dist_dir/css/ to apply autoprefix and minify
         postcss: {
             options: {
                 map: true,
@@ -41,18 +60,19 @@ module.exports = function (grunt) {
                 ]
             },
             dist: {
-                src: 'assets/css/*.css'
+                src: '<%= globalConfig.dist_dir %>/css/style.css',
+                dest: '<%= globalConfig.dist_dir %>/css/style.min.css'
             }
         },
         
-        // Compress images in build/img/, output to assets/img
+        // Compress images in build_dir/img/, output to dist_dir/img
         imagemin: {
             dynamic: {
                 files: [{
                     expand: true,
-                    cwd: 'build/img/',
+                    cwd: '<%= globalConfig.build_dir %>/img/',
                     src: ['**/*.{png,jpg,JPG,JPEG,jpeg,svg,gif}'],
-                    dest: 'assets/img/'
+                    dest: '<%= globalConfig.dist_dir %>/img/'
                 }]
             }
         },    
@@ -64,8 +84,8 @@ module.exports = function (grunt) {
           },
 
           site: {
-            src: ['build/js/vendor/*.js', 'build/js/site/*.js'],
-            dest: 'assets/js/site.js',
+            src: ['<%= globalConfig.build_dir %>/js/vendor/*.js', '<%= globalConfig.build_dir %>/js/site/*.js'],
+            dest: '<%= globalConfig.dist_dir %>/js/site.js',
           },
         },
 
@@ -75,7 +95,7 @@ module.exports = function (grunt) {
           },
           site: {
             files: {
-              'assets/js/site.min.js': ['assets/js/site.js']
+              '<%= globalConfig.dist_dir %>/js/site.min.js': ['<%= globalConfig.dist_dir %>/js/site.js']
             }
           }
         },           
@@ -108,7 +128,7 @@ module.exports = function (grunt) {
                     livereload: true,
                     event: ['changed', 'added', 'deleted']
                 },
-                files: ['build/scss/**/*.scss'],
+                files: ['<%= globalConfig.build_dir %>/scss/**/*.scss'],
                 tasks: [ 'sass', 'postcss']
             },
 
@@ -116,7 +136,7 @@ module.exports = function (grunt) {
                 options: {
                     livereload: true
                 },
-                files: ['build/js/**/*.js'],
+                files: ['<%= globalConfig.build_dir %>/js/**/*.js'],
                 tasks: ['concat', 'uglify']
             },            
             
@@ -125,12 +145,11 @@ module.exports = function (grunt) {
                     livereload: true,
                     event: ['changed', 'added', 'deleted']
                 },
-                files: ['build/img/**/*.{png,jpg,JPG,JPEG,jpeg,svg,gif}'],
+                files: ['<%= globalConfig.build_dir %>/img/**/*.{png,jpg,JPG,JPEG,jpeg,svg,gif}'],
                 tasks: [ 'clean', 'imagemin' ]
             }
 
         }
-
 
     });
 
@@ -142,18 +161,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-express');
-    
-
-    // Copy required scripts from node_modules to assets
-    grunt.registerTask('copyScripts', function () {
-        var jquery = grunt.file.read('node_modules/jquery/dist/jquery.js');
         
-        grunt.file.write('build/js/vendor/jquery.js', jquery);
-    });
-    
     // Default Grunt task, runs via $ grunt
-    grunt.registerTask('default', ['copyScripts', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin','express', 'watch']);
+    grunt.registerTask('default', ['copy:npm', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin','express', 'watch']);
     grunt.registerTask('server', ['express', 'watch']);
     grunt.registerTask('css', ['sass', 'postcss']);
 

@@ -38,10 +38,10 @@
 .text-right {
      text-align: right;
 }
-.text--center {
+.text-center {
     text-align: center;
 }
-.text--justify {
+.text-justify {
     text-align: justify;
 }
 
@@ -64,8 +64,8 @@
 
 // Consistent Padding
 .padded {
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: $block-padding;
+    padding-bottom: $block-padding;
 }
 
 // Embed videos responsively by wrapping them in an .embed-container 

@@ -33,11 +33,12 @@ $font-size-xxlarge: 2.5em;
 $font-size-xxxlarge: 3em;
 
 // Global padding/margins
-$element-padding: 20px !default;
-$element-margin: 30px !default;
+$element-padding: 20px;
+$element-margin: 30px;
+$block-padding: 70px;
 
 // Global transition used in smooth()
-$global-transition: 1.2s ease;
+$global-transition: 0.3s ease;
 
 // Borders
 $border-width: 1px;
@@ -57,41 +58,47 @@ $form-border-focus: color(primary);
 
 // ------------------ JELLYFISH CORE SETTINGS ------------------ //
 
-// Base Sizes (used before breakpoints are applied)
+// Base Variables (used before breakpoints are applied)
+$base-col-name: sm;
 $base-line-height: 1.5;
 $base-container-gutter: 15px; // define in px
+$base-col-gutter: 10px; // define in px
 
-// breakpoints
+// Breakpoints
 $nav-expands: 600px; // !required Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
 
 $breakpoints: (
-    // Define our breakpoints. Comment out or remove a whole size to prevent it being iterated, or individual elements to inherit from the previously defined point
-    // The shorthand names are used in column classes. Usually start the grid at .sm reserving .xs for special cases
-    // Breakpoints are converted to em values through breakpoint mixin
-    // Anything else in px is converted to rem via grunt
-    sm: (
-        breakpoint: 300px,
-        container-width: 100%,
-        //container-gutter: 50px,
-        col-gutter: 20px,
-        base-font-size: 14px,
-        base-line-height: 1.48
-        ),
+    /* 
+     * Define breakpoints in here
+     * Note: Comment out or remove a whole size to prevent it being iterated, or individual elements to inherit from the previously defined point. 
+     * The shorthand names are used in column classes. 
+     * Our $base-col-name above applies to all columns below the first breakpoint set here (ie. is the default). 
+     * Breakpoints are converted to em values through breakpoint mixin
+     * Anything else in px is converted to rem via grunt
+     * col-gutter is !required
+    */
     md: (
         breakpoint: 600px,
         container-width: 96%,
         container-gutter: 50px,      
         col-gutter: 20px,
         base-font-size: 16px,
-        //base-line-height: 1.48em
+        base-line-height: 1.48em
         ),
     lg: (
+        breakpoint: 900px,
+        container-width: 880px,
+        col-gutter: 30px,
+        ),
+    xl: (
         breakpoint: 1200px,
         container-width: 1080px,
-        //container-gutter: 50px,      
         col-gutter: 30px,
-        //base-font-size: 1em,
-        //base-line-height: 1.48em
+        ),
+    xxl: (
+        breakpoint: 1600px,
+        container-width: 1480px,
+        col-gutter: 35px,
         )
 );
 

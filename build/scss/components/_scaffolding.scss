@@ -161,7 +161,7 @@ img {
 }
 
 %embedded-content {
-    @include below(sm) {
+    @include below(md) {
         float:none !important;
         margin: $element-margin auto;
         display: block;

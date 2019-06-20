@@ -13,9 +13,13 @@
 
 .row {
     @extend .clearfix;
+    .row{ 
+        // give our nested rows negative margin equal to half col gutter
+        margin-left: -.5*$base-col-gutter;
+        margin-right: -.5*$base-col-gutter;
+    }
 }
-.flex-row {
-   //@extend .row;
+.flex {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -25,9 +29,11 @@
         flex-direction: column;
     }
 }
-.flex-align-center {
+.flex-center {
         align-items: center;
     }
+
+$one_col: (100% / $cols);
 
 .col {
     display: block;
@@ -35,6 +41,9 @@
     min-height: 1px;
     width: 100%;
     position: relative;
+    // give our cols l-r margin equal to half col gutter
+    padding-left: .5*$base-col-gutter;
+    padding-right: .5*$base-col-gutter;    
     /*
     // Is this still required?
     &:last-of-type {
@@ -44,7 +53,7 @@
         float: left;
     }
     */
-    &.flex-align-center {
+    &.flex-center {
         align-self: center;
     }
 }
@@ -53,6 +62,29 @@
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
+
+// Iterate for our smallest defined column class ($base-col-name)
+@for $i from 1 through ($cols) {
+    .#{$base-col-name}-#{$i} {
+         width: ($one_col * $i);
+    }
+    @if $has_push_pull {
+        $diff: 100% - ($one_col * $i);
+        .push-#{$base-col-name}-#{$cols - $i} {
+            left: $diff;
+        }
+        .pull-#{$base-col-name}-#{$cols - $i} {
+            right: $diff;
+        }
+    }
+    @if $has_offset {
+        $offset: 100% - ($one_col * $i);
+        .offset-#{$base-col-name}-#{$cols - $i} {
+            margin-left: $offset;
+        }
+    }
+}
+
 
 @each $point,
 $i in $breakpoints {
@@ -75,9 +107,7 @@ $i in $breakpoints {
             // give our cols l-r margin equal to half col gutter
             padding-left: .5*bp-query($point, col-gutter);
             padding-right: .5*bp-query($point, col-gutter);
-        }
-        $one_col: (100% / $cols);
-        
+        }        
         @for $i from 1 through ($cols) {
             .#{$point}-#{$i} {
                  width: ($one_col * $i);
@@ -137,7 +167,7 @@ $i in $breakpoints {
 }
 .jf-debug {
     &::before {
-    content: "";
+    content: "#{$base-col-name}";
     position: fixed;
     top: 0;
     left: 0;
