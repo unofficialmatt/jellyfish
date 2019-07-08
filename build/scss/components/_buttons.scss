@@ -7,12 +7,14 @@
 // Button stack defined in settings.scss
 #{$buttons} {
     -webkit-appearance: none;
+    user-select: none;
     display: inline-block;
     vertical-align: middle;
     text-align: center;
     cursor: pointer;
     text-decoration: none;
-    line-height: 1;
+    font-size: 1rem;
+    line-height: 1.3;
     border: 1px solid color(primary);
     background-color: color(primary);
     font-size: $font-size-normal;
@@ -24,23 +26,30 @@
     &::-moz-focus-inner {
         border: 0;
         padding: 0;
-    }   
+    }
     &:hover, &:focus, &:active {
         background-color: darken(color(primary), 10%);
         border-color: darken(color(primary), 10%);
     }
+    &:focus {
+        outline: 0;
+        box-shadow: 0px 0px 1px 3px lighten(color(primary), 25%);
+    }
 }
 
 .button, a.button {
-    &--accent {
+    &__secondary {
         background-color: color(secondary);
         border-color: color(secondary);
         &:hover, &:focus, &:active {
             background-color: darken(color(secondary), 10%);
             border-color: darken(color(secondary), 10%);
         }
+        &:focus {
+            box-shadow: 0px 0px 1px 3px lighten(color(secondary), 15%);
+        }
     }
-    &--outline {
+    &__outline {
         background: transparent;
         color: inherit;
         border-color: color(primary);
@@ -50,16 +59,32 @@
             color: color(primary);
         }
     }
-    &--full {
+    &__ghost {
+        background: transparent;
+        color: inherit;
+        border-color: transparent;
+        &:hover, &:focus, &:active {
+            background-color: transparent;
+            border-color: darken(color(primary), 10%);
+            color: color(primary);
+        }
+    }
+    &__full {
         display: block;
         width: 100%;
         margin-top: 5px;
         margin-bottom: 5px;
     }
+    &__large {
+        font-size: 1.2rem;
+    }
+    &__small {
+        font-size: 0.8rem;
+    }
 }
 [type=submit] {
-    @extend .button--accent;
+    @extend .button__secondary;
 }
 [type=reset] {
-    @extend .button--outline;
+    @extend .button__outline;
 }

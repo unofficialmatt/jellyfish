@@ -8,16 +8,13 @@
     top: 50%;
     transform: translateY(-50%);
 }
-.vertical-align {
-    @include vertical-align;
-}
-@function bp-query($point, $var) { 
+@function bp-query($point, $var) {
     // Function to query our breakpoint map
     // Accepts args $breakpoint-size, $variable
     @return map-get(map-get($breakpoints, $point), $var);
 }
 
-@function color($color) { 
+@function color($color) {
     // Function to query our color map
     // Accepts args $color
     @return map-get($colors, $color);
@@ -30,22 +27,22 @@
         $bp-min: bp-query($min, breakpoint);
     }
     //@warn "Unknown `#{$min}` in $breakpoints";
-    @media (min-width: em($bp-min)) { 
-        @content; 
+    @media (min-width: em($bp-min)) {
+        @content;
     }
 }
 @mixin between($min, $max) {
     $bp-min: $min;
-    @if map-has-key($breakpoints, $min) { 
+    @if map-has-key($breakpoints, $min) {
         $bp-min: bp-query($min, breakpoint);
-    } 
+    }
     //@warn "Unknown `#{$min}` in $breakpoints";
     $bp-max: $max;
     @if map-has-key($breakpoints, $max) {
         $bp-max: bp-query($max, breakpoint);
     }
     //@warn "Unknown `#{$max}` in $breakpoints";
-    @media (min-width: em($bp-min)) and (max-width: em($bp-max - 1px)) { 
+    @media (min-width: em($bp-min)) and (max-width: em($bp-max - 1px)) {
         @content;
     }
 }
@@ -58,13 +55,13 @@
     @media (max-width: em($bp-max - 1px)) {
         @content;
     }
-} 
+}
 
 @mixin smooth($properties...) { // Global transition
     $result: (); // Create empty variable
     @each $property in $properties {
         // Loop through each argument and append to result variable
         $result: append($result, #{$property} $global-transition, comma);
-    }   
+    }
     transition: $result;
 }

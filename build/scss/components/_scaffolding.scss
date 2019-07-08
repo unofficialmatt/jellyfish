@@ -14,7 +14,7 @@
 
 html {
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;    
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -22,7 +22,7 @@ body {
         family: $font-primary;
         size: 1rem;
     }
-    line-height: $base-line-height;   
+    line-height: $base-line-height;
     color: color(text);
     background-color: color(background);
 
@@ -52,12 +52,12 @@ a {
     }
     &:hover, &:active, &:focus {
         color: color(tertiary);
-    }    
+    }
 }
 
 // Consistent Margins
 
-p, 
+p,
 table {
     margin: 0 0 $element-margin 0;
 }
@@ -90,7 +90,7 @@ dl {
     dt {
         font-weight: bold;
     }
-} 
+}
 
 
 // Code Typeface
@@ -124,7 +124,8 @@ blockquote {
     padding: $element-padding;
     font-size: $font-size-large;
     font-style: italic;
-    
+    line-height: 1.4;
+
     cite {
         display: block;
         margin-top: $element-margin;

@@ -1,11 +1,11 @@
 // Configuration
-@charset "UTF-8"; 
-@import "config/mixins"; 
+@charset "UTF-8";
+@import "config/mixins";
 @import "config/settings";
 
 // Reset
-@import "vendor/reset"; 
- 
+@import "vendor/reset";
+
 // Components
 @import "components/scaffolding";
 @import "components/typography";
@@ -20,7 +20,7 @@
 
 
 // Compare with foundation, bootstrap, material, skeleton
-
+// Take some of the flex align stuff from these
 
 
 
@@ -37,10 +37,10 @@
 Add via npm/grunt later:
 prettify html and php files on save
 */
-/*  
+/*
 
 
-TO DO:  
+TO DO:
 • Fix the nav issues experienced on touch
 • Add a mixin/util for generating different burger menu closing animations (can add to this in time) - or save this locally elsewhere in a snippet file?
 
@@ -54,9 +54,9 @@ $color-lightgrey: #EBF2F2;
 $color-midgrey: #D9DBDB;
 
 .docs {
-    background-color: $color-ghost; 
+    background-color: $color-ghost;
     .container {
-        background-color: #fff; 
+        background-color: #fff;
     }
     .boxed {
         background: $color-lightgrey;
@@ -131,8 +131,8 @@ $color-midgrey: #D9DBDB;
     }
     th {
         font-weight: bold;
-        text-align: left; 
-        
+        text-align: left;
+
     }
 
     .lead {
@@ -143,7 +143,7 @@ $color-midgrey: #D9DBDB;
         margin-top: 40px;
         margin-bottom: 40px;
     }
-    
+
     .nest- {
         &1 {
             box-shadow: inset 5px 0px 0px 0px $color-midgrey;
@@ -172,7 +172,7 @@ $color-midgrey: #D9DBDB;
 
     // Temp only
     /*
-    .row {padding-top:10px;padding-bottom:10px;background-color: #efefef;} 
+    .row {padding-top:10px;padding-bottom:10px;background-color: #efefef;}
             .container{border: 1px solid red;}
             .col{border: 1px solid blue;padding-top: 10px;padding-bottoM:10px;}
             .row{border: 1px solid orange;}

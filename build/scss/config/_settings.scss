@@ -68,11 +68,11 @@ $base-col-gutter: 10px; // define in px
 $nav-expands: 600px; // !required Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
 
 $breakpoints: (
-    /* 
+    /*
      * Define breakpoints in here
-     * Note: Comment out or remove a whole size to prevent it being iterated, or individual elements to inherit from the previously defined point. 
-     * The shorthand names are used in column classes. 
-     * Our $base-col-name above applies to all columns below the first breakpoint set here (ie. is the default). 
+     * Note: Comment out or remove a whole size to prevent it being iterated, or individual elements to inherit from the previously defined point.
+     * The shorthand names are used in column classes.
+     * Our $base-col-name above applies to all columns below the first breakpoint set here (ie. is the default).
      * Breakpoints are converted to em values through breakpoint mixin
      * Anything else in px is converted to rem via grunt
      * col-gutter is !required
@@ -80,7 +80,7 @@ $breakpoints: (
     md: (
         breakpoint: 600px,
         container-width: 96%,
-        container-gutter: 50px,      
+        container-gutter: 50px,
         col-gutter: 20px,
         base-font-size: 16px,
         base-line-height: 1.48em
@@ -103,7 +103,7 @@ $breakpoints: (
 );
 
 @if $debug-mode-on {
-/*! 
+/*!
 ------------------------------
 JELLYFISH CSS DEBUG MODE IS ON
 -> All rows and columns will be highlighted.
@@ -111,5 +111,5 @@ JELLYFISH CSS DEBUG MODE IS ON
 -> Grid system will be overlayed.
 ------------------------------
 */
-    
+
 }

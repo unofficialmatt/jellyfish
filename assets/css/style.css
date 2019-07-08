@@ -1,9 +1,4 @@
 @charset "UTF-8";
-.vertical-align {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%); }
-
 /* http://meyerweb.com/eric/tools/css/reset/
    v4.0 | 20180602
    License: none (public domain)
@@ -142,7 +137,8 @@ blockquote {
   margin: 0 0 30px 0;
   padding: 20px;
   font-size: 1.75em;
-  font-style: italic; }
+  font-style: italic;
+  line-height: 1.4; }
   blockquote cite {
     display: block;
     margin-top: 30px;
@@ -459,13 +455,49 @@ sup {
 .invisible {
   visibility: hidden; }
 
-.alignleft {
+.align-top {
+  align-items: flex-start; }
+
+.align-middle {
+  align-items: center; }
+
+.align-bottom {
+  align-items: flex-end; }
+
+.align-self-top {
+  align-self: flex-start; }
+
+.align-self-middle {
+  align-self: center; }
+
+.align-self-bottom {
+  align-self: flex-end; }
+
+.justify-start {
+  justify-content: flex-start !important; }
+
+.justify-center {
+  justify-content: center !important; }
+
+.justify-end {
+  justify-content: flex-end !important; }
+
+.justify-around {
+  justify-content: space-around !important; }
+
+.justify-between {
+  justify-content: space-between !important; }
+
+.alignleft,
+.align-left {
   float: left !important; }
 
-.alignright {
+.alignright,
+.align-right {
   float: right !important; }
 
-.alignnone {
+.alignnone,
+.align-none {
   float: none !important; }
 
 .text-left {
@@ -485,11 +517,6 @@ sup {
 
 .full-width {
   width: 100% !important; }
-
-.vertical-center {
-  display: flex;
-  align-items: center;
-  justify-content: center; }
 
 .padded {
   padding-top: 70px;
@@ -515,7 +542,7 @@ sup {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   GRID
   Contains the logic that builds
-  Jellyfish's customisable grid 
+  Jellyfish's customisable grid
   system.
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .container {
@@ -523,45 +550,29 @@ sup {
   width: 100%;
   padding: 0 15px; }
 
-.row .row {
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin-left: -5px;
   margin-right: -5px; }
 
-.flex {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row; }
-  .flex .col {
-    display: flex;
-    flex-direction: column; }
-
-.flex-center {
-  align-items: center; }
-
 .col {
-  display: block;
-  float: left;
+  flex: 1 1 0px;
   min-height: 1px;
-  width: 100%;
+  max-width: 100%;
   position: relative;
   padding-left: 5px;
-  padding-right: 5px;
-  /*
-    // Is this still required?
-    &:last-of-type {
-        float: right;
-    }
-    &.reset-float {
-        float: left;
-    }
-    */ }
-  .col.flex-center {
-    align-self: center; }
+  padding-right: 5px; }
 
 .col.collapse,
 .row.collapse > .col {
   padding-left: 0 !important;
   padding-right: 0 !important; }
+
+.row.collapse {
+  margin-left: 0;
+  margin-right: 0; }
 
 .sm-1 {
   width: 8.3333333333%; }
@@ -712,14 +723,21 @@ sup {
     width: 96%;
     padding-left: 50px;
     padding-right: 50px; }
-  .row .row {
+  .row {
     margin-left: -10px;
     margin-right: -10px; }
+  .row.collapse-md {
+    margin-left: 0;
+    margin-right: 0; }
+    .row.collapse-md .col {
+      padding-left: 0 !important;
+      padding-right: 0 !important; }
   .col {
     padding-left: 10px;
     padding-right: 10px; }
   .md-1 {
-    width: 8.3333333333%; }
+    max-width: 8.3333333333%;
+    flex: 0 0 8.3333333333%; }
   .push-md-11 {
     left: 91.6666666667%; }
   .pull-md-11 {
@@ -727,7 +745,8 @@ sup {
   .offset-md-11 {
     margin-left: 91.6666666667%; }
   .md-2 {
-    width: 16.6666666667%; }
+    max-width: 16.6666666667%;
+    flex: 0 0 16.6666666667%; }
   .push-md-10 {
     left: 83.3333333333%; }
   .pull-md-10 {
@@ -735,7 +754,8 @@ sup {
   .offset-md-10 {
     margin-left: 83.3333333333%; }
   .md-3 {
-    width: 25%; }
+    max-width: 25%;
+    flex: 0 0 25%; }
   .push-md-9 {
     left: 75%; }
   .pull-md-9 {
@@ -743,7 +763,8 @@ sup {
   .offset-md-9 {
     margin-left: 75%; }
   .md-4 {
-    width: 33.3333333333%; }
+    max-width: 33.3333333333%;
+    flex: 0 0 33.3333333333%; }
   .push-md-8 {
     left: 66.6666666667%; }
   .pull-md-8 {
@@ -751,7 +772,8 @@ sup {
   .offset-md-8 {
     margin-left: 66.6666666667%; }
   .md-5 {
-    width: 41.6666666667%; }
+    max-width: 41.6666666667%;
+    flex: 0 0 41.6666666667%; }
   .push-md-7 {
     left: 58.3333333333%; }
   .pull-md-7 {
@@ -759,7 +781,8 @@ sup {
   .offset-md-7 {
     margin-left: 58.3333333333%; }
   .md-6 {
-    width: 50%; }
+    max-width: 50%;
+    flex: 0 0 50%; }
   .push-md-6 {
     left: 50%; }
   .pull-md-6 {
@@ -767,7 +790,8 @@ sup {
   .offset-md-6 {
     margin-left: 50%; }
   .md-7 {
-    width: 58.3333333333%; }
+    max-width: 58.3333333333%;
+    flex: 0 0 58.3333333333%; }
   .push-md-5 {
     left: 41.6666666667%; }
   .pull-md-5 {
@@ -775,7 +799,8 @@ sup {
   .offset-md-5 {
     margin-left: 41.6666666667%; }
   .md-8 {
-    width: 66.6666666667%; }
+    max-width: 66.6666666667%;
+    flex: 0 0 66.6666666667%; }
   .push-md-4 {
     left: 33.3333333333%; }
   .pull-md-4 {
@@ -783,7 +808,8 @@ sup {
   .offset-md-4 {
     margin-left: 33.3333333333%; }
   .md-9 {
-    width: 75%; }
+    max-width: 75%;
+    flex: 0 0 75%; }
   .push-md-3 {
     left: 25%; }
   .pull-md-3 {
@@ -791,7 +817,8 @@ sup {
   .offset-md-3 {
     margin-left: 25%; }
   .md-10 {
-    width: 83.3333333333%; }
+    max-width: 83.3333333333%;
+    flex: 0 0 83.3333333333%; }
   .push-md-2 {
     left: 16.6666666667%; }
   .pull-md-2 {
@@ -799,7 +826,8 @@ sup {
   .offset-md-2 {
     margin-left: 16.6666666667%; }
   .md-11 {
-    width: 91.6666666667%; }
+    max-width: 91.6666666667%;
+    flex: 0 0 91.6666666667%; }
   .push-md-1 {
     left: 8.3333333333%; }
   .pull-md-1 {
@@ -807,7 +835,8 @@ sup {
   .offset-md-1 {
     margin-left: 8.3333333333%; }
   .md-12 {
-    width: 100%; }
+    max-width: 100%;
+    flex: 0 0 100%; }
   .push-md-0 {
     left: 0%; }
   .pull-md-0 {
@@ -820,7 +849,8 @@ sup {
   .jf-debug [class*='push-md'] {
     border: 2px solid red !important;
     border-right-width: 8px !important; }
-  .jf-debug [class*='pull-md-0'], .jf-debug [class*='push-md-0'] {
+  .jf-debug [class*='pull-md-0'],
+  .jf-debug [class*='push-md-0'] {
     border: 0; }
   .jf-debug [class*='offset-md'] {
     border: 2px solid red !important;
@@ -837,14 +867,21 @@ sup {
 @media (min-width: 56.25em) {
   .container {
     width: 880px; }
-  .row .row {
+  .row {
     margin-left: -15px;
     margin-right: -15px; }
+  .row.collapse-lg {
+    margin-left: 0;
+    margin-right: 0; }
+    .row.collapse-lg .col {
+      padding-left: 0 !important;
+      padding-right: 0 !important; }
   .col {
     padding-left: 15px;
     padding-right: 15px; }
   .lg-1 {
-    width: 8.3333333333%; }
+    max-width: 8.3333333333%;
+    flex: 0 0 8.3333333333%; }
   .push-lg-11 {
     left: 91.6666666667%; }
   .pull-lg-11 {
@@ -852,7 +889,8 @@ sup {
   .offset-lg-11 {
     margin-left: 91.6666666667%; }
   .lg-2 {
-    width: 16.6666666667%; }
+    max-width: 16.6666666667%;
+    flex: 0 0 16.6666666667%; }
   .push-lg-10 {
     left: 83.3333333333%; }
   .pull-lg-10 {
@@ -860,7 +898,8 @@ sup {
   .offset-lg-10 {
     margin-left: 83.3333333333%; }
   .lg-3 {
-    width: 25%; }
+    max-width: 25%;
+    flex: 0 0 25%; }
   .push-lg-9 {
     left: 75%; }
   .pull-lg-9 {
@@ -868,7 +907,8 @@ sup {
   .offset-lg-9 {
     margin-left: 75%; }
   .lg-4 {
-    width: 33.3333333333%; }
+    max-width: 33.3333333333%;
+    flex: 0 0 33.3333333333%; }
   .push-lg-8 {
     left: 66.6666666667%; }
   .pull-lg-8 {
@@ -876,7 +916,8 @@ sup {
   .offset-lg-8 {
     margin-left: 66.6666666667%; }
   .lg-5 {
-    width: 41.6666666667%; }
+    max-width: 41.6666666667%;
+    flex: 0 0 41.6666666667%; }
   .push-lg-7 {
     left: 58.3333333333%; }
   .pull-lg-7 {
@@ -884,7 +925,8 @@ sup {
   .offset-lg-7 {
     margin-left: 58.3333333333%; }
   .lg-6 {
-    width: 50%; }
+    max-width: 50%;
+    flex: 0 0 50%; }
   .push-lg-6 {
     left: 50%; }
   .pull-lg-6 {
@@ -892,7 +934,8 @@ sup {
   .offset-lg-6 {
     margin-left: 50%; }
   .lg-7 {
-    width: 58.3333333333%; }
+    max-width: 58.3333333333%;
+    flex: 0 0 58.3333333333%; }
   .push-lg-5 {
     left: 41.6666666667%; }
   .pull-lg-5 {
@@ -900,7 +943,8 @@ sup {
   .offset-lg-5 {
     margin-left: 41.6666666667%; }
   .lg-8 {
-    width: 66.6666666667%; }
+    max-width: 66.6666666667%;
+    flex: 0 0 66.6666666667%; }
   .push-lg-4 {
     left: 33.3333333333%; }
   .pull-lg-4 {
@@ -908,7 +952,8 @@ sup {
   .offset-lg-4 {
     margin-left: 33.3333333333%; }
   .lg-9 {
-    width: 75%; }
+    max-width: 75%;
+    flex: 0 0 75%; }
   .push-lg-3 {
     left: 25%; }
   .pull-lg-3 {
@@ -916,7 +961,8 @@ sup {
   .offset-lg-3 {
     margin-left: 25%; }
   .lg-10 {
-    width: 83.3333333333%; }
+    max-width: 83.3333333333%;
+    flex: 0 0 83.3333333333%; }
   .push-lg-2 {
     left: 16.6666666667%; }
   .pull-lg-2 {
@@ -924,7 +970,8 @@ sup {
   .offset-lg-2 {
     margin-left: 16.6666666667%; }
   .lg-11 {
-    width: 91.6666666667%; }
+    max-width: 91.6666666667%;
+    flex: 0 0 91.6666666667%; }
   .push-lg-1 {
     left: 8.3333333333%; }
   .pull-lg-1 {
@@ -932,7 +979,8 @@ sup {
   .offset-lg-1 {
     margin-left: 8.3333333333%; }
   .lg-12 {
-    width: 100%; }
+    max-width: 100%;
+    flex: 0 0 100%; }
   .push-lg-0 {
     left: 0%; }
   .pull-lg-0 {
@@ -945,7 +993,8 @@ sup {
   .jf-debug [class*='push-lg'] {
     border: 2px solid red !important;
     border-right-width: 8px !important; }
-  .jf-debug [class*='pull-lg-0'], .jf-debug [class*='push-lg-0'] {
+  .jf-debug [class*='pull-lg-0'],
+  .jf-debug [class*='push-lg-0'] {
     border: 0; }
   .jf-debug [class*='offset-lg'] {
     border: 2px solid red !important;
@@ -962,14 +1011,21 @@ sup {
 @media (min-width: 75em) {
   .container {
     width: 1080px; }
-  .row .row {
+  .row {
     margin-left: -15px;
     margin-right: -15px; }
+  .row.collapse-xl {
+    margin-left: 0;
+    margin-right: 0; }
+    .row.collapse-xl .col {
+      padding-left: 0 !important;
+      padding-right: 0 !important; }
   .col {
     padding-left: 15px;
     padding-right: 15px; }
   .xl-1 {
-    width: 8.3333333333%; }
+    max-width: 8.3333333333%;
+    flex: 0 0 8.3333333333%; }
   .push-xl-11 {
     left: 91.6666666667%; }
   .pull-xl-11 {
@@ -977,7 +1033,8 @@ sup {
   .offset-xl-11 {
     margin-left: 91.6666666667%; }
   .xl-2 {
-    width: 16.6666666667%; }
+    max-width: 16.6666666667%;
+    flex: 0 0 16.6666666667%; }
   .push-xl-10 {
     left: 83.3333333333%; }
   .pull-xl-10 {
@@ -985,7 +1042,8 @@ sup {
   .offset-xl-10 {
     margin-left: 83.3333333333%; }
   .xl-3 {
-    width: 25%; }
+    max-width: 25%;
+    flex: 0 0 25%; }
   .push-xl-9 {
     left: 75%; }
   .pull-xl-9 {
@@ -993,7 +1051,8 @@ sup {
   .offset-xl-9 {
     margin-left: 75%; }
   .xl-4 {
-    width: 33.3333333333%; }
+    max-width: 33.3333333333%;
+    flex: 0 0 33.3333333333%; }
   .push-xl-8 {
     left: 66.6666666667%; }
   .pull-xl-8 {
@@ -1001,7 +1060,8 @@ sup {
   .offset-xl-8 {
     margin-left: 66.6666666667%; }
   .xl-5 {
-    width: 41.6666666667%; }
+    max-width: 41.6666666667%;
+    flex: 0 0 41.6666666667%; }
   .push-xl-7 {
     left: 58.3333333333%; }
   .pull-xl-7 {
@@ -1009,7 +1069,8 @@ sup {
   .offset-xl-7 {
     margin-left: 58.3333333333%; }
   .xl-6 {
-    width: 50%; }
+    max-width: 50%;
+    flex: 0 0 50%; }
   .push-xl-6 {
     left: 50%; }
   .pull-xl-6 {
@@ -1017,7 +1078,8 @@ sup {
   .offset-xl-6 {
     margin-left: 50%; }
   .xl-7 {
-    width: 58.3333333333%; }
+    max-width: 58.3333333333%;
+    flex: 0 0 58.3333333333%; }
   .push-xl-5 {
     left: 41.6666666667%; }
   .pull-xl-5 {
@@ -1025,7 +1087,8 @@ sup {
   .offset-xl-5 {
     margin-left: 41.6666666667%; }
   .xl-8 {
-    width: 66.6666666667%; }
+    max-width: 66.6666666667%;
+    flex: 0 0 66.6666666667%; }
   .push-xl-4 {
     left: 33.3333333333%; }
   .pull-xl-4 {
@@ -1033,7 +1096,8 @@ sup {
   .offset-xl-4 {
     margin-left: 33.3333333333%; }
   .xl-9 {
-    width: 75%; }
+    max-width: 75%;
+    flex: 0 0 75%; }
   .push-xl-3 {
     left: 25%; }
   .pull-xl-3 {
@@ -1041,7 +1105,8 @@ sup {
   .offset-xl-3 {
     margin-left: 25%; }
   .xl-10 {
-    width: 83.3333333333%; }
+    max-width: 83.3333333333%;
+    flex: 0 0 83.3333333333%; }
   .push-xl-2 {
     left: 16.6666666667%; }
   .pull-xl-2 {
@@ -1049,7 +1114,8 @@ sup {
   .offset-xl-2 {
     margin-left: 16.6666666667%; }
   .xl-11 {
-    width: 91.6666666667%; }
+    max-width: 91.6666666667%;
+    flex: 0 0 91.6666666667%; }
   .push-xl-1 {
     left: 8.3333333333%; }
   .pull-xl-1 {
@@ -1057,7 +1123,8 @@ sup {
   .offset-xl-1 {
     margin-left: 8.3333333333%; }
   .xl-12 {
-    width: 100%; }
+    max-width: 100%;
+    flex: 0 0 100%; }
   .push-xl-0 {
     left: 0%; }
   .pull-xl-0 {
@@ -1070,7 +1137,8 @@ sup {
   .jf-debug [class*='push-xl'] {
     border: 2px solid red !important;
     border-right-width: 8px !important; }
-  .jf-debug [class*='pull-xl-0'], .jf-debug [class*='push-xl-0'] {
+  .jf-debug [class*='pull-xl-0'],
+  .jf-debug [class*='push-xl-0'] {
     border: 0; }
   .jf-debug [class*='offset-xl'] {
     border: 2px solid red !important;
@@ -1087,14 +1155,21 @@ sup {
 @media (min-width: 100em) {
   .container {
     width: 1480px; }
-  .row .row {
+  .row {
     margin-left: -17.5px;
     margin-right: -17.5px; }
+  .row.collapse-xxl {
+    margin-left: 0;
+    margin-right: 0; }
+    .row.collapse-xxl .col {
+      padding-left: 0 !important;
+      padding-right: 0 !important; }
   .col {
     padding-left: 17.5px;
     padding-right: 17.5px; }
   .xxl-1 {
-    width: 8.3333333333%; }
+    max-width: 8.3333333333%;
+    flex: 0 0 8.3333333333%; }
   .push-xxl-11 {
     left: 91.6666666667%; }
   .pull-xxl-11 {
@@ -1102,7 +1177,8 @@ sup {
   .offset-xxl-11 {
     margin-left: 91.6666666667%; }
   .xxl-2 {
-    width: 16.6666666667%; }
+    max-width: 16.6666666667%;
+    flex: 0 0 16.6666666667%; }
   .push-xxl-10 {
     left: 83.3333333333%; }
   .pull-xxl-10 {
@@ -1110,7 +1186,8 @@ sup {
   .offset-xxl-10 {
     margin-left: 83.3333333333%; }
   .xxl-3 {
-    width: 25%; }
+    max-width: 25%;
+    flex: 0 0 25%; }
   .push-xxl-9 {
     left: 75%; }
   .pull-xxl-9 {
@@ -1118,7 +1195,8 @@ sup {
   .offset-xxl-9 {
     margin-left: 75%; }
   .xxl-4 {
-    width: 33.3333333333%; }
+    max-width: 33.3333333333%;
+    flex: 0 0 33.3333333333%; }
   .push-xxl-8 {
     left: 66.6666666667%; }
   .pull-xxl-8 {
@@ -1126,7 +1204,8 @@ sup {
   .offset-xxl-8 {
     margin-left: 66.6666666667%; }
   .xxl-5 {
-    width: 41.6666666667%; }
+    max-width: 41.6666666667%;
+    flex: 0 0 41.6666666667%; }
   .push-xxl-7 {
     left: 58.3333333333%; }
   .pull-xxl-7 {
@@ -1134,7 +1213,8 @@ sup {
   .offset-xxl-7 {
     margin-left: 58.3333333333%; }
   .xxl-6 {
-    width: 50%; }
+    max-width: 50%;
+    flex: 0 0 50%; }
   .push-xxl-6 {
     left: 50%; }
   .pull-xxl-6 {
@@ -1142,7 +1222,8 @@ sup {
   .offset-xxl-6 {
     margin-left: 50%; }
   .xxl-7 {
-    width: 58.3333333333%; }
+    max-width: 58.3333333333%;
+    flex: 0 0 58.3333333333%; }
   .push-xxl-5 {
     left: 41.6666666667%; }
   .pull-xxl-5 {
@@ -1150,7 +1231,8 @@ sup {
   .offset-xxl-5 {
     margin-left: 41.6666666667%; }
   .xxl-8 {
-    width: 66.6666666667%; }
+    max-width: 66.6666666667%;
+    flex: 0 0 66.6666666667%; }
   .push-xxl-4 {
     left: 33.3333333333%; }
   .pull-xxl-4 {
@@ -1158,7 +1240,8 @@ sup {
   .offset-xxl-4 {
     margin-left: 33.3333333333%; }
   .xxl-9 {
-    width: 75%; }
+    max-width: 75%;
+    flex: 0 0 75%; }
   .push-xxl-3 {
     left: 25%; }
   .pull-xxl-3 {
@@ -1166,7 +1249,8 @@ sup {
   .offset-xxl-3 {
     margin-left: 25%; }
   .xxl-10 {
-    width: 83.3333333333%; }
+    max-width: 83.3333333333%;
+    flex: 0 0 83.3333333333%; }
   .push-xxl-2 {
     left: 16.6666666667%; }
   .pull-xxl-2 {
@@ -1174,7 +1258,8 @@ sup {
   .offset-xxl-2 {
     margin-left: 16.6666666667%; }
   .xxl-11 {
-    width: 91.6666666667%; }
+    max-width: 91.6666666667%;
+    flex: 0 0 91.6666666667%; }
   .push-xxl-1 {
     left: 8.3333333333%; }
   .pull-xxl-1 {
@@ -1182,7 +1267,8 @@ sup {
   .offset-xxl-1 {
     margin-left: 8.3333333333%; }
   .xxl-12 {
-    width: 100%; }
+    max-width: 100%;
+    flex: 0 0 100%; }
   .push-xxl-0 {
     left: 0%; }
   .pull-xxl-0 {
@@ -1195,7 +1281,8 @@ sup {
   .jf-debug [class*='push-xxl'] {
     border: 2px solid red !important;
     border-right-width: 8px !important; }
-  .jf-debug [class*='pull-xxl-0'], .jf-debug [class*='push-xxl-0'] {
+  .jf-debug [class*='pull-xxl-0'],
+  .jf-debug [class*='push-xxl-0'] {
     border: 0; }
   .jf-debug [class*='offset-xxl'] {
     border: 2px solid red !important;
@@ -1342,12 +1429,14 @@ select::-ms-expand {
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .button, a.button, button, [type=submit], [type=reset], [type=button] {
   -webkit-appearance: none;
+  user-select: none;
   display: inline-block;
   vertical-align: middle;
   text-align: center;
   cursor: pointer;
   text-decoration: none;
-  line-height: 1;
+  font-size: 1rem;
+  line-height: 1.3;
   border: 1px solid #7f4782;
   background-color: #7f4782;
   font-size: 1em;
@@ -1362,38 +1451,58 @@ select::-ms-expand {
   .button:hover, .button:focus, .button:active, a.button:hover, a.button:focus, a.button:active, button:hover, button:focus, button:active, [type=submit]:hover, [type=submit]:focus, [type=submit]:active, [type=reset]:hover, [type=reset]:focus, [type=reset]:active, [type=button]:hover, [type=button]:focus, [type=button]:active {
     background-color: #5f3561;
     border-color: #5f3561; }
+  .button:focus, a.button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
+    outline: 0;
+    box-shadow: 0px 0px 1px 3px #bc8abf; }
 
-.button--accent, [type=submit], a.button--accent, a[type=submit] {
+.button__secondary, [type=submit], a.button__secondary, a[type=submit] {
   background-color: #e2598b;
   border-color: #e2598b; }
-  .button--accent:hover, :hover[type=submit], .button--accent:focus, :focus[type=submit], .button--accent:active, :active[type=submit], a.button--accent:hover, a:hover[type=submit], a.button--accent:focus, a:focus[type=submit], a.button--accent:active, a:active[type=submit] {
+  .button__secondary:hover, :hover[type=submit], .button__secondary:focus, :focus[type=submit], .button__secondary:active, :active[type=submit], a.button__secondary:hover, a:hover[type=submit], a.button__secondary:focus, a:focus[type=submit], a.button__secondary:active, a:active[type=submit] {
     background-color: #da2e6d;
     border-color: #da2e6d; }
+  .button__secondary:focus, :focus[type=submit], a.button__secondary:focus, a:focus[type=submit] {
+    box-shadow: 0px 0px 1px 3px #ed9ab9; }
 
-.button--outline, [type=reset], a.button--outline, a[type=reset] {
+.button__outline, [type=reset], a.button__outline, a[type=reset] {
   background: transparent;
   color: inherit;
   border-color: #7f4782; }
-  .button--outline:hover, :hover[type=reset], .button--outline:focus, :focus[type=reset], .button--outline:active, :active[type=reset], a.button--outline:hover, a:hover[type=reset], a.button--outline:focus, a:focus[type=reset], a.button--outline:active, a:active[type=reset] {
+  .button__outline:hover, :hover[type=reset], .button__outline:focus, :focus[type=reset], .button__outline:active, :active[type=reset], a.button__outline:hover, a:hover[type=reset], a.button__outline:focus, a:focus[type=reset], a.button__outline:active, a:active[type=reset] {
     background-color: transparent;
     border-color: #5f3561;
     color: #7f4782; }
 
-.button--full, a.button--full {
+.button__ghost, a.button__ghost {
+  background: transparent;
+  color: inherit;
+  border-color: transparent; }
+  .button__ghost:hover, .button__ghost:focus, .button__ghost:active, a.button__ghost:hover, a.button__ghost:focus, a.button__ghost:active {
+    background-color: transparent;
+    border-color: #5f3561;
+    color: #7f4782; }
+
+.button__full, a.button__full {
   display: block;
   width: 100%;
   margin-top: 5px;
   margin-bottom: 5px; }
+
+.button__large, a.button__large {
+  font-size: 1.2rem; }
+
+.button__small, a.button__small {
+  font-size: 0.8rem; }
 
 /* IGNORE THE DOCS FOR NOW - THEY NEED SOME WORK! */
 /*
 Add via npm/grunt later:
 prettify html and php files on save
 */
-/*  
+/*
 
 
-TO DO:  
+TO DO:
 • Fix the nav issues experienced on touch
 • Add a mixin/util for generating different burger menu closing animations (can add to this in time) - or save this locally elsewhere in a snippet file?
 
@@ -1402,7 +1511,7 @@ DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
 .docs {
   background-color: #f7f8f9;
   /*
-    .row {padding-top:10px;padding-bottom:10px;background-color: #efefef;} 
+    .row {padding-top:10px;padding-bottom:10px;background-color: #efefef;}
             .container{border: 1px solid red;}
             .col{border: 1px solid blue;padding-top: 10px;padding-bottoM:10px;}
             .row{border: 1px solid orange;}

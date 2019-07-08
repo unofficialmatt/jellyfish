@@ -8,7 +8,6 @@
     display: table;
     clear: both;
 }
-
 // Display State
 .show {
     display: block !important;
@@ -19,24 +18,60 @@
 .invisible {
     visibility: hidden;
 }
-
+// Flex Alignment Classes
+.align-top {
+    align-items: flex-start;
+}
+.align-middle {
+    align-items: center;
+}
+.align-bottom {
+    align-items: flex-end;
+}
+.align-self-top {
+    align-self: flex-start;
+}
+.align-self-middle {
+    align-self: center;
+}
+.align-self-bottom {
+    align-self: flex-end;
+}
+// Flex Justify Classes
+.justify-start {
+    justify-content: flex-start!important;
+}
+.justify-center {
+    justify-content: center!important;
+}
+.justify-end {
+    justify-content: flex-end!important;
+}
+.justify-around {
+    justify-content: space-around!important;
+}
+.justify-between {
+    justify-content: space-between!important;
+}
 // Alignment
-.alignleft {
+.alignleft,
+.align-left {
     float: left !important;
 }
-.alignright {
+.alignright,
+.align-right {
     float: right !important;
-} 
-.alignnone {
+}
+.alignnone,
+.align-none {
     float: none !important;
-} 
-
+}
 // Text Alignment
 .text-left {
     text-align: left;
 }
 .text-right {
-     text-align: right;
+    text-align: right;
 }
 .text-center {
     text-align: center;
@@ -44,38 +79,27 @@
 .text-justify {
     text-align: justify;
 }
-
 // Wrap text in a .nowrap span to keep it together when otherwise it would break over two lines
-.nowrap{
+.nowrap {
     white-space: nowrap;
 }
-
 // Width
 .full-width {
     width: 100% !important;
 }
-
-// Vertical center with flex
-.vertical-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 // Consistent Padding
 .padded {
     padding-top: $block-padding;
     padding-bottom: $block-padding;
 }
-
-// Embed videos responsively by wrapping them in an .embed-container 
+// Embed videos responsively by wrapping them in an .embed-container
 .embed-container {
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     max-width: 100%;
-    margin: .25px 0 $element-padding 0;    
+    margin: .25px 0 $element-padding 0;
 }
 .embed-container iframe,
 .embed-container object,

@@ -36,9 +36,9 @@
             <img src="http://unsplash.it/600/400">
         </div>
     </div>
-                    
+
     <main class="container">
-        <section id="intro" class="docs-section">        
+        <section id="intro" class="docs-section">
             <div class="row">
                 <div class="col">
                     <h1>Jellyfish Documentation</h1>
@@ -55,7 +55,7 @@
                         <p>Jellyfish uses a fairly straightforward directory structure, outlined below. Partials are used to split the scss into manageable sections.</p>
                     </section>
                     <table>
-                        <tbody>                    
+                        <tbody>
                             <tr><td class="code">/assets</td><td>Holds all required assets.</td></tr>
                             <tr><td class="code nest-1">/css/style.css</td><td>Core stylesheet as compiled by <span class="scss-ref">base.scss</span>.</td></tr>
                             <tr><td class="code nest-1">/js/scripts.css</td><td>By default, only contains jQuery required by the navigation menu.</td></tr>
@@ -71,12 +71,12 @@
                             <tr><td class="code nest-2">/_content.scss</td><td>Contains scss that modifies elements found in the main content area of a website.</td></tr>
                             <tr><td class="code nest-2">/_sidebar.scss</td><td>Contains scss that modifies elements found in the sidebar / widgets area of a website.</td></tr>
                             <tr><td class="code nest-2">/_footer.scss</td><td>Contains scss that modifies elements found in the main footer area of a website.</td></tr>
-                            <tr><td class="code">index.html</td><td>Documentation. Can be safely removed for live builds.</td></tr>             
+                            <tr><td class="code">index.html</td><td>Documentation. Can be safely removed for live builds.</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </section><!-- #structure -->        
+        </section><!-- #structure -->
         <section id="basic" class="docs-section">
             <div class="row">
                 <div class="col reset-float">
@@ -92,7 +92,7 @@ $font-secondary: 'Poppins', 'Arial', sans-serif;
 // base sizes (used before breakpoints are applied)
 $base-font-size: 1.6em;
 $base-line-height: 1.5;<label>_settings.scss</label>
-</pre>              
+</pre>
                         <h4>Hierarchy</h4>
                         <p>All text will default to the global <span class="variable-ref">$base-font-size</span> unless otherwise specified. Font size hierarchy is defined in <span class="scss-ref">_global.scss</span> and can be implemented by extending the <span class="variable-ref">%font-size</span> placeholder via <code>@extend %font-size{$size}</code>. This is predominantly used in <a href="#basic-headings">Headings</a> but can be used with any element.</p>
 <pre>
@@ -132,7 +132,7 @@ $base-line-height: 1.5;<label>_settings.scss</label>
 %headings {
     font-family: $font-secondary;
     margin: 1em 0 0 0;
-    line-height: 1.2;    
+    line-height: 1.2;
 }
 
 h1 {
@@ -157,11 +157,11 @@ h1 {
 </pre>
                             </div>
                         </div>
-                    </section><!-- #basic-headings --> 
+                    </section><!-- #basic-headings -->
                     <section id="basic-text">
                         <h3>Text</h3>
                         <p>Paragraphs have a margin applied top and bottom by default, defined in <span class="scss-ref">_global.scss</span>. </p>
-                        
+
                         <h4>Paragraph alignment</h4>
                         <p>Text can be aligned through the utility classes <span class="css-ref">.text-left</span>, <span class="css-ref">.text-right</span>, <span class="css-ref">.text-center</span> and <span class="css-ref">.text-justify</span> as demonstrated below.</p>
                         <table>
@@ -172,8 +172,8 @@ h1 {
                                 <tr><td class="code">p.text-justify</td><td><p class="text-justify">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi.</p></td></tr>
                             </tbody>
                         </table>
-                        
-                        <h4>Text transform</h4>    
+
+                        <h4>Text transform</h4>
                         <p>Standard text transform options are included, defined in <span class="scss-ref">_global.scss</span>:</p>
                         <table>
                         <tbody>
@@ -183,7 +183,7 @@ h1 {
                         </tbody>
                         </table>
                         <section>
-                            <h4 id="basic-links">Links</h4>    
+                            <h4 id="basic-links">Links</h4>
                             <p>Text links are styled via <span class="scss-ref">_global.scss</span> with a simple hover animation applied. The <span class="variable-ref">smooth(color)</span> mixin is used to apply consistent transition to the text color - see <a href="#advanced-mixins">mixins</a> for more information. By default, colour is applied via global <span class="variable-ref">color()</span> map settings and should be considered in all projects. See <a href="#settings-color">colour settings</a> for details. The grid system does not currently support default button styles.</p>
                             <p><a href="http://www.definitelynotasiteiveeevervisited.com">This is a text link</a><br><a href="http://www.google.com">This is a visited text link</a></p>
 <pre>
@@ -197,7 +197,7 @@ a {
     }
     &:hover {
         color: color(tertiary);
-    }    
+    }
     &:focus, &:active {
         color: color(tertiary);
     }
@@ -321,13 +321,13 @@ a {
                                 <td class="code">.hide-below-sm .hide-above-lg</td>
                                 <td><span class="hide-below-sm hide-above-lg">This text will only be shown in the <span class="variable-ref">md</span> breakpoint.</span></td>
                             </tr>
-                        </tbody>    
+                        </tbody>
                         </table>
                     </section><!-- #utilities-hiding -->
                     <section id="utilities-floats">
                         <h3>Floats</h3>
-                        <p>Floats are defined in <span class="scss-ref">_global.scss</span> and allow an element to be floated to the left or right using <span class="css-ref">.alignleft</span> and <span class="css-ref">.alignright</span> respectively. <strong>!important</strong> is used to avoid specificity issues.</p>           
-                        <p>Floats can be cleared by adding <span class="css-ref">.clearfix</span> to the parent container, or by extending the class via <code>@extend .clearfix</code></p>         
+                        <p>Floats are defined in <span class="scss-ref">_global.scss</span> and allow an element to be floated to the left or right using <span class="css-ref">.alignleft</span> and <span class="css-ref">.alignright</span> respectively. <strong>!important</strong> is used to avoid specificity issues.</p>
+                        <p>Floats can be cleared by adding <span class="css-ref">.clearfix</span> to the parent container, or by extending the class via <code>@extend .clearfix</code></p>
                         <div class="alignnone boxed">
                             <h6>.alignnone</h6>
                             <p>This div does not float, and appears where it is in the flow of the document.</p>
@@ -395,7 +395,7 @@ img {
                                 <td><img src="http://www.unsplash.it/240/150" class="aligncenter">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ALIO MODO. Utilitatis causa amicitia est quaesita. Similiter sensus, cum accessit ad naturam, tuetur illam quidem, sed etiam se tuetur; Duo Reges: constructio interrete. Universa enim illorum ratione cum tota vestra confligendum puto. </p></td>
                             </tr>
-                        </tbody>    
+                        </tbody>
                         </table>
                     </section><!-- #utilities-floats -->
                     <section id="utilities-fullwidth">
@@ -412,7 +412,7 @@ img {
             <div class="row">
                 <div class="col reset-float">
                     <h2>Grid</h2>
-                    
+
                     <section id="grid-settings">
                         <h3>Grid Settings</h3>
                         <p>At the heart of this framework is a grid that is completely customisable with the following settings:</p>
@@ -440,13 +440,13 @@ img {
 sm: (
     breakpoint: 400px, // px
     container-width: 100%, // % or rem
-    container-gutter: rem(10px), // rem     
+    container-gutter: rem(10px), // rem
     col-gutter: rem(20px), // rem
     base-font-size: 1.4em, // em
     base-line-height: 1.48 // number, % or em
 )<label>_settings.scss</label>
- </pre>       
- 
+ </pre>
+
                         <p>By default breakpoints are named <span class="variable-ref">sm</span>, <span class="variable-ref">md</span> and <span class="variable-ref">lg</span> however you can name breakpoints as you wish to suit your project requirements and personal naming conventions (e.g. small, medium, large, gigantic, mammoth, microscope, mobile, tablet, laptop, desktop). Jellyfish will use these names to generate the code for columns and modifiers as detailed above.</p>
                         <h4>Required Variables</h4>
                         <p>For each breakpoint, the following variables <strong>must be defined</strong> (all others are optional -  any absences will simply inherit settings from the previous breakpoint):</p>
@@ -476,7 +476,7 @@ body {
        line-height: bp-query($point, base-line-height);
    }
 }<label>_global.scss</label>
-</pre> 
+</pre>
 <pre>
 @each $point,
 $i in $breakpoints {
@@ -492,7 +492,7 @@ $i in $breakpoints {
         }
     }
 }<label>_grid.scss</label>
-</pre>                         
+</pre>
                     </section><!-- #grid-breakpoints -->
                     <section id="grid-cols">
                         <h3>Column amount</h3>
@@ -532,7 +532,7 @@ $i in $breakpoints {
         right: $diff;
     }
 }<label>_grid.scss</label>
-</pre>                        
+</pre>
                     </section><!-- #grid-pushpull -->
                     <section id="grid-offset">
                         <h3>Offset</h3>
@@ -585,7 +585,7 @@ $i in $breakpoints {
         }
     }
 }<label>_grid.scss</label>
-</pre>                        
+</pre>
                     </section><!-- #grid-offset -->
                     <section id="grid-structure">
                         <h3>Grid Structure</h3>
@@ -593,7 +593,7 @@ $i in $breakpoints {
                         <table>
                             <tbody>
                                 <tr><td class="code">.container</td><td>By default, the grid will fill all available space (ie 100% width). To restrict the width of the grid and keep elements neatly aligned, a <span class="css-ref">.container</span> should be used. The container is centered and can be customised at each breakpoint with the following settings: width, max-width, padding (left/right). See <a href="#grid-breakpoints">grid breakpoint settings</a> for information.</td></tr>
-                                <tr><td class="code">.row</td><td>Houses a number of <span class="css-ref">.col</span> elements and is automatically cleared with <span class="css-ref">.clearfix</span> to prevent flow issues. A <span class="css-ref">.row</span> can be used on the same element in conjunction with a <span class="css-ref">.container</span>. To preserve equal margins on the left and right, the only elements inside a <span class="css-ref">.row</span> should be <span class="css-ref">.col</span> elements</td></tr>
+                                <tr><td class="code">.row</td><td>Houses a number of <span class="css-ref">.col</span> elements and is automatically cleared with <span class="css-ref">.clearfix</span> to prevent flow issues. To preserve equal margins on the left and right, the only elements inside a <span class="css-ref">.row</span> should be <span class="css-ref">.col</span> elements</td></tr>
                                 <tr><td class="code">.col</td><td>A single vertical column. Can be used with breakpoint based modifiers to change width at different breakpoints. With no modifiers, a <span class="css-ref">.col</span> element will be 100% width.</td></tr>
                             </tbody>
                         </table>
@@ -607,11 +607,6 @@ $i in $breakpoints {
     &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class="row container"&gt;
-    &lt;div class="col"&gt;
-        .col element inside a .row.container
-    &lt;/div&gt;
-&lt;/div&gt;
 </pre>
                     </section><!-- #grid-structure -->
                     <section id="grid-collapse">
@@ -829,12 +824,12 @@ $i in $breakpoints {
                         <h4>Relevant Code</h4>
 <pre>
 // Found within the @each loop
-.row .row { 
+.row .row {
     // give our nested rows negative margin equal to half col gutter
     margin-left: -.5*(bp-query($point, col-gutter));
     margin-right: -.5*(bp-query($point, col-gutter));
 }<label>_grid.scss</label>
-</pre>                        
+</pre>
                     </section><!-- #grid-nesting -->
                 </div>
             </div>
@@ -887,7 +882,7 @@ $i in $breakpoints {
                                 .col.vertical-align
                             </div>
                         </div>
-                        
+
 <pre>
 @mixin vertical-align {
     position: relative;
@@ -916,7 +911,7 @@ $i in $breakpoints {
                             </tr>
                         </table>
                             <p>The <code>rem()</code> function / mixin was written by Pierre Burel. For source code and documentation visit the <a href="https://github.com/pierreburel/sass-rem" rel="external">GitHub repository</a></p>
-                        <h5>Examples</h5>                                  
+                        <h5>Examples</h5>
                         <p>Rem can be used as both a mixin and function. All of the below uses are valid markup.</p>
 <pre>
 img {
@@ -928,7 +923,7 @@ h1 {
 span {
     font-size: em(25px);
 }
-</pre>                        
+</pre>
                         <h4>Global smooth() transition</h4>
                         <p>Use the mixin <code>@include smooth(<span class="variable-ref">$property</span>)</code> to apply a global transition for a consistent UI feel. By default, the transition is <span class="italic">0.3s ease</span> however this can be changed in <span class="scss-ref">_mixins.scss</span>.</p>
                         <p>This mixin currently accepts only one property variable - eg. all, width, color, font-size, etc and uses <a href="https://www.bourbon.io/" rel="external">Bourbon</a> to produce all vendor prefixes. By default, Jellyfish uses this mixin on anchor tags and the navigation menu.</p>
@@ -940,7 +935,7 @@ span {
 <pre>
 @mixin smooth($var) { // Global transition
     @include transition($var 0.3s ease);
-}<label>_mixins.scss</label></pre>    
+}<label>_mixins.scss</label></pre>
                         <h4>Colour Map</h4>
                         <p>Jellyfish makes use of a map for color values, to allow consistent and easy styling of elements. Colors are defined in the <span class="variable-ref">$colors</span> map in <span class="scss-ref">_settings.scss</span> and the function is defined in <span class="scss-ref">_mixins.scss</span>. Colors can be applied to an property with the function <code>color(<span class="variable-ref">$color</span>)</code>. The color() function is used throughout Jellyfish' codebase.</p>
                         <h5>Example usage</h5>
@@ -964,11 +959,11 @@ body {
 <pre>
 @mixin smooth($var) { // Global transition
     @include transition($var 0.3s ease);
-}<label>_mixins.scss</label></pre>                         
+}<label>_mixins.scss</label></pre>
                         <h4>Breakpoint Queries</h4>
                         <p>Jellyfish comes with three breakpoint query mixins, allowing you to target styles to specific breakpoints. The codebase for these is defined in <span class="scss-ref">_mixins.scss</span>. These mixins are flexible, allowing you to specify either a <span class="variable-ref">$breakpoint</span> name (e.g. <span class="italic">sm</span>) or a px value (which is converted automatically by the em() mixin.</p>
                         <table>
-                        <tbody>                    
+                        <tbody>
                             <tr><td class="code">@include above($min) {...}</td><td>CSS contained within the brackets will apply above the given breakpoint, until overwritten by specificity or a higher breakpoint.</td></tr>
                             <tr><td class="code">@include between($min, $max) {...}</td><td>CSS will apply between the two specified breakpoints only.</td></tr>
                             <tr><td class="code">@include below($max) {...}</td><td>CSS applies below the given breakpoint, unless overridden by specificity. As a general rule, it's best to use <code>above()</code> rather than <code>below()</code>.</td></tr>
@@ -1000,7 +995,7 @@ body {
 </pre>
                         <h5>Relevant Code</h5>
 <pre>
-@function bp-query($point, $var) { 
+@function bp-query($point, $var) {
     // Function to query our breakpoint map
     // Accepts args $breakpoint-size, $variable
     @return map-get(map-get($breakpoints, $point), $var);
@@ -1013,22 +1008,22 @@ body {
         $bp-min: bp-query($min, breakpoint);
     }
     @warn "Unknown `#{$min}` in $breakpoints";
-    @media (min-width: em($bp-min)) { 
-        @content; 
+    @media (min-width: em($bp-min)) {
+        @content;
     }
 }
 @mixin between($min, $max) {
     $bp-min: $min;
-    @if map-has-key($breakpoints, $min) { 
+    @if map-has-key($breakpoints, $min) {
         $bp-min: bp-query($min, breakpoint);
-    } 
+    }
     @warn "Unknown `#{$min}` in $breakpoints";
     $bp-max: $max;
     @if map-has-key($breakpoints, $max) {
         $bp-max: bp-query($max, breakpoint);
     }
     @warn "Unknown `#{$max}` in $breakpoints";
-    @media (min-width: em($bp-min)) and (max-width: em($bp-max - 1px)) { 
+    @media (min-width: em($bp-min)) and (max-width: em($bp-max - 1px)) {
         @content;
     }
 }
@@ -1041,15 +1036,15 @@ body {
     @media (max-width: em($bp-max - 1px)) {
         @content;
     }
-}<label>_mixins.scss</label></pre>                        
-                    </section><!-- #misc-mixins -->                    
+}<label>_mixins.scss</label></pre>
+                    </section><!-- #misc-mixins -->
                 </div>
             </div>
         </section><!-- #misc -->
     </main>
     <script type="text/javascript" src="assets/js/site.min.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function ($) {   
+        jQuery(document).ready(function ($) {
             $("#toggle-debug").click(function (e) {
                 e.preventDefault();
                 $("body").toggleClass('jf-debug');
