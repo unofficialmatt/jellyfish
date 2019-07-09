@@ -1,4 +1,13 @@
-jQuery(document).ready(function ($) {   
+jQuery(document).ready(function ($) {
+
+    // Expand and Collapse .nav-bar when clicking #nav-hamburger
+    $("#nav-hamburger").click(function(){
+      $(".nav-bar").slideToggle();
+    });
+
+
+
+
     /******** NAVIGATION ********/
     var navPoint = '600'; // px value at which the navigation should change from a burger menu to inline list
     $(".nav-button").click(function () {

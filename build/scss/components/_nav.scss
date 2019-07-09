@@ -1,3 +1,130 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  NAV
+  Styling for the burger menu
+  (also see vendor/hamburgers),
+  and responsive navbar
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.nav-bar {
+    background: $navbar-bg-color;
+    width: 100%;
+    display: none; // Hide the navigation until we need it
+
+    // Remove container padding on small devices
+    .container {
+        @include below($nav-expands) {
+            padding: 0;
+            width: 100%;
+        }
+    }
+
+    // Link Styling
+    a:not(.button) {
+        font-size: $navbar-font-size;
+        font-weight: $navbar-font-weight;
+        display: block;
+        text-decoration: none;
+        text-transform: $navbar-text-transform;
+        padding: $navbar-link-padding;
+        @include smooth(color, background-color);
+        &, &:visited {
+            color: $navbar-link-color;
+            background-color: $navbar-link-bg-color;
+        }
+        &:hover, &:focus, &:active {
+            color: $navbar-link-color-hover;
+            background-color: $navbar-link-bg-color-hover;
+        }
+    }
+
+    // Buttons
+    a.button {
+        margin: $navbar-link-padding;
+    }
+
+    // Menu Items
+    ul {
+        list-style-type: none;
+        margin: 0;
+        width: 100%;
+    }
+    li {
+        width: 100%;
+        margin: 0;
+    }
+
+}
+
+// Expanded Nav
+@include above($nav-expands) {
+
+    .nav-bar {
+        display: block !important;
+
+        // Link Styling
+        a:not(.button) {
+            padding: $navbar-link-padding-expanded;
+        }
+
+        // Buttons
+        a.button {
+            margin: $navbar-link-padding-expanded;
+        }
+
+        // Menu Items
+        ul {
+            display: flex;
+            align-items: center;
+        }
+        li {
+            display: inline-block;
+            width: auto;
+        }
+    }
+}
+
+// Extend .hamburger--type into .hamburger
+.hamburger {
+    @extend .hamburger--#{$primary-hamburger-type};
+    background-color: $hamburger-background-color;
+    border: $hamburger-border;
+    border-radius: $hamburger-border-radius;
+    @include smooth(background-color, border);
+    display: flex;
+    &:hover, &:focus, &:active {
+        background-color: $hamburger-background-color-hover;
+        border: $hamburger-border-hover;
+    }
+    &:focus {
+        outline: 0;
+        box-shadow: none !important;
+    }
+}
+
+.hamburger-label {
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color: $hamburger-layer-color;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Take a look at Ron Taylor for how I did flex
 
 
@@ -5,39 +132,23 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   NAVIGATION
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-.main-navigation {
-    background: color(primary);
-    .container {
-        @include below($nav-expands) {
-            padding: 0;
-            width: 100%;
-        }
-    }
-}
+/*
 .nav-primary {
-    display: none; // Hide the navigation until we need it
     float: left;
-    width: 100%;
     @include above($nav-expands) {
-        display: block !important;
         width: auto;
     }
     ul {
         text-align: center;
-        width: 100%;
-        margin: 0;
         @include above($nav-expands) {
             width: auto;
             margin: 0;
         }
     }
     li {
-        margin: 0;
         display: inline-block;
         border-top: rem(1px) solid rgba(color(primary), 0.2);
 
-        width: 100%;
         &.drop-active > ul {
             @include below($nav-expands - 1) {
                 display: block;
@@ -54,13 +165,12 @@
         @include above($nav-expands) {
             float: left;
             position: relative;
-            width: auto;
             border: 0;
             &:hover > ul {
                 visibility: visible;
                 opacity: 1;
             }
-            
+
         }
         // Sub Navigation
         $sub-nav-width: rem(220px);
@@ -75,7 +185,7 @@
             width: 100%;
             @include smooth(all);
             @include above($nav-expands) {
-                
+
                 //Sub Navigation
                 $sub-nav-width: rem(180px); // not sure if this is redundant
                 position: absolute;
@@ -98,7 +208,7 @@
                     position: absolute;
                     top: rem(-$wedge-width);
                     left: $sub-nav-width/2-$wedge-width/2;
-                } 
+                }
             }
             li {
                 display: inline-block;
@@ -128,37 +238,14 @@
         }
     }
     a {
-        box-sizing: border-box;
-        font-size: 1.2em;
-        font-weight: 300;
-        @include rem(padding, 8px 0px);
-        @include smooth(all);
-        @extend %nav-padding;
-        text-decoration: none;
-        display: block;
-        &,
-        &:visited {
-            color: white;
-        }
-        &:hover,
-        &:active {
-           background-color: darken(color(primary), 3%);
-        }
+
         @include above($nav-expands) {
             padding: rem(10px);
             &,&:hover, &:active, &:visited {
                 background: transparent;
             }
         }
-        @include above(md) {
-            padding: rem(8px);
-        }
-        @include above(lg) {
-            padding: rem(12px);
-        }
-        @include above(xl) {
-            padding: rem(25px);
-        }
+
     }
     .current-menu-item {
         background-color: color(background);
@@ -179,72 +266,5 @@
         }
     }
 }
-$burger-width: 25px;
-.nav-button {
-    @include smooth(all);
-    width: 100%;
-    display: block;
-    //float: right;
-    background-color: transparent;
-    cursor: pointer;
-    outline: 0;
-    color: white;
-    font-size: 1.2em;
-    //color: color(primary-alt);
-    @include rem(height, $burger-width*2);
-   // @include rem(width, $burger-width*2);
-    @extend %nav-padding;
-    &:hover, &:active {
-        background-color: darken(color(primary), 3%);
-    }
-    @include above($nav-expands) {
-        /* Hide the burger menu */
-        display: none;
-    }
-}
 
-.burger {
-    // Burger Menu
-    @include rem(right, $burger-width/2);
-    @include rem(top, 22px);
-    .nav-expanded & {
-        background: transparent !important;
-    }
-    &,
-    &::before,
-    &::after {
-        display: inline-block;
-        position: absolute;
-        background: white;
-        border-radius: rem(2px);
-        @include rem(width, $burger-width);
-        @include rem(height, 3px);
-        transition: all .2s ease-out;
-    }
-    &::before {
-        margin: -$burger-width/2;
-        content: "";
-        @include rem(top, $burger-width*.2);
-        .nav-expanded & {
-            @include rem(top, $burger-width/2);
-            transform: rotate3d(0, 0, 1, -135deg);
-        }
-    }
-    &::after {
-        margin: -$burger-width/2;
-        content: "";
-        @include rem(top, $burger-width*.8);
-        .nav-expanded & {
-            @include rem(top, $burger-width/2);
-            transform: rotate3d(0, 0, 1, 135deg);
-        }
-    }
-}
-%nav-padding {
-    @include rem(padding-top, 10px);
-    @include rem(padding-bottom, 10px);
-    @include above($nav-expands) {
-        @include rem(padding-top, 15px);
-        @include rem(padding-bottom, 15px);     
-    }
-}
+*/

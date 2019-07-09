@@ -56,6 +56,41 @@ $placeholder: color(text-light);
 $form-border-hover: darken($border-color, 10%);
 $form-border-focus: color(primary);
 
+// Nav Bar
+$navbar-bg-color: color(primary);
+$navbar-link-bg-color: $navbar-bg-color;
+$navbar-link-bg-color-hover: lighten($navbar-link-bg-color, 10%);
+$navbar-link-color: white;
+$navbar-link-color-hover: lighten($navbar-link-bg-color, 60%);
+$navbar-link-padding: 5px 10px;
+$navbar-link-padding-expanded: 10px 20px;
+$navbar-font-size: 1em;
+$navbar-font-weight: bold;
+$navbar-text-transform: uppercase;
+
+// Hamburger Menu
+// @link https://github.com/jonsuh/hamburgers
+$primary-hamburger-type: minus;
+$hamburger-padding-x: 10px;
+$hamburger-padding-y: 10px;
+$hamburger-layer-width: 25px;
+$hamburger-layer-height: 3px;
+$hamburger-layer-spacing: 5px;
+$hamburger-background-color: color(primary);
+$hamburger-background-color-hover: lighten(color(primary), 10%);
+$hamburger-border: $border-width $border-style $hamburger-background-color;
+$hamburger-border-hover: $border-width $border-style $hamburger-background-color-hover;
+$hamburger-border-radius: 0px;
+$hamburger-layer-color: white;
+$hamburger-layer-border-radius: 3px;
+$hamburger-hover-opacity: 1;
+$hamburger-active-layer-color : $hamburger-layer-color;
+$hamburger-active-hover-opacity: $hamburger-hover-opacity;
+// Override Vendor options with site-specific hamburger animation
+$hamburger-types: (
+  $primary-hamburger-type
+);
+
 // ------------------ JELLYFISH CORE SETTINGS ------------------ //
 
 // Base Variables (used before breakpoints are applied)

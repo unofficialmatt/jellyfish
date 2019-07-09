@@ -1333,6 +1333,78 @@ sup {
     background: none; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  BUTTONS
+  Default styling for all buttons
+  .button and form elements
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.button, a.button, button, [type=submit], [type=reset], [type=button] {
+  -webkit-appearance: none;
+  user-select: none;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1.3;
+  border: 1px solid #7f4782;
+  background-color: #7f4782;
+  font-size: 1em;
+  color: white;
+  padding: .75em 1.5em;
+  margin: 5px 5px 2.5px 0;
+  border-radius: 6px;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
+  .button::-moz-focus-inner, a.button::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
+    border: 0;
+    padding: 0; }
+  .button:hover, .button:focus, .button:active, a.button:hover, a.button:focus, a.button:active, button:hover, button:focus, button:active, [type=submit]:hover, [type=submit]:focus, [type=submit]:active, [type=reset]:hover, [type=reset]:focus, [type=reset]:active, [type=button]:hover, [type=button]:focus, [type=button]:active {
+    background-color: #5f3561;
+    border-color: #5f3561; }
+  .button:focus, a.button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
+    outline: 0;
+    box-shadow: 0px 0px 1px 3px #bc8abf; }
+
+.button__secondary, [type=submit], a.button__secondary, a[type=submit] {
+  background-color: #e2598b;
+  border-color: #e2598b; }
+  .button__secondary:hover, :hover[type=submit], .button__secondary:focus, :focus[type=submit], .button__secondary:active, :active[type=submit], a.button__secondary:hover, a:hover[type=submit], a.button__secondary:focus, a:focus[type=submit], a.button__secondary:active, a:active[type=submit] {
+    background-color: #da2e6d;
+    border-color: #da2e6d; }
+  .button__secondary:focus, :focus[type=submit], a.button__secondary:focus, a:focus[type=submit] {
+    box-shadow: 0px 0px 1px 3px #ed9ab9; }
+
+.button__outline, [type=reset], a.button__outline, a[type=reset] {
+  background: transparent;
+  color: inherit;
+  border-color: #7f4782; }
+  .button__outline:hover, :hover[type=reset], .button__outline:focus, :focus[type=reset], .button__outline:active, :active[type=reset], a.button__outline:hover, a:hover[type=reset], a.button__outline:focus, a:focus[type=reset], a.button__outline:active, a:active[type=reset] {
+    background-color: transparent;
+    border-color: #5f3561;
+    color: #7f4782; }
+
+.button__ghost, a.button__ghost {
+  background: transparent;
+  color: inherit;
+  border-color: transparent; }
+  .button__ghost:hover, .button__ghost:focus, .button__ghost:active, a.button__ghost:hover, a.button__ghost:focus, a.button__ghost:active {
+    background-color: transparent;
+    border-color: #5f3561;
+    color: #7f4782; }
+
+.button__full, a.button__full {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
+.button__large, a.button__large {
+  font-size: 1.2rem; }
+
+.button__small, a.button__small {
+  font-size: 0.8rem; }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   TABLES
   Default styling table elements
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -1422,78 +1494,291 @@ select::-ms-expand {
 :-ms-input-placeholder {
   color: #aaa; }
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-  BUTTONS
-  Default styling for all buttons
-  .button and form elements
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.button, a.button, button, [type=submit], [type=reset], [type=button] {
-  -webkit-appearance: none;
-  user-select: none;
+/*!
+ * Hamburgers
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+ */
+.hamburger {
+  padding: 10px 10px;
   display: inline-block;
-  vertical-align: middle;
-  text-align: center;
   cursor: pointer;
-  text-decoration: none;
-  font-size: 1rem;
-  line-height: 1.3;
-  border: 1px solid #7f4782;
-  background-color: #7f4782;
-  font-size: 1em;
-  color: white;
-  padding: .75em 1.5em;
-  margin: 5px 5px 2.5px 0;
-  border-radius: 6px;
-  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
-  .button::-moz-focus-inner, a.button::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
-    border: 0;
-    padding: 0; }
-  .button:hover, .button:focus, .button:active, a.button:hover, a.button:focus, a.button:active, button:hover, button:focus, button:active, [type=submit]:hover, [type=submit]:focus, [type=submit]:active, [type=reset]:hover, [type=reset]:focus, [type=reset]:active, [type=button]:hover, [type=button]:focus, [type=button]:active {
-    background-color: #5f3561;
-    border-color: #5f3561; }
-  .button:focus, a.button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
-    outline: 0;
-    box-shadow: 0px 0px 1px 3px #bc8abf; }
-
-.button__secondary, [type=submit], a.button__secondary, a[type=submit] {
-  background-color: #e2598b;
-  border-color: #e2598b; }
-  .button__secondary:hover, :hover[type=submit], .button__secondary:focus, :focus[type=submit], .button__secondary:active, :active[type=submit], a.button__secondary:hover, a:hover[type=submit], a.button__secondary:focus, a:focus[type=submit], a.button__secondary:active, a:active[type=submit] {
-    background-color: #da2e6d;
-    border-color: #da2e6d; }
-  .button__secondary:focus, :focus[type=submit], a.button__secondary:focus, a:focus[type=submit] {
-    box-shadow: 0px 0px 1px 3px #ed9ab9; }
-
-.button__outline, [type=reset], a.button__outline, a[type=reset] {
-  background: transparent;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
   color: inherit;
-  border-color: #7f4782; }
-  .button__outline:hover, :hover[type=reset], .button__outline:focus, :focus[type=reset], .button__outline:active, :active[type=reset], a.button__outline:hover, a:hover[type=reset], a.button__outline:focus, a:focus[type=reset], a.button__outline:active, a:active[type=reset] {
-    background-color: transparent;
-    border-color: #5f3561;
-    color: #7f4782; }
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible; }
+  .hamburger:hover {
+    opacity: 1; }
+  .hamburger.is-active:hover {
+    opacity: 1; }
+  .hamburger.is-active .hamburger-inner,
+  .hamburger.is-active .hamburger-inner::before,
+  .hamburger.is-active .hamburger-inner::after {
+    background-color: white; }
 
-.button__ghost, a.button__ghost {
-  background: transparent;
-  color: inherit;
-  border-color: transparent; }
-  .button__ghost:hover, .button__ghost:focus, .button__ghost:active, a.button__ghost:hover, a.button__ghost:focus, a.button__ghost:active {
-    background-color: transparent;
-    border-color: #5f3561;
-    color: #7f4782; }
+.hamburger-box {
+  width: 25px;
+  height: 19px;
+  display: inline-block;
+  position: relative; }
 
-.button__full, a.button__full {
+.hamburger-inner {
   display: block;
+  top: 50%;
+  margin-top: -1.5px; }
+  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease; }
+  .hamburger-inner::before, .hamburger-inner::after {
+    content: "";
+    display: block; }
+  .hamburger-inner::before {
+    top: -8px; }
+  .hamburger-inner::after {
+    bottom: -8px; }
+
+/*
+   * Minus
+   */
+.hamburger--minus .hamburger-inner::before, .hamburger .hamburger-inner::before, .hamburger--minus .hamburger-inner::after, .hamburger .hamburger-inner::after {
+  transition: bottom 0.08s 0s ease-out, top 0.08s 0s ease-out, opacity 0s linear; }
+
+.hamburger--minus.is-active .hamburger-inner::before, .is-active.hamburger .hamburger-inner::before, .hamburger--minus.is-active .hamburger-inner::after, .is-active.hamburger .hamburger-inner::after {
+  opacity: 0;
+  transition: bottom 0.08s ease-out, top 0.08s ease-out, opacity 0s 0.08s linear; }
+
+.hamburger--minus.is-active .hamburger-inner::before, .is-active.hamburger .hamburger-inner::before {
+  top: 0; }
+
+.hamburger--minus.is-active .hamburger-inner::after, .is-active.hamburger .hamburger-inner::after {
+  bottom: 0; }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  NAV
+  Styling for the burger menu
+  (also see vendor/hamburgers),
+  and responsive navbar
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.nav-bar {
+  background: #7f4782;
   width: 100%;
-  margin-top: 5px;
-  margin-bottom: 5px; }
+  display: none; }
+  @media (max-width: 37.4375em) {
+    .nav-bar .container {
+      padding: 0;
+      width: 100%; } }
+  .nav-bar a:not(.button) {
+    font-size: 1em;
+    font-weight: bold;
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    transition: color 0.3s ease, background-color 0.3s ease; }
+    .nav-bar a:not(.button), .nav-bar a:not(.button):visited {
+      color: white;
+      background-color: #7f4782; }
+    .nav-bar a:not(.button):hover, .nav-bar a:not(.button):focus, .nav-bar a:not(.button):active {
+      color: #fefdfe;
+      background-color: #9f59a3; }
+  .nav-bar a.button {
+    margin: 5px 10px; }
+  .nav-bar ul {
+    list-style-type: none;
+    margin: 0;
+    width: 100%; }
+  .nav-bar li {
+    width: 100%;
+    margin: 0; }
 
-.button__large, a.button__large {
-  font-size: 1.2rem; }
+@media (min-width: 37.5em) {
+  .nav-bar {
+    display: block !important; }
+    .nav-bar a:not(.button) {
+      padding: 10px 20px; }
+    .nav-bar a.button {
+      margin: 10px 20px; }
+    .nav-bar ul {
+      display: flex;
+      align-items: center; }
+    .nav-bar li {
+      display: inline-block;
+      width: auto; } }
 
-.button__small, a.button__small {
-  font-size: 0.8rem; }
+.hamburger {
+  background-color: #7f4782;
+  border: 1px solid #7f4782;
+  border-radius: 0px;
+  transition: background-color 0.3s ease, border 0.3s ease;
+  display: flex; }
+  .hamburger:hover, .hamburger:focus, .hamburger:active {
+    background-color: #9f59a3;
+    border: 1px solid #9f59a3; }
+  .hamburger:focus {
+    outline: 0;
+    box-shadow: none !important; }
 
+.hamburger-label {
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  color: white; }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  NAVIGATION
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*
+.nav-primary {
+    float: left;
+    @include above($nav-expands) {
+        width: auto;
+    }
+    ul {
+        text-align: center;
+        @include above($nav-expands) {
+            width: auto;
+            margin: 0;
+        }
+    }
+    li {
+        display: inline-block;
+        border-top: rem(1px) solid rgba(color(primary), 0.2);
+
+        &.drop-active > ul {
+            @include below($nav-expands - 1) {
+                display: block;
+                visibility: visible;
+	            opacity: 1;
+            }
+        }
+        &.menu-item-has-children>a:after {
+            @include below($nav-expands - 1) {
+                content: "∨";
+                @include rem(margin-left, 5px);
+            }
+        }
+        @include above($nav-expands) {
+            float: left;
+            position: relative;
+            border: 0;
+            &:hover > ul {
+                visibility: visible;
+                opacity: 1;
+            }
+
+        }
+        // Sub Navigation
+        $sub-nav-width: rem(220px);
+        ul {
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            z-index: 9999;
+            position: relative;
+            background-color: color(tertiary);
+            margin: 0;
+            width: 100%;
+            @include smooth(all);
+            @include above($nav-expands) {
+
+                //Sub Navigation
+                $sub-nav-width: rem(180px); // not sure if this is redundant
+                position: absolute;
+                left: 50%; // Get the sub nav to the mid point of it's parent
+                margin-left: -$sub-nav-width/2;
+                width: auto;
+                display: block;
+                border: rem(1px) solid color(primary);
+                border-top: none;
+                &::before {
+                    $wedge-width: rem(8px);
+                    // Add a wedge to sub navs to denote parent
+                    content:"";
+                    width: 0px;
+                    height: 0px;
+                    border-left: $wedge-width solid transparent;
+                    border-right: $wedge-width solid transparent;
+                    border-bottom: $wedge-width solid rgba(color(primary), 0.2);
+                    margin-bottom:$wedge-width;
+                    position: absolute;
+                    top: rem(-$wedge-width);
+                    left: $sub-nav-width/2-$wedge-width/2;
+                }
+            }
+            li {
+                display: inline-block;
+                &:first-child {
+                    border: none;
+                }
+                @include above($nav-expands) {
+                    padding: 0;
+                    margin: 0;
+                    @include rem(border-top, 1px solid rgba(255, 255, 255, 0.3));
+                }
+                a {
+                    @include above($nav-expands) {
+                        width: $sub-nav-width;
+                        display: block;
+                    }
+                }
+                ul {
+                    @include above($nav-expands) {
+                        // Third and Nested Nav
+                        left: 100%;
+                        top: 0;
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+    a {
+
+        @include above($nav-expands) {
+            padding: rem(10px);
+            &,&:hover, &:active, &:visited {
+                background: transparent;
+            }
+        }
+
+    }
+    .current-menu-item {
+        background-color: color(background);
+        body.home &, body.has-featured-image & {
+            background-color: color(secondary);
+            a {
+                color: white;
+            }
+        }
+        a {
+            font-weight: bold;
+            color: color(primary);
+        }
+        &:hover {
+            a {
+                color: white;
+            }
+        }
+    }
+}
+
+*/
 /* IGNORE THE DOCS FOR NOW - THEY NEED SOME WORK! */
 /*
 Add via npm/grunt later:
@@ -1522,8 +1807,6 @@ DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
             .inner {border:1px solid green;}
     .container .container {padding:0;width: 100%}
     */ }
-  .docs .container {
-    background-color: #fff; }
   .docs .boxed, .docs pre {
     background: #EBF2F2;
     border: 1px solid #D9DBDB;

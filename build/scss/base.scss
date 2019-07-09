@@ -11,9 +11,12 @@
 @import "components/typography";
 @import "components/helpers";
 @import "components/grid";
+@import "components/buttons";
 @import "components/tables";
 @import "components/forms";
-@import "components/buttons";
+@import "vendor/hamburgers/hamburgers";
+@import "components/nav";
+
 
 
 // Look at the way primitive grid uses  !default - this can be used to keep the Jellyfish config the same, and you could do an override one for each project
@@ -55,9 +58,7 @@ $color-midgrey: #D9DBDB;
 
 .docs {
     background-color: $color-ghost;
-    .container {
-        background-color: #fff;
-    }
+
     .boxed {
         background: $color-lightgrey;
         border: 1px solid $color-midgrey;

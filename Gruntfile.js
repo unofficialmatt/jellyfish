@@ -1,29 +1,30 @@
 module.exports = function (grunt) {
-    
+
     // Set up global variables
     var globalConfig = {
         build_dir: 'build',
         dist_dir: 'assets',
     };
-    
+
     // Project configuration
     grunt.initConfig({
-        
+
         globalConfig: globalConfig,
-        
+
         // Remove old images
-        clean: ['<%= globalConfig.dist_dir %>/img/*'], 
+        clean: ['<%= globalConfig.dist_dir %>/img/*'],
 
         copy: {
           // Copy scripts from node_modules
           npm: {
             files: [
               {src: ['node_modules/jquery/dist/jquery.js'], dest: '<%= globalConfig.build_dir %>/js/vendor/jquery.js'},
-              {src: ['node_modules/reset-css/sass/_reset.scss'], dest: '<%= globalConfig.build_dir %>/scss/vendor/_reset.scss'}
+              {src: ['node_modules/reset-css/sass/_reset.scss'], dest: '<%= globalConfig.build_dir %>/scss/vendor/_reset.scss'},
+              {expand: true, cwd: 'node_modules/hamburgers/_sass/hamburgers', src: ['**/*'], dest: '<%= globalConfig.build_dir %>/scss/vendor/hamburgers'}
             ],
           },
         },
-                
+
         // Define which sass files should be compiled
         sass: {
             options: {
@@ -39,7 +40,7 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        
+
         // Run postcss on files in dist_dir/css/ to apply autoprefix and minify
         postcss: {
             options: {
@@ -64,7 +65,7 @@ module.exports = function (grunt) {
                 dest: '<%= globalConfig.dist_dir %>/css/style.min.css'
             }
         },
-        
+
         // Compress images in build_dir/img/, output to dist_dir/img
         imagemin: {
             dynamic: {
@@ -75,7 +76,7 @@ module.exports = function (grunt) {
                     dest: '<%= globalConfig.dist_dir %>/img/'
                 }]
             }
-        },    
+        },
 
         concat: {
           options: {
@@ -98,8 +99,8 @@ module.exports = function (grunt) {
               '<%= globalConfig.dist_dir %>/js/site.min.js': ['<%= globalConfig.dist_dir %>/js/site.js']
             }
           }
-        },           
-        
+        },
+
         express: {
             // go to http://localhost:9000 for live reloading
             all:{
@@ -112,7 +113,7 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            
+
             // rerun $ grunt when the Gruntfile is edited
             gruntfile: {
                 files: ['Gruntfile.js'],
@@ -121,7 +122,7 @@ module.exports = function (grunt) {
                     livereload: true
                 }
             },
-            
+
             // run 'sass' and 'postcss' tasks when any scss file is edited
             sass: {
                 options: {
@@ -138,8 +139,8 @@ module.exports = function (grunt) {
                 },
                 files: ['<%= globalConfig.build_dir %>/js/**/*.js'],
                 tasks: ['concat', 'uglify']
-            },            
-            
+            },
+
             images: {
                 options: {
                     livereload: true,
@@ -163,7 +164,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-express');
-        
+
     // Default Grunt task, runs via $ grunt
     grunt.registerTask('default', ['copy:npm', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin','express', 'watch']);
     grunt.registerTask('server', ['express', 'watch']);
