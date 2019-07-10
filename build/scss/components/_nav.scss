@@ -5,6 +5,9 @@
   and responsive navbar
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+/* TODO: Links on nav-expanded should be full-height so the hover state doesn't look weird. */
+/* TODO: Add an option to have an off-canvas menu. */
+
 .nav-bar {
     background: $navbar-bg-color;
     width: 100%;
@@ -26,6 +29,7 @@
         text-decoration: none;
         text-transform: $navbar-text-transform;
         padding: $navbar-link-padding;
+        line-height: 1.2;
         @include smooth(color, background-color);
         &, &:visited {
             color: $navbar-link-color;
@@ -53,11 +57,47 @@
         margin: 0;
     }
 
+    // Links with Children
+    li.menu-item-has-children>a::after, li.has-children>a::after {
+        /* TODO: Replace with an icon */
+        content: "∨";
+        margin-left: 5px;
+    }
+
+    // Sub Navigation
+    li {
+        ul {
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            z-index: 9999;
+
+            // Links
+            a {
+                &::before {
+                    content: "\2002";
+                }
+                /*TODO: Sub-sub-nav - or remove this entirely */
+            }
+        }
+
+        // What to do when a sub nav's parent element is clicked
+        /*TODO: See if .js needs to be updated */
+        &.drop-active > ul {
+            display: block;
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
 }
 
 // Expanded Nav
 @include above($nav-expands) {
 
+    #nav-hamburger {
+        display: none;
+    }
     .nav-bar {
         display: block !important;
 
@@ -83,7 +123,7 @@
     }
 }
 
-// Extend .hamburger--type into .hamburger
+// Extend .hamburger--type into .hamburger and apply additional settings
 .hamburger {
     @extend .hamburger--#{$primary-hamburger-type};
     background-color: $hamburger-background-color;
@@ -120,11 +160,6 @@
 
 
 
-
-
-
-
-
 // Take a look at Ron Taylor for how I did flex
 
 
@@ -134,19 +169,7 @@
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*
 .nav-primary {
-    float: left;
-    @include above($nav-expands) {
-        width: auto;
-    }
-    ul {
-        text-align: center;
-        @include above($nav-expands) {
-            width: auto;
-            margin: 0;
-        }
-    }
     li {
-        display: inline-block;
         border-top: rem(1px) solid rgba(color(primary), 0.2);
 
         &.drop-active > ul {
@@ -154,12 +177,6 @@
                 display: block;
                 visibility: visible;
 	            opacity: 1;
-            }
-        }
-        &.menu-item-has-children>a:after {
-            @include below($nav-expands - 1) {
-                content: "∨";
-                @include rem(margin-left, 5px);
             }
         }
         @include above($nav-expands) {

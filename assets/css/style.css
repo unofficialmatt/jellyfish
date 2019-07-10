@@ -1573,6 +1573,8 @@ select::-ms-expand {
   (also see vendor/hamburgers),
   and responsive navbar
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* TODO: Links on nav-expanded should be full-height so the hover state doesn't look weird. */
+/* TODO: Add an option to have an off-canvas menu. */
 .nav-bar {
   background: #7f4782;
   width: 100%;
@@ -1587,7 +1589,8 @@ select::-ms-expand {
     display: block;
     text-decoration: none;
     text-transform: uppercase;
-    padding: 5px 10px;
+    padding: 10px;
+    line-height: 1.2;
     transition: color 0.3s ease, background-color 0.3s ease; }
     .nav-bar a:not(.button), .nav-bar a:not(.button):visited {
       color: white;
@@ -1596,7 +1599,7 @@ select::-ms-expand {
       color: #fefdfe;
       background-color: #9f59a3; }
   .nav-bar a.button {
-    margin: 5px 10px; }
+    margin: 10px; }
   .nav-bar ul {
     list-style-type: none;
     margin: 0;
@@ -1604,8 +1607,29 @@ select::-ms-expand {
   .nav-bar li {
     width: 100%;
     margin: 0; }
+  .nav-bar li.menu-item-has-children > a::after, .nav-bar li.has-children > a::after {
+    /* TODO: Replace with an icon */
+    content: "∨";
+    margin-left: 5px; }
+  .nav-bar li {
+    /*TODO: See if .js needs to be updated */ }
+    .nav-bar li ul {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: 9999; }
+      .nav-bar li ul a {
+        /*TODO: Sub-sub-nav - or remove this entirely */ }
+        .nav-bar li ul a::before {
+          content: "\2002"; }
+    .nav-bar li.drop-active > ul {
+      display: block;
+      visibility: visible;
+      opacity: 1; }
 
 @media (min-width: 37.5em) {
+  #nav-hamburger {
+    display: none; }
   .nav-bar {
     display: block !important; }
     .nav-bar a:not(.button) {
@@ -1645,19 +1669,7 @@ select::-ms-expand {
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*
 .nav-primary {
-    float: left;
-    @include above($nav-expands) {
-        width: auto;
-    }
-    ul {
-        text-align: center;
-        @include above($nav-expands) {
-            width: auto;
-            margin: 0;
-        }
-    }
     li {
-        display: inline-block;
         border-top: rem(1px) solid rgba(color(primary), 0.2);
 
         &.drop-active > ul {
@@ -1665,12 +1677,6 @@ select::-ms-expand {
                 display: block;
                 visibility: visible;
 	            opacity: 1;
-            }
-        }
-        &.menu-item-has-children>a:after {
-            @include below($nav-expands - 1) {
-                content: "∨";
-                @include rem(margin-left, 5px);
             }
         }
         @include above($nav-expands) {
@@ -1779,6 +1785,7 @@ select::-ms-expand {
 }
 
 */
+/* TODO: Make code to generate a sprite sheet */
 /* IGNORE THE DOCS FOR NOW - THEY NEED SOME WORK! */
 /*
 Add via npm/grunt later:
