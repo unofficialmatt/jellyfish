@@ -11,24 +11,38 @@ module.exports = function (grunt) {
 
         globalConfig: globalConfig,
 
-        // Remove old images
-        clean: ['<%= globalConfig.dist_dir %>/img/*'],
+        // Remove old images and icons
+        clean: {
+            images: ['<%= globalConfig.dist_dir %>/img/*'],
+            icons:  ['<%= globalConfig.build_dir %>/icons/min/*']
+        },
 
         copy: {
-          // Copy scripts from node_modules
-          npm: {
-            files: [
-              {src: ['node_modules/jquery/dist/jquery.js'], dest: '<%= globalConfig.build_dir %>/js/vendor/jquery.js'},
-              {src: ['node_modules/reset-css/sass/_reset.scss'], dest: '<%= globalConfig.build_dir %>/scss/vendor/_reset.scss'},
-              {expand: true, cwd: 'node_modules/hamburgers/_sass/hamburgers', src: ['**/*'], dest: '<%= globalConfig.build_dir %>/scss/vendor/hamburgers'}
+            // Copy scripts from node_modules
+            npm: {
+                files: [
+                    {
+                        src: ['node_modules/jquery/dist/jquery.js'],
+                        dest: '<%= globalConfig.build_dir %>/js/vendor/jquery.js'
+                    },
+                    {
+                        src: ['node_modules/reset-css/sass/_reset.scss'],
+                        dest: '<%= globalConfig.build_dir %>/scss/vendor/_reset.scss'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'node_modules/hamburgers/_sass/hamburgers',
+                        src: ['**/*'],
+                        dest: '<%= globalConfig.build_dir %>/scss/vendor/hamburgers'
+                    }
             ],
-          },
+            },
         },
 
         // Define which sass files should be compiled
         sass: {
             options: {
-               // outputStyle: 'expanded',
+                // outputStyle: 'expanded',
                 sourceMap: true
             },
             dist: {
@@ -47,15 +61,15 @@ module.exports = function (grunt) {
                 map: true,
                 processors: [
                     require('autoprefixer')({
-                      browsers: 'last 5 versions'
+                        browsers: 'last 5 versions'
                     }), // add vendor prefixes
                     require('postcss-pxtorem')({
-                      rootValue: 16,
-                      unitPrecision: 2, // Decimal places
-                      propList: ['*'], // Apply to all elements
-                      replace: true, // False enables px fallback
-                      mediaQuery: false, // Do not apply within media queries (we use em instead)
-                      minPixelValue: 0
+                        rootValue: 16,
+                        unitPrecision: 2, // Decimal places
+                        propList: ['*'], // Apply to all elements
+                        replace: true, // False enables px fallback
+                        mediaQuery: false, // Do not apply within media queries (we use em instead)
+                        minPixelValue: 0
                     }),
                     require('cssnano')() // minify the result
                 ]
@@ -68,46 +82,70 @@ module.exports = function (grunt) {
 
         // Compress images in build_dir/img/, output to dist_dir/img
         imagemin: {
-            dynamic: {
+            images: {
                 files: [{
                     expand: true,
                     cwd: '<%= globalConfig.build_dir %>/img/',
                     src: ['**/*.{png,jpg,JPG,JPEG,jpeg,svg,gif}'],
                     dest: '<%= globalConfig.dist_dir %>/img/'
                 }]
+            },
+            icons: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= globalConfig.build_dir %>/icons/raw/',
+                    src: ['**/*.svg'],
+                    dest: '<%= globalConfig.build_dir %>/icons/min/'
+                }]
             }
+        },
+
+        // Put all of our minified svg icons into a sprite sheet
+        svgstore: {
+            options: {
+                prefix: 'icon-', // This will prefix each ID
+                svg: { // will add and overide the the default xmlns="http://www.w3.org/2000/svg" attribute to the resulting SVG
+                    //viewBox : '0 0 100 100',
+                    //xmlns: 'http://www.w3.org/2000/svg'
+                }
+            },
+            default: {
+                files: {
+                    '<%= globalConfig.dist_dir %>/img/icons.svg': ['<%= globalConfig.build_dir %>/icons/min/*.svg']
+                }
+            },
         },
 
         concat: {
-          options: {
+            options: {
                 sourceMap: false,
                 separator: ';\n'
-          },
+            },
 
-          site: {
-            src: ['<%= globalConfig.build_dir %>/js/vendor/*.js', '<%= globalConfig.build_dir %>/js/site/*.js'],
-            dest: '<%= globalConfig.dist_dir %>/js/site.js',
-          },
+            site: {
+                src: ['<%= globalConfig.build_dir %>/js/vendor/*.js', '<%= globalConfig.build_dir %>/js/site/*.js'],
+                dest: '<%= globalConfig.dist_dir %>/js/site.js',
+            },
         },
 
         uglify: {
-          options: {
-            mangle: false
-          },
-          site: {
-            files: {
-              '<%= globalConfig.dist_dir %>/js/site.min.js': ['<%= globalConfig.dist_dir %>/js/site.js']
+            options: {
+                mangle: false
+            },
+            site: {
+                files: {
+                    '<%= globalConfig.dist_dir %>/js/site.min.js': ['<%= globalConfig.dist_dir %>/js/site.js']
+                }
             }
-          }
         },
 
         express: {
             // go to http://localhost:9000 for live reloading
-            all:{
-                options:{
-                    port:9000,
-                    hostname:'localhost',
-                    bases:['.'],
+            all: {
+                options: {
+                    port: 9000,
+                    hostname: 'localhost',
+                    bases: ['.'],
                     livereload: true
                 }
             }
@@ -130,7 +168,7 @@ module.exports = function (grunt) {
                     event: ['changed', 'added', 'deleted']
                 },
                 files: ['<%= globalConfig.build_dir %>/scss/**/*.scss'],
-                tasks: [ 'sass', 'postcss']
+                tasks: ['sass', 'postcss']
             },
 
             concat_js: {
@@ -147,9 +185,17 @@ module.exports = function (grunt) {
                     event: ['changed', 'added', 'deleted']
                 },
                 files: ['<%= globalConfig.build_dir %>/img/**/*.{png,jpg,JPG,JPEG,jpeg,svg,gif}'],
-                tasks: [ 'clean', 'imagemin' ]
-            }
+                tasks: ['clean:images', 'imagemin:images']
+            },
 
+            spritesheet: {
+                options: {
+                    livereload: true,
+                    event: ['changed', 'added', 'deleted']
+                },
+                files: ['<%= globalConfig.build_dir %>/icons/raw/*.svg'],
+                tasks: ['clean:icons', 'imagemin:icons', 'svgstore']
+            }
         }
 
     });
@@ -164,9 +210,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-express');
+    grunt.loadNpmTasks('grunt-svgstore');
 
     // Default Grunt task, runs via $ grunt
-    grunt.registerTask('default', ['copy:npm', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin','express', 'watch']);
+    grunt.registerTask('default', ['copy:npm', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin', 'svgstore', 'express', 'watch']);
     grunt.registerTask('server', ['express', 'watch']);
     grunt.registerTask('css', ['sass', 'postcss']);
 
