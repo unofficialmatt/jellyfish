@@ -1,7 +1,7 @@
 {
   "name": "jellyfish_grid",
-  "version": "1.0.0",
-  "description": "Jellyfish Grid Framework",
+  "version": "2.0.0",
+  "description": "Jellyfish is a Grid Framework designed for greater control with minimised code output. Jellyfish does not bother itself with a lot of custom components, instead shipping just the bare essentials to provide a solid foundation for web projects.",
   "private": true,
   "main": "Gruntfile.js",
   "directories": {

@@ -1,0 +1,32 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  WORDPRESS
+  Styling for elements that
+  follow Wordpress' naming
+  conventions
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+// Alignment
+.alignleft {
+    @extend .align-left;
+}
+.alignright {
+    @extend .align-right;
+}
+.alignnone {
+    @extend .align-none;
+}
+.aligncenter {
+    @extend .align-center;
+}
+
+// Menus
+// @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
+.current-menu-item { // Currently rendered page
+    @extend .this-page;
+}
+.menu-item-has-children { // Has sub-items
+    @extend .has-children;
+}
+.current-menu-parent { // Parent of the current page
+    @extend .current-menu-item;
+}

@@ -12,178 +12,20 @@
 @import "components/helpers";
 @import "components/grid";
 @import "components/buttons";
+@import "components/icons";
 @import "components/tables";
 @import "components/forms";
 @import "vendor/hamburgers/hamburgers";
 @import "components/nav";
 
+// CMS Specific Classes
+@import "components/wordpress";
 
-/* TODO: Make code to generate a sprite sheet */
+// Demo
+@import "demo";
 
-
-// Look at the way primitive grid uses  !default - this can be used to keep the Jellyfish config the same, and you could do an override one for each project
-
-
-// Compare with foundation, bootstrap, material, skeleton
-// Take some of the flex align stuff from these
-
-
-
-// Last-child margin 0 on .col?
-
-
-
-//@import "nav"; // needs to be completed - lift from HOCt/HFarm
-
-/* IGNORE THE DOCS FOR NOW - THEY NEED SOME WORK! */
-
-
-/*
-Add via npm/grunt later:
-prettify html and php files on save
-*/
-/*
-
-
-TO DO:
-• Fix the nav issues experienced on touch
-• Add a mixin/util for generating different burger menu closing animations (can add to this in time) - or save this locally elsewhere in a snippet file?
-
-DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
-*/
-
-//For demo only - add to demo.scss
-
-$color-ghost: #f7f8f9;
-$color-lightgrey: #EBF2F2;
-$color-midgrey: #D9DBDB;
-
-.docs {
-    background-color: $color-ghost;
-
-    .boxed {
-        background: $color-lightgrey;
-        border: 1px solid $color-midgrey;
-        padding: 1.4em;
-        margin: 20px 0;
-        display: inherit;
-        &.no-margin {
-            margin: 0;
-        }
-        .boxed {
-            background: #fff;
-        }
-    }
-
-    table {
-        margin: 20px 0;
-        h1, h2, h3, h4, h5, h6 {
-            margin: 0;
-        }
-    }
-
-    pre {
-        @extend .boxed;
-        width: auto;
-        display: block;
-        white-space: pre-wrap;
-        position: relative;
-        label {
-            @extend small;
-            top:0;
-            right:0;
-            position: absolute;
-            float: right;
-            display: block;
-            background-color: #556270;
-            color: #fff;
-            padding: .3em;
-        }
-    }
-    // replace with var semantic element
-    %reference {
-        display: inline-block;
-        color: white;
-        padding: .3em;
-        border-radius: 4px;
-        font-size: $font-size-small;
-        line-height: 1;
-    }
-    .css-ref {
-        @extend %reference;
-        background: #4ECDC4;
-    }
-    .scss-ref {
-        @extend %reference;
-        background: #556270;
-    }
-    .variable-ref {
-        @extend %reference;
-        background: #FF6B6B;
-    }
-
-    .grid-ex {
-        @extend .css-ref;
-        width: 100%;
-        text-align: center;
-    }
-
-    td, th {
-        padding: 10px;
-        border: 1px solid $color-midgrey;
-    }
-    th {
-        font-weight: bold;
-        text-align: left;
-
-    }
-
-    .lead {
-        font-size: $font-size-large;
-    }
-
-    .docs-section {
-        margin-top: 40px;
-        margin-bottom: 40px;
-    }
-
-    .nest- {
-        &1 {
-            box-shadow: inset 5px 0px 0px 0px $color-midgrey;
-            padding-left: 15px;
-        }
-        &2 {
-            box-shadow: inset 10px 0px 0px 0px $color-midgrey;
-            padding-left: 20px;
-        }
-    }
-    .smooth- {
-        &transform {
-            @include smooth(transform);
-            &:hover, &:active {
-                transform: scale(1.1);
-            }
-        }
-        &background {
-            @include smooth(background);
-            &:hover, &:active {
-                background-color: #4ECDC4;
-            }
-        }
-    }
-    code var {font-size: inherit;}
-
-    // Temp only
-    /*
-    .row {padding-top:10px;padding-bottom:10px;background-color: #efefef;}
-            .container{border: 1px solid red;}
-            .col{border: 1px solid blue;padding-top: 10px;padding-bottoM:10px;}
-            .row{border: 1px solid orange;}
-            //.row.col {margin-left:0; margin-right:0;padding-left:0; padding-right:0;}
-            body {background: ghostwhite;}
-            main {background: white;}
-
-            .inner {border:1px solid green;}
-    .container .container {padding:0;width: 100%}
-    */
-}
+// TODO: Look at the way primitive grid uses  !default - this can be used to keep the Jellyfish config the same, and you could do an override one for each project
+// TODO: Compare with foundation, bootstrap, material, skeleton - Take some of the flex align stuff from these
+// TODO: Last-child margin 0 on .col?
+// NOTE: IGNORE THE DOCS FOR NOW - THEY NEED SOME WORK!
+// NOTE: DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html

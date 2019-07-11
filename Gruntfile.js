@@ -14,7 +14,7 @@ module.exports = function (grunt) {
         // Remove old images and icons
         clean: {
             images: ['<%= globalConfig.dist_dir %>/img/*'],
-            icons:  ['<%= globalConfig.build_dir %>/icons/min/*']
+            icons:  ['<%= globalConfig.dist_dir %>/icons/*']
         },
 
         copy: {
@@ -93,9 +93,9 @@ module.exports = function (grunt) {
             icons: {
                 files: [{
                     expand: true,
-                    cwd: '<%= globalConfig.build_dir %>/icons/raw/',
+                    cwd: '<%= globalConfig.build_dir %>/icons/',
                     src: ['**/*.svg'],
-                    dest: '<%= globalConfig.build_dir %>/icons/min/'
+                    dest: '<%= globalConfig.dist_dir %>/icons/'
                 }]
             }
         },
@@ -105,13 +105,13 @@ module.exports = function (grunt) {
             options: {
                 prefix: 'icon-', // This will prefix each ID
                 svg: { // will add and overide the the default xmlns="http://www.w3.org/2000/svg" attribute to the resulting SVG
-                    //viewBox : '0 0 100 100',
-                    //xmlns: 'http://www.w3.org/2000/svg'
+                    viewBox : '0 0 100 100',
+                    xmlns: 'http://www.w3.org/2000/svg'
                 }
             },
             default: {
                 files: {
-                    '<%= globalConfig.dist_dir %>/img/icons.svg': ['<%= globalConfig.build_dir %>/icons/min/*.svg']
+                    '<%= globalConfig.dist_dir %>/icons/icons.svg': ['<%= globalConfig.dist_dir %>/icons/*.svg']
                 }
             },
         },
@@ -157,7 +157,8 @@ module.exports = function (grunt) {
                 files: ['Gruntfile.js'],
                 tasks: ['default'],
                 options: {
-                    livereload: true
+                    livereload: true,
+                    event: ['changed', 'added', 'deleted']
                 }
             },
 
@@ -193,7 +194,7 @@ module.exports = function (grunt) {
                     livereload: true,
                     event: ['changed', 'added', 'deleted']
                 },
-                files: ['<%= globalConfig.build_dir %>/icons/raw/*.svg'],
+                files: ['<%= globalConfig.build_dir %>/icons/*.svg'],
                 tasks: ['clean:icons', 'imagemin:icons', 'svgstore']
             }
         }

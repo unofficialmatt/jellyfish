@@ -10621,27 +10621,24 @@ return jQuery;
 ;
 jQuery(document).ready(function ($) {
 
-    // Expand and Collapse .nav-bar when clicking #nav-hamburger
-    $("#nav-hamburger").click(function(){
-      $(".nav-bar").slideToggle();
-    });
-
-
-
-
-    /******** NAVIGATION ********/
     var navPoint = '600'; // px value at which the navigation should change from a burger menu to inline list
-    $(".nav-button").click(function () {
-        $(".nav-primary").toggle(); // toggle the navigation when the burger menu is clicked
-        $(this).toggleClass('nav-expanded');
 
-        // reset sub-navigation menus
-        $('.drop-active').removeClass("drop-active");
-        $('.clicked').removeClass("clicked");
+    // Expand and Collapse .nav-bar when clicking #nav-hamburger
+    $("#nav-hamburger").click(function () {
+        $(".nav-bar").slideToggle();
     });
-    $(document).on("click", 'li.menu-item-has-children > a:not(".clicked")', function (e) {
-        // if user clicks on a menu item that has children, and has not been clicked before, expand the drop down and add a clicked class
-        e.preventDefault();
-        $(window).width() < (navPoint-1) && ($(this).addClass("clicked"), $(this).parent("li").toggleClass("drop-active"))
+
+    // If a menu item with children is clicked...
+    $(document).on("click", 'li.has-children > a:not(".clicked"), li.menu-item-has-children > a:not(".clicked")', function (e) {
+        // ...and the window width is smaller than the navPoint
+        if ($(window).width() < (navPoint - 1)) {
+            // add .clicked class to the anchor element
+            ($(this).addClass("clicked"));
+            // prevent the link from firing
+            e.preventDefault();
+            // add .drop-active class to parent li
+            $(this).parent("li").toggleClass("drop-active");
+        }
     });
+
 });

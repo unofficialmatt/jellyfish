@@ -62,11 +62,19 @@ $navbar-link-bg-color: $navbar-bg-color;
 $navbar-link-bg-color-hover: lighten($navbar-link-bg-color, 10%);
 $navbar-link-color: white;
 $navbar-link-color-hover: lighten($navbar-link-bg-color, 60%);
-$navbar-link-padding: 10px;
-$navbar-link-padding-expanded: 10px 20px;
+$navbar-link-padding-x: 10px;
+$navbar-link-padding-y: 10px;
+$navbar-link-padding-expanded-x: 10px;
+$navbar-link-padding-expanded-y: 20px;
 $navbar-font-size: 1em;
 $navbar-font-weight: bold;
 $navbar-text-transform: uppercase;
+$navbar-submenu-text-transform: capitalize;
+$navbar-submenu-min-width: 180px;
+$navbar-submenu-max-width: 220px;
+$navbar-dropdown-speed: .6s;
+
+// TODO: Add borders
 
 // Hamburger Menu
 // @link https://github.com/jonsuh/hamburgers

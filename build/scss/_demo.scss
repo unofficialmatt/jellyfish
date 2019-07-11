@@ -1,0 +1,133 @@
+$color-ghost: #f7f8f9;
+$color-lightgrey: #EBF2F2;
+$color-midgrey: #D9DBDB;
+
+.docs {
+    background-color: $color-ghost;
+
+    .boxed {
+        background: $color-lightgrey;
+        border: 1px solid $color-midgrey;
+        padding: 1.4em;
+        margin: 20px 0;
+        display: inherit;
+        &.no-margin {
+            margin: 0;
+        }
+        .boxed {
+            background: #fff;
+        }
+    }
+
+    table {
+        margin: 20px 0;
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+    }
+
+    pre {
+        @extend .boxed;
+        width: auto;
+        display: block;
+        white-space: pre-wrap;
+        position: relative;
+        label {
+            @extend small;
+            top:0;
+            right:0;
+            position: absolute;
+            float: right;
+            display: block;
+            background-color: #556270;
+            color: #fff;
+            padding: .3em;
+        }
+    }
+    // replace with var semantic element
+    %reference {
+        display: inline-block;
+        color: white;
+        padding: .3em;
+        border-radius: 4px;
+        font-size: $font-size-small;
+        line-height: 1;
+    }
+    .css-ref {
+        @extend %reference;
+        background: #4ECDC4;
+    }
+    .scss-ref {
+        @extend %reference;
+        background: #556270;
+    }
+    .variable-ref {
+        @extend %reference;
+        background: #FF6B6B;
+    }
+
+    .grid-ex {
+        @extend .css-ref;
+        width: 100%;
+        text-align: center;
+    }
+
+    td, th {
+        padding: 10px;
+        border: 1px solid $color-midgrey;
+    }
+    th {
+        font-weight: bold;
+        text-align: left;
+
+    }
+
+    .lead {
+        font-size: $font-size-large;
+    }
+
+    .docs-section {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .nest- {
+        &1 {
+            box-shadow: inset 5px 0px 0px 0px $color-midgrey;
+            padding-left: 15px;
+        }
+        &2 {
+            box-shadow: inset 10px 0px 0px 0px $color-midgrey;
+            padding-left: 20px;
+        }
+    }
+    .smooth- {
+        &transform {
+            @include smooth(transform);
+            &:hover, &:active {
+                transform: scale(1.1);
+            }
+        }
+        &background {
+            @include smooth(background);
+            &:hover, &:active {
+                background-color: #4ECDC4;
+            }
+        }
+    }
+    code var {font-size: inherit;}
+
+    // Temp only
+    /*
+    .row {padding-top:10px;padding-bottom:10px;background-color: #efefef;}
+            .container{border: 1px solid red;}
+            .col{border: 1px solid blue;padding-top: 10px;padding-bottoM:10px;}
+            .row{border: 1px solid orange;}
+            //.row.col {margin-left:0; margin-right:0;padding-left:0; padding-right:0;}
+            body {background: ghostwhite;}
+            main {background: white;}
+
+            .inner {border:1px solid green;}
+    .container .container {padding:0;width: 100%}
+    */
+}

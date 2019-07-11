@@ -5,17 +5,18 @@
   and responsive navbar
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/* TODO: Links on nav-expanded should be full-height so the hover state doesn't look weird. */
-/* TODO: Add an option to have an off-canvas menu. */
+// TODO: Links on nav-expanded should be full-height so the hover state doesn't look weird.
+// TODO: Add an option to have an off-canvas menu.
+// TODO: .has-children icon does not work that well - no right margin
 
 .nav-bar {
     background: $navbar-bg-color;
     width: 100%;
     display: none; // Hide the navigation until we need it
 
-    // Remove container padding on small devices
     .container {
         @include below($nav-expands) {
+            // Remove container padding on small devices
             padding: 0;
             width: 100%;
         }
@@ -28,7 +29,7 @@
         display: block;
         text-decoration: none;
         text-transform: $navbar-text-transform;
-        padding: $navbar-link-padding;
+        padding: $navbar-link-padding-x $navbar-link-padding-y;
         line-height: 1.2;
         @include smooth(color, background-color);
         &, &:visited {
@@ -43,7 +44,22 @@
 
     // Buttons
     a.button {
-        margin: $navbar-link-padding;
+        margin: $navbar-link-padding-x $navbar-link-padding-y;
+    }
+
+    // Input areas (eg. a search box
+    input {
+        margin: $navbar-link-padding-x $navbar-link-padding-y;
+        width: auto;
+        min-width: 180px;
+        display: inline-block;
+    }
+
+    // Active page
+    .this-page {
+        a {
+            color: lighten($navbar-bg-color, 45%) !important;
+        }
     }
 
     // Menu Items
@@ -58,35 +74,42 @@
     }
 
     // Links with Children
-    li.menu-item-has-children>a::after, li.has-children>a::after {
-        /* TODO: Replace with an icon */
-        content: "∨";
-        margin-left: 5px;
+    li.has-children>a {
+        padding-right: $navbar-link-padding-y*1.75;
+
+        &::after {
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            content:"▾";
+            height: 1em;
+            width: 1em;
+            right: $navbar-link-padding-y;
+            transform: rotate(-90deg);
+            @include smooth(transform);
+        }
     }
 
-    // Sub Navigation
     li {
+        // Sub Navigation
         ul {
             display: none;
-            visibility: hidden;
-            opacity: 0;
-            z-index: 9999;
-
+            width:  100%;
+            flex-direction: column;
             // Links
-            a {
-                &::before {
-                    content: "\2002";
-                }
-                /*TODO: Sub-sub-nav - or remove this entirely */
+            a:not(.button) {
+                text-transform: $navbar-submenu-text-transform;
             }
         }
 
         // What to do when a sub nav's parent element is clicked
-        /*TODO: See if .js needs to be updated */
-        &.drop-active > ul {
-            display: block;
-            visibility: visible;
-            opacity: 1;
+        &.drop-active {
+            a::after {
+                transform: rotate(0deg);
+            }
+            & > ul {
+                display: flex;
+            }
         }
     }
 
@@ -99,16 +122,25 @@
         display: none;
     }
     .nav-bar {
-        display: block !important;
+        display: flex !important;
+
+        .container {
+            display: flex;
+        }
 
         // Link Styling
         a:not(.button) {
-            padding: $navbar-link-padding-expanded;
+            padding: $navbar-link-padding-expanded-x $navbar-link-padding-expanded-y;
         }
 
         // Buttons
         a.button {
-            margin: $navbar-link-padding-expanded;
+            margin: $navbar-link-padding-expanded-x $navbar-link-padding-expanded-y;
+        }
+
+        // Images (eg. logos)
+        img {
+            align-self: center;
         }
 
         // Menu Items
@@ -120,6 +152,53 @@
             display: inline-block;
             width: auto;
         }
+
+        // Links with Children
+        li.has-children>a {
+            padding-right: $navbar-link-padding-expanded-y*1.75;
+
+            &::after {
+                right: auto;
+                transform: rotate(0deg);
+                margin-left: 5px;
+            }
+        }
+
+        // Sub Navigation
+        li {
+            ul {
+                position: absolute;
+                display: flex;
+                width: auto;
+                min-width: $navbar-submenu-min-width;
+                max-width: $navbar-submenu-max-width;
+                z-index: 9999;
+                //border: 1px solid white;
+                box-sizing: content-box;
+
+                // Menu Items
+                li {
+                    width: 100%;
+                    overflow:hidden;
+                    max-height:0;
+                    transition:max-height 0.25s linear; // Faster transition speed, to hide the drop down quicker on unfocus
+                }
+                // TO DO: Add support for further nested menus?
+            }
+
+            // What to do when the menu item is hovered
+            &:hover {
+                // TODO: Add support for tabbing and entering - for screen readers
+                > ul li {
+                    max-height:150px; // Arbitrary value larger than an expected menu item is likely to be
+                    transition:max-height $navbar-dropdown-speed linear;
+                }
+            }
+        }
+
+        .nav__right {
+            justify-content: flex-end;
+        }
     }
 }
 
@@ -130,6 +209,9 @@
     border: $hamburger-border;
     border-radius: $hamburger-border-radius;
     @include smooth(background-color, border);
+    width: 100%;
+    justify-content: space-between;
+    text-align: right;
     display: flex;
     &:hover, &:focus, &:active {
         background-color: $hamburger-background-color-hover;
@@ -144,144 +226,7 @@
 .hamburger-label {
     font-weight: bold;
     display: inline-block;
-    margin-right: 10px;
     vertical-align: middle;
     text-transform: uppercase;
     color: $hamburger-layer-color;
 }
-
-
-
-
-
-
-
-
-
-
-
-// Take a look at Ron Taylor for how I did flex
-
-
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-  NAVIGATION
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-/*
-.nav-primary {
-    li {
-        border-top: rem(1px) solid rgba(color(primary), 0.2);
-
-        &.drop-active > ul {
-            @include below($nav-expands - 1) {
-                display: block;
-                visibility: visible;
-	            opacity: 1;
-            }
-        }
-        @include above($nav-expands) {
-            float: left;
-            position: relative;
-            border: 0;
-            &:hover > ul {
-                visibility: visible;
-                opacity: 1;
-            }
-
-        }
-        // Sub Navigation
-        $sub-nav-width: rem(220px);
-        ul {
-            display: none;
-            visibility: hidden;
-            opacity: 0;
-            z-index: 9999;
-            position: relative;
-            background-color: color(tertiary);
-            margin: 0;
-            width: 100%;
-            @include smooth(all);
-            @include above($nav-expands) {
-
-                //Sub Navigation
-                $sub-nav-width: rem(180px); // not sure if this is redundant
-                position: absolute;
-                left: 50%; // Get the sub nav to the mid point of it's parent
-                margin-left: -$sub-nav-width/2;
-                width: auto;
-                display: block;
-                border: rem(1px) solid color(primary);
-                border-top: none;
-                &::before {
-                    $wedge-width: rem(8px);
-                    // Add a wedge to sub navs to denote parent
-                    content:"";
-                    width: 0px;
-                    height: 0px;
-                    border-left: $wedge-width solid transparent;
-                    border-right: $wedge-width solid transparent;
-                    border-bottom: $wedge-width solid rgba(color(primary), 0.2);
-                    margin-bottom:$wedge-width;
-                    position: absolute;
-                    top: rem(-$wedge-width);
-                    left: $sub-nav-width/2-$wedge-width/2;
-                }
-            }
-            li {
-                display: inline-block;
-                &:first-child {
-                    border: none;
-                }
-                @include above($nav-expands) {
-                    padding: 0;
-                    margin: 0;
-                    @include rem(border-top, 1px solid rgba(255, 255, 255, 0.3));
-                }
-                a {
-                    @include above($nav-expands) {
-                        width: $sub-nav-width;
-                        display: block;
-                    }
-                }
-                ul {
-                    @include above($nav-expands) {
-                        // Third and Nested Nav
-                        left: 100%;
-                        top: 0;
-                        margin-left: 0;
-                    }
-                }
-            }
-        }
-    }
-    a {
-
-        @include above($nav-expands) {
-            padding: rem(10px);
-            &,&:hover, &:active, &:visited {
-                background: transparent;
-            }
-        }
-
-    }
-    .current-menu-item {
-        background-color: color(background);
-        body.home &, body.has-featured-image & {
-            background-color: color(secondary);
-            a {
-                color: white;
-            }
-        }
-        a {
-            font-weight: bold;
-            color: color(primary);
-        }
-        &:hover {
-            a {
-                color: white;
-            }
-        }
-    }
-}
-
-*/
