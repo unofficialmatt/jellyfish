@@ -154,6 +154,7 @@
         li {
             display: flex;
             width: auto;
+            align-items: center;
         }
 
         // Links with Children
@@ -233,4 +234,7 @@
     vertical-align: middle;
     text-transform: uppercase;
     color: $hamburger-layer-color;
+    .is-active & {
+        color: $hamburger-active-layer-color;
+    }
 }
