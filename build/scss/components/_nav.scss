@@ -13,7 +13,6 @@
     background: $navbar-bg-color;
     width: 100%;
     display: none; // Hide the navigation until we need it
-
     .container {
         @include below($nav-expands) {
             // Remove container padding on small devices
@@ -122,15 +121,18 @@
         display: none;
     }
     .nav-bar {
-        display: flex !important;
+        display: block !important;
 
-        .container {
-            display: flex;
+        .nav-bar-inner {
+            display: flex; // Using flex allows us to use justify-content to push inner elements to the left or right
         }
 
         // Link Styling
         a:not(.button) {
             padding: $navbar-link-padding-expanded-x $navbar-link-padding-expanded-y;
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
 
         // Buttons
@@ -146,10 +148,11 @@
         // Menu Items
         ul {
             display: flex;
-            align-items: center;
+            //align-items: center;
+            flex-direction: row;
         }
         li {
-            display: inline-block;
+            display: flex;
             width: auto;
         }
 
@@ -161,6 +164,7 @@
                 right: auto;
                 transform: rotate(0deg);
                 margin-left: 5px;
+                display: inline-block;
             }
         }
 

@@ -58,7 +58,7 @@ $form-border-focus: color(primary);
 
 // Nav Bar
 $navbar-bg-color: color(primary);
-$navbar-link-bg-color: $navbar-bg-color;
+$navbar-link-bg-color: gold;
 $navbar-link-bg-color-hover: lighten($navbar-link-bg-color, 10%);
 $navbar-link-color: white;
 $navbar-link-color-hover: lighten($navbar-link-bg-color, 60%);
@@ -66,7 +66,7 @@ $navbar-link-padding-x: 10px;
 $navbar-link-padding-y: 10px;
 $navbar-link-padding-expanded-x: 10px;
 $navbar-link-padding-expanded-y: 20px;
-$navbar-font-size: 1em;
+$navbar-font-size: 0.9em;
 $navbar-font-weight: bold;
 $navbar-text-transform: uppercase;
 $navbar-submenu-text-transform: capitalize;
