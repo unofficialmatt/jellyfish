@@ -441,7 +441,7 @@ sup {
   HELPERS
   Useful helper classes
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.clearfix::after, .row::after {
+.clearfix::after {
   content: "";
   display: table;
   clear: both; }
@@ -454,6 +454,9 @@ sup {
 
 .invisible {
   visibility: hidden; }
+
+.equal-height .col {
+  display: flex; }
 
 .align-top {
   align-items: flex-start; }
@@ -555,12 +558,14 @@ sup {
   margin-right: -5px; }
 
 .col {
-  flex: 1 1 0px;
-  min-height: 1px;
-  max-width: 100%;
+  width: 100%;
   position: relative;
   padding-left: 5px;
   padding-right: 5px; }
+  @media (min-width: 37.5em) {
+    .col {
+      max-width: 100%;
+      flex: 1 1 0px; } }
 
 .col.collapse,
 .row.collapse > .col {

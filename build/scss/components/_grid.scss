@@ -11,7 +11,6 @@
     padding: 0 $base-container-gutter;
 }
 .row {
-    @extend .clearfix;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -21,13 +20,15 @@
 }
 $one_col: (100% / $cols);
 .col {
-    flex: 1 1 0px; // By default, flex columns will equally fill any space on the row
-    min-height: 1px;
-    max-width: 100%;
+    width: 100%;
     position: relative;
     // give our cols l-r margin equal to half col gutter
     padding-left: .5*$base-col-gutter;
     padding-right: .5*$base-col-gutter;
+    @include above(md){
+        max-width: 100%;
+        flex: 1 1 0px; // By default, flex columns will equally fill any space on the row
+      }
 }
 
 // Remove column padding on collapsed rows/columns

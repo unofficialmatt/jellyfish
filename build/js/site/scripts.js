@@ -5,6 +5,16 @@ jQuery(document).ready(function ($) {
     // Expand and Collapse .nav-bar when clicking #nav-hamburger
     $("#nav-hamburger").click(function () {
         $(".nav-bar").slideToggle();
+
+        // Toggle the state of the aria-expanded attribute for screen readers
+        var menuItem = $(e.currentTarget);
+            if (menuItem.attr( 'aria-expanded') === 'true') {
+                $(this).attr( 'aria-expanded', 'false');
+            }
+            else {
+                $(this).attr( 'aria-expanded', 'true');
+            }
+
     });
 
     // If a menu item with children is clicked...
