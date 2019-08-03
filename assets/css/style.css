@@ -555,12 +555,15 @@ sup {
   margin-right: -5px; }
 
 .col {
-  flex: 1 1 0px;
+  width: 100%;
   min-height: 1px;
-  max-width: 100%;
   position: relative;
   padding-left: 5px;
   padding-right: 5px; }
+  @media (min-width: 37.5em) {
+    .col {
+      flex: 1 1 0px;
+      max-width: 100%; } }
 
 .col.collapse,
 .row.collapse > .col {

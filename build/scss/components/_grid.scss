@@ -21,13 +21,16 @@
 }
 $one_col: (100% / $cols);
 .col {
-    flex: 1 1 0px; // By default, flex columns will equally fill any space on the row
+    width: 100%;
     min-height: 1px;
-    max-width: 100%;
     position: relative;
     // give our cols l-r margin equal to half col gutter
     padding-left: .5*$base-col-gutter;
     padding-right: .5*$base-col-gutter;
+    @include above(md) { // TODO: This doesn't work still
+        flex: 1 1 0px; // By default, flex columns will equally fill any space on the row
+        max-width: 100%;
+    }
 }
 
 // Remove column padding on collapsed rows/columns

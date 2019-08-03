@@ -6,6 +6,8 @@ module.exports = function (grunt) {
         dist_dir: 'assets',
     };
 
+    const sass = require('node-sass');
+
     // Project configuration
     grunt.initConfig({
 
@@ -42,7 +44,7 @@ module.exports = function (grunt) {
         // Define which sass files should be compiled
         sass: {
             options: {
-                // outputStyle: 'expanded',
+                implementation: sass,
                 sourceMap: true
             },
             dist: {
