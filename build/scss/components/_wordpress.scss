@@ -30,3 +30,9 @@
 .current-menu-parent { // Parent of the current page
     @extend .current-menu-item;
 }
+.widget {
+    /* Make sure select elements fit in widgets. */
+    select {
+        max-width: 100%;
+    }
+}

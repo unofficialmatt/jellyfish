@@ -18,6 +18,12 @@
 .invisible {
     visibility: hidden;
 }
+// Use on a .row to make all columns the same height
+.equal-height {
+    .col {
+    display: flex;
+    }
+}
 // Flex Alignment Classes
 .align-top {
     align-items: flex-start;
