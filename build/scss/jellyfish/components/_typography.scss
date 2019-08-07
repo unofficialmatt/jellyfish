@@ -1,7 +1,7 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   TYPOGRAPHY
   Contains typographic styles
-  for common elements as well 
+  for common elements as well
   as semantic elements eg. code,
   mark, small, var, strong, etc
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -14,9 +14,9 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: $font-secondary;
+    font-family: $font-headings;
     margin: 1em 0 .25em 0;
-    line-height: 1.2;    
+    line-height: 1.2;
     // Remove the top margin on any heading that immediately follows another
     & + h1,
     & + h2,
@@ -32,23 +32,23 @@ h1 {
     font-size: $font-size-xxxlarge;
 }
 
-h2 { 
+h2 {
     font-size: $font-size-xxlarge;
 }
 
-h3 { 
+h3 {
     font-size: $font-size-xlarge;
 }
 
-h4 { 
+h4 {
     font-size: $font-size-large;
 }
 
-h5 { 
+h5 {
     font-size: $font-size-medium;
 }
 
-h6 { 
+h6 {
     font-size: $font-size-normal;
 }
 
@@ -100,7 +100,7 @@ em, .italic, i {
 
 // Highlighted
 mark {
-    background: color(tertiary);
+    background: yellow;
     padding: .15em .3em;
     display: inline-block;
 }
@@ -122,7 +122,7 @@ samp {
 
 // Abbreviation
 abbr {
-    border-bottom: $border-width dotted color(text);
+    border-bottom: $border-width dotted $color-text;
     cursor: help;
 }
 
@@ -159,19 +159,19 @@ kbd {
     background-color: #222;
     color: white;
 }
-    
+
 // Code
 :not(pre)>code {
     @extend %inline-code;
     border: $borders;
 }
-    
+
 // Variable
 var {
     @extend %inline-code;
     font-style: italic;
     color: white;
-    background-color: color(secondary);
+    background-color: $color-secondary;
 }
 
 // Subscript and Superscript

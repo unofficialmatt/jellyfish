@@ -227,17 +227,17 @@ h1 {
 <pre>
 a {
     @include smooth(color);
-    color: color(primary);
+    color: $color-primary;
     text-decoration: underline;
     &:visited {
-        color: color(secondary);
+        color: $color-secondary;
         text-decoration: none;
     }
     &:hover {
-        color: color(tertiary);
+        color: $color-tertiary;
     }
     &:focus, &:active {
-        color: color(tertiary);
+        color: $color-tertiary;
     }
 }<label>_global.scss</label>
 </pre>
@@ -983,8 +983,8 @@ $colors: (
     primary: #cc0000;
 );
 body {
- color: color(text);
- background: color(primary);
+ color: $color-text;
+ background: $color-primary;
 }</pre>
                         <h4>Global smooth() transition</h4>
                         <p>Use the mixin <code>@include smooth(<span class="variable-ref">$property</span>)</code> to apply a global transition for a consistent UI feel. By default, the transition is <span class="italic">0.3s ease</span> however this can be changed in <span class="scss-ref">_mixins.scss</span>.</p>

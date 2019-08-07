@@ -19,12 +19,12 @@ html {
 
 body {
     font: {
-        family: $font-primary;
+        family: $font-body;
         size: 1rem;
     }
     line-height: $base-line-height;
-    color: color(text);
-    background-color: color(background);
+    color: $color-text;
+    background-color: $color-background;
 
     @each $point, $i in $breakpoints {
         // set base font size and line height for each specified media query
@@ -44,14 +44,14 @@ a {
     @include smooth(color);
     text-decoration: underline;
     &, &:link {
-        color: color(primary);
+        color: $color-primary;
     }
     &:visited {
-        color: color(secondary);
+        color: $color-secondary;
         text-decoration: none;
     }
     &:hover, &:active, &:focus {
-        color: color(tertiary);
+        color: $color-tertiary;
     }
 }
 
@@ -113,7 +113,7 @@ pre {
     @extend %code;
     padding: $element-padding;
     margin: 0 0 $element-margin 0;
-    background-color: color(background-alt);
+    background-color: $color-background-alt;
     border: $borders;
     line-height: 1.2;
 }
@@ -167,4 +167,9 @@ img {
         margin: $element-margin auto;
         display: block;
     }
+}
+
+// Highlighted text
+::selection {
+background: lighten($color-primary,40%);
 }

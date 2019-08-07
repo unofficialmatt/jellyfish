@@ -29,13 +29,13 @@ module.exports = function (grunt) {
                     },
                     {
                         src: ['node_modules/reset-css/sass/_reset.scss'],
-                        dest: '<%= globalConfig.build_dir %>/scss/vendor/_reset.scss'
+                        dest: '<%= globalConfig.build_dir %>/scss/jellyfish/vendor/_reset.scss'
                     },
                     {
                         expand: true,
                         cwd: 'node_modules/hamburgers/_sass/hamburgers',
                         src: ['**/*'],
-                        dest: '<%= globalConfig.build_dir %>/scss/vendor/hamburgers'
+                        dest: '<%= globalConfig.build_dir %>/scss/jellyfish/vendor/hamburgers'
                     }
             ],
             },
@@ -50,7 +50,7 @@ module.exports = function (grunt) {
             dist: {
                 files: [
                     {
-                        src: '<%= globalConfig.build_dir %>/scss/base.scss',
+                        src: '<%= globalConfig.build_dir %>/scss/compile.scss',
                         dest: '<%= globalConfig.dist_dir %>/css/style.css'
                     }
                 ]

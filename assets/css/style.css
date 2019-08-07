@@ -1,4 +1,27 @@
 @charset "UTF-8";
+/**
+ * USAGE: Uncomment any of the variables here to add site-specific overrides.
+ * It is not necessary to edit any of the files in /jellyfish
+ */
+/* Grid */
+/* Colours */
+/* Typefaces */
+/* Font Sizes */
+/* Global padding/margins */
+/* Global transition used in smooth() */
+/* Borders */
+/* Forms */
+/* Nav Bar */
+/* Hamburger Menu */
+/* @link https://github.com/jonsuh/hamburgers */
+/**
+ * JELLYFISH GRID SETTINGS
+ */
+/* Base Variables (used before breakpoints are applied) */
+/* Breakpoints */
+/**
+ * JELLYFISH GRID SETTINGS
+ */
 /* http://meyerweb.com/eric/tools/css/reset/
    v4.0 | 20180602
    License: none (public domain)
@@ -69,10 +92,10 @@ html {
   -moz-osx-font-smoothing: grayscale; }
 
 body {
-  font-family: "Nunito", "Arial", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
   line-height: 1.5;
-  color: #403F41;
+  color: #333333;
   background-color: #fff; }
   @media (min-width: 37.5em) {
     body {
@@ -83,12 +106,12 @@ a {
   transition: color 0.3s ease;
   text-decoration: underline; }
   a, a:link {
-    color: #7f4782; }
+    color: #3FB8AF; }
   a:visited {
-    color: #e2598b;
+    color: #DAD8A7;
     text-decoration: none; }
   a:hover, a:active, a:focus {
-    color: #fdd043; }
+    color: #FF9E9D; }
 
 p,
 table {
@@ -116,12 +139,12 @@ dl {
     font-weight: bold; }
 
 pre, samp, kbd, :not(pre) > code, var {
-  font-family: Consolas, monaco, monospace; }
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
 
 hr {
   height: 0;
   border: 0;
-  border-top: 1px solid #aaa;
+  border-top: 1px solid #d9dbdb;
   margin: 30px 0; }
 
 pre {
@@ -130,7 +153,7 @@ pre {
   padding: 20px;
   margin: 0 0 30px 0;
   background-color: #EBF2F2;
-  border: 1px solid #aaa;
+  border: 1px solid #d9dbdb;
   line-height: 1.2; }
 
 blockquote {
@@ -167,17 +190,20 @@ img {
     margin: 30px auto;
     display: block; } }
 
+::selection {
+  background: #d3f0ee; }
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   TYPOGRAPHY
   Contains typographic styles
-  for common elements as well 
+  for common elements as well
   as semantic elements eg. code,
   mark, small, var, strong, etc
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 h1,
 .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  font-family: "Poppins", "Arial", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   margin: 1em 0 .25em 0;
   line-height: 1.2; }
   h1 + h1, .h1 + h1, h1 + .h1, .h1 + .h1,
@@ -381,7 +407,7 @@ em, .italic, i {
   font-style: italic; }
 
 mark {
-  background: #fdd043;
+  background: yellow;
   padding: .15em .3em;
   display: inline-block; }
 
@@ -392,7 +418,7 @@ del {
   text-decoration: line-through; }
 
 abbr {
-  border-bottom: 1px dotted #403F41;
+  border-bottom: 1px dotted #333333;
   cursor: help; }
 
 dfn {
@@ -418,12 +444,12 @@ kbd {
   color: white; }
 
 :not(pre) > code {
-  border: 1px solid #aaa; }
+  border: 1px solid #d9dbdb; }
 
 var {
   font-style: italic;
   color: white;
-  background-color: #e2598b; }
+  background-color: #DAD8A7; }
 
 sub, sup {
   font-size: 0.6em;
@@ -538,6 +564,43 @@ sup {
   left: 0;
   width: 100%;
   height: 100%; }
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+  /* Many screen reader and browser combinations announce broken words as they would appear visually. */ }
+  .screen-reader-text:focus {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    clip-path: none;
+    color: #3FB8AF;
+    display: block;
+    font-size: .8em;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+    /* Above WP toolbar. */ }
+
+/* Do not show the outline on the skip link target. */
+#content[tabindex="-1"]:focus {
+  outline: 0; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   GRID
@@ -1307,8 +1370,8 @@ sup {
   z-index: 10000;
   background: white;
   font-size: 12px;
-  color: #aaa;
-  font-family: "Poppins", "Arial", sans-serif; }
+  color: #555555;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
   @media (min-width: 37.5em) {
     .jf-debug::before {
       content: "md"; } }
@@ -1349,8 +1412,8 @@ sup {
   text-decoration: none;
   font-size: 1rem;
   line-height: 1.3;
-  border: 1px solid #7f4782;
-  background-color: #7f4782;
+  border: 1px solid #3FB8AF;
+  background-color: #3FB8AF;
   font-size: 1em;
   color: white;
   padding: .75em 1.5em;
@@ -1361,29 +1424,29 @@ sup {
     border: 0;
     padding: 0; }
   .button:hover, .button:focus, .button:active, a.button:hover, a.button:focus, a.button:active, button:hover, button:focus, button:active, [type=submit]:hover, [type=submit]:focus, [type=submit]:active, [type=reset]:hover, [type=reset]:focus, [type=reset]:active, [type=button]:hover, [type=button]:focus, [type=button]:active {
-    background-color: #5f3561;
-    border-color: #5f3561; }
+    background-color: #32928b;
+    border-color: #32928b; }
   .button:focus, a.button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
     outline: 0;
-    box-shadow: 0px 0px 1px 3px #bc8abf; }
+    box-shadow: 0px 0px 1px 3px #9adcd8; }
 
 .button__secondary, [type=submit], a.button__secondary, a[type=submit] {
-  background-color: #e2598b;
-  border-color: #e2598b; }
+  background-color: #DAD8A7;
+  border-color: #DAD8A7; }
   .button__secondary:hover, :hover[type=submit], .button__secondary:focus, :focus[type=submit], .button__secondary:active, :active[type=submit], a.button__secondary:hover, a:hover[type=submit], a.button__secondary:focus, a:focus[type=submit], a.button__secondary:active, a:active[type=submit] {
-    background-color: #da2e6d;
-    border-color: #da2e6d; }
+    background-color: #cbc883;
+    border-color: #cbc883; }
   .button__secondary:focus, :focus[type=submit], a.button__secondary:focus, a:focus[type=submit] {
-    box-shadow: 0px 0px 1px 3px #ed9ab9; }
+    box-shadow: 0px 0px 1px 3px #f1f0dd; }
 
 .button__outline, [type=reset], a.button__outline, a[type=reset] {
   background: transparent;
   color: inherit;
-  border-color: #7f4782; }
+  border-color: #3FB8AF; }
   .button__outline:hover, :hover[type=reset], .button__outline:focus, :focus[type=reset], .button__outline:active, :active[type=reset], a.button__outline:hover, a:hover[type=reset], a.button__outline:focus, a:focus[type=reset], a.button__outline:active, a:active[type=reset] {
     background-color: transparent;
-    border-color: #5f3561;
-    color: #7f4782; }
+    border-color: #32928b;
+    color: #3FB8AF; }
 
 .button__ghost, a.button__ghost {
   background: transparent;
@@ -1391,8 +1454,8 @@ sup {
   border-color: transparent; }
   .button__ghost:hover, .button__ghost:focus, .button__ghost:active, a.button__ghost:hover, a.button__ghost:focus, a.button__ghost:active {
     background-color: transparent;
-    border-color: #5f3561;
-    color: #7f4782; }
+    border-color: #32928b;
+    color: #3FB8AF; }
 
 .button__full, a.button__full {
   display: block;
@@ -1440,7 +1503,7 @@ table {
   max-width: 100%; }
 
 td {
-  border-bottom: 1px solid #aaa; }
+  border-bottom: 1px solid #d9dbdb; }
 
 th {
   font-weight: bold; }
@@ -1451,11 +1514,11 @@ td {
   padding: 5px; }
 
 thead th {
-  border-bottom: 2px solid #aaa;
+  border-bottom: 2px solid #d9dbdb;
   background-color: #EBF2F2; }
 
 tfoot th {
-  border-top: 2px solid #aaa; }
+  border-top: 2px solid #d9dbdb; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   FORMS
@@ -1463,7 +1526,7 @@ tfoot th {
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 [type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea {
   display: block;
-  border: 1px solid #aaa;
+  border: 1px solid #d9dbdb;
   border-radius: 4px;
   padding: 10px;
   outline: none;
@@ -1473,11 +1536,11 @@ tfoot th {
   line-height: 1; }
 
 [type=color]:hover, [type=date]:hover, [type=datetime]:hover, [type=datetime-local]:hover, [type=email]:hover, [type=month]:hover, [type=number]:hover, [type=password]:hover, [type=search]:hover, [type=tel]:hover, [type=text]:hover, [type=url]:hover, [type=week]:hover, [type=time]:hover, select:hover, textarea:hover {
-  border-color: #919090; }
+  border-color: #bfc2c2; }
 
 [type=color]:focus, [type=color]:active, [type=date]:focus, [type=date]:active, [type=datetime]:focus, [type=datetime]:active, [type=datetime-local]:focus, [type=datetime-local]:active, [type=email]:focus, [type=email]:active, [type=month]:focus, [type=month]:active, [type=number]:focus, [type=number]:active, [type=password]:focus, [type=password]:active, [type=search]:focus, [type=search]:active, [type=tel]:focus, [type=tel]:active, [type=text]:focus, [type=text]:active, [type=url]:focus, [type=url]:active, [type=week]:focus, [type=week]:active, [type=time]:focus, [type=time]:active, select:focus, select:active, textarea:focus, textarea:active {
-  border-color: #7f4782;
-  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1), 0 0 3px 1px #c69ac8; }
+  border-color: #3FB8AF;
+  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1), 0 0 3px 1px #ade3df; }
 
 textarea {
   overflow: auto;
@@ -1490,7 +1553,7 @@ label {
   margin: 15px 0 5px; }
 
 fieldset {
-  border: 1px solid #aaa;
+  border: 1px solid #d9dbdb;
   border-radius: 4px;
   padding: 20px;
   margin: 30px 0; }
@@ -1504,7 +1567,7 @@ legend {
   width: 100%; }
 
 select {
-  color: #403F41;
+  color: #333333;
   -webkit-appearance: none;
   -moz-appearance: none;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAJCAYAAAA/33wPAAAAvklEQVQoFY2QMQqEMBBFv7ERa/EMXkGw11K8QbDXzuN4BHv7QO6ifUgj7v4UAdlVM8Uwf+b9YZJISnlqrfEUZVlinucnBGKaJgghbiHOyLyFKIoCbdvecpyReYvo/Ma2bajrGtbaC58kCdZ1RZ7nl/4/4d5EsO/7nzl7IUtodBexMMagaRrs+06JLMvcNWmaOv2W/C/TMAyD58dxROgSmvxFFMdxoOs6lliWBXEcuzokXRbRoJRyvqqqQvye+QDMDz1D6yuj9wAAAABJRU5ErkJggg==) right center no-repeat;
@@ -1517,7 +1580,7 @@ select::-ms-expand {
 ::-moz-placeholder,
 :-moz-placeholder,
 :-ms-input-placeholder {
-  color: #aaa; }
+  color: #d9dbdb; }
 
 /*!
  * Hamburgers
@@ -1599,7 +1662,7 @@ select::-ms-expand {
   and responsive navbar
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .nav-bar {
-  background: #7f4782;
+  background: #3FB8AF;
   width: 100%;
   display: none; }
   @media (max-width: 37.4375em) {
@@ -1617,10 +1680,10 @@ select::-ms-expand {
     transition: color 0.3s ease, background-color 0.3s ease; }
     .nav-bar a:not(.button), .nav-bar a:not(.button):visited {
       color: white;
-      background-color: gold; }
+      background-color: #3FB8AF; }
     .nav-bar a:not(.button):hover, .nav-bar a:not(.button):focus, .nav-bar a:not(.button):active {
       color: white;
-      background-color: #ffdf33; }
+      background-color: #61c9c1; }
   .nav-bar a.button {
     margin: 10px 10px; }
   .nav-bar input {
@@ -1629,7 +1692,7 @@ select::-ms-expand {
     min-width: 180px;
     display: inline-block; }
   .nav-bar .this-page a {
-    color: #e2cce3 !important; }
+    color: #e6f6f5 !important; }
   .nav-bar ul {
     list-style-type: none;
     margin: 0;
@@ -1710,8 +1773,8 @@ select::-ms-expand {
       justify-content: flex-end; } }
 
 .hamburger {
-  background-color: #7f4782;
-  border: 1px solid #7f4782;
+  background-color: #3FB8AF;
+  border: 1px solid #3FB8AF;
   border-radius: 0px;
   transition: background-color 0.3s ease, border 0.3s ease;
   width: 100%;
@@ -1719,8 +1782,8 @@ select::-ms-expand {
   text-align: right;
   display: flex; }
   .hamburger:hover, .hamburger:focus, .hamburger:active {
-    background-color: #9f59a3;
-    border: 1px solid #9f59a3; }
+    background-color: #61c9c1;
+    border: 1px solid #61c9c1; }
   .hamburger:focus {
     outline: 0;
     box-shadow: none !important; }

@@ -1,5 +1,4 @@
 // Configuration
-@charset "UTF-8";
 @import "config/mixins";
 @import "config/settings";
 
@@ -10,6 +9,7 @@
 @import "components/scaffolding";
 @import "components/typography";
 @import "components/helpers";
+@import "components/accessibility";
 @import "components/grid";
 @import "components/buttons";
 @import "components/icons";
@@ -18,15 +18,9 @@
 @import "vendor/hamburgers/hamburgers";
 @import "components/nav";
 
-
 // CMS Specific Classes
-//@import "components/accessibility";
 //@import "components/wordpress";
 
-// Demo
-@import "demo";
-
-// TODO: Look at the way primitive grid uses  !default - this can be used to keep the Jellyfish config the same, and you could do an override one for each project
 // TODO: Compare with foundation, bootstrap, material, skeleton - Take some of the flex align stuff from these
 // TODO: Last-child margin 0 on .col?
 // NOTE: IGNORE THE DOCS FOR NOW - THEY NEED SOME WORK!

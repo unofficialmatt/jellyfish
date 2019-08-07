@@ -26,7 +26,7 @@ td {
 
 thead th {
     border-bottom: 2px solid $border-color;
-    background-color: color(background-alt);
+    background-color: $color-background-alt;
 }
 
 tfoot th {

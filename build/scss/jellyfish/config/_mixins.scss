@@ -2,22 +2,11 @@
 @function em($pixels) {
     @return #{$pixels/$font-size-browser}em;
 }
-// Vertically align any element in a known height parent
-@mixin vertical-align {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
+
 @function bp-query($point, $var) {
     // Function to query our breakpoint map
     // Accepts args $breakpoint-size, $variable
     @return map-get(map-get($breakpoints, $point), $var);
-}
-
-@function color($color) {
-    // Function to query our color map
-    // Accepts args $color
-    @return map-get($colors, $color);
 }
 
 // Media queries check the breakpoint map to see if a given string exists, else they convert a given pixel value to em.

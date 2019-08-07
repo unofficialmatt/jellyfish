@@ -1,0 +1,144 @@
+/**
+ * USAGE: Uncomment any of the variables here to add site-specific overrides.
+ * It is not necessary to edit any of the files in /jellyfish
+ */
+
+/* Grid */
+//$cols: 12;
+//$has_push_pull: true;
+//$has_offset: true;
+//$debug-mode-on: false;
+
+/* Colours */
+//$color-text: #403F41;
+//$color-text-alt: #d9dbdb !default;
+//$color-background: #fff;
+//$color-background-alt: #EBF2F2;
+//$color-primary: #7f4782;
+//$color-secondary: #e2598b;
+//$color-tertiary: #fdd043;
+
+/* Typefaces */
+//$font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+//$font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+//$font-code: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+//$font-body: $font-primary;
+//$font-headings: $font-secondary;
+
+/* Font Sizes */
+//$font-size-browser: 16px;
+//$font-size-xsmall: 0.6em;
+//$font-size-small: 0.8em;
+//$font-size-normal: 1em;
+//$font-size-medium:1.5em;
+//$font-size-large: 1.75em;
+//$font-size-xlarge: 2em;
+//$font-size-xxlarge: 2.5em;
+//$font-size-xxxlarge: 3em;
+
+/* Global padding/margins */
+//$element-padding: 20px;
+//$element-margin: 30px;
+//$block-padding: 70px;
+
+/* Global transition used in smooth() */
+//$global-transition: 0.3s ease;
+
+/* Borders */
+//$border-width: 1px;
+//$border-style: solid;
+//$border-color: $color-text-alt;
+//$border-radius: 4px;
+//$borders: $border-width $border-style $border-color;
+
+/* Forms */
+//$button-border-radius: 6px;
+//$input-background: transparent;
+//$placeholder: $color-text-alt;
+//$form-border-hover: darken($border-color, 10%);
+//$form-border-focus: $color-primary;
+
+/* Nav Bar */
+//$navbar-bg-color: $color-primary;
+//$navbar-link-bg-color: $color-primary;
+//$navbar-link-bg-color-hover: lighten($navbar-link-bg-color, 10%);
+//$navbar-link-color: white;
+//$navbar-link-color-hover: lighten($navbar-link-bg-color, 60%);
+//$navbar-link-padding-x: 10px;
+//$navbar-link-padding-y: 10px;
+//$navbar-link-padding-expanded-x: 10px;
+//$navbar-link-padding-expanded-y: 20px;
+//$navbar-font-size: 0.9em;
+//$navbar-font-weight: bold;
+//$navbar-text-transform: uppercase;
+//$navbar-submenu-text-transform: capitalize;
+//$navbar-submenu-min-width: 180px;
+//$navbar-submenu-max-width: 220px;
+//$navbar-dropdown-speed: .6s;
+
+/* Hamburger Menu */
+/* @link https://github.com/jonsuh/hamburgers */
+//$primary-hamburger-type: minus;
+//$hamburger-padding-x: 10px;
+//$hamburger-padding-y: 10px;
+//$hamburger-layer-width: 25px;
+//$hamburger-layer-height: 3px;
+//$hamburger-layer-spacing: 5px;
+//$hamburger-background-color: $color-primary;
+//$hamburger-background-color-hover: lighten($color-primary, 10%);
+//$hamburger-border: $border-width $border-style $hamburger-background-color;
+//$hamburger-border-hover: $border-width $border-style $hamburger-background-color-hover;
+//$hamburger-border-radius: 0px;
+//$hamburger-layer-color: white;
+//$hamburger-layer-border-radius: 3px;
+//$hamburger-hover-opacity: 1;
+//$hamburger-active-layer-color : $hamburger-layer-color;
+//$hamburger-active-hover-opacity: $hamburger-hover-opacity;
+
+/**
+ * JELLYFISH GRID SETTINGS
+ */
+
+/* Base Variables (used before breakpoints are applied) */
+//$base-col-name: sm;
+//$base-line-height: 1.5;
+//$base-container-gutter: 15px; // define in px
+//$base-col-gutter: 10px; // define in px
+
+/* Breakpoints */
+//$nav-expands: 600px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
+
+$breakpoints: (
+    /**
+     * Breakpoints must be defined here
+     * Note: Comment out or remove a whole size to prevent it being iterated, or individual elements to inherit from the previously defined point.
+     * The shorthand names are used in column classes.
+     * Our $base-col-name above applies to all columns below the first breakpoint set here (ie. is the default).
+     * Breakpoints are converted to em values through breakpoint mixin
+     * Anything else in px is converted to rem via grunt
+     * col-gutter is !required
+    */
+    md: (
+        breakpoint: 600px,
+        container-width: 96%,
+        container-gutter: 50px,
+        col-gutter: 20px,
+        base-font-size: 16px,
+        base-line-height: 1.48em
+        ),
+    lg: (
+        breakpoint: 900px,
+        container-width: 880px,
+        col-gutter: 30px,
+        ),
+    xl: (
+        breakpoint: 1200px,
+        container-width: 1080px,
+        col-gutter: 30px,
+        ),
+    xxl: (
+        breakpoint: 1600px,
+        container-width: 1480px,
+        col-gutter: 35px,
+        )
+);

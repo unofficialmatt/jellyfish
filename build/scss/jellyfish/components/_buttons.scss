@@ -15,8 +15,8 @@
     text-decoration: none;
     font-size: 1rem;
     line-height: 1.3;
-    border: 1px solid color(primary);
-    background-color: color(primary);
+    border: 1px solid $color-primary;
+    background-color: $color-primary;
     font-size: $font-size-normal;
     color: white;
     padding: .75em 1.5em;
@@ -28,35 +28,35 @@
         padding: 0;
     }
     &:hover, &:focus, &:active {
-        background-color: darken(color(primary), 10%);
-        border-color: darken(color(primary), 10%);
+        background-color: darken($color-primary, 10%);
+        border-color: darken($color-primary, 10%);
     }
     &:focus {
         outline: 0;
-        box-shadow: 0px 0px 1px 3px lighten(color(primary), 25%);
+        box-shadow: 0px 0px 1px 3px lighten($color-primary, 25%);
     }
 }
 
 .button, a.button {
     &__secondary {
-        background-color: color(secondary);
-        border-color: color(secondary);
+        background-color: $color-secondary;
+        border-color: $color-secondary;
         &:hover, &:focus, &:active {
-            background-color: darken(color(secondary), 10%);
-            border-color: darken(color(secondary), 10%);
+            background-color: darken($color-secondary, 10%);
+            border-color: darken($color-secondary, 10%);
         }
         &:focus {
-            box-shadow: 0px 0px 1px 3px lighten(color(secondary), 15%);
+            box-shadow: 0px 0px 1px 3px lighten($color-secondary, 15%);
         }
     }
     &__outline {
         background: transparent;
         color: inherit;
-        border-color: color(primary);
+        border-color: $color-primary;
         &:hover, &:focus, &:active {
             background-color: transparent;
-            border-color: darken(color(primary), 10%);
-            color: color(primary);
+            border-color: darken($color-primary, 10%);
+            color: $color-primary;
         }
     }
     &__ghost {
@@ -65,8 +65,8 @@
         border-color: transparent;
         &:hover, &:focus, &:active {
             background-color: transparent;
-            border-color: darken(color(primary), 10%);
-            color: color(primary);
+            border-color: darken($color-primary, 10%);
+            color: $color-primary;
         }
     }
     &__full {
