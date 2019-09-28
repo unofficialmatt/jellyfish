@@ -18,14 +18,14 @@ h6 {
     margin: 1em 0 .25em 0;
     line-height: 1.2;
     // Remove the top margin on any heading that immediately follows another
-    & + h1,
-    & + h2,
-    & + h3,
-    & + h4,
-    & + h5,
-    & + h6 {
-        margin-top: 0;
-    }
+    //& + h1,
+    //& + h2,
+    //& + h3,
+    //& + h4,
+    //& + h5,
+    //& + h6 {
+    //    margin-top: 0;
+    //}
 }
 
 h1 {
@@ -96,6 +96,9 @@ strong, .bold, b {
 }
 em, .italic, i {
     font-style: italic;
+}
+.standfirst {
+    font-size: $font-size-medium;
 }
 
 // Highlighted
