@@ -27,8 +27,7 @@
    License: none (public domain)
 */
 html, body, div, span, applet, object, iframe,
-h1,
-.h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, blockquote, pre,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small,
@@ -200,57 +199,28 @@ img {
   as semantic elements eg. code,
   mark, small, var, strong, etc
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-h1,
-.h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  margin: 1em 0 .25em 0;
+  margin: 0 0 .25em 0;
   line-height: 1.2; }
 
-
-h1,
-.h1 {
+h1 {
   font-size: 3em; }
 
-h2, .h2 {
+h2 {
   font-size: 2.5em; }
 
-h3, .h3 {
+h3 {
   font-size: 2em; }
 
-h4, .h4 {
+h4 {
   font-size: 1.75em; }
 
-h5, .h5 {
+h5 {
   font-size: 1.5em; }
 
-h6, .h6 {
+h6 {
   font-size: 1em; }
-
-.row > h1:first-child, .row > .h1:first-child,
-.row > h2:first-child,
-.row > .h2:first-child,
-.row > h3:first-child,
-.row > .h3:first-child,
-.row > h4:first-child,
-.row > .h4:first-child,
-.row > h5:first-child,
-.row > .h5:first-child,
-.row > h6:first-child,
-.row > .h6:first-child,
-.col > h1:first-child,
-.col > .h1:first-child,
-.col > h2:first-child,
-.col > .h2:first-child,
-.col > h3:first-child,
-.col > .h3:first-child,
-.col > h4:first-child,
-.col > .h4:first-child,
-.col > h5:first-child,
-.col > .h5:first-child,
-.col > h6:first-child,
-.col > .h6:first-child {
-  margin-top: 0; }
 
 /* TEXT TRANSFORM */
 
@@ -412,10 +382,6 @@ sup {
   left: 50%;
   padding: 0; }
 
-.padded {
-  padding-top: 70px;
-  padding-bottom: 70px; }
-
 .embed-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -436,7 +402,7 @@ sup {
 .two-column, .three-column, .four-column {
   column-count: 1;
   column-gap: 10px; }
-  .two-column h1, .three-column h1, .four-column h1, .two-column .h1, .three-column .h1, .four-column .h1, .two-column h2, .three-column h2, .four-column h2, .two-column .h2, .three-column .h2, .four-column .h2, .two-column h3, .three-column h3, .four-column h3, .two-column .h3, .three-column .h3, .four-column .h3, .two-column h4, .three-column h4, .four-column h4, .two-column .h4, .three-column .h4, .four-column .h4, .two-column h5, .three-column h5, .four-column h5, .two-column .h5, .three-column .h5, .four-column .h5, .two-column h6, .three-column h6, .four-column h6, .two-column .h6, .three-column .h6, .four-column .h6 {
+  .two-column h1, .three-column h1, .four-column h1, .two-column h2, .three-column h2, .four-column h2, .two-column h3, .three-column h3, .four-column h3, .two-column h4, .three-column h4, .four-column h4, .two-column h5, .three-column h5, .four-column h5, .two-column h6, .three-column h6, .four-column h6 {
     break-inside: avoid; }
   @media (min-width: 37.5em) {
     .two-column, .three-column, .four-column {
@@ -1721,7 +1687,7 @@ select::-ms-expand {
       background: #fff; }
   .docs table {
     margin: 20px 0; }
-    .docs table h1, .docs table .h1, .docs table h2, .docs table .h2, .docs table h3, .docs table .h3, .docs table h4, .docs table .h4, .docs table h5, .docs table .h5, .docs table h6, .docs table .h6 {
+    .docs table h1, .docs table h2, .docs table h3, .docs table h4, .docs table h5, .docs table h6 {
       margin: 0; }
   .docs pre {
     width: auto;

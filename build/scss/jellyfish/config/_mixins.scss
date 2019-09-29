@@ -54,3 +54,12 @@
     }
     transition: $result;
 }
+
+// Allows us to use #{headings(1,6)} to apply css to all headings
+@function headings($from:1, $to:6) {
+  @if $from == $to {
+      @return 'h#{$from}';
+  } @else {
+      @return 'h#{$from},' + headings($from+1, $to);
+  }
+}

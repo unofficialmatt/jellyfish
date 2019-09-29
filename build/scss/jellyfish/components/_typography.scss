@@ -8,24 +8,10 @@
 
 // Headings
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+#{headings()} {
     font-family: $font-headings;
-    margin: 1em 0 .25em 0;
+    margin: 0 0 .25em 0;
     line-height: 1.2;
-    // Remove the top margin on any heading that immediately follows another
-    //& + h1,
-    //& + h2,
-    //& + h3,
-    //& + h4,
-    //& + h5,
-    //& + h6 {
-    //    margin-top: 0;
-    //}
 }
 
 h1 {
@@ -50,40 +36,6 @@ h5 {
 
 h6 {
     font-size: $font-size-normal;
-}
-
-// Extend our headings with semantic classes
-.h1 {
-    @extend h1;
-}
-.h2 {
-    @extend h2;
-}
-.h3 {
-    @extend h3;
-}
-.h4 {
-    @extend h4;
-}
-.h5 {
-    @extend h5;
-}
-.h6 {
-    @extend h6;
-}
-
-// Reset the top margin on first header in a .row or .col
-
-.row >,
-.col > {
-    & h1:first-child,
-    & h2:first-child,
-    & h3:first-child,
-    & h4:first-child,
-    & h5:first-child,
-    & h6:first-child {
-        margin-top: 0;
-    }
 }
 
 /* TEXT TRANSFORM */

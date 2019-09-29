@@ -13,6 +13,7 @@
     "autoprefixer": "^9.4.9",
     "cssnano": "^4.1.10",
     "grunt": "^1.0.4",
+    "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",

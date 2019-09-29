@@ -140,26 +140,12 @@ module.exports = function (grunt) {
                 }
             }
         },
-
-        express: {
-            // go to http://localhost:9000 for live reloading
-            all: {
-                options: {
-                    port: 9000,
-                    hostname: 'localhost',
-                    bases: ['.'],
-                    livereload: true
-                }
-            }
-        },
         watch: {
-
             // rerun $ grunt when the Gruntfile is edited
             gruntfile: {
                 files: ['Gruntfile.js'],
                 tasks: ['default'],
                 options: {
-                    livereload: true,
                     event: ['changed', 'added', 'deleted']
                 }
             },
@@ -167,7 +153,6 @@ module.exports = function (grunt) {
             // run 'sass' and 'postcss' tasks when any scss file is edited
             sass: {
                 options: {
-                    livereload: true,
                     event: ['changed', 'added', 'deleted']
                 },
                 files: ['<%= globalConfig.build_dir %>/scss/**/*.scss'],
@@ -176,7 +161,6 @@ module.exports = function (grunt) {
 
             concat_js: {
                 options: {
-                    livereload: true
                 },
                 files: ['<%= globalConfig.build_dir %>/js/**/*.js'],
                 tasks: ['concat', 'uglify']
@@ -184,7 +168,6 @@ module.exports = function (grunt) {
 
             images: {
                 options: {
-                    livereload: true,
                     event: ['changed', 'added', 'deleted']
                 },
                 files: ['<%= globalConfig.build_dir %>/img/**/*.{png,jpg,JPG,JPEG,jpeg,svg,gif}'],
@@ -193,13 +176,29 @@ module.exports = function (grunt) {
 
             spritesheet: {
                 options: {
-                    livereload: true,
                     event: ['changed', 'added', 'deleted']
                 },
                 files: ['<%= globalConfig.build_dir %>/icons/*.svg'],
                 tasks: ['clean:icons', 'imagemin:icons', 'svgstore']
             }
+        },
+        browserSync: {
+          bsFiles: {
+              src: [
+                  '<%= globalConfig.dist_dir %>/css/style.min.css',
+                  '<%= globalConfig.dist_dir %>/js/site.js',
+                  '<%= globalConfig.dist_dir %>/img/*',
+                  '*.php',
+                  '*.html'
+              ]
+          },
+          options: {
+            watchTask: true,
+            server: {
+                baseDir: "./"
+            }
         }
+      },
 
     });
 
@@ -212,12 +211,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-express');
     grunt.loadNpmTasks('grunt-svgstore');
+    grunt.loadNpmTasks('grunt-browser-sync');
 
     // Default Grunt task, runs via $ grunt
-    grunt.registerTask('default', ['copy:npm', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin', 'svgstore', 'express', 'watch']);
-    grunt.registerTask('server', ['express', 'watch']);
+    grunt.registerTask('default', ['copy:npm', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin', 'svgstore', 'browserSync', 'watch']);
+    grunt.registerTask('server', ['browserSync', 'watch']);
     grunt.registerTask('css', ['sass', 'postcss']);
 
 };
