@@ -1,26 +1,31 @@
 module.exports = function (grunt) {
 
-    // Set up global variables
+    // Sets up global variables which will be used throughout the Gruntfile
     var globalConfig = {
         build_dir: 'build',
         dist_dir: 'assets',
     };
 
+    // Use Node-sass as implementation option, rather than dart-sass
     const sass = require('node-sass');
 
-    // Project configuration
+    /**
+     * BEGIN PROJECT CONFIG
+     */
+
     grunt.initConfig({
 
+        // Import variables
         globalConfig: globalConfig,
 
-        // Remove old images and icons
+        // Task to remove old images and icons from the dist directory
         clean: {
             images: ['<%= globalConfig.dist_dir %>/img/*'],
             icons:  ['<%= globalConfig.dist_dir %>/icons/*']
         },
 
         copy: {
-            // Copy scripts from node_modules
+            // Task to copy required scripts from node_modules
             npm: {
                 files: [
                     {
@@ -41,7 +46,7 @@ module.exports = function (grunt) {
             },
         },
 
-        // Define which sass files should be compiled
+        // Task to run sass on defined scss file(s)
         sass: {
             options: {
                 implementation: sass,
@@ -57,14 +62,16 @@ module.exports = function (grunt) {
             }
         },
 
-        // Run postcss on files in dist_dir/css/ to apply autoprefix and minify
+        // Task to run postcss on files in <dist_dir>/css/ and apply additional processors
         postcss: {
             options: {
                 map: true,
                 processors: [
+                    // Add vendor prefixes
                     require('autoprefixer')({
                         browsers: 'last 5 versions'
-                    }), // add vendor prefixes
+                    }),
+                    // Convert all pixel sizes to rem based on a document default of 16px = 1rem
                     require('postcss-pxtorem')({
                         rootValue: 16,
                         unitPrecision: 2, // Decimal places
@@ -73,7 +80,8 @@ module.exports = function (grunt) {
                         mediaQuery: false, // Do not apply within media queries (we use em instead)
                         minPixelValue: 0
                     }),
-                    require('cssnano')() // minify the result
+                    // Minify the result
+                    require('cssnano')()
                 ]
             },
             dist: {
@@ -82,8 +90,9 @@ module.exports = function (grunt) {
             }
         },
 
-        // Compress images in build_dir/img/, output to dist_dir/img
+        // Tasks to compress and optimize images
         imagemin: {
+            // Runs on images saved in <build_dir>/img/ and outputs to <dist_dir>/img/
             images: {
                 files: [{
                     expand: true,
@@ -92,6 +101,7 @@ module.exports = function (grunt) {
                     dest: '<%= globalConfig.dist_dir %>/img/'
                 }]
             },
+            // Runs on svg files saved in <build_dir>/icons/ and outputs to <dist_dir>/icons/
             icons: {
                 files: [{
                     expand: true,
@@ -102,11 +112,11 @@ module.exports = function (grunt) {
             }
         },
 
-        // Put all of our minified svg icons into a sprite sheet
+        // Task to put all of the minified svg icons into a sprite sheet
         svgstore: {
             options: {
                 prefix: 'icon-', // This will prefix each ID
-                svg: { // will add and overide the the default xmlns="http://www.w3.org/2000/svg" attribute to the resulting SVG
+                svg: { // will add and override the the default xmlns="http://www.w3.org/2000/svg" attribute to the resulting SVG
                     viewBox : '0 0 100 100',
                     xmlns: 'http://www.w3.org/2000/svg'
                 }
@@ -118,18 +128,19 @@ module.exports = function (grunt) {
             },
         },
 
+        // Task to concatenate js files together separated by a line break
         concat: {
             options: {
                 sourceMap: false,
                 separator: ';\n'
             },
-
             site: {
                 src: ['<%= globalConfig.build_dir %>/js/vendor/*.js', '<%= globalConfig.build_dir %>/js/site/*.js'],
                 dest: '<%= globalConfig.dist_dir %>/js/site.js',
             },
         },
 
+        // Task to minify javascript file(s)
         uglify: {
             options: {
                 mangle: false
@@ -140,6 +151,8 @@ module.exports = function (grunt) {
                 }
             }
         },
+
+        // Task which watches files in the working directory for changes, and runs certain tasks on detection
         watch: {
             // rerun $ grunt when the Gruntfile is edited
             gruntfile: {
@@ -149,7 +162,6 @@ module.exports = function (grunt) {
                     event: ['changed', 'added', 'deleted']
                 }
             },
-
             // run 'sass' and 'postcss' tasks when any scss file is edited
             sass: {
                 options: {
@@ -158,14 +170,14 @@ module.exports = function (grunt) {
                 files: ['<%= globalConfig.build_dir %>/scss/**/*.scss'],
                 tasks: ['sass', 'postcss']
             },
-
+            // Concats and uglifies javascript files on change
             concat_js: {
                 options: {
                 },
                 files: ['<%= globalConfig.build_dir %>/js/**/*.js'],
                 tasks: ['concat', 'uglify']
             },
-
+            // Cleans and minifies images
             images: {
                 options: {
                     event: ['changed', 'added', 'deleted']
@@ -173,7 +185,7 @@ module.exports = function (grunt) {
                 files: ['<%= globalConfig.build_dir %>/img/**/*.{png,jpg,JPG,JPEG,jpeg,svg,gif}'],
                 tasks: ['clean:images', 'imagemin:images']
             },
-
+            // Cleans, minifies and creates a spritesheet of icons
             spritesheet: {
                 options: {
                     event: ['changed', 'added', 'deleted']
@@ -182,14 +194,15 @@ module.exports = function (grunt) {
                 tasks: ['clean:icons', 'imagemin:icons', 'svgstore']
             }
         },
+        // browserSync watches files defined in src, and on change reloads the browser
         browserSync: {
           bsFiles: {
               src: [
                   '<%= globalConfig.dist_dir %>/css/style.min.css',
                   '<%= globalConfig.dist_dir %>/js/site.js',
                   '<%= globalConfig.dist_dir %>/img/*',
-                  '*.php',
-                  '*.html'
+                  '**/*.php',
+                  '**/*.html'
               ]
           },
           options: {
@@ -214,9 +227,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-svgstore');
     grunt.loadNpmTasks('grunt-browser-sync');
 
-    // Default Grunt task, runs via $ grunt
-    grunt.registerTask('default', ['copy:npm', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin', 'svgstore', 'browserSync', 'watch']);
-    grunt.registerTask('server', ['browserSync', 'watch']);
-    grunt.registerTask('css', ['sass', 'postcss']);
+    // Grunt tasks
+    grunt.registerTask('default', ['browserSync', 'watch']);
+    grunt.registerTask('init', ['copy:npm', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin', 'svgstore', 'browserSync', 'watch']);
+    grunt.registerTask('build', ['copy:npm', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin', 'svgstore']);
 
 };
