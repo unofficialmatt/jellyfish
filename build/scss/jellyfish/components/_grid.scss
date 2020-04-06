@@ -5,6 +5,40 @@
   system.
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+$one_col: (100% / $cols);
+
+.jf-debug {
+  &::before {
+      content: "#{$base-col-name}";
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 10px;
+      z-index: 10000;
+      background: white;
+      font-size: 12px;
+      color: #555555;
+      font-family: $font-body;
+      @each $point,
+      $i in $breakpoints {
+          @include above($point) {
+              content: "#{$point}";
+          }
+      }
+  }
+  .col {
+      box-shadow: 0 1px 3px 1px rgba(#08f7fe, .7) !important;
+  }
+  .row {
+      box-shadow: 0 1px 3px 1px rgba(#f5d300, .8) !important;
+      background: repeating-linear-gradient( to right, rgba(220, 220, 220, 0.4), rgba(220, 220, 220, 0.4) $one-col, rgba(245, 245, 245, 0.8) $one-col, rgba(245, 245, 245, 0.8) $one-col*2) !important;
+      background-origin: content-box;
+      .row {
+          background: none !important; // Removes from nested rows
+      }
+  }
+}
+
 .container {
     margin: 0 auto;
     width: 100%;
@@ -18,7 +52,6 @@
     margin-left: -.5*$base-col-gutter;
     margin-right: -.5*$base-col-gutter;
 }
-$one_col: (100% / $cols);
 .col {
     width: 100%;
     position: relative;
@@ -44,13 +77,9 @@ $one_col: (100% / $cols);
         max-width: ($one_col * $i);
         flex: 0 0 ($one_col * $i); // Define flex properties to fix the width of this col
     }
-    @if $has_push_pull {
-        $diff: 100% - ($one_col * $i);
-        .push-#{$base-col-name}-#{$cols - $i} {
-            left: $diff;
-        }
-        .pull-#{$base-col-name}-#{$cols - $i} {
-            right: $diff;
+    @if $has_ordering {
+        .order-#{$base-col-name}-#{$cols} {
+          order: $cols;
         }
     }
     @if $has_offset {
@@ -102,13 +131,12 @@ $i in $breakpoints {
                 max-width: ($one_col * $i);
                 flex: 0 0 ($one_col * $i); // Define flex properties to fix the width of this col
             }
-            @if $has_push_pull {
-                $diff: 100% - ($one_col * $i);
-                .push-#{$point}-#{$cols - $i} {
-                    left: $diff;
+            @if $has_ordering {
+                .order-#{$point}-#{$i} {
+                  order: $i;
                 }
-                .pull-#{$point}-#{$cols - $i} {
-                    right: $diff;
+                .order-#{$point}-0 {
+                  order: unset;
                 }
             }
             @if $has_offset {
@@ -119,24 +147,20 @@ $i in $breakpoints {
             }
         }
         .jf-debug {
-            @if $has_push_pull {
-                [class*='pull-#{$point}'] {
-                    border: 2px solid red !important;
-                    border-left-width: 8px !important;
+            @if $has_ordering {
+                [class*='order-#{$point}'] {
+                  outline: 2px solid #fe53BB;
                 }
-                [class*='push-#{$point}'] {
-                    border: 2px solid red !important;
-                    border-right-width: 8px !important;
-                }
-                [class*='pull-#{$point}-0'],
-                [class*='push-#{$point}-0'] {
-                    border: 0; //Remove border on reset elements
+                [class*='order-#{$point}-0'] {
+                  outline: 0;
                 }
             }
             @if $has_offset {
                 [class*='offset-#{$point}'] {
-                    border: 2px solid red !important;
-                    border-right-width: 8px !important;
+                  outline: 2px solid #fe53BB;
+                }
+                [class*='offset-#{$point}-0'] {
+                  outline: 0;
                 }
             }
         }
@@ -156,38 +180,4 @@ $i in $breakpoints {
         }
     }
     $is_first: 0; // Reset to zero
-}
-.jf-debug {
-    &::before {
-        content: "#{$base-col-name}";
-        position: fixed;
-        top: 0;
-        left: 0;
-        padding: 10px;
-        z-index: 10000;
-        background: white;
-        font-size: 12px;
-        color: #555555;
-        font-family: $font-body;
-        @each $point,
-        $i in $breakpoints {
-            @include above($point) {
-                content: "#{$point}";
-            }
-        }
-    }
-    .col {
-        box-shadow: 0 1px 3px 1px rgba(#35fff0, .7) !important;
-    }
-    .row {
-        box-shadow: 0 1px 3px 1px rgba(#ff00ff, .7) !important;
-    }
-    $one_col: (100% / $cols);
-    .row {
-        background: repeating-linear-gradient( to right, rgba(250, 250, 250, 0.5), rgba(250, 250, 250, 0.5) $one-col, rgba(245, 245, 245, 0.5) $one-col, rgba(245, 245, 245, 0.5) $one-col*2) !important;
-        background-origin: content-box;
-        .row {
-            background: none;
-        }
-    }
 }
