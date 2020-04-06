@@ -100,7 +100,7 @@
  */
 
 /* Base Variables (used before breakpoints are applied) */
-//$base-col-name: sm;
+//$base-col-name: xs;
 //$base-line-height: 1.5;
 //$base-container-gutter: 15px; // define in px
 //$base-col-gutter: 10px; // define in px
@@ -118,7 +118,7 @@ $breakpoints: (
      * Anything else in px is converted to rem via grunt
      * col-gutter is !required
     */
-    md: (
+    sm: (
         breakpoint: 600px,
         container-width: 96%,
         container-gutter: 50px,
@@ -126,17 +126,17 @@ $breakpoints: (
         base-font-size: 16px,
         base-line-height: 1.48em
         ),
-    lg: (
+    md: (
         breakpoint: 900px,
         container-width: 880px,
         col-gutter: 30px,
         ),
-    xl: (
+    lg: (
         breakpoint: 1200px,
         container-width: 1080px,
         col-gutter: 30px,
         ),
-    xxl: (
+    xl: (
         breakpoint: 1600px,
         container-width: 1480px,
         col-gutter: 35px,

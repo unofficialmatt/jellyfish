@@ -25,10 +25,6 @@ $one_col: (100% / $cols);
     // give our cols l-r margin equal to half col gutter
     padding-left: .5*$base-col-gutter;
     padding-right: .5*$base-col-gutter;
-    @include above(md){
-        max-width: 100%;
-        flex: 1 1 0px; // By default, flex columns will equally fill any space on the row
-      }
 }
 
 // Remove column padding on collapsed rows/columns
@@ -44,8 +40,9 @@ $one_col: (100% / $cols);
 }
 // Iterate for our smallest defined column class ($base-col-name)
 @for $i from 1 through ($cols) {
-    .#{$base-col-name}-#{$i} {
-        width: ($one_col * $i);
+    .col.#{$base-col-name}-#{$i} {
+        max-width: ($one_col * $i);
+        flex: 0 0 ($one_col * $i); // Define flex properties to fix the width of this col
     }
     @if $has_push_pull {
         $diff: 100% - ($one_col * $i);
@@ -63,10 +60,13 @@ $one_col: (100% / $cols);
         }
     }
 }
+$is_first: 1; // Variable to check if first point in breakpoint
 @each $point,
 $i in $breakpoints {
+
     // for each breakpoint defined...
     @include above($point) {
+
         // if a breakpoint is found, set media query min-width
         .container {
             // give our container a width/max width, and padding to border content
@@ -92,9 +92,13 @@ $i in $breakpoints {
             // give our cols l-r margin equal to half col gutter
             padding-left: .5*bp-query($point, col-gutter);
             padding-right: .5*bp-query($point, col-gutter);
+            @if $is_first == 1 {
+            max-width: 100%;
+            flex: 1 1 0px; // Ensures that if there are no breakpoint settings defined, columns fill available space on the row
+            }
         }
         @for $i from 1 through ($cols) {
-            .#{$point}-#{$i} {
+            .col.#{$point}-#{$i} {
                 max-width: ($one_col * $i);
                 flex: 0 0 ($one_col * $i); // Define flex properties to fix the width of this col
             }
@@ -151,6 +155,7 @@ $i in $breakpoints {
             }
         }
     }
+    $is_first: 0; // Reset to zero
 }
 .jf-debug {
     &::before {
