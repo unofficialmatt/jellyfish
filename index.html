@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+
+  <title>Documentation | Jellyfish Grid by Matt Weet</title>
+  <meta name="description" content="Jellyfish is yet another lightweight and customisable css framework for rapidly designing websites with intuitive class naming conventions.">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="assets/css/style.min.css" media="all">
+
+  <!-- PRISM CDN to highlight code syntax -->
+  <link href="docs/prism.css" rel="stylesheet" />
+</head>
+
+<body class="docs">
+  <header class="docs-header">
+    <div class="container">
+      <div class="row">
+        <div class="col md-10 offset-md-1 xl-8 offset-xl-2">
+          <h1>Welcome to Jellyfish.</h1>
+          <p class="lead">Yet another lightweight SCSS framework to add to the <a href="https://github.com/search?q=css+frameworks rel="externa;">ever-growing list</a>.</p>
+          <p>Jellyfish has a few useful features that other frameworks don't have; primarily the ability to give breakpoint modifiers your own class names <em>(want to name them micro, medium, mammoth - go for it!</em> and the ability to define how many columns are in your grid <em>(want a 13 column grid? You go for it, tiger! I won't judge)</em>.</p>
+          <p>Aside from that, Jellyfish has all the usual styling, classes and modifiers you have come to expect in a modern flex-based CSS framework.</p>
+          <p>Jellyfish is powered by <a href="#project-init">Grunt.js</a> to compile scss and javascript, adding prefixers, concatenating and minifying in the process.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+
+      <aside class="col sm-3">
+        <div id="docs-nav">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a href="#boilerplate">HTML5 Boilerplate</a></li>
+            <li><a href="#grid">Grid</a></li>
+            <li><a href="#breakpoint-settings">Breakpoint Settings</a></li>
+            <li><a href="#typography">Typography</a></li>
+            <li><a href="#content">Content</a></li>
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#forms">Forms</a></li>
+            <li><a href="#tables">Tables</a></li>
+            <li><a href="#helpers">Helpers</a></li>
+            <li><a href="#debug">Debug</a></li>
+            <li><a href="#how-to-use">How to Use</a></li>
+            <li><a href="#configuration">Configuration</a></li>
+          </ul>
+        </div>
+      </aside><!-- SIDEBAR NAV -->
+
+      <main class="col sm-9">
+        <section class="docs-section" id="boilerplate">
+          <h2>HTML Boilerplate</h2>
+          <p>Begin your project with as basic <a href="https://en.wikipedia.org/wiki/HTML5" rel="external">HTML5</a> boilerplate that does the following:</p>
+          <ul>
+            <li>Sets the <a href="http://www.w3schools.com/tags/ref_language_codes.asp" target="_blank">default language</a> and <a href="https://en.wikipedia.org/wiki/UTF-8">character set</a>.</li>
+            <li>Uses the latest <a href="https://msdn.microsoft.com/en-us/library/jj676915(v=vs.85).aspx">Internet Explorer rendering mode</a>.</li>
+            <li>Defines the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag">width of the viewport</a> to enable responsiveness.</li>
+            <li>Includes links to the minified CSS file and minified javascript file.</li>
+          </ul>
+          <pre class="language-markup line-numbers"><code><!--
+            <!DOCTYPE html>
+            <html lang="en" dir="ltr">
+
+            <head>
+              <meta charset="utf-8">
+
+              <title></title>
+              <meta name="description" content="">
+
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta http-equiv="x-ua-compatible" content="ie=edge">
+              <link rel="stylesheet" href="assets/css/style.min.css" media="all">
+            </head>
+
+            <body>
+              <main>
+                <section class="container">
+                  <div class="row">
+                    <div class="col">
+                      <h1>Welcome to my site.</h1>
+                    </div>
+                  </div>
+                </section>
+              </main>
+              <script type="text/javascript" src="assets/js/site.min.js"></script>
+            </body>
+
+            </html>
+
+            --></code>
+            <label>boilerplate.html</label>
+          </pre>
+        </section><!-- #boilerplate -->
+        <section class="docs-section" id="grid">
+          <h2>Grid</h2>
+          <p>Jellyfish's grid system is built on <a href="https://flexboxfroggy.com/ rel="external">flexbox</a>. The grid consists of containers (<span class="css-ref">.container</span>), rows (<span class="css-ref">.row</span>) and columns (<span class="css-ref">.col </span>). These elements are defined in <span class="file-ref">/build/scss/jellyfish/components/_grid.scss</span>.</p>
+
+          <h4>A basic 2 column grid</h4>
+          <pre class="language-markup"><code><!--
+            <div class="container">
+              <div class="row">
+                <div class="col">1st column</div>
+                <div class="col">2nd column</div>
+              </div>
+            </div>
+            --></code>
+          </pre>
+          <div class="row">
+            <div class="col"><div class="boxed">1st column</div></div>
+            <div class="col"><div class="boxed">2nd column</div></div>
+          </div>
+
+          <h3>Containers</h3>
+          <p>Containers keep rows and columns - contained! By default, a row will fill all available space (ie 100% width). To restrict the width of the grid and keep elements neatly aligned, a <span class="css-ref">.container</span> can be used. The container is centered and can be customised at each breakpoint with the following settings: width, max-width, padding (left/right). See <a href="#breakpoint-settings">grid breakpoint settings</a> for information. A container with an additional class of <span class="css-ref">.full-width</span> will span 100% of available space.</p>
+
+          <h3>Rows</h3>
+          <p>Rows contain a number of <span class="css-ref">.col</span> elements, grouped horizontally. To preserve equal margins on the left and right, the only elements inside a <span class="css-ref">.row</span> should be <span class="css-ref">.col</span> elements.</p>
+
+          <h3>Columns</h3>
+          <section>
+            <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+
+            <p>Columns are equal-width by default, and expand to fill all available width.</p>
+            <pre class="language-markup"><code><!--
+              <div class="row">
+                <div class="col">1st column</div>
+              </div>
+              <div class="row">
+                <div class="col">2nd column</div>
+                <div class="col">2nd column</div>
+              </div2nd>
+              <div class="row">
+                <div class="col">3rd column</div>
+                <div class="col">2nd column</div>
+                <div class="col">3rd column</div>
+              </div>
+              --></code>
+            </pre>
+            <div class="row">
+              <div class="col"><div class="boxed">1st column</div></div>
+            </div>
+            <div class="row">
+              <div class="col"><div class="boxed">1st column</div></div>
+              <div class="col"><div class="boxed">2nd column</div></div>
+            </div>
+            <div class="row">
+              <div class="col"><div class="boxed">1st column</div></div>
+              <div class="col"><div class="boxed">2nd column</div></div>
+              <div class="col"><div class="boxed">3rd column</div></div>
+            </div>
+          </section><!-- Columns: Introduction -->
+          <section>
+            <h4>Making Columns Responsive</h4>
+            <p>To set the width of a column, use the breakpoint-based modifier classes to target different viewport widths. Breakpoints are explained in the <a href="#breakpoint-settings">breakpoint settings</a> section.</p>
+            <pre class="language-markup"><code><!--
+              <div class="row">
+                <div class="col sm-3">sm-3</div>
+                <div class="col sm-6">sm-6</div>
+                <div class="col sm-3">sm-3</div>
+              </div>
+              --></code>
+            </pre>
+            <div class="row">
+              <div class="col sm-3"><div class="boxed">sm-3</div></div>
+              <div class="col sm-6"><div class="boxed">sm-6</div></div>
+              <div class="col sm-3"><div class="boxed">sm-3</div></div>
+            </div>
+            <p>Additional columns wrap to a new line.</p>
+            <pre class="language-markup"><code><!--
+              <div class="row">
+                <div class="col sm-6">sm-6</div>
+                <div class="col sm-6">sm-6</div>
+                <div class="col sm-6">sm-6</div>
+              </div>
+              --></code>
+            </pre>
+            <div class="row">
+              <div class="col sm-6"><div class="boxed">sm-6</div></div>
+              <div class="col sm-6"><div class="boxed">sm-6</div></div>
+              <div class="col sm-6"><div class="boxed">sm-6</div></div>
+            </div>
+
+            <p>You can  mix and match column sizes over different breakpoints. <strong>Jellyfish is mobile first</strong>, and if no breakpoint number is defined, a column will inherit it's width from the previous breakpoint.</p>
+            <pre class="language-markup"><code><!--
+              <div class="row">
+                <div class="col sm-6 md-3 lg-7">sm-6 md-3 lg-7</div>
+                <div class="col sm-6 md-9 lg-5">sm-6 md-9 lg-5</div>
+              </div>
+              <div class="row">
+                <div class="col sm-6 lg-3">sm-6 lg-3</div>
+                <div class="col sm-6">sm-6</div>
+              </div>
+              --></code>
+            </pre>
+            <div class="row">
+              <div class="col sm-6 md-3 lg-7"><div class="boxed">sm-6 md-3 lg-7</div></div>
+              <div class="col sm-6 md-9 lg-5"><div class="boxed">sm-6 md-9 lg-5</div></div>
+            </div>
+            <div class="row">
+              <div class="col sm-6 lg-3"><div class="boxed">sm-6 lg-3</div></div>
+              <div class="col sm-6"><div class="boxed">sm-6</div></div>
+            </div>
+
+            <p>By default, on the smallest width screens, the columns in Jellyfish will expand to fill 100% width. You can override this behaviour on a per-column basis by using the breakpoint modifier with the name defined in the <span class="variable-ref">$base-col-name</span> variable (default xs).</p>
+            <pre class="language-markup"><code><!--
+              <div class="row">
+                <div class="col xs-6">xs-6</div>
+                <div class="col xs-6">xs-6</div>
+                <div class="col">default</div>
+              </div>
+              --></code>
+            </pre>
+            <div class="row">
+              <div class="col xs-6"><div class="boxed">xs-6</div></div>
+              <div class="col xs-6"><div class="boxed">xs-6</div></div>
+              <div class="col"><div class="boxed">default</div></div>
+            </div>
+
+            <p>You can mix and match sized columns with unsized columns for flexibility. Unsized columns will take up equal widths of the remaining space.</p>
+            <pre class="language-markup"><code><!--
+              <div class="row">
+                <div class="col">default</div>
+                <div class="col sm-6">sm-6</div>
+                <div class="col">default</div>
+              </div>
+              <div class="row">
+                <div class="col sm-3">sm-3</div>
+                <div class="col sm-3">sm-3</div>
+                <div class="col">default</div>
+              </div>
+              --></code>
+            </pre>
+            <div class="row">
+              <div class="col"><div class="boxed">default</div></div>
+              <div class="col sm-6"><div class="boxed">sm-6</div></div>
+              <div class="col"><div class="boxed">default</div></div>
+            </div>
+            <div class="row">
+              <div class="col sm-3"><div class="boxed">sm-3</div></div>
+              <div class="col sm-3"><div class="boxed">sm-3</div></div>
+              <div class="col"><div class="boxed">default</div></div>
+            </div>
+          </section><!-- Columns: Responsive Widths -->
+          <section>
+            <h4>Offsetting Columns</h4>
+            <p>Columns can be offset by using the <span class="css-ref">.offset-$breakpoint-$cols</span> modifiers. Offsets are inherited, and can be reset by using the class <span class="css-ref">.offset-$breakpoint-0</span>. When you offset a columm, all elements that follow are moved along.</p>
+            <pre class="language-markup"><code><!--
+              <div class="row">
+                <div class="col sm-3">sm-3</div>
+                <div class="col sm-6 offset-sm-3">sm-6 offset-sm-3</div>
+              </div>
+              <div class="row">
+                <div class="col sm-6 offset-sm-3">sm-6 offset-sm-3</div>
+                <div class="col sm-3">sm-3</div>
+              </div>
+              <div class="row">
+                <div class="col sm-3">sm-3</div>
+                <div class="col sm-6 offset-sm-3 offset-md-0">sm-6 offset-sm-3 offset-md-0</div>
+              </div>
+              <div class="row">
+                <div class="col sm-3">sm-3</div>
+                <div class="col sm-6 offset-sm-3 offset-md-2">sm-6 offset-sm-3 offset-md-2</div>
+              </div>
+              --></code>
+            </pre>
+            <div class="row">
+              <div class="col sm-3"><div class="boxed">sm-3</div></div>
+              <div class="col sm-6 offset-sm-3"><div class="boxed">sm-6 offset-sm-3</div></div>
+            </div>
+            <div class="row">
+              <div class="col sm-6 offset-sm-3"><div class="boxed">sm-6 offset-sm-3</div></div>
+              <div class="col sm-3"><div class="boxed">sm-3</div></div>
+            </div>
+            <div class="row">
+              <div class="col sm-3"><div class="boxed">sm-3</div></div>
+              <div class="col sm-6 offset-sm-3 offset-md-0"><div class="boxed">sm-6 offset-sm-3 offset-md-0</div></div>
+            </div>
+            <div class="row">
+              <div class="col sm-3"><div class="boxed">sm-3</div></div>
+              <div class="col sm-6 offset-sm-3 offset-md-2"><div class="boxed">sm-6 offset-sm-3 offset-md-2</div></div>
+            </div>
+            <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_offset</span> to <span class="bold">false</span> in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          </section><!-- Columns: Offset -->
+          <section>
+            <h4>Reordering Columns</h4>
+            <p>You can control the order of columns using the <span class="css-ref">.order-$breakpoint-*</span> modifiers. Note that columns without an order modifier will not be affected. Ordering is inherited, and can be reset by using the class <span class="css-ref">.order-$breakpoint-0</span>.</p>
+            <pre class="language-markup"><code><!--
+              <div class="row">
+                <div class="col">unordered</div>
+                <div class="col order-md-3">order-md-3</div>
+                <div class="col order-md-2">order-md-2</div>
+              </div>
+              <div class="row">
+                <div class="col order-md-3 order-lg-0">order-md-3 order-lg-0</div>
+                <div class="col order-md-2">order-md-2</div>
+                <div class="col order-md-1">order-md-1</div>
+              </div>
+              --></code>
+            </pre>
+            <div class="row">
+              <div class="col"><div class="boxed">unordered</div></div>
+              <div class="col order-md-3"><div class="boxed">order-md-3</div></div>
+              <div class="col order-md-2"><div class="boxed">order-md-2</div></div>
+            </div>
+            <div class="row">
+              <div class="col order-md-3 order-lg-0"><div class="boxed">order-md-3 order-lg-0</div></div>
+              <div class="col order-md-2"><div class="boxed">order-md-2</div></div>
+              <div class="col order-md-1"><div class="boxed">order-md-1</div></div>
+            </div>
+
+            <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_ordering</span> to <span class="bold">false</span> in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          </section><!-- Columns: Ordering -->
+          <section>
+            <h4>Hiding Columns - to be written. Code needs review</h4>
+            <p>You can hide columns based on breakpoints using <a href="#display-utilities">display utilities</a>.</p>
+
+          </section><!-- Columns: Hiding -->
+
+          <section>
+            <h4>Collapsing Columns</h4>
+            <p>Columns have horizontal spacing (gutters) around them by default. Should you wish to remove this spacing, apply the <span class="css-ref">.collapse</span> class to the parent <span class="css-ref">.row</span>.</p>
+            <pre class="language-markup"><code><!--
+              <div class="row">
+                <div class="col">col</div>
+                <div class="col">col</div>
+              </div>
+              <div class="row collapse">
+                <div class="col">collapsed col</div>
+                <div class="col">collapsed col</div>
+              </div>
+              --></code>
+            </pre>
+            <div class="row">
+              <div class="col"><div class="boxed">col</div></div>
+              <div class="col"><div class="boxed">col</div></div>
+            </div>
+            <div class="row collapse">
+              <div class="col"><div class="boxed">collapsed col</div></div>
+              <div class="col"><div class="boxed">collapsed col</div></div>
+            </div>
+          </section><!-- Columns: Collapsing -->
+
+          <section>
+            <h3>Nested Grids</h3>
+            <p><span class="css-ref">.row</span> and <span class="css-ref">.col</span> elements can be infinitely nested within each other, so long as one golden rule is followed: <strong>A .row can only contain .col elements</strong>.</p>
+            <p><strong>Note:</strong> because column widths are defined as percentages, when you nest a row, it's child columns will span XX% of the parent column's width. e.g. if you nest a row in a .col.sm-6, adding a .col.sm-6 will effectively make that element a .col.sm-3 of the parent row.</p>
+            <pre class="language-markup"><code><!--
+              <div class="row">
+              <div class="col md-8">
+                outer col md-8
+                <div class="row">
+                  <div class="col md-8">inner md-8</div>
+                  <div class="col md-4">inner md-4</div>
+                </div>
+              </div>
+              <div class="col md-4">
+                inner col md-4
+                <div class="row">
+                  <div class="col md-6">inner md-6</div>
+                  <div class="col md-6">inner md-6</div>
+              </div>
+            </div>
+              --></code>
+            </pre>
+            <p class="row">
+              <div class="col md-8">
+                <div class="boxed">outer col md-8</div>
+                <div class="row">
+                  <div class="col md-8"><div class="boxed">inner md-8</div></div>
+                  <div class="col md-4"><div class="boxed">inner md-4</div></div>
+                </div>
+              </div>
+              <div class="col md-4">
+                <div class="boxed">outer col md-4</div>
+                <div class="row">
+                  <div class="col md-6"><div class="boxed">inner md-6</div></div>
+                  <div class="col md-6"><div class="boxed">inner md-6</div></div>
+              </div>
+            </div>
+          </section><!-- Columns: Nesting -->
+
+        </section><!-- #grid -->
+        <section class="docs-section" id="breakpoint-settings">
+          <h2>Breakpoint Settings</h2>
+          <p>Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints - declared through the <span class="variable-ref">$breakpoints</span> map in <span class="file-ref">/build/scss/_settings.scss</span>. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
+          <h4>Example breakpoint definition</h4>
+          <pre>
+            <code class="language-scss line-numbers">
+              sm: (
+                breakpoint: 400px,
+                container-width: 96%,
+                container-gutter: 20px,
+                col-gutter: 20px,
+                root-font-size: 16px,
+                root-line-height: 1.48em
+                ),
+            </code>
+            <label>_settings.scss</label>
+          </pre>
+          <p>By default, breakpoints are named <span class="variable-ref">sm</span>, <span class="variable-ref">md</span>, <span class="variable-ref">lg</span>  and <span class="variable-ref">xl</span> however you can name breakpoints as you wish to suit your project requirements and personal naming conventions (e.g. microscopic, small, medium, large, gigantic, mammoth, mobile, tablet, laptop, desktop, jumbotron). Jellyfish will use these names to generate the code for css classes as detailed above.</p>
+          <p>If you choose not to declare certain values, they will be inherited.</p>
+          <h4>Terminology</h4>
+          <table>
+            <thead>
+              <tr><th>Term</th><th>Description</th></tr>
+            </thead>
+              <tbody>
+                  <tr><td class="code">breakpoint</td><td>The width at which the breakpoint will take effect. This must be provided in px and will be converted to an em value through the breakpoint mixin. <strong>This variable is required.</strong></td></tr>
+                  <tr><td class="code">container-width</td><td>The width of the <span class="css-ref">.container</span> element at this breakpoint - should be provided as %, px or rem. <strong>This variable is required.</strong></td></tr>
+                  <tr><td class="code">container-gutter</td><td>Padding applied to the left and right of the <span class="css-ref">.container</span> element - this should be provided as px value.</td></tr>
+                  <tr><td class="code">col-gutter</td><td>Padding applied to the left and right of <span class="css-ref">.col</span> elements - this should be provided as a px value. <strong>This variable is required.</strong></td></tr>
+                  <tr><td class="code">root-font-size</td><td>Global base font size (applied to <span class="css-ref">body</span>) which will affect all elements sized with em. Useful for improving legibility at different breakpoints. This should be provided as a px value.</td></tr>
+                  <tr><td class="code">root-line-height</td><td>Global base line-height (applied to <span class="css-ref">body</span>) which will affect all elements that do not have a line-height applied. Can be provided as a number, em or px.</td></tr>
+              </tbody>
+          </table>
+          <p><strong>Note:</strong> You can also configure settings for the smallest devices (i.e. before any media queries are activated) by setting the following variables in <span class="file-ref">/build/scss/_settings.scss</span>: <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$root-font-size</span>, <span class="variable-ref">$root-line-height</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></p>
+        </section><!-- #breakpoint-settings-->
+        <section class="docs-section" id="typography">
+          <h2>Typography</h2>
+          <p>Jellyfish provides default styling for all standard typography tags. Global font families, line height and size hierarchy are defined in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <p>For easy spacing, Jellyfish removes the top margins and applies a bottom margin to block elements which can be defined with the <span class="variable-ref">$element-margin</span> in <span class="file-ref">/build/scss/_settings.scss</span>. Text sizing is set with em, cascading from the root. You can use the <a href="#breakpoint-settings">grid breakpoint settings</a> to alter the root font size and line-height at different breakpoints.</p>
+          <p>Jellyfish also sets box-sizing: border-box globally to make it easier to properly size elements.</p>
+          <pre>
+            <code class="language-scss">
+              /* Typefaces */
+              $font-primary: YOUR FONT STACK HERE;
+              $font-secondary: YOUR SECONDARY FONT STACK HERE;
+              $font-code: YOUR CODE FONT HERE;
+              $font-body: $font-primary;
+              $font-headings: $font-secondary;
+
+              /* Font Sizes */
+              $font-size-xsmall: 0.6em;
+              $font-size-small: 0.8em;
+              $font-size-normal: 1em;
+              $font-size-medium:1.25em;
+              $font-size-large: 1.5em;
+              $font-size-xlarge: 1.75em;
+              $font-size-xxlarge: 2em;
+              $font-size-xxxlarge: 2.5em;
+
+              $root-font-size: 16px;
+              $root-line-height: 1.5;
+
+            </code>
+            <label>_settings.scss</label>
+          </pre>
+          <h3>Headings <code>&lt;h1>-&lt;h6></code></h3>
+          <p>To prevent excess white space, all first-child headings have their top-margin reset.</p>
+          <h1>Heading 1</h1>
+          <h2>Heading 2</h2>
+          <h3>Heading 3</h3>
+          <h4>Heading 4</h4>
+          <h5>Heading 5</h5>
+          <h6>Heading 6</h6>
+          <h3>Paragraphs <code>&lt;p></code></h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat excepturi repellendus nostrum dolorum dignissimos quis non, minus debitis laborum vero cupiditate sequi neque, magnam dolore nemo possimus, soluta ducimus eaque.</p>
+          <p>Blanditiis ea qui, veritatis animi recusandae praesentium magnam. Commodi placeat, laboriosam accusamus laudantium quasi eveniet soluta illo ducimus quis doloremque mollitia, officia pariatur deleniti reprehenderit, maxime, dicta libero vero cum.</p>
+          <h4>Paragraph alignment</h4>
+          <p>Paragraph can be aligned through the utility classes <span class="css-ref">.text-left</span>, <span class="css-ref">.text-right</span>, <span class="css-ref">.text-center</span> and <span class="css-ref">.text-justify</span> as demonstrated below.</p>
+          <h5>p.text-left</h5>
+          <p class="text-left">Blanditiis ea qui, veritatis animi recusandae praesentium magnam. Commodi placeat, laboriosam accusamus laudantium quasi eveniet soluta illo ducimus quis doloremque mollitia, officia pariatur deleniti reprehenderit, maxime, dicta libero vero cum.</p>
+          <h5>p.text-right</h5>
+          <p class="text-right">Blanditiis ea qui, veritatis animi recusandae praesentium magnam. Commodi placeat, laboriosam accusamus laudantium quasi eveniet soluta illo ducimus quis doloremque mollitia, officia pariatur deleniti reprehenderit, maxime, dicta libero vero cum.</p>
+          <h5>p.text-center</h5>
+          <p class="text-center">Blanditiis ea qui, veritatis animi recusandae praesentium magnam. Commodi placeat, laboriosam accusamus laudantium quasi eveniet soluta illo ducimus quis doloremque mollitia, officia pariatur deleniti reprehenderit, maxime, dicta libero vero cum.</p>
+          <h5>p.text-justify</h5>
+          <p class="text-justify">Blanditiis ea qui, veritatis animi recusandae praesentium magnam. Commodi placeat, laboriosam accusamus laudantium quasi eveniet soluta illo ducimus quis doloremque mollitia, officia pariatur deleniti reprehenderit, maxime, dicta libero vero cum.</p>
+          </table>
+          <h3>Ordered Lists <code>&lt;ol></code></h3>
+          <ol>
+            <li>List item 1</li>
+            <li>List item 2
+              <ol>
+                <li>List item 1</li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+              </ol>
+            </li>
+            <li>List item 3</li>
+            <li>List item 4</li>
+          </ol>
+          <h3>Unordered Lists <code>&lt;ul></code></h3>
+          <ul>
+            <li>List item 1</li>
+            <li>List item 2
+              <ul>
+                <li>List item 1</li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+              </ul>
+            </li>
+            <li>List item 3</li>
+            <li>List item 4</li>
+          </ul>
+          <h3>Definition Lists <code>&lt;dl></code></h3>
+          <dl>
+            <dt>Term 1</dt>
+            <dd>Sed quanta sit alias, nunc tantum possitne esse tanta.</dd>
+            <dt>Term 2</dt>
+            <dd>Nam si propter voluptatem, quae est ista laus, quae possit e macello peti?</dd>
+            <dt>Term 3</dt>
+            <dd>Nam, ut sint illa vendibiliora, haec uberiora certe sunt.</dd>
+          </dl>
+          <h3>Blockquotes <code>&lt;blockquote></code></h3>
+          <blockquote>
+            A journey of a thousand leagues begins beneath one’s feet.
+            <cite>Lao Tzu</cite>
+          </blockquote>
+          <h3>Pre-formatted Text <code>&lt;pre></code></h3>
+          <pre>
+console.log("JellyFish is Awesome!");
+          </pre>
+          <h3>Text Formatting</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>&lt;strong&gt;</code> or <span class="css-ref">.bold</span></td>
+                <td><strong>This text is important</strong> however the <span class="css-ref">.bold</span> class can be applied for the <span class="bold">same effect without the implied semantics.</span></td>
+              </tr>
+              <tr>
+                <td><code>&lt;em&gt;</code> or <span class="css-ref">.italic</span></td>
+                <td><em>This text has emphasis</em> however the <span class="css-ref">.italic</span> class can be applied for the <span class="italic">same effect without the implied semantics.</span></td>
+              </tr>
+              <tr>
+                <td><code>&lt;u&gt;</code></td>
+                <td><u>This is underlined text</u></td>
+              </tr>
+              <tr>
+                <td><code>&lt;s&gt;</code></td>
+                <td><s>This is strikethrough text</s></td>
+              </tr>
+              <tr>
+                <td><code>&lt;a&gt;</code></td>
+                <td><a href="#">This is link text</a></td>
+              </tr>
+              <tr>
+                <td><code>&lt;small&gt;</code> or <span class="css-ref">.small</span></td>
+                <td><p class="small">This text has been defined via .small but you can also use the <span class="css-ref">small</span> tag where semantically appropriate.</p></td>
+              </tr>
+              <tr>
+                <td><code>&lt;sup&gt;</code></td>
+                <td><sup>This is superscript text</sup></td>
+              </tr>
+              <tr>
+                <td><code>&lt;sub&gt;</code></td>
+                <td><sub>This is subscript text</sub></td>
+              </tr>
+              <tr>
+                <td><code>&lt;code&gt;</code></td>
+                <td><code>This is code text</code></td>
+              </tr>
+              <tr>
+                <td><code>&lt;samp&gt;</code></td>
+                <td><samp>This is sample text</samp></td>
+              </tr>
+              <tr>
+                <td><code>&lt;var&gt;</code></td>
+                <td><var>This is variable text</var></td>
+              </tr>
+              <tr>
+                <td><code>&lt;kbd&gt;</code></td>
+                <td><kbd>This is keyboard text</kbd></td>
+              </tr>
+              <tr>
+                <td><code>&lt;abbr&gt;</code></td>
+                <td><abbr title="Abbreviation">This is abbreviation text</abbr></td>
+              </tr>
+              <tr>
+                <td><code>&lt;del&gt;</code></td>
+                <td><del>This is deleted text</del></td>
+              </tr>
+              <tr>
+                <td><code>&lt;ins&gt;</code></td>
+                <td><ins>This is inserted text</ins></td>
+              </tr>
+              <tr>
+                <td><code>&lt;mark&gt;</code></td>
+                <td><mark>This is marked text</mark></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </section><!-- #typography -->
+        <section class="docs-section" id="content">
+          <h2>Content</h2>
+          <h3>Anchors <code>&lt;a></code></h3>
+          <p>Text hyperlinks are styled with a simple hover animation, that uses the <span class="variable-ref">smooth(color)</span> mixin for a consistent transition to the text color. See <a href="#advanced-mixins">mixins</a> for more information.</p>
+          <pre class="language-scss">
+            <code>
+            a {
+              @include smooth(color);
+              text-decoration: underline;
+              &, &:link {
+                  color: $link-color;
+              }
+              &:visited {
+                  color: $link-visited;
+                  text-decoration: none;
+              }
+              &:hover, &:active, &:focus {
+                  color: $link-active;
+              }
+            }
+            </code>
+            <label>_scaffolding.scss</label>
+          </pre>
+          <p>Link colours are defined in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <pre class="language-scss">
+            <code>
+            /* LINKS */
+            $link-color: $color-primary;
+            $link-active: $color-secondary;
+            $link-visited: $color-tertiary;
+            </code>
+            <label>_settings.scss</label>
+          </pre>
+          <h3>Horizontal Rules <code>&lt;hr></code></h3>
+          <hr>
+          <h3>Images <code>&lt;img></code></h3>
+          <p>All img elements have height and width set to auto, and max-width set to 100%. This prevents images from breaking out of their containers, and also allows width/height to scale as appropriate when a more specific dimension is defined.</p>
+          <div style="width:50%;" class="boxed">
+            <p>This image can't break out of it's container even if it wanted to!</p>
+            <img src="http://unsplash.it/500/300">
+          </div>
+          <h4>Floating images</h4>
+          <p>Images, like all elements, can be floated by applying utility classes. Additional styling automatically applies margins to create white space when images are floated alongside text.</p>
+          <pre class="language-markup line-numbers"><code><!--
+          <h5>align-none</h5>
+          <p><img src="https://www.unsplash.it/200/100" class="align-none">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+          <h5>align-left</h5>
+          <p><img src="https://www.unsplash.it/200/100" class="align-left">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+          <h5>align-right</h5>
+          <p><img src="https://www.unsplash.it/200/100" class="align-right">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+          <h5>align-center</h5>
+          <p><img src="https://www.unsplash.it/200/100" class="align-center">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+            --></code>
+          </pre>
+          <h5>align-none</h5>
+          <p><img src="https://www.unsplash.it/200/100" class="align-none">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+          <h5>align-left</h5>
+          <p><img src="https://www.unsplash.it/200/100" class="align-left">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+          <h5>align-right</h5>
+          <p><img src="https://www.unsplash.it/200/100" class="align-right">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+          <h5>align-center</h5>
+          <p><img src="https://www.unsplash.it/200/100" class="align-center">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+        </section><!-- #content -->
+        <section class="docs-section" id="buttons">
+          <h2>Buttons</h2>
+          <p>Button elements, links with a <span class="css-ref">.button</span> class, and input buttons will all render exactly the same.</p>
+          <pre class="language-markup">
+            <code><!--
+            <button>Button</button>
+            <input type="submit" value="Submit">
+            <input type="button" value="Input">
+            <a class="button">Link</a>
+          --></code>
+          </pre>
+          <button>Button</button>
+          <input type="submit" value="Submit">
+          <input type="button" value="Input">
+          <a class="button">Link</a>
+          <h3>Button modifiers</h3>
+          <p>Add the modifier <span class="css-ref">.button__secondary</span> to display a secondary button color.</p>
+          <pre class="language-markup">
+            <code><!--
+            <button class="button__secondary">Button</button>
+            ...
+          --></code>
+          </pre>
+          <button class="button__secondary">Button</button>
+          <input type="submit" value="Submit" class="button__secondary">
+          <input type="button" value="Input" class="button__secondary">
+          <a class="button button__secondary" >Link</a>
+          <p>Add the modifier <span class="css-ref">.button__outline</span> to show buttons without a background fill.</p>
+          <pre class="language-markup">
+            <code><!--
+            <button class="button__outline">Button</button>
+            ...
+          --></code>
+          </pre>
+          <button class="button__outline">Button</button>
+          <input type="submit" value="Submit" class="button__outline">
+          <input type="button" value="Input" class="button__outline">
+          <a class="button button__outline" >Link</a>
+          <p>Add the modifier <span class="css-ref">.button__ghost</span> to make buttons appear as links, whilst retaining the height and properties of a button. This can be used to display ghost buttons on the same row as buttons with background color.</p>
+          <pre class="language-markup">
+            <code><!--
+            <button class="button__ghost">Button</button>
+            ...
+          --></code>
+          </pre>
+          <button class="button__ghost">Button</button>
+          <input type="submit" value="Submit" class="button__ghost">
+          <input type="button" value="Input" class="button__ghost">
+          <a class="button button__ghost" >Link</a>
+          <p>Add the modifier <span class="css-ref">.button___small</span> or <span class="css-ref">.button___large</span> to change the size of buttons.</p>
+          <pre class="language-markup">
+            <code><!--
+            <button class="button__small">Small</button>
+            <button>Regular</button>
+            <button class="button__large">Large</button>
+          --></code>
+          </pre>
+          <button class="button__small">Small</button>
+          <button>Regular</button>
+          <button class="button__large">Large</button>
+          <p>Add the modifier <span class="css-ref">.button__block</span> to make the button 100% width.</p>
+          <pre class="language-markup">
+            <code><!--
+            <button class="button__block">Block Button</button>
+          --></code>
+          </pre>
+          <button class="button__block">Block Button</button>
+          <p>Modifiers can be combined.</p>
+          <pre class="language-markup">
+            <code><!--
+            <button class="button__small button__secondary">Small</button>
+            <button class="button__small button__outline">Regular</button>
+            <button class="button__large button__ghost">Large</button>
+          --></code>
+          </pre>
+          <button class="button__small button__secondary">Small</button>
+          <button class="button__small button__outline">Regular</button>
+          <button class="button__large button__ghost">Large</button>
+          <p>Button variables can be edited in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <pre class="language-scss">
+          <code>
+          /* BUTTONS */
+          $buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
+          $button-border-width: 1px;
+          $button-border-radius: 6px;
+          $button-text-transform: none;
+          $button-font-weight: bold;
+          $button-background: $color-primary;
+          $button-text-color: white;
+          $button-secondary-background: $color-secondary;
+          $button-secondary-text-color: $button-text-color;
+          </code>
+          <label>_settings.scss</label>
+          </pre>
+        </section><!-- #buttons -->
+        <section class="docs-section" id="forms">
+          <h2>Forms</h2>
+          <p>By default forms will have full-width, block level labels, inputs, selects and textareas. Jellyfish applies styling to form elements to make them look great without hassle or additional classes.</p>
+          <pre class="language-markup line-numbers">
+            <code><!--
+            <form>
+              <label for="text">Name</label>
+              <input id="text" type="text" placeholder="First Name">
+              <label for="email">Email Address</label>
+              <input id="email" type="email" placeholder="email@jellyfishrule.com">
+              <label for="select">My message is about</label>
+              <select id="select">
+                <option disabled selected>Please select</option>
+                <option>Jellyfish</option>
+                <option>CSS</option>
+                <option>Coffee</option>
+                <option>Other</option>
+              </select>
+              <label for="textarea">Any other comments?</label>
+              <textarea id="textarea" rows="5" cols="30" placeholder="Message"></textarea>
+              <label for="rememberme"><input id="rememberme" name="checkbox" type="checkbox"> Remember Me</label>
+              <input type="submit" value="Submit">
+              <input type="reset" value="Reset">
+            </form>
+          --></code>
+          </pre>
+          <form>
+            <label for="text">Name</label>
+            <input id="text" type="text" placeholder="First Name">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" placeholder="email@jellyfishrule.com">
+            <label for="select">My message is about</label>
+            <select id="select">
+              <option disabled selected>Please select</option>
+              <option>Jellyfish</option>
+              <option>CSS</option>
+              <option>Coffee</option>
+              <option>Other</option>
+            </select>
+            <label for="textarea">Any other comments?</label>
+            <textarea id="textarea" rows="5" cols="30" placeholder="Message"></textarea>
+            <label for="rememberme"><input id="rememberme" name="checkbox" type="checkbox"> Remember Me</label>
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+          </form>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Input Type</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>&lt;input type="checkbox"&gt;</code></td>
+                <td>
+                  <label><input type="checkbox" checked=""> Checkbox 1</label>
+                  <label><input type="checkbox"> Checkbox 2</label>
+                </td>
+              </tr>
+              <tr>
+                <td><code>&lt;input type="color"&gt;</code></td>
+                <td><input type="color" value="#b22d4f"></td>
+              </tr>
+              <tr>
+                <td><code>&lt;input type="date"&gt;</code></td>
+                <td><input type="date"></td>
+              </tr>
+              <tr>
+                <td><code>&lt;input type="datetime-local"&gt;</code></td>
+                <td><input type="datetime-local"></td>
+              </tr>
+              <tr>
+                <td><code>&lt;input type="email"&gt;</code></td>
+                <td><input type="email"></td>
+              </tr>
+              <tr>
+                <td><code>&lt;input type="number"&gt;</code></td>
+                <td><input type="number"></td>
+              </tr>
+              <tr>
+                <td><code>&lt;input type="password"&gt;</code></td>
+                <td><input type="password" autocomplete="off"></td>
+              </tr>
+              <tr>
+                <td><code>&lt;input type="radio"&gt;</code></td>
+                <td>
+                  <label><input type="Radio" name="radio" checked=""> Radio 1</label>
+                  <label><input type="Radio" name="radio"> Radio 2</label>
+                </td>
+              </tr>
+              <tr>
+                <td><code>&lt;input type="range"&gt;</code></td>
+                <td><input type="range"></td>
+              </tr>
+              <tr>
+                <td><code>&lt;input type="search"&gt;</code></td>
+                <td><input type="search"></td>
+              </tr>
+              <tr>
+                <td><code>&lt;input type="text"&gt;</code></td>
+                <td><input type="text"></td>
+              </tr>
+              <tr>
+                <td><code>&lt;input type="time"&gt;</code></td>
+                <td><input type="time"></td>
+              </tr>
+              <tr>
+                <td><code>&lt;select&gt;</code></td>
+                <td>
+                  <select>
+                    <option>Item 1</option>
+                    <option>Item 2</option>
+                    <option>Item 3</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><code>&lt;textarea&gt;</code></td>
+                <td><textarea rows="4"></textarea></td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Form variables can be edited in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <pre class="language-scss">
+          <code>
+          /* FORMS */
+          $form-items: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]'); // Stack of elements to target
+          $input-background: white;
+          $placeholder-color: $color-text-light;
+          $form-text-size: 1rem;
+          $form-border-hover: darken($border-color, 40%);
+          $form-border-focus: $color-primary;
+          $form-font: $font-primary;
+          </code>
+          <label>_settings.scss</label>
+          </pre>
+        </section><!-- #forms -->
+        <section class="docs-section" id="tables">
+          <h2>Tables</h2>
+          <p>Tables are set to a width of 100% and have some basic formatting applied.</p>
+          <pre class="language-markup">
+            <code><!--
+            <table>
+            <thead><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></thead>
+            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
+            <tbody>
+                <tr><td>Cotylorhiza tuberculata</td><td>Mild</td><td>Mediterranean Sea</td></tr>
+                <tr><td>Pelagia noctiluca</td><td>Severe</td><td>Mediterranean Sea</td></tr>
+                <tr><td>Rhopilema nomadica</td><td>Severe</td><td>Indo-Pacific ocean</td></tr>
+            </tbody>
+          </table>
+          --></code>
+          </pre>
+          <table>
+            <thead><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></thead>
+            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
+            <tbody>
+                <tr><td>Cotylorhiza tuberculata</td><td>Mild</td><td>Mediterranean Sea</td></tr>
+                <tr><td>Pelagia noctiluca</td><td>Severe</td><td>Mediterranean Sea</td></tr>
+                <tr><td>Rhopilema nomadica</td><td>Severe</td><td>Indo-Pacific ocean</td></tr>
+            </tbody>
+          </table>
+          <h3>Striped Tables</h3>
+          <p>Use the class <span class="css-ref">.table__striped</span> to add stripes to alternating rows.</p>
+          <pre class="language-markup">
+            <code><!--
+            <table class="table__striped">
+            ...
+          </table>
+          --></code>
+          </pre>
+          <table class="table__striped">
+            <thead><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></thead>
+            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
+            <tbody>
+                <tr><td>Cotylorhiza tuberculata</td><td>Mild</td><td>Mediterranean Sea</td></tr>
+                <tr><td>Pelagia noctiluca</td><td>Severe</td><td>Mediterranean Sea</td></tr>
+                <tr><td>Rhopilema nomadica</td><td>Severe</td><td>Indo-Pacific ocean</td></tr>
+            </tbody>
+          </table>
+          <h3>Bordered Tables</h3>
+          <p>Use the class <span class="css-ref">.table__border</span> to add a border to the table.</p>
+          <pre class="language-markup">
+            <code><!--
+            <table class="table__border">
+            ...
+          </table>
+          --></code>
+          </pre>
+          <table class="table__border">
+            <thead><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></thead>
+            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
+            <tbody>
+                <tr><td>Cotylorhiza tuberculata</td><td>Mild</td><td>Mediterranean Sea</td></tr>
+                <tr><td>Pelagia noctiluca</td><td>Severe</td><td>Mediterranean Sea</td></tr>
+                <tr><td>Rhopilema nomadica</td><td>Severe</td><td>Indo-Pacific ocean</td></tr>
+            </tbody>
+          </table>
+          <h3>Hoverable Rows</h3>
+          <p>Use the class <span class="css-ref">.table__hoverable</span> to enable a hover state on rows.</p>
+          <pre class="language-markup">
+            <code><!--
+            <table class="table__hoverable">
+            ...
+          </table>
+          --></code>
+          </pre>
+          <table class="table__hoverable">
+            <thead><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></thead>
+            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
+            <tbody>
+                <tr><td>Cotylorhiza tuberculata</td><td>Mild</td><td>Mediterranean Sea</td></tr>
+                <tr><td>Pelagia noctiluca</td><td>Severe</td><td>Mediterranean Sea</td></tr>
+                <tr><td>Rhopilema nomadica</td><td>Severe</td><td>Indo-Pacific ocean</td></tr>
+            </tbody>
+          </table>
+          <h3>Responsive Tables</h3>
+          <p>Wrap a table in a <span class="css-ref">.table-container</span> to prevent tables with a lot of content from overflowing the grid.</p>
+          <pre class="language-markup">
+            <code><!--
+            <div class="table-container">
+              <table>
+                ...
+              </table>
+            </div>
+          --></code>
+          </pre>
+          <div class="table-container">
+            <table>
+              <thead><tr><th>Jellyfish Species</th><th>Stinger</th><th>Habitat</th><th>How to identify it</th></tr></thead>
+              <tbody>
+                  <tr><td>Cotylorhiza tuberculata</td><td>Harmless to humans, but it is better not to touch it. It is probably harmless also for most fishes. Just as for Rhizostoma, it is often associated to young fish that use it as a shelter</td><td>Very abundant in the Mediterranean Sea, expecially in bays. In 2009 it was more frequent in the southern part of Italy, showing a preference for warmer waters, but this was not confirmed in 2010 and 2011, since this species was very frequent throughout the whole Italian coast, especially in the second half of the summer.</td><td>One of the most beautiful jellyfish of the Mediterranean Sea. The umbrella can measure 30 cm in diameter, it is very rigid and roundish in its centre, where it has a reddish or yellow color. The external part of the manubrium is motile and pulsates vigorously. Under the umbrella, the manubrium resembles a bouquet of flowers, with blue-purple buttons, inserted into stout arms. Some tentacles, also terminating with blue buttons, are inserted on the manubrium. Cotylorhiza can have symbiotic microalgae that live in its tissues, just as those of tropical corals. Functionally it is a “plant”, even if it can feed on zooplankton.</td></tr>
+                  <tr><td>Rhopilema nomadica</td><td>A bad stinger, it can be confused with the almost harmless Rhizostoma from which it can be distinguished due to the characteristic blue rim of Rhizostoma</td><td>The genus Rhopilema is typical of the Indo-Pacific ocean and has no Atlantic or Mediterranean representatives. It never reached the Italian seas, possibly because the temperatures are not high enough for this tropical species. In the Eighties this species became suddenly abundant along the Israeli coasts of the Mediterranean Sea: it probably reached the Mediterranean from the Red Sea, through the Suez Canal, hence the specific name “nomadica”. In the eastern Mediterranean it causes great harm to tourism, fisheries, and industry.</td><td>It does not pass unnoticed, since it can reach 80 cm in diameter and can form extensive swarms. The current global warming might pave its way towards the expansion of this species in the Western Mediterranean.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>Table Settings</h3>
+          <p>Table settings can be altered in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <pre class="language-scss">
+            <code>
+              /* TABLES */
+              $table-stripe-color: lighten($color-text-light,5%) !default;
+              $table-hover-background: $color-primary !default;
+              $table-hover-color: white !default;
+          </code>
+          <label>_settings.scss</label>
+          </pre>
+        </section><!-- #tables -->
+        <section class="docs-section" id="helpers">
+          <h2>Helpers</h2>
+          <h3>Keep words together</h3>
+          <p>If you need to keep certain words together (e.g. brand names), wrap them in a span with the helper class <span class="css-ref">.nowrap</span>.</p>
+          <p><strong>Note:</strong> This may cause elements to break out of their container and for paragraphs to be ragged - you have been warned!</p>
+          <pre class="language-markup">
+            <code><!--
+            <p>Since the early 1980's, <span class="nowrap">Jellyfish stingers inc.</span>...</p>
+            <p>Since the early 1980's, Jellyfish stingers inc...</p>
+          --></code>
+          </pre>
+          <p style="width: 150px;">Since the early 1980's, <span class="nowrap">Jellyfish stingers inc.</span> have been producing high-quality replacement stingers for injured jellyfish.</p>
+          <p style="width: 150px;">Since the early 1980's, Jellyfish stingers inc. have been producing high-quality replacement stingers for injured jellyfish.</p>
+          <h3>Floats</h3>
+          <p>Elements can be floated with <span class="css-ref">.align-*</span> classes. Add a <span class="css-ref">.clearfix</span> class to a parent element to clear the floats.</p>
+          <pre class="language-markup">
+            <code><!--
+            <div class="clearfix">
+              <div class="align-right boxed">Float Right</div>
+              <div class="align-left boxed">Float Left</div>
+            </div>
+            <div class="align-none boxed">Float None</div>
+          --></code>
+          </pre>
+          <div class="clearfix">
+            <div class="align-right boxed">
+              Float Right
+            </div>
+            <div class="align-left boxed">
+              Float Left
+            </div>
+          </div>
+          <div class="align-none boxed">Float None</div>
+          <h3>Working with flexboxes</h3>
+          <h4>Align items</h4>
+          <p>Jellyfish contains a number of flexbox alignment classes to help position columns inside a flexbox row.</p>
+          <p><span class="css-ref">.align-*</span> classes are added to the parent row to align elements vertically within a row. <span class="css-ref">.align-self-*</span> classes are applied to the columns themselves to achieve the same.</p>
+          <pre class="language-markup">
+            <code><!--
+            <div class="row align-top">
+              ...
+            </div>
+            <div class="row align-middle">
+              ...
+            </div>
+            <div class="row align-bottom">
+              ...
+            </div>
+            <div class="row">
+              <div class="col align-self-top">align-self-top</div>
+              <div class="col align-self-middle">align-self-middle</div>
+              <div class="col align-self-bottom">align-self-bottom</div>
+            </div>
+          --></code>
+          </pre>
+          <div class="row align-top row-boxed">
+            <div class="col"><div class="boxed">align-top</div></div>
+            <div class="col"><div class="boxed">align-top</div></div>
+            <div class="col"><div class="boxed">align-top</div></div>
+          </div>
+          <div class="row align-middle row-boxed">
+            <div class="col"><div class="boxed">align-middle</div></div>
+            <div class="col"><div class="boxed">align-middle</div></div>
+            <div class="col"><div class="boxed">align-middle</div></div>
+          </div>
+          <div class="row align-bottom row-boxed">
+            <div class="col"><div class="boxed">align-bottom</div></div>
+            <div class="col"><div class="boxed">align-bottom</div></div>
+            <div class="col"><div class="boxed">align-bottom</div></div>
+          </div>
+          <div class="row row-boxed">
+            <div class="col align-self-top"><div class="boxed">align-self-top</div></div>
+            <div class="col align-self-middle"><div class="boxed">align-self-middle</div></div>
+            <div class="col align-self-bottom"><div class="boxed">align-self-bottom</div></div>
+          </div>
+          <p>Adding a class of <span class="css-ref">.flex</span> will convert any element into <code>display: flex;</code>. Apply an <span class="css-ref">.equal-height</span> class to a parent row to make all immediate child columns <code>display:flex;</code></p>
+          <pre class="language-markup">
+            <code><!--
+            <div class="row">
+              <div class="col">Flex item</div>
+              <div class="col flex">Flex item with .flex...</div>
+            </div>
+            <div class="row equal-height">
+              ...
+            </div>
+          --></code>
+          </pre>
+          <div class="row row-boxed">
+            <div class="col"><div class="boxed">Flex item</div></div>
+            <div class="col flex"><div class="boxed">Flex item with .flex converts this column to a flex. The child element has flex:1 which makes it take up 100% height.</div></div>
+          </div>
+          <div class="row equal-height row-boxed">
+            <div class="col"><div class="boxed">equal-height</div></div>
+            <div class="col"><div class="boxed">equal-height</div></div>
+          </div>
+          <p></p>
+          <h4>Justify content</h4>
+          <p>Use the <span class="css-ref">.justify-*</span> modifiers on a row to justify the child columns.</p>
+          <pre class="language-markup">
+            <code><!--
+            <div class="row justify-start">
+              ...
+            </div>
+             <div class="row justify-center">
+              ...
+            </div>
+             <div class="row justify-end">
+              ...
+            </div>
+             <div class="row justify-around">
+              ...
+            </div>
+             <div class="row justify-between">
+              ...
+            </div>
+          --></code>
+          </pre>
+          <div class="row row-boxed justify-start">
+            <div class="col md-3"><div class="boxed">justify-start</div></div>
+            <div class="col md-3"><div class="boxed">justify-start</div></div>
+            <div class="col md-3"><div class="boxed">justify-start</div></div>
+          </div>
+          <div class="row row-boxed justify-center">
+            <div class="col md-3"><div class="boxed">justify-center</div></div>
+            <div class="col md-3"><div class="boxed">justify-center</div></div>
+            <div class="col md-3"><div class="boxed">justify-center</div></div>
+          </div>
+          <div class="row row-boxed justify-end">
+            <div class="col md-3"><div class="boxed">justify-end</div></div>
+            <div class="col md-3"><div class="boxed">justify-end</div></div>
+            <div class="col md-3"><div class="boxed">justify-end</div></div>
+          </div>
+          <div class="row row-boxed justify-around">
+            <div class="col md-3"><div class="boxed">justify-around</div></div>
+            <div class="col md-3"><div class="boxed">justify-around</div></div>
+            <div class="col md-3"><div class="boxed">justify-around</div></div>
+          </div>
+          <div class="row row-boxed justify-between">
+            <div class="col md-3"><div class="boxed">justify-between</div></div>
+            <div class="col md-3"><div class="boxed">justify-between</div></div>
+            <div class="col md-3"><div class="boxed">justify-between</div></div>
+          </div>
+          <h3>Manipulating width</h3>
+          <p>The helper class <span class="css-ref">.full-width</span> can be applied to any element to make <code>width: 100%</code>. An element with the helper class <span class="css-ref">.vw-100</span> will span 100% of the viewport width, breaking out of any containers to do so (without affecting document flow).</p>
+          <pre class="language-markup">
+            <code><!--
+            <div class="full-width">...</div>
+            <div class="vw-100">...</div>
+          --></code>
+          </pre>
+          <div class="full-width boxed">An element with .full-width applied</div>
+          <div class="col vw-100">An element with .vw-100 applied</div>
+          <h3>Responsive Video</h3>
+          <p>Wrap an embedded video in a container with class <span class="css-ref">.embed-container</span> to ensure the video is responsively resized.</p>
+          <pre class="language-markup">
+            <code><!--
+            <div class="embed-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          --></code>
+          </pre>
+          <div class="embed-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </section><!-- #helpers -->
+        <section class="docs-section" id="debug">
+          <h2>Debug mode</h2>
+          <p>Jellyfish comes with a handy debug mode which allows you to quickly see the structure of the grid, and diagnose any layout issues. Debug mode can be enabled in three ways:</p>
+          <ol>
+              <li>by setting <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="file-ref">/build/scss/_settings.scss</span>.</li>
+              <li>by adding the class <span class="css-ref">.jf-debug</span> to the body or html element - either within the code itself or through a browser's inspector.</li>
+              <li>by running <code>jfdebug()</code> in the console.</li>
+          </ol>
+          <p>When debug mode is active:</p>
+          <ul>
+            <li>The highest level <span class="css-ref">.row</span> element will have a striped background showing the base column layout.</li>
+            <li><span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(245, 211, 0, .8);">glow in yellow</span></li>
+            <li><span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(8, 247, 254, .7);">glow in turquoise</span></li>
+            <li>If <span class="variable-ref">$has_offset</span> or <span class="variable-ref">$has_ordering</span> are set to true in <span class="file-ref">/build/scss/_settings.scss</span>, elements with a class <span class="css-ref">.offset-*</span> and <span class="css-ref">.order-*</span> will be <span style="outline: 2px solid #fe53BB">highlighted in pink</span></li>
+            <li>The current breakpoint name is shown in the top left corner of the window.</li>
+          </ul>
+          <p>Try it out - <a onclick="jfdebug()" style="cursor:pointer;">click here</a> to toggle debug mode on and off onto this page.</p>
+          <div class="row">
+            <div class="col md-4 offset-md-4"><div class="boxed">Offset .col</div></div>
+            <div class="col md-4"><div class="boxed">.col coming along for the ride</div></div>
+          </div>
+          <div class="row">
+            <div class="col md-4 order-md-2"><div class="boxed">Order md-2</div></div>
+            <div class="col md-4 order-md-3"><div class="boxed">Order md-3</div></div>
+            <div class="col md-4 order-md-1 order-lg-0"><div class="boxed">Order md-1 Order-lg-0</div></div>
+          </div>
+        </section><!-- #debug -->
+        <section class="docs-section" id="how-to-use">
+          <h2>How to Use</h2>
+          <h3>BrowserSync, Grunt.js, NPM and Sass</h3>
+          <p>Jellyfish makes use of modern technologies in order to make the dev experience more enjoyable.</p>
+          <ul>
+            <li><a href="https://www.browsersync.io/" rel="external">Browsersync</a> opens up a new window in your default browser and live reloads whenever changes are detected to your project's javascript, css or HTML.</a></li>
+            <li><a href="https://sass-lang.com/" rel="external">Sass (SCSS)</a> is used to extend css, helping to compartmentalise components and organise code into digestible parts. Sass can also make use of useful concepts like nesting, variables and functions.</li>
+            <li><a href="https://www.npmjs.com/" rel="external">NPM</a> is used to manage packages that are required to run Jellyfish.</li>
+            <li><a href="https://gruntjs.com/" rel="external">Grunt.js</a> is a task-runner which is used to reduce hassles in compiling code.</li>
+          </ul>
+          <h3>Starting your project</h3>
+          <p>Make sure that you have npm, browsersync and grunt installed on your system following the guides on their respective websites. Then, clone the project into your required folder with git...</p>
+          <pre class="language-git"><code>$ git clone https://github.com/unofficialmatt/jellyfish.git</code></pre>
+          <p>Install the dev dependencies in the root of the project...</p>
+          <pre class="language-markup"><code>$ npm install</code></pre>
+          <p>Modify the name, version, description and author within <span class="file-ref">package.json</span>.</p>
+          <pre class="language-json"><code>
+            "name": "jellyfish_grid",
+            "version": "2.0.0",
+            "description": "Jellyfish is yet another SCSS grid framework, with a few stings in it's tail.",
+            "author": "Matt Weet",
+          </code></pre>
+          <p>Initialise grunt, to rebuild the codebase for a clean start.</p>
+          <pre class="language-markup"><code>$ grunt init</code></pre>
+          <p>Next time, you can just run the default grunt task, to simply start browserSync</p>
+          <pre class="language-markup"><code>$ grunt</code></pre>
+          <h3>Directory structure</h3>
+          <p>The project contains the source and destination folders, as well as necessary project files.</p>
+          <ul>
+            <li><strong>/assets</strong> - contains the final css, images and javascript files within sub-directories. The files in this directory are all created by Grunt</li>
+            <li><strong>/build</strong> - contains the source files for the project:
+              <ul>
+                <li><strong>js</strong> - organised into subdirectories for vendor and project. When Grunt detects a change to any of these directories (new file, edit, remove), it will concatenate and minify javascript and reload your browser with browserSync. Vendor scripts can be automatically copied from an npm package with the Gruntfile task copy:npm.</li>
+                <li><strong>scss</strong>
+                <ul>
+                  <li><strong>/jellyfish</strong> - contains all of the Jellyfish scss files. It is not recommended to edit any of the files within this directory.</li>
+                  <li><strong>/project/</strong> - add your project specific scss files here.</li>
+                  <li><strong>/project/_all.scss</strong> - this file is automatically populated by Grunt to include all other scss files in the project directory.</li>
+                </ul>
+                </li>
+              </ul>
+            </li>
+            <li><strong>/docs</strong> - contains files only used by this documentation. Can be safely removed.</li>
+            <li><strong>.editorconfig</strong> - Keeps code indented to 2 spaces. Feel free to edit to your tastes.</li>
+            <li><strong>.gitignore</strong> - A substantial gitignore file to ignore system files and node_modules.</li>
+            <li><strong>boilerplate.html</strong> - starter HTML template.</li>
+            <li><strong>Gruntfile.js</strong> - Contains lots of useful tasks that are run to help make your dev time more enjoyable. The file is well commented to explain what each task does. Feel free to adapt the file to suit the needs of your project.</li>
+            <li><strong>index.html</strong> - This file! Feel free to delete for your project - or rename and use it as a reference.</li>
+            <li><strong>package.json</strong> - npm package folder to initialise node_modules.</li>
+          </ul>
+          <h3>Grunt Tasks</h3>
+          <p>For the most part, as long as you follow the guidance above in terms of file hierarchy, you can let Grunt work it's magic without hassle. You can amend the Gruntfile as your project dictates, to edit/remove/add tasks as appropriate from the huge variety available.</p>
+          <p>The <span class="file-ref">Gruntfile.js</span> is well commented, here are a summary of the tasks included as default:</p>
+          <h4>Project init tasks</h4>
+          <ul>
+            <li>Copy files from node_modules and save into the project build directories:
+              <ul>
+                <li>jquery.js</li>
+                <li>hamburgers.scss</li>
+              </ul>
+            </li>
+            <li>Start watching files for changes.</li>
+            <li>Load up the project in a web browser.</li>
+          </ul>
+          <h4>Watch tasks</h4>
+          <ul>
+            <li><strong>SCSS:</strong> When any scss file within <span class="file-ref">/build/scss</span> is changed, added or deleted:
+              <ul>
+                <li>@import all _scss partials saved in <span class="file-ref">/build/scss/project</span> to <span class="file-ref">/build/scss/project/_all.scss</span>.</li>
+                <li>Run SCSS compile on <span class="file-ref">/build/scss/compile.scss</span> and output to <span class="file-ref">/assets/css/style.css</span>. This task will include Jellyfish core scss and your project's scss.</li>
+                <li>Run postcss; this task adds vendor prefixes, converts any px values to rem units based on a document default of 16px = 1rem, and minifies the file to <span class="file-ref">/assets/css/style.min.css</span>.</li>
+                <li>Reload the browser</li>
+              </ul>
+            </li>
+            <li><strong>Javascript: </strong> When any javascript file within <span class="file-ref">/build/js</span> is changed, added or deleted:
+              <ul>
+                <li>Concatenate all javascript files saved in <span class="file-ref">/build/js/vendor</span> and <span class="file-ref">/build/js/site</span> and saves to <span class="file-ref">/assets/js/site.js</span></li>
+                <li>Minify <span class="file-ref">/assets/js/site.js</span> to <span class="file-ref">/assets/js/site.min.js</span></li>
+                <li>Reload the browser</li>
+              </ul>
+            </li>
+            <li><strong>Images: </strong> When any image file within <span class="file-ref">/build/img</span> is changed, added or deleted:
+              <ul>
+                <li>Remove all existing images from <span class="file-ref">/assets/img</span></li>
+                <li>Optimise and compress all images in <span class="file-ref">/build/img</span> and saves them to <span class="file-ref">/assets/img</span></li>
+                <li>Reload the browser</li>
+              </ul>
+            </li>
+            <li><strong>HTML/CSS: </strong> When any .html or .php file is edited:
+              <ul>
+                <li>Reload the browser</li>
+              </ul>
+          </ul>
+        </section><!-- #how-to-use -->
+
+        <section class="docs-section" id="configuration">
+          <h2>Configuration</h2>
+          <h3>Setting your styles</h3>
+          <p>It is recommend to not edit the files within <span class="file-ref">/build/scss/jellyfish</span> but rather to add your project's scss into <span class="file-ref">/build/scss/project</span>. In this way you can keep the core functionality separate from your project's codebase.</p>
+          <p>The file <span class="file-ref">/build/scss/_settings.scss</span> contains all of the variables used in Jellyfish, commented out. If you wish to override a default, you can simply uncomment and add your own values. You should add any new variables here to keep your project organised.</p>
+          <pre class="language-scss"><code>
+            .its-oh-so-quiet {sshh, shhh}
+            <!--TODO: Add styles here! -->
+          </code></pre>
+        </section><!-- #configuration -->
+
+      </main><!-- MAIN DOCS AREA -->
+
+  </div>
+  <script type="text/javascript" src="assets/js/site.min.js"></script>
+
+  <!-- Highlight Code Syntax with Prism.js -->
+  <script src="docs/prism.js"></script>
+
+  <!-- Sticky Nav -->
+  <script src="docs/jquery.sticky.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $("#docs-nav").sticky({topSpacing:30});
+    });
+    $('#docs-nav li').on('click', function(event) {
+        $(this).parent().find('li').removeClass('active');
+        $(this).addClass('active');
+    });
+  </script>
+</body>
+
+</html>
+
+
+<!--
+TODO: Review CSS and make sure all documented
+TODO: Add a col-auto? - see shoelace
+TODO: fix hide code
+TODO: Forms could be better - see other frameworks, eg. colour, label margins etc
+TODO: Higlight menu item on scroll
+TODO: Approach the dreaded nav - can pilfer coluco as that worked
+TODO: Double check over Bulma, Shoelace, Primitive doc, have I missed anything?
+-->
