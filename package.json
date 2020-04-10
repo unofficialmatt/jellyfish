@@ -1,7 +1,7 @@
 {
   "name": "jellyfish_grid",
   "version": "2.0.0",
-  "description": "Jellyfish is a Grid Framework designed for greater control with minimised code output. Jellyfish does not bother itself with a lot of custom components, instead shipping just the bare essentials to provide a solid foundation for web projects.",
+  "description": "Jellyfish is yet another SCSS grid framework, with a few stings in it's tail.",
   "private": true,
   "main": "Gruntfile.js",
   "directories": {
@@ -25,13 +25,12 @@
     "grunt-parallel": "^0.5.1",
     "grunt-postcss": "^0.9.0",
     "grunt-sass": "^3.0.2",
-    "grunt-svgstore": "^2.0.0",
+    "grunt-sass-directory-import": "^0.1.4",
     "node-sass": "^4.12.0",
     "postcss-pxtorem": "^4.0.1"
   },
   "dependencies": {
     "hamburgers": "^1.1.3",
-    "jquery": "^3.4.1",
-    "reset-css": "^4.0.1"
+    "jquery": "^3.4.1"
   }
 }

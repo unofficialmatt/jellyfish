@@ -83,6 +83,3 @@ $RECYCLE.BIN/
 # track these files, if they exist
 !.gitignore
 !.editorconfig
-# ignore node_modules symlink
-node_modules
-node_modules.nosync

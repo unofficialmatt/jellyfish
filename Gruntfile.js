@@ -33,10 +33,6 @@ module.exports = function (grunt) {
                         dest: '<%= globalConfig.build_dir %>/js/vendor/jquery.js'
                     },
                     {
-                        src: ['node_modules/reset-css/sass/_reset.scss'],
-                        dest: '<%= globalConfig.build_dir %>/scss/jellyfish/vendor/_reset.scss'
-                    },
-                    {
                         expand: true,
                         cwd: 'node_modules/hamburgers/_sass/hamburgers',
                         src: ['**/*'],
@@ -100,32 +96,7 @@ module.exports = function (grunt) {
                     src: ['**/*.{png,jpg,JPG,JPEG,jpeg,svg,gif}'],
                     dest: '<%= globalConfig.dist_dir %>/img/'
                 }]
-            },
-            // Runs on svg files saved in <build_dir>/icons/ and outputs to <dist_dir>/icons/
-            icons: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= globalConfig.build_dir %>/icons/',
-                    src: ['**/*.svg'],
-                    dest: '<%= globalConfig.dist_dir %>/icons/'
-                }]
             }
-        },
-
-        // Task to put all of the minified svg icons into a sprite sheet
-        svgstore: {
-            options: {
-                prefix: 'icon-', // This will prefix each ID
-                svg: { // will add and override the the default xmlns="http://www.w3.org/2000/svg" attribute to the resulting SVG
-                    viewBox : '0 0 100 100',
-                    xmlns: 'http://www.w3.org/2000/svg'
-                }
-            },
-            default: {
-                files: {
-                    '<%= globalConfig.dist_dir %>/icons/icons.svg': ['<%= globalConfig.dist_dir %>/icons/*.svg']
-                }
-            },
         },
 
         // Task to concatenate js files together separated by a line break
@@ -152,6 +123,14 @@ module.exports = function (grunt) {
             }
         },
 
+        sass_directory_import: {
+          files: {
+            // The file pattern to add @imports to.
+            // The name of the file is arbitrary - I like "all".
+            src: ['<%= globalConfig.build_dir %>/scss/**/_all.scss']
+          },
+        },
+
         // Task which watches files in the working directory for changes, and runs certain tasks on detection
         watch: {
             // rerun $ grunt when the Gruntfile is edited
@@ -168,7 +147,7 @@ module.exports = function (grunt) {
                     event: ['changed', 'added', 'deleted']
                 },
                 files: ['<%= globalConfig.build_dir %>/scss/**/*.scss'],
-                tasks: ['sass', 'postcss']
+                tasks: ['sass_directory_import', 'sass', 'postcss']
             },
             // Concats and uglifies javascript files on change
             concat_js: {
@@ -184,14 +163,6 @@ module.exports = function (grunt) {
                 },
                 files: ['<%= globalConfig.build_dir %>/img/**/*.{png,jpg,JPG,JPEG,jpeg,svg,gif}'],
                 tasks: ['clean:images', 'imagemin:images']
-            },
-            // Cleans, minifies and creates a spritesheet of icons
-            spritesheet: {
-                options: {
-                    event: ['changed', 'added', 'deleted']
-                },
-                files: ['<%= globalConfig.build_dir %>/icons/*.svg'],
-                tasks: ['clean:icons', 'imagemin:icons', 'svgstore']
             }
         },
         // browserSync watches files defined in src, and on change reloads the browser
@@ -201,6 +172,7 @@ module.exports = function (grunt) {
                   '<%= globalConfig.dist_dir %>/css/style.min.css',
                   '<%= globalConfig.dist_dir %>/js/site.js',
                   '<%= globalConfig.dist_dir %>/img/*',
+                  '<%= globalConfig.dist_dir %>/icons/*',
                   '**/*.php',
                   '**/*.html'
               ]
@@ -224,12 +196,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-svgstore');
     grunt.loadNpmTasks('grunt-browser-sync');
+    grunt.loadNpmTasks('grunt-sass-directory-import');
 
     // Grunt tasks
     grunt.registerTask('default', ['browserSync', 'watch']);
-    grunt.registerTask('init', ['copy:npm', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin', 'svgstore', 'browserSync', 'watch']);
-    grunt.registerTask('build', ['copy:npm', 'concat', 'uglify', 'sass', 'postcss', 'clean', 'imagemin', 'svgstore']);
+    grunt.registerTask('init', ['copy:npm', 'concat', 'uglify', 'sass-directory-imports', 'sass', 'postcss', 'clean', 'imagemin', 'browserSync', 'watch']);
+    grunt.registerTask('build', ['copy:npm', 'concat', 'uglify', 'sass-directory-imports', 'sass', 'postcss', 'clean', 'imagemin']);
 
 };
