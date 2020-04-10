@@ -1,7 +1,6 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   BUTTONS
   Default styling for all buttons
-  .button and form elements
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 // Button stack defined in settings.scss
@@ -13,14 +12,15 @@
     text-align: center;
     cursor: pointer;
     text-decoration: none;
-    font-size: 1rem;
+    text-transform: $button-text-transform;
+    font-size: 0.9rem;
+    font-weight: $button-font-weight;
     line-height: 1.3;
-    border: 1px solid $color-primary;
-    background-color: $color-primary;
-    font-size: $font-size-normal;
-    color: white;
+    border: $button-border-width solid $button-background;
+    background-color: $button-background;
+    color: $button-text-color;
     padding: .75em 1.5em;
-    margin: 5px 5px 2.5px 5px;
+    margin: $element-margin/2 5px $element-margin 0;
     border-radius: $button-border-radius;
     @include smooth(background, border-color, color);
     &::-moz-focus-inner {
@@ -28,63 +28,64 @@
         padding: 0;
     }
     &:hover, &:focus, &:active {
-        background-color: darken($color-primary, 10%);
-        border-color: darken($color-primary, 10%);
+        background-color: darken($button-background, 10%);
+        border-color: darken($button-background, 10%);
     }
     &:focus {
         outline: 0;
-        box-shadow: 0px 0px 1px 3px lighten($color-primary, 25%);
+        box-shadow: 0px 0px 1px 3px lighten($button-background, 25%);
     }
 }
 
 .button, a.button {
     &__secondary {
-        background-color: $color-secondary;
-        border-color: $color-secondary;
+        background-color: $button-secondary-background;
+        border-color: $button-secondary-background;
+        color: $button-secondary-text-color;
         &:hover, &:focus, &:active {
-            background-color: darken($color-secondary, 10%);
-            border-color: darken($color-secondary, 10%);
+            background-color: darken($button-secondary-background, 10%);
+            border-color: darken($button-secondary-background, 10%);
         }
         &:focus {
-            box-shadow: 0px 0px 1px 3px lighten($color-secondary, 15%);
+            box-shadow: 0px 0px 1px 3px lighten($button-secondary-background, 15%);
         }
     }
     &__outline {
         background: transparent;
         color: inherit;
-        border-color: $color-primary;
+        border-color: $button-background;
         &:hover, &:focus, &:active {
             background-color: transparent;
-            border-color: darken($color-primary, 10%);
-            color: $color-primary;
+            border-color: darken($button-background, 10%);
+            color: $button-background;
         }
     }
     &__ghost {
         background: transparent;
-        color: inherit;
+        color: $link-color;
         border-color: transparent;
         &:hover, &:focus, &:active {
             background-color: transparent;
-            border-color: darken($color-primary, 10%);
-            color: $color-primary;
+            border-color: $link-active;
+            color: $link-active;
         }
     }
-    &__full {
+    &__block {
         display: block;
         width: 100%;
-        margin-top: 5px;
-        margin-bottom: 5px;
     }
     &__large {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     &__small {
         font-size: 0.8rem;
     }
 }
 [type=submit] {
-    @extend .button__secondary;
+    @extend .button;
 }
 [type=reset] {
     @extend .button__outline;
 }
+
+// TODO: Add disabled button states https://www.shoelace.style/docs/buttons.html#
