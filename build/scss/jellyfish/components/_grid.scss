@@ -27,10 +27,10 @@ $one_col: (100% / $cols);
       }
   }
   .col {
-      box-shadow: 0 1px 3px 1px rgba(#08f7fe, .7) !important;
+      box-shadow: 0 1px 3px 1px rgba(8,247,254, .7) !important;
   }
   .row {
-      box-shadow: 0 1px 3px 1px rgba(#f5d300, .8) !important;
+      box-shadow: 0 1px 3px 1px rgba(245, 211, 0, .8) !important;
       background: repeating-linear-gradient( to right, rgba(220, 220, 220, 0.4), rgba(220, 220, 220, 0.4) $one-col, rgba(245, 245, 245, 0.8) $one-col, rgba(245, 245, 245, 0.8) $one-col*2) !important;
       background-origin: content-box;
       .row {
@@ -60,17 +60,16 @@ $one_col: (100% / $cols);
     padding-right: .5*$base-col-gutter;
 }
 
-// Remove column padding on collapsed rows/columns
-.col.collapse,
-.row.collapse > .col {
+// Remove column padding on collapsed rows
+.row.collapse {
+  margin-left: 0;
+  margin-right: 0;
+  & > .col {
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
 }
-// Removes negative margin on collapsed rows
-.row.collapse {
-    margin-left: 0;
-    margin-right: 0;
-}
+
 // Iterate for our smallest defined column class ($base-col-name)
 @for $i from 1 through ($cols) {
     .col.#{$base-col-name}-#{$i} {

@@ -3,10 +3,12 @@
   Useful helper classes
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-.clearfix::after {
+.clearfix {
+  &::after {
     content: "";
     display: table;
     clear: both;
+  }
 }
 // Display State
 .show {
@@ -18,30 +20,37 @@
 .invisible {
     visibility: hidden;
 }
-// Use on a .row to make all columns the same height
+// Use on a .row to make all immediate child columns the same height
 .equal-height {
-    .col {
+    > .col {
     display: flex;
     }
 }
+// Converts anything into a flex container {
+.flex {
+  display: flex;
+}
 // Flex Alignment Classes
 .align-top {
-    align-items: flex-start;
+    align-items: flex-start!important;
 }
 .align-middle {
-    align-items: center;
+    align-items: center!important;
 }
 .align-bottom {
-    align-items: flex-end;
+    align-items: flex-end!important;
+}
+.align-stretch {
+  align-items: stretch!important;
 }
 .align-self-top {
-    align-self: flex-start;
+    align-self: flex-start!important;
 }
 .align-self-middle {
-    align-self: center;
+    align-self: center!important;
 }
 .align-self-bottom {
-    align-self: flex-end;
+    align-self: flex-end!important;
 }
 // Flex Justify Classes
 .justify-start {
@@ -92,10 +101,11 @@
 }
 .vw-100 {
   width: 100vw;
-  position: relative;
-  margin: 0 0 0 -50vw;
+  position: absolute;
   left: 50%;
-  padding: 0;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 // Embed videos responsively by wrapping them in an .embed-container
 .embed-container {
@@ -149,3 +159,5 @@
       column-count: 4;
     }
   }
+
+  // TODO: vw-100 doesn't work.

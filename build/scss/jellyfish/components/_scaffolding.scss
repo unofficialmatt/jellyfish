@@ -20,17 +20,17 @@ html {
 body {
     font: {
         family: $font-body;
-        size: 1rem;
+        size: $root-font-size;
     }
-    line-height: $base-line-height;
+    line-height: $root-line-height;
     color: $color-text;
     background-color: $color-background;
 
     @each $point, $i in $breakpoints {
         // set base font size and line height for each specified media query
        @include above($point) {
-           font-size: bp-query($point, base-font-size);
-           line-height: bp-query($point, base-line-height);
+           font-size: bp-query($point, root-font-size);
+           line-height: bp-query($point, root-line-height);
        }
    }
    @if $debug-mode-on {
@@ -44,14 +44,14 @@ a {
     @include smooth(color);
     text-decoration: underline;
     &, &:link {
-        color: $color-primary;
+        color: $link-color;
     }
     &:visited {
-        color: $color-secondary;
+        color: $link-visited;
         text-decoration: none;
     }
     &:hover, &:active, &:focus {
-        color: $color-tertiary;
+        color: $link-active;
     }
 }
 
@@ -90,6 +90,9 @@ dl {
     dt {
         font-weight: bold;
     }
+    dd {
+      margin-bottom: $element-margin/2;
+    }
 }
 
 
@@ -102,7 +105,7 @@ dl {
 hr {
     height: 0;
     border: 0;
-    border-top: $borders;
+    border-top: 0.1rem $border-style $border-color;
     margin: $element-margin 0;
 }
 
@@ -121,51 +124,69 @@ pre {
 // Blockquote
 blockquote {
     margin: 0 0 $element-margin 0;
-    padding: $element-padding;
+    padding: 0 0 0 $element-margin;
+    border-left: $element-margin/3 solid $color-background-alt;
     font-size: $font-size-large;
     font-style: italic;
     line-height: 1.4;
 
     cite {
         display: block;
-        margin-top: $element-margin;
-        font-size: $font-size-small;
+        margin-top: $element-margin/2;
+        font-size: $font-size-xsmall;
         font-style: normal;
+        font-weight: bold;
         text-align: right;
     }
 }
 
 // Images
-
+%embedded-content {
+  float:none !important;
+  margin: $element-margin auto;
+  display: block;
+}
 img {
     width: auto;
     max-width: 100%;
     height: auto;
     vertical-align: top; // Removes the white space under images
+
     &.align-left {
         @extend %embedded-content;
-        margin: 0 $element-margin $element-margin 0;
     }
     &.align-right {
         @extend %embedded-content;
-        margin: 0 0 $element-margin $element-margin;
     }
     &.align-none {
         @extend %embedded-content;
-        margin: $element-margin 0;
     }
     &.align-center {
         @extend %embedded-content;
-        display: block;
-        margin: $element-margin auto;
     }
-}
 
-%embedded-content {
-    @include below(md) {
-        float:none !important;
-        margin: $element-margin auto;
-        display: block;
+    $is_first: 1; // Variable to check if first point in breakpoint
+    @each $point,
+    $i in $breakpoints {
+      @include above($point) {
+        @if $is_first == 1 {
+          &.align-left {
+            margin: 0 $element-margin $element-margin 0;
+            float: left !important;
+          }
+          &.align-right {
+              margin: 0 0 $element-margin $element-margin;
+              float: right !important;
+          }
+          &.align-none {
+              margin: 0 0 $element-margin 0;
+          }
+          &.align-center {
+              margin: 0 auto $element-margin auto;
+          }
+        }
+      }
+      $is_first: 0; // Reset to zero
     }
 }
 
