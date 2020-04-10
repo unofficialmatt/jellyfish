@@ -1,6 +1,6 @@
 // Convert px to em
 @function em($pixels) {
-    @return #{$pixels/$font-size-browser}em;
+    @return #{$pixels/16px}em;
 }
 
 @function bp-query($point, $var) {

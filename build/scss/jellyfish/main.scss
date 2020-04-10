@@ -1,9 +1,9 @@
 // Configuration
 @import "config/mixins";
-@import "config/settings";
+@import "config/default-settings";
 
 // Reset
-@import "vendor/reset";
+@import "components/reset";
 
 // Components
 @import "components/scaffolding";
@@ -22,7 +22,5 @@
 // CMS Specific Classes
 //@import "components/wordpress";
 
-// TODO: Compare with foundation, bootstrap, material, skeleton - Take some of the flex align stuff from these
 // TODO: Last-child margin 0 on .col?
-// NOTE: IGNORE THE DOCS FOR NOW - THEY NEED SOME WORK!
-// NOTE: DEBUGGING COLLAPSE/UNCOLLAPSE https://foundation.zurb.com/sites/docs/grid.html
+// TODO: prefers-dark-mode

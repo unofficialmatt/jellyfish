@@ -5,12 +5,20 @@ $color-midgrey: #D9DBDB;
 .docs {
     background-color: $color-ghost;
 
+    .row-boxed {
+      border: 1px solid $color-text-light;
+      min-height: 120px;
+      margin-bottom: $element-margin/2;
+    }
+
     .boxed {
         background: $color-lightgrey;
-        border: 1px solid $color-midgrey;
-        padding: 1.4em;
-        margin: 20px 0;
+        padding: .7em .5em;
+        line-height: 1.2;
+        margin: 10px 0;
         display: inherit;
+        font-size: $font-size-small;
+        flex: 1;
         &.no-margin {
             margin: 0;
         }
@@ -57,7 +65,7 @@ $color-midgrey: #D9DBDB;
         @extend %reference;
         background: #4ECDC4;
     }
-    .scss-ref {
+    .file-ref {
         @extend %reference;
         background: #556270;
     }
@@ -130,4 +138,40 @@ $color-midgrey: #D9DBDB;
             .inner {border:1px solid green;}
     .container .container {padding:0;width: 100%}
     */
+}
+.docs-header {
+  background: url(https://images.unsplash.com/photo-1559291001-693fb9166cba) center;
+  background-size: cover;
+  padding: $element-margin*2 0;
+  margin-bottom: $element-margin*2;
+  text-align: center;
+  color: white;
+  a {
+    color: white;
+  }
+}
+
+#docs-nav {
+  //padding: $element-margin 0;
+  border-right: 1px solid $color-secondary;
+  ul {
+    list-style: none;
+    margin: $element-margin/2 0 0 0;
+  }
+  li {
+    padding: .5em;
+    &.active {
+      background-color: lighten($color-secondary,10%);
+      a {
+        color: white;
+      }
+    }
+    a {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: bold;
+      width: 100%;
+      display: block;
+    }
+  }
 }

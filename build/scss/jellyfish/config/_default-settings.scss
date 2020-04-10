@@ -1,59 +1,86 @@
-// Grid
+/* GRID */
 $cols: 12 !default;
 $has_ordering: true !default;
 $has_offset: true !default;
 $debug-mode-on: false !default;
 
-// Colours
+/* COLOURS */
 $color-text: #333333 !default;
-$color-text-alt: #d9dbdb !default;
+$color-text-light: #d9dbdb !default;
 $color-background: #fff !default;
-$color-background-alt: #EBF2F2 !default;
-$color-primary: #3FB8AF !default;
-$color-secondary: #DAD8A7 !default;
-$color-tertiary: #FF9E9D !default;
+$color-background-alt: #f8eee7 !default;
+$color-primary: #b22d4f !default;
+$color-secondary: #2d6378 !default;
+$color-tertiary: #5d2b50 !default;
 
-// Typefaces
+/* TYPEFACES */
 $font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $font-code: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace !default;
 $font-body: $font-primary !default;
 $font-headings: $font-secondary !default;
 
-// Font Sizes
-$font-size-browser: 16px !default;
+/* FONT SIZES */
 $font-size-xsmall: 0.6em !default;
 $font-size-small: 0.8em !default;
 $font-size-normal: 1em !default;
-$font-size-medium:1.5em !default;
-$font-size-large: 1.75em !default;
-$font-size-xlarge: 2em !default;
-$font-size-xxlarge: 2.5em !default;
-$font-size-xxxlarge: 3em !default;
+$font-size-medium:1.25em !default;
+$font-size-large: 1.5em !default;
+$font-size-xlarge: 1.75em !default;
+$font-size-xxlarge: 2em !default;
+$font-size-xxxlarge: 2.5em !default;
 
-// Global padding/margins
+/* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT */
+$root-font-size: 16px !default;
+$root-line-height: 1.5 !default;
+
+/* LINKS */
+$link-color: $color-primary !default;
+$link-active: $color-secondary !default;
+$link-visited: $color-tertiary !default;
+
+/* GLOBAL PADDING/MARGINS */
 $element-padding: 20px !default;
 $element-margin: 30px !default;
-$block-padding: 70px !default;
 
-// Global transition used in smooth()
+/* GLOBAL TRANSITION USED IN SMOOTH() */
 $global-transition: 0.3s ease !default;
 
-// Borders
+/* BORDERS */
 $border-width: 1px !default;
 $border-style: solid !default;
-$border-color: $color-text-alt !default;
+$border-color: $color-text-light !default;
 $border-radius: 4px !default;
 $borders: $border-width $border-style $border-color !default;
 
-// Forms
-$forms: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea');
-$buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]');
-$button-border-radius: 6px !default;
-$input-background: transparent !default;
-$placeholder: $color-text-alt !default;
-$form-border-hover: darken($border-color, 10%) !default;
+/* FORMS */
+$form-items: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]'); // Stack of elements to target
+$input-background: white !default;
+$placeholder-color: $color-text-light !default;
+$form-text-size: 1rem !default;
+$form-border-hover: darken($border-color, 40%) !default;
 $form-border-focus: $color-primary !default;
+$form-font: $font-primary;
+
+/* BUTTONS */
+$buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
+$button-border-width: 1px !default;
+$button-border-radius: 6px !default;
+$button-text-transform: none !default;
+$button-font-weight: bold !default;
+$button-background: $color-primary !default;
+$button-text-color: white !default;
+$button-secondary-background: $color-secondary !default;
+$button-secondary-text-color: $button-text-color !default;
+
+/* TABLES */
+$table-stripe-color: lighten($color-text-light,5%) !default;
+$table-hover-background: $color-primary !default;
+$table-hover-color: white !default;
+
+
+
+
 
 // Nav Bar
 $navbar-bg-color: $color-primary !default;
@@ -73,7 +100,6 @@ $navbar-submenu-min-width: 180px !default;
 $navbar-submenu-max-width: 220px !default;
 $navbar-dropdown-speed: .6s !default;
 
-// TODO: Add borders
 
 // Hamburger Menu
 // @link https://github.com/jonsuh/hamburgers
@@ -104,7 +130,6 @@ $hamburger-types: (
 
 // Base Variables (used before breakpoints are applied)
 $base-col-name: xs !default;
-$base-line-height: 1.5 !default;
 $base-container-gutter: 15px !default; // define in px
 $base-col-gutter: 10px !default; // define in px
 
