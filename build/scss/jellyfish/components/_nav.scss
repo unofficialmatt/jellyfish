@@ -5,135 +5,204 @@
   and responsive navbar
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-// TODO: Links on nav-expanded should be full-height so the hover state doesn't look weird.
-// TODO: Add an option to have an off-canvas menu.
-// TODO: .has-children icon does not work that well - no right margin
-
-.nav-bar {
-    background: $navbar-bg-color;
-    width: 100%;
-    display: none; // Hide the navigation until we need it
-    .container {
-        @include below($nav-expands) {
-            // Remove container padding on small devices
-            padding: 0;
-            width: 100%;
-        }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+Default state on smaller devices
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.navbar {
+  background: $navbar-bg-color;
+  //width: 100%;
+  display: none; // Hide the navigation until it has been toggled
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  Container
+  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  .container {
+    @include below($nav-expands) {
+      padding: 0 $navbar-container-padding;
+      width: 100%;
     }
-
-    // Link Styling
-    a:not(.button) {
+  }
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  Top level navigation
+  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  ul {
+    list-style-type: none;
+    margin: 0;
+    width: 100%;
+    li {
+      width: 100%;
+      margin: 0;
+      position: relative;
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+      Link Styles
+      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      a {
         font-size: $navbar-font-size;
         font-weight: $navbar-font-weight;
-        display: block;
         text-decoration: none;
         text-transform: $navbar-text-transform;
+        display: block;
         padding: $navbar-link-padding-x $navbar-link-padding-y;
-        line-height: 1.2;
-        @include smooth(color, background-color);
+        @include smooth(color, background-color, font-weight);
         &, &:visited {
-            color: $navbar-link-color;
-            background-color: $navbar-link-bg-color;
+          color: $navbar-link-color;
+          background-color: $navbar-link-bg-color;
         }
         &:hover, &:focus, &:active {
-            color: $navbar-link-color-hover;
-            background-color: $navbar-link-bg-color-hover;
+          color: $navbar-link-hover-color;
+          background-color: $navbar-link-hover-bg-color;
+          font-weight: $navbar-link-hover-weight;
         }
-    }
-
-    // Buttons
-    a.button {
-        margin: $navbar-link-padding-x $navbar-link-padding-y;
-    }
-
-    // Input areas (eg. a search box
-    input {
-        margin: $navbar-link-padding-x $navbar-link-padding-y;
-        width: auto;
-        min-width: 180px;
-        display: inline-block;
-    }
-
-    // Active page
-    .this-page {
+      }
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+      Styles the currently active page
+      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      &.this-page {
         a {
-            color: lighten($navbar-bg-color, 45%) !important;
+         &, &:visited  {
+          background: $navbar-current-page-background;
+          color: $navbar-current-page-color;
+          font-weight: $navbar-current-page-font-weight;
+          }
+          &:hover, &:focus, &:active {
+            color: $navbar-link-hover-color;
+            background-color: $navbar-link-hover-bg-color;
+          }
         }
-    }
-
-    // Menu Items
-    ul {
-        list-style-type: none;
-        margin: 0;
-        width: 100%;
-    }
-    li {
-        width: 100%;
-        margin: 0;
-    }
-
-    // Links with Children
-    li.has-children>a {
-        padding-right: $navbar-link-padding-y*1.75;
-
+      }
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+      Display an arrow for li elements that have children
+      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      &.has-children>a {
+        // TODO: Fix - this doesn't work!
+        /*padding-right: $navbar-link-padding-y*2;
         &::after {
-            display: inline-block;
-            position: absolute;
-            right: 0;
-            content:"▾";
-            height: 1em;
-            width: 1em;
-            right: $navbar-link-padding-y;
-            transform: rotate(-90deg);
-            @include smooth(transform);
+          content: " ";
+          pointer-events: none;
+          position: absolute;
+          display: block;
+          height: .7em;
+          width: .7em;
+          border: 2px solid $navbar-link-color;
+          border-radius: 2px;
+          border-left: 0;
+          border-top: 0;
+          top: 0;
+          right: 0;
+          transform: rotate(-45deg) translate(-$navbar-link-padding-x*3,0);
+          transform-origin: center;
+          @include smooth(transform);
+        }*/
+      }
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+      Secondary level navigation
+      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      ul {
+        display: none;
+        flex-direction: column;
+        a {
+          text-transform: $navbar-submenu-text-transform;
+          font-weight: $navbar-submenu-font-weight;
         }
+      }
+      // When a nav item has class drop active applied, rotate the arrow indicator and show sub menu
+      &.drop-active {
+        & > a::after {
+          // TODO: Fix - this doesn't work!
+          transform: rotate(45deg) translate(0,$navbar-link-padding-x*3);
+        }
+        & > ul {
+            display: block;
+        }
+      }
     }
-
-    li {
-        // Sub Navigation
+  }
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+Applies on larger devices
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+@include above($nav-expands) {
+  #nav-hamburger {
+    display: none;
+  }
+  .navbar {
+    display: block !important;
+    .navbar-inner {
+      display: flex; // Using flex allows us to use justify-content to push inner elements to the left or right
+    }
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+    Top level navigation
+    *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    ul {
+      display: flex;
+      //align-items: center;
+      flex-direction: row;
+      li {
+        display: flex;
+        width: auto;
+        //align-items: center;
+        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+        Link Styles
+        *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        a {
+          padding: $navbar-link-padding-expanded-x $navbar-link-padding-expanded-y;
+          //display: flex;
+          //align-items: center;
+          //height: 100%;
+        }
+        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+        Display an arrow for li elements that have children
+        *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        &.has-children>a {
+          // TODO: Fix - this is super crap
+          &::after {
+          }
+        }
+        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+        Secondary level navigation
+        *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
         ul {
-            display: none;
-            width:  100%;
-            flex-direction: column;
-            // Links
-            a:not(.button) {
-                text-transform: $navbar-submenu-text-transform;
-            }
+          position: absolute;
+          display: flex;
+          min-width: $navbar-submenu-min-width;
+          max-width: $navbar-submenu-max-width;
+          z-index: 9999;
+          //border: 1px solid white;
+          //box-sizing: content-box;
+          top: 100%;
+          background-color: $navbar-submenu-bg-color-expanded;
+          li {
+            //width: 100%;
+            overflow:hidden;
+            // max-height squashes the height of the li elements so that they are not visible until the parent is hovered
+            max-height:0;
+            transition:max-height 0.2s linear; // Faster transition speed, to hide the drop down quicker on unfocus
+          }
+          a {
+            width: 100%;
+          }
         }
-
-        // What to do when a sub nav's parent element is clicked
-        &.drop-active {
-            a::after {
-                transform: rotate(0deg);
-            }
-            & > ul {
-                display: flex;
-            }
+        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+        Display drop down when parent li is hovered
+        *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        &:hover {
+          // TODO: Add support for tabbing and entering - for screen readers
+          > ul li {
+              max-height:150px; // Arbitrary value larger than an expected menu item is likely to be
+              transition:max-height $navbar-dropdown-speed linear;
+          }
         }
+      }
     }
-
+  }
 }
 
+
+/*
 // Expanded Nav
 @include above($nav-expands) {
 
-    #nav-hamburger {
-        display: none;
-    }
-    .nav-bar {
-        display: block !important;
 
-        .nav-bar-inner {
-            display: flex; // Using flex allows us to use justify-content to push inner elements to the left or right
-        }
-
-        // Link Styling
-        a:not(.button) {
-            padding: $navbar-link-padding-expanded-x $navbar-link-padding-expanded-y;
-            display: flex;
-            align-items: center;
-            height: 100%;
-        }
+    .navbar {
 
         // Buttons
         a.button {
@@ -145,17 +214,6 @@
             align-self: center;
         }
 
-        // Menu Items
-        ul {
-            display: flex;
-            //align-items: center;
-            flex-direction: row;
-        }
-        li {
-            display: flex;
-            width: auto;
-            align-items: center;
-        }
 
         // Links with Children
         li.has-children>a {
@@ -168,40 +226,6 @@
                 display: inline-block;
             }
         }
-
-        // Sub Navigation
-        li {
-            ul {
-                // TODO: This doesn't work with flex
-                position: absolute;
-                display: flex;
-                width: auto;
-                min-width: $navbar-submenu-min-width;
-                max-width: $navbar-submenu-max-width;
-                z-index: 9999;
-                //border: 1px solid white;
-                box-sizing: content-box;
-
-                // Menu Items
-                li {
-                    width: 100%;
-                    overflow:hidden;
-                    max-height:0;
-                    transition:max-height 0.25s linear; // Faster transition speed, to hide the drop down quicker on unfocus
-                }
-                // TO DO: Add support for further nested menus?
-            }
-
-            // What to do when the menu item is hovered
-            &:hover {
-                // TODO: Add support for tabbing and entering - for screen readers
-                > ul li {
-                    max-height:150px; // Arbitrary value larger than an expected menu item is likely to be
-                    transition:max-height $navbar-dropdown-speed linear;
-                }
-            }
-        }
-
         .nav__right {
             justify-content: flex-end;
         }
@@ -239,3 +263,33 @@
         color: $hamburger-active-layer-color;
     }
 }
+*/
+
+
+
+/*
+// TODO: Links on nav-expanded should be full-height so the hover state doesn't look weird.
+// TODO: Add an option to have an off-canvas menu.
+// TODO: .has-children icon does not work that well - no right margin
+
+.navbar {
+    // Link Styling
+    a:not(.button) {
+        line-height: 1.2;
+    }
+    // Buttons
+    a.button {
+        margin: $navbar-link-padding-x $navbar-link-padding-y;
+    }
+    // Input areas (eg. a search box
+    input {
+        margin: $navbar-link-padding-x $navbar-link-padding-y;
+        width: auto;
+        min-width: 180px;
+        display: inline-block;
+    }
+
+
+
+}
+*/
