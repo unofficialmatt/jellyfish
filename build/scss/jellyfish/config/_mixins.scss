@@ -15,7 +15,12 @@
     @if map-has-key($breakpoints, $min) {
         $bp-min: bp-query($min, breakpoint);
     }
-    //@warn "Unknown `#{$min}` in $breakpoints";
+    @else if (str-index(#{$min}, 'px')) {
+      // Do nothing, move to next step
+    }
+    @else {
+     @error "The specified breakpoint `#{$min}` does not exist in the breakpoint map. Compile stopping.";
+    }
     @media (min-width: em($bp-min)) {
         @content;
     }
@@ -25,12 +30,22 @@
     @if map-has-key($breakpoints, $min) {
         $bp-min: bp-query($min, breakpoint);
     }
-    //@warn "Unknown `#{$min}` in $breakpoints";
+    @else if (str-index(#{$min}, 'px')) {
+      // Do nothing, move to next step
+    }
+    @else {
+     @error "The specified breakpoint `#{$min}` does not exist in the breakpoint map. Compile stopping.";
+    }
     $bp-max: $max;
     @if map-has-key($breakpoints, $max) {
         $bp-max: bp-query($max, breakpoint);
     }
-    //@warn "Unknown `#{$max}` in $breakpoints";
+    @else if (str-index(#{$max}, 'px')) {
+      // Do nothing, move to next step
+    }
+    @else {
+     @error "The specified breakpoint `#{$max}` does not exist in the breakpoint map. Compile stopping.";
+    }
     @media (min-width: em($bp-min)) and (max-width: em($bp-max - 1px)) {
         @content;
     }
@@ -40,7 +55,12 @@
     @if map-has-key($breakpoints, $max) {
         $bp-max: bp-query($max, breakpoint);
     }
-    //@warn "Unknown `#{$max}` in $breakpoints";
+    @else if (str-index(#{$max}, 'px')) {
+      // Do nothing, move to next step
+    }
+    @else {
+     @error "The specified breakpoint `#{$max}` does not exist in the breakpoint map. Compile stopping.";
+    }
     @media (max-width: em($bp-max - 1px)) {
         @content;
     }
@@ -63,3 +83,11 @@
       @return 'h#{$from},' + headings($from+1, $to);
   }
 }
+
+@mixin do-not-print {
+  @media print {
+    display: none;
+  }
+}
+// TODO: Add this do-not-print throughout and add to utilities in docs
+// @link https://benfrain.com/create-print-styles-using-css3-media-queries/
