@@ -1,20 +1,153 @@
 
+/* GRID */
+//$cols: 12;
+//$has_ordering: true;
+//$has_offset: true;
+//$debug-mode-on: false;
 
-/* Breakpoints */
-//$nav-expands: 600px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
+/* JELLYFISH DEFAULTS */
+// Base Variables (used before breakpoints are applied)
+//$base-col-name: xs;
+//$base-container-gutter: 15px; // define in px
+//$base-col-gutter: 10px; // define in px
+
+/* COLOURS */
+//$color-text: #333333;
+//$color-text-light: #d9dbdb;
+//$color-background: #fff;
+//$color-background-alt: #f8eee7;
+//$color-primary: #b22d4f;
+//$color-secondary: #2d6378;
+//$color-tertiary: #5d2b50;
+
+/* TYPEFACES */
+//$font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+//$font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+//$font-code: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+//$font-body: $font-primary;
+//$font-headings: $font-secondary;
+
+/* FONT SIZES */
+//$font-size-xsmall: 0.6em;
+//$font-size-small: 0.8em;
+//$font-size-normal: 1em;
+//$font-size-medium:1.25em;
+//$font-size-large: 1.5em;
+//$font-size-xlarge: 1.75em;
+//$font-size-xxlarge: 2em;
+//$font-size-xxxlarge: 2.5em;
+
+/* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT */
+//$root-font-size: 16px;
+//$root-line-height: 1.5;
+
+/* LINKS */
+//$link-color: $color-primary;
+//$link-active: $color-secondary;
+//$link-visited: $color-tertiary;
+
+/* GLOBAL PADDING/MARGINS */
+//$element-padding: 20px;
+//$element-margin: 30px;
+
+/* GLOBAL TRANSITION USED IN SMOOTH() */
+//$global-transition: 0.2s ease;
+
+/* BORDERS */
+//$border-width: 1px;
+//$border-style: solid;
+//$border-color: $color-text-light;
+//$border-radius: 4px;
+//$borders: $border-width $border-style $border-color;
+
+/* FORMS */
+//$input-background: white;
+//$placeholder-color: $color-text-light;
+//$form-text-size: 1rem;
+//$form-border-hover: darken($border-color, 40%);
+//$form-border-focus: $color-primary;
+//$form-font: $font-primary;
+
+/* BUTTONS */
+//$button-border-width: 1px;
+//$button-border-radius: 6px;
+//$button-text-transform: none;
+//$button-font-weight: bold;
+//$button-background: $color-primary;
+//$button-text-color: white;
+//$button-secondary-background: $color-secondary;
+//$button-secondary-text-color: $button-text-color;
+
+/* TABLES */
+//$table-stripe-color: lighten($color-text-light,5%);
+//$table-hover-background: $color-primary;
+//$table-hover-color: white;
+
+/* NAVBAR */
+//$nav-expands: 900px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
+//$navbar-bg-color: $color-background-alt;
+//$navbar-container-padding: 10px;
+// Links
+//$navbar-font-size: 0.9em;
+//$navbar-text-transform: none;
+//$navbar-link-color: $color-primary;
+//$navbar-link-bg-color: $navbar-bg-color;
+//$navbar-font-weight: normal;
+//$navbar-link-border: 1px solid rgba(255,255,255,0.4);
+// Links: Hover
+//$navbar-link-hover-color: $color-secondary;
+//$navbar-link-hover-bg-color: darken($color-background-alt,10%);
+//$navbar-link-hover-weight: $navbar-font-weight;
+// Links: Padding
+//$navbar-link-padding-x: 10px;
+//$navbar-link-padding-y: 8px;
+//$navbar-link-padding-expanded-x: 10px;
+//$navbar-link-padding-expanded-y: 10px;
+// Current Page Link
+//$navbar-current-page-color: $color-secondary;
+//$navbar-current-page-background: inherit;
+//$navbar-current-page-font-weight: bold;
+// Secondary Links
+//$navbar-submenu-text-transform: $navbar-text-transform;
+//$navbar-submenu-font-weight: $navbar-font-weight;
+// Drop down on larger screens
+//$navbar-submenu-min-width: 150px;
+//$navbar-submenu-max-width: 260px;
+
+/* HAMBURGER MENU */
+// @link https://github.com/jonsuh/hamburgers
+//$primary-hamburger-type: spin; // Change this to modify animation
+//$hamburger-padding-x: $navbar-link-padding-x;
+//$hamburger-padding-y: $navbar-link-padding-y;
+//$hamburger-margin-y: inherit;
+//$hamburger-layer-width: 20px; // Width of the hamburger icon
+//$hamburger-layer-height: 3px; // Thickness of hamburger lines
+//$hamburger-layer-spacing: 4px; // Spacing between hamburger lines
+//$hamburger-layer-color: $navbar-link-color; // Color of hamburger
+//$hamburger-layer-border-radius: 3px; // Radius of hamburger lines
+//$hamburger-background-color: $navbar-bg-color;
+//$hamburger-background-color-hover: $navbar-link-hover-bg-color;
+//$hamburger-border: $border-width $border-style $hamburger-background-color;
+//$hamburger-border-hover: $border-width $border-style $hamburger-background-color-hover;
+//$hamburger-border-radius: 0px;
+//$hamburger-hover-opacity: 1;
+//$hamburger-active-layer-color : $hamburger-layer-color;
+//$hamburger-active-hover-opacity: $hamburger-hover-opacity;
+// Override Vendor options with site-specific hamburger animation
+//$hamburger-types: (
+//  $primary-hamburger-type
+//);
 
 $breakpoints: (
-    /**
-     * Breakpoints must be defined here
-     * Note: Comment out or remove a whole size to prevent it being iterated, or individual elements to inherit from the previously defined point.
-     * The shorthand names are used in column classes.
-     * Our $base-col-name above applies to all columns below the first breakpoint set here (ie. is the default).
-     * Breakpoints are converted to em values through breakpoint mixin
-     * Anything else in px is converted to rem via grunt
-     * col-gutter is !required
-    */
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+     Breakpoints are defined here
+     Note: Comment out or remove a whole size to prevent it being iterated,
+     or individual elements to inherit from the previously defined point.
+     The shorthand names are used in column and modifier classes.
+     breakpoint and col-gutter are the only !required values
+    *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     sm: (
-        breakpoint: 600px,
+        breakpoint: 500px,
         container-width: 96%,
         container-gutter: 50px,
         col-gutter: 20px,
@@ -23,7 +156,8 @@ $breakpoints: (
         ),
     md: (
         breakpoint: 900px,
-        container-width: 880px,
+        container-width: 94%,
+        container-gutter: 0px,
         col-gutter: 30px,
         ),
     lg: (
