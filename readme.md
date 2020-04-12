@@ -60,7 +60,7 @@ Please feel free to fork, comment, critique, or submit a pull request.
 
 ## Author
 
-- [Tania Rascia](https://www.mattweet.com)
+- [Matt Weet](https://www.mattweet.com)
 
 ## License
 
