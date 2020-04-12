@@ -1,0 +1,146 @@
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  DOCS
+  Contains additional styles used in documentation.
+  Can be removed on live projects.
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.docs {
+    .row-boxed {
+      border: 1px solid $color-text-light;
+      min-height: 120px;
+      margin-bottom: $element-margin/2;
+    }
+    .boxed {
+        background: lighten($color-secondary, 60%);
+        padding: .7rem .9rem;
+        line-height: 1.2;
+        margin: $element-margin/4 0 $element-margin/2 0;
+        display: inherit;
+        font-size: $font-size-small;
+        flex: 1;
+    }
+
+    pre {
+        position: relative;
+        margin: $element-margin 0 !important;
+        label {
+            @extend small;
+            top:0;
+            right:0;
+            position: absolute;
+            float: right;
+            display: block;
+            background-color: $color-secondary;
+            color: #fff;
+            padding: .4em .6em;
+        }
+    }
+    %reference {
+        display: inline-block;
+        color: white;
+        padding: 0.4em .7em;
+        border-radius: 3px;
+        font-size: $font-size-small;
+        line-height: 1;
+    }
+    .css-ref {
+        @extend %reference;
+        background: $color-primary;
+    }
+    .file-ref {
+        @extend %reference;
+        background: $color-secondary;
+    }
+    .variable-ref {
+        @extend %reference;
+        background: $color-tertiary;
+    }
+
+    // Standfirst
+    .standfirst {
+        font-size: $font-size-large;
+    }
+
+    .docs-header {
+      background: url(https://images.unsplash.com/photo-1559291001-693fb9166cba) center;
+      background-size: cover;
+      padding: $element-margin*2 0;
+      margin-bottom: $element-margin*2;
+      text-align: center;
+      color: white;
+      a {
+        color: white;
+      }
+    }
+   //Margin around sections
+    .docs-section {
+      margin-top: $element-margin*1.5;
+      margin-bottom: $element-margin*1.5;
+    }
+
+  .smooth- {
+      &transform {
+          @include smooth(transform);
+          &:hover, &:active {
+              transform: scale(1.1);
+          }
+      }
+      &background {
+          @include smooth(background);
+          &:hover, &:active {
+              background-color: $color-background-alt;
+          }
+      }
+      &wild {
+        @include smooth(color, transform, background);
+          &:hover, &:active {
+              transform: scale(1.1);
+              background-color: $color-secondary;
+              color: white;
+              transform: matrix(1.08,.05,.01,1.1,1,4);
+          }
+      }
+  }
+}
+
+// Sticky nav used in the documentation
+#docs-nav {
+  background-color: $color-background;
+  @include below(md){
+    top: 0px !important;
+    z-index: 99999 !important;
+    border-bottom: 1px solid $color-text-light;
+    font-size: $font-size-small;
+  }
+  ul {
+    list-style: none;
+    margin: $element-margin/2 0 0 0;
+  }
+  h3 {
+    display: none;
+    @include above(md) {
+      display: block;
+    }
+  }
+  li {
+    display: inline-block;
+    @include above(md) {
+      display: block;
+    }
+    a {
+      text-decoration: none;
+      padding: .5em;
+      margin-left: -.5em;
+      text-transform: uppercase;
+      font-weight: bold;
+      width: calc(100%+.5em);
+      display: block;
+      color: $color-secondary;
+      &.active {
+        background-color: lighten($color-secondary,10%);
+        color: white;
+      }
+    }
+  }
+}

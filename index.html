@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col md-10 offset-md-1 xl-8 offset-xl-2">
           <h1>Welcome to Jellyfish.</h1>
-          <p class="lead">Yet another lightweight SCSS framework to add to the <a href="https://github.com/search?q=css+frameworks rel="externa;">ever-growing list</a>.</p>
+          <p class="standfirst">Yet another lightweight SCSS framework to add to the <a href="https://github.com/search?q=css+frameworks rel="externa;">ever-growing list</a>.</p>
           <p>Jellyfish has a few useful features that other frameworks don't have; primarily the ability to give breakpoint modifiers your own class names <em>(want to name them micro, medium, mammoth - go for it!</em> and the ability to define how many columns are in your grid <em>(want a 13 column grid? You go for it, tiger! I won't judge)</em>.</p>
           <p>Aside from that, Jellyfish has all the usual styling, classes and modifiers you have come to expect in a modern flex-based CSS framework.</p>
           <p>Jellyfish is powered by <a href="#project-init">Grunt.js</a> to compile scss and javascript, adding prefixers, concatenating and minifying in the process.</p>
@@ -30,33 +30,33 @@
   </header>
   <div class="container">
     <div class="row">
-
-      <aside class="col sm-3">
+      <aside class="col md-3 lg-2">
         <div id="docs-nav">
           <h3>Navigation</h3>
           <ul>
             <li><a href="#boilerplate">HTML5 Boilerplate</a></li>
             <li><a href="#grid">Grid</a></li>
-            <li><a href="#breakpoint-settings">Breakpoint Settings</a></li>
+            <li><a href="#navbar">Navbar</a></li>
             <li><a href="#typography">Typography</a></li>
             <li><a href="#content">Content</a></li>
             <li><a href="#buttons">Buttons</a></li>
             <li><a href="#forms">Forms</a></li>
             <li><a href="#tables">Tables</a></li>
-            <li><a href="#helpers">Helpers</a></li>
-            <li><a href="#debug">Debug</a></li>
-            <li><a href="#how-to-use">How to Use</a></li>
+            <li><a href="#utilities">Utilities</a></li>
+            <li><a href="#mixins">Mixins</a></li>
+            <li><a href="#breakpoint-settings">Breakpoint Settings</a></li>
             <li><a href="#configuration">Configuration</a></li>
+            <li><a href="#debug">Debug Mode</a></li>
+            <li><a href="#how-to-use">How to Use</a></li>
           </ul>
         </div>
       </aside><!-- SIDEBAR NAV -->
-
-      <main class="col sm-9">
+      <main class="col md-9 lg-10">
         <section class="docs-section" id="boilerplate">
           <h2>HTML Boilerplate</h2>
           <p>Begin your project with as basic <a href="https://en.wikipedia.org/wiki/HTML5" rel="external">HTML5</a> boilerplate that does the following:</p>
           <ul>
-            <li>Sets the <a href="http://www.w3schools.com/tags/ref_language_codes.asp" target="_blank">default language</a> and <a href="https://en.wikipedia.org/wiki/UTF-8">character set</a>.</li>
+            <li>Sets the <a href="https://www.w3schools.com/tags/ref_language_codes.asp" target="_blank">default language</a> and <a href="https://en.wikipedia.org/wiki/UTF-8">character set</a>.</li>
             <li>Uses the latest <a href="https://msdn.microsoft.com/en-us/library/jj676915(v=vs.85).aspx">Internet Explorer rendering mode</a>.</li>
             <li>Defines the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag">width of the viewport</a> to enable responsiveness.</li>
             <li>Includes links to the minified CSS file and minified javascript file.</li>
@@ -121,7 +121,6 @@
           <p>Rows contain a number of <span class="css-ref">.col</span> elements, grouped horizontally. To preserve equal margins on the left and right, the only elements inside a <span class="css-ref">.row</span> should be <span class="css-ref">.col</span> elements.</p>
 
           <h3>Columns</h3>
-          <section>
             <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
 
             <p>Columns are equal-width by default, and expand to fill all available width.</p>
@@ -152,8 +151,6 @@
               <div class="col"><div class="boxed">2nd column</div></div>
               <div class="col"><div class="boxed">3rd column</div></div>
             </div>
-          </section><!-- Columns: Introduction -->
-          <section>
             <h4>Making Columns Responsive</h4>
             <p>To set the width of a column, use the breakpoint-based modifier classes to target different viewport widths. Breakpoints are explained in the <a href="#breakpoint-settings">breakpoint settings</a> section.</p>
             <pre class="language-markup"><code><!--
@@ -244,8 +241,6 @@
               <div class="col sm-3"><div class="boxed">sm-3</div></div>
               <div class="col"><div class="boxed">default</div></div>
             </div>
-          </section><!-- Columns: Responsive Widths -->
-          <section>
             <h4>Offsetting Columns</h4>
             <p>Columns can be offset by using the <span class="css-ref">.offset-$breakpoint-$cols</span> modifiers. Offsets are inherited, and can be reset by using the class <span class="css-ref">.offset-$breakpoint-0</span>. When you offset a columm, all elements that follow are moved along.</p>
             <pre class="language-markup"><code><!--
@@ -284,8 +279,6 @@
               <div class="col sm-6 offset-sm-3 offset-md-2"><div class="boxed">sm-6 offset-sm-3 offset-md-2</div></div>
             </div>
             <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_offset</span> to <span class="bold">false</span> in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
-          </section><!-- Columns: Offset -->
-          <section>
             <h4>Reordering Columns</h4>
             <p>You can control the order of columns using the <span class="css-ref">.order-$breakpoint-*</span> modifiers. Note that columns without an order modifier will not be affected. Ordering is inherited, and can be reset by using the class <span class="css-ref">.order-$breakpoint-0</span>.</p>
             <pre class="language-markup"><code><!--
@@ -311,16 +304,9 @@
               <div class="col order-md-2"><div class="boxed">order-md-2</div></div>
               <div class="col order-md-1"><div class="boxed">order-md-1</div></div>
             </div>
-
             <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_ordering</span> to <span class="bold">false</span> in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
-          </section><!-- Columns: Ordering -->
-          <section>
-            <h4>Hiding Columns - to be written. Code needs review</h4>
+            <h4>Hiding Columns</h4>
             <p>You can hide columns based on breakpoints using <a href="#display-utilities">display utilities</a>.</p>
-
-          </section><!-- Columns: Hiding -->
-
-          <section>
             <h4>Collapsing Columns</h4>
             <p>Columns have horizontal spacing (gutters) around them by default. Should you wish to remove this spacing, apply the <span class="css-ref">.collapse</span> class to the parent <span class="css-ref">.row</span>.</p>
             <pre class="language-markup"><code><!--
@@ -342,9 +328,6 @@
               <div class="col"><div class="boxed">collapsed col</div></div>
               <div class="col"><div class="boxed">collapsed col</div></div>
             </div>
-          </section><!-- Columns: Collapsing -->
-
-          <section>
             <h3>Nested Grids</h3>
             <p><span class="css-ref">.row</span> and <span class="css-ref">.col</span> elements can be infinitely nested within each other, so long as one golden rule is followed: <strong>A .row can only contain .col elements</strong>.</p>
             <p><strong>Note:</strong> because column widths are defined as percentages, when you nest a row, it's child columns will span XX% of the parent column's width. e.g. if you nest a row in a .col.sm-6, adding a .col.sm-6 will effectively make that element a .col.sm-3 of the parent row.</p>
@@ -366,7 +349,7 @@
             </div>
               --></code>
             </pre>
-            <p class="row">
+            <div class="row">
               <div class="col md-8">
                 <div class="boxed">outer col md-8</div>
                 <div class="row">
@@ -381,44 +364,267 @@
                   <div class="col md-6"><div class="boxed">inner md-6</div></div>
               </div>
             </div>
-          </section><!-- Columns: Nesting -->
-
         </section><!-- #grid -->
-        <section class="docs-section" id="breakpoint-settings">
-          <h2>Breakpoint Settings</h2>
-          <p>Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints - declared through the <span class="variable-ref">$breakpoints</span> map in <span class="file-ref">/build/scss/_settings.scss</span>. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
-          <h4>Example breakpoint definition</h4>
-          <pre>
-            <code class="language-scss line-numbers">
-              sm: (
-                breakpoint: 400px,
-                container-width: 96%,
-                container-gutter: 20px,
-                col-gutter: 20px,
-                root-font-size: 16px,
-                root-line-height: 1.48em
-                ),
-            </code>
-            <label>_settings.scss</label>
+        <section class="docs-section" id="navbar">
+          <h2>Navbar</h2>
+          <p>Jellyfish comes with a responsive and versatile horizontal navigation bar, <span class="css-ref">.navbar</span>, that has the following structure:</p>
+          <ul>
+            <li><strong>.navbar</strong> - the main navbar wrapper
+              <ul>
+                <li><strong>.container</strong> - keeps the navbar elements contained
+                  <ul>
+                    <li><strong>.navbar-brand</strong> - an area on the left side of the navigation, which is <em>always visible</em>. This can contain the website's logo, key links, icons etc. It also contains the hamburger icon
+                      <ul>
+                        <li><strong>#nav-hamburger</strong> - a button which when clicked expands the <span class="css-ref">.navbar-menu</span> on smaller devices
+                        <ul>
+                          <li><strong>.hamburger-label</strong> - <em>optional</em> element to add a label to the button</li>
+                          <li><strong>.hamburger-box</strong> - the hamburger icon itself</li>
+                        </ul>
+                        </li>
+                      </ul>
+                      </li>
+                      <li><strong>.navbar-menu</strong> - the primary navigation menu which appears on the right side of the navbar on larger devices, and is <em>hidden by default</em> on smaller screens
+                        <ul>
+                          <li><strong>.navbar-start</strong> the <em>left part</em> of the menu, which appears next to the navbar brand on larger screens. This wrapper is <em>optional</em>
+                          <ul>
+                            <li><strong>&lt;ul></strong> - any ul elements contained in <span class="css-ref">.navbar-menu</span> will be assumed to be your website's navigation</li>
+                          </ul>
+                          </li>
+                          <li><strong>.navbar-end</strong> the <em>right part</em> of the menu, which appears at the end of the navbar. This wrapper is <em>optional</em></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  </ul>
+                </li>
+            <li><strong>.navbar-item</strong> - an item that is displayed in the navbar. It can be an <code>a</code>, <code>p</code>, <code>span</code> or <code>div</code>. Using this class ensures that the item is centered and uses display:flex</li>
+          </ul>
+          <p>The navbar has a few additional classes to aid with the user interface:</p>
+          <ul>
+            <li><strong>.current-page</strong> - the current page item, appears with a modified style</li>
+            <li><strong>.has-children</strong> - used to denote that a parent item has children (submenu)</li>
+            <li><strong>.hide-above-nav</strong> - used to hide elements on larger screens (takes effect above the breakpoint <span class="variable-ref">$nav-expands</span>)</li>
+            <li><strong>.hide-below-nav</strong> - used to hide elements on smaller screens (takes effect below the breakpoint <span class="variable-ref">$nav-expands</span>)</li>
+          </ul>
+          <p>Jellyfish is dependent on jQuery <em>(...yes, I know!)</em> to expand and show the <span class="css-ref">.navbar-menu</span> on smaller devices.</p>
+          <h3>Basic Navbar</h3>
+          <pre class="language-markup line-numbers">
+            <code><!--
+              <nav class="navbar">
+                <div class="container">
+                  <div class="navbar-brand">
+                    <a class="img-link navbar-item" href="#"><img src="https://www.unsplash.it/60/40" alt="Site Logo"></a>
+                    <a href="#" class="hide-above-nav navbar-item">Mobile Link</a>
+                    <a href="#" class="hide-above-nav navbar-item">Mobile Link</a>
+                    <button id="nav-hamburger" class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
+                      <span class="hamburger-label">Menu</span>
+                      <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                      </span>
+                    </button>
+                  </div>
+                  <div id="navbar-menu" class="navbar-menu">
+                    <div class="navbar-start">
+                      <ul>
+                        <li class="current-page"><a href="#">Current Page</a></li>
+                        <li class="has-children"><a href="#">Has Children</a>
+                          <ul>
+                            <li class="has-children"><a href="#">Has Children</a>
+                              <ul>
+                                <li><a href="#">Menu Item</a></li>
+                                <li><a href="#">Menu Item</a></li>
+                                <li><a href="#">Menu Item</a></li>
+                                <li><a href="#">Menu Item</a></li>
+                              </ul>
+                            </li>
+                            <li class="has-children"><a href="#">Has Children</a>
+                              <ul>
+                                <li><a href="#">Menu Item</a></li>
+                                <li><a href="#">Menu Item</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href="#">Menu Item</a></li>
+                      </ul>
+                    </div>
+                    <div class="navbar-end">
+                      <input class="navbar-item" type="text" placeholder="Search....">
+                      <a href="#" class="button button__small button__secondary navbar-item">Button</a>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            --></code>
           </pre>
-          <p>By default, breakpoints are named <span class="variable-ref">sm</span>, <span class="variable-ref">md</span>, <span class="variable-ref">lg</span>  and <span class="variable-ref">xl</span> however you can name breakpoints as you wish to suit your project requirements and personal naming conventions (e.g. microscopic, small, medium, large, gigantic, mammoth, mobile, tablet, laptop, desktop, jumbotron). Jellyfish will use these names to generate the code for css classes as detailed above.</p>
-          <p>If you choose not to declare certain values, they will be inherited.</p>
-          <h4>Terminology</h4>
-          <table>
-            <thead>
-              <tr><th>Term</th><th>Description</th></tr>
-            </thead>
-              <tbody>
-                  <tr><td class="code">breakpoint</td><td>The width at which the breakpoint will take effect. This must be provided in px and will be converted to an em value through the breakpoint mixin. <strong>This variable is required.</strong></td></tr>
-                  <tr><td class="code">container-width</td><td>The width of the <span class="css-ref">.container</span> element at this breakpoint - should be provided as %, px or rem. <strong>This variable is required.</strong></td></tr>
-                  <tr><td class="code">container-gutter</td><td>Padding applied to the left and right of the <span class="css-ref">.container</span> element - this should be provided as px value.</td></tr>
-                  <tr><td class="code">col-gutter</td><td>Padding applied to the left and right of <span class="css-ref">.col</span> elements - this should be provided as a px value. <strong>This variable is required.</strong></td></tr>
-                  <tr><td class="code">root-font-size</td><td>Global base font size (applied to <span class="css-ref">body</span>) which will affect all elements sized with em. Useful for improving legibility at different breakpoints. This should be provided as a px value.</td></tr>
-                  <tr><td class="code">root-line-height</td><td>Global base line-height (applied to <span class="css-ref">body</span>) which will affect all elements that do not have a line-height applied. Can be provided as a number, em or px.</td></tr>
-              </tbody>
-          </table>
-          <p><strong>Note:</strong> You can also configure settings for the smallest devices (i.e. before any media queries are activated) by setting the following variables in <span class="file-ref">/build/scss/_settings.scss</span>: <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$root-font-size</span>, <span class="variable-ref">$root-line-height</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></p>
-        </section><!-- #breakpoint-settings-->
+          <nav class="navbar">
+            <div class="container">
+              <div class="navbar-brand">
+                <a class="img-link navbar-item" href="#"><img src="https://www.unsplash.it/60/40" alt="Site Logo"></a>
+                <a href="#" class="hide-above-nav navbar-item">Mobile Link</a>
+                <a href="#" class="hide-above-nav navbar-item">Mobile Link</a>
+                <button id="nav-hamburger" class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
+                  <span class="hamburger-label">Menu</span>
+                  <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                  </span>
+                </button>
+              </div>
+              <div id="navbar-menu" class="navbar-menu">
+                <div class="navbar-start">
+                  <ul>
+                    <li class="current-page"><a href="#">Current Page</a></li>
+                    <li class="has-children"><a href="#">Has Children</a>
+                      <ul>
+                        <li class="has-children"><a href="#">Has Children</a>
+                          <ul>
+                            <li><a href="#">Menu Item</a></li>
+                            <li><a href="#">Menu Item</a></li>
+                            <li><a href="#">Menu Item</a></li>
+                            <li><a href="#">Menu Item</a></li>
+                          </ul>
+                        </li>
+                        <li class="has-children"><a href="#">Has Children</a>
+                          <ul>
+                            <li><a href="#">Menu Item</a></li>
+                            <li><a href="#">Menu Item</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Menu Item</a></li>
+                  </ul>
+                </div>
+                <div class="navbar-end">
+                  <input class="navbar-item" type="text" placeholder="Search....">
+                  <a href="#" class="button button__small button__secondary navbar-item">Button</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <h3>Nested menus (submenus)</h3>
+          <p>Submenus are not a problem for Jellyfish - you can infinitely nest <code>&lt;ul></code> elements within <code>&lt;li></code> elements.<br>You should apply a class of <span class="css-ref">.has-children</span> to the parent <code>&lt;li></code> of any submenu, to ensure that styling is applied correctly - with consideration for UX!</p>
+          <p>On small screens, submenu items have an increased left-padding to aid navigation hierarchy. On larger screens, the first submenu appears vertically, all others move horizontally.</p>
+          <p>The example below demonstrates submenus a few levels deep on larger screens, however please note: Jellyfish currently expects to only find one .navbar on a page, so <strong>on mobile devices the drop down will not trigger</strong>.</p>
+          <nav class="navbar">
+            <div class="container">
+              <div class="navbar-brand">
+                <button id="nav-hamburger" class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
+                  <span class="hamburger-label">Menu</span>
+                  <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                  </span>
+                </button>
+              </div>
+              <div id="navbar-menu" class="navbar-menu">
+                <ul>
+                  <li class="has-children"><a href="#">Has Children</a>
+                    <ul>
+                      <li class="has-children"><a href="#">Has Children</a>
+                        <ul>
+                          <li><a href="#">Menu Item</a></li>
+                          <li><a href="#">Menu Item</a></li>
+                          <li class="has-children"><a href="#">Has Children</a>
+                            <ul>
+                              <li><a href="#">Menu Item</a></li>
+                              <li class="has-children"><a href="#">Has Children</a>
+                                <ul>
+                                  <li><a href="#">Menu Item</a></li>
+                                  <li><a href="#">Menu Item</a></li>
+                                  <li class="has-children"><a href="#">Has Children</a>
+                                    <ul>
+                                      <li><a href="#">Menu Item</a></li>
+                                      <li><a href="#">Menu Item</a></li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Menu Item</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <h3>Customising the navbar</h3>
+          <p>Jellyfish's navbar is fully customisable with the variables defined in <span class="file-ref">/build/scss/_settings.scss</span>. You can control:</p>
+          <ul>
+            <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <strong>Note:</strong> if you change this value from it's default you also need to change the value in <span class="file-ref">/build/js/site/scripts.js</span>: <code>var navPoint = '900';</code></li>
+            <li>Background colour and container padding</li>
+            <li>Font size and text transform</li>
+            <li>Link color, link background color, link weight - and hover states for all three</li>
+            <li>Link border seperator</li>
+            <li>Item padding X,Y on small devices and larger devices</li>
+            <li>Current page color, background and font weight</li>
+            <li>Submenu text transform and weight</li>
+            <li>Submenu min and max width on larger devices</li>
+          </ul>
+          <pre class="language-scss">
+            <code>
+              /* NAVBAR */
+              $nav-expands: 900px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
+              $navbar-bg-color: $color-background-alt;
+              $navbar-container-padding: 10px;
+              // Links
+              $navbar-font-size: 0.9em;
+              $navbar-text-transform: none;
+              $navbar-link-color: $color-primary;
+              $navbar-link-bg-color: $navbar-bg-color;
+              $navbar-font-weight: normal;
+              $navbar-link-border: 1px solid rgba(255,255,255,0.4);
+              // Links: Hover
+              $navbar-link-hover-color: $color-secondary;
+              $navbar-link-hover-bg-color: darken($color-background-alt,10%);
+              $navbar-link-hover-weight: $navbar-font-weight;
+              // Links: Padding
+              $navbar-link-padding-x: 10px;
+              $navbar-link-padding-y: 8px;
+              $navbar-link-padding-expanded-x: 10px;
+              $navbar-link-padding-expanded-y: 10px;
+              // Current Page Link
+              $navbar-current-page-color: $color-secondary;
+              $navbar-current-page-background: inherit;
+              $navbar-current-page-font-weight: bold;
+              // Secondary Links
+              $navbar-submenu-text-transform: $navbar-text-transform;
+              $navbar-submenu-font-weight: $navbar-font-weight;
+              // Drop down on larger screens
+              $navbar-submenu-min-width: 150px;
+              $navbar-submenu-max-width: 260px;
+            </code>
+          </pre>
+          <h3>Customising the hamburger</h3>
+          <p>Jellyfish uses the fantastic <a href="https://jonsuh.com/hamburgers/">hamburgers css library</a> by Jonathan Suh. The code is imported from npm through <a href="#how-to-use">Grunt</a>.</p>
+          <p>Rather than including all animation options in the output css, Jellyfish has a variable <span class="variable-ref">$primary-hamburger-type</span> which is used to select only your specified hamburger animation for compile.</p>
+          <p>Hamburger settings are all found in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <pre class="language-scss">
+            <code>
+              /* HAMBURGER MENU */
+              // @link https://github.com/jonsuh/hamburgers
+              $primary-hamburger-type: spin; // Change this to modify animation
+              $hamburger-padding-x: $navbar-link-padding-x;
+              $hamburger-padding-y: $navbar-link-padding-y;
+              $hamburger-margin-y: inherit;
+              $hamburger-layer-width: 20px; // Width of the hamburger icon
+              $hamburger-layer-height: 2px; // Thickness of hamburger lines
+              $hamburger-layer-spacing: 4px; // Spacing between hamburger lines
+              $hamburger-layer-color: $navbar-link-color; // Color of hamburger
+              $hamburger-layer-border-radius: 3px; // Radius of hamburger lines
+              $hamburger-background-color: $navbar-bg-color;
+              $hamburger-background-color-hover: $navbar-link-hover-bg-color;
+              $hamburger-border: $border-width $border-style $hamburger-background-color;
+              $hamburger-border-hover: $border-width $border-style $hamburger-background-color-hover;
+              $hamburger-border-radius: 0px;
+              $hamburger-hover-opacity: 1;
+              $hamburger-active-layer-color : $hamburger-layer-color;
+              $hamburger-active-hover-opacity: $hamburger-hover-opacity;
+            </code>
+          </pre>
+        </section><!-- #navbar -->
         <section class="docs-section" id="typography">
           <h2>Typography</h2>
           <p>Jellyfish provides default styling for all standard typography tags. Global font families, line height and size hierarchy are defined in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
@@ -516,7 +722,7 @@
 console.log("JellyFish is Awesome!");
           </pre>
           <h3>Text Formatting</h3>
-          <table>
+          <table class="table__border">
             <thead>
               <tr>
                 <th>Element</th>
@@ -631,7 +837,7 @@ console.log("JellyFish is Awesome!");
           <p>All img elements have height and width set to auto, and max-width set to 100%. This prevents images from breaking out of their containers, and also allows width/height to scale as appropriate when a more specific dimension is defined.</p>
           <div style="width:50%;" class="boxed">
             <p>This image can't break out of it's container even if it wanted to!</p>
-            <img src="http://unsplash.it/500/300">
+            <img src="https://unsplash.it/500/300">
           </div>
           <h4>Floating images</h4>
           <p>Images, like all elements, can be floated by applying utility classes. Additional styling automatically applies margins to create white space when images are floated alongside text.</p>
@@ -972,14 +1178,14 @@ console.log("JellyFish is Awesome!");
           <pre class="language-markup">
             <code><!--
             <div class="table-container">
-              <table>
+              <table class="table__border">
                 ...
               </table>
             </div>
           --></code>
           </pre>
           <div class="table-container">
-            <table>
+            <table class="table__border">
               <thead><tr><th>Jellyfish Species</th><th>Stinger</th><th>Habitat</th><th>How to identify it</th></tr></thead>
               <tbody>
                   <tr><td>Cotylorhiza tuberculata</td><td>Harmless to humans, but it is better not to touch it. It is probably harmless also for most fishes. Just as for Rhizostoma, it is often associated to young fish that use it as a shelter</td><td>Very abundant in the Mediterranean Sea, expecially in bays. In 2009 it was more frequent in the southern part of Italy, showing a preference for warmer waters, but this was not confirmed in 2010 and 2011, since this species was very frequent throughout the whole Italian coast, especially in the second half of the summer.</td><td>One of the most beautiful jellyfish of the Mediterranean Sea. The umbrella can measure 30 cm in diameter, it is very rigid and roundish in its centre, where it has a reddish or yellow color. The external part of the manubrium is motile and pulsates vigorously. Under the umbrella, the manubrium resembles a bouquet of flowers, with blue-purple buttons, inserted into stout arms. Some tentacles, also terminating with blue buttons, are inserted on the manubrium. Cotylorhiza can have symbiotic microalgae that live in its tissues, just as those of tropical corals. Functionally it is a “plant”, even if it can feed on zooplankton.</td></tr>
@@ -992,17 +1198,17 @@ console.log("JellyFish is Awesome!");
           <pre class="language-scss">
             <code>
               /* TABLES */
-              $table-stripe-color: lighten($color-text-light,5%) !default;
-              $table-hover-background: $color-primary !default;
-              $table-hover-color: white !default;
+              $table-stripe-color: lighten($color-text-light,5%);
+              $table-hover-background: $color-primary;
+              $table-hover-color: white;
           </code>
           <label>_settings.scss</label>
           </pre>
         </section><!-- #tables -->
-        <section class="docs-section" id="helpers">
-          <h2>Helpers</h2>
+        <section class="docs-section" id="utilities">
+          <h2>Utilities</h2>
           <h3>Keep words together</h3>
-          <p>If you need to keep certain words together (e.g. brand names), wrap them in a span with the helper class <span class="css-ref">.nowrap</span>.</p>
+          <p>If you need to keep certain words together (e.g. brand names), wrap them in a span with the utility class <span class="css-ref">.nowrap</span>.</p>
           <p><strong>Note:</strong> This may cause elements to break out of their container and for paragraphs to be ragged - you have been warned!</p>
           <pre class="language-markup">
             <code><!--
@@ -1032,6 +1238,40 @@ console.log("JellyFish is Awesome!");
             </div>
           </div>
           <div class="align-none boxed">Float None</div>
+          <h3 id="display-utilities">Display utilities</h3>
+          <p>Jellyfish comes with a number of display utilities to allow you to hide and show elements based on the current breakpoint.</p>
+          <p>An element with a class of <span class="css-ref">.hide</span> is hidden at all breakpoints. An element can also be set to be hidden (but still take up space on the page) with the class <span class="css-ref">.invisible</span>.</p>
+          <p>Use <span class="css-ref">.hide-*</span> to hide an element only at a specific breakpoint. Use <span class="css-ref">.hide-above-*</span> to hide an element at and above a specific breakpoint. Use <span class="css-ref">hide-below-*</span> to hide an element at and below a specific breakpoint.</p>
+          <table class="table__border">
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td class="code">.invisible</td>
+                  <td><span class="invisible">This text is invisible but still takes up space on the page. So if it falls across multiple lines, the table cell will grow to fit it.</span></td>
+              </tr>
+              <tr>
+                  <td class="code">.hide</td>
+                  <td><span class="hide">This text will be hidden on all devices.</span></td>
+              </tr>
+              <tr>
+                <td class="code">.hide-*</td>
+                <td><span class="hide-xs boxed">hide-xs</span><span class="hide-sm boxed">hide-sm</span><span class="hide-md boxed">hide-md</span><span class="hide-lg boxed">hide-lg</span><span class="hide-xl boxed">hide-xl</span></td>
+            </tr>
+              <tr>
+                  <td class="code">.hide-below-*</td>
+                  <td><span class="hide-below-sm boxed">hide-below-sm</span><span class="hide-below-md boxed">hide-below-md</span><span class="hide-below-lg boxed">hide-below-lg</span><span class="hide-below-xl boxed">hide-below-xl</span></td>
+              </tr>
+              <tr>
+                <td class="code">.hide-above-*</td>
+                <td><span class="hide-above-sm boxed">hide-above-sm</span><span class="hide-above-md boxed">hide-above-md</span><span class="hide-above-lg boxed">hide-above-lg</span><span class="hide-above-xl boxed">hide-above-xl</span></td>
+            </tr>
+            </tbody>
+          </table>
           <h3>Working with flexboxes</h3>
           <h4>Align items</h4>
           <p>Jellyfish contains a number of flexbox alignment classes to help position columns inside a flexbox row.</p>
@@ -1142,7 +1382,7 @@ console.log("JellyFish is Awesome!");
             <div class="col md-3"><div class="boxed">justify-between</div></div>
           </div>
           <h3>Manipulating width</h3>
-          <p>The helper class <span class="css-ref">.full-width</span> can be applied to any element to make <code>width: 100%</code>. An element with the helper class <span class="css-ref">.vw-100</span> will span 100% of the viewport width, breaking out of any containers to do so (without affecting document flow).</p>
+          <p>The utility class <span class="css-ref">.full-width</span> can be applied to any element to make <code>width: 100%</code>. An element with the utility class <span class="css-ref">.vw-100</span> will span 100% of the viewport width, breaking out of any containers to do so (without affecting document flow).</p>
           <pre class="language-markup">
             <code><!--
             <div class="full-width">...</div>
@@ -1163,7 +1403,282 @@ console.log("JellyFish is Awesome!");
           <div class="embed-container">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
-        </section><!-- #helpers -->
+        </section><!-- #utilities -->
+        <section class="docs-section" id="mixins">
+          <h2>SCSS Mixins</h2>
+          <h3>Global smooth() transitions</h3>
+          <p>Use the mixin <code>@include smooth($properties...)</code> to apply global transitions for a consistent UI feel. The mixin accepts multiple arguments.</p>
+          <div class="boxed"><p>Anchor tags have <code>smooth(color)</code> applied by default - <a href="#">hover here to preview</a>.</p></div>
+          <div class="smooth-transform boxed"><p>This element has <code>smooth(transform)</code> applied to it. Hover to preview.</p></div>
+          <div class="smooth-background boxed"><p>This element has <code>smooth(background)</code> applied to it. Hover to preview.</p></div>
+          <div class="smooth-wild boxed"><p>This element has <code>smooth(background, transform, color)</code> applied to it. Hover to preview.</p></div>
+          <p>You can adjust the transition in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <pre class="language-scss">
+            <code>
+              $global-transition: 0.2s ease;
+            </code>
+          </pre>
+          <h3>Media queries</h3>
+          <p>Jellyfish comes with three media query mixins. These mixins are flexible, allowing you to specify either a <span class="variable-ref">$breakpoint</span> name from your <a href="#breakpoint-settings">breakpoint map</a> or a px value (which is converted automatically by the em() mixin).</p>
+          <p>The below examples are all valid uses of the media query mixins.</p>
+          <pre class="language-scss">
+            <code>
+              // Use the mixin within an element
+              body {
+                @include above(sm) {
+                    background-color: gold;
+                }
+              }
+              // Add elements within the mixin
+              @include between(sm,md) {
+                .element {
+                    background: linear-gradient(to right, #b22d4f 0%, #2d6378 50%, #b22d4f 51%, #2d6378 100%);
+                }
+              }
+              .element {
+                // Pass a pixel value
+                @include below(600px) {
+                  transform: rotate(100deg);
+                }
+                // Mix pixel values with breakpoint names
+                @include between(600px,lg) {
+                  transition-duration: 10s;
+                }
+                // Pass a breakpoint name
+                @include above(lg) {
+                  transition-timing-function: cubic-bezier(0.9, 0.1, .2, .4);
+                }
+              }
+            </code>
+          </pre>
+          <table class="table__border">
+          <thead>
+            <tr><th>Mixin</th><th>Result</th></tr>
+          </thead>
+          <tbody>
+              <tr><td><code>@include above($min) {...}</code></td><td>CSS contained within the brackets will apply above the given breakpoint, until overwritten by specificity or a higher breakpoint.</td></tr>
+              <tr><td><code>@include between($min, $max) {...}</code></td><td>CSS will apply between the two specified breakpoints only.</td></tr>
+              <tr><td><code>@include below($max) {...}</code></td><td>CSS applies below the given breakpoint, unless overridden by specificity. As a general rule, it's best to use <code>above()</code> rather than <code>below()</code>.</td></tr>
+          </tbody>
+          </table>
+        </section><!-- #mixins-functions -->
+        <section class="docs-section" id="breakpoint-settings">
+          <h2>Breakpoint Settings</h2>
+          <p>Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints - declared through the <span class="variable-ref">$breakpoints</span> map in <span class="file-ref">/build/scss/_settings.scss</span>. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
+          <h4>Example breakpoint definition</h4>
+          <pre>
+            <code class="language-scss line-numbers">
+              sm: (
+                breakpoint: 400px,
+                container-width: 96%,
+                container-gutter: 20px,
+                col-gutter: 20px,
+                root-font-size: 16px,
+                root-line-height: 1.48em
+                ),
+            </code>
+            <label>_settings.scss</label>
+          </pre>
+          <p>By default, breakpoints are named <span class="variable-ref">sm</span>, <span class="variable-ref">md</span>, <span class="variable-ref">lg</span>  and <span class="variable-ref">xl</span> however you can name breakpoints as you wish to suit your project requirements and personal naming conventions (e.g. microscopic, small, medium, large, gigantic, mammoth, mobile, tablet, laptop, desktop, jumbotron). Jellyfish will use these names to generate the code for css classes as detailed above.</p>
+          <p>If you choose not to declare certain values, they will be inherited.</p>
+          <h4>Terminology</h4>
+          <table class="table__border">
+            <thead>
+              <tr><th>Term</th><th>Description</th></tr>
+            </thead>
+              <tbody>
+                  <tr><td class="code">breakpoint</td><td>The width at which the breakpoint will take effect. This must be provided in px and will be converted to an em value through the breakpoint mixin. <strong>This variable is required.</strong></td></tr>
+                  <tr><td class="code">container-width</td><td>The width of the <span class="css-ref">.container</span> element at this breakpoint - should be provided as %, px or rem.</td></tr>
+                  <tr><td class="code">container-gutter</td><td>Padding applied to the left and right of the <span class="css-ref">.container</span> element - this should be provided as px value.</td></tr>
+                  <tr><td class="code">col-gutter</td><td>Padding applied to the left and right of <span class="css-ref">.col</span> elements - this should be provided as a px value. <strong>This variable is required.</strong></td></tr>
+                  <tr><td class="code">root-font-size</td><td>Global base font size (applied to <span class="css-ref">body</span>) which will affect all elements sized with em. Useful for improving legibility at different breakpoints. This should be provided as a px value.</td></tr>
+                  <tr><td class="code">root-line-height</td><td>Global base line-height (applied to <span class="css-ref">body</span>) which will affect all elements that do not have a line-height applied. Can be provided as a number, em or px.</td></tr>
+              </tbody>
+          </table>
+          <p><strong>Note:</strong> You can also configure settings for the smallest devices (i.e. before any media queries are activated) by setting the following variables in <span class="file-ref">/build/scss/_settings.scss</span>: <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$root-font-size</span>, <span class="variable-ref">$root-line-height</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></p>
+        </section><!-- #breakpoint-settings-->
+        <section class="docs-section" id="configuration">
+          <h2>Configuration</h2>
+          <h3>Setting your styles</h3>
+          <p>It is recommend to not edit the files within <span class="file-ref">/build/scss/jellyfish</span> but rather to add your project's scss into <span class="file-ref">/build/scss/project</span>. In this way you can keep the core functionality separate from your project's codebase.</p>
+          <p>The file <span class="file-ref">/build/scss/_settings.scss</span> contains all of the variables used in Jellyfish, commented out. If you wish to override a default, you can simply uncomment and add your own values. You should add any new variables here to keep your project organised.</p>
+          <pre class="language-scss"><code>
+          /* GRID */
+          $cols: 12;
+          $has_ordering: true;
+          $has_offset: true;
+          $debug-mode-on: false;
+
+          /* JELLYFISH DEFAULTS */
+          // Base Variables (used before breakpoints are applied)
+          $base-col-name: xs;
+          $base-container-gutter: 15px; // define in px
+          $base-col-gutter: 10px; // define in px
+
+          /* COLOURS */
+          $color-text: #333333;
+          $color-text-light: #d9dbdb;
+          $color-background: #fff;
+          $color-background-alt: #f8eee7;
+          $color-primary: #b22d4f;
+          $color-secondary: #2d6378;
+          $color-tertiary: #5d2b50;
+
+          /* TYPEFACES */
+          $font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+          $font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+          $font-code: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+          $font-body: $font-primary;
+          $font-headings: $font-secondary;
+
+          /* FONT SIZES */
+          $font-size-xsmall: 0.6em;
+          $font-size-small: 0.8em;
+          $font-size-normal: 1em;
+          $font-size-medium:1.25em;
+          $font-size-large: 1.5em;
+          $font-size-xlarge: 1.75em;
+          $font-size-xxlarge: 2em;
+          $font-size-xxxlarge: 2.5em;
+
+          /* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT */
+          $root-font-size: 16px;
+          $root-line-height: 1.5;
+
+          /* LINKS */
+          $link-color: $color-primary;
+          $link-active: $color-secondary;
+          $link-visited: $color-tertiary;
+
+          /* GLOBAL PADDING/MARGINS */
+          $element-padding: 20px;
+          $element-margin: 30px;
+
+          /* GLOBAL TRANSITION USED IN SMOOTH() */
+          $global-transition: 0.2s ease;
+
+          /* BORDERS */
+          $border-width: 1px;
+          $border-style: solid;
+          $border-color: $color-text-light;
+          $border-radius: 4px;
+          $borders: $border-width $border-style $border-color;
+
+          /* FORMS */
+          $form-items: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]'); // Stack of elements to target
+          $input-background: white;
+          $placeholder-color: $color-text-light;
+          $form-text-size: 1rem;
+          $form-border-hover: darken($border-color, 40%);
+          $form-border-focus: $color-primary;
+          $form-font: $font-primary;
+
+          /* BUTTONS */
+          $buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
+          $button-border-width: 1px;
+          $button-border-radius: 6px;
+          $button-text-transform: none;
+          $button-font-weight: bold;
+          $button-background: $color-primary;
+          $button-text-color: white;
+          $button-secondary-background: $color-secondary;
+          $button-secondary-text-color: $button-text-color;
+
+          /* TABLES */
+          $table-stripe-color: lighten($color-text-light,5%);
+          $table-hover-background: $color-primary;
+          $table-hover-color: white;
+
+          /* NAVBAR */
+          $nav-expands: 900px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
+          $navbar-bg-color: $color-background-alt;
+          $navbar-container-padding: 10px;
+          // Links
+          $navbar-font-size: 0.9em;
+          $navbar-text-transform: none;
+          $navbar-link-color: $color-primary;
+          $navbar-link-bg-color: $navbar-bg-color;
+          $navbar-font-weight: normal;
+          $navbar-link-border: 1px solid rgba(255,255,255,0.4);
+          // Links: Hover
+          $navbar-link-hover-color: $color-secondary;
+          $navbar-link-hover-bg-color: darken($color-background-alt,10%);
+          $navbar-link-hover-weight: $navbar-font-weight;
+          // Links: Padding
+          $navbar-link-padding-x: 10px;
+          $navbar-link-padding-y: 8px;
+          $navbar-link-padding-expanded-x: 10px;
+          $navbar-link-padding-expanded-y: 10px;
+          // Current Page Link
+          $navbar-current-page-color: $color-secondary;
+          $navbar-current-page-background: inherit;
+          $navbar-current-page-font-weight: bold;
+          // Secondary Links
+          $navbar-submenu-text-transform: $navbar-text-transform;
+          $navbar-submenu-font-weight: $navbar-font-weight;
+          // Drop down on larger screens
+          $navbar-submenu-min-width: 150px;
+          $navbar-submenu-max-width: 260px;
+
+          /* HAMBURGER MENU */
+          // @link https://github.com/jonsuh/hamburgers
+          $primary-hamburger-type: spin; // Change this to modify animation
+          $hamburger-padding-x: $navbar-link-padding-x;
+          $hamburger-padding-y: $navbar-link-padding-y;
+          $hamburger-margin-y: inherit;
+          $hamburger-layer-width: 20px; // Width of the hamburger icon
+          $hamburger-layer-height: 3px; // Thickness of hamburger lines
+          $hamburger-layer-spacing: 4px; // Spacing between hamburger lines
+          $hamburger-layer-color: $navbar-link-color; // Color of hamburger
+          $hamburger-layer-border-radius: 3px; // Radius of hamburger lines
+          $hamburger-background-color: $navbar-bg-color;
+          $hamburger-background-color-hover: $navbar-link-hover-bg-color;
+          $hamburger-border: $border-width $border-style $hamburger-background-color;
+          $hamburger-border-hover: $border-width $border-style $hamburger-background-color-hover;
+          $hamburger-border-radius: 0px;
+          $hamburger-hover-opacity: 1;
+          $hamburger-active-layer-color : $hamburger-layer-color;
+          $hamburger-active-hover-opacity: $hamburger-hover-opacity;
+          // Override Vendor options with site-specific hamburger animation
+          $hamburger-types: (
+            $primary-hamburger-type
+          );
+
+          $breakpoints: (
+              /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+              Breakpoints are defined here
+              Note: Comment out or remove a whole size to prevent it being iterated,
+              or individual elements to inherit from the previously defined point.
+              The shorthand names are used in column and modifier classes.
+              breakpoint and col-gutter are the only !required values
+              *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+              sm: (
+                  breakpoint: 500px,
+                  container-width: 96%,
+                  container-gutter: 50px,
+                  col-gutter: 20px,
+                  root-font-size: 16px,
+                  root-line-height: 1.48em
+                  ),
+              md: (
+                  breakpoint: 900px,
+                  container-width: 94%,
+                  container-gutter: 0px,
+                  col-gutter: 30px,
+                  ),
+              lg: (
+                  breakpoint: 1200px,
+                  container-width: 1080px,
+                  col-gutter: 30px,
+                  ),
+              xl: (
+                  breakpoint: 1600px,
+                  container-width: 1480px,
+                  col-gutter: 35px,
+                  )
+          );
+          </code></pre>
+        </section><!-- #configuration -->
         <section class="docs-section" id="debug">
           <h2>Debug mode</h2>
           <p>Jellyfish comes with a handy debug mode which allows you to quickly see the structure of the grid, and diagnose any layout issues. Debug mode can be enabled in three ways:</p>
@@ -1206,13 +1721,6 @@ console.log("JellyFish is Awesome!");
           <pre class="language-git"><code>$ git clone https://github.com/unofficialmatt/jellyfish.git</code></pre>
           <p>Install the dev dependencies in the root of the project...</p>
           <pre class="language-markup"><code>$ npm install</code></pre>
-          <p>Modify the name, version, description and author within <span class="file-ref">package.json</span>.</p>
-          <pre class="language-json"><code>
-            "name": "jellyfish_grid",
-            "version": "2.0.0",
-            "description": "Jellyfish is yet another SCSS grid framework, with a few stings in it's tail.",
-            "author": "Matt Weet",
-          </code></pre>
           <p>Initialise grunt, to rebuild the codebase for a clean start.</p>
           <pre class="language-markup"><code>$ grunt init</code></pre>
           <p>Next time, you can just run the default grunt task, to simply start browserSync</p>
@@ -1285,49 +1793,30 @@ console.log("JellyFish is Awesome!");
               </ul>
           </ul>
         </section><!-- #how-to-use -->
-
-        <section class="docs-section" id="configuration">
-          <h2>Configuration</h2>
-          <h3>Setting your styles</h3>
-          <p>It is recommend to not edit the files within <span class="file-ref">/build/scss/jellyfish</span> but rather to add your project's scss into <span class="file-ref">/build/scss/project</span>. In this way you can keep the core functionality separate from your project's codebase.</p>
-          <p>The file <span class="file-ref">/build/scss/_settings.scss</span> contains all of the variables used in Jellyfish, commented out. If you wish to override a default, you can simply uncomment and add your own values. You should add any new variables here to keep your project organised.</p>
-          <pre class="language-scss"><code>
-            .its-oh-so-quiet {sshh, shhh}
-            <!--TODO: Add styles here! -->
-          </code></pre>
-        </section><!-- #configuration -->
-
       </main><!-- MAIN DOCS AREA -->
-
-  </div>
+    </div><!-- .row -->
+  </div><!-- .container -->
   <script type="text/javascript" src="assets/js/site.min.js"></script>
 
   <!-- Highlight Code Syntax with Prism.js -->
   <script src="docs/prism.js"></script>
-
   <!-- Sticky Nav -->
   <script src="docs/jquery.sticky.js"></script>
-
+  <!-- Highlight Nav on scroll -->
+  <script src="docs/highlight-on-scroll.js"></script>
   <script>
     $(document).ready(function(){
       $("#docs-nav").sticky({topSpacing:30});
     });
-    $('#docs-nav li').on('click', function(event) {
-        $(this).parent().find('li').removeClass('active');
-        $(this).addClass('active');
-    });
   </script>
 </body>
-
 </html>
 
 
 <!--
 TODO: Review CSS and make sure all documented
 TODO: Add a col-auto? - see shoelace
-TODO: fix hide code
 TODO: Forms could be better - see other frameworks, eg. colour, label margins etc
-TODO: Higlight menu item on scroll
-TODO: Approach the dreaded nav - can pilfer coluco as that worked
 TODO: Double check over Bulma, Shoelace, Primitive doc, have I missed anything?
+TODO: WOrk out what should and shouldn't be printed - eg. navbar
 -->
