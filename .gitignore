@@ -9,6 +9,7 @@ _.git/
 # ignore src folder
 src/
 deprecated/
+tests/
 
 ### macOS ###
 # General
