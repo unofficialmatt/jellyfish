@@ -1,6 +1,13 @@
 # 🎐 Jellyfish SCSS Framework
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+<p>
+<img src="https://img.shields.io/github/stars/unofficialmatt/home-assistant.svg?style=flat-square&logo=github"/>
+<img src="https://img.shields.io/github/issues/unofficialmatt/jellyfish.svg?style=flat-square&logo=github"/>
+<img src="https://img.shields.io/maintenance/yes/2020.svg?style=flat-square&logo=github"/>
+<img src="https://img.shields.io/github/commit-activity/y/unofficialmatt/home-assistant.svg?style=flat-square&logo=github"/>
+<img src="https://img.shields.io/github/last-commit/unofficialmatt/home-assistant.svg?style=flat-square&logo=github"/>
+<img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
+</p>
 
 Jellyfish is yet another front-end design framework for developing responsive, browser-consistent web projects.
 Jellyfish has a few stings in it's tail:
