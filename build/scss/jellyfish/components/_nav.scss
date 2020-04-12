@@ -5,291 +5,351 @@
   and responsive navbar
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-Default state on smaller devices
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+// @extend this to make links have consistent styling
+%navbar-links {
+  font-size: $navbar-font-size;
+  font-weight: $navbar-font-weight;
+  text-decoration: none;
+  text-transform: $navbar-text-transform;
+  @include smooth(color, background-color, font-weight);
+  &, &:visited {
+    color: $navbar-link-color;
+    background-color: $navbar-link-bg-color;
+  }
+  &:hover, &:focus, &:active {
+    color: $navbar-link-hover-color;
+    background-color: $navbar-link-hover-bg-color;
+    font-weight: $navbar-link-hover-weight;
+  }
+}
+
 .navbar {
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+.navbar is the parent of all navbar items
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  @include do-not-print;
   background: $navbar-bg-color;
-  //width: 100%;
-  display: none; // Hide the navigation until it has been toggled
-  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  color: $navbar-link-color; // To ensure all non-link text is styled
+  position: relative;
+  z-index: 100;
+  >.container {
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   Container
-  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-  .container {
+  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     @include below($nav-expands) {
       padding: 0 $navbar-container-padding;
-      width: 100%;
+      display: block;
     }
+    display: flex; // Behaviour on larger screens
+    width: 100%; // Ignores any setting from the breakpoint map
   }
-  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-  Top level navigation
-  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+}
+.navbar-brand {
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+.navbar-brand contains the site logo (if used), burger menu, and
+anything else that should always appear on mobile
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  display: flex;
+  align-items: stretch; // children have 100% height
+  flex-shrink: 0; // Don't allow this to shrink
+
+  a:not(.img-link) {
+    @extend %navbar-links;
+  }
+  p {
+    font-size: $navbar-font-size;
+    font-weight: $navbar-font-weight;
+  }
+}
+.navbar-item {
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+.navbar-items are any elements outside of the primary nav menu,
+they should be wrapped in this class to ensure consistent display
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 0 1 auto; // Allows items to grow horizontally if there is room, if there is not enough room they will grow vertically
+  padding: $navbar-link-padding-y $navbar-link-padding-x;
+  margin: 0;
+  @include above($nav-expands) {
+    padding: $navbar-link-padding-expanded-y $navbar-link-padding-expanded-x;
+  }
+}
+.navbar-menu {
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+.navbar-menu contains the main website navigation
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  display: none; // Hide until toggled
+  border-top: $navbar-link-border;
+  @include above($nav-expands) {
+    border-top: 0;
+    align-items: stretch; // children have 100% height
+    display: flex !important;
+    flex: 1 0 auto; // Ensures the menubar takes up all available width
+  }
   ul {
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  Unordered lists are used for display of website navigation
+  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     list-style-type: none;
     margin: 0;
     width: 100%;
+    @include above($nav-expands) {
+      display: flex;
+      align-items: stretch; // children have 100% height
+    }
     li {
       width: 100%;
       margin: 0;
       position: relative;
+      @include above($nav-expands) {
+        width: auto; // We don't want 100% width li on larger screen sizes
+        display: flex;
+        align-items: stretch; // children have 100% height
+      }
+      a {
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
       Link Styles
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-      a {
-        font-size: $navbar-font-size;
-        font-weight: $navbar-font-weight;
-        text-decoration: none;
-        text-transform: $navbar-text-transform;
+        @extend %navbar-links;
         display: block;
-        padding: $navbar-link-padding-x $navbar-link-padding-y;
-        @include smooth(color, background-color, font-weight);
-        &, &:visited {
-          color: $navbar-link-color;
-          background-color: $navbar-link-bg-color;
-        }
-        &:hover, &:focus, &:active {
-          color: $navbar-link-hover-color;
-          background-color: $navbar-link-hover-bg-color;
-          font-weight: $navbar-link-hover-weight;
-        }
-      }
-      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-      Styles the currently active page
-      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-      &.this-page {
-        a {
-         &, &:visited  {
-          background: $navbar-current-page-background;
-          color: $navbar-current-page-color;
-          font-weight: $navbar-current-page-font-weight;
-          }
-          &:hover, &:focus, &:active {
-            color: $navbar-link-hover-color;
-            background-color: $navbar-link-hover-bg-color;
-          }
+        position: relative;
+        padding: $navbar-link-padding-y $navbar-link-padding-x;
+        border-bottom: $navbar-link-border;
+        @include above($nav-expands) {
+          padding: $navbar-link-padding-expanded-y $navbar-link-padding-expanded-x;
+          display: flex;
+          align-items: center;
+          flex: 1 0 auto;
+          border: 0;
         }
       }
+      ul {
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-      Display an arrow for li elements that have children
+      Secondary level navigation
+      (drop downs)
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-      &.has-children>a {
-        // TODO: Fix - this doesn't work!
-        /*padding-right: $navbar-link-padding-y*2;
+        display: none;
+        //margin-left: $navbar-link-padding-y*2;
+          a {
+            text-transform: $navbar-submenu-text-transform;
+            font-weight: $navbar-submenu-font-weight;
+            @include below($nav-expands) {
+              padding-left: $navbar-link-padding-y*3;
+            }
+          }
+          li ul {
+            // TODO: Make this more DRY
+            /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+            Deeply Nested Nav Links
+            *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+            a {
+              @include below($nav-expands) {
+                padding-left: $navbar-link-padding-y*5;
+              }
+            }
+            li ul a {
+              @include below($nav-expands) {
+                padding-left: $navbar-link-padding-y*7;
+              }
+            }
+        }
+        @include above($nav-expands) {
+          background: $navbar-bg-color;
+          position: absolute;
+          z-index: 9999;
+          top: 100%; // Move to bottom of parent
+          display: flex;
+          flex-direction: column;
+          min-width: $navbar-submenu-min-width;
+          max-width: $navbar-submenu-max-width;
+          transform: translateY(-5px);
+          opacity: 0.6;
+          transition: transform 0.1s linear, opacity 0.1s linear;
+          li {
+            display: none;
+            border-top: $navbar-link-border;
+            ul {
+            /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+            Deeply Nested Nav
+            *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+              top: 0;
+              left: 100%;
+              transform: translate(-5px,0)
+            }
+          }
+        }
+      }
+      &.has-children > a {
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+      Menu items with children
+      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        padding-right: $navbar-link-padding-x*3 !important;
         &::after {
           content: " ";
           pointer-events: none;
           position: absolute;
           display: block;
-          height: .7em;
-          width: .7em;
-          border: 2px solid $navbar-link-color;
-          border-radius: 2px;
+          height: 12px;
+          width: 12px;
+          border: $hamburger-layer-height solid $navbar-link-color;
+          border-radius: $hamburger-layer-border-radius;
           border-left: 0;
           border-top: 0;
-          top: 0;
-          right: 0;
-          transform: rotate(-45deg) translate(-$navbar-link-padding-x*3,0);
+          top: 30%;
+          right: $hamburger-padding-x*1.4;
+          transform: rotate(45deg);
           transform-origin: center;
-          @include smooth(transform);
-        }*/
-      }
-      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-      Secondary level navigation
-      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-      ul {
-        display: none;
-        flex-direction: column;
-        a {
-          text-transform: $navbar-submenu-text-transform;
-          font-weight: $navbar-submenu-font-weight;
+          @include smooth(opacity);
+          @include above($nav-expands) {
+            top: 35%;
+            right: $navbar-link-padding-expanded-x;
+          }
         }
       }
-      // When a nav item has class drop active applied, rotate the arrow indicator and show sub menu
-      &.drop-active {
-        & > a::after {
-          // TODO: Fix - this doesn't work!
-          transform: rotate(45deg) translate(0,$navbar-link-padding-x*3);
-        }
-        & > ul {
+      ul li.has-children > a::after {
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+      Nested menu items with children
+      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        @include above($nav-expands) {
+          transform: rotate(-45deg);
+          opacity: 0.2;
+          }
+      }
+      @include below($nav-expands) {
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+      When an li has .drop-active applied, show the immediate ul child
+      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        &.drop-active {
+          > ul {
             display: block;
-        }
-      }
-    }
-  }
-}
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-Applies on larger devices
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-@include above($nav-expands) {
-  #nav-hamburger {
-    display: none;
-  }
-  .navbar {
-    display: block !important;
-    .navbar-inner {
-      display: flex; // Using flex allows us to use justify-content to push inner elements to the left or right
-    }
-    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-    Top level navigation
-    *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    ul {
-      display: flex;
-      //align-items: center;
-      flex-direction: row;
-      li {
-        display: flex;
-        width: auto;
-        //align-items: center;
-        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-        Link Styles
-        *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        a {
-          padding: $navbar-link-padding-expanded-x $navbar-link-padding-expanded-y;
-          //display: flex;
-          //align-items: center;
-          //height: 100%;
-        }
-        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-        Display an arrow for li elements that have children
-        *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        &.has-children>a {
-          // TODO: Fix - this is super crap
-          &::after {
           }
-        }
-        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-        Secondary level navigation
-        *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        ul {
-          position: absolute;
-          display: flex;
-          min-width: $navbar-submenu-min-width;
-          max-width: $navbar-submenu-max-width;
-          z-index: 9999;
-          //border: 1px solid white;
-          //box-sizing: content-box;
-          top: 100%;
-          background-color: $navbar-submenu-bg-color-expanded;
-          li {
-            //width: 100%;
-            overflow:hidden;
-            // max-height squashes the height of the li elements so that they are not visible until the parent is hovered
-            max-height:0;
-            transition:max-height 0.2s linear; // Faster transition speed, to hide the drop down quicker on unfocus
-          }
-          a {
-            width: 100%;
-          }
-        }
-        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-        Display drop down when parent li is hovered
-        *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        &:hover {
-          // TODO: Add support for tabbing and entering - for screen readers
-          > ul li {
-              max-height:150px; // Arbitrary value larger than an expected menu item is likely to be
-              transition:max-height $navbar-dropdown-speed linear;
+          & > a::after {
+            opacity: 0.2;
           }
         }
       }
-    }
-  }
-}
-
-
-/*
-// Expanded Nav
-@include above($nav-expands) {
-
-
-    .navbar {
-
-        // Buttons
-        a.button {
-            margin: $navbar-link-padding-expanded-x $navbar-link-padding-expanded-y;
-        }
-
-        // Images (eg. logos)
-        img {
-            align-self: center;
-        }
-
-
-        // Links with Children
-        li.has-children>a {
-            padding-right: $navbar-link-padding-expanded-y*1.75;
-
-            &::after {
-                right: auto;
-                transform: rotate(0deg);
-                margin-left: 5px;
-                display: inline-block;
+      @include above($nav-expands) {
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+      When an li with children is hovered, show the drop down
+      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        // TODO: Add support for tabbing and entering - for screen readers
+        &.has-children:hover {
+            > ul {
+            // Transitioning opacity and translateY gives a nice ease-in effect
+            opacity: 1;
+            transform: translateY(0px);
+            & > li {
+              display: block;
             }
+          }
+          > a::after {
+            opacity: 0.2;
+          }
         }
-        .nav__right {
-            justify-content: flex-end;
-        }
+      }
     }
-}
+  }
+  .current-page {
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  Styles the currently active page
+  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    a {
+      &, &:visited  {
+      background: $navbar-current-page-background;
+      color: $navbar-current-page-color;
+      font-weight: $navbar-current-page-font-weight !important;
+      }
+      &:hover, &:focus, &:active {
+        color: $navbar-link-hover-color;
+        background-color: $navbar-link-hover-bg-color;
+      }
+    }
+  }
 
-// Extend .hamburger--type into .hamburger and apply additional settings
-.hamburger {
-    @extend .hamburger--#{$primary-hamburger-type};
-    background-color: $hamburger-background-color;
-    border: $hamburger-border;
-    border-radius: $hamburger-border-radius;
-    @include smooth(background-color, border);
-    width: 100%;
-    justify-content: space-between;
-    text-align: right;
+  .navbar-start {
+    @include above($nav-expands) {
     display: flex;
-    &:hover, &:focus, &:active {
-        background-color: $hamburger-background-color-hover;
-        border: $hamburger-border-hover;
+    align-items: stretch; // children have 100% height
+    justify-content: flex-start; // push to front
+    margin-right: auto;
     }
-    &:focus {
-        outline: 0;
-        box-shadow: none !important;
+  }
+  .navbar-end {
+    padding: $navbar-link-padding-y 0;
+    display: flex;
+    align-items: center; // children are centered
+    @include above($nav-expands) {
+    justify-content: flex-end; // push to end
+    margin-left: auto;
+    padding: 0;
     }
+  }
+  input, #{$buttons} {
+    margin: $navbar-link-padding-y $navbar-link-padding-x;
+    position: relative;
+    @include above($nav-expands) {
+      margin: $navbar-link-padding-expanded-y $navbar-link-padding-expanded-x;
+    }
+  }
+  input {
+    width: auto;
+  }
 }
-
+#nav-hamburger {
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+#nav-hamburger is only shown on smaller devices
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  margin-left: auto;
+  margin-top: $hamburger-margin-y;
+  margin-bottom: $hamburger-margin-y;
+  @include above($nav-expands) {
+    display: none; // Hide on larger screens
+  }
+}
+.hamburger {
+  @extend .hamburger--#{$primary-hamburger-type}; // extends class from hamburgers.scss to select specified animation
+  @include smooth(background-color, border);
+  background-color: $hamburger-background-color;
+  border: $hamburger-border;
+  border-radius: $hamburger-border-radius;
+  //justify-content: space-between;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  &:hover, &:focus, &:active {
+      background-color: $hamburger-background-color-hover;
+      border: $hamburger-border-hover;
+  }
+  &:focus {
+      outline: 0;
+      box-shadow: none !important;
+  }
+}
 .hamburger-label {
-    font-weight: bold;
-    display: inline-block;
-    vertical-align: middle;
-    text-transform: uppercase;
-    color: $hamburger-layer-color;
-    .is-active & {
-        color: $hamburger-active-layer-color;
-    }
+  font-weight: $navbar-font-weight;
+  font-size: $navbar-font-size;
+  text-transform: uppercase;
+  color: $hamburger-layer-color;
+  margin: 0 8px;
+  .is-active & {
+      color: $hamburger-active-layer-color;
+  }
 }
-*/
-
-
-
-/*
-// TODO: Links on nav-expanded should be full-height so the hover state doesn't look weird.
-// TODO: Add an option to have an off-canvas menu.
-// TODO: .has-children icon does not work that well - no right margin
-
-.navbar {
-    // Link Styling
-    a:not(.button) {
-        line-height: 1.2;
-    }
-    // Buttons
-    a.button {
-        margin: $navbar-link-padding-x $navbar-link-padding-y;
-    }
-    // Input areas (eg. a search box
-    input {
-        margin: $navbar-link-padding-x $navbar-link-padding-y;
-        width: auto;
-        min-width: 180px;
-        display: inline-block;
-    }
-
-
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+Utilities
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.hide-above-nav {
+  @include above($nav-expands) {
+    display: none !important;
+  }
 }
-*/
+.hide-below-nav {
+  @include below($nav-expands) {
+    display: none !important;
+  }
+}
+
+// TODO: Add an option to have an off-canvas menu
+// TODO: Make drop down menus more forgiving, allowing cursor to stray off path a little

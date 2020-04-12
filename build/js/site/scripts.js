@@ -1,11 +1,12 @@
 jQuery(document).ready(function ($) {
 
-    var navPoint = '600'; // px value at which the navigation should change from a burger menu to inline list
+    var navPoint = '900'; // px value at which the navigation should change from a burger menu to inline list
 
-    // Expand and Collapse .nav-bar when clicking #nav-hamburger
+    // Expand and Collapse .navbar when clicking #nav-hamburger
     $("#nav-hamburger").click(function () {
-        $(".nav-bar").slideToggle();
+        $(".navbar-menu").slideToggle();
 
+        //TODO: Not sure this works
         // Toggle the state of the aria-expanded attribute for screen readers
         var menuItem = $(e.currentTarget);
             if (menuItem.attr( 'aria-expanded') === 'true') {
