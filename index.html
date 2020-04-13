@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col md-10 offset-md-1 xl-8 offset-xl-2">
           <h1>🎐 Welcome to Jellyfish.</h1>
-          <p class="standfirst">Yet another lightweight SCSS framework to add to the <a href="https://github.com/search?q=css+frameworks rel="externa;">ever-growing list</a>.</p>
+          <p class="standfirst">Yet another lightweight SCSS framework to add to the <a href="https://github.com/search?q=css+frameworks" rel="external">ever-growing list</a>.</p>
           <p>Jellyfish has a few useful features that other frameworks don't have; primarily the ability to give breakpoint modifiers your own class names <em>(want to name them micro, medium, mammoth - go for it!</em> and the ability to define how many columns are in your grid <em>(want a 13 column grid? You go for it, tiger! I won't judge)</em>.</p>
           <p>Aside from that, Jellyfish has all the usual styling, classes and modifiers you have come to expect in a modern flex-based CSS framework.</p>
           <p>Jellyfish is powered by <a href="#project-init">Grunt.js</a> to compile scss and javascript, adding prefixers, concatenating and minifying in the process.</p>
@@ -98,7 +98,7 @@
         </section><!-- #boilerplate -->
         <section class="docs-section" id="grid">
           <h2>Grid</h2>
-          <p>Jellyfish's grid system is built on <a href="https://flexboxfroggy.com/ rel="external">flexbox</a>. The grid consists of containers (<span class="css-ref">.container</span>), rows (<span class="css-ref">.row</span>) and columns (<span class="css-ref">.col </span>). These elements are defined in <span class="file-ref">/build/scss/jellyfish/components/_grid.scss</span>.</p>
+          <p>Jellyfish's grid system is built on <a href="https://flexboxfroggy.com/" rel="external">flexbox</a>. The grid consists of containers (<span class="css-ref">.container</span>), rows (<span class="css-ref">.row</span>) and columns (<span class="css-ref">.col </span>). These elements are defined in <span class="file-ref">/build/scss/jellyfish/components/_grid.scss</span>.</p>
 
           <h4>A basic 2 column grid</h4>
           <pre class="language-markup"><code><!--
@@ -380,6 +380,7 @@
                 <div class="row">
                   <div class="col md-6"><div class="boxed">inner md-6</div></div>
                   <div class="col md-6"><div class="boxed">inner md-6</div></div>
+                </div>
               </div>
             </div>
         </section><!-- #grid -->
@@ -693,7 +694,6 @@
           <p class="text-center">Blanditiis ea qui, veritatis animi recusandae praesentium magnam. Commodi placeat, laboriosam accusamus laudantium quasi eveniet soluta illo ducimus quis doloremque mollitia, officia pariatur deleniti reprehenderit, maxime, dicta libero vero cum.</p>
           <h5>p.text-justify</h5>
           <p class="text-justify">Blanditiis ea qui, veritatis animi recusandae praesentium magnam. Commodi placeat, laboriosam accusamus laudantium quasi eveniet soluta illo ducimus quis doloremque mollitia, officia pariatur deleniti reprehenderit, maxime, dicta libero vero cum.</p>
-          </table>
           <h3>Ordered Lists <code>&lt;ol></code></h3>
           <ol>
             <li>List item 1</li>
@@ -959,19 +959,23 @@ console.log("JellyFish is Awesome!");
           <button class="button__small button__secondary">Small</button>
           <button class="button__small button__outline">Regular</button>
           <button class="button__large button__ghost">Large</button>
-          <p>Button variables can be edited in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <p>Button variables can be edited in <span class="file-ref">/build/scss/_settings.scss</span>. You can easily modify background-color, color and hover states for both primary and secondary buttons.</p>
           <pre class="language-scss">
           <code>
           /* BUTTONS */
-          $buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
           $button-border-width: 1px;
           $button-border-radius: 6px;
           $button-text-transform: none;
           $button-font-weight: bold;
           $button-background: $color-primary;
           $button-text-color: white;
+          $button-hover-background: darken($button-background, 10%);
+          $button-hover-color: $button-text-color;
           $button-secondary-background: $color-secondary;
           $button-secondary-text-color: $button-text-color;
+          $button-secondary-hover-background: darken($button-secondary-background,10%);
+          $button-secondary-hover-color: $button-secondary-text-color;
+          $button-disabled-background: lighten($color-text,40%);
           </code>
           <label>_settings.scss</label>
           </pre>
@@ -1103,7 +1107,6 @@ console.log("JellyFish is Awesome!");
           <pre class="language-scss">
           <code>
           /* FORMS */
-          $form-items: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]'); // Stack of elements to target
           $input-background: white;
           $placeholder-color: $color-text-light;
           $form-text-size: 1rem;
@@ -1121,23 +1124,23 @@ console.log("JellyFish is Awesome!");
             <code><!--
             <table>
             <thead><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></thead>
-            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
             <tbody>
                 <tr><td>Cotylorhiza tuberculata</td><td>Mild</td><td>Mediterranean Sea</td></tr>
                 <tr><td>Pelagia noctiluca</td><td>Severe</td><td>Mediterranean Sea</td></tr>
                 <tr><td>Rhopilema nomadica</td><td>Severe</td><td>Indo-Pacific ocean</td></tr>
             </tbody>
+            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
           </table>
           --></code>
           </pre>
           <table>
             <thead><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></thead>
-            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
             <tbody>
                 <tr><td>Cotylorhiza tuberculata</td><td>Mild</td><td>Mediterranean Sea</td></tr>
                 <tr><td>Pelagia noctiluca</td><td>Severe</td><td>Mediterranean Sea</td></tr>
                 <tr><td>Rhopilema nomadica</td><td>Severe</td><td>Indo-Pacific ocean</td></tr>
             </tbody>
+            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
           </table>
           <h3>Striped Tables</h3>
           <p>Use the class <span class="css-ref">.table__striped</span> to add stripes to alternating rows.</p>
@@ -1150,12 +1153,12 @@ console.log("JellyFish is Awesome!");
           </pre>
           <table class="table__striped">
             <thead><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></thead>
-            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
             <tbody>
                 <tr><td>Cotylorhiza tuberculata</td><td>Mild</td><td>Mediterranean Sea</td></tr>
                 <tr><td>Pelagia noctiluca</td><td>Severe</td><td>Mediterranean Sea</td></tr>
                 <tr><td>Rhopilema nomadica</td><td>Severe</td><td>Indo-Pacific ocean</td></tr>
             </tbody>
+            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
           </table>
           <h3>Bordered Tables</h3>
           <p>Use the class <span class="css-ref">.table__border</span> to add a border to the table.</p>
@@ -1168,12 +1171,12 @@ console.log("JellyFish is Awesome!");
           </pre>
           <table class="table__border">
             <thead><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></thead>
-            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
             <tbody>
                 <tr><td>Cotylorhiza tuberculata</td><td>Mild</td><td>Mediterranean Sea</td></tr>
                 <tr><td>Pelagia noctiluca</td><td>Severe</td><td>Mediterranean Sea</td></tr>
                 <tr><td>Rhopilema nomadica</td><td>Severe</td><td>Indo-Pacific ocean</td></tr>
             </tbody>
+            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
           </table>
           <h3>Hoverable Rows</h3>
           <p>Use the class <span class="css-ref">.table__hoverable</span> to enable a hover state on rows.</p>
@@ -1186,12 +1189,12 @@ console.log("JellyFish is Awesome!");
           </pre>
           <table class="table__hoverable">
             <thead><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></thead>
-            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
             <tbody>
                 <tr><td>Cotylorhiza tuberculata</td><td>Mild</td><td>Mediterranean Sea</td></tr>
                 <tr><td>Pelagia noctiluca</td><td>Severe</td><td>Mediterranean Sea</td></tr>
                 <tr><td>Rhopilema nomadica</td><td>Severe</td><td>Indo-Pacific ocean</td></tr>
             </tbody>
+            <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
           </table>
           <h3>Responsive Tables</h3>
           <p>Wrap a table in a <span class="css-ref">.table-container</span> to prevent tables with a lot of content from overflowing the grid.</p>
@@ -1655,7 +1658,6 @@ console.log("JellyFish is Awesome!");
           $borders: $border-width $border-style $border-color;
 
           /* FORMS */
-          $form-items: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]'); // Stack of elements to target
           $input-background: white;
           $placeholder-color: $color-text-light;
           $form-text-size: 1rem;
@@ -1664,15 +1666,19 @@ console.log("JellyFish is Awesome!");
           $form-font: $font-primary;
 
           /* BUTTONS */
-          $buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
           $button-border-width: 1px;
           $button-border-radius: 6px;
           $button-text-transform: none;
           $button-font-weight: bold;
           $button-background: $color-primary;
           $button-text-color: white;
+          $button-hover-background: darken($button-background, 10%);
+          $button-hover-color: $button-text-color;
           $button-secondary-background: $color-secondary;
           $button-secondary-text-color: $button-text-color;
+          $button-secondary-hover-background: darken($button-secondary-background,10%);
+          $button-secondary-hover-color: $button-secondary-text-color;
+          $button-disabled-background: lighten($color-text,40%);
 
           /* TABLES */
           $table-stripe-color: lighten($color-text-light,5%);
@@ -1801,7 +1807,7 @@ console.log("JellyFish is Awesome!");
           <h3>BrowserSync, Grunt.js, NPM and Sass</h3>
           <p>Jellyfish makes use of modern technologies in order to make the dev experience more enjoyable.</p>
           <ul>
-            <li><a href="https://www.browsersync.io/" rel="external">Browsersync</a> opens up a new window in your default browser and live reloads whenever changes are detected to your project's javascript, css or HTML.</a></li>
+            <li><a href="https://www.browsersync.io/" rel="external">Browsersync</a> opens up a new window in your default browser and live reloads whenever changes are detected to your project's javascript, css or HTML.</li>
             <li><a href="https://sass-lang.com/" rel="external">Sass (SCSS)</a> is used to extend css, helping to compartmentalise components and organise code into digestible parts. Sass can also make use of useful concepts like nesting, variables and functions.</li>
             <li><a href="https://www.npmjs.com/" rel="external">NPM</a> is used to manage packages that are required to run Jellyfish.</li>
             <li><a href="https://gruntjs.com/" rel="external">Grunt.js</a> is a task-runner which is used to reduce hassles in compiling code.</li>

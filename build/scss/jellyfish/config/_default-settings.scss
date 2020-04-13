@@ -76,8 +76,13 @@ $button-text-transform: none !default;
 $button-font-weight: bold !default;
 $button-background: $color-primary !default;
 $button-text-color: white !default;
+$button-hover-background: darken($button-background, 10%) !default;
+$button-hover-color: $button-text-color !default;
 $button-secondary-background: $color-secondary !default;
 $button-secondary-text-color: $button-text-color !default;
+$button-secondary-hover-background: darken($button-secondary-background,10%) !default;
+$button-secondary-hover-color: $button-secondary-text-color !default;
+$button-disabled-background: lighten($color-text,40%) !default;
 
 /* TABLES */
 $table-stripe-color: lighten($color-text-light,5%) !default;

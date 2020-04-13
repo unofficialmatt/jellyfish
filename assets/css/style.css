@@ -1292,23 +1292,26 @@ sup {
   .button::-moz-focus-inner, [type=submit]::-moz-focus-inner, a.button::-moz-focus-inner, a[type=submit]::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
     border: 0;
     padding: 0; }
-  .button:hover:not(:disabled), :hover:not(:disabled)[type=submit], .button:focus:not(:disabled), :focus:not(:disabled)[type=submit], .button:active:not(:disabled), :active:not(:disabled)[type=submit], a.button:hover:not(:disabled), a:hover:not(:disabled)[type=submit], a.button:focus:not(:disabled), a:focus:not(:disabled)[type=submit], a.button:active:not(:disabled), a:active:not(:disabled)[type=submit], button:hover:not(:disabled), button:focus:not(:disabled), button:active:not(:disabled), [type=submit]:hover:not(:disabled), [type=submit]:focus:not(:disabled), [type=submit]:active:not(:disabled), [type=reset]:hover:not(:disabled), [type=reset]:focus:not(:disabled), [type=reset]:active:not(:disabled), [type=button]:hover:not(:disabled), [type=button]:focus:not(:disabled), [type=button]:active:not(:disabled) {
+  .button:hover, :hover[type=submit], .button:focus, :focus[type=submit], .button:active, :active[type=submit], a.button:hover, a:hover[type=submit], a.button:focus, a:focus[type=submit], a.button:active, a:active[type=submit], button:hover, button:focus, button:active, [type=submit]:hover, [type=submit]:focus, [type=submit]:active, [type=reset]:hover, [type=reset]:focus, [type=reset]:active, [type=button]:hover, [type=button]:focus, [type=button]:active {
     background-color: #89233d;
-    border-color: #89233d; }
+    border-color: #89233d;
+    color: white; }
   .button:focus, :focus[type=submit], a.button:focus, a:focus[type=submit], button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
     outline: 0;
     box-shadow: 0px 0px 1px 3px #df8098; }
   .button:disabled, :disabled[type=submit], a.button:disabled, a:disabled[type=submit], button:disabled, [type=submit]:disabled, [type=reset]:disabled, [type=button]:disabled {
     cursor: not-allowed;
-    opacity: 0.7; }
+    background-color: #999999;
+    border: 1px solid #999999; }
 
 .button__secondary, a.button__secondary {
   background-color: #2d6378;
   border-color: #2d6378;
   color: white; }
-  .button__secondary:hover:not(:disabled), .button__secondary:focus:not(:disabled), .button__secondary:active:not(:disabled), a.button__secondary:hover:not(:disabled), a.button__secondary:focus:not(:disabled), a.button__secondary:active:not(:disabled) {
+  .button__secondary:hover, .button__secondary:focus, .button__secondary:active, a.button__secondary:hover, a.button__secondary:focus, a.button__secondary:active {
     background-color: #1f4453;
-    border-color: #1f4453; }
+    border-color: #1f4453;
+    color: white; }
   .button__secondary:focus, a.button__secondary:focus {
     box-shadow: 0px 0px 1px 3px #4291b0; }
 
@@ -1316,7 +1319,7 @@ sup {
   background: transparent;
   color: inherit;
   border-color: #b22d4f; }
-  .button__outline:hover:not(:disabled), :hover:not(:disabled)[type=reset], .button__outline:focus:not(:disabled), :focus:not(:disabled)[type=reset], .button__outline:active:not(:disabled), :active:not(:disabled)[type=reset], a.button__outline:hover:not(:disabled), a:hover:not(:disabled)[type=reset], a.button__outline:focus:not(:disabled), a:focus:not(:disabled)[type=reset], a.button__outline:active:not(:disabled), a:active:not(:disabled)[type=reset] {
+  .button__outline:hover, :hover[type=reset], .button__outline:focus, :focus[type=reset], .button__outline:active, :active[type=reset], a.button__outline:hover, a:hover[type=reset], a.button__outline:focus, a:focus[type=reset], a.button__outline:active, a:active[type=reset] {
     background-color: transparent;
     border-color: #89233d;
     color: #b22d4f; }
@@ -1325,7 +1328,7 @@ sup {
   background: transparent;
   color: #b22d4f;
   border-color: transparent; }
-  .button__ghost:hover:not(:disabled), .button__ghost:focus:not(:disabled), .button__ghost:active:not(:disabled), a.button__ghost:hover:not(:disabled), a.button__ghost:focus:not(:disabled), a.button__ghost:active:not(:disabled) {
+  .button__ghost:hover, .button__ghost:focus, .button__ghost:active, a.button__ghost:hover, a.button__ghost:focus, a.button__ghost:active {
     background-color: transparent;
     border-color: #2d6378;
     color: #2d6378; }
@@ -1426,7 +1429,7 @@ tfoot th {
 
 [type=color]:focus, [type=color]:active, [type=date]:focus, [type=date]:active, [type=datetime]:focus, [type=datetime]:active, [type=datetime-local]:focus, [type=datetime-local]:active, [type=email]:focus, [type=email]:active, [type=month]:focus, [type=month]:active, [type=number]:focus, [type=number]:active, [type=password]:focus, [type=password]:active, [type=search]:focus, [type=search]:active, [type=tel]:focus, [type=tel]:active, [type=text]:focus, [type=text]:active, [type=url]:focus, [type=url]:active, [type=week]:focus, [type=week]:active, [type=time]:focus, [type=time]:active, select:focus, select:active, textarea:focus, textarea:active {
   border-color: #b22d4f;
-  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1), 0 0 0px 3px #e494a8; }
+  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1), 0 0 1px 3px #e494a8; }
 
 textarea {
   overflow: auto;

@@ -75,9 +75,13 @@
 //$button-font-weight: bold;
 //$button-background: $color-primary;
 //$button-text-color: white;
+//$button-hover-background: darken($button-background, 10%);
+//$button-hover-color: $button-text-color;
 //$button-secondary-background: $color-secondary;
 //$button-secondary-text-color: $button-text-color;
-// TODO: Button hover state
+//$button-secondary-hover-background: darken($button-secondary-background,10%);
+//$button-secondary-hover-color: $button-secondary-text-color;
+//$button-disabled-background: lighten($color-text,40%);
 
 /* TABLES */
 //$table-stripe-color: lighten($color-text-light,5%);
