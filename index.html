@@ -375,7 +375,7 @@
                   <ul>
                     <li><strong>.navbar-brand</strong> - an area on the left side of the navigation, which is <em>always visible</em>. This can contain the website's logo, key links, icons etc. It also contains the hamburger icon
                       <ul>
-                        <li><strong>#nav-hamburger</strong> - a button which when clicked expands the <span class="css-ref">.navbar-menu</span> on smaller devices
+                        <li><strong>.hamburger</strong> - a button which when clicked expands the <span class="css-ref">.navbar-menu</span> on smaller devices
                         <ul>
                           <li><strong>.hamburger-label</strong> - <em>optional</em> element to add a label to the button</li>
                           <li><strong>.hamburger-box</strong> - the hamburger icon itself</li>
@@ -416,7 +416,7 @@
                     <a class="img-link navbar-item" href="#"><img src="https://www.unsplash.it/60/40" alt="Site Logo"></a>
                     <a href="#" class="hide-above-nav navbar-item">Mobile Link</a>
                     <a href="#" class="hide-above-nav navbar-item">Mobile Link</a>
-                    <button id="nav-hamburger" class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
+                    <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
                       <span class="hamburger-label">Menu</span>
                       <span class="hamburger-box">
                         <span class="hamburger-inner"></span>
@@ -463,7 +463,7 @@
                 <a class="img-link navbar-item" href="#"><img src="https://www.unsplash.it/60/40" alt="Site Logo"></a>
                 <a href="#" class="hide-above-nav navbar-item">Mobile Link</a>
                 <a href="#" class="hide-above-nav navbar-item">Mobile Link</a>
-                <button id="nav-hamburger" class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
+                <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
                   <span class="hamburger-label">Menu</span>
                   <span class="hamburger-box">
                     <span class="hamburger-inner"></span>
@@ -505,11 +505,10 @@
           <h3>Nested menus (submenus)</h3>
           <p>Submenus are not a problem for Jellyfish - you can infinitely nest <code>&lt;ul></code> elements within <code>&lt;li></code> elements.<br>You should apply a class of <span class="css-ref">.has-children</span> to the parent <code>&lt;li></code> of any submenu, to ensure that styling is applied correctly - with consideration for UX!</p>
           <p>On small screens, submenu items have an increased left-padding to aid navigation hierarchy. On larger screens, the first submenu appears vertically, all others move horizontally.</p>
-          <p>The example below demonstrates submenus a few levels deep on larger screens, however please note: Jellyfish currently expects to only find one .navbar on a page, so <strong>on mobile devices the drop down will not trigger</strong>.</p>
           <nav class="navbar">
             <div class="container">
               <div class="navbar-brand">
-                <button id="nav-hamburger" class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
+                <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
                   <span class="hamburger-label">Menu</span>
                   <span class="hamburger-box">
                     <span class="hamburger-inner"></span>

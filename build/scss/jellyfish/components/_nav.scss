@@ -297,20 +297,13 @@ they should be wrapped in this class to ensure consistent display
     width: auto;
   }
 }
-#nav-hamburger {
+.hamburger {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-#nav-hamburger is only shown on smaller devices
+.hamburger is only shown on smaller devices
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   margin-left: auto;
   margin-top: $hamburger-margin-y;
   margin-bottom: $hamburger-margin-y;
-  @include above($nav-expands) {
-    display: none; // Hide on larger screens
-  }
-}
-.hamburger {
-  @extend .hamburger--#{$primary-hamburger-type}; // extends class from hamburgers.scss to select specified animation
-  @include smooth(background-color, border);
   background-color: $hamburger-background-color;
   border: $hamburger-border;
   border-radius: $hamburger-border-radius;
@@ -318,6 +311,11 @@ they should be wrapped in this class to ensure consistent display
   text-align: right;
   display: flex;
   align-items: center;
+  @extend .hamburger--#{$primary-hamburger-type}; // extends class from hamburgers.scss to select specified animation
+  @include smooth(background-color, border);
+  @include above($nav-expands) {
+    display: none; // Hide on larger screens
+  }
   &:hover, &:focus, &:active {
       background-color: $hamburger-background-color-hover;
       border: $hamburger-border-hover;

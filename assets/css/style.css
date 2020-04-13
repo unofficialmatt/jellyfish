@@ -1792,25 +1792,23 @@ they should be wrapped in this class to ensure consistent display
   .navbar-menu input {
     width: auto; }
 
-#nav-hamburger {
+.hamburger {
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-#nav-hamburger is only shown on smaller devices
+.hamburger is only shown on smaller devices
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   margin-left: auto;
   margin-top: inherit;
-  margin-bottom: inherit; }
-  @media (min-width: 56.25em) {
-    #nav-hamburger {
-      display: none; } }
-
-.hamburger {
-  transition: background-color 0.2s ease, border 0.2s ease;
+  margin-bottom: inherit;
   background-color: #f8eee7;
   border: 1px solid #f8eee7;
   border-radius: 0px;
   text-align: right;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  transition: background-color 0.2s ease, border 0.2s ease; }
+  @media (min-width: 56.25em) {
+    .hamburger {
+      display: none; } }
   .hamburger:hover, .hamburger:focus, .hamburger:active {
     background-color: #ecd2c0;
     border: 1px solid #ecd2c0; }

@@ -6,7 +6,7 @@
 <img src="https://img.shields.io/maintenance/yes/2020.svg?style=flat-square&logo=github"/>
 <img src="https://img.shields.io/github/commit-activity/y/unofficialmatt/home-assistant.svg?style=flat-square&logo=github"/>
 <img src="https://img.shields.io/github/last-commit/unofficialmatt/home-assistant.svg?style=flat-square&logo=github"/>
-<img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
+<img src="https://img.shields.io/badge/license-MIT-yellow.svg?style=flat-square"/>
 </p>
 
 Jellyfish is yet another front-end design framework for developing responsive, browser-consistent web projects.
