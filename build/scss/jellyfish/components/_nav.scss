@@ -31,7 +31,6 @@
   background: $navbar-bg-color;
   color: $navbar-link-color; // To ensure all non-link text is styled
   position: relative;
-  z-index: 100;
   >.container {
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   Container
@@ -232,10 +231,9 @@ they should be wrapped in this class to ensure consistent display
       }
       @include above($nav-expands) {
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-      When an li with children is hovered, show the drop down
+      When an li with children is hovered or the anchor is focused, show the drop down
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        // TODO: Add support for tabbing and entering - for screen readers
-        &.has-children:hover {
+        &.has-children:hover, &.has-children:focus-within {
             > ul {
             // Transitioning opacity and translateY gives a nice ease-in effect
             opacity: 1;

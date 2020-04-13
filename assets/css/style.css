@@ -1568,8 +1568,7 @@ select::-ms-expand {
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   background: #f8eee7;
   color: #b22d4f;
-  position: relative;
-  z-index: 100; }
+  position: relative; }
   @media print {
     .navbar {
       display: none; } }
@@ -1748,14 +1747,14 @@ they should be wrapped in this class to ensure consistent display
       @media (min-width: 56.25em) {
         .navbar-menu ul li {
           /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-      When an li with children is hovered, show the drop down
+      When an li with children is hovered or the anchor is focused, show the drop down
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ }
-          .navbar-menu ul li.has-children:hover > ul {
+          .navbar-menu ul li.has-children:hover > ul, .navbar-menu ul li.has-children:focus-within > ul {
             opacity: 1;
             transform: translateY(0px); }
-            .navbar-menu ul li.has-children:hover > ul > li {
+            .navbar-menu ul li.has-children:hover > ul > li, .navbar-menu ul li.has-children:focus-within > ul > li {
               display: block; }
-          .navbar-menu ul li.has-children:hover > a::after {
+          .navbar-menu ul li.has-children:hover > a::after, .navbar-menu ul li.has-children:focus-within > a::after {
             opacity: 0.2; } }
   .navbar-menu .current-page {
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*

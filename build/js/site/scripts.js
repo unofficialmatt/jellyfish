@@ -20,16 +20,15 @@ jQuery(document).ready(function ($) {
   // If a menu item with children is clicked...
   $(document).on("click", 'li.has-children > a:not(".clicked"), li.menu-item-has-children > a:not(".clicked")', function (e) {
     // ...and the window width is smaller than the navPoint
-    if ($(window).width() < (navPoint - 1)) {
+    if ($(window).width() < (navPoint)) {
       // add .clicked class to the anchor element
       ($(this).addClass("clicked"));
       // prevent the link from firing
       e.preventDefault();
-      // add .drop-active class to parent li
-      $(this).parent("li").toggleClass("drop-active");
+      // add .drop-active class and aria-expanded to parent li
+      $(this).parent("li").toggleClass("drop-active").attr( 'aria-expanded', 'true');
     }
   });
-
 });
 
 function jfdebug() {
