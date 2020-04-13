@@ -5,10 +5,12 @@
   system.
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+// Calculate width of one column based on amount defined in settings
 $one_col: (100% / $cols);
 
 .jf-debug {
   &::before {
+      // Displays current breakpoint before page
       content: "#{$base-col-name}";
       position: fixed;
       top: 0;
@@ -38,7 +40,6 @@ $one_col: (100% / $cols);
       }
   }
 }
-
 .container {
     margin: 0 auto;
     width: 100%;

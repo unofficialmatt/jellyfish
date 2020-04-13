@@ -45,6 +45,7 @@
 
 .button, a.button {
     &__secondary {
+      // Secondary buttons have a different color scheme
         background-color: $button-secondary-background;
         border-color: $button-secondary-background;
         color: $button-secondary-text-color;
@@ -58,6 +59,7 @@
         }
     }
     &__outline {
+      // Outline buttons have a fill and no border
         background: transparent;
         color: inherit;
         border-color: $button-background;
@@ -68,6 +70,7 @@
         }
     }
     &__ghost {
+      // Ghost buttons are styled like regular links, with the height of a button
         background: transparent;
         color: $link-color;
         border-color: transparent;

@@ -69,13 +69,14 @@
 @mixin smooth($properties...) { // Global transition
     $result: (); // Create empty variable
     @each $property in $properties {
-        // Loop through each argument and append to result variable
+        // Loop through each xwargument and append to result variable
         $result: append($result, #{$property} $global-transition, comma);
     }
     transition: $result;
 }
 
 // Allows us to use #{headings(1,6)} to apply css to all headings
+// TODO: Needs adding to docs
 @function headings($from:1, $to:6) {
   @if $from == $to {
       @return 'h#{$from}';

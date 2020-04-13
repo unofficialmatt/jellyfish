@@ -3,6 +3,10 @@
   Defines what is and isn't printed
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+.do-not-print {
+  @include do-not-print();
+}
+
 iframe, .navbar {
   @extend .do-not-print;
 }

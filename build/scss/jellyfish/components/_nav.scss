@@ -264,7 +264,7 @@ they should be wrapped in this class to ensure consistent display
       }
     }
   }
-
+  // Left side of navbar-menu
   .navbar-start {
     @include above($nav-expands) {
     display: flex;
@@ -273,6 +273,7 @@ they should be wrapped in this class to ensure consistent display
     margin-right: auto;
     }
   }
+  // Right side of navbar-menu
   .navbar-end {
     padding: $navbar-link-padding-y 0;
     display: flex;

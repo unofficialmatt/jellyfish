@@ -9,24 +9,20 @@ table {
     border-spacing: 0;
     width: 100%;
 }
-
 td {
     border-bottom: $borders;
 }
 th {
     font-weight: bold;
 }
-
 th,
 td {
     text-align: left;
     padding: .5em .8em;
 }
-
 thead th {
     border-bottom: $border-width*2 solid $border-color;
 }
-
 tfoot th {
     border-top: $border-width*2 solid $border-color;
 }
@@ -46,10 +42,8 @@ tfoot th {
     color: $table-hover-color;
   }
 }
-
 // Wrap around a table to prevent it breaking outside the grid
 .table-container {
   overflow-x: auto;
   width: 100%;
-
 }

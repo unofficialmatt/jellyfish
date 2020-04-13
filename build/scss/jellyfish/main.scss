@@ -18,16 +18,11 @@ SCSS FRAMEWORK BY MATT WEET
 @import "components/accessibility";
 @import "components/grid";
 @import "components/buttons";
-@import "components/icons";
 @import "components/tables";
 @import "components/forms";
 @import "vendor/hamburgers/hamburgers";
 @import "components/nav";
 @import "components/print";
-
-
-// CMS Specific Classes
-//@import "components/wordpress";
 
 // TODO: Last-child margin 0 on .col?
 // TODO: prefers-color-scheme: dark

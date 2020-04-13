@@ -24,6 +24,7 @@
           <p>Jellyfish has a few useful features that other frameworks don't have; primarily the ability to give breakpoint modifiers your own class names <em>(want to name them micro, medium, mammoth - go for it!</em> and the ability to define how many columns are in your grid <em>(want a 13 column grid? You go for it, tiger! I won't judge)</em>.</p>
           <p>Aside from that, Jellyfish has all the usual styling, classes and modifiers you have come to expect in a modern flex-based CSS framework.</p>
           <p>Jellyfish is powered by <a href="#project-init">Grunt.js</a> to compile scss and javascript, adding prefixers, concatenating and minifying in the process.</p>
+          <p><a class="github-button" href="https://github.com/unofficialmatt/jellyfish" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star unofficialmatt/jellyfish on GitHub">Star</a> <a class="github-button" href="https://github.com/unofficialmatt" data-size="large" data-show-count="true" aria-label="Follow @unofficialmatt on GitHub">Follow @unofficialmatt</a></p>
         </div>
       </div>
     </div>
@@ -34,6 +35,7 @@
         <div id="docs-nav">
           <h3>Navigation</h3>
           <ul>
+            <li><a href="#how-to-use">How to Use</a></li>
             <li><a href="#boilerplate">HTML5 Boilerplate</a></li>
             <li><a href="#grid">Grid</a></li>
             <li><a href="#navbar">Navbar</a></li>
@@ -48,11 +50,97 @@
             <li><a href="#breakpoint-settings">Breakpoint Settings</a></li>
             <li><a href="#configuration">Configuration</a></li>
             <li><a href="#debug">Debug Mode</a></li>
-            <li><a href="#how-to-use">How to Use</a></li>
           </ul>
         </div>
       </aside><!-- SIDEBAR NAV -->
       <main class="col md-9 lg-10">
+        <section class="docs-section" id="how-to-use">
+          <h2>How to Use</h2>
+          <h3>BrowserSync, Grunt.js, NPM and Sass</h3>
+          <p>Jellyfish makes use of modern technologies in order to make the dev experience more enjoyable.</p>
+          <ul>
+            <li><a href="https://www.browsersync.io/" rel="external">Browsersync</a> opens up a new window in your default browser and live reloads whenever changes are detected to your project's javascript, css or HTML.</li>
+            <li><a href="https://sass-lang.com/" rel="external">Sass (SCSS)</a> is used to extend css, helping to compartmentalise components and organise code into digestible parts. Sass can also make use of useful concepts like nesting, variables and functions.</li>
+            <li><a href="https://www.npmjs.com/" rel="external">NPM</a> is used to manage packages that are required to run Jellyfish.</li>
+            <li><a href="https://gruntjs.com/" rel="external">Grunt.js</a> is a task-runner which is used to reduce hassles in compiling code.</li>
+          </ul>
+          <h3>Starting your project</h3>
+          <p>Make sure that you have npm, browsersync and grunt installed on your system following the guides on their respective websites. Then, clone the project into your required folder with git...</p>
+          <pre class="language-git"><code>$ git clone https://github.com/unofficialmatt/jellyfish.git</code></pre>
+          <p>Install the dev dependencies in the root of the project...</p>
+          <pre class="language-markup"><code>$ npm install</code></pre>
+          <p>Initialise grunt, to rebuild the codebase for a clean start.</p>
+          <pre class="language-markup"><code>$ grunt init</code></pre>
+          <p>Next time, you can just run the default grunt task, to simply start browserSync</p>
+          <pre class="language-markup"><code>$ grunt</code></pre>
+          <h3>Directory structure</h3>
+          <p>The project contains the source and destination folders, as well as necessary project files.</p>
+          <ul>
+            <li><strong>/assets</strong> - contains the final css, images and javascript files within sub-directories. The files in this directory are all created by Grunt</li>
+            <li><strong>/build</strong> - contains the source files for the project:
+              <ul>
+                <li><strong>js</strong> - organised into subdirectories for vendor and project. When Grunt detects a change to any of these directories (new file, edit, remove), it will concatenate and minify javascript and reload your browser with browserSync. Vendor scripts can be automatically copied from an npm package with the Gruntfile task copy:npm.</li>
+                <li><strong>scss</strong>
+                <ul>
+                  <li><strong>/jellyfish</strong> - contains all of the Jellyfish scss files. It is not recommended to edit any of the files within this directory.</li>
+                  <li><strong>/project/</strong> - add your project specific scss files here.</li>
+                  <li><strong>/project/_all.scss</strong> - this file is automatically populated by Grunt to include all other scss files in the project directory.</li>
+                </ul>
+                </li>
+              </ul>
+            </li>
+            <li><strong>/docs</strong> - contains files only used by this documentation. Can be safely removed.</li>
+            <li><strong>.editorconfig</strong> - Keeps code indented to 2 spaces. Feel free to edit to your tastes.</li>
+            <li><strong>.gitignore</strong> - A substantial gitignore file to ignore system files and node_modules.</li>
+            <li><strong>boilerplate.html</strong> - starter HTML template.</li>
+            <li><strong>Gruntfile.js</strong> - Contains lots of useful tasks that are run to help make your dev time more enjoyable. The file is well commented to explain what each task does. Feel free to adapt the file to suit the needs of your project.</li>
+            <li><strong>index.html</strong> - This file! Feel free to delete for your project - or rename and use it as a reference.</li>
+            <li><strong>package.json</strong> - npm package folder to initialise node_modules.</li>
+          </ul>
+          <h3>Grunt Tasks</h3>
+          <p>For the most part, as long as you follow the guidance above in terms of file hierarchy, you can let Grunt work it's magic without hassle. You can amend the Gruntfile as your project dictates, to edit/remove/add tasks as appropriate from the huge variety available.</p>
+          <p>The <span class="file-ref">Gruntfile.js</span> is well commented, here are a summary of the tasks included as default:</p>
+          <h4>Project init tasks</h4>
+          <ul>
+            <li>Copy files from node_modules and save into the project build directories:
+              <ul>
+                <li>jquery.js</li>
+                <li>hamburgers.scss</li>
+              </ul>
+            </li>
+            <li>Start watching files for changes.</li>
+            <li>Load up the project in a web browser.</li>
+          </ul>
+          <h4>Watch tasks</h4>
+          <ul>
+            <li><strong>SCSS:</strong> When any scss file within <span class="file-ref">/build/scss</span> is changed, added or deleted:
+              <ul>
+                <li>@import all _scss partials saved in <span class="file-ref">/build/scss/project</span> to <span class="file-ref">/build/scss/project/_all.scss</span>.</li>
+                <li>Run SCSS compile on <span class="file-ref">/build/scss/compile.scss</span> and output to <span class="file-ref">/assets/css/style.css</span>. This task will include Jellyfish core scss and your project's scss.</li>
+                <li>Run postcss; this task adds vendor prefixes, converts any px values to rem units based on a document default of 16px = 1rem, and minifies the file to <span class="file-ref">/assets/css/style.min.css</span>.</li>
+                <li>Reload the browser</li>
+              </ul>
+            </li>
+            <li><strong>Javascript: </strong> When any javascript file within <span class="file-ref">/build/js</span> is changed, added or deleted:
+              <ul>
+                <li>Concatenate all javascript files saved in <span class="file-ref">/build/js/vendor</span> and <span class="file-ref">/build/js/site</span> and saves to <span class="file-ref">/assets/js/site.js</span></li>
+                <li>Minify <span class="file-ref">/assets/js/site.js</span> to <span class="file-ref">/assets/js/site.min.js</span></li>
+                <li>Reload the browser</li>
+              </ul>
+            </li>
+            <li><strong>Images: </strong> When any image file within <span class="file-ref">/build/img</span> is changed, added or deleted:
+              <ul>
+                <li>Remove all existing images from <span class="file-ref">/assets/img</span></li>
+                <li>Optimise and compress all images in <span class="file-ref">/build/img</span> and saves them to <span class="file-ref">/assets/img</span></li>
+                <li>Reload the browser</li>
+              </ul>
+            </li>
+            <li><strong>HTML/CSS: </strong> When any .html or .php file is edited:
+              <ul>
+                <li>Reload the browser</li>
+              </ul>
+          </ul>
+        </section><!-- #how-to-use -->
         <section class="docs-section" id="boilerplate">
           <h2>HTML Boilerplate</h2>
           <p>Begin your project with as basic <a href="https://en.wikipedia.org/wiki/HTML5" rel="external">HTML5</a> boilerplate that does the following:</p>
@@ -1036,8 +1124,10 @@ console.log("JellyFish is Awesome!");
               <tr>
                 <td><code>&lt;input type="checkbox"&gt;</code></td>
                 <td>
-                  <label><input type="checkbox" checked=""> Checkbox 1</label>
-                  <label><input type="checkbox"> Checkbox 2</label>
+                  <div class="form-group">
+                    <label><input type="checkbox" checked=""> Checkbox 1</label>
+                    <label><input type="checkbox"> Checkbox 2</label>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1067,8 +1157,10 @@ console.log("JellyFish is Awesome!");
               <tr>
                 <td><code>&lt;input type="radio"&gt;</code></td>
                 <td>
-                  <label><input type="Radio" name="radio" checked=""> Radio 1</label>
-                  <label><input type="Radio" name="radio"> Radio 2</label>
+                  <div class="form-group">
+                    <label><input type="Radio" name="radio" checked=""> Radio 1</label>
+                    <label><input type="Radio" name="radio"> Radio 2</label>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1103,6 +1195,137 @@ console.log("JellyFish is Awesome!");
               </tr>
             </tbody>
           </table>
+          <h3>Working with checkboxes and radioboxes</h3>
+          <p>Wrap checkboxes and radio boxes in a <span class="css-ref">.form-group</span> to preserve spacing.</p>
+          <pre class="language-markup">
+            <code><!--
+            <input type="text">
+            <div class="form-group">
+              <label><input type="Radio" name="radio" checked=""> Radio 1</label>
+              <label><input type="Radio" name="radio"> Radio 2</label>
+            </div>
+            <textarea></textarea>
+          --></code>
+          </pre>
+          <input type="text">
+          <div class="form-group">
+            <label><input type="Radio" name="radio" checked=""> Radio 1</label>
+            <label><input type="Radio" name="radio"> Radio 2</label>
+          </div>
+          <textarea></textarea>
+          <p>Add the class <span class="css-ref">.form-group-inline</span> to make checkboxes and radioboxes inline-block elements rather than block.</p>
+          <pre class="language-markup">
+            <code><!--
+            <div class="form-group-inline">
+              ...
+            </div>
+          --></code>
+          </pre>
+          <div class="form-group-inline">
+            <label><input type="Radio" name="radio" checked=""> Radio 1</label>
+            <label><input type="Radio" name="radio"> Radio 2</label>
+            <label><input type="Radio" name="radio"> Radio 3</label>
+          </div>
+          <h3>Fieldsets</h3>
+          <p>Related form controls can be grouped in a <code>&lt;fieldset></code>. An optional <code>&lt;legend></code> can be used to display a name for the group.</p>
+          <pre class="language-markup">
+            <code><!--
+            <fieldset>
+            <legend>Login</legend>
+              ...
+            </fieldset>
+          --></code>
+          </pre>
+          <fieldset>
+            <legend>Login</legend>
+              <label>Username</label>
+              <input type="text">
+              <label>Password</label>
+              <input type="password" autocomplete="off">
+            <div class="form-group">
+              <label>
+                <input type="checkbox"> Remember me
+              </label>
+            </div>
+              <button type="button">Login</button>
+          </fieldset>
+          <h3>Form Layout</h3>
+          <p>You can layout forms with the same classes as the grid - with <span class="css-ref">.row</span> and <span class="css-ref">.col</span> elements.</p>
+          <pre class="language-markup">
+            <code><!--
+            <form>
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="First name">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Last name">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <textarea rows="5" placeholder="Your Message"></textarea>
+              </div>
+            </div>
+          </form>
+          --></code>
+          </pre>
+          <form>
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="First name">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Last name">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <textarea rows="5" placeholder="Your Message"></textarea>
+              </div>
+            </div>
+          </form>
+          <p>For a tighter column gutter, you can use the class <span class="css-ref">.form-row</span>.</p>
+          <pre class="language-markup">
+            <code><!--
+            <form>
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="First name">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Last name">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <textarea rows="5" placeholder="Your Message"></textarea>
+              </div>
+            </div>
+          </form>
+          --></code>
+          </pre>
+          <form>
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="First name">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Last name">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <textarea rows="5" placeholder="Your Message"></textarea>
+              </div>
+            </div>
+          </form>
+          <h3>Disabled forms</h3>
+          <p>Add the <code>disabled</code> attribute to an input to disable it.</p>
+          <input type="text" disabled placeholder="Disabled text input">
+          <textarea rows="5" placeholder="Disabled textarea" disabled></textarea>
+
+          <h3>Customising form styles</h3>
           <p>Form variables can be edited in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
           <code>
@@ -1612,7 +1835,7 @@ console.log("JellyFish is Awesome!");
           $color-text: #333333;
           $color-text-light: #d9dbdb;
           $color-background: #fff;
-          $color-background-alt: #f8eee7;
+          $color-background-alt: #efefef;
           $color-primary: #b22d4f;
           $color-secondary: #2d6378;
           $color-tertiary: #5d2b50;
@@ -1802,93 +2025,6 @@ console.log("JellyFish is Awesome!");
             <div class="col md-4 order-md-1 order-lg-0"><div class="boxed">Order md-1 Order-lg-0</div></div>
           </div>
         </section><!-- #debug -->
-        <section class="docs-section" id="how-to-use">
-          <h2>How to Use</h2>
-          <h3>BrowserSync, Grunt.js, NPM and Sass</h3>
-          <p>Jellyfish makes use of modern technologies in order to make the dev experience more enjoyable.</p>
-          <ul>
-            <li><a href="https://www.browsersync.io/" rel="external">Browsersync</a> opens up a new window in your default browser and live reloads whenever changes are detected to your project's javascript, css or HTML.</li>
-            <li><a href="https://sass-lang.com/" rel="external">Sass (SCSS)</a> is used to extend css, helping to compartmentalise components and organise code into digestible parts. Sass can also make use of useful concepts like nesting, variables and functions.</li>
-            <li><a href="https://www.npmjs.com/" rel="external">NPM</a> is used to manage packages that are required to run Jellyfish.</li>
-            <li><a href="https://gruntjs.com/" rel="external">Grunt.js</a> is a task-runner which is used to reduce hassles in compiling code.</li>
-          </ul>
-          <h3>Starting your project</h3>
-          <p>Make sure that you have npm, browsersync and grunt installed on your system following the guides on their respective websites. Then, clone the project into your required folder with git...</p>
-          <pre class="language-git"><code>$ git clone https://github.com/unofficialmatt/jellyfish.git</code></pre>
-          <p>Install the dev dependencies in the root of the project...</p>
-          <pre class="language-markup"><code>$ npm install</code></pre>
-          <p>Initialise grunt, to rebuild the codebase for a clean start.</p>
-          <pre class="language-markup"><code>$ grunt init</code></pre>
-          <p>Next time, you can just run the default grunt task, to simply start browserSync</p>
-          <pre class="language-markup"><code>$ grunt</code></pre>
-          <h3>Directory structure</h3>
-          <p>The project contains the source and destination folders, as well as necessary project files.</p>
-          <ul>
-            <li><strong>/assets</strong> - contains the final css, images and javascript files within sub-directories. The files in this directory are all created by Grunt</li>
-            <li><strong>/build</strong> - contains the source files for the project:
-              <ul>
-                <li><strong>js</strong> - organised into subdirectories for vendor and project. When Grunt detects a change to any of these directories (new file, edit, remove), it will concatenate and minify javascript and reload your browser with browserSync. Vendor scripts can be automatically copied from an npm package with the Gruntfile task copy:npm.</li>
-                <li><strong>scss</strong>
-                <ul>
-                  <li><strong>/jellyfish</strong> - contains all of the Jellyfish scss files. It is not recommended to edit any of the files within this directory.</li>
-                  <li><strong>/project/</strong> - add your project specific scss files here.</li>
-                  <li><strong>/project/_all.scss</strong> - this file is automatically populated by Grunt to include all other scss files in the project directory.</li>
-                </ul>
-                </li>
-              </ul>
-            </li>
-            <li><strong>/docs</strong> - contains files only used by this documentation. Can be safely removed.</li>
-            <li><strong>.editorconfig</strong> - Keeps code indented to 2 spaces. Feel free to edit to your tastes.</li>
-            <li><strong>.gitignore</strong> - A substantial gitignore file to ignore system files and node_modules.</li>
-            <li><strong>boilerplate.html</strong> - starter HTML template.</li>
-            <li><strong>Gruntfile.js</strong> - Contains lots of useful tasks that are run to help make your dev time more enjoyable. The file is well commented to explain what each task does. Feel free to adapt the file to suit the needs of your project.</li>
-            <li><strong>index.html</strong> - This file! Feel free to delete for your project - or rename and use it as a reference.</li>
-            <li><strong>package.json</strong> - npm package folder to initialise node_modules.</li>
-          </ul>
-          <h3>Grunt Tasks</h3>
-          <p>For the most part, as long as you follow the guidance above in terms of file hierarchy, you can let Grunt work it's magic without hassle. You can amend the Gruntfile as your project dictates, to edit/remove/add tasks as appropriate from the huge variety available.</p>
-          <p>The <span class="file-ref">Gruntfile.js</span> is well commented, here are a summary of the tasks included as default:</p>
-          <h4>Project init tasks</h4>
-          <ul>
-            <li>Copy files from node_modules and save into the project build directories:
-              <ul>
-                <li>jquery.js</li>
-                <li>hamburgers.scss</li>
-              </ul>
-            </li>
-            <li>Start watching files for changes.</li>
-            <li>Load up the project in a web browser.</li>
-          </ul>
-          <h4>Watch tasks</h4>
-          <ul>
-            <li><strong>SCSS:</strong> When any scss file within <span class="file-ref">/build/scss</span> is changed, added or deleted:
-              <ul>
-                <li>@import all _scss partials saved in <span class="file-ref">/build/scss/project</span> to <span class="file-ref">/build/scss/project/_all.scss</span>.</li>
-                <li>Run SCSS compile on <span class="file-ref">/build/scss/compile.scss</span> and output to <span class="file-ref">/assets/css/style.css</span>. This task will include Jellyfish core scss and your project's scss.</li>
-                <li>Run postcss; this task adds vendor prefixes, converts any px values to rem units based on a document default of 16px = 1rem, and minifies the file to <span class="file-ref">/assets/css/style.min.css</span>.</li>
-                <li>Reload the browser</li>
-              </ul>
-            </li>
-            <li><strong>Javascript: </strong> When any javascript file within <span class="file-ref">/build/js</span> is changed, added or deleted:
-              <ul>
-                <li>Concatenate all javascript files saved in <span class="file-ref">/build/js/vendor</span> and <span class="file-ref">/build/js/site</span> and saves to <span class="file-ref">/assets/js/site.js</span></li>
-                <li>Minify <span class="file-ref">/assets/js/site.js</span> to <span class="file-ref">/assets/js/site.min.js</span></li>
-                <li>Reload the browser</li>
-              </ul>
-            </li>
-            <li><strong>Images: </strong> When any image file within <span class="file-ref">/build/img</span> is changed, added or deleted:
-              <ul>
-                <li>Remove all existing images from <span class="file-ref">/assets/img</span></li>
-                <li>Optimise and compress all images in <span class="file-ref">/build/img</span> and saves them to <span class="file-ref">/assets/img</span></li>
-                <li>Reload the browser</li>
-              </ul>
-            </li>
-            <li><strong>HTML/CSS: </strong> When any .html or .php file is edited:
-              <ul>
-                <li>Reload the browser</li>
-              </ul>
-          </ul>
-        </section><!-- #how-to-use -->
         <p style="font-size: 2rem; text-align: center;">🎐 <em>Happy swimming!</em></p>
       </main><!-- MAIN DOCS AREA -->
     </div><!-- .row -->
@@ -1906,13 +2042,6 @@ console.log("JellyFish is Awesome!");
       $("#docs-nav").sticky({topSpacing:30});
     });
   </script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
-
-
-<!--
-TODO: Review CSS and make sure all documented
-TODO: Forms could be better - see other frameworks, eg. colour, label margins etc
-TODO: Double check over Bulma, Shoelace, Primitive doc, have I missed anything?
-TODO: WOrk out what should and shouldn't be printed - eg. navbar
--->
