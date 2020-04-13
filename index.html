@@ -44,6 +44,7 @@
             <li><a href="#tables">Tables</a></li>
             <li><a href="#utilities">Utilities</a></li>
             <li><a href="#mixins">Mixins</a></li>
+            <li><a href="#printing">Printing</a></li>
             <li><a href="#breakpoint-settings">Breakpoint Settings</a></li>
             <li><a href="#configuration">Configuration</a></li>
             <li><a href="#debug">Debug Mode</a></li>
@@ -131,7 +132,7 @@
               <div class="row">
                 <div class="col">2nd column</div>
                 <div class="col">2nd column</div>
-              </div2nd>
+              </div>
               <div class="row">
                 <div class="col">3rd column</div>
                 <div class="col">2nd column</div>
@@ -150,6 +151,22 @@
               <div class="col"><div class="boxed">1st column</div></div>
               <div class="col"><div class="boxed">2nd column</div></div>
               <div class="col"><div class="boxed">3rd column</div></div>
+            </div>
+            <p>To size a  column based on it's content, use <span class="css-ref">.col-auto</span></p>
+            <pre class="language-markup"><code><!--
+              <div class="row">
+                <div class="col">.col</div>
+                <div class="col">.col</div>
+                <div class="col col-auto">.col-auto</div>
+                <div class="col">.col</div>
+              </div>
+              --></code>
+            </pre>
+            <div class="row">
+              <div class="col"><div class="boxed">.col</div></div>
+              <div class="col"><div class="boxed">.col</div></div>
+              <div class="col col-auto"><div class="boxed">.col-auto</div></div>
+              <div class="col"><div class="boxed">.col</div></div>
             </div>
             <h4>Making Columns Responsive</h4>
             <p>To set the width of a column, use the breakpoint-based modifier classes to target different viewport widths. Breakpoints are explained in the <a href="#breakpoint-settings">breakpoint settings</a> section.</p>
@@ -241,6 +258,7 @@
               <div class="col sm-3"><div class="boxed">sm-3</div></div>
               <div class="col"><div class="boxed">default</div></div>
             </div>
+
             <h4>Offsetting Columns</h4>
             <p>Columns can be offset by using the <span class="css-ref">.offset-$breakpoint-$cols</span> modifiers. Offsets are inherited, and can be reset by using the class <span class="css-ref">.offset-$breakpoint-0</span>. When you offset a columm, all elements that follow are moved along.</p>
             <pre class="language-markup"><code><!--
@@ -876,6 +894,9 @@ console.log("JellyFish is Awesome!");
           <input type="button" value="Input">
           <a class="button">Link</a>
           <h3>Button modifiers</h3>
+          <p>To disable a button set the <code>disabled</code> property on a <code>&lt;button></code> element. It is not possible to disable links without additional javascript, so Jellyfish does not allow you to simulate a disabled state on anchor elements.</p>
+          <input type="button" value="Disabled Input Button" disabled>
+          <button disabled>Disabled Button</button>
           <p>Add the modifier <span class="css-ref">.button__secondary</span> to display a secondary button color.</p>
           <pre class="language-markup">
             <code><!--
@@ -1381,7 +1402,8 @@ console.log("JellyFish is Awesome!");
             <div class="col md-3"><div class="boxed">justify-between</div></div>
           </div>
           <h3>Manipulating width</h3>
-          <p>The utility class <span class="css-ref">.full-width</span> can be applied to any element to make <code>width: 100%</code>. An element with the utility class <span class="css-ref">.vw-100</span> will span 100% of the viewport width, breaking out of any containers to do so (without affecting document flow).</p>
+          <p>The utility class <span class="css-ref">.full-width</span> can be applied to any element to make <code>width: 100%</code>.</p>
+          <p>An element with the utility class <span class="css-ref">.vw-100</span> will span 100% of the viewport width, breaking out of any containers to do so (without affecting document flow). <strong>Note:</strong> this class should only be used when the center of the parent is in the center of the window, otherwise - as seen in the example below - it doesn't work!</p>
           <pre class="language-markup">
             <code><!--
             <div class="full-width">...</div>
@@ -1389,7 +1411,7 @@ console.log("JellyFish is Awesome!");
           --></code>
           </pre>
           <div class="full-width boxed">An element with .full-width applied</div>
-          <div class="col vw-100">An element with .vw-100 applied</div>
+          <div class="boxed vw-100">An element with .vw-100 applied</div>
           <h3>Responsive Video</h3>
           <p>Wrap an embedded video in a container with class <span class="css-ref">.embed-container</span> to ensure the video is responsively resized.</p>
           <pre class="language-markup">
@@ -1460,7 +1482,76 @@ console.log("JellyFish is Awesome!");
               <tr><td><code>@include below($max) {...}</code></td><td>CSS applies below the given breakpoint, unless overridden by specificity. As a general rule, it's best to use <code>above()</code> rather than <code>below()</code>.</td></tr>
           </tbody>
           </table>
-        </section><!-- #mixins-functions -->
+        </section><!-- #mixins -->
+        <section class="docs-section" id="printing">
+          <h2>Printing Jellyfish Projects</h2>
+          <p>Jellyfish applies a few small tweaks to make projects more printer-friendly:</p>
+          <pre class="language-scss"><code>
+            @media print {
+              a {
+                color: $color-primary !important;
+                text-decoration: underline;
+                ::after {
+                  // Display URL after links on print
+                  content: "(" attr(href) ")";
+                  display: inline-block;
+                  text-decoration: none;
+                  margin-left: .25em;
+                }
+              }
+              // Make websites more printer-friendly
+              html, body {
+                font-size: 9pt;
+                line-height: 1.2;
+                font-family: Arial;
+              }
+              #{headings()} {
+                font-weight: bold;
+                margin-bottom: .2em;
+              }
+              h1 {
+                font-size: 1.6em;
+              }
+              h2 {
+                font-size: 1.4em;
+              }
+              #{headings(3,6)} {
+                font-size: 1.2em;
+              }
+              #{$buttons} {
+                border: 1px solid black  !important;
+                background-color: white  !important;
+                color: black  !important;
+                display: inline-block !important;
+                width: auto !important;
+              }
+              .container {
+                width:100%;
+              }
+            }
+          </code>
+          </pre>
+          <h3>Non-printing elements</h3>
+          <p>There are several ways of preventing certain elements from printing; by using a class <span class="css-ref">.do-not-print</span>, by <span class="bold">@extending</span> that class <code>@extend .do-not-print</code> or by using a mixin <code>@include do-not-print()</code>. Each of these options result in the compiled code of <code>display:none;</code> for <span class="bold">@media print</span>.</p>
+          <p>By default, the following elements will not print: <span class="css-ref">.navbar</span>, iframe.</p>
+          <pre class="language-scss"><code>
+            .element {
+              @extend do-not-print;
+            }
+            .element-2 {
+              @include do-not-print();
+            }
+            // Compiled output:
+            @media print {
+              .do-not-print, .element {
+                display: none; } }
+
+            @media print {
+              .element-2 {
+                display: none; } }
+          </code>
+          </pre>
+        </section><!-- #printing -->
         <section class="docs-section" id="breakpoint-settings">
           <h2>Breakpoint Settings</h2>
           <p>Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints - declared through the <span class="variable-ref">$breakpoints</span> map in <span class="file-ref">/build/scss/_settings.scss</span>. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
@@ -1815,7 +1906,6 @@ console.log("JellyFish is Awesome!");
 
 <!--
 TODO: Review CSS and make sure all documented
-TODO: Add a col-auto? - see shoelace
 TODO: Forms could be better - see other frameworks, eg. colour, label margins etc
 TODO: Double check over Bulma, Shoelace, Primitive doc, have I missed anything?
 TODO: WOrk out what should and shouldn't be printed - eg. navbar

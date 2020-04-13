@@ -401,12 +401,12 @@ sup {
   width: 100% !important; }
 
 .vw-100 {
-  width: 100vw;
-  position: absolute;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw; }
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important; }
 
 .embed-container {
   position: relative;
@@ -454,6 +454,10 @@ sup {
 @media (min-width: 75em) {
   .four-column {
     column-count: 4; } }
+
+@media print {
+  .do-not-print, iframe, .navbar {
+    display: none; } }
 
 /* Text meant only for screen readers. */
 .screen-reader-text {
@@ -549,6 +553,11 @@ sup {
   position: relative;
   padding-left: 5px;
   padding-right: 5px; }
+
+.col-auto {
+  flex: 0 0 auto !important;
+  width: auto;
+  max-width: none !important; }
 
 .row.collapse {
   margin-left: 0;
@@ -1283,18 +1292,21 @@ sup {
   .button::-moz-focus-inner, [type=submit]::-moz-focus-inner, a.button::-moz-focus-inner, a[type=submit]::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
     border: 0;
     padding: 0; }
-  .button:hover, :hover[type=submit], .button:focus, :focus[type=submit], .button:active, :active[type=submit], a.button:hover, a:hover[type=submit], a.button:focus, a:focus[type=submit], a.button:active, a:active[type=submit], button:hover, button:focus, button:active, [type=submit]:hover, [type=submit]:focus, [type=submit]:active, [type=reset]:hover, [type=reset]:focus, [type=reset]:active, [type=button]:hover, [type=button]:focus, [type=button]:active {
+  .button:hover:not(:disabled), :hover:not(:disabled)[type=submit], .button:focus:not(:disabled), :focus:not(:disabled)[type=submit], .button:active:not(:disabled), :active:not(:disabled)[type=submit], a.button:hover:not(:disabled), a:hover:not(:disabled)[type=submit], a.button:focus:not(:disabled), a:focus:not(:disabled)[type=submit], a.button:active:not(:disabled), a:active:not(:disabled)[type=submit], button:hover:not(:disabled), button:focus:not(:disabled), button:active:not(:disabled), [type=submit]:hover:not(:disabled), [type=submit]:focus:not(:disabled), [type=submit]:active:not(:disabled), [type=reset]:hover:not(:disabled), [type=reset]:focus:not(:disabled), [type=reset]:active:not(:disabled), [type=button]:hover:not(:disabled), [type=button]:focus:not(:disabled), [type=button]:active:not(:disabled) {
     background-color: #89233d;
     border-color: #89233d; }
   .button:focus, :focus[type=submit], a.button:focus, a:focus[type=submit], button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
     outline: 0;
     box-shadow: 0px 0px 1px 3px #df8098; }
+  .button:disabled, :disabled[type=submit], a.button:disabled, a:disabled[type=submit], button:disabled, [type=submit]:disabled, [type=reset]:disabled, [type=button]:disabled {
+    cursor: not-allowed;
+    opacity: 0.7; }
 
 .button__secondary, a.button__secondary {
   background-color: #2d6378;
   border-color: #2d6378;
   color: white; }
-  .button__secondary:hover, .button__secondary:focus, .button__secondary:active, a.button__secondary:hover, a.button__secondary:focus, a.button__secondary:active {
+  .button__secondary:hover:not(:disabled), .button__secondary:focus:not(:disabled), .button__secondary:active:not(:disabled), a.button__secondary:hover:not(:disabled), a.button__secondary:focus:not(:disabled), a.button__secondary:active:not(:disabled) {
     background-color: #1f4453;
     border-color: #1f4453; }
   .button__secondary:focus, a.button__secondary:focus {
@@ -1304,7 +1316,7 @@ sup {
   background: transparent;
   color: inherit;
   border-color: #b22d4f; }
-  .button__outline:hover, :hover[type=reset], .button__outline:focus, :focus[type=reset], .button__outline:active, :active[type=reset], a.button__outline:hover, a:hover[type=reset], a.button__outline:focus, a:focus[type=reset], a.button__outline:active, a:active[type=reset] {
+  .button__outline:hover:not(:disabled), :hover:not(:disabled)[type=reset], .button__outline:focus:not(:disabled), :focus:not(:disabled)[type=reset], .button__outline:active:not(:disabled), :active:not(:disabled)[type=reset], a.button__outline:hover:not(:disabled), a:hover:not(:disabled)[type=reset], a.button__outline:focus:not(:disabled), a:focus:not(:disabled)[type=reset], a.button__outline:active:not(:disabled), a:active:not(:disabled)[type=reset] {
     background-color: transparent;
     border-color: #89233d;
     color: #b22d4f; }
@@ -1313,7 +1325,7 @@ sup {
   background: transparent;
   color: #b22d4f;
   border-color: transparent; }
-  .button__ghost:hover, .button__ghost:focus, .button__ghost:active, a.button__ghost:hover, a.button__ghost:focus, a.button__ghost:active {
+  .button__ghost:hover:not(:disabled), .button__ghost:focus:not(:disabled), .button__ghost:active:not(:disabled), a.button__ghost:hover:not(:disabled), a.button__ghost:focus:not(:disabled), a.button__ghost:active:not(:disabled) {
     background-color: transparent;
     border-color: #2d6378;
     color: #2d6378; }
@@ -1569,9 +1581,6 @@ select::-ms-expand {
   background: #f8eee7;
   color: #b22d4f;
   position: relative; }
-  @media print {
-    .navbar {
-      display: none; } }
   .navbar > .container {
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   Container
@@ -1834,6 +1843,41 @@ Utilities
 @media (max-width: 56.1875em) {
   .hide-below-nav {
     display: none !important; } }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  PRINT
+  Defines what is and isn't printed
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+@media print {
+  a {
+    color: #b22d4f !important;
+    text-decoration: underline; }
+    a ::after {
+      content: "(" attr(href) ")";
+      display: inline-block;
+      text-decoration: none;
+      margin-left: .25em; }
+  html, body {
+    font-size: 9pt;
+    line-height: 1.2;
+    font-family: Arial; }
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-bottom: .2em; }
+  h1 {
+    font-size: 1.6em; }
+  h2 {
+    font-size: 1.4em; }
+  h3, h4, h5, h6 {
+    font-size: 1.2em; }
+  .button, [type=submit], a.button, a[type=submit], button, [type=submit], [type=reset], [type=button] {
+    border: 1px solid black  !important;
+    background-color: white  !important;
+    color: black  !important;
+    display: inline-block !important;
+    width: auto !important; }
+  .container {
+    width: 100%; } }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   DOCS

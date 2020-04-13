@@ -27,7 +27,6 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
 .navbar is the parent of all navbar items
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-  @include do-not-print;
   background: $navbar-bg-color;
   color: $navbar-link-color; // To ensure all non-link text is styled
   position: relative;

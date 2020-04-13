@@ -59,6 +59,11 @@ $one_col: (100% / $cols);
     padding-left: .5*$base-col-gutter;
     padding-right: .5*$base-col-gutter;
 }
+.col-auto {
+  flex: 0 0 auto !important;
+  width: auto;
+  max-width: none !important;
+}
 
 // Remove column padding on collapsed rows
 .row.collapse {

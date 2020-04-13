@@ -100,12 +100,13 @@
     width: 100% !important;
 }
 .vw-100 {
-  width: 100vw;
-  position: absolute;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  // TODO: vw-100 doesn't work when the center of the parent is not in the center of the screen.
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
 }
 // Embed videos responsively by wrapping them in an .embed-container
 .embed-container {
@@ -160,4 +161,6 @@
     }
   }
 
-  // TODO: vw-100 doesn't work.
+  .do-not-print {
+    @include do-not-print();
+  }
