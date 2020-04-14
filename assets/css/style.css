@@ -1555,12 +1555,12 @@ select::-ms-expand {
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   Container
   *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    display: flex;
-    width: 100%; }
+    display: flex; }
     @media (max-width: 56.1875em) {
       .navbar > .container {
         padding: 0 10px;
-        display: block; } }
+        display: block;
+        width: 100%; } }
 
 .navbar-brand {
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*

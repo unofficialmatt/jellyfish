@@ -18,10 +18,9 @@ module.exports = function (grunt) {
         // Import variables
         globalConfig: globalConfig,
 
-        // Task to remove old images and icons from the dist directory
+        // Task to remove old images from the dist directory
         clean: {
-            images: ['<%= globalConfig.dist_dir %>/img/*'],
-            icons:  ['<%= globalConfig.dist_dir %>/icons/*']
+            images: ['<%= globalConfig.dist_dir %>/img/*']
         },
 
         copy: {
@@ -64,10 +63,7 @@ module.exports = function (grunt) {
                 map: true,
                 processors: [
                     // Add vendor prefixes
-                    require('autoprefixer')({
-                        browsers: 'last 5 versions'
-                    }),
-                    // Convert all pixel sizes to rem based on a document default of 16px = 1rem
+                    require('autoprefixer')(),
                     require('postcss-pxtorem')({
                         rootValue: 16,
                         unitPrecision: 2, // Decimal places
@@ -123,6 +119,7 @@ module.exports = function (grunt) {
             }
         },
 
+        // Watches directories for scss file name _all and imports all partials into that file
         sass_directory_import: {
           files: {
             // The file pattern to add @imports to.
@@ -133,15 +130,15 @@ module.exports = function (grunt) {
 
         // Task which watches files in the working directory for changes, and runs certain tasks on detection
         watch: {
-            // rerun $ grunt when the Gruntfile is edited
+            // rerun $ build when the Gruntfile is edited
             gruntfile: {
                 files: ['Gruntfile.js'],
-                tasks: ['default'],
+                tasks: ['build'],
                 options: {
                     event: ['changed', 'added', 'deleted']
                 }
             },
-            // run 'sass' and 'postcss' tasks when any scss file is edited
+            // run 'sass_directory_import', 'sass' and 'postcss' tasks when any scss file is edited
             sass: {
                 options: {
                     event: ['changed', 'added', 'deleted']
@@ -152,11 +149,12 @@ module.exports = function (grunt) {
             // Concats and uglifies javascript files on change
             concat_js: {
                 options: {
+                  event: ['changed', 'added', 'deleted']
                 },
                 files: ['<%= globalConfig.build_dir %>/js/**/*.js'],
                 tasks: ['concat', 'uglify']
             },
-            // Cleans and minifies images
+            // Cleans and minifies images when changes detected
             images: {
                 options: {
                     event: ['changed', 'added', 'deleted']
@@ -172,7 +170,6 @@ module.exports = function (grunt) {
                   '<%= globalConfig.dist_dir %>/css/style.min.css',
                   '<%= globalConfig.dist_dir %>/js/site.js',
                   '<%= globalConfig.dist_dir %>/img/*',
-                  '<%= globalConfig.dist_dir %>/icons/*',
                   '**/*.php',
                   '**/*.html'
               ]
@@ -201,7 +198,7 @@ module.exports = function (grunt) {
 
     // Grunt tasks
     grunt.registerTask('default', ['browserSync', 'watch']);
-    grunt.registerTask('init', ['copy:npm', 'concat', 'uglify', 'sass-directory-imports', 'sass', 'postcss', 'clean', 'imagemin', 'browserSync', 'watch']);
-    grunt.registerTask('build', ['copy:npm', 'concat', 'uglify', 'sass-directory-imports', 'sass', 'postcss', 'clean', 'imagemin']);
+    grunt.registerTask('init', ['copy:npm', 'concat', 'uglify', 'sass_directory_import', 'sass', 'postcss', 'clean', 'imagemin', 'browserSync', 'watch']);
+    grunt.registerTask('build', ['copy:npm', 'concat', 'uglify', 'sass_directory_import', 'sass', 'postcss', 'clean', 'imagemin']);
 
 };

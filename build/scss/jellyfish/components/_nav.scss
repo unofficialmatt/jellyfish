@@ -37,9 +37,9 @@
     @include below($nav-expands) {
       padding: 0 $navbar-container-padding;
       display: block;
+      width: 100%; // Ignores any setting from the breakpoint map
     }
     display: flex; // Behaviour on larger screens
-    width: 100%; // Ignores any setting from the breakpoint map
   }
 }
 .navbar-brand {
