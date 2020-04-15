@@ -1,6 +1,6 @@
 // Highlight on scroll modified from @link https://codepen.io/joxmar/pen/NqqMEg
 var lastId,
-topMenu = $("#docs-nav"),
+topMenu = $("#navbar-sticky"),
 topMenuHeight = topMenu.outerHeight()+1,
 // All list items
 menuItems = topMenu.find("a"),
@@ -13,7 +13,7 @@ scrollItems = menuItems.map(function(){
 // so we can get a fancy scroll animation
 menuItems.click(function(e){
   var href = $(this).attr("href"),
-      offsetTop = href === "#" ? 0 : $(href).offset().top-25;
+      offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight-10;
   $('html, body').stop().animate({
       scrollTop: offsetTop
   }, 0);
@@ -23,7 +23,7 @@ menuItems.click(function(e){
 // Bind to scroll
 $(window).scroll(function(){
   // Get container scroll position
-  var fromTop = $(this).scrollTop()+topMenuHeight;
+  var fromTop = $(this).scrollTop()+topMenuHeight+topMenuHeight;
   // Get id of current scroll item
   var cur = scrollItems.map(function(){
     if ($(this).offset().top < fromTop)

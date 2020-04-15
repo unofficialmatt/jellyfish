@@ -89,15 +89,15 @@
 //$table-hover-color: white;
 
 /* NAVBAR */
-//$nav-expands: 900px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
+$nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
 //$navbar-bg-color: $color-background-alt;
 //$navbar-container-padding: 10px;
 // Links
-//$navbar-font-size: 0.9em;
-//$navbar-text-transform: none;
+$navbar-font-size: 0.8em;
+//$navbar-text-transform: uppercase;
 //$navbar-link-color: $color-primary;
 //$navbar-link-bg-color: $navbar-bg-color;
-//$navbar-font-weight: normal;
+$navbar-font-weight: bold;
 //$navbar-link-border: 1px solid rgba(255,255,255,0.4);
 // Links: Hover
 //$navbar-link-hover-color: $color-secondary;
@@ -106,7 +106,7 @@
 // Links: Padding
 //$navbar-link-padding-x: 10px;
 //$navbar-link-padding-y: 8px;
-//$navbar-link-padding-expanded-x: 10px;
+$navbar-link-padding-expanded-x: 12px;
 //$navbar-link-padding-expanded-y: 10px;
 // Current Page Link
 //$navbar-current-page-color: $color-secondary;

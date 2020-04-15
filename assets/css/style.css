@@ -1540,7 +1540,7 @@ select::-ms-expand {
   .navbar-brand a:hover:not(.img-link), .navbar-menu ul li a:hover, .navbar-brand a:focus:not(.img-link), .navbar-menu ul li a:focus, .navbar-brand a:active:not(.img-link), .navbar-menu ul li a:active {
     color: #2d6378;
     background-color: #d6d5d5;
-    font-weight: normal; }
+    font-weight: bold; }
 
 .navbar {
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
@@ -1554,7 +1554,7 @@ select::-ms-expand {
   Container
   *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     display: flex; }
-    @media (max-width: 56.1875em) {
+    @media (max-width: 76.1875em) {
       .navbar > .container {
         padding: 0 10px;
         display: block;
@@ -1577,14 +1577,14 @@ they should be wrapped in this class to ensure consistent display
   display: flex;
   align-items: center;
   position: relative;
-  font-size: 0.9em;
-  font-weight: normal;
+  font-size: 0.8em;
+  font-weight: bold;
   flex: 0 1 auto;
   padding: 8px 10px;
   margin: 0; }
-  @media (min-width: 56.25em) {
+  @media (min-width: 76.25em) {
     .navbar-item {
-      padding: 10px 10px; } }
+      padding: 10px 12px; } }
 
 .navbar-menu {
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
@@ -1592,7 +1592,7 @@ they should be wrapped in this class to ensure consistent display
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   display: none;
   border-top: 1px solid rgba(255, 255, 255, 0.4); }
-  @media (min-width: 56.25em) {
+  @media (min-width: 76.25em) {
     .navbar-menu {
       border-top: 0;
       align-items: stretch;
@@ -1605,7 +1605,7 @@ they should be wrapped in this class to ensure consistent display
     list-style-type: none;
     margin: 0;
     width: 100%; }
-    @media (min-width: 56.25em) {
+    @media (min-width: 76.25em) {
       .navbar-menu ul {
         display: flex;
         align-items: stretch; } }
@@ -1613,7 +1613,7 @@ they should be wrapped in this class to ensure consistent display
       width: 100%;
       margin: 0;
       position: relative; }
-      @media (min-width: 56.25em) {
+      @media (min-width: 76.25em) {
         .navbar-menu ul li {
           width: auto;
           display: flex;
@@ -1622,15 +1622,15 @@ they should be wrapped in this class to ensure consistent display
         /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
       Link Styles
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        font-size: 0.9em;
-        font-weight: normal;
+        font-size: 0.8em;
+        font-weight: bold;
         display: block;
         position: relative;
         padding: 8px 10px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.4); }
-        @media (min-width: 56.25em) {
+        @media (min-width: 76.25em) {
           .navbar-menu ul li a {
-            padding: 10px 10px;
+            padding: 10px 12px;
             display: flex;
             align-items: center;
             flex: 1 0 auto;
@@ -1643,21 +1643,21 @@ they should be wrapped in this class to ensure consistent display
         display: none; }
         .navbar-menu ul li ul a {
           text-transform: none;
-          font-weight: normal; }
-          @media (max-width: 56.1875em) {
+          font-weight: bold; }
+          @media (max-width: 76.1875em) {
             .navbar-menu ul li ul a {
               padding-left: 24px; } }
         .navbar-menu ul li ul li ul {
           /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
             Deeply Nested Nav Links
             *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ }
-          @media (max-width: 56.1875em) {
+          @media (max-width: 76.1875em) {
             .navbar-menu ul li ul li ul a {
               padding-left: 40px; } }
-          @media (max-width: 56.1875em) {
+          @media (max-width: 76.1875em) {
             .navbar-menu ul li ul li ul li ul a {
               padding-left: 56px; } }
-        @media (min-width: 56.25em) {
+        @media (min-width: 76.25em) {
           .navbar-menu ul li ul {
             background: #efefef;
             position: absolute;
@@ -1701,19 +1701,19 @@ they should be wrapped in this class to ensure consistent display
           transform: rotate(45deg);
           transform-origin: center;
           transition: opacity 0.2s ease; }
-          @media (min-width: 56.25em) {
+          @media (min-width: 76.25em) {
             .navbar-menu ul li.has-children > a::after {
               top: 35%;
-              right: 10px; } }
+              right: 12px; } }
       .navbar-menu ul li ul li.has-children > a::after {
         /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
       Nested menu items with children
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ }
-        @media (min-width: 56.25em) {
+        @media (min-width: 76.25em) {
           .navbar-menu ul li ul li.has-children > a::after {
             transform: rotate(-45deg);
             opacity: 0.2; } }
-      @media (max-width: 56.1875em) {
+      @media (max-width: 76.1875em) {
         .navbar-menu ul li {
           /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
       When an li has .drop-active applied, show the immediate ul child
@@ -1722,7 +1722,7 @@ they should be wrapped in this class to ensure consistent display
             display: block; }
           .navbar-menu ul li.drop-active > a::after {
             opacity: 0.2; } }
-      @media (min-width: 56.25em) {
+      @media (min-width: 76.25em) {
         .navbar-menu ul li {
           /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
       When an li with children is hovered or the anchor is focused, show the drop down
@@ -1745,7 +1745,7 @@ they should be wrapped in this class to ensure consistent display
     .navbar-menu .current-page a:hover, .navbar-menu .current-page a:focus, .navbar-menu .current-page a:active {
       color: #2d6378;
       background-color: #d6d5d5; }
-  @media (min-width: 56.25em) {
+  @media (min-width: 76.25em) {
     .navbar-menu .navbar-start {
       display: flex;
       align-items: stretch;
@@ -1755,7 +1755,7 @@ they should be wrapped in this class to ensure consistent display
     padding: 8px 0;
     display: flex;
     align-items: center; }
-    @media (min-width: 56.25em) {
+    @media (min-width: 76.25em) {
       .navbar-menu .navbar-end {
         justify-content: flex-end;
         margin-left: auto;
@@ -1763,9 +1763,9 @@ they should be wrapped in this class to ensure consistent display
   .navbar-menu input, .navbar-menu .button, .navbar-menu [type=submit], .navbar-menu a.button, .navbar-menu a[type=submit], .navbar-menu button, .navbar-menu [type=submit], .navbar-menu [type=reset], .navbar-menu [type=button] {
     margin: 8px 10px;
     position: relative; }
-    @media (min-width: 56.25em) {
+    @media (min-width: 76.25em) {
       .navbar-menu input, .navbar-menu .button, .navbar-menu [type=submit], .navbar-menu a.button, .navbar-menu a[type=submit], .navbar-menu button, .navbar-menu [type=submit], .navbar-menu [type=reset], .navbar-menu [type=button] {
-        margin: 10px 10px; } }
+        margin: 10px 12px; } }
   .navbar-menu input {
     width: auto; }
 
@@ -1783,7 +1783,7 @@ they should be wrapped in this class to ensure consistent display
   display: flex;
   align-items: center;
   transition: background-color 0.2s ease, border 0.2s ease; }
-  @media (min-width: 56.25em) {
+  @media (min-width: 76.25em) {
     .hamburger {
       display: none; } }
   .hamburger:hover, .hamburger:focus, .hamburger:active {
@@ -1794,8 +1794,8 @@ they should be wrapped in this class to ensure consistent display
     box-shadow: none !important; }
 
 .hamburger-label {
-  font-weight: normal;
-  font-size: 0.9em;
+  font-weight: bold;
+  font-size: 0.8em;
   text-transform: uppercase;
   color: #b22d4f;
   margin: 0 8px; }
@@ -1805,11 +1805,11 @@ they should be wrapped in this class to ensure consistent display
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
 Utilities
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-@media (min-width: 56.25em) {
+@media (min-width: 76.25em) {
   .hide-above-nav {
     display: none !important; } }
 
-@media (max-width: 56.1875em) {
+@media (max-width: 76.1875em) {
   .hide-below-nav {
     display: none !important; } }
 
@@ -1936,38 +1936,32 @@ Utilities
     color: white;
     transform: matrix(1.08, 0.05, 0.01, 1.1, 1, 4); }
 
-#docs-nav {
-  background-color: #fff; }
-  @media (max-width: 56.1875em) {
-    #docs-nav {
-      top: 0px !important;
-      z-index: 99999 !important;
-      border-bottom: 1px solid #d9dbdb;
-      font-size: 0.8em; } }
-  #docs-nav ul {
-    list-style: none;
-    margin: 15px 0 0 0; }
-  #docs-nav h3 {
-    display: none; }
-    @media (min-width: 56.25em) {
-      #docs-nav h3 {
-        display: block; } }
-  #docs-nav li {
-    display: inline-block; }
-    @media (min-width: 56.25em) {
-      #docs-nav li {
-        display: block; } }
-    #docs-nav li a {
-      text-decoration: none;
-      padding: .5em;
-      margin-left: -.5em;
-      text-transform: uppercase;
-      font-weight: bold;
-      width: calc(100%+.5em);
-      display: block;
-      color: #2d6378; }
-      #docs-nav li a.active {
-        background-color: #3b829d;
-        color: white; }
+#navbar-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  min-height: 55px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 3px 8px -1px rgba(0, 0, 0, 0.25); }
+  #navbar-sticky .navbar-start {
+    margin-right: 0; }
+  #navbar-sticky .container {
+    width: 100%;
+    padding: 0; }
+  #navbar-sticky a.active {
+    background-color: #3b829d;
+    color: white; }
+
+.navbar-brand {
+  min-height: 55px; }
+
+body {
+  padding-top: 55px; }
+
+#navbar-menu {
+  justify-content: center; }
 
 /*# sourceMappingURL=style.css.map */
