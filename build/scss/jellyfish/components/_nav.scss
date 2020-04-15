@@ -6,9 +6,8 @@
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 // @extend this to make links have consistent styling
+
 %navbar-links {
-  font-size: $navbar-font-size;
-  font-weight: $navbar-font-weight;
   text-decoration: none;
   text-transform: $navbar-text-transform;
   @include smooth(color, background-color, font-weight);
@@ -50,13 +49,8 @@ anything else that should always appear on mobile
   display: flex;
   align-items: stretch; // children have 100% height
   flex-shrink: 0; // Don't allow this to shrink
-
   a:not(.img-link) {
     @extend %navbar-links;
-  }
-  p {
-    font-size: $navbar-font-size;
-    font-weight: $navbar-font-weight;
   }
 }
 .navbar-item {
@@ -67,6 +61,8 @@ they should be wrapped in this class to ensure consistent display
   display: flex;
   align-items: center;
   position: relative;
+  font-size: $navbar-font-size;
+  font-weight: $navbar-font-weight;
   flex: 0 1 auto; // Allows items to grow horizontally if there is room, if there is not enough room they will grow vertically
   padding: $navbar-link-padding-y $navbar-link-padding-x;
   margin: 0;
@@ -111,6 +107,8 @@ they should be wrapped in this class to ensure consistent display
       Link Styles
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
         @extend %navbar-links;
+        font-size: $navbar-font-size;
+        font-weight: $navbar-font-weight;
         display: block;
         position: relative;
         padding: $navbar-link-padding-y $navbar-link-padding-x;
