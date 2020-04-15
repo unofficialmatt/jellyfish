@@ -1531,8 +1531,6 @@ select::-ms-expand {
   and responsive navbar
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .navbar-brand a:not(.img-link), .navbar-menu ul li a {
-  font-size: 0.9em;
-  font-weight: normal;
   text-decoration: none;
   text-transform: none;
   transition: color 0.2s ease, background-color 0.2s ease, font-weight 0.2s ease; }
@@ -1570,9 +1568,6 @@ anything else that should always appear on mobile
   display: flex;
   align-items: stretch;
   flex-shrink: 0; }
-  .navbar-brand p {
-    font-size: 0.9em;
-    font-weight: normal; }
 
 .navbar-item {
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
@@ -1582,6 +1577,8 @@ they should be wrapped in this class to ensure consistent display
   display: flex;
   align-items: center;
   position: relative;
+  font-size: 0.9em;
+  font-weight: normal;
   flex: 0 1 auto;
   padding: 8px 10px;
   margin: 0; }
@@ -1625,6 +1622,8 @@ they should be wrapped in this class to ensure consistent display
         /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
       Link Styles
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        font-size: 0.9em;
+        font-weight: normal;
         display: block;
         position: relative;
         padding: 8px 10px;
