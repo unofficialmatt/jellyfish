@@ -503,6 +503,9 @@ sup {
   margin: 0 auto;
   width: 100%;
   padding: 0 15px; }
+  .container .container {
+    width: 100%;
+    padding: 0 !important; }
 
 .row {
   display: flex;
@@ -1438,7 +1441,8 @@ select::-ms-expand {
 .form-row {
   margin-left: -5px;
   margin-right: -5px;
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap; }
   .form-row .col {
     padding-left: 5px;
     padding-right: 5px; }

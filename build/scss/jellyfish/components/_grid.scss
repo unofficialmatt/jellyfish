@@ -44,6 +44,10 @@ $one_col: (100% / $cols);
     margin: 0 auto;
     width: 100%;
     padding: 0 $base-container-gutter;
+    .container {
+      width: 100%;
+      padding: 0 !important;
+    }
 }
 .row {
     display: flex;

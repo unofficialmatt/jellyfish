@@ -9,12 +9,11 @@ jQuery(document).ready(function ($) {
     $(navmenu).slideToggle();
     // Toggle the state of the aria-expanded attribute for screen readers
     var menuItem = $(e.currentTarget);
-      if (menuItem.attr( 'aria-expanded') === 'true') {
-        $(this).attr( 'aria-expanded', 'false');
-      }
-      else {
-        $(this).attr( 'aria-expanded', 'true');
-      }
+    if (menuItem.attr('aria-expanded') === 'true') {
+      $(this).attr('aria-expanded', 'false');
+    } else {
+      $(this).attr('aria-expanded', 'true');
+    }
   });
 
   // If a menu item with children is clicked...
@@ -26,7 +25,7 @@ jQuery(document).ready(function ($) {
       // prevent the link from firing
       e.preventDefault();
       // add .drop-active class and aria-expanded to parent li
-      $(this).parent("li").toggleClass("drop-active").attr( 'aria-expanded', 'true');
+      $(this).parent("li").toggleClass("drop-active").attr('aria-expanded', 'true');
     }
   });
 });
