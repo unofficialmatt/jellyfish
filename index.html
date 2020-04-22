@@ -216,6 +216,7 @@
 
           <h3>Containers</h3>
           <p>Containers keep rows and columns - contained! By default, a row will fill all available space (ie 100% width). To restrict the width of the grid and keep elements neatly aligned, a <span class="css-ref">.container</span> can be used. The container is centered and can be customised at each breakpoint with the following settings: width, max-width, padding (left/right). See <a href="#breakpoint-settings">grid breakpoint settings</a> for information. A container with an additional class of <span class="css-ref">.full-width</span> will span 100% of available space.</p>
+          <p>A <span class="css-ref">.container</span> nested inside another will have it's padding left/right reset and it's width set to 100% of the parent element. This is to prevent nested containers from becoming increasingly smaller in width.</p>
 
           <h3>Rows</h3>
           <p>Rows contain a number of <span class="css-ref">.col</span> elements, grouped horizontally. To preserve equal margins on the left and right, the only elements inside a <span class="css-ref">.row</span> should be <span class="css-ref">.col</span> elements.</p>
@@ -1798,6 +1799,7 @@ console.log("JellyFish is Awesome!");
               sm: (
                 breakpoint: 400px,
                 container-width: 96%,
+                container-max-width: 600px,
                 container-gutter: 20px,
                 col-gutter: 20px,
                 root-font-size: 16px,
@@ -1816,6 +1818,7 @@ console.log("JellyFish is Awesome!");
               <tbody>
                   <tr><td class="code">breakpoint</td><td>The width at which the breakpoint will take effect. This must be provided in px and will be converted to an em value through the breakpoint mixin. <strong>This variable is required.</strong></td></tr>
                   <tr><td class="code">container-width</td><td>The width of the <span class="css-ref">.container</span> element at this breakpoint - should be provided as %, px or rem.</td></tr>
+                  <tr><td class="code">container-max-width</td><td>The maximum width of the <span class="css-ref">.container</span> element at this breakpoint - should be provided as px or rem.</td></tr>
                   <tr><td class="code">container-gutter</td><td>Padding applied to the left and right of the <span class="css-ref">.container</span> element - this should be provided as px value.</td></tr>
                   <tr><td class="code">col-gutter</td><td>Padding applied to the left and right of <span class="css-ref">.col</span> elements - this should be provided as a px value. <strong>This variable is required.</strong></td></tr>
                   <tr><td class="code">root-font-size</td><td>Global base font size (applied to <span class="css-ref">body</span>) which will affect all elements sized with em. Useful for improving legibility at different breakpoints. This should be provided as a px value.</td></tr>
@@ -1969,10 +1972,6 @@ console.log("JellyFish is Awesome!");
           $hamburger-hover-opacity: 1;
           $hamburger-active-layer-color : $hamburger-layer-color;
           $hamburger-active-hover-opacity: $hamburger-hover-opacity;
-          // Override Vendor options with site-specific hamburger animation
-          $hamburger-types: (
-            $primary-hamburger-type
-          );
 
           $breakpoints: (
               /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
