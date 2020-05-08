@@ -370,6 +370,9 @@ sup {
 .justify-between {
   justify-content: space-between !important; }
 
+.justify-evenly {
+  justify-content: space-evenly; }
+
 .align-left {
   float: left !important; }
 
@@ -671,6 +674,13 @@ sup {
     padding-right: 10px;
     max-width: 100%;
     flex: 1 1 0px; }
+  .col.sm-auto {
+    max-width: none;
+    flex: 0 0 auto;
+    width: auto; }
+  .col.sm-0 {
+    max-width: 100%;
+    flex: 1 1 0; }
   .col.sm-1 {
     max-width: 8.3333333333%;
     flex: 0 0 8.3333333333%; }
@@ -817,6 +827,13 @@ sup {
   .col {
     padding-left: 15px;
     padding-right: 15px; }
+  .col.md-auto {
+    max-width: none;
+    flex: 0 0 auto;
+    width: auto; }
+  .col.md-0 {
+    max-width: 100%;
+    flex: 1 1 0; }
   .col.md-1 {
     max-width: 8.3333333333%;
     flex: 0 0 8.3333333333%; }
@@ -961,6 +978,13 @@ sup {
   .col {
     padding-left: 15px;
     padding-right: 15px; }
+  .col.lg-auto {
+    max-width: none;
+    flex: 0 0 auto;
+    width: auto; }
+  .col.lg-0 {
+    max-width: 100%;
+    flex: 1 1 0; }
   .col.lg-1 {
     max-width: 8.3333333333%;
     flex: 0 0 8.3333333333%; }
@@ -1105,6 +1129,13 @@ sup {
   .col {
     padding-left: 17.5px;
     padding-right: 17.5px; }
+  .col.xl-auto {
+    max-width: none;
+    flex: 0 0 auto;
+    width: auto; }
+  .col.xl-0 {
+    max-width: 100%;
+    flex: 1 1 0; }
   .col.xl-1 {
     max-width: 8.3333333333%;
     flex: 0 0 8.3333333333%; }
@@ -1413,7 +1444,7 @@ select {
   -moz-appearance: none;
   background: white url("data:image/svg+xml;charset=utf-8,%3Csvg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='#999999' d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/%3E%3C/svg%3E") right 10px center no-repeat;
   background-size: .75rem;
-  line-height: 1; }
+  line-height: 1.4; }
 
 select::-ms-expand {
   display: none; }

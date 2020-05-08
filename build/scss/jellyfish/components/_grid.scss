@@ -142,6 +142,15 @@ $i in $breakpoints {
             flex: 1 1 0px; // Ensures that if there are no breakpoint settings defined, columns fill available space on the row
             }
         }
+        .col.#{$point}-auto {
+          max-width: none;
+          flex: 0 0 auto;
+          width: auto;
+        }
+        .col.#{$point}-0 {
+          max-width: 100%;
+          flex: 1 1 0;
+        }
         @for $i from 1 through ($cols) {
             .col.#{$point}-#{$i} {
                 max-width: ($one_col * $i);

@@ -91,7 +91,7 @@ select {
   -moz-appearance: none;
   background: $input-background url("data:image/svg+xml;charset=utf-8,%3Csvg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='#999999' d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/%3E%3C/svg%3E") right 10px center no-repeat;
   background-size: .75rem;
-  line-height: 1; // ensures text doesn't get cut off
+  line-height: 1.4; // ensures text doesn't get cut off
 }
 
 // Dropdown icon fix for IE
