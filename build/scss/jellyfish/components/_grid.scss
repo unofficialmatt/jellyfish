@@ -115,15 +115,15 @@ $i in $breakpoints {
         // if a breakpoint is found, set media query min-width
         .container {
             // give our container a width/max width, and padding to border content
-            width: bp-query($point, container-width);
-            max-width: bp-query($point, container-max-width);
-            padding-left: bp-query($point, container-gutter);
-            padding-right: bp-query($point, container-gutter);
+            width: map-deep-get($breakpoints, $point, 'container-width');
+            max-width: map-deep-get($breakpoints, $point, 'container-max-width');
+            padding-left: map-deep-get($breakpoints, $point, 'container-gutter');
+            padding-right: map-deep-get($breakpoints, $point, 'container-gutter');
         }
         .row {
             // give our rows negative margin equal to half col gutter
-            margin-left: -.5*(bp-query($point, col-gutter));
-            margin-right: -.5*(bp-query($point, col-gutter));
+            margin-left: -.5*(map-deep-get($breakpoints, $point, 'col-gutter'));
+            margin-right: -.5*(map-deep-get($breakpoints, $point, 'col-gutter'));
         }
         .row.collapse-#{$point} {
             margin-left: 0;
@@ -135,8 +135,8 @@ $i in $breakpoints {
         }
         .col {
             // give our cols l-r margin equal to half col gutter
-            padding-left: .5*bp-query($point, col-gutter);
-            padding-right: .5*bp-query($point, col-gutter);
+            padding-left: .5*map-deep-get($breakpoints, $point, 'col-gutter');
+            padding-right: .5*map-deep-get($breakpoints, $point, 'col-gutter');
             @if $loop_count == 1 {
             max-width: 100%;
             flex: 1 1 0px; // Ensures that if there are no breakpoint settings defined, columns fill available space on the row

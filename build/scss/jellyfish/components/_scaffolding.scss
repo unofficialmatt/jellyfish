@@ -29,8 +29,8 @@ body {
     @each $point, $i in $breakpoints {
         // set base font size and line height for each specified media query
        @include above($point) {
-           font-size: bp-query($point, root-font-size);
-           line-height: bp-query($point, root-line-height);
+           font-size: map-deep-get($breakpoints, $point, 'root-font-size');
+           line-height: map-deep-get($breakpoints, $point, 'root-line-height');
        }
    }
    @if $debug-mode-on {
