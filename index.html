@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <link rel="stylesheet" href="assets/css/style.min.css" media="all">
+  <link rel="stylesheet" href="dist/css/style.min.css" media="all">
 
   <!-- PRISM CDN to highlight code syntax -->
   <link href="docs/prism.css" rel="stylesheet" />
@@ -87,8 +87,8 @@
           <h3>Directory structure</h3>
           <p>The project contains the source and destination folders, as well as necessary project files.</p>
           <ul>
-            <li><strong>/assets</strong> - contains the final css, images and javascript files within sub-directories. The files in this directory are all created by Grunt</li>
-            <li><strong>/build</strong> - contains the source files for the project:
+            <li><strong>/dist</strong> - contains the final css, images and javascript files within sub-directories. The files in this directory are all created by Grunt</li>
+            <li><strong>/assets</strong> - contains the source files for the project:
               <ul>
                 <li><strong>js</strong> - organised into subdirectories for vendor and project. When Grunt detects a change to any of these directories (new file, edit, remove), it will concatenate and minify javascript and reload your browser with browserSync. Vendor scripts can be automatically copied from an npm package with the Gruntfile task copy:npm.</li>
                 <li><strong>scss</strong>
@@ -124,25 +124,25 @@
           </ul>
           <h4>Watch tasks</h4>
           <ul>
-            <li><strong>SCSS:</strong> When any scss file within <span class="file-ref">/build/scss</span> is changed, added or deleted:
+            <li><strong>SCSS:</strong> When any scss file within <span class="file-ref">/assets/scss</span> is changed, added or deleted:
               <ul>
-                <li>@import all _scss partials saved in <span class="file-ref">/build/scss/project</span> to <span class="file-ref">/build/scss/project/_all.scss</span>.</li>
-                <li>Run SCSS compile on <span class="file-ref">/build/scss/compile.scss</span> and output to <span class="file-ref">/assets/css/style.css</span>. This task will include Jellyfish core scss and your project's scss.</li>
-                <li>Run postcss; this task adds vendor prefixes, converts any px values to rem units based on a document default of 16px = 1rem, and minifies the file to <span class="file-ref">/assets/css/style.min.css</span>.</li>
+                <li>@import all _scss partials saved in <span class="file-ref">/assets/scss/project</span> to <span class="file-ref">/assets/scss/project/_all.scss</span>.</li>
+                <li>Run SCSS compile on <span class="file-ref">/assets/scss/compile.scss</span> and output to <span class="file-ref">/dist/css/style.css</span>. This task will include Jellyfish core scss and your project's scss.</li>
+                <li>Run postcss; this task adds vendor prefixes, converts any px values to rem units based on a document default of 16px = 1rem, and minifies the file to <span class="file-ref">/dist/css/style.min.css</span>.</li>
                 <li>Reload the browser</li>
               </ul>
             </li>
-            <li><strong>Javascript: </strong> When any javascript file within <span class="file-ref">/build/js</span> is changed, added or deleted:
+            <li><strong>Javascript: </strong> When any javascript file within <span class="file-ref">/assets/js</span> is changed, added or deleted:
               <ul>
-                <li>Concatenate all javascript files saved in <span class="file-ref">/build/js/vendor</span> and <span class="file-ref">/build/js/site</span> and saves to <span class="file-ref">/assets/js/site.js</span></li>
-                <li>Minify <span class="file-ref">/assets/js/site.js</span> to <span class="file-ref">/assets/js/site.min.js</span></li>
+                <li>Concatenate all javascript files saved in <span class="file-ref">/assets/js/vendor</span> and <span class="file-ref">/assets/js/site</span> and saves to <span class="file-ref">/dist/js/site.js</span></li>
+                <li>Minify <span class="file-ref">/dist/js/site.js</span> to <span class="file-ref">/dist/js/site.min.js</span></li>
                 <li>Reload the browser</li>
               </ul>
             </li>
-            <li><strong>Images: </strong> When any image file within <span class="file-ref">/build/img</span> is changed, added or deleted:
+            <li><strong>Images: </strong> When any image file within <span class="file-ref">/assets/img</span> is changed, added or deleted:
               <ul>
-                <li>Remove all existing images from <span class="file-ref">/assets/img</span></li>
-                <li>Optimise and compress all images in <span class="file-ref">/build/img</span> and saves them to <span class="file-ref">/assets/img</span></li>
+                <li>Remove all existing images from <span class="file-ref">/dist/img</span></li>
+                <li>Optimise and compress all images in <span class="file-ref">/assets/img</span> and saves them to <span class="file-ref">/dist/img</span></li>
                 <li>Reload the browser</li>
               </ul>
             </li>
@@ -173,7 +173,7 @@
 
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <meta http-equiv="x-ua-compatible" content="ie=edge">
-              <link rel="stylesheet" href="assets/css/style.min.css" media="all">
+              <link rel="stylesheet" href="dist/css/style.min.css" media="all">
             </head>
 
             <body>
@@ -186,7 +186,7 @@
                   </div>
                 </section>
               </main>
-              <script type="text/javascript" src="assets/js/site.min.js"></script>
+              <script type="text/javascript" src="dist/js/site.min.js"></script>
             </body>
 
             </html>
@@ -197,7 +197,7 @@
         </section><!-- #boilerplate -->
         <section class="docs-section" id="grid">
           <h2>Grid</h2>
-          <p>Jellyfish's grid system is built on <a href="https://flexboxfroggy.com/" rel="external">flexbox</a>. The grid consists of containers (<span class="css-ref">.container</span>), rows (<span class="css-ref">.row</span>) and columns (<span class="css-ref">.col </span>). These elements are defined in <span class="file-ref">/build/scss/jellyfish/components/_grid.scss</span>.</p>
+          <p>Jellyfish's grid system is built on <a href="https://flexboxfroggy.com/" rel="external">flexbox</a>. The grid consists of containers (<span class="css-ref">.container</span>), rows (<span class="css-ref">.row</span>) and columns (<span class="css-ref">.col </span>). These elements are defined in <span class="file-ref">/assets/scss/jellyfish/components/_grid.scss</span>.</p>
 
           <h4>A basic 2 column grid</h4>
           <pre class="language-markup"><code><!--
@@ -222,7 +222,7 @@
           <p>Rows contain a number of <span class="css-ref">.col</span> elements, grouped horizontally. To preserve equal margins on the left and right, the only elements inside a <span class="css-ref">.row</span> should be <span class="css-ref">.col</span> elements.</p>
 
           <h3>Columns</h3>
-            <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+            <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
 
             <p>Columns are equal-width by default, and expand to fill all available width.</p>
             <pre class="language-markup"><code><!--
@@ -414,7 +414,7 @@
               <div class="col sm-3"><div class="boxed">sm-3</div></div>
               <div class="col sm-6 offset-sm-3 offset-md-2"><div class="boxed">sm-6 offset-sm-3 offset-md-2</div></div>
             </div>
-            <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_offset</span> to <span class="bold">false</span> in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+            <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_offset</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
             <h4>Reordering Columns</h4>
             <p>You can control the order of columns using the <span class="css-ref">.order-$breakpoint-*</span> modifiers. Note that columns without an order modifier will not be affected. Ordering is inherited, and can be reset by using the class <span class="css-ref">.order-$breakpoint-0</span>.</p>
             <pre class="language-markup"><code><!--
@@ -440,7 +440,7 @@
               <div class="col order-md-2"><div class="boxed">order-md-2</div></div>
               <div class="col order-md-1"><div class="boxed">order-md-1</div></div>
             </div>
-            <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_ordering</span> to <span class="bold">false</span> in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+            <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_ordering</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
             <h4>Hiding Columns</h4>
             <p>You can hide columns based on breakpoints using <a href="#display-utilities">display utilities</a>.</p>
             <h4>Collapsing Columns</h4>
@@ -687,9 +687,9 @@
             </div>
           </nav>
           <h3>Customising the navbar</h3>
-          <p>Jellyfish's navbar is fully customisable with the variables defined in <span class="file-ref">/build/scss/_settings.scss</span>. You can control:</p>
+          <p>Jellyfish's navbar is fully customisable with the variables defined in <span class="file-ref">/assets/scss/_settings.scss</span>. You can control:</p>
           <ul>
-            <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <strong>Note:</strong> if you change this value from it's default you also need to change the value in <span class="file-ref">/build/js/site/scripts.js</span>: <code>var navPoint = '900';</code></li>
+            <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <strong>Note:</strong> if you change this value from it's default you also need to change the value in <span class="file-ref">/assets/js/site/scripts.js</span>: <code>var navPoint = '900';</code></li>
             <li>Background colour and container padding</li>
             <li>Font size and text transform</li>
             <li>Link color, link background color, link weight - and hover states for all three</li>
@@ -736,7 +736,7 @@
           <h3>Customising the hamburger</h3>
           <p>Jellyfish uses the fantastic <a href="https://jonsuh.com/hamburgers/">hamburgers css library</a> by Jonathan Suh. The code is imported from npm through <a href="#how-to-use">Grunt</a>.</p>
           <p>Rather than including all animation options in the output css, Jellyfish has a variable <span class="variable-ref">$primary-hamburger-type</span> which is used to select only your specified hamburger animation for compile.</p>
-          <p>Hamburger settings are all found in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <p>Hamburger settings are all found in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
             <code>
               /* HAMBURGER MENU */
@@ -763,8 +763,8 @@
         </section><!-- #navbar -->
         <section class="docs-section" id="typography">
           <h2>Typography</h2>
-          <p>Jellyfish provides default styling for all standard typography tags. Global font families, line height and size hierarchy are defined in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
-          <p>For easy spacing, Jellyfish removes the top margins and applies a bottom margin to block elements which can be defined with the <span class="variable-ref">$element-margin</span> in <span class="file-ref">/build/scss/_settings.scss</span>. Text sizing is set with em, cascading from the root. You can use the <a href="#breakpoint-settings">grid breakpoint settings</a> to alter the root font size and line-height at different breakpoints.</p>
+          <p>Jellyfish provides default styling for all standard typography tags. Global font families, line height and size hierarchy are defined in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+          <p>For easy spacing, Jellyfish removes the top margins and applies a bottom margin to block elements which can be defined with the <span class="variable-ref">$element-margin</span> in <span class="file-ref">/assets/scss/_settings.scss</span>. Text sizing is set with em, cascading from the root. You can use the <a href="#breakpoint-settings">grid breakpoint settings</a> to alter the root font size and line-height at different breakpoints.</p>
           <p>Jellyfish also sets box-sizing: border-box globally to make it easier to properly size elements.</p>
           <pre>
             <code class="language-scss">
@@ -956,7 +956,7 @@ console.log("JellyFish is Awesome!");
             </code>
             <label>_scaffolding.scss</label>
           </pre>
-          <p>Link colours are defined in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <p>Link colours are defined in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
             <code>
             /* LINKS */
@@ -1077,7 +1077,7 @@ console.log("JellyFish is Awesome!");
           <button class="button__small button__secondary">Small</button>
           <button class="button__small button__outline">Regular</button>
           <button class="button__large button__ghost">Large</button>
-          <p>Button variables can be edited in <span class="file-ref">/build/scss/_settings.scss</span>. You can easily modify background-color, color and hover states for both primary and secondary buttons.</p>
+          <p>Button variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>. You can easily modify background-color, color and hover states for both primary and secondary buttons.</p>
           <pre class="language-scss">
           <code>
           /* BUTTONS */
@@ -1356,7 +1356,7 @@ console.log("JellyFish is Awesome!");
           <textarea rows="5" placeholder="Disabled textarea" disabled></textarea>
 
           <h3>Customising form styles</h3>
-          <p>Form variables can be edited in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <p>Form variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
           <code>
           /* FORMS */
@@ -1470,7 +1470,7 @@ console.log("JellyFish is Awesome!");
             </table>
           </div>
           <h3>Table Settings</h3>
-          <p>Table settings can be altered in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <p>Table settings can be altered in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
             <code>
               /* TABLES */
@@ -1697,7 +1697,7 @@ console.log("JellyFish is Awesome!");
           <div class="smooth-transform boxed"><p>This element has <code>smooth(transform)</code> applied to it. Hover to preview.</p></div>
           <div class="smooth-background boxed"><p>This element has <code>smooth(background)</code> applied to it. Hover to preview.</p></div>
           <div class="smooth-wild boxed"><p>This element has <code>smooth(background, transform, color)</code> applied to it. Hover to preview.</p></div>
-          <p>You can adjust the transition in <span class="file-ref">/build/scss/_settings.scss</span>.</p>
+          <p>You can adjust the transition in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
             <code>
               $global-transition: 0.2s ease;
@@ -1818,7 +1818,7 @@ console.log("JellyFish is Awesome!");
         </section><!-- #printing -->
         <section class="docs-section" id="breakpoint-settings">
           <h2>Breakpoint Settings</h2>
-          <p>Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints - declared through the <span class="variable-ref">$breakpoints</span> map in <span class="file-ref">/build/scss/_settings.scss</span>. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
+          <p>Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints - declared through the <span class="variable-ref">$breakpoints</span> map in <span class="file-ref">/assets/scss/_settings.scss</span>. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
           <h4>Example breakpoint definition</h4>
           <pre>
             <code class="language-scss line-numbers">
@@ -1851,13 +1851,13 @@ console.log("JellyFish is Awesome!");
                   <tr><td class="code">root-line-height</td><td>Global base line-height (applied to <span class="css-ref">body</span>) which will affect all elements that do not have a line-height applied. Can be provided as a number, em or px.</td></tr>
               </tbody>
           </table>
-          <p><strong>Note:</strong> You can also configure settings for the smallest devices (i.e. before any media queries are activated) by setting the following variables in <span class="file-ref">/build/scss/_settings.scss</span>: <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$root-font-size</span>, <span class="variable-ref">$root-line-height</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></p>
+          <p><strong>Note:</strong> You can also configure settings for the smallest devices (i.e. before any media queries are activated) by setting the following variables in <span class="file-ref">/assets/scss/_settings.scss</span>: <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$root-font-size</span>, <span class="variable-ref">$root-line-height</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></p>
         </section><!-- #breakpoint-settings-->
         <section class="docs-section" id="configuration">
           <h2>Configuration</h2>
           <h3>Setting your styles</h3>
-          <p>It is recommend to not edit the files within <span class="file-ref">/build/scss/jellyfish</span> but rather to add your project's scss into <span class="file-ref">/build/scss/project</span>. In this way you can keep the core functionality separate from your project's codebase.</p>
-          <p>The file <span class="file-ref">/build/scss/_settings.scss</span> contains all of the variables used in Jellyfish, commented out. If you wish to override a default, you can simply uncomment and add your own values. You should add any new variables here to keep your project organised.</p>
+          <p>It is recommend to not edit the files within <span class="file-ref">/assets/scss/jellyfish</span> but rather to add your project's scss into <span class="file-ref">/assets/scss/project</span>. In this way you can keep the core functionality separate from your project's codebase.</p>
+          <p>The file <span class="file-ref">/assets/scss/_settings.scss</span> contains all of the variables used in Jellyfish, commented out. If you wish to override a default, you can simply uncomment and add your own values. You should add any new variables here to keep your project organised.</p>
           <pre class="language-scss"><code>
           /* GRID */
           $cols: 12;
@@ -2038,7 +2038,7 @@ console.log("JellyFish is Awesome!");
           <h2>Debug mode</h2>
           <p>Jellyfish comes with a handy debug mode which allows you to quickly see the structure of the grid, and diagnose any layout issues. Debug mode can be enabled in three ways:</p>
           <ol>
-              <li>by setting <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="file-ref">/build/scss/_settings.scss</span>.</li>
+              <li>by setting <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="file-ref">/assets/scss/_settings.scss</span>.</li>
               <li>by adding the class <span class="css-ref">.jf-debug</span> to the body or html element - either within the code itself or through a browser's inspector.</li>
               <li>by running <code>jfdebug()</code> in the console.</li>
           </ol>
@@ -2047,7 +2047,7 @@ console.log("JellyFish is Awesome!");
             <li>The highest level <span class="css-ref">.row</span> element will have a striped background showing the base column layout.</li>
             <li><span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(245, 211, 0, .8);">glow in yellow</span></li>
             <li><span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(8, 247, 254, .7);">glow in turquoise</span></li>
-            <li>If <span class="variable-ref">$has_offset</span> or <span class="variable-ref">$has_ordering</span> are set to true in <span class="file-ref">/build/scss/_settings.scss</span>, elements with a class <span class="css-ref">.offset-*</span> and <span class="css-ref">.order-*</span> will be <span style="outline: 2px solid #fe53BB">highlighted in pink</span></li>
+            <li>If <span class="variable-ref">$has_offset</span> or <span class="variable-ref">$has_ordering</span> are set to true in <span class="file-ref">/assets/scss/_settings.scss</span>, elements with a class <span class="css-ref">.offset-*</span> and <span class="css-ref">.order-*</span> will be <span style="outline: 2px solid #fe53BB">highlighted in pink</span></li>
             <li>The current breakpoint name is shown in the top left corner of the window.</li>
           </ul>
           <p>Try it out - <a onclick="jfdebug()" style="cursor:pointer;">click here</a> to toggle debug mode on and off onto this page.</p>
@@ -2065,7 +2065,7 @@ console.log("JellyFish is Awesome!");
       </main><!-- MAIN DOCS AREA -->
     </div><!-- .row -->
   </div><!-- .container -->
-  <script type="text/javascript" src="assets/js/site.min.js"></script>
+  <script type="text/javascript" src="dist/js/site.min.js"></script>
 
   <!-- Highlight Code Syntax with Prism.js -->
   <script src="docs/prism.js"></script>

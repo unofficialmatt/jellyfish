@@ -2,8 +2,8 @@ module.exports = function (grunt) {
 
   // Sets up global variables which will be used throughout the Gruntfile
   var globalConfig = {
-    build_dir: 'build',
-    dist_dir: 'assets',
+    build_dir: 'assets',
+    dist_dir: 'dist',
     dev_url: 'https://jellypress.local',
   };
 
