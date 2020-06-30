@@ -183,10 +183,8 @@ they should be wrapped in this class to ensure consistent display
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
         padding-right: $navbar-link-padding-x*3 !important;
         &::after {
-          content: " ";
+          @include pseudo;
           pointer-events: none;
-          position: absolute;
-          display: block;
           height: 12px;
           width: 12px;
           border: $hamburger-layer-height solid $navbar-link-color;

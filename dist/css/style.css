@@ -1,14 +1,14 @@
 /*! jellyfish-grid 3.0.0
- * © 2020-06-22 Matt Weet - https://www.weareboba.com */
+ * © 2020-06-30 Matt Weet - https://www.weareboba.com */
 
 /* GRID */
 /* JELLYFISH DEFAULTS */
+/* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT AT SMALLEST DEVICE WIDTH */
+/* GLOBAL PADDING/MARGINS */
 /* COLOURS */
 /* TYPEFACES */
 /* FONT SIZES */
-/* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT */
 /* LINKS */
-/* GLOBAL PADDING/MARGINS */
 /* GLOBAL TRANSITION USED IN SMOOTH() */
 /* BORDERS */
 /* FORMS */
@@ -21,14 +21,20 @@ THIS PROJECT IS BUILT WITH JELLYFISH
 SCSS FRAMEWORK BY MATT WEET
 @link https://unofficialmatt.github.io/jellyfish/
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  USEFUL MIXINS AND FUNCTIONS
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  DEFAULT SETTINGS
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* GRID */
 /* JELLYFISH DEFAULTS */
+/* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT AT SMALLEST DEVICE WIDTH */
+/* GLOBAL PADDING/MARGINS */
 /* COLOURS */
 /* TYPEFACES */
 /* FONT SIZES */
-/* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT */
 /* LINKS */
-/* GLOBAL PADDING/MARGINS */
 /* GLOBAL TRANSITION USED IN SMOOTH() */
 /* BORDERS */
 /* FORMS */
@@ -107,14 +113,17 @@ html {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.4;
   color: #333333;
   background-color: #fff; }
-  @media (min-width: 31.25em) {
+  @media (min-width: 33.75em) {
     body {
-      font-size: 16px;
-      line-height: 1.48em; } }
+      font-size: 15px;
+      line-height: 1.48; } }
+  @media (min-width: 48em) {
+    body {
+      font-size: 16px; } }
 
 a {
   transition: color 0.2s ease;
@@ -129,10 +138,10 @@ a {
 
 p,
 table {
-  margin: 0 0 30px 0; }
+  margin: 0 0 1rem 0; }
 
 ul, ol {
-  margin: 0 0 30px 2.5em;
+  margin: 0 0 1rem 2.5em;
   list-style-position: outside; }
   ul ul, ol ul, ul ol, ol ol {
     margin-bottom: 0; }
@@ -148,11 +157,11 @@ ol {
     list-style-type: lower-alpha; }
 
 dl {
-  margin: 0 0 30px 0; }
+  margin: 0 0 1rem 0; }
   dl dt {
     font-weight: bold; }
   dl dd {
-    margin-bottom: 15px; }
+    margin-bottom: 0.5rem; }
 
 pre, samp, kbd, :not(pre) > code, var {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
@@ -161,27 +170,27 @@ hr {
   height: 0;
   border: 0;
   border-top: 1px solid #d9dbdb;
-  margin: 30px 0; }
+  margin: 1rem 0; }
 
 pre {
   white-space: pre-wrap;
   tab-size: 2;
   padding: 20px;
-  margin: 0 0 30px 0;
+  margin: 0 0 1rem 0;
   background-color: #efefef;
   border: 1px solid #d9dbdb;
   line-height: 1.2; }
 
 blockquote {
-  margin: 0 0 30px 0;
-  padding: 0 0 0 30px;
-  border-left: 10px solid #efefef;
+  margin: 0 0 1rem 0;
+  padding: 0 0 0 1rem;
+  border-left: 0.3333333333rem solid #efefef;
   font-size: 1.5em;
   font-style: italic;
   line-height: 1.4; }
   blockquote cite {
     display: block;
-    margin-top: 15px;
+    margin-top: 0.5rem;
     font-size: 0.6em;
     font-style: normal;
     font-weight: bold;
@@ -189,25 +198,24 @@ blockquote {
 
 img.align-left, img.align-right, img.align-none, img.align-center {
   float: none !important;
-  margin: 30px auto;
+  margin: 1rem auto;
   display: block; }
 
 img {
-  width: auto;
   max-width: 100%;
   height: auto;
   vertical-align: top; }
-  @media (min-width: 31.25em) {
+  @media (min-width: 33.75em) {
     img.align-left {
-      margin: 0 30px 30px 0;
+      margin: 0 1rem 1rem 0;
       float: left !important; }
     img.align-right {
-      margin: 0 0 30px 30px;
+      margin: 0 0 1rem 1rem;
       float: right !important; }
     img.align-none {
-      margin: 0 0 30px 0; }
+      margin: 0 0 1rem 0; }
     img.align-center {
-      margin: 0 auto 30px auto; } }
+      margin: 0 auto 1rem auto; } }
 
 ::selection {
   background: #eebdc9; }
@@ -224,7 +232,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 0 .4em 0;
   line-height: 1.2; }
   h1:not(:first-child), h2:not(:first-child), h3:not(:first-child), h4:not(:first-child), h5:not(:first-child), h6:not(:first-child) {
-    margin-top: 30px; }
+    margin-top: 1rem; }
 
 h1 {
   font-size: 2.5em; }
@@ -417,7 +425,7 @@ sup {
   height: 0;
   overflow: hidden;
   max-width: 100%;
-  margin: 0.25px 0 30px 0; }
+  margin: 0.25px 0 1rem 0; }
 
 .embed-container iframe,
 .embed-container object,
@@ -428,6 +436,9 @@ sup {
   width: 100%;
   height: 100%; }
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  ACCESSIBILITY
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* Text meant only for screen readers. */
 .screen-reader-text {
   border: 0;
@@ -482,16 +493,16 @@ sup {
   font-size: 12px;
   color: #555555;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
-  @media (min-width: 31.25em) {
+  @media (min-width: 33.75em) {
     .jf-debug::before {
       content: "sm"; } }
-  @media (min-width: 56.25em) {
+  @media (min-width: 48em) {
     .jf-debug::before {
       content: "md"; } }
-  @media (min-width: 75em) {
+  @media (min-width: 80em) {
     .jf-debug::before {
       content: "lg"; } }
-  @media (min-width: 100em) {
+  @media (min-width: 106.25em) {
     .jf-debug::before {
       content: "xl"; } }
 
@@ -658,9 +669,9 @@ sup {
 .offset-xs-0 {
   margin-left: 0%; }
 
-@media (min-width: 31.25em) {
+@media (min-width: 33.75em) {
   .container {
-    width: 96%;
+    width: 94%;
     padding-left: 50px;
     padding-right: 50px; }
   .row {
@@ -801,21 +812,22 @@ sup {
   .jf-debug [class*='offset-sm-0'] {
     outline: 0; } }
 
-@media (max-width: 31.1875em) {
+@media (max-width: 33.6875em) {
   .hide-below-sm {
     display: none !important; } }
 
-@media (min-width: 31.25em) {
+@media (min-width: 33.75em) {
   .hide-above-sm {
     display: none !important; } }
 
-@media (min-width: 31.25em) and (max-width: 56.1875em) {
+@media (min-width: 33.75em) and (max-width: 47.9375em) {
   .hide-sm {
     display: none !important; } }
 
-@media (min-width: 56.25em) {
+@media (min-width: 48em) {
   .container {
-    width: 94%;
+    width: 90%;
+    max-width: 1080px;
     padding-left: 0px;
     padding-right: 0px; }
   .row {
@@ -954,24 +966,25 @@ sup {
   .jf-debug [class*='offset-md-0'] {
     outline: 0; } }
 
-@media (max-width: 56.1875em) {
+@media (max-width: 47.9375em) {
   .hide-below-md {
     display: none !important; } }
 
-@media (min-width: 56.25em) {
+@media (min-width: 48em) {
   .hide-above-md {
     display: none !important; } }
 
-@media (min-width: 56.25em) and (max-width: 74.9375em) {
+@media (min-width: 48em) and (max-width: 79.9375em) {
   .hide-md {
     display: none !important; } }
 
-@media (min-width: 75em) {
+@media (min-width: 80em) {
   .container {
-    width: 1080px; }
+    width: 1220px;
+    max-width: none; }
   .row {
-    margin-left: -15px;
-    margin-right: -15px; }
+    margin-left: -17.5px;
+    margin-right: -17.5px; }
   .row.collapse-lg {
     margin-left: 0;
     margin-right: 0; }
@@ -979,8 +992,8 @@ sup {
       padding-left: 0 !important;
       padding-right: 0 !important; }
   .col {
-    padding-left: 15px;
-    padding-right: 15px; }
+    padding-left: 17.5px;
+    padding-right: 17.5px; }
   .col.lg-auto {
     max-width: none;
     flex: 0 0 auto;
@@ -1105,24 +1118,24 @@ sup {
   .jf-debug [class*='offset-lg-0'] {
     outline: 0; } }
 
-@media (max-width: 74.9375em) {
+@media (max-width: 79.9375em) {
   .hide-below-lg {
     display: none !important; } }
 
-@media (min-width: 75em) {
+@media (min-width: 80em) {
   .hide-above-lg {
     display: none !important; } }
 
-@media (min-width: 75em) and (max-width: 99.9375em) {
+@media (min-width: 80em) and (max-width: 106.1875em) {
   .hide-lg {
     display: none !important; } }
 
-@media (min-width: 100em) {
+@media (min-width: 106.25em) {
   .container {
-    width: 1480px; }
+    width: 1640px; }
   .row {
-    margin-left: -17.5px;
-    margin-right: -17.5px; }
+    margin-left: -22.5px;
+    margin-right: -22.5px; }
   .row.collapse-xl {
     margin-left: 0;
     margin-right: 0; }
@@ -1130,8 +1143,8 @@ sup {
       padding-left: 0 !important;
       padding-right: 0 !important; }
   .col {
-    padding-left: 17.5px;
-    padding-right: 17.5px; }
+    padding-left: 22.5px;
+    padding-right: 22.5px; }
   .col.xl-auto {
     max-width: none;
     flex: 0 0 auto;
@@ -1258,11 +1271,11 @@ sup {
   .hide-xl {
     display: none !important; } }
 
-@media (max-width: 99.9375em) {
+@media (max-width: 106.1875em) {
   .hide-below-xl {
     display: none !important; } }
 
-@media (min-width: 100em) {
+@media (min-width: 106.25em) {
   .hide-above-xl {
     display: none !important; } }
 
@@ -1285,8 +1298,8 @@ sup {
   border: 1px solid #b22d4f;
   background-color: #b22d4f;
   color: white;
-  padding: .75em 1.5em;
-  margin: 15px 5px 30px 0;
+  padding: 0.75em 1.5em;
+  margin: 0.5rem 5px 1rem 0;
   border-radius: 6px;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
   .button::-moz-focus-inner, [type=submit]::-moz-focus-inner, a.button::-moz-focus-inner, a[type=submit]::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
@@ -1395,7 +1408,7 @@ tfoot th {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   padding: 10px;
   outline: none;
-  margin: 3px 0 15px 0;
+  margin: 3px 0 0.5rem 0;
   width: 100%;
   max-width: 100%;
   line-height: 1;
@@ -1431,7 +1444,7 @@ fieldset {
   border: 1px solid #d9dbdb;
   border-radius: 4px;
   padding: 20px;
-  margin: 30px 0; }
+  margin: 1rem 0; }
 
 legend {
   padding: 0 10px;
@@ -1464,13 +1477,13 @@ select::-ms-expand {
   color: #d9dbdb; }
 
 .form-group, .form-group-inline {
-  margin: 3px 0 15px 0; }
+  margin: 3px 0 0.5rem 0; }
 
 .form-group-inline * {
   display: inline-block; }
 
 .form-group-inline label {
-  margin-right: 15px; }
+  margin-right: 0.5rem; }
 
 .form-row {
   margin-left: -5px;
@@ -1578,7 +1591,7 @@ select::-ms-expand {
   .navbar-brand a:hover:not(.img-link), .navbar-menu ul li a:hover, .navbar-brand a:focus:not(.img-link), .navbar-menu ul li a:focus, .navbar-brand a:active:not(.img-link), .navbar-menu ul li a:active {
     color: #2d6378;
     background-color: #d6d5d5;
-    font-weight: bold; }
+    font-weight: normal; }
 
 .navbar {
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
@@ -1615,14 +1628,14 @@ they should be wrapped in this class to ensure consistent display
   display: flex;
   align-items: center;
   position: relative;
-  font-size: 0.8em;
-  font-weight: bold;
+  font-size: 0.9em;
+  font-weight: normal;
   flex: 0 1 auto;
   padding: 8px 10px;
   margin: 0; }
   @media (min-width: 76.25em) {
     .navbar-item {
-      padding: 10px 12px; } }
+      padding: 10px 10px; } }
 
 .navbar-menu {
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
@@ -1660,15 +1673,15 @@ they should be wrapped in this class to ensure consistent display
         /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
       Link Styles
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        font-size: 0.8em;
-        font-weight: bold;
+        font-size: 0.9em;
+        font-weight: normal;
         display: block;
         position: relative;
         padding: 8px 10px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.4); }
         @media (min-width: 76.25em) {
           .navbar-menu ul li a {
-            padding: 10px 12px;
+            padding: 10px 10px;
             display: flex;
             align-items: center;
             flex: 1 0 auto;
@@ -1681,7 +1694,7 @@ they should be wrapped in this class to ensure consistent display
         display: none; }
         .navbar-menu ul li ul a {
           text-transform: none;
-          font-weight: bold; }
+          font-weight: normal; }
           @media (max-width: 76.1875em) {
             .navbar-menu ul li ul a {
               padding-left: 24px; } }
@@ -1724,10 +1737,10 @@ they should be wrapped in this class to ensure consistent display
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
         padding-right: 30px !important; }
         .navbar-menu ul li.has-children > a::after {
-          content: " ";
-          pointer-events: none;
-          position: absolute;
+          content: "";
           display: block;
+          position: absolute;
+          pointer-events: none;
           height: 12px;
           width: 12px;
           border: 3px solid #b22d4f;
@@ -1742,7 +1755,7 @@ they should be wrapped in this class to ensure consistent display
           @media (min-width: 76.25em) {
             .navbar-menu ul li.has-children > a::after {
               top: 35%;
-              right: 12px; } }
+              right: 10px; } }
       .navbar-menu ul li ul li.has-children > a::after {
         /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
       Nested menu items with children
@@ -1803,7 +1816,7 @@ they should be wrapped in this class to ensure consistent display
     position: relative; }
     @media (min-width: 76.25em) {
       .navbar-menu input, .navbar-menu .button, .navbar-menu [type=submit], .navbar-menu a.button, .navbar-menu a[type=submit], .navbar-menu button, .navbar-menu [type=submit], .navbar-menu [type=reset], .navbar-menu [type=button] {
-        margin: 10px 12px; } }
+        margin: 10px 10px; } }
   .navbar-menu input {
     width: auto; }
 
@@ -1832,8 +1845,8 @@ they should be wrapped in this class to ensure consistent display
     box-shadow: none !important; }
 
 .hamburger-label {
-  font-weight: bold;
-  font-size: 0.8em;
+  font-weight: normal;
+  font-size: 0.9em;
   text-transform: uppercase;
   color: #b22d4f;
   margin: 0 8px; }
@@ -1898,20 +1911,20 @@ Utilities
 .docs .row-boxed {
   border: 1px solid #d9dbdb;
   min-height: 120px;
-  margin-bottom: 15px; }
+  margin-bottom: 0.5rem; }
 
 .docs .boxed {
   background: #e3eff4;
   padding: .7rem .9rem;
   line-height: 1.2;
-  margin: 7.5px 0 15px 0;
+  margin: 0.25rem 0 0.5rem 0;
   display: inherit;
   font-size: 0.8em;
   flex: 1; }
 
 .docs pre {
   position: relative;
-  margin: 30px 0 !important; }
+  margin: 1rem 0 !important; }
   .docs pre label {
     top: 0;
     right: 0;
@@ -1945,16 +1958,16 @@ Utilities
 .docs .docs-header {
   background: url(https://images.unsplash.com/photo-1559291001-693fb9166cba) center;
   background-size: cover;
-  padding: 60px 0;
-  margin-bottom: 60px;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
   text-align: center;
   color: white; }
   .docs .docs-header a {
     color: white; }
 
 .docs .docs-section {
-  margin-top: 45px;
-  margin-bottom: 45px; }
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem; }
 
 .docs .smooth-transform {
   transition: transform 0.2s ease; }

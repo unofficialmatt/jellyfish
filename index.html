@@ -18,6 +18,7 @@
   <nav class="navbar" id="navbar-sticky">
     <div class="container">
       <div class="navbar-brand">
+        <div class="navbar-item">🎐 Jellyfish SCSS framework</div>
         <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
           <span class="hamburger-label">Menu</span>
           <span class="hamburger-box">
@@ -1083,6 +1084,7 @@ console.log("JellyFish is Awesome!");
           /* BUTTONS */
           $button-border-width: 1px;
           $button-border-radius: 6px;
+          $button-padding: .75em 1.5em;
           $button-text-transform: none;
           $button-font-weight: bold;
           $button-background: $color-primary;
@@ -1690,7 +1692,142 @@ console.log("JellyFish is Awesome!");
           </div>
         </section><!-- #utilities -->
         <section class="docs-section" id="mixins">
-          <h2>SCSS Mixins</h2>
+          <h2>SCSS Mixins and Functions</h2>
+          <h3>Manipulate numbers</h3>
+          <p>Jellyfish comes with a few simple functions for manipulating numbers.</p>
+          <div class="row">
+            <div class="col sm-12 md-6">
+              <h4>Input:</h4>
+              <pre class="language-scss">
+                <code>
+                  .some-element {
+                    // Convert a pixel value to an em value based on a docroot em sixe of 16px
+                    width: em(32px);
+                    // Half a given value
+                    height: h(100vh);
+                    // Return the negative of a given value
+                    margin-left: n(20px);
+                    // Return the negative, half of a given value
+                    margin-right: hn(30px);
+                    margin-top: nh(50px);
+                  }
+                </code>
+              </pre>
+            </div>
+            <div class="col sm-12 md-6">
+              <h4>Returns:</h4>
+              <pre class="language-scss">
+                <code>
+                  .some-element {
+                    width: 2em;
+                    height: 50vh;
+                    margin-left: -20px; // In reality this will get converted to rem by postcss
+                    margin-right: -15px;  // In reality this will get converted to rem by postcss
+                    margin-top: -25px;  // In reality this will get converted to rem by postcss
+                  }
+                </code>
+              </pre>
+            </div>
+          </div>
+          <h3>Quickly center a block-level element:</h3>
+          <p>This will only work if the block has a defined width.</p>
+          <pre class="language-scss">
+            <code>
+              // Input
+              .some-block {
+                @include center-block;
+              }
+              // Returns
+              .some-block {
+                margin-left: auto;
+                margin-right: auto;
+              }
+            </code>
+          </pre>
+          <div class="row">
+            <div class="col"><div class="boxed" style="width:40%;max-width:400px;margin-left:auto;margin-right:auto;">some-block</div></div>
+          </div>
+          <h3>Working with Psuedo elements ::before and ::after</h3>
+          <p>Psuedo elements always need a few properties defined. This mixin accepts three arguments and has default fallbacks.</p>
+          <h4>Mixin</h4>
+          <pre class="language-scss">
+            <code>
+              @mixin pseudo($content: '', $display: block, $pos: absolute){
+                content: $content;
+                display: $display;
+                position: $pos;
+              }
+            </code>
+          </pre>
+          <div class="row">
+            <div class="col sm-12 md-6">
+              <h4>Input</h4>
+              <pre class="language-scss">
+                <code>
+                  .some-element::before {
+                    @include pseudo;
+                  }
+                  .some-other-element::before {
+                    @include pseudo('> ','inline-block','relative')
+                  }
+                </code>
+              </pre>
+            </div>
+            <div class="col sm-12 md-6">
+              <h4>Returns</h4>
+              <pre class="language-scss">
+                <code>
+                  .some-element::before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                  }
+                  .some-other-element::before {
+                    content: '> ';
+                    display: inline-block;
+                    position: relative;
+                  }
+                </code>
+              </pre>
+            </div>
+          </div>
+          <h3>Target different heading levels</h3>
+          <p>Sure, you can use <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code>, <code>h6</code> to target headings in scss, or you can use this helpful function to target specific headings...</p>
+          <pre class="language-scss">
+            <code>
+              #{headings()} {
+                // No value passed - apply to all headings
+                font-size: 2em;
+              }
+              #{headings(3)} {
+                // Applies to all headings from 3 - 6
+                color: blue;
+              }
+              #{headings(1,4)} {
+                // Applies to all headings from 1-4
+                text-decoration: underline;
+              }
+            </code>
+          </pre>
+          <style type="text/css">
+            .em-2 {
+              font-size: 2em;
+            }
+            .blue {
+              color: blue;
+            }
+            .ul {
+              text-decoration: underline;
+            }
+          </style>
+          <div class="boxed">
+            <h1 class="em-2 ul">Heading 1</h1>
+            <h2 class="em-2 ul">Heading 2</h2>
+            <h3 class="em-2 ul blue">Heading 3</h3>
+            <h4 class="em-2 ul blue">Heading 4</h4>
+            <h5 class="em-2 blue">Heading 5</h5>
+            <h6 class="em-2 blue">Heading 6</h6>
+          </div>
           <h3>Global smooth() transitions</h3>
           <p>Use the mixin <code>@include smooth($properties...)</code> to apply global transitions for a consistent UI feel. The mixin accepts multiple arguments.</p>
           <div class="boxed"><p>Anchor tags have <code>smooth(color)</code> applied by default - <a href="#">hover here to preview</a>.</p></div>
@@ -1859,179 +1996,183 @@ console.log("JellyFish is Awesome!");
           <p>It is recommend to not edit the files within <span class="file-ref">/assets/scss/jellyfish</span> but rather to add your project's scss into <span class="file-ref">/assets/scss/project</span>. In this way you can keep the core functionality separate from your project's codebase.</p>
           <p>The file <span class="file-ref">/assets/scss/_settings.scss</span> contains all of the variables used in Jellyfish, commented out. If you wish to override a default, you can simply uncomment and add your own values. You should add any new variables here to keep your project organised.</p>
           <pre class="language-scss"><code>
-          /* GRID */
-          $cols: 12;
-          $has_ordering: true;
-          $has_offset: true;
-          $debug-mode-on: false;
+            /* GRID */
+            $cols: 12;
+            $has_ordering: true;
+            $has_offset: true;
+            $debug-mode-on: false;
 
-          /* JELLYFISH DEFAULTS */
-          // Base Variables (used before breakpoints are applied)
-          $base-col-name: xs;
-          $base-container-gutter: 15px; // define in px
-          $base-col-gutter: 10px; // define in px
+            /* JELLYFISH DEFAULTS */
+            // Base Variables (used before breakpoints are applied)
+            $base-col-name: xs;
+            $base-container-gutter: 15px; // define in px
+            $base-col-gutter: 10px; // define in px
 
-          /* COLOURS */
-          $color-text: #333333;
-          $color-text-light: #d9dbdb;
-          $color-background: #fff;
-          $color-background-alt: #efefef;
-          $color-primary: #b22d4f;
-          $color-secondary: #2d6378;
-          $color-tertiary: #5d2b50;
+            /* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT AT SMALLEST DEVICE WIDTH */
+            $root-font-size: 14px;
+            $root-line-height: 1.4;
 
-          /* TYPEFACES */
-          $font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-          $font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-          $font-code: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-          $font-body: $font-primary;
-          $font-headings: $font-secondary;
+            /* GLOBAL PADDING/MARGINS */
+            $element-padding: 20px;
+            $element-margin: 1rem;
 
-          /* FONT SIZES */
-          $font-size-xsmall: 0.6em;
-          $font-size-small: 0.8em;
-          $font-size-normal: 1em;
-          $font-size-medium:1.25em;
-          $font-size-large: 1.5em;
-          $font-size-xlarge: 1.75em;
-          $font-size-xxlarge: 2em;
-          $font-size-xxxlarge: 2.5em;
+            /* COLOURS */
+            $color-text: #333333;
+            $color-text-light: #d9dbdb;
+            $color-background: #fff;
+            $color-background-alt: #efefef;
+            $color-primary: #b22d4f;
+            $color-secondary: #2d6378;
+            $color-tertiary: #5d2b50;
 
-          /* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT */
-          $root-font-size: 16px;
-          $root-line-height: 1.5;
+            /* TYPEFACES */
+            $font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            $font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            $font-code: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            $font-body: $font-primary;
+            $font-headings: $font-secondary;
 
-          /* LINKS */
-          $link-color: $color-primary;
-          $link-active: $color-secondary;
-          $link-visited: $color-tertiary;
+            /* FONT SIZES */
+            $font-size-xsmall: 0.6em;
+            $font-size-small: 0.8em;
+            $font-size-normal: 1em; // Default font size for elements
+            $font-size-medium:1.25em; // Used in H5
+            $font-size-large: 1.5em; // Used in H4
+            $font-size-xlarge: 1.75em; // Used in H3
+            $font-size-xxlarge: 2em; // Used in H2
+            $font-size-xxxlarge: 2.5em; // Used in H1
 
-          /* GLOBAL PADDING/MARGINS */
-          $element-padding: 20px;
-          $element-margin: 30px;
+            /* LINKS */
+            $link-color: $color-primary;
+            $link-active: $color-secondary;
+            $link-visited: $color-tertiary;
 
-          /* GLOBAL TRANSITION USED IN SMOOTH() */
-          $global-transition: 0.2s ease;
+            /* GLOBAL TRANSITION USED IN SMOOTH() */
+            $global-transition: 0.2s ease;
 
-          /* BORDERS */
-          $border-width: 1px;
-          $border-style: solid;
-          $border-color: $color-text-light;
-          $border-radius: 4px;
-          $borders: $border-width $border-style $border-color;
+            /* BORDERS */
+            $border-width: 1px;
+            $border-style: solid;
+            $border-color: $color-text-light;
+            $border-radius: 4px;
+            $borders: $border-width $border-style $border-color;
 
-          /* FORMS */
-          $input-background: white;
-          $placeholder-color: $color-text-light;
-          $form-text-size: 1rem;
-          $form-border-hover: darken($border-color, 40%);
-          $form-border-focus: $color-primary;
-          $form-font: $font-primary;
+            /* FORMS */
+            $input-background: white;
+            $placeholder-color: $color-text-light;
+            $form-text-size: 1rem;
+            $form-border-hover: darken($border-color, 40%);
+            $form-border-focus: $color-primary;
+            $form-font: $font-primary;
 
-          /* BUTTONS */
-          $button-border-width: 1px;
-          $button-border-radius: 6px;
-          $button-text-transform: none;
-          $button-font-weight: bold;
-          $button-background: $color-primary;
-          $button-text-color: white;
-          $button-hover-background: darken($button-background, 10%);
-          $button-hover-color: $button-text-color;
-          $button-secondary-background: $color-secondary;
-          $button-secondary-text-color: $button-text-color;
-          $button-secondary-hover-background: darken($button-secondary-background,10%);
-          $button-secondary-hover-color: $button-secondary-text-color;
-          $button-disabled-background: lighten($color-text,40%);
+            /* BUTTONS */
+            $button-border-width: 1px;
+            $button-border-radius: 6px;
+            $button-padding: .75em 1.5em;
+            $button-text-transform: none;
+            $button-font-weight: bold;
+            $button-background: $color-primary;
+            $button-text-color: white;
+            $button-hover-background: darken($button-background, 10%);
+            $button-hover-color: $button-text-color;
+            $button-secondary-background: $color-secondary;
+            $button-secondary-text-color: $button-text-color;
+            $button-secondary-hover-background: darken($button-secondary-background,10%);
+            $button-secondary-hover-color: $button-secondary-text-color;
+            $button-disabled-background: lighten($color-text,40%);
 
-          /* TABLES */
-          $table-stripe-color: lighten($color-text-light,5%);
-          $table-hover-background: $color-primary;
-          $table-hover-color: white;
+            /* TABLES */
+            $table-stripe-color: lighten($color-text-light,5%);
+            $table-hover-background: $color-primary;
+            $table-hover-color: white;
 
-          /* NAVBAR */
-          $nav-expands: 900px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
-          $navbar-bg-color: $color-background-alt;
-          $navbar-container-padding: 10px;
-          // Links
-          $navbar-font-size: 0.9em;
-          $navbar-text-transform: none;
-          $navbar-link-color: $color-primary;
-          $navbar-link-bg-color: $navbar-bg-color;
-          $navbar-font-weight: normal;
-          $navbar-link-border: 1px solid rgba(255,255,255,0.4);
-          // Links: Hover
-          $navbar-link-hover-color: $color-secondary;
-          $navbar-link-hover-bg-color: darken($color-background-alt,10%);
-          $navbar-link-hover-weight: $navbar-font-weight;
-          // Links: Padding
-          $navbar-link-padding-x: 10px;
-          $navbar-link-padding-y: 8px;
-          $navbar-link-padding-expanded-x: 10px;
-          $navbar-link-padding-expanded-y: 10px;
-          // Current Page Link
-          $navbar-current-page-color: $color-secondary;
-          $navbar-current-page-background: inherit;
-          $navbar-current-page-font-weight: bold;
-          // Secondary Links
-          $navbar-submenu-text-transform: $navbar-text-transform;
-          $navbar-submenu-font-weight: $navbar-font-weight;
-          // Drop down on larger screens
-          $navbar-submenu-min-width: 150px;
-          $navbar-submenu-max-width: 260px;
+            /* NAVBAR */
+            $nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
+            $navbar-bg-color: $color-background-alt;
+            $navbar-container-padding: 10px;
+            // Links
+            $navbar-font-size: 0.8em;
+            $navbar-text-transform: uppercase;
+            $navbar-link-color: $color-primary;
+            $navbar-link-bg-color: $navbar-bg-color;
+            $navbar-font-weight: normal;
+            $navbar-link-border: 1px solid rgba(255,255,255,0.4);
+            // Links: Hover
+            $navbar-link-hover-color: $color-secondary;
+            $navbar-link-hover-bg-color: darken($color-background-alt,10%);
+            $navbar-link-hover-weight: $navbar-font-weight;
+            // Links: Padding
+            $navbar-link-padding-x: 10px;
+            $navbar-link-padding-y: 8px;
+            $navbar-link-padding-expanded-x: 10px;
+            $navbar-link-padding-expanded-y: 10px;
+            // Current Page Link
+            $navbar-current-page-color: $color-secondary;
+            $navbar-current-page-background: inherit;
+            $navbar-current-page-font-weight: bold;
+            // Secondary Links
+            $navbar-submenu-text-transform: $navbar-text-transform;
+            $navbar-submenu-font-weight: $navbar-font-weight;
+            // Drop down on larger screens
+            $navbar-submenu-min-width: 150px;
+            $navbar-submenu-max-width: 260px;
 
-          /* HAMBURGER MENU */
-          // @link https://github.com/jonsuh/hamburgers
-          $primary-hamburger-type: spin; // Change this to modify animation
-          $hamburger-padding-x: $navbar-link-padding-x;
-          $hamburger-padding-y: $navbar-link-padding-y;
-          $hamburger-margin-y: inherit;
-          $hamburger-layer-width: 20px; // Width of the hamburger icon
-          $hamburger-layer-height: 3px; // Thickness of hamburger lines
-          $hamburger-layer-spacing: 4px; // Spacing between hamburger lines
-          $hamburger-layer-color: $navbar-link-color; // Color of hamburger
-          $hamburger-layer-border-radius: 3px; // Radius of hamburger lines
-          $hamburger-background-color: $navbar-bg-color;
-          $hamburger-background-color-hover: $navbar-link-hover-bg-color;
-          $hamburger-border: $border-width $border-style $hamburger-background-color;
-          $hamburger-border-hover: $border-width $border-style $hamburger-background-color-hover;
-          $hamburger-border-radius: 0px;
-          $hamburger-hover-opacity: 1;
-          $hamburger-active-layer-color : $hamburger-layer-color;
-          $hamburger-active-hover-opacity: $hamburger-hover-opacity;
+            /* HAMBURGER MENU */
+            // @link https://github.com/jonsuh/hamburgers
+            $primary-hamburger-type: spin; // Change this to modify animation
+            $hamburger-padding-x: $navbar-link-padding-x;
+            $hamburger-padding-y: $navbar-link-padding-y;
+            $hamburger-margin-y: inherit;
+            $hamburger-layer-width: 20px; // Width of the hamburger icon
+            $hamburger-layer-height: 3px; // Thickness of hamburger lines
+            $hamburger-layer-spacing: 4px; // Spacing between hamburger lines
+            $hamburger-layer-color: $navbar-link-color; // Color of hamburger
+            $hamburger-layer-border-radius: 3px; // Radius of hamburger lines
+            $hamburger-background-color: $navbar-bg-color;
+            $hamburger-background-color-hover: $navbar-link-hover-bg-color;
+            $hamburger-border: $border-width $border-style $hamburger-background-color;
+            $hamburger-border-hover: $border-width $border-style $hamburger-background-color-hover;
+            $hamburger-border-radius: 0px;
+            $hamburger-hover-opacity: 1;
+            $hamburger-active-layer-color : $hamburger-layer-color;
+            $hamburger-active-hover-opacity: $hamburger-hover-opacity;
 
-          $breakpoints: (
-              /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-              Breakpoints are defined here
-              Note: Comment out or remove a whole size to prevent it being iterated,
-              or individual elements to inherit from the previously defined point.
-              The shorthand names are used in column and modifier classes.
-              breakpoint and col-gutter are the only !required values
-              *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-              sm: (
-                  breakpoint: 500px,
-                  container-width: 96%,
-                  container-gutter: 50px,
-                  col-gutter: 20px,
-                  root-font-size: 16px,
-                  root-line-height: 1.48em
-                  ),
-              md: (
-                  breakpoint: 900px,
-                  container-width: 94%,
-                  container-gutter: 0px,
-                  col-gutter: 30px,
-                  ),
-              lg: (
-                  breakpoint: 1200px,
-                  container-width: 1080px,
-                  col-gutter: 30px,
-                  ),
-              xl: (
-                  breakpoint: 1600px,
-                  container-width: 1480px,
-                  col-gutter: 35px,
-                  )
-          );
+            $breakpoints: (
+                /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+                 Breakpoints are defined here
+                 Note: Comment out or remove a whole size to prevent it being iterated,
+                 or individual elements to inherit from the previously defined point.
+                 The shorthand names are used in column and modifier classes.
+                 breakpoint and col-gutter are the only !required values
+                *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+                sm: (
+                    breakpoint: 540px,
+                    container-width: 94%,
+                    container-gutter: 50px,
+                    col-gutter: 20px,
+                    root-font-size: 15px,
+                    root-line-height: 1.48
+                    ),
+                md: (
+                    breakpoint: 768px,
+                    container-width: 90%,
+                    container-max-width: 1080px,
+                    container-gutter: 0px,
+                    col-gutter: 30px,
+                    root-font-size: 16px
+                    ),
+                lg: (
+                    breakpoint: 1280px,
+                    container-width: 1220px,
+                    container-max-width: none,
+                    col-gutter: 35px,
+                    ),
+                xl: (
+                    breakpoint: 1700px,
+                    container-width: 1640px,
+                    col-gutter: 45px,
+                    )
+            );
           </code></pre>
         </section><!-- #configuration -->
         <section class="docs-section" id="debug">
@@ -2061,7 +2202,7 @@ console.log("JellyFish is Awesome!");
             <div class="col md-4 order-md-1 order-lg-0"><div class="boxed">Order md-1 Order-lg-0</div></div>
           </div>
         </section><!-- #debug -->
-        <p style="font-size: 2rem; text-align: center;">🎐 <em>Happy swimming!</em></p>
+        <p style="font-size: 2rem; text-align: center;padding-top: 60px;padding-bottom: 60px;">🎐 <em>Happy swimming!</em></p>
       </main><!-- MAIN DOCS AREA -->
     </div><!-- .row -->
   </div><!-- .container -->

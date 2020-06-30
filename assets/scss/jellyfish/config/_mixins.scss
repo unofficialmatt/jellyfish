@@ -1,3 +1,7 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  USEFUL MIXINS AND FUNCTIONS
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 // Convert px to em
 @function em($pixels) {
     @return #{$pixels/16px}em;
@@ -14,6 +18,24 @@
     }
   }
   @return $map;
+}
+
+// Returns a given number divided by 2
+@function h($num) {
+  @return $num/2;
+}
+
+// Returns the negative value of a given number
+@function n($num) {
+  @return -$num;
+}
+
+// Returns the negative and halved value of a given number
+@function nh($num) {
+  @return n(h($num));
+}
+@function hn($num) {
+  @return n(h($num));
 }
 
 // Media queries check the breakpoint map to see if a given string exists, else they convert a given pixel value to em.
@@ -83,7 +105,6 @@
 }
 
 // Allows us to use #{headings(1,6)} to apply css to all headings
-// TODO: Needs adding to docs
 @function headings($from:1, $to:6) {
   @if $from == $to {
       @return 'h#{$from}';
@@ -92,6 +113,22 @@
   }
 }
 
+// Center a block level element without worrying about top and bottom margins
+@mixin center-block {
+  margin: {
+      left: auto;
+      right: auto;
+  }
+}
+
+// DRY mixin for Pseudo elements. Pass optional args or leave as default
+@mixin pseudo($content: '', $display: block, $pos: absolute){
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+// Do Not Print
 @mixin do-not-print {
   @media print {
     display: none;

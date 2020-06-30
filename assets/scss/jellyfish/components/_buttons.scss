@@ -19,8 +19,8 @@
     border: $button-border-width solid $button-background;
     background-color: $button-background;
     color: $button-text-color;
-    padding: .75em 1.5em;
-    margin: $element-margin/2 5px $element-margin 0;
+    padding: $button-padding;
+    margin: h($element-margin) 5px $element-margin 0;
     border-radius: $button-border-radius;
     @include smooth(background, border-color, color);
     &::-moz-focus-inner {

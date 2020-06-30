@@ -1,4 +1,3 @@
-
 /* GRID */
 //$cols: 12;
 //$has_ordering: true;
@@ -10,6 +9,14 @@
 //$base-col-name: xs;
 //$base-container-gutter: 15px; // define in px
 //$base-col-gutter: 10px; // define in px
+
+/* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT AT SMALLEST DEVICE WIDTH */
+//$root-font-size: 14px;
+//$root-line-height: 1.4;
+
+/* GLOBAL PADDING/MARGINS */
+//$element-padding: 20px;
+//$element-margin: 1rem;
 
 /* COLOURS */
 //$color-text: #333333;
@@ -30,25 +37,17 @@
 /* FONT SIZES */
 //$font-size-xsmall: 0.6em;
 //$font-size-small: 0.8em;
-//$font-size-normal: 1em;
-//$font-size-medium:1.25em;
-//$font-size-large: 1.5em;
-//$font-size-xlarge: 1.75em;
-//$font-size-xxlarge: 2em;
-//$font-size-xxxlarge: 2.5em;
-
-/* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT */
-//$root-font-size: 16px;
-//$root-line-height: 1.5;
+//$font-size-normal: 1em; // Default font size for elements
+//$font-size-medium:1.25em; // Used in H5
+//$font-size-large: 1.5em; // Used in H4
+//$font-size-xlarge: 1.75em; // Used in H3
+//$font-size-xxlarge: 2em; // Used in H2
+//$font-size-xxxlarge: 2.5em; // Used in H1
 
 /* LINKS */
 //$link-color: $color-primary;
 //$link-active: $color-secondary;
 //$link-visited: $color-tertiary;
-
-/* GLOBAL PADDING/MARGINS */
-//$element-padding: 20px;
-//$element-margin: 30px;
 
 /* GLOBAL TRANSITION USED IN SMOOTH() */
 //$global-transition: 0.2s ease;
@@ -71,6 +70,7 @@
 /* BUTTONS */
 //$button-border-width: 1px;
 //$button-border-radius: 6px;
+//$button-padding: .75em 1.5em;
 //$button-text-transform: none;
 //$button-font-weight: bold;
 //$button-background: $color-primary;
@@ -93,11 +93,11 @@ $nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to ch
 //$navbar-bg-color: $color-background-alt;
 //$navbar-container-padding: 10px;
 // Links
-$navbar-font-size: 0.8em;
+//$navbar-font-size: 0.8em;
 //$navbar-text-transform: uppercase;
 //$navbar-link-color: $color-primary;
 //$navbar-link-bg-color: $navbar-bg-color;
-$navbar-font-weight: bold;
+//$navbar-font-weight: normal;
 //$navbar-link-border: 1px solid rgba(255,255,255,0.4);
 // Links: Hover
 //$navbar-link-hover-color: $color-secondary;
@@ -106,7 +106,7 @@ $navbar-font-weight: bold;
 // Links: Padding
 //$navbar-link-padding-x: 10px;
 //$navbar-link-padding-y: 8px;
-$navbar-link-padding-expanded-x: 12px;
+//$navbar-link-padding-expanded-x: 10px;
 //$navbar-link-padding-expanded-y: 10px;
 // Current Page Link
 //$navbar-current-page-color: $color-secondary;
@@ -148,27 +148,30 @@ $breakpoints: (
      breakpoint and col-gutter are the only !required values
     *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     sm: (
-        breakpoint: 500px,
-        container-width: 96%,
+        breakpoint: 540px,
+        container-width: 94%,
         container-gutter: 50px,
         col-gutter: 20px,
-        root-font-size: 16px,
-        root-line-height: 1.48em
+        root-font-size: 15px,
+        root-line-height: 1.48
         ),
     md: (
-        breakpoint: 900px,
-        container-width: 94%,
+        breakpoint: 768px,
+        container-width: 90%,
+        container-max-width: 1080px,
         container-gutter: 0px,
         col-gutter: 30px,
+        root-font-size: 16px
         ),
     lg: (
-        breakpoint: 1200px,
-        container-width: 1080px,
-        col-gutter: 30px,
+        breakpoint: 1280px,
+        container-width: 1220px,
+        container-max-width: none,
+        col-gutter: 35px,
         ),
     xl: (
-        breakpoint: 1600px,
-        container-width: 1480px,
-        col-gutter: 35px,
+        breakpoint: 1700px,
+        container-width: 1640px,
+        col-gutter: 45px,
         )
 );

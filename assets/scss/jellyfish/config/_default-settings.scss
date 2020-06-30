@@ -1,3 +1,7 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  DEFAULT SETTINGS
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 /* GRID */
 $cols: 12 !default;
 $has_ordering: true !default;
@@ -9,6 +13,14 @@ $debug-mode-on: false !default;
 $base-col-name: xs !default;
 $base-container-gutter: 15px !default; // define in px
 $base-col-gutter: 10px !default; // define in px
+
+/* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT AT SMALLEST DEVICE WIDTH */
+$root-font-size: 14px !default;
+$root-line-height: 1.4 !default;
+
+/* GLOBAL PADDING/MARGINS */
+$element-padding: 20px !default;
+$element-margin: 1rem !default;
 
 /* COLOURS */
 $color-text: #333333 !default;
@@ -29,25 +41,17 @@ $font-headings: $font-secondary !default;
 /* FONT SIZES */
 $font-size-xsmall: 0.6em !default;
 $font-size-small: 0.8em !default;
-$font-size-normal: 1em !default;
-$font-size-medium:1.25em !default;
-$font-size-large: 1.5em !default;
-$font-size-xlarge: 1.75em !default;
-$font-size-xxlarge: 2em !default;
-$font-size-xxxlarge: 2.5em !default;
-
-/* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT */
-$root-font-size: 16px !default;
-$root-line-height: 1.5 !default;
+$font-size-normal: 1em !default; // Default font size for elements
+$font-size-medium:1.25em !default; // Used in H5
+$font-size-large: 1.5em !default; // Used in H4
+$font-size-xlarge: 1.75em !default; // Used in H3
+$font-size-xxlarge: 2em !default; // Used in H2
+$font-size-xxxlarge: 2.5em !default; // Used in H1
 
 /* LINKS */
 $link-color: $color-primary !default;
 $link-active: $color-secondary !default;
 $link-visited: $color-tertiary !default;
-
-/* GLOBAL PADDING/MARGINS */
-$element-padding: 20px !default;
-$element-margin: 30px !default;
 
 /* GLOBAL TRANSITION USED IN SMOOTH() */
 $global-transition: 0.2s ease !default;
@@ -72,6 +76,7 @@ $form-font: $font-primary;
 $buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
 $button-border-width: 1px !default;
 $button-border-radius: 6px !default;
+$button-padding: .75em 1.5em !default;
 $button-text-transform: none !default;
 $button-font-weight: bold !default;
 $button-background: $color-primary !default;

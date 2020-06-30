@@ -14,6 +14,7 @@
     line-height: 1.2;
     &:not(:first-child) {
       margin-top: $element-margin;
+      // TODO: Change this to instead add top margin by default and remove if .col + $heading
     }
 }
 

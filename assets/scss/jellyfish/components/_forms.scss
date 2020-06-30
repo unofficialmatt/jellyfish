@@ -12,7 +12,7 @@
     font-family: $form-font;
     padding: 10px;
     outline: none;
-    margin: 3px 0 $element-margin/2 0;
+    margin: 3px 0 h($element-margin) 0;
     width: 100%;
     max-width: 100%;
     line-height: 1;
@@ -116,7 +116,7 @@ vertical-align: middle;
 
 // Wrapper to apply better margins to radioboxes and checkboxes
 .form-group {
-  margin: 3px 0 $element-margin/2 0;
+  margin: 3px 0 h($element-margin) 0;
 }
 
 // Make checkboxes/radioboxes inline-block
@@ -126,7 +126,7 @@ vertical-align: middle;
     display: inline-block;
   }
   label {
-    margin-right: $element-margin/2;
+    margin-right: h($element-margin);
   }
 }
 
