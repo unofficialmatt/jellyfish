@@ -9,74 +9,77 @@
     user-select: none;
     display: inline-block;
     vertical-align: middle;
-    text-align: center;
     cursor: pointer;
-    text-decoration: none;
-    text-transform: $button-text-transform;
-    font-size: 0.9rem;
-    font-weight: $button-font-weight;
+    text:{
+      decoration: none;
+      transform: $button-text-transform;
+      align: center;
+    }
+    font:{
+      size: 0.9rem;
+      weight: $button-font-weight;
+    }
+    border:{
+      width: $button-border-width;
+      style: solid;
+      radius: $button-border-radius;
+    }
     line-height: 1.3;
-    border: $button-border-width solid $button-background;
-    background-color: $button-background;
-    color: $button-text-color;
     padding: $button-padding;
     margin: h($element-margin) 5px $element-margin 0;
-    border-radius: $button-border-radius;
     @include smooth(background, border-color, color);
+    @include button_styles($color-primary, $button-text-color);
     &::-moz-focus-inner {
         border: 0;
         padding: 0;
     }
-    &:hover, &:focus, &:active {
-      background-color: $button-hover-background;
-      border-color: $button-hover-background;
-      color: $button-hover-color;
-    }
     &:focus {
         outline: 0;
-        box-shadow: 0px 0px 1px 3px lighten($button-background, 25%);
     }
     &:disabled {
       cursor: not-allowed;
       background-color: $button-disabled-background;
-      border: $button-border-width solid $button-disabled-background;
+      border-color: $button-disabled-background;
+      &:hover, &:focus, &:active {
+        background-color: $button-disabled-background;
+        border-color: $button-disabled-background;
+      }
     }
 }
 
+// TODO: Check if I Still need a.button - not sure why it is here
 .button, a.button {
     &__secondary {
-      // Secondary buttons have a different color scheme
-        background-color: $button-secondary-background;
-        border-color: $button-secondary-background;
-        color: $button-secondary-text-color;
-        &:hover, &:focus, &:active {
-          background-color: $button-secondary-hover-background;
-          border-color: $button-secondary-hover-background;
-          color: $button-secondary-hover-color;
-        }
-        &:focus {
-            box-shadow: 0px 0px 1px 3px lighten($button-secondary-background, 15%);
-        }
+      @include button_styles($color-secondary);
+    }
+    &__tertiary {
+      @include button_styles($color-tertiary);
+    }
+    &__success {
+      @include button_styles($color-success);
+    }
+    &__warning {
+      @include button_styles($color-warning);
+    }
+    &__error {
+      @include button_styles($color-error);
     }
     &__outline {
-      // Outline buttons have a fill and no border
-        background: transparent;
+        // Outline buttons have a transparent fill
+        background-color: transparent !important;
         color: inherit;
-        border-color: $button-background;
         &:hover, &:focus, &:active {
-          background-color: transparent;
-          border-color: $button-hover-background;
-          color: $button-background;
+          background-color: transparent !important;
         }
     }
     &__ghost {
-      // Ghost buttons are styled like regular links, with the height of a button
-        background: transparent;
+      // Ghost buttons are styled like regular links, with the height of a button but they have no background or border
+        background-color: transparent;
         color: $link-color;
         border-color: transparent;
         &:hover, &:focus, &:active {
           background-color: transparent;
-          border-color: $link-active;
+          border-color: transparent;
           color: $link-active;
         }
     }

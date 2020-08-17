@@ -31,6 +31,10 @@ $color-primary: #b22d4f !default;
 $color-secondary: #2d6378 !default;
 $color-tertiary: #5d2b50 !default;
 
+$color-success: #2CC990 !default;
+$color-warning: #FCB941 !default;
+$color-error: #FC6042 !default;
+
 /* TYPEFACES */
 $font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
@@ -79,14 +83,10 @@ $button-border-radius: 6px !default;
 $button-padding: .75em 1.5em !default;
 $button-text-transform: none !default;
 $button-font-weight: bold !default;
-$button-background: $color-primary !default;
 $button-text-color: white !default;
-$button-hover-background: darken($button-background, 10%) !default;
-$button-hover-color: $button-text-color !default;
-$button-secondary-background: $color-secondary !default;
-$button-secondary-text-color: $button-text-color !default;
-$button-secondary-hover-background: darken($button-secondary-background,10%) !default;
-$button-secondary-hover-color: $button-secondary-text-color !default;
+$button-hover-function: lighten !default;
+$button-hover-function-amount: 8% !default;
+$button-focus-highlight-amount: 16% !default;
 $button-disabled-background: lighten($color-text,40%) !default;
 
 /* TABLES */

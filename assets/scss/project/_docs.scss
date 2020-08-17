@@ -24,6 +24,7 @@
   pre {
     position: relative;
     margin: $element-margin 0 !important;
+    font-size: 0.9em !important;
 
     label {
       @extend small;
@@ -155,4 +156,14 @@ body {
 
 #navbar-menu {
   justify-content: center;
+}
+
+.button__hotpink {
+  @include button_styles(hotpink);
+}
+.button__gold {
+  @include button_styles(gold, brown, #555, 30%, 40%);
+}
+.button__white {
+  @include button_styles(#fff, gray,#fff, 5%, 5%, gray);
 }

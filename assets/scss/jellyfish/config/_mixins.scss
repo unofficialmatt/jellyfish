@@ -104,6 +104,34 @@
     transition: $result;
 }
 
+// Apply consistent styling to buttons. In most cases, you only need to pass the $color value for your buttons to look great
+@mixin button_styles(
+    $button-color: null,
+    $text-color: null,
+    $hover-text-color: null,
+    $amount: $button-hover-function-amount,
+    $focus-amount: $button-focus-highlight-amount,
+    $hover-color: call($button-hover-function, $button-color, $amount )
+  ) {
+  background-color: $button-color;
+  border-color: $button-color;
+  color: $text-color;
+  &:hover, &:focus, &:active {
+    background-color: $hover-color;
+    border-color: $hover-color;
+    color: $hover-text-color;
+  }
+  &:focus {
+    // TODO:Move to using scale instead https://sass-lang.com/documentation/modules/color#scale
+    box-shadow: 0px 0px 1px 3px call($button-hover-function, $button-color, $focus-amount );
+  }
+  &.button__outline {
+    &:hover, &:focus, &:active {
+      color: $button-color;
+    }
+  }
+}
+
 // Allows us to use #{headings(1,6)} to apply css to all headings
 @function headings($from:1, $to:6) {
   @if $from == $to {

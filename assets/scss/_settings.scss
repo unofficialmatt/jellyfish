@@ -27,6 +27,10 @@
 //$color-secondary: #2d6378;
 //$color-tertiary: #5d2b50;
 
+//$color-success: #2CC990;
+//$color-warning: #FCB941;
+//$color-error: #FC6042;
+
 /* TYPEFACES */
 //$font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 //$font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -73,14 +77,10 @@
 //$button-padding: .75em 1.5em;
 //$button-text-transform: none;
 //$button-font-weight: bold;
-//$button-background: $color-primary;
 //$button-text-color: white;
-//$button-hover-background: darken($button-background, 10%);
-//$button-hover-color: $button-text-color;
-//$button-secondary-background: $color-secondary;
-//$button-secondary-text-color: $button-text-color;
-//$button-secondary-hover-background: darken($button-secondary-background,10%);
-//$button-secondary-hover-color: $button-secondary-text-color;
+//$button-hover-function: lighten;
+//$button-hover-function-amount: 8%;
+//$button-focus-highlight-amount: 16%;
 //$button-disabled-background: lighten($color-text,40%);
 
 /* TABLES */

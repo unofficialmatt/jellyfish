@@ -1,5 +1,5 @@
 /*! jellyfish-grid 3.0.0
- * © 2020-06-30 Matt Weet - https://www.weareboba.com */
+ * © 2020-08-17 Matt Weet - https://www.weareboba.com */
 
 /* GRID */
 /* JELLYFISH DEFAULTS */
@@ -1288,62 +1288,110 @@ sup {
   user-select: none;
   display: inline-block;
   vertical-align: middle;
-  text-align: center;
   cursor: pointer;
   text-decoration: none;
   text-transform: none;
+  text-align: center;
   font-size: 0.9rem;
   font-weight: bold;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 6px;
   line-height: 1.3;
-  border: 1px solid #b22d4f;
-  background-color: #b22d4f;
-  color: white;
   padding: 0.75em 1.5em;
   margin: 0.5rem 5px 1rem 0;
-  border-radius: 6px;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  background-color: #b22d4f;
+  border-color: #b22d4f;
+  color: white; }
+  .button:hover, :hover[type=submit], .button:focus, :focus[type=submit], .button:active, :active[type=submit], a.button:hover, a:hover[type=submit], a.button:focus, a:focus[type=submit], a.button:active, a:active[type=submit], button:hover, button:focus, button:active, [type=submit]:hover, [type=submit]:focus, [type=submit]:active, [type=reset]:hover, [type=reset]:focus, [type=reset]:active, [type=button]:hover, [type=button]:focus, [type=button]:active {
+    background-color: #cd3a60;
+    border-color: #cd3a60; }
+  .button:focus, :focus[type=submit], a.button:focus, a:focus[type=submit], button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
+    box-shadow: 0px 0px 1px 3px #d65b7a; }
+  .button.button__outline:hover, .button__outline:hover[type=submit], :hover[type=submit][type=reset], .button:hover[type=reset], .button.button__outline:focus, .button__outline:focus[type=submit], :focus[type=submit][type=reset], .button:focus[type=reset], .button.button__outline:active, .button__outline:active[type=submit], :active[type=submit][type=reset], .button:active[type=reset], a.button.button__outline:hover, a.button__outline:hover[type=submit], a:hover[type=submit][type=reset], a.button:hover[type=reset], a.button.button__outline:focus, a.button__outline:focus[type=submit], a:focus[type=submit][type=reset], a.button:focus[type=reset], a.button.button__outline:active, a.button__outline:active[type=submit], a:active[type=submit][type=reset], a.button:active[type=reset], button.button__outline:hover, button:hover[type=reset], button.button__outline:focus, button:focus[type=reset], button.button__outline:active, button:active[type=reset], [type=submit].button__outline:hover, [type=submit]:hover[type=reset], [type=submit].button__outline:focus, [type=submit]:focus[type=reset], [type=submit].button__outline:active, [type=submit]:active[type=reset], [type=reset].button__outline:hover, [type=reset]:hover, [type=reset].button__outline:focus, [type=reset]:focus, [type=reset].button__outline:active, [type=reset]:active, [type=button].button__outline:hover, [type=button]:hover[type=reset], [type=button].button__outline:focus, [type=button]:focus[type=reset], [type=button].button__outline:active, [type=button]:active[type=reset] {
+    color: #b22d4f; }
   .button::-moz-focus-inner, [type=submit]::-moz-focus-inner, a.button::-moz-focus-inner, a[type=submit]::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
     border: 0;
     padding: 0; }
-  .button:hover, :hover[type=submit], .button:focus, :focus[type=submit], .button:active, :active[type=submit], a.button:hover, a:hover[type=submit], a.button:focus, a:focus[type=submit], a.button:active, a:active[type=submit], button:hover, button:focus, button:active, [type=submit]:hover, [type=submit]:focus, [type=submit]:active, [type=reset]:hover, [type=reset]:focus, [type=reset]:active, [type=button]:hover, [type=button]:focus, [type=button]:active {
-    background-color: #89233d;
-    border-color: #89233d;
-    color: white; }
   .button:focus, :focus[type=submit], a.button:focus, a:focus[type=submit], button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
-    outline: 0;
-    box-shadow: 0px 0px 1px 3px #df8098; }
+    outline: 0; }
   .button:disabled, :disabled[type=submit], a.button:disabled, a:disabled[type=submit], button:disabled, [type=submit]:disabled, [type=reset]:disabled, [type=button]:disabled {
     cursor: not-allowed;
     background-color: #999999;
-    border: 1px solid #999999; }
+    border-color: #999999; }
+    .button:disabled:hover, :disabled:hover[type=submit], .button:disabled:focus, :disabled:focus[type=submit], .button:disabled:active, :disabled:active[type=submit], a.button:disabled:hover, a:disabled:hover[type=submit], a.button:disabled:focus, a:disabled:focus[type=submit], a.button:disabled:active, a:disabled:active[type=submit], button:disabled:hover, button:disabled:focus, button:disabled:active, [type=submit]:disabled:hover, [type=submit]:disabled:focus, [type=submit]:disabled:active, [type=reset]:disabled:hover, [type=reset]:disabled:focus, [type=reset]:disabled:active, [type=button]:disabled:hover, [type=button]:disabled:focus, [type=button]:disabled:active {
+      background-color: #999999;
+      border-color: #999999; }
 
 .button__secondary, a.button__secondary {
   background-color: #2d6378;
-  border-color: #2d6378;
-  color: white; }
+  border-color: #2d6378; }
   .button__secondary:hover, .button__secondary:focus, .button__secondary:active, a.button__secondary:hover, a.button__secondary:focus, a.button__secondary:active {
-    background-color: #1f4453;
-    border-color: #1f4453;
-    color: white; }
+    background-color: #387b96;
+    border-color: #387b96; }
   .button__secondary:focus, a.button__secondary:focus {
-    box-shadow: 0px 0px 1px 3px #4291b0; }
+    box-shadow: 0px 0px 1px 3px #4394b3; }
+  .button__secondary.button__outline:hover, .button__secondary:hover[type=reset], .button__secondary.button__outline:focus, .button__secondary:focus[type=reset], .button__secondary.button__outline:active, .button__secondary:active[type=reset], a.button__secondary.button__outline:hover, a.button__secondary:hover[type=reset], a.button__secondary.button__outline:focus, a.button__secondary:focus[type=reset], a.button__secondary.button__outline:active, a.button__secondary:active[type=reset] {
+    color: #2d6378; }
+
+.button__tertiary, a.button__tertiary {
+  background-color: #5d2b50;
+  border-color: #5d2b50; }
+  .button__tertiary:hover, .button__tertiary:focus, .button__tertiary:active, a.button__tertiary:hover, a.button__tertiary:focus, a.button__tertiary:active {
+    background-color: #793868;
+    border-color: #793868; }
+  .button__tertiary:focus, a.button__tertiary:focus {
+    box-shadow: 0px 0px 1px 3px #954580; }
+  .button__tertiary.button__outline:hover, .button__tertiary:hover[type=reset], .button__tertiary.button__outline:focus, .button__tertiary:focus[type=reset], .button__tertiary.button__outline:active, .button__tertiary:active[type=reset], a.button__tertiary.button__outline:hover, a.button__tertiary:hover[type=reset], a.button__tertiary.button__outline:focus, a.button__tertiary:focus[type=reset], a.button__tertiary.button__outline:active, a.button__tertiary:active[type=reset] {
+    color: #5d2b50; }
+
+.button__success, a.button__success {
+  background-color: #2CC990;
+  border-color: #2CC990; }
+  .button__success:hover, .button__success:focus, .button__success:active, a.button__success:hover, a.button__success:focus, a.button__success:active {
+    background-color: #47d7a3;
+    border-color: #47d7a3; }
+  .button__success:focus, a.button__success:focus {
+    box-shadow: 0px 0px 1px 3px #69deb3; }
+  .button__success.button__outline:hover, .button__success:hover[type=reset], .button__success.button__outline:focus, .button__success:focus[type=reset], .button__success.button__outline:active, .button__success:active[type=reset], a.button__success.button__outline:hover, a.button__success:hover[type=reset], a.button__success.button__outline:focus, a.button__success:focus[type=reset], a.button__success.button__outline:active, a.button__success:active[type=reset] {
+    color: #2CC990; }
+
+.button__warning, a.button__warning {
+  background-color: #FCB941;
+  border-color: #FCB941; }
+  .button__warning:hover, .button__warning:focus, .button__warning:active, a.button__warning:hover, a.button__warning:focus, a.button__warning:active {
+    background-color: #fdc869;
+    border-color: #fdc869; }
+  .button__warning:focus, a.button__warning:focus {
+    box-shadow: 0px 0px 1px 3px #fdd791; }
+  .button__warning.button__outline:hover, .button__warning:hover[type=reset], .button__warning.button__outline:focus, .button__warning:focus[type=reset], .button__warning.button__outline:active, .button__warning:active[type=reset], a.button__warning.button__outline:hover, a.button__warning:hover[type=reset], a.button__warning.button__outline:focus, a.button__warning:focus[type=reset], a.button__warning.button__outline:active, a.button__warning:active[type=reset] {
+    color: #FCB941; }
+
+.button__error, a.button__error {
+  background-color: #FC6042;
+  border-color: #FC6042; }
+  .button__error:hover, .button__error:focus, .button__error:active, a.button__error:hover, a.button__error:focus, a.button__error:active {
+    background-color: #fd826a;
+    border-color: #fd826a; }
+  .button__error:focus, a.button__error:focus {
+    box-shadow: 0px 0px 1px 3px #fda492; }
+  .button__error.button__outline:hover, .button__error:hover[type=reset], .button__error.button__outline:focus, .button__error:focus[type=reset], .button__error.button__outline:active, .button__error:active[type=reset], a.button__error.button__outline:hover, a.button__error:hover[type=reset], a.button__error.button__outline:focus, a.button__error:focus[type=reset], a.button__error.button__outline:active, a.button__error:active[type=reset] {
+    color: #FC6042; }
 
 .button__outline, [type=reset], a.button__outline, a[type=reset] {
-  background: transparent;
-  color: inherit;
-  border-color: #b22d4f; }
+  background-color: transparent !important;
+  color: inherit; }
   .button__outline:hover, :hover[type=reset], .button__outline:focus, :focus[type=reset], .button__outline:active, :active[type=reset], a.button__outline:hover, a:hover[type=reset], a.button__outline:focus, a:focus[type=reset], a.button__outline:active, a:active[type=reset] {
-    background-color: transparent;
-    border-color: #89233d;
-    color: #b22d4f; }
+    background-color: transparent !important; }
 
 .button__ghost, a.button__ghost {
-  background: transparent;
+  background-color: transparent;
   color: #b22d4f;
   border-color: transparent; }
   .button__ghost:hover, .button__ghost:focus, .button__ghost:active, a.button__ghost:hover, a.button__ghost:focus, a.button__ghost:active {
     background-color: transparent;
-    border-color: #2d6378;
+    border-color: transparent;
     color: #2d6378; }
 
 .button__block, a.button__block {
@@ -1924,7 +1972,8 @@ Utilities
 
 .docs pre {
   position: relative;
-  margin: 1rem 0 !important; }
+  margin: 1rem 0 !important;
+  font-size: 0.9em !important; }
   .docs pre label {
     top: 0;
     right: 0;
@@ -2014,5 +2063,42 @@ body {
 
 #navbar-menu {
   justify-content: center; }
+
+.button__hotpink {
+  background-color: hotpink;
+  border-color: hotpink; }
+  .button__hotpink:hover, .button__hotpink:focus, .button__hotpink:active {
+    background-color: #ff92c8;
+    border-color: #ff92c8; }
+  .button__hotpink:focus {
+    box-shadow: 0px 0px 1px 3px #ffbbdd; }
+  .button__hotpink.button__outline:hover, .button__hotpink:hover[type=reset], .button__hotpink.button__outline:focus, .button__hotpink:focus[type=reset], .button__hotpink.button__outline:active, .button__hotpink:active[type=reset] {
+    color: hotpink; }
+
+.button__gold {
+  background-color: gold;
+  border-color: gold;
+  color: brown; }
+  .button__gold:hover, .button__gold:focus, .button__gold:active {
+    background-color: #ffef99;
+    border-color: #ffef99;
+    color: #555; }
+  .button__gold:focus {
+    box-shadow: 0px 0px 1px 3px #fff7cc; }
+  .button__gold.button__outline:hover, .button__gold:hover[type=reset], .button__gold.button__outline:focus, .button__gold:focus[type=reset], .button__gold.button__outline:active, .button__gold:active[type=reset] {
+    color: gold; }
+
+.button__white {
+  background-color: #fff;
+  border-color: #fff;
+  color: gray; }
+  .button__white:hover, .button__white:focus, .button__white:active {
+    background-color: gray;
+    border-color: gray;
+    color: #fff; }
+  .button__white:focus {
+    box-shadow: 0px 0px 1px 3px white; }
+  .button__white.button__outline:hover, .button__white:hover[type=reset], .button__white.button__outline:focus, .button__white:focus[type=reset], .button__white.button__outline:active, .button__white:active[type=reset] {
+    color: #fff; }
 
 /*# sourceMappingURL=style.css.map */
