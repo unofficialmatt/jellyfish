@@ -145,10 +145,11 @@ $breakpoints: (
      Note: Comment out or remove a whole size to prevent it being iterated,
      or individual elements to inherit from the previously defined point.
      The shorthand names are used in column and modifier classes.
-     breakpoint and col-gutter are the only !required values
+     breakpoint and col-gutter are the only !required values.
+     Sensible breakpoint values @link https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/
     *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     sm: (
-        breakpoint: 540px,
+        breakpoint: 600px,
         container-width: 94%,
         container-gutter: 50px,
         col-gutter: 20px,
@@ -156,7 +157,7 @@ $breakpoints: (
         root-line-height: 1.48
         ),
     md: (
-        breakpoint: 768px,
+        breakpoint: 900px,
         container-width: 90%,
         container-max-width: 1080px,
         container-gutter: 0px,
@@ -164,13 +165,13 @@ $breakpoints: (
         root-font-size: 16px
         ),
     lg: (
-        breakpoint: 1280px,
-        container-width: 1220px,
+        breakpoint: 1200px,
+        container-width: 1080px,
         container-max-width: none,
         col-gutter: 35px,
         ),
     xl: (
-        breakpoint: 1700px,
+        breakpoint: 1800px,
         container-width: 1640px,
         col-gutter: 45px,
         )
