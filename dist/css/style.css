@@ -11,6 +11,7 @@
 /* LINKS */
 /* GLOBAL TRANSITION USED IN SMOOTH() */
 /* BORDERS */
+/* USER INTERFACE */
 /* FORMS */
 /* BUTTONS */
 /* TABLES */
@@ -37,6 +38,7 @@ SCSS FRAMEWORK BY MATT WEET
 /* LINKS */
 /* GLOBAL TRANSITION USED IN SMOOTH() */
 /* BORDERS */
+/* USER INTERFACE */
 /* FORMS */
 /* BUTTONS */
 /* TABLES */
@@ -117,11 +119,11 @@ body {
   line-height: 1.4;
   color: #333333;
   background-color: #fff; }
-  @media (min-width: 33.75em) {
+  @media (min-width: 37.5em) {
     body {
       font-size: 15px;
       line-height: 1.48; } }
-  @media (min-width: 48em) {
+  @media (min-width: 56.25em) {
     body {
       font-size: 16px; } }
 
@@ -205,7 +207,7 @@ img {
   max-width: 100%;
   height: auto;
   vertical-align: top; }
-  @media (min-width: 33.75em) {
+  @media (min-width: 37.5em) {
     img.align-left {
       margin: 0 1rem 1rem 0;
       float: left !important; }
@@ -493,16 +495,16 @@ sup {
   font-size: 12px;
   color: #555555;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
-  @media (min-width: 33.75em) {
+  @media (min-width: 37.5em) {
     .jf-debug::before {
       content: "sm"; } }
-  @media (min-width: 48em) {
+  @media (min-width: 56.25em) {
     .jf-debug::before {
       content: "md"; } }
-  @media (min-width: 80em) {
+  @media (min-width: 75em) {
     .jf-debug::before {
       content: "lg"; } }
-  @media (min-width: 106.25em) {
+  @media (min-width: 112.5em) {
     .jf-debug::before {
       content: "xl"; } }
 
@@ -669,7 +671,7 @@ sup {
 .offset-xs-0 {
   margin-left: 0%; }
 
-@media (min-width: 33.75em) {
+@media (min-width: 37.5em) {
   .container {
     width: 94%;
     padding-left: 50px;
@@ -812,19 +814,19 @@ sup {
   .jf-debug [class*='offset-sm-0'] {
     outline: 0; } }
 
-@media (max-width: 33.6875em) {
+@media (max-width: 37.4375em) {
   .hide-below-sm {
     display: none !important; } }
 
-@media (min-width: 33.75em) {
+@media (min-width: 37.5em) {
   .hide-above-sm {
     display: none !important; } }
 
-@media (min-width: 33.75em) and (max-width: 47.9375em) {
+@media (min-width: 37.5em) and (max-width: 56.1875em) {
   .hide-sm {
     display: none !important; } }
 
-@media (min-width: 48em) {
+@media (min-width: 56.25em) {
   .container {
     width: 90%;
     max-width: 1080px;
@@ -966,21 +968,21 @@ sup {
   .jf-debug [class*='offset-md-0'] {
     outline: 0; } }
 
-@media (max-width: 47.9375em) {
+@media (max-width: 56.1875em) {
   .hide-below-md {
     display: none !important; } }
 
-@media (min-width: 48em) {
+@media (min-width: 56.25em) {
   .hide-above-md {
     display: none !important; } }
 
-@media (min-width: 48em) and (max-width: 79.9375em) {
+@media (min-width: 56.25em) and (max-width: 74.9375em) {
   .hide-md {
     display: none !important; } }
 
-@media (min-width: 80em) {
+@media (min-width: 75em) {
   .container {
-    width: 1220px;
+    width: 1080px;
     max-width: none; }
   .row {
     margin-left: -17.5px;
@@ -1118,19 +1120,19 @@ sup {
   .jf-debug [class*='offset-lg-0'] {
     outline: 0; } }
 
-@media (max-width: 79.9375em) {
+@media (max-width: 74.9375em) {
   .hide-below-lg {
     display: none !important; } }
 
-@media (min-width: 80em) {
+@media (min-width: 75em) {
   .hide-above-lg {
     display: none !important; } }
 
-@media (min-width: 80em) and (max-width: 106.1875em) {
+@media (min-width: 75em) and (max-width: 112.4375em) {
   .hide-lg {
     display: none !important; } }
 
-@media (min-width: 106.25em) {
+@media (min-width: 112.5em) {
   .container {
     width: 1640px; }
   .row {
@@ -1271,11 +1273,11 @@ sup {
   .hide-xl {
     display: none !important; } }
 
-@media (max-width: 106.1875em) {
+@media (max-width: 112.4375em) {
   .hide-below-xl {
     display: none !important; } }
 
-@media (min-width: 106.25em) {
+@media (min-width: 112.5em) {
   .hide-above-xl {
     display: none !important; } }
 
@@ -1308,7 +1310,7 @@ sup {
     background-color: #cd3a60;
     border-color: #cd3a60; }
   .button:focus, :focus[type=submit], a.button:focus, a:focus[type=submit], button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
-    box-shadow: 0px 0px 1px 3px #d65b7a; }
+    box-shadow: 0px 0px 1px 3px #e494a8; }
   .button.button__outline:hover, .button__outline:hover[type=submit], :hover[type=submit][type=reset], .button:hover[type=reset], .button.button__outline:focus, .button__outline:focus[type=submit], :focus[type=submit][type=reset], .button:focus[type=reset], .button.button__outline:active, .button__outline:active[type=submit], :active[type=submit][type=reset], .button:active[type=reset], a.button.button__outline:hover, a.button__outline:hover[type=submit], a:hover[type=submit][type=reset], a.button:hover[type=reset], a.button.button__outline:focus, a.button__outline:focus[type=submit], a:focus[type=submit][type=reset], a.button:focus[type=reset], a.button.button__outline:active, a.button__outline:active[type=submit], a:active[type=submit][type=reset], a.button:active[type=reset], button.button__outline:hover, button:hover[type=reset], button.button__outline:focus, button:focus[type=reset], button.button__outline:active, button:active[type=reset], [type=submit].button__outline:hover, [type=submit]:hover[type=reset], [type=submit].button__outline:focus, [type=submit]:focus[type=reset], [type=submit].button__outline:active, [type=submit]:active[type=reset], [type=reset].button__outline:hover, [type=reset]:hover, [type=reset].button__outline:focus, [type=reset]:focus, [type=reset].button__outline:active, [type=reset]:active, [type=button].button__outline:hover, [type=button]:hover[type=reset], [type=button].button__outline:focus, [type=button]:focus[type=reset], [type=button].button__outline:active, [type=button]:active[type=reset] {
     color: #b22d4f; }
   .button::-moz-focus-inner, [type=submit]::-moz-focus-inner, a.button::-moz-focus-inner, a[type=submit]::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
@@ -1331,7 +1333,7 @@ sup {
     background-color: #387b96;
     border-color: #387b96; }
   .button__secondary:focus, a.button__secondary:focus {
-    box-shadow: 0px 0px 1px 3px #4394b3; }
+    box-shadow: 0px 0px 1px 3px #73b2cb; }
   .button__secondary.button__outline:hover, .button__secondary:hover[type=reset], .button__secondary.button__outline:focus, .button__secondary:focus[type=reset], .button__secondary.button__outline:active, .button__secondary:active[type=reset], a.button__secondary.button__outline:hover, a.button__secondary:hover[type=reset], a.button__secondary.button__outline:focus, a.button__secondary:focus[type=reset], a.button__secondary.button__outline:active, a.button__secondary:active[type=reset] {
     color: #2d6378; }
 
@@ -1342,7 +1344,7 @@ sup {
     background-color: #793868;
     border-color: #793868; }
   .button__tertiary:focus, a.button__tertiary:focus {
-    box-shadow: 0px 0px 1px 3px #954580; }
+    box-shadow: 0px 0px 1px 3px #b968a4; }
   .button__tertiary.button__outline:hover, .button__tertiary:hover[type=reset], .button__tertiary.button__outline:focus, .button__tertiary:focus[type=reset], .button__tertiary.button__outline:active, .button__tertiary:active[type=reset], a.button__tertiary.button__outline:hover, a.button__tertiary:hover[type=reset], a.button__tertiary.button__outline:focus, a.button__tertiary:focus[type=reset], a.button__tertiary.button__outline:active, a.button__tertiary:active[type=reset] {
     color: #5d2b50; }
 
@@ -1353,7 +1355,7 @@ sup {
     background-color: #47d7a3;
     border-color: #47d7a3; }
   .button__success:focus, a.button__success:focus {
-    box-shadow: 0px 0px 1px 3px #69deb3; }
+    box-shadow: 0px 0px 1px 3px #a3ebd1; }
   .button__success.button__outline:hover, .button__success:hover[type=reset], .button__success.button__outline:focus, .button__success:focus[type=reset], .button__success.button__outline:active, .button__success:active[type=reset], a.button__success.button__outline:hover, a.button__success:hover[type=reset], a.button__success.button__outline:focus, a.button__success:focus[type=reset], a.button__success.button__outline:active, a.button__success:active[type=reset] {
     color: #2CC990; }
 
@@ -1364,7 +1366,7 @@ sup {
     background-color: #fdc869;
     border-color: #fdc869; }
   .button__warning:focus, a.button__warning:focus {
-    box-shadow: 0px 0px 1px 3px #fdd791; }
+    box-shadow: 0px 0px 1px 3px #fef0d8; }
   .button__warning.button__outline:hover, .button__warning:hover[type=reset], .button__warning.button__outline:focus, .button__warning:focus[type=reset], .button__warning.button__outline:active, .button__warning:active[type=reset], a.button__warning.button__outline:hover, a.button__warning:hover[type=reset], a.button__warning.button__outline:focus, a.button__warning:focus[type=reset], a.button__warning.button__outline:active, a.button__warning:active[type=reset] {
     color: #FCB941; }
 
@@ -1375,7 +1377,7 @@ sup {
     background-color: #fd826a;
     border-color: #fd826a; }
   .button__error:focus, a.button__error:focus {
-    box-shadow: 0px 0px 1px 3px #fda492; }
+    box-shadow: 0px 0px 1px 3px #fedfd9; }
   .button__error.button__outline:hover, .button__error:hover[type=reset], .button__error.button__outline:focus, .button__error:focus[type=reset], .button__error.button__outline:active, .button__error:active[type=reset], a.button__error.button__outline:hover, a.button__error:hover[type=reset], a.button__error.button__outline:focus, a.button__error:focus[type=reset], a.button__error.button__outline:active, a.button__error:active[type=reset] {
     color: #FC6042; }
 
@@ -2071,7 +2073,7 @@ body {
     background-color: #ff92c8;
     border-color: #ff92c8; }
   .button__hotpink:focus {
-    box-shadow: 0px 0px 1px 3px #ffbbdd; }
+    box-shadow: 0px 0px 1px 3px white; }
   .button__hotpink.button__outline:hover, .button__hotpink:hover[type=reset], .button__hotpink.button__outline:focus, .button__hotpink:focus[type=reset], .button__hotpink.button__outline:active, .button__hotpink:active[type=reset] {
     color: hotpink; }
 

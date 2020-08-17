@@ -63,12 +63,16 @@
 //$border-radius: 4px;
 //$borders: $border-width $border-style $border-color;
 
+/* USER INTERFACE */
+//$ui-hover-function: lighten;
+//$ui-hover-function-amount: 8%;
+//$ui-focus-highlight-amount: 30%;
+
 /* FORMS */
 //$input-background: white;
 //$placeholder-color: $color-text-light;
 //$form-text-size: 1rem;
 //$form-border-hover: darken($border-color, 40%);
-//$form-border-focus: $color-primary;
 //$form-font: $font-primary;
 
 /* BUTTONS */
@@ -78,9 +82,6 @@
 //$button-text-transform: none;
 //$button-font-weight: bold;
 //$button-text-color: white;
-//$button-hover-function: lighten;
-//$button-hover-function-amount: 8%;
-//$button-focus-highlight-amount: 16%;
 //$button-disabled-background: lighten($color-text,40%);
 
 /* TABLES */
