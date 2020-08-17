@@ -47,8 +47,7 @@
     }
 }
 
-// TODO: Check if I Still need a.button - not sure why it is here
-.button, a.button {
+.button {
     &__secondary {
       @include button_styles($color-secondary);
     }

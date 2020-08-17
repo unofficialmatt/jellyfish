@@ -81,7 +81,7 @@ $form-border-hover: darken($border-color, 40%) !default;
 $form-font: $font-primary;
 
 /* BUTTONS */
-$buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
+$buttons: ('.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
 $button-border-width: 1px !default;
 $button-border-radius: 6px !default;
 $button-padding: .75em 1.5em !default;

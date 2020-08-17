@@ -1285,7 +1285,7 @@ sup {
   BUTTONS
   Default styling for all buttons
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.button, [type=submit], a.button, a[type=submit], button, [type=submit], [type=reset], [type=button] {
+.button, [type=submit], button, [type=submit], [type=reset], [type=button] {
   -webkit-appearance: none;
   user-select: none;
   display: inline-block;
@@ -1306,104 +1306,104 @@ sup {
   background-color: #b22d4f;
   border-color: #b22d4f;
   color: white; }
-  .button:hover, :hover[type=submit], .button:focus, :focus[type=submit], .button:active, :active[type=submit], a.button:hover, a:hover[type=submit], a.button:focus, a:focus[type=submit], a.button:active, a:active[type=submit], button:hover, button:focus, button:active, [type=submit]:hover, [type=submit]:focus, [type=submit]:active, [type=reset]:hover, [type=reset]:focus, [type=reset]:active, [type=button]:hover, [type=button]:focus, [type=button]:active {
+  .button:hover, :hover[type=submit], .button:focus, :focus[type=submit], .button:active, :active[type=submit], button:hover, button:focus, button:active, [type=submit]:hover, [type=submit]:focus, [type=submit]:active, [type=reset]:hover, [type=reset]:focus, [type=reset]:active, [type=button]:hover, [type=button]:focus, [type=button]:active {
     background-color: #cd3a60;
     border-color: #cd3a60; }
-  .button:focus, :focus[type=submit], a.button:focus, a:focus[type=submit], button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
+  .button:focus, :focus[type=submit], button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
     box-shadow: 0px 0px 1px 3px #e494a8; }
-  .button.button__outline:hover, .button__outline:hover[type=submit], :hover[type=submit][type=reset], .button:hover[type=reset], .button.button__outline:focus, .button__outline:focus[type=submit], :focus[type=submit][type=reset], .button:focus[type=reset], .button.button__outline:active, .button__outline:active[type=submit], :active[type=submit][type=reset], .button:active[type=reset], a.button.button__outline:hover, a.button__outline:hover[type=submit], a:hover[type=submit][type=reset], a.button:hover[type=reset], a.button.button__outline:focus, a.button__outline:focus[type=submit], a:focus[type=submit][type=reset], a.button:focus[type=reset], a.button.button__outline:active, a.button__outline:active[type=submit], a:active[type=submit][type=reset], a.button:active[type=reset], button.button__outline:hover, button:hover[type=reset], button.button__outline:focus, button:focus[type=reset], button.button__outline:active, button:active[type=reset], [type=submit].button__outline:hover, [type=submit]:hover[type=reset], [type=submit].button__outline:focus, [type=submit]:focus[type=reset], [type=submit].button__outline:active, [type=submit]:active[type=reset], [type=reset].button__outline:hover, [type=reset]:hover, [type=reset].button__outline:focus, [type=reset]:focus, [type=reset].button__outline:active, [type=reset]:active, [type=button].button__outline:hover, [type=button]:hover[type=reset], [type=button].button__outline:focus, [type=button]:focus[type=reset], [type=button].button__outline:active, [type=button]:active[type=reset] {
+  .button.button__outline:hover, .button__outline:hover[type=submit], :hover[type=submit][type=reset], .button:hover[type=reset], .button.button__outline:focus, .button__outline:focus[type=submit], :focus[type=submit][type=reset], .button:focus[type=reset], .button.button__outline:active, .button__outline:active[type=submit], :active[type=submit][type=reset], .button:active[type=reset], button.button__outline:hover, button:hover[type=reset], button.button__outline:focus, button:focus[type=reset], button.button__outline:active, button:active[type=reset], [type=submit].button__outline:hover, [type=submit]:hover[type=reset], [type=submit].button__outline:focus, [type=submit]:focus[type=reset], [type=submit].button__outline:active, [type=submit]:active[type=reset], [type=reset].button__outline:hover, [type=reset]:hover, [type=reset].button__outline:focus, [type=reset]:focus, [type=reset].button__outline:active, [type=reset]:active, [type=button].button__outline:hover, [type=button]:hover[type=reset], [type=button].button__outline:focus, [type=button]:focus[type=reset], [type=button].button__outline:active, [type=button]:active[type=reset] {
     color: #b22d4f; }
-  .button::-moz-focus-inner, [type=submit]::-moz-focus-inner, a.button::-moz-focus-inner, a[type=submit]::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
+  .button::-moz-focus-inner, [type=submit]::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
     border: 0;
     padding: 0; }
-  .button:focus, :focus[type=submit], a.button:focus, a:focus[type=submit], button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
+  .button:focus, :focus[type=submit], button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
     outline: 0; }
-  .button:disabled, :disabled[type=submit], a.button:disabled, a:disabled[type=submit], button:disabled, [type=submit]:disabled, [type=reset]:disabled, [type=button]:disabled {
+  .button:disabled, :disabled[type=submit], button:disabled, [type=submit]:disabled, [type=reset]:disabled, [type=button]:disabled {
     cursor: not-allowed;
     background-color: #999999;
     border-color: #999999; }
-    .button:disabled:hover, :disabled:hover[type=submit], .button:disabled:focus, :disabled:focus[type=submit], .button:disabled:active, :disabled:active[type=submit], a.button:disabled:hover, a:disabled:hover[type=submit], a.button:disabled:focus, a:disabled:focus[type=submit], a.button:disabled:active, a:disabled:active[type=submit], button:disabled:hover, button:disabled:focus, button:disabled:active, [type=submit]:disabled:hover, [type=submit]:disabled:focus, [type=submit]:disabled:active, [type=reset]:disabled:hover, [type=reset]:disabled:focus, [type=reset]:disabled:active, [type=button]:disabled:hover, [type=button]:disabled:focus, [type=button]:disabled:active {
+    .button:disabled:hover, :disabled:hover[type=submit], .button:disabled:focus, :disabled:focus[type=submit], .button:disabled:active, :disabled:active[type=submit], button:disabled:hover, button:disabled:focus, button:disabled:active, [type=submit]:disabled:hover, [type=submit]:disabled:focus, [type=submit]:disabled:active, [type=reset]:disabled:hover, [type=reset]:disabled:focus, [type=reset]:disabled:active, [type=button]:disabled:hover, [type=button]:disabled:focus, [type=button]:disabled:active {
       background-color: #999999;
       border-color: #999999; }
 
-.button__secondary, a.button__secondary {
+.button__secondary {
   background-color: #2d6378;
   border-color: #2d6378; }
-  .button__secondary:hover, .button__secondary:focus, .button__secondary:active, a.button__secondary:hover, a.button__secondary:focus, a.button__secondary:active {
+  .button__secondary:hover, .button__secondary:focus, .button__secondary:active {
     background-color: #387b96;
     border-color: #387b96; }
-  .button__secondary:focus, a.button__secondary:focus {
+  .button__secondary:focus {
     box-shadow: 0px 0px 1px 3px #73b2cb; }
-  .button__secondary.button__outline:hover, .button__secondary:hover[type=reset], .button__secondary.button__outline:focus, .button__secondary:focus[type=reset], .button__secondary.button__outline:active, .button__secondary:active[type=reset], a.button__secondary.button__outline:hover, a.button__secondary:hover[type=reset], a.button__secondary.button__outline:focus, a.button__secondary:focus[type=reset], a.button__secondary.button__outline:active, a.button__secondary:active[type=reset] {
+  .button__secondary.button__outline:hover, .button__secondary:hover[type=reset], .button__secondary.button__outline:focus, .button__secondary:focus[type=reset], .button__secondary.button__outline:active, .button__secondary:active[type=reset] {
     color: #2d6378; }
 
-.button__tertiary, a.button__tertiary {
+.button__tertiary {
   background-color: #5d2b50;
   border-color: #5d2b50; }
-  .button__tertiary:hover, .button__tertiary:focus, .button__tertiary:active, a.button__tertiary:hover, a.button__tertiary:focus, a.button__tertiary:active {
+  .button__tertiary:hover, .button__tertiary:focus, .button__tertiary:active {
     background-color: #793868;
     border-color: #793868; }
-  .button__tertiary:focus, a.button__tertiary:focus {
+  .button__tertiary:focus {
     box-shadow: 0px 0px 1px 3px #b968a4; }
-  .button__tertiary.button__outline:hover, .button__tertiary:hover[type=reset], .button__tertiary.button__outline:focus, .button__tertiary:focus[type=reset], .button__tertiary.button__outline:active, .button__tertiary:active[type=reset], a.button__tertiary.button__outline:hover, a.button__tertiary:hover[type=reset], a.button__tertiary.button__outline:focus, a.button__tertiary:focus[type=reset], a.button__tertiary.button__outline:active, a.button__tertiary:active[type=reset] {
+  .button__tertiary.button__outline:hover, .button__tertiary:hover[type=reset], .button__tertiary.button__outline:focus, .button__tertiary:focus[type=reset], .button__tertiary.button__outline:active, .button__tertiary:active[type=reset] {
     color: #5d2b50; }
 
-.button__success, a.button__success {
+.button__success {
   background-color: #2CC990;
   border-color: #2CC990; }
-  .button__success:hover, .button__success:focus, .button__success:active, a.button__success:hover, a.button__success:focus, a.button__success:active {
+  .button__success:hover, .button__success:focus, .button__success:active {
     background-color: #47d7a3;
     border-color: #47d7a3; }
-  .button__success:focus, a.button__success:focus {
+  .button__success:focus {
     box-shadow: 0px 0px 1px 3px #a3ebd1; }
-  .button__success.button__outline:hover, .button__success:hover[type=reset], .button__success.button__outline:focus, .button__success:focus[type=reset], .button__success.button__outline:active, .button__success:active[type=reset], a.button__success.button__outline:hover, a.button__success:hover[type=reset], a.button__success.button__outline:focus, a.button__success:focus[type=reset], a.button__success.button__outline:active, a.button__success:active[type=reset] {
+  .button__success.button__outline:hover, .button__success:hover[type=reset], .button__success.button__outline:focus, .button__success:focus[type=reset], .button__success.button__outline:active, .button__success:active[type=reset] {
     color: #2CC990; }
 
-.button__warning, a.button__warning {
+.button__warning {
   background-color: #FCB941;
   border-color: #FCB941; }
-  .button__warning:hover, .button__warning:focus, .button__warning:active, a.button__warning:hover, a.button__warning:focus, a.button__warning:active {
+  .button__warning:hover, .button__warning:focus, .button__warning:active {
     background-color: #fdc869;
     border-color: #fdc869; }
-  .button__warning:focus, a.button__warning:focus {
+  .button__warning:focus {
     box-shadow: 0px 0px 1px 3px #fef0d8; }
-  .button__warning.button__outline:hover, .button__warning:hover[type=reset], .button__warning.button__outline:focus, .button__warning:focus[type=reset], .button__warning.button__outline:active, .button__warning:active[type=reset], a.button__warning.button__outline:hover, a.button__warning:hover[type=reset], a.button__warning.button__outline:focus, a.button__warning:focus[type=reset], a.button__warning.button__outline:active, a.button__warning:active[type=reset] {
+  .button__warning.button__outline:hover, .button__warning:hover[type=reset], .button__warning.button__outline:focus, .button__warning:focus[type=reset], .button__warning.button__outline:active, .button__warning:active[type=reset] {
     color: #FCB941; }
 
-.button__error, a.button__error {
+.button__error {
   background-color: #FC6042;
   border-color: #FC6042; }
-  .button__error:hover, .button__error:focus, .button__error:active, a.button__error:hover, a.button__error:focus, a.button__error:active {
+  .button__error:hover, .button__error:focus, .button__error:active {
     background-color: #fd826a;
     border-color: #fd826a; }
-  .button__error:focus, a.button__error:focus {
+  .button__error:focus {
     box-shadow: 0px 0px 1px 3px #fedfd9; }
-  .button__error.button__outline:hover, .button__error:hover[type=reset], .button__error.button__outline:focus, .button__error:focus[type=reset], .button__error.button__outline:active, .button__error:active[type=reset], a.button__error.button__outline:hover, a.button__error:hover[type=reset], a.button__error.button__outline:focus, a.button__error:focus[type=reset], a.button__error.button__outline:active, a.button__error:active[type=reset] {
+  .button__error.button__outline:hover, .button__error:hover[type=reset], .button__error.button__outline:focus, .button__error:focus[type=reset], .button__error.button__outline:active, .button__error:active[type=reset] {
     color: #FC6042; }
 
-.button__outline, [type=reset], a.button__outline, a[type=reset] {
+.button__outline, [type=reset] {
   background-color: transparent !important;
   color: inherit; }
-  .button__outline:hover, :hover[type=reset], .button__outline:focus, :focus[type=reset], .button__outline:active, :active[type=reset], a.button__outline:hover, a:hover[type=reset], a.button__outline:focus, a:focus[type=reset], a.button__outline:active, a:active[type=reset] {
+  .button__outline:hover, :hover[type=reset], .button__outline:focus, :focus[type=reset], .button__outline:active, :active[type=reset] {
     background-color: transparent !important; }
 
-.button__ghost, a.button__ghost {
+.button__ghost {
   background-color: transparent;
   color: #b22d4f;
   border-color: transparent; }
-  .button__ghost:hover, .button__ghost:focus, .button__ghost:active, a.button__ghost:hover, a.button__ghost:focus, a.button__ghost:active {
+  .button__ghost:hover, .button__ghost:focus, .button__ghost:active {
     background-color: transparent;
     border-color: transparent;
     color: #2d6378; }
 
-.button__block, a.button__block {
+.button__block {
   display: block;
   width: 100%; }
 
-.button__large, a.button__large {
+.button__large {
   font-size: 1.1rem; }
 
-.button__small, a.button__small {
+.button__small {
   font-size: 0.8rem; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
@@ -1861,11 +1861,11 @@ they should be wrapped in this class to ensure consistent display
         justify-content: flex-end;
         margin-left: auto;
         padding: 0; } }
-  .navbar-menu input, .navbar-menu .button, .navbar-menu [type=submit], .navbar-menu a.button, .navbar-menu a[type=submit], .navbar-menu button, .navbar-menu [type=submit], .navbar-menu [type=reset], .navbar-menu [type=button] {
+  .navbar-menu input, .navbar-menu .button, .navbar-menu [type=submit], .navbar-menu button, .navbar-menu [type=submit], .navbar-menu [type=reset], .navbar-menu [type=button] {
     margin: 8px 10px;
     position: relative; }
     @media (min-width: 76.25em) {
-      .navbar-menu input, .navbar-menu .button, .navbar-menu [type=submit], .navbar-menu a.button, .navbar-menu a[type=submit], .navbar-menu button, .navbar-menu [type=submit], .navbar-menu [type=reset], .navbar-menu [type=button] {
+      .navbar-menu input, .navbar-menu .button, .navbar-menu [type=submit], .navbar-menu button, .navbar-menu [type=submit], .navbar-menu [type=reset], .navbar-menu [type=button] {
         margin: 10px 10px; } }
   .navbar-menu input {
     width: auto; }
@@ -1944,7 +1944,7 @@ Utilities
     font-size: 1.4em; }
   h3, h4, h5, h6 {
     font-size: 1.2em; }
-  .button, [type=submit], a.button, a[type=submit], button, [type=submit], [type=reset], [type=button] {
+  .button, [type=submit], button, [type=submit], [type=reset], [type=button] {
     border: 1px solid black  !important;
     background-color: white  !important;
     color: black  !important;
