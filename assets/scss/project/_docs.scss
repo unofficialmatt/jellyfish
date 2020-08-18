@@ -83,8 +83,9 @@
 
   //Margin around sections
   .docs-section {
-    margin-top: $element-margin*1.5;
-    margin-bottom: $element-margin*1.5;
+    margin-top: $element-margin*4;
+    padding-bottom: $element-margin*4;
+    border-bottom: $borders;
   }
 
   .smooth- {
@@ -148,6 +149,15 @@
 
 .navbar-brand {
   min-height: 55px;
+  .navbar-item {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $color-secondary;
+  }
+}
+
+.navbar-menu .navbar-end {
+  align-items: stretch;
 }
 
 body {
@@ -158,12 +168,24 @@ body {
   justify-content: center;
 }
 
+/* Create Button Examples */
 .button__hotpink {
-  @include button_styles(hotpink);
+  @include create_button(hotpink);
 }
 .button__gold {
-  @include button_styles(gold, brown, #555, 30%, 40%);
+  @include create_button(gold, brown, 20% );
 }
 .button__white {
-  @include button_styles(#fff, gray,#fff, 5%, 5%, gray);
+  @include create_button(#fff, gray);
+}
+
+/* Create Label Examples */
+.label__hotpink {
+  @include create_label(hotpink);
+}
+.label__gold {
+  @include create_label(gold);
+}
+.label__white {
+  @include create_label(white);
 }

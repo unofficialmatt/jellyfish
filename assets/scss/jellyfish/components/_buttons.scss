@@ -28,7 +28,7 @@
     padding: $button-padding;
     margin: h($element-margin) 5px $element-margin 0;
     @include smooth(background, border-color, color);
-    @include button_styles($color-primary, $button-text-color);
+    @include create_button($color-primary);
     &::-moz-focus-inner {
         border: 0;
         padding: 0;
@@ -49,19 +49,19 @@
 
 .button {
     &__secondary {
-      @include button_styles($color-secondary);
+      @include create_button($color-secondary);
     }
     &__tertiary {
-      @include button_styles($color-tertiary);
+      @include create_button($color-tertiary);
     }
     &__success {
-      @include button_styles($color-success);
+      @include create_button($color-success);
     }
     &__warning {
-      @include button_styles($color-warning);
+      @include create_button($color-warning);
     }
     &__error {
-      @include button_styles($color-error);
+      @include create_button($color-error);
     }
     &__outline {
         // Outline buttons have a transparent fill
@@ -78,7 +78,6 @@
         border-color: transparent;
         &:hover, &:focus, &:active {
           background-color: transparent;
-          border-color: transparent;
           color: $link-active;
         }
     }

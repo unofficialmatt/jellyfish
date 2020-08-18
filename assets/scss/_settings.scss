@@ -21,7 +21,8 @@
 /* COLOURS */
 //$color-text: #333333;
 //$color-text-light: #d9dbdb;
-//$color-background: #fff;
+//$color-white: #fff;
+//$color-background: $color-white;
 //$color-background-alt: #efefef;
 //$color-primary: #b22d4f;
 //$color-secondary: #2d6378;
@@ -81,8 +82,16 @@
 //$button-padding: .75em 1.5em;
 //$button-text-transform: none;
 //$button-font-weight: bold;
-//$button-text-color: white;
+//$button-text-color-light: $color-white;
+//$button-text-color-dark: $color-text;
 //$button-disabled-background: lighten($color-text,40%);
+
+/* LABELS */
+//$label-font-weight: bold;
+//$label-border-radius: 4px;
+//$label-outline-border-style: dashed
+//$label-text-color-light: $color-white;
+//$label-text-color-dark: $color-text;
 
 /* TABLES */
 //$table-stripe-color: lighten($color-text-light,5%);

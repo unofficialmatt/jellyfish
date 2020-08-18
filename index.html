@@ -18,7 +18,7 @@
   <nav class="navbar" id="navbar-sticky">
     <div class="container">
       <div class="navbar-brand">
-        <div class="navbar-item">🎐 Jellyfish SCSS framework</div>
+        <div class="navbar-item">🎐 Jellyfish</div>
         <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
           <span class="hamburger-label">Menu</span>
           <span class="hamburger-box">
@@ -27,7 +27,7 @@
         </button>
       </div>
       <div id="navbar-menu" class="navbar-menu">
-        <div class="navbar-start">
+        <div class="navbar-end">
           <ul>
             <li><a href="#how-to-use">How to Use</a></li>
             <li><a href="#boilerplate">Boilerplate</a></li>
@@ -38,6 +38,7 @@
             <li><a href="#buttons">Buttons</a></li>
             <li><a href="#forms">Forms</a></li>
             <li><a href="#tables">Tables</a></li>
+            <li><a href="#labels">Labels</a></li>
             <li><a href="#utilities">Utilities</a></li>
             <li><a href="#mixins">Mixins</a></li>
             <li><a href="#printing">Printing</a></li>
@@ -691,7 +692,7 @@
           <p>Jellyfish's navbar is fully customisable with the variables defined in <span class="file-ref">/assets/scss/_settings.scss</span>. You can control:</p>
           <ul>
             <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <strong>Note:</strong> if you change this value from it's default you also need to change the value in <span class="file-ref">/assets/js/site/scripts.js</span>: <code>var navPoint = '900';</code></li>
-            <li>Background colour and container padding</li>
+            <li>Background color and container padding</li>
             <li>Font size and text transform</li>
             <li>Link color, link background color, link weight - and hover states for all three</li>
             <li>Link border seperator</li>
@@ -957,7 +958,7 @@ console.log("JellyFish is Awesome!");
             </code>
             <label>_scaffolding.scss</label>
           </pre>
-          <p>Link colours are defined in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+          <p>Link colors are defined in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
             <code>
             /* LINKS */
@@ -1017,8 +1018,8 @@ console.log("JellyFish is Awesome!");
           <p>To disable a button set the <code>disabled</code> property on a <code>&lt;button></code> element. It is not possible to disable links without additional javascript, so Jellyfish does not allow you to simulate a disabled state on anchor elements.</p>
           <input type="button" value="Disabled Input Button" disabled>
           <button disabled>Disabled Button</button>
-          <h4>Colours</h4>
-          <p>Use the modifiers <span class="css-ref">.button__secondary</span>, <span class="css-ref">.button__tertiary</span>, <span class="css-ref">.button__success</span>, <span class="css-ref">.button__warning</span> or <span class="css-ref">.button__error</span> to change the button colour.</p>
+          <h4>Colors</h4>
+          <p>Use the modifiers <span class="css-ref">.button__secondary</span>, <span class="css-ref">.button__tertiary</span>, <span class="css-ref">.button__success</span>, <span class="css-ref">.button__warning</span> or <span class="css-ref">.button__error</span> to change the button color.</p>
           <pre class="language-markup">
             <code><!--
             <button class="button__secondary">Secondary</button>
@@ -1033,42 +1034,6 @@ console.log("JellyFish is Awesome!");
           <button class="button__success">Success</button>
           <button class="button__warning">Warning</button>
           <button class="button__error">Error</button>
-          <h4>Creating your own colours</h4>
-          <p>Use the <code>button_styles()</code> mixin to create your own buttons, in a consistent style, with ease. The mixin takes the following arguments:</p>
-            <ul>
-              <li>$button-color</li>
-              <li>$text-color</li>
-              <li>$hover-text-color</li>
-              <li>$amount (% override to apply to the $ui-hover-function variable)</li>
-              <li>$focus-amount (% override to apply to the :focus highlight)</li>
-              <li>$hover-color (override the default hover color)</li>
-            </ul>
-          <pre class="language-scss">
-            <code>
-              .button__hotpink {
-                @include button_styles(hotpink);
-              }
-              .button__gold {
-                @include button_styles(gold, brown, #555, 30%, 40%);
-              }
-              .button__white {
-                // Note: If you are passing a value for $hover-color, you need to pass number vals for $amount and $focus-amount or SASS will throw an error, even though these vars are not used
-                  @include button_styles(#fff, gray, #fff, 5%, 5%, gray);
-              }
-            </code>
-          </pre>
-          <pre class="language-markup">
-            <code><!--
-            <button class="button__hotpink">Hotpink</button>
-            <button class="button__hotpink button__outline">Hotpink Outline</button>
-            <button class="button__gold">Gold</button>
-            <button class="button__white">White</button>
-          --></code>
-          </pre>
-          <button class="button__hotpink">Hotpink</button>
-          <button class="button__hotpink button__outline">Hotpink Outline</button>
-          <button class="button__gold">Gold</button>
-          <button class="button__white">White</button>
           <h4>Outline buttons</h4>
           <p>Add the modifier <span class="css-ref">.button__outline</span> to show buttons without a background fill.</p>
           <pre class="language-markup">
@@ -1076,7 +1041,7 @@ console.log("JellyFish is Awesome!");
             <button class="button__outline">Button</button>
             ...
           --></code>
-          </pre>
+        </pre>
           <button class="button__outline">Button</button>
           <input type="submit" value="Submit" class="button__outline">
           <input type="button" value="Input" class="button__outline">
@@ -1087,12 +1052,14 @@ console.log("JellyFish is Awesome!");
             <code><!--
             <button class="button__ghost">Button</button>
             ...
+            <button>Normal</button>
           --></code>
           </pre>
           <button class="button__ghost">Button</button>
           <input type="submit" value="Submit" class="button__ghost">
           <input type="button" value="Input" class="button__ghost">
           <a class="button button__ghost" >Link</a>
+          <button>Normal</button>
           <h4>Button sizes</h4>
           <p>Add the modifier <span class="css-ref">.button___small</span> or <span class="css-ref">.button___large</span> to change the size of buttons.</p>
           <pre class="language-markup">
@@ -1134,8 +1101,41 @@ console.log("JellyFish is Awesome!");
           <button class="button__large button__ghost">Large</button>
           <button class="button__block button__secondary">Block Secondary</button>
           <button class="button__block button__error button__outline button__large">Block Error Outline Large</button>
+          <h4>Creating your own colors</h4>
+          <p>Use the <code>create_button()</code> mixin to create your own buttons, in a consistent style, with ease. The mixin takes the following arguments:</p>
+            <ul>
+              <li><span class="variable-ref">$button-color</span></li>
+              <li><span class="variable-ref">$hover-color</span> (override the default hover color)</li>
+              <li><span class="variable-ref">$hover-perc-amount</span> (% override to apply to the $ui-hover-function variable)</li>
+            </ul>
+          <pre class="language-scss">
+            <code>
+              .button__hotpink {
+                @include create_button(hotpink);
+              }
+              .button__gold {
+                @include create_button(gold, brown, 20% );
+              }
+              .button__white {
+                @include create_button(#fff, gray);
+              }
+            </code>
+          </pre>
+          <pre class="language-markup">
+            <code><!--
+            <button class="button__hotpink">Hotpink</button>
+            <button class="button__hotpink button__outline">Hotpink Outline</button>
+            <button class="button__gold">Gold</button>
+            <button class="button__white">White</button>
+          --></code>
+          </pre>
+          <button class="button__hotpink">Hotpink</button>
+          <button class="button__hotpink button__outline">Hotpink Outline</button>
+          <button class="button__gold">Gold</button>
+          <button class="button__white">White</button>
+          <p>Button text color is determined by an awesome mixin that compares the contrast of the button background color with the two variables <span class="variable-ref">$button-text-color-light</span> and <span class="variable-ref">$button-text-color-dark</span> and chooses the color with the most contrast.  That is why, in the example above, the Gold and White buttons change text color on hover.</p>
           <h4>Customising Buttons</h4>
-          <p>Button variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>. You can easily modify background-color, color and hover states for both primary and secondary buttons.</p>
+          <p>Button variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
           <code>
           /* BUTTONS */
@@ -1144,7 +1144,8 @@ console.log("JellyFish is Awesome!");
           $button-padding: .75em 1.5em;
           $button-text-transform: none;
           $button-font-weight: bold;
-          $button-text-color: white;
+          $button-text-color-light: $color-white;
+          $button-text-color-dark: $color-text;
           $button-disabled-background: lighten($color-text,40%);
           </code>
           <label>_settings.scss</label>
@@ -1532,6 +1533,78 @@ console.log("JellyFish is Awesome!");
           <label>_settings.scss</label>
           </pre>
         </section><!-- #tables -->
+        <section class="docs-section" id="labels">
+          <h2>Labels</h2>
+          <p>Jellyfish contains simple styles for labels; elements which can be used to display relevant information to the side of a parent. They are sized with em units, to scale based on the parent.</p>
+          <p>Use modifier classes to change the coloring or to display as an outlined label.</p>
+          <pre class="language-markup">
+            <code><!--
+            <h1>Heading 1 <span class="label">Normal</span><span class="label label__outline">Outline</span></h1>
+            <h2>Heading 2 <span class="label label__secondary">Secondary</span><span class="label label__secondary label__outline">Outline</span></h2>
+            <h3>Heading 3 <span class="label label__tertiary">Tertiary</span><span class="label label__tertiary label__outline">Outline</span></h3>
+            <h4>Heading 4 <span class="label label__success">Success</span><span class="label label__success label__outline">Outline</span></h4>
+            <h5>Heading 5 <span class="label label__warning">Warning</span><span class="label label__warning label__outline">Outline</span></h5>
+            <p>Paragraph <span class="label label__error">Error</span><span class="label label__error label__outline">Outline</span></p>
+          --></code>
+          </pre>
+          <h1>Heading 1 <span class="label">Normal</span><span class="label label__outline">Outline</span></h1>
+          <h2>Heading 2 <span class="label label__secondary">Secondary</span><span class="label label__secondary label__outline">Outline</span></h2>
+          <h3>Heading 3 <span class="label label__tertiary">Tertiary</span><span class="label label__tertiary label__outline">Outline</span></h3>
+          <h4>Heading 4 <span class="label label__success">Success</span><span class="label label__success label__outline">Outline</span></h4>
+          <h5>Heading 5 <span class="label label__warning">Warning</span><span class="label label__warning label__outline">Outline</span></h5>
+          <p>Paragraph <span class="label label__error">Error</span><span class="label label__error label__outline">Outline</span></p>
+          <h4>Creating your own colors</h4>
+          <p>Use the <code>create_label()</code> mixin to create your own labels, in a consistent style, with ease. The mixin takes one argument, $label-color.</p>
+          <pre class="language-scss">
+            <code>
+              .label__hotpink {
+                @include create_label(hotpink);
+              }
+              .label__gold {
+                @include create_label(gold);
+              }
+              .label__white {
+                @include create_label(white);
+              }
+            </code>
+          </pre>
+          <pre class="language-markup">
+            <code><!--
+            <h5>Heading 5 <span class="label label__hotpink">Hotpink</span><span class="label label__hotpink label__outline">Outline</span></h5>
+            <h5>Heading 5 <span class="label label__gold">Gold</span><span class="label label__gold label__outline">Outline</span></h5>
+            <h5>Heading 5 <span class="label label__white">White</span><span class="label label__white label__outline">Outline</span></h5>
+          --></code>
+          </pre>
+          <h5>Heading 5 <span class="label label__hotpink">Hotpink</span><span class="label label__hotpink label__outline">Outline</span></h5>
+          <h5>Heading 5 <span class="label label__gold">Gold</span><span class="label label__gold label__outline">Outline</span></h5>
+          <h5>Heading 5 <span class="label label__white">White</span><span class="label label__white label__outline">Outline</span></h5>
+          <p>Like <a href="#buttons">buttons</a>, labels use a mixin to determine the text color based on the contrast against the background color. These variables are <span class="variable-ref">$label-text-color-light</span> and <span class="variable-ref">$label-text-color-dark</span>.</p>
+          <h4>Nesting Labels</h4>
+          <p>Labels can be nested...</p>
+          <pre class="language-markup">
+            <code><!--
+            <h3>Heading 3 <span class="label label__hotpink">Notifications <span class="label label__white">5</span></span></h3>
+            <h3>Heading 3 <span class="label label__error">Errors <span class="label label__white">14</span></span></h3>
+            <h1>Heading 1 <span class="label label__warning">OK <span class="label label__white">That's<span class="label label__success">enough!</span></span></span></h1>
+          --></code>
+          </pre>
+          <h3>Heading 3 <span class="label label__hotpink">Notifications <span class="label label__white">5</span></span></h3>
+          <h3>Heading 3 <span class="label label__error">Errors <span class="label label__white">14</span></span></h3>
+          <h1>Heading 1 <span class="label label__warning">OK <span class="label label__white">That's<span class="label label__success">enough!</span></span></span></h1>
+          <h4>Customising Labels</h4>
+          <p>Label variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+          <pre class="language-scss">
+          <code>
+          /* LABELS */
+          $label-font-weight: bold;
+          $label-border-radius: 4px;
+          $label-outline-border-style: dashed
+          $label-text-color-light: $color-white;
+          $label-text-color-dark: $color-text;
+          </code>
+          <label>_settings.scss</label>
+          </pre>
+        </section><!-- /#labels.docs-section -->
         <section class="docs-section" id="utilities">
           <h2>Utilities</h2>
           <h3>Keep words together</h3>
@@ -2068,7 +2141,8 @@ console.log("JellyFish is Awesome!");
             /* COLOURS */
             $color-text: #333333;
             $color-text-light: #d9dbdb;
-            $color-background: #fff;
+            $color-white: #fff;
+            $color-background: $color-white;
             $color-background-alt: #efefef;
             $color-primary: #b22d4f;
             $color-secondary: #2d6378;
@@ -2128,8 +2202,16 @@ console.log("JellyFish is Awesome!");
             $button-padding: .75em 1.5em;
             $button-text-transform: none;
             $button-font-weight: bold;
-            $button-text-color: white;
+            $button-text-color-light: $color-white;
+            $button-text-color-dark: $color-text;
             $button-disabled-background: lighten($color-text,40%);
+
+            /* LABELS */
+            $label-font-weight: bold;
+            $label-border-radius: 4px;
+            $label-outline-border-style: dashed
+            $label-text-color-light: $color-white;
+            $label-text-color-dark: $color-text;
 
             /* TABLES */
             $table-stripe-color: lighten($color-text-light,5%);

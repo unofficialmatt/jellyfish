@@ -2,6 +2,8 @@
   USEFUL MIXINS AND FUNCTIONS
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+@import 'linear-channel-values';
+
 // Convert px to em
 @function em($pixels) {
     @return #{$pixels/16px}em;
@@ -104,31 +106,44 @@
     transition: $result;
 }
 
-// Apply consistent styling to buttons. In most cases, you only need to pass the $color value for your buttons to look great
-@mixin button_styles(
+// Apply consistent styling to buttons. In most cases, you only need to pass the $button-color value for your buttons to look great
+@mixin create_button(
     $button-color: null,
-    $text-color: null,
-    $hover-text-color: null,
-    $amount: $ui-hover-function-amount,
-    $focus-amount: $ui-focus-highlight-amount,
-    $hover-color: call($ui-hover-function, $button-color, $amount )
+    $hover-color: $button-color,
+    $hover-perc-amount: $ui-hover-function-amount
   ) {
   background-color: $button-color;
   border-color: $button-color;
-  color: $text-color;
+  color: choose-contrast-color($button-color,$button-text-color-light,$button-text-color-dark);
   &:hover, &:focus, &:active {
-    background-color: $hover-color;
-    border-color: $hover-color;
-    color: $hover-text-color;
+    @if $button-color == $hover-color {
+      background-color: call($ui-hover-function, $hover-color, $hover-perc-amount );
+      border-color: call($ui-hover-function, $hover-color, $hover-perc-amount );
+    }
+    @else {
+      background-color: $hover-color;
+      border-color: $hover-color;
+    }
+    color: choose-contrast-color($hover-color,$button-text-color-light,$button-text-color-dark);
   }
   &:focus {
     // TODO:Move to using scale instead https://sass-lang.com/documentation/modules/color#scale
-    box-shadow: 0px 0px 1px 3px call($ui-hover-function, $button-color, $focus-amount );
+    box-shadow: 0px 0px 1px 3px call($ui-hover-function, $hover-color, $ui-focus-highlight-amount );
   }
   &.button__outline {
     &:hover, &:focus, &:active {
       color: $button-color;
     }
+  }
+}
+
+// Apply consistent styling to labels
+@mixin create_label($label-color) {
+  border-color: $label-color;
+  background-color: $label-color;
+  color: choose-contrast-color($label-color,$label-text-color-light,$label-text-color-dark);
+  &.label__outline {
+    color: $label-color;
   }
 }
 
@@ -160,5 +175,45 @@
 @mixin do-not-print {
   @media print {
     display: none;
+  }
+}
+
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ * @link https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
+ */
+ @function luminance($color) {
+  $red: nth($linear-channel-values, red($color) + 1);
+  $green: nth($linear-channel-values, green($color) + 1);
+  $blue: nth($linear-channel-values, blue($color) + 1);
+
+  @return .2126 * $red + .7152 * $green + .0722 * $blue;
+}
+
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ * @link https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
+ */
+@function contrast($back, $front) {
+  $backLum: luminance($back) + .05;
+  $foreLum: luminance($front) + .05;
+
+  @return max($backLum, $foreLum) / min($backLum, $foreLum);
+}
+
+/**
+ * Determine whether to use dark or light text on top of given color.
+ */
+@function choose-contrast-color($color, $light-color: $color-white, $dark-color: $color-text) {
+  $lightContrast: contrast($color, $light-color);
+  $darkContrast: contrast($color, $dark-color);
+
+  @if ($lightContrast > $darkContrast) {
+    @return $light-color;
+  }
+  @else {
+    @return $dark-color;
   }
 }

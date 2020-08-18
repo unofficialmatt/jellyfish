@@ -1,5 +1,5 @@
 /*! jellyfish-grid 3.0.0
- * © 2020-08-17 Matt Weet - https://www.weareboba.com */
+ * © 2020-08-18 Matt Weet - https://www.weareboba.com */
 
 /* GRID */
 /* JELLYFISH DEFAULTS */
@@ -14,6 +14,7 @@
 /* USER INTERFACE */
 /* FORMS */
 /* BUTTONS */
+/* LABELS */
 /* TABLES */
 /* NAVBAR */
 /* HAMBURGER MENU */
@@ -25,6 +26,19 @@ SCSS FRAMEWORK BY MATT WEET
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   USEFUL MIXINS AND FUNCTIONS
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ * @link https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
+ */
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ * @link https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
+ */
+/**
+ * Determine whether to use dark or light text on top of given color.
+ */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   DEFAULT SETTINGS
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -41,6 +55,7 @@ SCSS FRAMEWORK BY MATT WEET
 /* USER INTERFACE */
 /* FORMS */
 /* BUTTONS */
+/* LABELS */
 /* TABLES */
 /* NAVBAR */
 /* HAMBURGER MENU */
@@ -1305,10 +1320,11 @@ sup {
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   background-color: #b22d4f;
   border-color: #b22d4f;
-  color: white; }
+  color: #fff; }
   .button:hover, :hover[type=submit], .button:focus, :focus[type=submit], .button:active, :active[type=submit], button:hover, button:focus, button:active, [type=submit]:hover, [type=submit]:focus, [type=submit]:active, [type=reset]:hover, [type=reset]:focus, [type=reset]:active, [type=button]:hover, [type=button]:focus, [type=button]:active {
     background-color: #cd3a60;
-    border-color: #cd3a60; }
+    border-color: #cd3a60;
+    color: #fff; }
   .button:focus, :focus[type=submit], button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
     box-shadow: 0px 0px 1px 3px #e494a8; }
   .button.button__outline:hover, .button__outline:hover[type=submit], :hover[type=submit][type=reset], .button:hover[type=reset], .button.button__outline:focus, .button__outline:focus[type=submit], :focus[type=submit][type=reset], .button:focus[type=reset], .button.button__outline:active, .button__outline:active[type=submit], :active[type=submit][type=reset], .button:active[type=reset], button.button__outline:hover, button:hover[type=reset], button.button__outline:focus, button:focus[type=reset], button.button__outline:active, button:active[type=reset], [type=submit].button__outline:hover, [type=submit]:hover[type=reset], [type=submit].button__outline:focus, [type=submit]:focus[type=reset], [type=submit].button__outline:active, [type=submit]:active[type=reset], [type=reset].button__outline:hover, [type=reset]:hover, [type=reset].button__outline:focus, [type=reset]:focus, [type=reset].button__outline:active, [type=reset]:active, [type=button].button__outline:hover, [type=button]:hover[type=reset], [type=button].button__outline:focus, [type=button]:focus[type=reset], [type=button].button__outline:active, [type=button]:active[type=reset] {
@@ -1328,10 +1344,12 @@ sup {
 
 .button__secondary {
   background-color: #2d6378;
-  border-color: #2d6378; }
+  border-color: #2d6378;
+  color: #fff; }
   .button__secondary:hover, .button__secondary:focus, .button__secondary:active {
     background-color: #387b96;
-    border-color: #387b96; }
+    border-color: #387b96;
+    color: #fff; }
   .button__secondary:focus {
     box-shadow: 0px 0px 1px 3px #73b2cb; }
   .button__secondary.button__outline:hover, .button__secondary:hover[type=reset], .button__secondary.button__outline:focus, .button__secondary:focus[type=reset], .button__secondary.button__outline:active, .button__secondary:active[type=reset] {
@@ -1339,10 +1357,12 @@ sup {
 
 .button__tertiary {
   background-color: #5d2b50;
-  border-color: #5d2b50; }
+  border-color: #5d2b50;
+  color: #fff; }
   .button__tertiary:hover, .button__tertiary:focus, .button__tertiary:active {
     background-color: #793868;
-    border-color: #793868; }
+    border-color: #793868;
+    color: #fff; }
   .button__tertiary:focus {
     box-shadow: 0px 0px 1px 3px #b968a4; }
   .button__tertiary.button__outline:hover, .button__tertiary:hover[type=reset], .button__tertiary.button__outline:focus, .button__tertiary:focus[type=reset], .button__tertiary.button__outline:active, .button__tertiary:active[type=reset] {
@@ -1350,10 +1370,12 @@ sup {
 
 .button__success {
   background-color: #2CC990;
-  border-color: #2CC990; }
+  border-color: #2CC990;
+  color: #333333; }
   .button__success:hover, .button__success:focus, .button__success:active {
     background-color: #47d7a3;
-    border-color: #47d7a3; }
+    border-color: #47d7a3;
+    color: #333333; }
   .button__success:focus {
     box-shadow: 0px 0px 1px 3px #a3ebd1; }
   .button__success.button__outline:hover, .button__success:hover[type=reset], .button__success.button__outline:focus, .button__success:focus[type=reset], .button__success.button__outline:active, .button__success:active[type=reset] {
@@ -1361,10 +1383,12 @@ sup {
 
 .button__warning {
   background-color: #FCB941;
-  border-color: #FCB941; }
+  border-color: #FCB941;
+  color: #333333; }
   .button__warning:hover, .button__warning:focus, .button__warning:active {
     background-color: #fdc869;
-    border-color: #fdc869; }
+    border-color: #fdc869;
+    color: #333333; }
   .button__warning:focus {
     box-shadow: 0px 0px 1px 3px #fef0d8; }
   .button__warning.button__outline:hover, .button__warning:hover[type=reset], .button__warning.button__outline:focus, .button__warning:focus[type=reset], .button__warning.button__outline:active, .button__warning:active[type=reset] {
@@ -1372,10 +1396,12 @@ sup {
 
 .button__error {
   background-color: #FC6042;
-  border-color: #FC6042; }
+  border-color: #FC6042;
+  color: #333333; }
   .button__error:hover, .button__error:focus, .button__error:active {
     background-color: #fd826a;
-    border-color: #fd826a; }
+    border-color: #fd826a;
+    color: #333333; }
   .button__error:focus {
     box-shadow: 0px 0px 1px 3px #fedfd9; }
   .button__error.button__outline:hover, .button__error:hover[type=reset], .button__error.button__outline:focus, .button__error:focus[type=reset], .button__error.button__outline:active, .button__error:active[type=reset] {
@@ -1393,7 +1419,6 @@ sup {
   border-color: transparent; }
   .button__ghost:hover, .button__ghost:focus, .button__ghost:active {
     background-color: transparent;
-    border-color: transparent;
     color: #2d6378; }
 
 .button__block {
@@ -1405,6 +1430,61 @@ sup {
 
 .button__small {
   font-size: 0.8rem; }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  LABELS
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.label {
+  padding: .25em .5em;
+  font-size: 0.6em;
+  font-weight: bold;
+  margin-left: 1rem;
+  line-height: 1;
+  position: relative;
+  top: -.2em;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #b22d4f;
+  background-color: #b22d4f;
+  color: #fff; }
+  .label.label__outline {
+    color: #b22d4f; }
+  .label .label {
+    margin-left: .5em; }
+  .label__outline {
+    border-style: dashed;
+    background-color: transparent !important; }
+  .label__secondary {
+    border-color: #2d6378;
+    background-color: #2d6378;
+    color: #fff; }
+    .label__secondary.label__outline {
+      color: #2d6378; }
+  .label__tertiary {
+    border-color: #5d2b50;
+    background-color: #5d2b50;
+    color: #fff; }
+    .label__tertiary.label__outline {
+      color: #5d2b50; }
+  .label__success {
+    border-color: #2CC990;
+    background-color: #2CC990;
+    color: #333333; }
+    .label__success.label__outline {
+      color: #2CC990; }
+  .label__warning {
+    border-color: #FCB941;
+    background-color: #FCB941;
+    color: #333333; }
+    .label__warning.label__outline {
+      color: #FCB941; }
+  .label__error {
+    border-color: #FC6042;
+    background-color: #FC6042;
+    color: #333333; }
+    .label__error.label__outline {
+      color: #FC6042; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   TABLES
@@ -2017,8 +2097,9 @@ Utilities
     color: white; }
 
 .docs .docs-section {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem; }
+  margin-top: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid #d9dbdb; }
 
 .docs .smooth-transform {
   transition: transform 0.2s ease; }
@@ -2059,6 +2140,13 @@ Utilities
 
 .navbar-brand {
   min-height: 55px; }
+  .navbar-brand .navbar-item {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #2d6378; }
+
+.navbar-menu .navbar-end {
+  align-items: stretch; }
 
 body {
   padding-top: 55px; }
@@ -2066,12 +2154,15 @@ body {
 #navbar-menu {
   justify-content: center; }
 
+/* Create Button Examples */
 .button__hotpink {
   background-color: hotpink;
-  border-color: hotpink; }
+  border-color: hotpink;
+  color: #333333; }
   .button__hotpink:hover, .button__hotpink:focus, .button__hotpink:active {
     background-color: #ff92c8;
-    border-color: #ff92c8; }
+    border-color: #ff92c8;
+    color: #333333; }
   .button__hotpink:focus {
     box-shadow: 0px 0px 1px 3px white; }
   .button__hotpink.button__outline:hover, .button__hotpink:hover[type=reset], .button__hotpink.button__outline:focus, .button__hotpink:focus[type=reset], .button__hotpink.button__outline:active, .button__hotpink:active[type=reset] {
@@ -2080,27 +2171,49 @@ body {
 .button__gold {
   background-color: gold;
   border-color: gold;
-  color: brown; }
+  color: #333333; }
   .button__gold:hover, .button__gold:focus, .button__gold:active {
-    background-color: #ffef99;
-    border-color: #ffef99;
-    color: #555; }
+    background-color: brown;
+    border-color: brown;
+    color: #fff; }
   .button__gold:focus {
-    box-shadow: 0px 0px 1px 3px #fff7cc; }
+    box-shadow: 0px 0px 1px 3px #e18787; }
   .button__gold.button__outline:hover, .button__gold:hover[type=reset], .button__gold.button__outline:focus, .button__gold:focus[type=reset], .button__gold.button__outline:active, .button__gold:active[type=reset] {
     color: gold; }
 
 .button__white {
   background-color: #fff;
   border-color: #fff;
-  color: gray; }
+  color: #333333; }
   .button__white:hover, .button__white:focus, .button__white:active {
     background-color: gray;
     border-color: gray;
     color: #fff; }
   .button__white:focus {
-    box-shadow: 0px 0px 1px 3px white; }
+    box-shadow: 0px 0px 1px 3px #cdcccc; }
   .button__white.button__outline:hover, .button__white:hover[type=reset], .button__white.button__outline:focus, .button__white:focus[type=reset], .button__white.button__outline:active, .button__white:active[type=reset] {
     color: #fff; }
+
+/* Create Label Examples */
+.label__hotpink {
+  border-color: hotpink;
+  background-color: hotpink;
+  color: #333333; }
+  .label__hotpink.label__outline {
+    color: hotpink; }
+
+.label__gold {
+  border-color: gold;
+  background-color: gold;
+  color: #333333; }
+  .label__gold.label__outline {
+    color: gold; }
+
+.label__white {
+  border-color: white;
+  background-color: white;
+  color: #333333; }
+  .label__white.label__outline {
+    color: white; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,47 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  LABELS
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.label {
+  padding: .25em .5em;
+  font:{
+    size: 0.6em;
+    weight: $label-font-weight;
+  }
+  margin-left: 1rem;
+  line-height: 1;
+  position: relative;
+  top: -.2em;
+  border:{
+    radius: $label-border-radius;
+    width: 1px;
+    style: solid;
+  }
+
+  @include create_label($color-primary);
+
+  .label {
+    // Nested Label
+    margin-left: .5em;
+  }
+
+  &__outline {
+    border-style: $label-outline-border-style;
+    background-color: transparent !important;
+  }
+  &__secondary {
+    @include create_label($color-secondary);
+  }
+  &__tertiary {
+    @include create_label($color-tertiary);
+  }
+  &__success {
+    @include create_label($color-success);
+  }
+  &__warning {
+    @include create_label($color-warning);
+  }
+  &__error {
+    @include create_label($color-error);
+  }
+}

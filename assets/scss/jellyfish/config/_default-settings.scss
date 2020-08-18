@@ -25,7 +25,8 @@ $element-margin: 1rem !default;
 /* COLOURS */
 $color-text: #333333 !default;
 $color-text-light: #d9dbdb !default;
-$color-background: #fff !default;
+$color-white: #fff !default;
+$color-background: $color-white !default;
 $color-background-alt: #efefef !default;
 $color-primary: #b22d4f !default;
 $color-secondary: #2d6378 !default;
@@ -87,8 +88,16 @@ $button-border-radius: 6px !default;
 $button-padding: .75em 1.5em !default;
 $button-text-transform: none !default;
 $button-font-weight: bold !default;
-$button-text-color: white !default;
+$button-text-color-light: $color-white !default;
+$button-text-color-dark: $color-text !default;
 $button-disabled-background: lighten($color-text,40%) !default;
+
+/* LABELS */
+$label-font-weight: bold !default;
+$label-border-radius: 4px !default;
+$label-outline-border-style: dashed !default
+$label-text-color-light: $color-white !default;
+$label-text-color-dark: $color-text !default;
 
 /* TABLES */
 $table-stripe-color: lighten($color-text-light,5%) !default;
