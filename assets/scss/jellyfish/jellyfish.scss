@@ -8,22 +8,8 @@ SCSS FRAMEWORK BY MATT WEET
 @import "config/mixins";
 @import "config/default-settings";
 
-// Reset
-@import "components/reset";
-
 // Components
-@import "components/scaffolding";
-@import "components/typography";
-@import "components/helpers";
-@import "components/accessibility";
-@import "components/grid";
-@import "components/buttons";
-@import "components/labels";
-@import "components/callouts";
-@import "components/tables";
-@import "components/forms";
 @import "vendor/hamburgers/hamburgers";
-@import "components/nav";
-@import "components/print";
+@import "components/all";
 
 // TODO: prefers-color-scheme: dark
