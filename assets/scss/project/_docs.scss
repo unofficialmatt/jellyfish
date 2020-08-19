@@ -12,7 +12,7 @@
   }
 
   .boxed {
-    background: lighten($color-secondary, 60%);
+    background: tint($color-secondary, 15%);
     padding: .7rem .9rem;
     line-height: 1.2;
     margin: $element-margin/4 0 $element-margin/2 0;
@@ -142,7 +142,7 @@
   }
 
   a.active {
-    background-color: lighten($color-secondary, 10%);
+    background-color: tint($color-secondary, 85%);
     color: white;
   }
 }
@@ -188,4 +188,12 @@ body {
 }
 .label__white {
   @include create_label(white);
+}
+
+/* Create Callout Examples */
+.callout__hotpink {
+  @include create_callout(hotpink);
+}
+.callout__gold {
+  @include create_callout(gold);
 }

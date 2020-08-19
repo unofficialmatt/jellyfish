@@ -69,16 +69,20 @@ $border-radius: 4px !default;
 $borders: $border-width $border-style $border-color !default;
 
 /* USER INTERFACE */
-$ui-hover-function: lighten !default;
-$ui-hover-function-amount: 8% !default;
-$ui-focus-highlight-amount: 30% !default;
+$ui-hover-function: tint !default; // Choose tint or shade
+$ui-hover-function-amount: 80% !default;
+$ui-focus-highlight-amount: 40% !default;
+
+/* CALLOUTS */
+$callout-tint-perc: 20% !default;
+$callout-border-radius: $border-radius !default;
 
 /* FORMS */
 $form-items: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]'); // Stack of elements to target
 $input-background: white !default;
 $placeholder-color: $color-text-light !default;
 $form-text-size: 1rem !default;
-$form-border-hover: darken($border-color, 40%) !default;
+$form-border-hover: shade($border-color, 60%) !default;
 $form-font: $font-primary;
 
 /* BUTTONS */
@@ -90,7 +94,7 @@ $button-text-transform: none !default;
 $button-font-weight: bold !default;
 $button-text-color-light: $color-white !default;
 $button-text-color-dark: $color-text !default;
-$button-disabled-background: lighten($color-text,40%) !default;
+$button-disabled-background: tint($color-text,40%) !default;
 
 /* LABELS */
 $label-font-weight: bold !default;
@@ -100,7 +104,7 @@ $label-text-color-light: $color-white !default;
 $label-text-color-dark: $color-text !default;
 
 /* TABLES */
-$table-stripe-color: lighten($color-text-light,5%) !default;
+$table-stripe-color: tint($color-text-light,30%) !default;
 $table-hover-background: $color-primary !default;
 $table-hover-color: white !default;
 
@@ -117,7 +121,7 @@ $navbar-font-weight: normal !default;
 $navbar-link-border: 1px solid rgba(255,255,255,0.4) !default;
 // Links: Hover
 $navbar-link-hover-color: $color-secondary !default;
-$navbar-link-hover-bg-color: darken($color-background-alt,10%) !default;
+$navbar-link-hover-bg-color: shade($color-background-alt,90%) !default;
 $navbar-link-hover-weight: $navbar-font-weight !default;
 // Links: Padding
 $navbar-link-padding-x: 10px !default;

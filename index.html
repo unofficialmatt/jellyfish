@@ -39,6 +39,7 @@
             <li><a href="#forms">Forms</a></li>
             <li><a href="#tables">Tables</a></li>
             <li><a href="#labels">Labels</a></li>
+            <li><a href="#callouts">Callouts</a></li>
             <li><a href="#utilities">Utilities</a></li>
             <li><a href="#mixins">Mixins</a></li>
             <li><a href="#printing">Printing</a></li>
@@ -716,7 +717,7 @@
               $navbar-link-border: 1px solid rgba(255,255,255,0.4);
               // Links: Hover
               $navbar-link-hover-color: $color-secondary;
-              $navbar-link-hover-bg-color: darken($color-background-alt,10%);
+              $navbar-link-hover-bg-color: shade($color-background-alt,90%);
               $navbar-link-hover-weight: $navbar-font-weight;
               // Links: Padding
               $navbar-link-padding-x: 10px;
@@ -1146,7 +1147,7 @@ console.log("JellyFish is Awesome!");
           $button-font-weight: bold;
           $button-text-color-light: $color-white;
           $button-text-color-dark: $color-text;
-          $button-disabled-background: lighten($color-text,40%);
+          $button-disabled-background: tint($color-text,40%);
           </code>
           <label>_settings.scss</label>
           </pre>
@@ -1416,7 +1417,7 @@ console.log("JellyFish is Awesome!");
           $input-background: white;
           $placeholder-color: $color-text-light;
           $form-text-size: 1rem;
-          $form-border-hover: darken($border-color, 40%);
+          $form-border-hover: shade($border-color, 60%);
           $form-font: $font-primary;
           </code>
           <label>_settings.scss</label>
@@ -1526,7 +1527,7 @@ console.log("JellyFish is Awesome!");
           <pre class="language-scss">
             <code>
               /* TABLES */
-              $table-stripe-color: lighten($color-text-light,5%);
+              $table-stripe-color: tint($color-text-light,30%);
               $table-hover-background: $color-primary;
               $table-hover-color: white;
           </code>
@@ -1554,7 +1555,7 @@ console.log("JellyFish is Awesome!");
           <h5>Heading 5 <span class="label label__warning">Warning</span><span class="label label__warning label__outline">Outline</span></h5>
           <p>Paragraph <span class="label label__error">Error</span><span class="label label__error label__outline">Outline</span></p>
           <h4>Creating your own colors</h4>
-          <p>Use the <code>create_label()</code> mixin to create your own labels, in a consistent style, with ease. The mixin takes one argument, $label-color.</p>
+          <p>Use the <code>create_label()</code> mixin to create your own labels, in a consistent style, with ease. The mixin takes one argument, <span class="variable-ref">$label-color</span>.</p>
           <pre class="language-scss">
             <code>
               .label__hotpink {
@@ -1605,6 +1606,90 @@ console.log("JellyFish is Awesome!");
           <label>_settings.scss</label>
           </pre>
         </section><!-- /#labels.docs-section -->
+        <section class="docs-section" id="callouts">
+          <h2>Callouts</h2>
+          <p>A callout provides a simple way to draw attention to information. It is an element with the class <span class="css-ref">.callout</span> applied.</p>
+          <pre class="language-markup">
+            <code><!--
+            <aside class="callout" role="alert">
+              <h2>Important information!</h2>
+              <p>Jellyfish have no brain, heart, bones or eyes. They are made up of a smooth, bag-like body and tentacles armed with tiny, stinging cells.</p>
+              <a href="#">Cool - tell me more!</a>
+            </aside>
+          --></code>
+          </pre>
+          <aside class="callout" role="alert">
+            <h2>Important information!</h2>
+            <p>Jellyfish have no brain, heart, bones or eyes. They are made up of a smooth, bag-like body and tentacles armed with tiny, stinging cells. </p>
+            <a href="#">Cool - tell me more!</a>
+          </aside>
+          <h3>Callout modifiers</h3>
+          <p>Provide more context to callouts by using the modifiers <span class="css-ref">.callout__primary</span>, <span class="css-ref">.callout__secondary</span>, <span class="css-ref">.callout__tertiary</span>, <span class="css-ref">.callout__success</span>, <span class="css-ref">.callout__warning</span> or <span class="css-ref">.callout__error</span>.</p>
+          <pre class="language-markup">
+            <code><!--
+            <div class="callout callout__primary">Primary</div>
+            <div class="callout callout__secondary">Secondary</div>
+            <div class="callout callout__tertiary">Tertiary</div>
+            <div class="callout callout__success">Success</div>
+            <div class="callout callout__warning">Error</div>
+            <div class="callout callout__error">Warning</div>
+          --></code>
+          </pre>
+          <div class="callout callout__primary">Primary</div>
+          <div class="callout callout__secondary">Secondary</div>
+          <div class="callout callout__tertiary">Tertiary</div>
+          <div class="callout callout__success">Success</div>
+          <div class="callout callout__warning">Error</div>
+          <div class="callout callout__error">Warning</div>
+          <h4>Callout links</h4>
+          <p>Use the class <span class="css-ref">.callout-link</span> to apply matching colouring to a link in a callout.</p>
+          <pre class="language-markup">
+            <code><!--
+            <div class="callout callout__primary">This is a <a href="#" class="callout-link">very important link</a></div>
+            <div class="callout callout__secondary">This is a <a href="#" class="callout-link">very important link</a></div>
+            <div class="callout callout__tertiary">This is a <a href="#" class="callout-link">very important link</a></div>
+            <div class="callout callout__success">This is a <a href="#" class="callout-link">very important link</a></div>
+            <div class="callout callout__warning">This is a <a href="#" class="callout-link">very important link</a></div>
+            <div class="callout callout__error">This is a <a href="#" class="callout-link">very important link</a></div>
+          --></code>
+          </pre>
+          <div class="callout callout__primary">This is a <a href="#" class="callout-link">very important link</a></div>
+          <div class="callout callout__secondary">This is a <a href="#" class="callout-link">very important link</a></div>
+          <div class="callout callout__tertiary">This is a <a href="#" class="callout-link">very important link</a></div>
+          <div class="callout callout__success">This is a <a href="#" class="callout-link">very important link</a></div>
+          <div class="callout callout__warning">This is a <a href="#" class="callout-link">very important link</a></div>
+          <div class="callout callout__error">This is a <a href="#" class="callout-link">very important link</a></div>
+          <h4>Creating your own colors</h4>
+          <p>Use the <code>create_callout()</code> mixin to create your own callouts, in a consistent style, with ease. The mixin takes one argument, <span class="variable-ref">$callout-color</span>.</p>
+          <pre class="language-scss">
+            <code>
+              .callout__hotpink {
+                @include create_callout(hotpink);
+              }
+              .callout__gold {
+                @include create_callout(gold);
+              }
+            </code>
+          </pre>
+          <pre class="language-markup">
+            <code><!--
+            <div class="callout callout__hotpink">This is a <a href="#" class="callout-link">Hotpink link</a></div>
+            <div class="callout callout__gold">This is a <a href="#" class="callout-link">Gold link</a></div>
+          --></code>
+          </pre>
+          <div class="callout callout__hotpink">This is a <a href="#" class="callout-link">Hotpink link</a></div>
+          <div class="callout callout__gold">This is a <a href="#" class="callout-link">Gold link</a></div>
+          <h4>Customising Callouts</h4>
+          <p>Callout variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+          <pre class="language-scss">
+          <code>
+          /* CALLOUTS */
+          $callout-tint-perc: 20%;
+          $callout-border-radius: $border-radius;
+          </code>
+          <label>_settings.scss</label>
+          </pre>
+        </section><!-- /#callouts.docs-section -->
         <section class="docs-section" id="utilities">
           <h2>Utilities</h2>
           <h3>Keep words together</h3>
@@ -2189,11 +2274,15 @@ console.log("JellyFish is Awesome!");
             $ui-hover-function-amount: 8%;
             $ui-focus-highlight-amount: 30%;
 
+            /* CALLOUTS */
+            $callout-tint-perc: 20%;
+            $callout-border-radius: $border-radius;
+
             /* FORMS */
             $input-background: white;
             $placeholder-color: $color-text-light;
             $form-text-size: 1rem;
-            $form-border-hover: darken($border-color, 40%);
+            $form-border-hover: shade($border-color, 60%);
             $form-font: $font-primary;
 
             /* BUTTONS */
@@ -2204,7 +2293,7 @@ console.log("JellyFish is Awesome!");
             $button-font-weight: bold;
             $button-text-color-light: $color-white;
             $button-text-color-dark: $color-text;
-            $button-disabled-background: lighten($color-text,40%);
+            $button-disabled-background: tint($color-text,40%);
 
             /* LABELS */
             $label-font-weight: bold;
@@ -2214,7 +2303,7 @@ console.log("JellyFish is Awesome!");
             $label-text-color-dark: $color-text;
 
             /* TABLES */
-            $table-stripe-color: lighten($color-text-light,5%);
+            $table-stripe-color: tint($color-text-light,30%);
             $table-hover-background: $color-primary;
             $table-hover-color: white;
 
@@ -2231,7 +2320,7 @@ console.log("JellyFish is Awesome!");
             $navbar-link-border: 1px solid rgba(255,255,255,0.4);
             // Links: Hover
             $navbar-link-hover-color: $color-secondary;
-            $navbar-link-hover-bg-color: darken($color-background-alt,10%);
+            $navbar-link-hover-bg-color: shade($color-background-alt,90%);
             $navbar-link-hover-weight: $navbar-font-weight;
             // Links: Padding
             $navbar-link-padding-x: 10px;

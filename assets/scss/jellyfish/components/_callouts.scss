@@ -1,0 +1,36 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  CALLOUTS
+  Default styling for callout elements
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.callout {
+  border: $borders;
+  margin-bottom: $element-margin;
+  padding: $element-padding;
+  border-radius: $callout-border-radius;
+  a.callout-link {
+    font-weight: bold;
+  }
+  & > :last-child {
+    margin-bottom: 0;
+  }
+
+  &__primary {
+    @include create_callout($color-primary);
+  }
+  &__secondary {
+    @include create_callout($color-secondary);
+  }
+  &__tertiary {
+    @include create_callout($color-tertiary);
+  }
+  &__success {
+    @include create_callout($color-success);
+  }
+  &__warning {
+    @include create_callout($color-warning);
+  }
+  &__error {
+    @include create_callout($color-error);
+  }
+}

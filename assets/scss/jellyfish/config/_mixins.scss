@@ -40,6 +40,16 @@
   @return n(h($num));
 }
 
+// Lighten a colour progressively, much better than lighten()
+@function tint($color, $percentage) {
+  @return mix($color, white, $percentage);
+}
+
+// Darken a colour progressively, much better than darken()
+@function shade($color, $percentage) {
+  @return mix($color, black, $percentage);
+}
+
 // Media queries check the breakpoint map to see if a given string exists, else they convert a given pixel value to em.
 @mixin above($min) {
     $bp-min: $min;
@@ -144,6 +154,18 @@
   color: choose-contrast-color($label-color,$label-text-color-light,$label-text-color-dark);
   &.label__outline {
     color: $label-color;
+  }
+}
+
+// Apply consistent styling to callouts
+@mixin create_callout($callout-color) {
+  border-color: $callout-color;
+  background-color: tint($callout-color, $callout-tint-perc);
+  a.callout-link {
+    color: $callout-color;
+    &:hover, &:focus, &:active {
+      color: shade($callout-color, 80%)
+    }
   }
 }
 

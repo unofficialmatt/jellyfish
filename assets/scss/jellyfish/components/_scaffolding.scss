@@ -187,5 +187,5 @@ img {
 
 // Highlighted text
 ::selection {
-background: lighten($color-primary,40%);
+background: tint($color-primary,20%);
 }
