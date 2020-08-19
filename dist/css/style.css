@@ -321,14 +321,14 @@ kbd, :not(pre) > code, var {
 
 kbd {
   background-color: #222;
-  color: white; }
+  color: #fff; }
 
 :not(pre) > code {
   border: 1px solid #d9dbdb; }
 
 var {
   font-style: italic;
-  color: white;
+  color: #fff;
   background-color: #2d6378; }
 
 sub, sup {
@@ -508,7 +508,7 @@ sup {
   left: 0;
   padding: 10px;
   z-index: 10000;
-  background: white;
+  background: #fff;
   font-size: 12px;
   color: #555555;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
@@ -1579,7 +1579,7 @@ tfoot th {
 
 .table__hoverable tr:hover td {
   background: #b22d4f !important;
-  color: white; }
+  color: #fff; }
 
 .table-container {
   overflow-x: auto;
@@ -1593,7 +1593,7 @@ tfoot th {
   display: block;
   border: 1px solid #d9dbdb;
   border-radius: 4px;
-  background: white;
+  background: #fff;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   padding: 10px;
   outline: none;
@@ -1647,7 +1647,7 @@ select {
   color: #333333;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: white url("data:image/svg+xml;charset=utf-8,%3Csvg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='#999999' d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/%3E%3C/svg%3E") right 10px center no-repeat;
+  background: #fff url("data:image/svg+xml;charset=utf-8,%3Csvg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='#999999' d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/%3E%3C/svg%3E") right 10px center no-repeat;
   background-size: .75rem;
   line-height: 1.4; }
 
@@ -2085,7 +2085,7 @@ Utilities
     font-size: 1.2em; }
   .button, [type=submit], button, [type=submit], [type=reset], [type=button] {
     border: 1px solid black  !important;
-    background-color: white  !important;
+    background-color: #fff !important;
     color: black  !important;
     display: inline-block !important;
     width: auto !important; }
@@ -2127,7 +2127,7 @@ Utilities
 
 .docs .css-ref, .docs .file-ref, .docs .variable-ref {
   display: inline-block;
-  color: white;
+  color: #fff;
   padding: 0.4em .7em;
   border-radius: 3px;
   font-size: 0.8em;
@@ -2151,9 +2151,9 @@ Utilities
   padding: 2rem 0;
   margin-bottom: 2rem;
   text-align: center;
-  color: white; }
+  color: #fff; }
   .docs .docs-header a {
-    color: white; }
+    color: #fff; }
 
 .docs .docs-section {
   margin-top: 4rem;
@@ -2175,7 +2175,7 @@ Utilities
   .docs .smooth-wild:hover, .docs .smooth-wild:active {
     transform: scale(1.1);
     background-color: #2d6378;
-    color: white;
+    color: #fff;
     transform: matrix(1.08, 0.05, 0.01, 1.1, 1, 4); }
 
 #navbar-sticky {
@@ -2195,7 +2195,7 @@ Utilities
     padding: 0; }
   #navbar-sticky a.active {
     background-color: #4d7a8c;
-    color: white; }
+    color: #fff; }
 
 .navbar-brand {
   min-height: 55px; }

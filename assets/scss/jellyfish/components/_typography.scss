@@ -116,7 +116,7 @@ q {
 kbd {
     @extend %inline-code;
     background-color: #222;
-    color: white;
+    color: $color-white;
 }
 
 // Code
@@ -129,7 +129,7 @@ kbd {
 var {
     @extend %inline-code;
     font-style: italic;
-    color: white;
+    color: $color-white;
     background-color: $color-secondary;
 }
 

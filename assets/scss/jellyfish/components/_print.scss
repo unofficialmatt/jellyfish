@@ -43,7 +43,7 @@ iframe, .navbar {
   }
   #{$buttons} {
     border: 1px solid black  !important;
-    background-color: white  !important;
+    background-color: $color-white  !important;
     color: black  !important;
     display: inline-block !important;
     width: auto !important;

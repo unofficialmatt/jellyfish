@@ -41,7 +41,7 @@
 
   %reference {
     display: inline-block;
-    color: white;
+    color: $color-white;
     padding: 0.4em .7em;
     border-radius: 3px;
     font-size: $font-size-small;
@@ -74,10 +74,10 @@
     padding: $element-margin*2 0;
     margin-bottom: $element-margin*2;
     text-align: center;
-    color: white;
+    color: $color-white;
 
     a {
-      color: white;
+      color: $color-white;
     }
   }
 
@@ -114,7 +114,7 @@
       &:active {
         transform: scale(1.1);
         background-color: $color-secondary;
-        color: white;
+        color: $color-white;
         transform: matrix(1.08, .05, .01, 1.1, 1, 4);
       }
     }
@@ -143,7 +143,7 @@
 
   a.active {
     background-color: tint($color-secondary, 85%);
-    color: white;
+    color: $color-white;
   }
 }
 
