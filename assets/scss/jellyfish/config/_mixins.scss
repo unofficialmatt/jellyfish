@@ -127,8 +127,8 @@
   color: choose-contrast-color($button-color,$button-text-color-light,$button-text-color-dark);
   &:hover, &:focus, &:active {
     @if $button-color == $hover-color {
-      background-color: call($ui-hover-function, $hover-color, $hover-perc-amount );
-      border-color: call($ui-hover-function, $hover-color, $hover-perc-amount );
+      background-color: call(get-function($ui-hover-function), $hover-color, $hover-perc-amount );
+      border-color: call(get-function($ui-hover-function), $hover-color, $hover-perc-amount );
     }
     @else {
       background-color: $hover-color;
@@ -138,7 +138,7 @@
   }
   &:focus {
     // TODO:Move to using scale instead https://sass-lang.com/documentation/modules/color#scale
-    box-shadow: 0px 0px 1px 3px call($ui-hover-function, $hover-color, $ui-focus-highlight-amount );
+    box-shadow: 0px 0px 1px 3px call(get-function($ui-hover-function), $hover-color, $ui-focus-highlight-amount );
   }
   &.button__outline {
     &:hover, &:focus, &:active {

@@ -86,10 +86,10 @@ $form-border-hover: shade($border-color, 60%) !default;
 $form-font: $font-primary;
 
 /* BUTTONS */
-$buttons: ('.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
+$buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
 $button-border-width: 1px !default;
 $button-border-radius: 6px !default;
-$button-padding: .75em 1.5em !default;
+$button-padding: 1em 1.5em !default;
 $button-text-transform: none !default;
 $button-font-weight: bold !default;
 $button-text-color-light: $color-white !default;
@@ -113,11 +113,11 @@ $nav-expands: 900px !default; // Point at which the nav kicks in. You'll also ne
 $navbar-bg-color: $color-background-alt !default;
 $navbar-container-padding: 10px !default;
 // Links
-$navbar-font-size: 0.9em !default;
+$navbar-font-size: 0.8em !default;
 $navbar-text-transform: none !default;
 $navbar-link-color: $color-primary !default;
 $navbar-link-bg-color: $navbar-bg-color !default;
-$navbar-font-weight: normal !default;
+$navbar-font-weight: bold !default;
 $navbar-link-border: 1px solid rgba(255,255,255,0.4) !default;
 // Links: Hover
 $navbar-link-hover-color: $color-secondary !default;
