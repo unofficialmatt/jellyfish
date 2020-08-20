@@ -1102,7 +1102,7 @@ console.log("JellyFish is Awesome!");
           <button class="button__block button__secondary">Block Secondary</button>
           <button class="button__block button__error button__outline button__large">Block Error Outline Large</button>
           <h4>Creating your own colors</h4>
-          <p>Use the <code>create_button()</code> mixin to create your own buttons, in a consistent style, with ease. The mixin takes the following arguments:</p>
+          <p>The recommended way to add button colors is with the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map. Alternatively, you can use the <code>create_button()</code> mixin to create your own buttons, in a consistent style, with ease. The mixin takes the following arguments:</p>
             <ul>
               <li><span class="variable-ref">$button-color</span></li>
               <li><span class="variable-ref">$hover-color</span> (override the default hover color)</li>
@@ -1554,7 +1554,7 @@ console.log("JellyFish is Awesome!");
           <h5>Heading 5 <span class="label label__warning">Warning</span><span class="label label__warning label__outline">Outline</span></h5>
           <p>Paragraph <span class="label label__error">Error</span><span class="label label__error label__outline">Outline</span></p>
           <h4>Creating your own colors</h4>
-          <p>Use the <code>create_label()</code> mixin to create your own labels, in a consistent style, with ease. The mixin takes one argument, <span class="variable-ref">$label-color</span>.</p>
+          <p>The recommended way to add label colors is with the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map. Alternatively, you can use the <code>create_label()</code> mixin to create your own labels, in a consistent style, with ease. The mixin takes one argument, <span class="variable-ref">$label-color</span>.</p>
           <pre class="language-scss">
             <code>
               .label__hotpink {
@@ -1659,7 +1659,7 @@ console.log("JellyFish is Awesome!");
           <div class="callout callout__warning">This is a <a href="#" class="callout-link">very important link</a></div>
           <div class="callout callout__error">This is a <a href="#" class="callout-link">very important link</a></div>
           <h4>Creating your own colors</h4>
-          <p>Use the <code>create_callout()</code> mixin to create your own callouts, in a consistent style, with ease. The mixin takes one argument, <span class="variable-ref">$callout-color</span>.</p>
+          <p>The recommended way to add callout colors is with the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map. Alternatively, you can use the <code>create_callout()</code> mixin to create your own callouts, in a consistent style, with ease. The mixin takes one argument, <span class="variable-ref">$callout-color</span>.</p>
           <pre class="language-scss">
             <code>
               .callout__hotpink {
@@ -1931,6 +1931,75 @@ console.log("JellyFish is Awesome!");
                     margin-right: -15px;  // In reality this will get converted to rem by postcss
                     margin-top: -25px;  // In reality this will get converted to rem by postcss
                   }
+                </code>
+              </pre>
+            </div>
+          </div>
+          <h3>Create buttons, labels and callouts</h3>
+          <p>Add colours to the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map to have Jellyfish automagically create styles for you, or use the following mixins:</p>
+          <div class="row">
+            <div class="col sm-12 md-6">
+              <h4>Input:</h4>
+              <pre class="language-scss">
+                <code>
+                  .button__gold {
+                    @include create_button(gold, brown, 20% );
+                  }
+                  .label__seagreen {
+                    @include create_label(seagreen);
+                  }
+                  .callout__tomato {
+                    @include create_callout(tomato);
+                  }
+                </code>
+              </pre>
+            </div>
+            <div class="col sm-12 md-6">
+              <h4>Returns:</h4>
+              <pre class="language-scss">
+                <code>
+                  .button__gold {
+                    background-color: gold;
+                    border-color: gold;
+                    color: #333333; }
+
+                  .button__gold:hover,
+                  .button__gold:focus,
+                  .button__gold:active {
+                    background-color: brown;
+                    border-color: brown;
+                    color: #fff; }
+
+                  .button__gold:focus {
+                    box-shadow: 0px 0px 1px 3px #dbaaaa; }
+
+                  .button__gold.button__outline:hover,
+                  .button__gold:hover[type=reset],
+                  .button__gold.button__outline:focus,
+                  .button__gold:focus[type=reset],
+                  .button__gold.button__outline:active,
+                  .button__gold:active[type=reset] {
+                    color: gold; }
+
+                  .label__seagreen {
+                    border-color: seagreen;
+                    background-color: seagreen;
+                    color: #fff; }
+
+                  .label__seagreen.label__outline {
+                    color: seagreen; }
+
+                  .callout__tomato {
+                    border-color: tomato;
+                    background-color: #ffe0da; }
+
+                  .callout__tomato a.callout-link {
+                    color: tomato; }
+
+                  .callout__tomato a.callout-link:hover,
+                  .callout__tomato a.callout-link:focus,
+                  .callout__tomato a.callout-link:active {
+                    color: #cc4f39; }
                 </code>
               </pre>
             </div>
@@ -2236,6 +2305,15 @@ console.log("JellyFish is Awesome!");
             $color-warning: #FCB941;
             $color-error: #FC6042;
 
+            /* THEME COLORS */
+            // Any variable you add here will have the following classes automatically created: .text-*, .bg-*, .label__*, .button__* and .callout__*
+            $theme-colors: (
+              // Eg.
+              // "tomato": tomato,
+              // "black": #000,
+              // "white": #fff
+            );
+
             /* TYPEFACES */
             $font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             $font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -2394,6 +2472,67 @@ console.log("JellyFish is Awesome!");
                     )
             );
           </code></pre>
+          <h4 id="theme-colors-map">Theme Colors Map</h4>
+          <p>Of particular interest here is the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map. You can add your own key/value pairs to the map and Jellyfish will automagically generate classes for <span class="css-ref">.text-{key}</span>, <span class="css-ref">.bg-{key}</span>, <span class="css-ref">.label__{key}</span>, <span class="css-ref">.button__{key}</span> and <span class="css-ref">.callout__{key}</span>.</p>
+          <div class="row">
+            <div class="col sm-12 md-6">
+              <h5>Input:</h5>
+              <pre class="language-scss">
+                <code>
+                  $theme-colors: (
+                    "sienna": sienna
+                  );
+                </code>
+              </pre>
+            </div>
+            <div class="col sm-12 md-6">
+              <h5>Returns:</h5>
+              <pre class="language-scss">
+                <code>
+
+                  /* BACKGROUND COLOR AND CONTRASTING TEXT */
+                  .bg-sienna {
+                    background-color: sienna;
+                    color: #fff; }
+
+                  /* TEXT */
+                  .text-sienna {
+                    color: sienna; }
+
+                  /* BUTTON */
+                  .button__sienna, a.button__sienna {
+                    background-color: sienna;
+                    border-color: sienna;
+                    color: #fff; }
+                    .button__sienna:hover, .button__sienna:focus, .button__sienna:active, a.button__sienna:hover, a.button__sienna:focus, a.button__sienna:active {
+                      background-color: #b37557;
+                      border-color: #b37557;
+                      color: #fff; }
+                    .button__sienna:focus, a.button__sienna:focus {
+                      box-shadow: 0px 0px 1px 3px #d9baab; }
+                    .button__sienna.button__outline:hover, .button__sienna:hover[type=reset], .button__sienna.button__outline:focus, .button__sienna:focus[type=reset], .button__sienna.button__outline:active, .button__sienna:active[type=reset], a.button__sienna.button__outline:hover, a.button__sienna:hover[type=reset], a.button__sienna.button__outline:focus, a.button__sienna:focus[type=reset], a.button__sienna.button__outline:active, a.button__sienna:active[type=reset] {
+                      color: sienna; }
+
+                  /* LABEL */
+                  .label__sienna {
+                    border-color: sienna;
+                    background-color: sienna;
+                    color: #fff; }
+                    .label__sienna.label__outline {
+                      color: sienna; }
+
+                  /* CALLOUT */
+                  .callout__sienna {
+                    border-color: sienna;
+                    background-color: #ecdcd5; }
+                    .callout__sienna a.callout-link {
+                      color: sienna; }
+                      .callout__sienna a.callout-link:hover, .callout__sienna a.callout-link:focus, .callout__sienna a.callout-link:active {
+                        color: #804224; }
+                </code>
+              </pre>
+            </div>
+          </div>
         </section><!-- #configuration -->
         <section class="docs-section" id="debug">
           <h2>Debug mode</h2>

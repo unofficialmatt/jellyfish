@@ -47,21 +47,12 @@
     }
 }
 
-.button {
-    &__secondary {
-      @include create_button($color-secondary);
-    }
-    &__tertiary {
-      @include create_button($color-tertiary);
-    }
-    &__success {
-      @include create_button($color-success);
-    }
-    &__warning {
-      @include create_button($color-warning);
-    }
-    &__error {
-      @include create_button($color-error);
+.button, a.button {
+    @each $name, $color in $theme-colors {
+      // Loop through $theme-colors map and create buttons for each key
+      &__#{$name} {
+        @include create_button($color);
+      }
     }
     &__outline {
         // Outline buttons have a transparent fill

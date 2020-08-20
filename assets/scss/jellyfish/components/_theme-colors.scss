@@ -1,0 +1,14 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  THEME COLORS
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+@each $name, $color in $theme-colors {
+  // Loop through $theme-colors map and create classes for .bg-* and .text-*
+  .bg-#{$name} {
+    background-color: $color;
+    color: choose-contrast-color($color,$color-text, $color-white);
+  }
+  .text-#{$name} {
+    color: $color;
+  }
+}

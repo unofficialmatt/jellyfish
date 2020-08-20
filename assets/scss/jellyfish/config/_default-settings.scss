@@ -36,6 +36,22 @@ $color-success: #2CC990 !default;
 $color-warning: #FCB941 !default;
 $color-error: #FC6042 !default;
 
+// Create an empty map. This allows the map to be defined in the project's settings file to include any colors as required
+$theme-colors: () !default;
+
+// Merge default colours into the map
+$theme-colors: map-merge(
+  (
+    "primary": $color-primary,
+    "secondary": $color-secondary,
+    "tertiary": $color-tertiary,
+    "success": $color-success,
+    "warning": $color-warning,
+    "error": $color-error,
+  ),
+  $theme-colors
+);
+
 /* TYPEFACES */
 $font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;

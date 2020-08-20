@@ -30,19 +30,12 @@
     border-style: $label-outline-border-style;
     background-color: transparent !important;
   }
-  &__secondary {
-    @include create_label($color-secondary);
+
+  @each $name, $color in $theme-colors {
+    // Loop through $theme-colors map and create labels for each key
+    &__#{$name} {
+      @include create_label($color);
+    }
   }
-  &__tertiary {
-    @include create_label($color-tertiary);
-  }
-  &__success {
-    @include create_label($color-success);
-  }
-  &__warning {
-    @include create_label($color-warning);
-  }
-  &__error {
-    @include create_label($color-error);
-  }
+
 }
