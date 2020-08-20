@@ -2004,6 +2004,135 @@ console.log("JellyFish is Awesome!");
               </pre>
             </div>
           </div>
+          <h3>Choosing contrasting colors</h3>
+          <p>The function <code>choose-contrast-color()</code> empowers Sass to automatically pick the text color with the most contrast to a given background color. The math on this one is complex, the code comes from this excellent <a href="https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796" rel="nofollow">Medium article</a>. All you need to know is that the function takes three arguments:</p>
+          <ul>
+            <li>
+              <div class="variable-ref">$color</div> - Background color value
+            </li>
+            <li>
+              <div class="variable-ref">$light-color</div> - Light text color
+            </li>
+            <li>
+              <div class="variable-ref">$dark-color</div> - Dark text color
+            </li>
+          </ul>
+          <div class="row">
+            <div class="col sm-12 md-6">
+              <h4>Input:</h4>
+              <pre class="language-scss">
+                <code>
+                  .my-dark-element {
+                    background-color: darkslategray;
+                    color: choose-contrast-color(darkslategray, white, black); }
+
+                  .my-mid-element {
+                    background-color: dimgray;
+                    color: choose-contrast-color(dimgray, white, black); }
+
+                  .my-light-element {
+                    background-color: gainsboro;
+                    color: choose-contrast-color(gainsboro, white, black); }
+
+                  .my-coloured-element {
+                    background-color: tomato;
+                    color: choose-contrast-color(tomato, white, black); }
+                </code>
+              </pre>
+            </div>
+            <div class="col sm-12 md-6">
+              <h4>Returns:</h4>
+              <pre class="language-scss">
+                <code>
+                  .my-dark-element {
+                    background-color: darkslategray;
+                    color: white; }
+
+                  .my-mid-element {
+                    background-color: dimgray;
+                    color: white; }
+
+                  .my-light-element {
+                    background-color: gainsboro;
+                    color: black; }
+
+                  .my-coloured-element {
+                    background-color: tomato;
+                    color: black; }
+                </code>
+              </pre>
+            </div>
+          </div>
+          <h3>Tinting and shading</h3>
+          <p>The sass functions <code>lighten()</code> and <code>darken()</code> can give unexpected results, washing out or filling in faster than expected. Use the functions <code>tint()</code> and <code>shade()</code> to progressively lighten and darken colours, for more consistent colour adjusting.</p>
+          <div class="row">
+            <div class="col sm-12 md-6">
+              <h4>Input:</h4>
+              <pre class="language-scss">
+                <code>
+                  .some-tinted-element {
+                    background-color: #ff0000; // Base color
+                    color: lighten(#ff0000, 50%); // lighten()
+                    border-color: tint(#ff0000, 50%); // tint() }
+
+                  .some-shaded-element {
+                    background-color: #00ff00; // Base color
+                    color: darken(#00ff00, 40%); // lighten()
+                    border-color: shade(#00ff00, 60%); // tint() }
+                </code>
+              </pre>
+            </div>
+            <div class="col sm-12 md-6">
+              <h4>Returns:</h4>
+              <pre class="language-scss">
+                <code>
+                  .some-tinted-element {
+                    background-color: #ff0000;
+                    color: white;
+                    border-color: #ff8080; }
+
+                  .some-shaded-element {
+                    background-color: #00ff00;
+                    color: #003300;
+                    border-color: #009900; }
+                </code>
+              </pre>
+            </div>
+          </div>
+          <table>
+            <tr>
+              <td class="tintshade tint-100">Base tint (100%) #aa0000</td>
+              <td class="tintshade tint-80">tint (80%) #bb3333</td>
+              <td class="tintshade tint-60">tint (60%) #cc6666</td>
+              <td class="tintshade tint-40">tint (40%) #dd9999</td>
+              <td class="tintshade tint-20">tint (20%) #eecccc</td>
+              <td class="tintshade tint-0">tint (0%) #ffffff</td>
+            </tr>
+            <tr>
+              <td class="tintshade lighten-0">Base lighten (0%) #aa0000</td>
+              <td class="tintshade lighten-20">lighten (20%) #ff1111</td>
+              <td class="tintshade lighten-40">lighten (40%) #ff7777</td>
+              <td class="tintshade lighten-60">lighten (60%) #ffdddd</td>
+              <td class="tintshade lighten-80">lighten (80%) #ffffff</td>
+              <td class="tintshade lighten-100">lighten (100%) #ffffff</td>
+            </tr>
+            <tr>
+              <td class="tintshade shade-100">Base shade (100%) #aa0000</td>
+              <td class="tintshade shade-80">shade (80%) #880000</td>
+              <td class="tintshade shade-60">shade (60%) #660000</td>
+              <td class="tintshade shade-40">shade (40%) #440000</td>
+              <td class="tintshade shade-20">shade (20%) #220000</td>
+              <td class="tintshade shade-0">shade (0%) #000000</td>
+            </tr>
+            <tr>
+              <td class="tintshade darken-0">Base darken (0%) #aa0000</td>
+              <td class="tintshade darken-20">darken (20%) #440000</td>
+              <td class="tintshade darken-40">darken (40%) #000000</td>
+              <td class="tintshade darken-60">darken (60%) #000000</td>
+              <td class="tintshade darken-80">darken (80%) #000000</td>
+              <td class="tintshade darken-100">darken (100%) #000000</td>
+            </tr>
+          </table>
           <h3>Quickly center a block-level element:</h3>
           <p>This will only work if the block has a defined width.</p>
           <pre class="language-scss">
@@ -2022,8 +2151,8 @@ console.log("JellyFish is Awesome!");
           <div class="row">
             <div class="col"><div class="boxed" style="width:40%;max-width:400px;margin-left:auto;margin-right:auto;">some-block</div></div>
           </div>
-          <h3>Working with Psuedo elements ::before and ::after</h3>
-          <p>Psuedo elements always need a few properties defined. This mixin accepts three arguments and has default fallbacks.</p>
+          <h3>Working with Pseudo elements ::before and ::after</h3>
+          <p>Pseudo elements always need a few properties defined. This mixin accepts three arguments and has default fallbacks.</p>
           <h4>Mixin</h4>
           <pre class="language-scss">
             <code>
@@ -2076,7 +2205,7 @@ console.log("JellyFish is Awesome!");
               }
               #{headings(3)} {
                 // Applies to all headings from 3 - 6
-                color: blue;
+                color: tomato;
               }
               #{headings(1,4)} {
                 // Applies to all headings from 1-4
@@ -2084,24 +2213,13 @@ console.log("JellyFish is Awesome!");
               }
             </code>
           </pre>
-          <style type="text/css">
-            .em-2 {
-              font-size: 2em;
-            }
-            .blue {
-              color: blue;
-            }
-            .ul {
-              text-decoration: underline;
-            }
-          </style>
           <div class="boxed">
-            <h1 class="em-2 ul">Heading 1</h1>
-            <h2 class="em-2 ul">Heading 2</h2>
-            <h3 class="em-2 ul blue">Heading 3</h3>
-            <h4 class="em-2 ul blue">Heading 4</h4>
-            <h5 class="em-2 blue">Heading 5</h5>
-            <h6 class="em-2 blue">Heading 6</h6>
+            <h1 class="h-em-2 h-ul">Heading 1</h1>
+            <h2 class="h-em-2 h-ul">Heading 2</h2>
+            <h3 class="h-em-2 h-ul h-tomato">Heading 3</h3>
+            <h4 class="h-em-2 h-ul h-tomato">Heading 4</h4>
+            <h5 class="h-em-2 h-tomato">Heading 5</h5>
+            <h6 class="h-em-2 h-tomato">Heading 6</h6>
           </div>
           <h3>Global smooth() transitions</h3>
           <p>Use the mixin <code>@include smooth($properties...)</code> to apply global transitions for a consistent UI feel. The mixin accepts multiple arguments.</p>

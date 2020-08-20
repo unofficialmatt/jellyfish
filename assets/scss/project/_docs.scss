@@ -197,3 +197,102 @@ body {
 .callout__gold {
   @include create_callout(gold);
 }
+
+/* Tints and Shades */
+
+$tintshade: #aa0000;
+.tintshade {
+  height: 100px;
+  width: calc(100%/6);
+  font-size: 0.9em;
+  border-bottom: 0;
+  vertical-align: middle;
+  text-align: center;
+  background-color: $tintshade;
+  &.tint-100 {
+    background-color: tint($tintshade, 100%)
+  }
+  &.tint-80 {
+    background-color: tint($tintshade, 80%)
+  }
+  &.tint-60 {
+    background-color: tint($tintshade, 60%)
+  }
+  &.tint-40 {
+    background-color: tint($tintshade, 40%)
+  }
+  &.tint-20 {
+    background-color: tint($tintshade, 20%)
+  }
+  &.tint-0 {
+    background-color: tint($tintshade, 0%)
+  }
+  &.lighten-100 {
+    background-color: lighten($tintshade, 100%)
+  }
+  &.lighten-80 {
+    background-color: lighten($tintshade, 80%)
+  }
+  &.lighten-60 {
+    background-color: lighten($tintshade, 60%)
+  }
+  &.lighten-40 {
+    background-color: lighten($tintshade, 40%)
+  }
+  &.lighten-20 {
+    background-color: lighten($tintshade, 20%)
+  }
+  &.lighten-0 {
+    background-color: lighten($tintshade, 0%)
+  }
+  &[class*=" shade"], &[class*=" darken"] {
+    color: #fff;
+  }
+  &.shade-100 {
+    background-color: shade($tintshade, 100%)
+  }
+  &.shade-80 {
+    background-color: shade($tintshade, 80%)
+  }
+  &.shade-60 {
+    background-color: shade($tintshade, 60%)
+  }
+  &.shade-40 {
+    background-color: shade($tintshade, 40%)
+  }
+  &.shade-20 {
+    background-color: shade($tintshade, 20%)
+  }
+  &.shade-0 {
+    background-color: shade($tintshade, 0%)
+  }
+  &.darken-100 {
+    background-color: darken($tintshade, 100%)
+  }
+  &.darken-80 {
+    background-color: darken($tintshade, 80%)
+  }
+  &.darken-60 {
+    background-color: darken($tintshade, 60%)
+  }
+  &.darken-40 {
+    background-color: darken($tintshade, 40%)
+  }
+  &.darken-20 {
+    background-color: darken($tintshade, 20%)
+  }
+  &.darken-0 {
+    background-color: darken($tintshade, 0%)
+  }
+}
+
+// Simulated Heading Styling
+.h-em-2 {
+  font-size: 2em;
+}
+.h-tomato {
+  color: tomato;
+}
+.h-ul {
+  text-decoration: underline;
+}
