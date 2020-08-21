@@ -1,5 +1,5 @@
 /*! jellyfish-grid 3.0.0
- * © 2020-08-20 Matt Weet - https://www.weareboba.com */
+ * © 2020-08-21 Matt Weet - https://www.weareboba.com */
 
 /* GRID */
 /* JELLYFISH DEFAULTS */
@@ -18,6 +18,7 @@
 /* BUTTONS */
 /* LABELS */
 /* TABLES */
+/* CARDS */
 /* NAVBAR */
 /* HAMBURGER MENU */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
@@ -60,6 +61,7 @@ SCSS FRAMEWORK BY MATT WEET
 /* BUTTONS */
 /* LABELS */
 /* TABLES */
+/* CARDS */
 /* NAVBAR */
 /* HAMBURGER MENU */
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -1493,6 +1495,90 @@ sup {
   font-size: 0.8rem; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  CALLOUTS
+  Default styling for callout elements
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.callout {
+  border: 1px solid #d9dbdb;
+  margin-bottom: 1rem;
+  padding: 20px;
+  border-radius: 4px; }
+  .callout a.callout-link {
+    font-weight: bold; }
+  .callout > :last-child {
+    margin-bottom: 0; }
+  .callout__primary {
+    border-color: #b22d4f;
+    background-color: #f0d5dc; }
+    .callout__primary a.callout-link {
+      color: #b22d4f; }
+      .callout__primary a.callout-link:hover, .callout__primary a.callout-link:focus, .callout__primary a.callout-link:active {
+        color: #8e243f; }
+  .callout__secondary {
+    border-color: #2d6378;
+    background-color: #d5e0e4; }
+    .callout__secondary a.callout-link {
+      color: #2d6378; }
+      .callout__secondary a.callout-link:hover, .callout__secondary a.callout-link:focus, .callout__secondary a.callout-link:active {
+        color: #244f60; }
+  .callout__tertiary {
+    border-color: #5d2b50;
+    background-color: #dfd5dc; }
+    .callout__tertiary a.callout-link {
+      color: #5d2b50; }
+      .callout__tertiary a.callout-link:hover, .callout__tertiary a.callout-link:focus, .callout__tertiary a.callout-link:active {
+        color: #4a2240; }
+  .callout__success {
+    border-color: #2CC990;
+    background-color: #d5f4e9; }
+    .callout__success a.callout-link {
+      color: #2CC990; }
+      .callout__success a.callout-link:hover, .callout__success a.callout-link:focus, .callout__success a.callout-link:active {
+        color: #23a173; }
+  .callout__warning {
+    border-color: #FCB941;
+    background-color: #fef1d9; }
+    .callout__warning a.callout-link {
+      color: #FCB941; }
+      .callout__warning a.callout-link:hover, .callout__warning a.callout-link:focus, .callout__warning a.callout-link:active {
+        color: #ca9434; }
+  .callout__error {
+    border-color: #FC6042;
+    background-color: #fedfd9; }
+    .callout__error a.callout-link {
+      color: #FC6042; }
+      .callout__error a.callout-link:hover, .callout__error a.callout-link:focus, .callout__error a.callout-link:active {
+        color: #ca4d35; }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  CARDS
+  Default styling for card elements
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+  border-radius: 0px;
+  border: 1px solid #d9dbdb;
+  margin-bottom: 1rem;
+  background: #fff; }
+  .card > :last-child {
+    margin-bottom: 0; }
+  .card-img {
+    width: 100%; }
+  .card-section {
+    padding: 20px; }
+    .card-section > :last-child {
+      margin-bottom: 0; }
+    .card-section .card-img {
+      margin-bottom: 1rem; }
+    .card-section + .card-section {
+      padding-top: 0; }
+  .card-footer {
+    margin-top: auto; }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   LABELS
   Default styling for label elements
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -1553,62 +1639,6 @@ sup {
     color: #333333; }
     .label__error.label__outline {
       color: #FC6042; }
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-  CALLOUTS
-  Default styling for callout elements
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.callout {
-  border: 1px solid #d9dbdb;
-  margin-bottom: 1rem;
-  padding: 20px;
-  border-radius: 4px; }
-  .callout a.callout-link {
-    font-weight: bold; }
-  .callout > :last-child {
-    margin-bottom: 0; }
-  .callout__primary {
-    border-color: #b22d4f;
-    background-color: #f0d5dc; }
-    .callout__primary a.callout-link {
-      color: #b22d4f; }
-      .callout__primary a.callout-link:hover, .callout__primary a.callout-link:focus, .callout__primary a.callout-link:active {
-        color: #8e243f; }
-  .callout__secondary {
-    border-color: #2d6378;
-    background-color: #d5e0e4; }
-    .callout__secondary a.callout-link {
-      color: #2d6378; }
-      .callout__secondary a.callout-link:hover, .callout__secondary a.callout-link:focus, .callout__secondary a.callout-link:active {
-        color: #244f60; }
-  .callout__tertiary {
-    border-color: #5d2b50;
-    background-color: #dfd5dc; }
-    .callout__tertiary a.callout-link {
-      color: #5d2b50; }
-      .callout__tertiary a.callout-link:hover, .callout__tertiary a.callout-link:focus, .callout__tertiary a.callout-link:active {
-        color: #4a2240; }
-  .callout__success {
-    border-color: #2CC990;
-    background-color: #d5f4e9; }
-    .callout__success a.callout-link {
-      color: #2CC990; }
-      .callout__success a.callout-link:hover, .callout__success a.callout-link:focus, .callout__success a.callout-link:active {
-        color: #23a173; }
-  .callout__warning {
-    border-color: #FCB941;
-    background-color: #fef1d9; }
-    .callout__warning a.callout-link {
-      color: #FCB941; }
-      .callout__warning a.callout-link:hover, .callout__warning a.callout-link:focus, .callout__warning a.callout-link:active {
-        color: #ca9434; }
-  .callout__error {
-    border-color: #FC6042;
-    background-color: #fedfd9; }
-    .callout__error a.callout-link {
-      color: #FC6042; }
-      .callout__error a.callout-link:hover, .callout__error a.callout-link:focus, .callout__error a.callout-link:active {
-        color: #ca4d35; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   TABLES

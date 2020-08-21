@@ -4,5 +4,38 @@
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .card {
-  // TODO: Add basic card styling?
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+  border-radius: $card-border-radius;
+  border: $card-border-width $card-border-style $card-border-color;
+  margin-bottom: $element-margin;
+  background: $card-background-color;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+
+  &-img {
+    width: 100%;
+  }
+
+  &-section {
+    padding: $card-padding;
+    & > :last-child {
+      margin-bottom: 0;
+    }
+    .card-img {
+      margin-bottom: $element-margin;
+    }
+
+    &+.card-section {
+      padding-top: 0;
+    }
+  }
+  &-footer {
+    margin-top: auto;
+  }
+
 }

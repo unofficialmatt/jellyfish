@@ -37,6 +37,7 @@
             <li><a href="#buttons">Buttons</a></li>
             <li><a href="#forms">Forms</a></li>
             <li><a href="#tables">Tables</a></li>
+            <li><a href="#cards">Cards</a></li>
             <li><a href="#labels">Labels</a></li>
             <li><a href="#callouts">Callouts</a></li>
             <li><a href="#utilities">Utilities</a></li>
@@ -1533,6 +1534,209 @@ console.log("JellyFish is Awesome!");
           <label>_settings.scss</label>
           </pre>
         </section><!-- #tables -->
+        <div class="docs-section" id="cards">
+          <h2>Cards</h2>
+          <p>Most websites use cards in some form or another. A card can contain all sorts of content. Jellyfish provides a straightforward card component and set of useful child styles.</p>
+          <p>A card container has no padding, allowing images to bleed to full-width if desired. The <span class="css-ref">.card-section</span> element is used when you want to add a padded section within a card. You can have multiple <span class="css-ref">.card-section</span> elements in a card; when they are stacked the top-padding is removed from subsequent sections.</p>
+          <p>Cards will by default take up 100% width of their parent container, however this can of course be manually overridden.</p>
+          <pre class="language-markup">
+            <code><!--
+              <div class="card" style="width: 280px">
+                <img class="card-img" src="http://placekitten.com/300/180">
+                <div class="card-section">
+                  <h3>Kittens are cute</h3>
+                  <p>But Jellyfish are still better!</p>
+                  <a href="#" class="button button__secondary button__small">Whatever!</a>
+                </div>
+                <div class="card-section">
+                  <small>(Maybe they are both just as awesome)</small>
+                </div>
+              </div>
+          --></code>
+          </pre>
+          <div class="card" style="width: 280px">
+            <img class="card-img" src="http://placekitten.com/300/180">
+            <div class="card-section">
+              <h3>Kittens are cute</h3>
+              <p>But Jellyfish are still better!</p>
+              <a href="#" class="button button__secondary button__small">Whatever!</a>
+            </div>
+            <div class="card-section">
+              <small>(Maybe they are both just as awesome)</small>
+            </div>
+          </div>
+          <h3>Card Images</h3>
+          <p>An element with the class <span class="css-ref">.card-img</span> will expand to 100% width of it's parent. Card images can be used outside of the <span class="css-ref">.card-section</span> to bleed to the edges, or inside the <span class="css-ref">.card-section</span> to have padding.</p>
+          <pre class="language-markup">
+            <code><!--
+              <div class="card">
+                <img class="card-img" src="http://placekitten.com/300/180">
+                <div class="card-section">
+                  <p>This card has an image outside of the <span class="css-ref">.card-section</span> element.</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-section">
+                  <img class="card-img" src="http://placekitten.com/300/180">
+                  <p>This card has an image within the <span class="css-ref">.card-section</span> element.</p>
+                </div>
+              </div>
+          --></code>
+          </pre>
+          <div class="row">
+            <div class="col sm-6 lg-4">
+              <div class="card">
+                <img class="card-img" src="http://placekitten.com/300/180">
+                <div class="card-section">
+                  <p>This card has an image outside of the <span class="css-ref">.card-section</span> element.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col sm-6 lg-4">
+              <div class="card">
+                <div class="card-section">
+                  <img class="card-img" src="http://placekitten.com/300/180">
+                  <p>This card has an image within the <span class="css-ref">.card-section</span> element.</p>
+                </div>
+              </div>
+            </div>
+        </div>
+        <h3>Same-height cards</h3>
+        <p>If you are using cards within a <span class="css-ref">.row</span> and <span class="css-ref">.col</span> structure, you can append the <span class="css-ref">.equal-height</span> class to the <span class="css-ref">.row</span> to force all cards in the row to be 100% height, regardless of their content.</p>
+        <pre class="language-markup">
+          <code><!--
+          <div class="row equal-height">
+            <div class="col">
+              <div class="card">
+                ...
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                This card has more content in it...
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                ...
+              </div>
+            </div>
+          </div>
+        --></code>
+        </pre>
+        <div class="row equal-height">
+          <div class="col">
+            <div class="card">
+              <img class="card-img" src="http://placekitten.com/300/180">
+              <div class="card-section">
+                <h4>My Awesome Card</h4>
+                <p>This card has just a small amount of text.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <img class="card-img" src="http://placekitten.com/300/180">
+              <div class="card-section">
+                <h4>My Awesome Card</h4>
+                <p>This card has just a a lot of text. I am going to write a few sentences of gibberish so that the height of this card grows. This will force other cards in the same row to expand to 100% height. You'll see the effect on the card border.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <img class="card-img" src="http://placekitten.com/300/180">
+              <div class="card-section">
+                <h4>My Awesome Card</h4>
+                <p>This card has just a small amount of text.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h4>Pushing content to the bottom of a card</h4>
+        <p>If you have a row of same-height cards, you might want to push content to the bottom of the card, for example a call-to-action. Simply put this content into a <span class="css-ref">.card-section</span> with the additional class <span class="css-ref">.card-footer</span>.</p>
+        <pre class="language-markup">
+          <code><!--
+          <div class="row equal-height">
+            <div class="col">
+              <div class="card">
+                <img class="card-img" src="http://placekitten.com/300/180">
+                <div class="card-section">
+                  <h4>My Awesome Card</h4>
+                  <p>This card has just a small amount of text.</p>
+                </div>
+                <footer class="card-section card-footer">
+                  <a href="#" class="button button__small button__tertiary">Awesome!</a>
+                </footer>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                ...
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                ...
+              </div>
+            </div>
+          </div>
+        --></code>
+        </pre>
+        <div class="row equal-height">
+          <div class="col">
+            <div class="card">
+              <img class="card-img" src="http://placekitten.com/300/180">
+              <div class="card-section">
+                <h4>My Awesome Card</h4>
+                <p>This card has just a small amount of text.</p>
+              </div>
+              <footer class="card-section card-footer">
+                <a href="#" class="button button__small button__tertiary">Awesome!</a>
+              </footer>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <img class="card-img" src="http://placekitten.com/300/180">
+              <div class="card-section">
+                <h4>My Awesome Card</h4>
+                <p>This card has just a a lot of text. I am going to write a few sentences of gibberish so that the height of this card grows. This will force other cards in the same row to expand to 100% height. You'll see the effect on the card border.</p>
+              </div>
+              <footer class="card-section card-footer">
+                <a href="#" class="button button__small button__tertiary">Awesome!</a>
+              </footer>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <img class="card-img" src="http://placekitten.com/300/180">
+              <div class="card-section">
+                <h4>My Awesome Card</h4>
+                <p>This card has just a small amount of text.</p>
+              </div>
+              <footer class="card-section card-footer">
+                <a href="#" class="button button__small button__tertiary">Awesome!</a>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <h4>Customising Cards</h4>
+          <p>Card variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+          <pre class="language-scss">
+          <code>
+          /* CARDS */
+          $card-border-radius: 0px;
+          $card-border-style: $border-style;
+          $card-border-color: $border-color;
+          $card-border-width: $border-width;
+          $card-padding: $element-padding;
+          $card-background-color: $color-background;
+          </code>
+          <label>_settings.scss</label>
+          </pre>
+        </div><!-- /#card.docs-section -->
         <section class="docs-section" id="labels">
           <h2>Labels</h2>
           <p>Jellyfish contains simple styles for labels; elements which can be used to display relevant information to the side of a parent. They are sized with em units, to scale based on the parent.</p>
@@ -2501,6 +2705,14 @@ console.log("JellyFish is Awesome!");
             $table-stripe-color: tint($color-text-light,30%);
             $table-hover-background: $color-primary;
             $table-hover-color: $color-white;
+
+            /* CARDS */
+            $card-border-radius: 0px;
+            $card-border-style: $border-style;
+            $card-border-color: $border-color;
+            $card-border-width: $border-width;
+            $card-padding: $element-padding;
+            $card-background-color: $color-background;
 
             /* NAVBAR */
             $nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive

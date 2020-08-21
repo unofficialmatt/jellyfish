@@ -111,6 +111,14 @@ $theme-colors: (
 //$table-hover-background: $color-primary;
 //$table-hover-color: $color-white;
 
+/* CARDS */
+//$card-border-radius: 0px;
+//$card-border-style: $border-style;
+//$card-border-color: $border-color;
+//$card-border-width: $border-width;
+//$card-padding: $element-padding;
+//$card-background-color: $color-background;
+
 /* NAVBAR */
 $nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
 //$navbar-bg-color: $color-background-alt;
@@ -171,6 +179,7 @@ $breakpoints: (
      breakpoint and col-gutter are the only !required values.
      Sensible breakpoint values @link https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/
     *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    // TODO: Adjust - get an optimal
     sm: (
         breakpoint: 600px,
         container-width: 94%,
