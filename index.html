@@ -137,8 +137,8 @@
             </li>
             <li><strong>Javascript: </strong> When any javascript file within <span class="file-ref">/assets/js</span> is changed, added or deleted:
               <ul>
-                <li>Concatenate all javascript files saved in <span class="file-ref">/assets/js/vendor</span> and <span class="file-ref">/assets/js/site</span> and saves to <span class="file-ref">/dist/js/site.js</span></li>
-                <li>Minify <span class="file-ref">/dist/js/site.js</span> to <span class="file-ref">/dist/js/site.min.js</span></li>
+                <li>Concatenate all javascript files saved in <span class="file-ref">/assets/js/vendor</span> and <span class="file-ref">/assets/js/project</span> and saves to <span class="file-ref">/dist/js/project.js</span></li>
+                <li>Minify <span class="file-ref">/dist/js/project.js</span> to <span class="file-ref">/dist/js/project.min.js</span></li>
                 <li>Reload the browser</li>
               </ul>
             </li>
@@ -189,7 +189,7 @@
                   </div>
                 </section>
               </main>
-              <script type="text/javascript" src="dist/js/site.min.js"></script>
+              <script type="text/javascript" src="dist/js/project.min.js"></script>
             </body>
 
             </html>
@@ -692,7 +692,7 @@
           <h3>Customising the navbar</h3>
           <p>Jellyfish's navbar is fully customisable with the variables defined in <span class="file-ref">/assets/scss/_settings.scss</span>. You can control:</p>
           <ul>
-            <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <strong>Note:</strong> if you change this value from it's default you also need to change the value in <span class="file-ref">/assets/js/site/scripts.js</span>: <code>var navPoint = '900';</code></li>
+            <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <strong>Note:</strong> if you change this value from it's default you also need to change the value in <span class="file-ref">/assets/js/project/scripts.js</span>: <code>var navPoint = '900';</code></li>
             <li>Background color and container padding</li>
             <li>Font size and text transform</li>
             <li>Link color, link background color, link weight - and hover states for all three</li>
@@ -2897,7 +2897,7 @@ console.log("JellyFish is Awesome!");
       </main><!-- MAIN DOCS AREA -->
     </div><!-- .row -->
   </div><!-- .container -->
-  <script type="text/javascript" src="dist/js/site.min.js"></script>
+  <script type="text/javascript" src="dist/js/project.min.js"></script>
 
   <!-- Highlight Code Syntax with Prism.js -->
   <script src="docs/prism.js"></script>

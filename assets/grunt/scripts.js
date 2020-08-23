@@ -9,8 +9,8 @@ module.exports = function (grunt) {
       separator: ';\r\n'
     },
     dist: {
-      src: ['<%= opts.build_dir %>/js/vendor/*.js', '<%= opts.build_dir %>/js/site/*.js'],
-      dest: '<%= opts.dist_dir %>/js/site.js',
+      src: ['<%= opts.build_dir %>/js/vendor/*.js', '<%= opts.build_dir %>/js/project/*.js'],
+      dest: '<%= opts.dist_dir %>/js/project.js',
     }
   });
 
@@ -23,7 +23,7 @@ module.exports = function (grunt) {
     },
     dist: {
       files: {
-        '<%= opts.dist_dir %>/js/site.min.js': ['<%= opts.dist_dir %>/js/site.js']
+        '<%= opts.dist_dir %>/js/project.min.js': ['<%= opts.dist_dir %>/js/project.js']
       }
     }
   });
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
   grunt.config.merge({
     eslint: {
       site: [
-        '<%= opts.build_dir %>/js/site/**/*.js' // Validates javascript files in js/site only (doesn't validate vendor JS)
+        '<%= opts.build_dir %>/js/project/**/*.js' // Validates javascript files in js/project only (doesn't validate vendor JS)
       ],
     }
   });

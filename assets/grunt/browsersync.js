@@ -7,7 +7,7 @@ module.exports = function (grunt) {
     bsFiles: {
       src: [
         '<%= opts.dist_dir %>/css/style.min.css',
-        '<%= opts.dist_dir %>/js/site.js',
+        '<%= opts.dist_dir %>/js/project.js',
         '<%= opts.dist_dir %>/img/*',
         '**/*.html'
       ]
