@@ -1972,7 +1972,6 @@ select::-ms-expand {
   *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     width: 100%;
     max-width: 100%;
-    overflow-y: scroll;
     display: flex; }
     @media (max-width: 76.1875em) {
       .navbar > .container {
@@ -2371,7 +2370,8 @@ Utilities
   #navbar-sticky .navbar-start {
     margin-right: 0; }
   #navbar-sticky .container {
-    padding: 0; }
+    padding: 0;
+    overflow-y: scroll; }
   #navbar-sticky a.active {
     background-color: #4d7a8c;
     color: #fff; }

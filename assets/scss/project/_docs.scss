@@ -138,6 +138,7 @@
 
   .container {
     padding: 0;
+    overflow-y: scroll; // TODO: What is a more permanent fix for an overflowing navbar?
   }
 
   a.active {
