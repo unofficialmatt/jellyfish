@@ -1,0 +1,32 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  DARK MODE
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+body.dark-ui {
+  &, & * {
+    background-color: $dark-mode-bg-color !important;
+    color: $dark-mode-text-color !important;
+    //border-color: $dark-mode-text-color;
+  }
+  img {
+      filter: grayscale($dark-mode-img-grayscale-perc);
+      @include smooth(filter);
+  }
+  #{$buttons}, #{$buttons} *, a, a * {
+    color: $dark-mode-link-color !important;
+    svg path {
+      fill: $dark-mode-link-color;
+    }
+    &:hover, &:focus, &:active {
+      color: $dark-mode-link-hover !important;
+      svg path {
+        fill: $dark-mode-link-hover;
+      }
+    }
+  }
+  ::placeholder {
+    color: shade($dark-mode-text-color, 70%) !important;
+  }
+
+}
+// TODO: add @media (prefers-color-scheme: dark)

@@ -1904,15 +1904,15 @@ console.log("JellyFish is Awesome!");
           <pre class="language-markup">
             <code><!--
               <span class="screen-reader-text">Adjust font size:</span>
-              <button class="font-size font-size-sm">A</button>
-              <button class="font-size font-size-md">A</button>
-              <button class="font-size font-size-lg">A</button>
+              <button class="font-size font-size-sm" title="Small Font Size">A</button>
+              <button class="font-size font-size-md" title="Medium Font Size">A</button>
+              <button class="font-size font-size-lg" title="Large Font Size">A</button>
             --></code>
           </pre>
           <span class="screen-reader-text">Adjust font size:</span>
-          <button class="font-size font-size-sm">A</button>
-          <button class="font-size font-size-md">A</button>
-          <button class="font-size font-size-lg">A</button>
+          <button class="font-size font-size-sm" title="Small Font Size">A</button>
+          <button class="font-size font-size-md" title="Medium Font Size">A</button>
+          <button class="font-size font-size-lg" title="Large Font Size">A</button>
         <h4>Font-size settings</h4>
         <p>Edit font-size settings and customise the button styles in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
@@ -1931,6 +1931,40 @@ console.log("JellyFish is Awesome!");
               $acc-button-border-bottom: 2px;
               $acc-button-hover-border-color: $color-secondary;
               $acc-button-active-border-color: $color-primary;
+            </code>
+            <label>_settings.scss</label>
+          </pre>
+        <h3>Dark UI / High Contrast Mode</h3>
+        <p>Jellyfish has a simple dark UI / high-contrast mode which can be enabled by adding the class <span class="css-ref">.dark-ui</span> to the body element. It is important to note that this is not a stand-alone 'dark-style' theme but instead a way for the user to view the site with a higher contrast and with less 'design'. Dark UI mode forces all elements to have a dark background, turns all copy to a light color, and grayscales images to a configurable percentage.</p>
+        <p>For a quick and easy way to implement this feature, you can add the code snippet below.</p>
+        <p><strong>Note:</strong> this approach uses javascript to set a Cookie 'ui-mode' to ensure that the setting is persistnt across the site. For reference see <span class="file-ref">/assets/js/project/accessibility.js</span>.</p>
+        <pre class="language-markup">
+          <code><!--
+            <span class="screen-reader-text">Toggle Contrast Mode:</span>
+            <button class="toggle-contrast" title="Toggle Contrast Mode">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 548 548">
+                <path
+                  d="M548 274C548 123.8 427.1 1.8 277.3 0h-8.7c-1.2 0-2.4.1-3.6.1-1 0-2 .1-3 .1-1.2.1-2.4.1-3.5.2-1 .1-2 .1-2.9.2l-3.7.3c-.8.1-1.6.1-2.5.2-7.3.6-14.5 1.6-21.6 2.8-.3.1-.6.1-.9.2l-5 .9c-.4.1-.9.2-1.3.2-1.6.3-3.2.7-4.8 1l-1.4.3c-1.6.4-3.2.7-4.7 1.1-.5.1-1 .2-1.5.4l-4.7 1.2c-.5.1-1 .3-1.5.4-1.5.4-3.1.8-4.6 1.3-.5.1-1 .3-1.5.4-1.5.5-3.1.9-4.6 1.4-.5.2-1 .3-1.5.5l-4.6 1.5c-.4.2-.9.3-1.3.5-1.6.5-3.1 1.1-4.7 1.7-.2.1-.4.1-.6.2-3 1.1-6 2.3-9 3.5l-2.1.9-2.7 1.2-3.3 1.5c-.8.4-1.6.8-2.5 1.1-1.2.5-2.3 1.1-3.5 1.6l-2.4 1.2c-1.1.6-2.3 1.1-3.4 1.7-.8.4-1.6.8-2.4 1.3-1.1.6-2.2 1.2-3.3 1.7-.8.5-1.7.9-2.5 1.4a47.53 47.53 0 0 1-3.1 1.7c-.9.5-1.8 1-2.7 1.6l-2.9 1.7c-1 .6-1.9 1.2-2.9 1.8-.9.5-1.7 1.1-2.6 1.6-1 .7-2.1 1.3-3.1 2-.8.5-1.5 1-2.3 1.5-1.1.7-2.2 1.5-3.3 2.2l-2 1.4c-1.2.8-2.3 1.7-3.5 2.5-.6.4-1.1.8-1.7 1.2l-3.6 2.7-1.5 1.2c-1.2.9-2.4 1.9-3.6 2.8l-1.6 1.3-3.4 2.8c-.3.3-.6.5-1 .8-.3.2-.5.4-.8.7-1.1.9-2.2 1.9-3.3 2.9-.7.6-1.4 1.2-2.1 1.9-.8.8-1.7 1.5-2.5 2.3-.9.9-1.9 1.7-2.8 2.6l-1.4 1.4c-1.3 1.2-2.5 2.4-3.7 3.6-22.1 22-39.6 47-52.7 73.8-.2.5-.5.9-.7 1.4l-3 6.4-.6 1.5c-12 27.3-19.8 56.8-22.3 87.9v.1c-.1 1.7-.3 3.5-.4 5.2 0 .7-.1 1.3-.1 2-.1 1.3-.1 2.6-.2 3.8 0 1.1-.1 2.3-.1 3.4 0 .9 0 1.9-.1 2.8 0 1.5 0 2.9-.1 4.4v2.2c0 1.6 0 3.3.1 4.9v1.9c0 1.7.1 3.4.2 5.1 0 .6.1 1.2.1 1.8l.3 5c0 .6.1 1.3.1 1.9.1 1.6.3 3.2.4 4.8.1.7.1 1.4.2 2.1.2 1.5.3 3 .5 4.4l.3 2.4.6 4c.1.9.3 1.9.4 2.8l.6 3.6c.2 1.1.4 2.1.5 3.2l.6 3c.2 1.2.5 2.4.7 3.6.2.8.4 1.7.5 2.5l.9 4.1c.2.7.3 1.3.5 2 .4 1.5.7 3 1.1 4.5.1.5.3 1 .4 1.5.4 1.6.9 3.3 1.3 4.9.1.4.3.9.4 1.3l1.5 5.1c.2.5.3 1 .5 1.6.5 1.6 1 3.2 1.6 4.8l.9 2.5c.4 1.3.9 2.5 1.3 3.8l1.4 3.8.9 2.5c.6 1.6 1.3 3.1 1.9 4.6l.6 1.5 2.1 4.9c.2.4.4.8.5 1.2.7 1.6 1.4 3.1 2.2 4.6.2.5.4 1 .7 1.4l3 6a67.04 67.04 0 0 0 2 3.7c.4.8.8 1.5 1.2 2.3l1.8 3.2 1.5 2.7 1.6 2.8 1.8 3.1 1.5 2.4c.7 1.1 1.4 2.3 2.2 3.4.4.7.9 1.4 1.3 2 .8 1.2 1.6 2.5 2.5 3.7l1.2 1.8c.9 1.3 1.8 2.6 2.8 3.9.4.5.8 1 1.1 1.5 1 1.4 2 2.7 3 4 .4.5.7 1 1.1 1.4l3.1 4 1.2 1.5c1 1.3 2.1 2.5 3.1 3.8.2.3.5.6.7.9.2.2.4.4.6.7l3.7 4.3c.5.5 1 1.1 1.4 1.6l3.7 4 4.7 4.9c.4.4.8.9 1.3 1.3l4.1 4 .7.7c1.5 1.4 3 2.9 4.6 4.3 17.7 16.1 37.2 29.6 57.7 40.3.7.4 1.4.8 2.1 1.1 1 .5 1.9 1 2.9 1.4l4.1 2c.6.3 1.2.6 1.8.8 1.9.9 3.7 1.7 5.6 2.5l.6.3C198.1 539.9 235.1 548 274 548l8-.1c147.6-4.3 266-125.3 266-273.9zM361.2 480.4a221.29 221.29 0 0 1-79.2 17.4V50.2c27.4 1 54 6.8 79.2 17.4 26.7 11.3 50.6 27.4 71.2 48s36.7 44.5 48 71.2c11.7 27.6 17.6 56.9 17.6 87.2s-5.9 59.6-17.6 87.2c-11.3 26.7-27.4 50.6-48 71.2s-44.6 36.7-71.2 48z" />
+              </svg>
+            </button>
+          --></code>
+        </pre>
+        <span class="screen-reader-text">Toggle Contrast Mode:</span>
+        <button class="toggle-contrast" title="Toggle Contrast Mode">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 548 548">
+            <path
+              d="M548 274C548 123.8 427.1 1.8 277.3 0h-8.7c-1.2 0-2.4.1-3.6.1-1 0-2 .1-3 .1-1.2.1-2.4.1-3.5.2-1 .1-2 .1-2.9.2l-3.7.3c-.8.1-1.6.1-2.5.2-7.3.6-14.5 1.6-21.6 2.8-.3.1-.6.1-.9.2l-5 .9c-.4.1-.9.2-1.3.2-1.6.3-3.2.7-4.8 1l-1.4.3c-1.6.4-3.2.7-4.7 1.1-.5.1-1 .2-1.5.4l-4.7 1.2c-.5.1-1 .3-1.5.4-1.5.4-3.1.8-4.6 1.3-.5.1-1 .3-1.5.4-1.5.5-3.1.9-4.6 1.4-.5.2-1 .3-1.5.5l-4.6 1.5c-.4.2-.9.3-1.3.5-1.6.5-3.1 1.1-4.7 1.7-.2.1-.4.1-.6.2-3 1.1-6 2.3-9 3.5l-2.1.9-2.7 1.2-3.3 1.5c-.8.4-1.6.8-2.5 1.1-1.2.5-2.3 1.1-3.5 1.6l-2.4 1.2c-1.1.6-2.3 1.1-3.4 1.7-.8.4-1.6.8-2.4 1.3-1.1.6-2.2 1.2-3.3 1.7-.8.5-1.7.9-2.5 1.4a47.53 47.53 0 0 1-3.1 1.7c-.9.5-1.8 1-2.7 1.6l-2.9 1.7c-1 .6-1.9 1.2-2.9 1.8-.9.5-1.7 1.1-2.6 1.6-1 .7-2.1 1.3-3.1 2-.8.5-1.5 1-2.3 1.5-1.1.7-2.2 1.5-3.3 2.2l-2 1.4c-1.2.8-2.3 1.7-3.5 2.5-.6.4-1.1.8-1.7 1.2l-3.6 2.7-1.5 1.2c-1.2.9-2.4 1.9-3.6 2.8l-1.6 1.3-3.4 2.8c-.3.3-.6.5-1 .8-.3.2-.5.4-.8.7-1.1.9-2.2 1.9-3.3 2.9-.7.6-1.4 1.2-2.1 1.9-.8.8-1.7 1.5-2.5 2.3-.9.9-1.9 1.7-2.8 2.6l-1.4 1.4c-1.3 1.2-2.5 2.4-3.7 3.6-22.1 22-39.6 47-52.7 73.8-.2.5-.5.9-.7 1.4l-3 6.4-.6 1.5c-12 27.3-19.8 56.8-22.3 87.9v.1c-.1 1.7-.3 3.5-.4 5.2 0 .7-.1 1.3-.1 2-.1 1.3-.1 2.6-.2 3.8 0 1.1-.1 2.3-.1 3.4 0 .9 0 1.9-.1 2.8 0 1.5 0 2.9-.1 4.4v2.2c0 1.6 0 3.3.1 4.9v1.9c0 1.7.1 3.4.2 5.1 0 .6.1 1.2.1 1.8l.3 5c0 .6.1 1.3.1 1.9.1 1.6.3 3.2.4 4.8.1.7.1 1.4.2 2.1.2 1.5.3 3 .5 4.4l.3 2.4.6 4c.1.9.3 1.9.4 2.8l.6 3.6c.2 1.1.4 2.1.5 3.2l.6 3c.2 1.2.5 2.4.7 3.6.2.8.4 1.7.5 2.5l.9 4.1c.2.7.3 1.3.5 2 .4 1.5.7 3 1.1 4.5.1.5.3 1 .4 1.5.4 1.6.9 3.3 1.3 4.9.1.4.3.9.4 1.3l1.5 5.1c.2.5.3 1 .5 1.6.5 1.6 1 3.2 1.6 4.8l.9 2.5c.4 1.3.9 2.5 1.3 3.8l1.4 3.8.9 2.5c.6 1.6 1.3 3.1 1.9 4.6l.6 1.5 2.1 4.9c.2.4.4.8.5 1.2.7 1.6 1.4 3.1 2.2 4.6.2.5.4 1 .7 1.4l3 6a67.04 67.04 0 0 0 2 3.7c.4.8.8 1.5 1.2 2.3l1.8 3.2 1.5 2.7 1.6 2.8 1.8 3.1 1.5 2.4c.7 1.1 1.4 2.3 2.2 3.4.4.7.9 1.4 1.3 2 .8 1.2 1.6 2.5 2.5 3.7l1.2 1.8c.9 1.3 1.8 2.6 2.8 3.9.4.5.8 1 1.1 1.5 1 1.4 2 2.7 3 4 .4.5.7 1 1.1 1.4l3.1 4 1.2 1.5c1 1.3 2.1 2.5 3.1 3.8.2.3.5.6.7.9.2.2.4.4.6.7l3.7 4.3c.5.5 1 1.1 1.4 1.6l3.7 4 4.7 4.9c.4.4.8.9 1.3 1.3l4.1 4 .7.7c1.5 1.4 3 2.9 4.6 4.3 17.7 16.1 37.2 29.6 57.7 40.3.7.4 1.4.8 2.1 1.1 1 .5 1.9 1 2.9 1.4l4.1 2c.6.3 1.2.6 1.8.8 1.9.9 3.7 1.7 5.6 2.5l.6.3C198.1 539.9 235.1 548 274 548l8-.1c147.6-4.3 266-125.3 266-273.9zM361.2 480.4a221.29 221.29 0 0 1-79.2 17.4V50.2c27.4 1 54 6.8 79.2 17.4 26.7 11.3 50.6 27.4 71.2 48s36.7 44.5 48 71.2c11.7 27.6 17.6 56.9 17.6 87.2s-5.9 59.6-17.6 87.2c-11.3 26.7-27.4 50.6-48 71.2s-44.6 36.7-71.2 48z" />
+          </svg>
+        </button>
+        <h4>Dark UI / High Contrast mode settings</h4>
+        <p>Edit Dark UI / High Contrast mode settings in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+          <pre class="language-scss">
+            <code>
+              $dark-mode-bg-color: #222222;
+              $dark-mode-text-color: #e6e6e6;
+              $dark-mode-img-grayscale-perc: 50%;
+              $dark-mode-link-color: #58cdf1;
+              $dark-mode-link-hover: #f1b835;
             </code>
             <label>_settings.scss</label>
           </pre>
@@ -2716,6 +2750,12 @@ console.log("JellyFish is Awesome!");
             $acc-button-border-bottom: 2px;
             $acc-button-hover-border-color: $color-secondary;
             $acc-button-active-border-color: $color-primary;
+
+            $dark-mode-bg-color: #222222;
+            $dark-mode-text-color: #e6e6e6;
+            $dark-mode-img-grayscale-perc: 50%;
+            $dark-mode-link-color: #58cdf1;
+            $dark-mode-link-hover: #f1b835;
 
             /* GLOBAL TRANSITION USED IN SMOOTH() */
             $global-transition: 0.2s ease;

@@ -89,6 +89,12 @@ $acc-button-border-bottom: 2px !default;
 $acc-button-hover-border-color: $color-secondary !default;
 $acc-button-active-border-color: $color-primary !default;
 
+$dark-mode-bg-color: #222222 !default;
+$dark-mode-text-color: #e6e6e6 !default;
+$dark-mode-img-grayscale-perc: 50% !default;
+$dark-mode-link-color: #58cdf1 !default;
+$dark-mode-link-hover: #f1b835 !default;
+
 /* GLOBAL TRANSITION USED IN SMOOTH() */
 $global-transition: 0.2s ease !default;
 

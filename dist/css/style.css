@@ -135,19 +135,25 @@ html {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
-  line-height: 1.4; }
+  font-size: 14px; }
   @media (min-width: 37.5em) {
     html {
-      font-size: 15px;
-      line-height: 1.48; } }
+      font-size: 15px; } }
   @media (min-width: 56.25em) {
     html {
       font-size: 16px; } }
 
 body {
   color: #333333;
-  background-color: #fff; }
+  background-color: #fff;
+  line-height: 1.4; }
+  @media (min-width: 37.5em) {
+    body {
+      font-size: 15px;
+      line-height: 1.48; } }
+  @media (min-width: 56.25em) {
+    body {
+      font-size: 16px; } }
 
 a {
   transition: color 0.2s ease;
@@ -466,6 +472,29 @@ sup {
   height: 100%; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  DARK MODE
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+body.dark-ui, body.dark-ui * {
+  background-color: #222222 !important;
+  color: #e6e6e6 !important; }
+
+body.dark-ui img {
+  filter: grayscale(50%);
+  transition: filter 0.2s ease; }
+
+body.dark-ui .button, body.dark-ui [type=submit], body.dark-ui a.button, body.dark-ui a[type=submit], body.dark-ui button, body.dark-ui [type=submit], body.dark-ui [type=reset], body.dark-ui [type=button], body.dark-ui .button, body.dark-ui [type=submit], body.dark-ui a.button, body.dark-ui a[type=submit], body.dark-ui button, body.dark-ui [type=submit], body.dark-ui [type=reset], body.dark-ui [type=button] *, body.dark-ui a, body.dark-ui a * {
+  color: #58cdf1 !important; }
+  body.dark-ui .button svg path, body.dark-ui [type=submit] svg path, body.dark-ui a.button svg path, body.dark-ui a[type=submit] svg path, body.dark-ui button svg path, body.dark-ui [type=submit] svg path, body.dark-ui [type=reset] svg path, body.dark-ui [type=button] svg path, body.dark-ui .button svg path, body.dark-ui [type=submit] svg path, body.dark-ui a.button svg path, body.dark-ui a[type=submit] svg path, body.dark-ui button svg path, body.dark-ui [type=submit] svg path, body.dark-ui [type=reset] svg path, body.dark-ui [type=button] * svg path, body.dark-ui a svg path, body.dark-ui a * svg path {
+    fill: #58cdf1; }
+  body.dark-ui .button:hover, body.dark-ui :hover[type=submit], body.dark-ui .button:focus, body.dark-ui :focus[type=submit], body.dark-ui .button:active, body.dark-ui :active[type=submit], body.dark-ui a.button:hover, body.dark-ui a:hover[type=submit], body.dark-ui a.button:focus, body.dark-ui a:focus[type=submit], body.dark-ui a.button:active, body.dark-ui a:active[type=submit], body.dark-ui button:hover, body.dark-ui button:focus, body.dark-ui button:active, body.dark-ui [type=submit]:hover, body.dark-ui [type=submit]:focus, body.dark-ui [type=submit]:active, body.dark-ui [type=reset]:hover, body.dark-ui [type=reset]:focus, body.dark-ui [type=reset]:active, body.dark-ui [type=button]:hover, body.dark-ui [type=button]:focus, body.dark-ui [type=button]:active, body.dark-ui .button:hover, body.dark-ui :hover[type=submit], body.dark-ui .button:focus, body.dark-ui :focus[type=submit], body.dark-ui .button:active, body.dark-ui :active[type=submit], body.dark-ui a.button:hover, body.dark-ui a:hover[type=submit], body.dark-ui a.button:focus, body.dark-ui a:focus[type=submit], body.dark-ui a.button:active, body.dark-ui a:active[type=submit], body.dark-ui button:hover, body.dark-ui button:focus, body.dark-ui button:active, body.dark-ui [type=submit]:hover, body.dark-ui [type=submit]:focus, body.dark-ui [type=submit]:active, body.dark-ui [type=reset]:hover, body.dark-ui [type=reset]:focus, body.dark-ui [type=reset]:active, body.dark-ui [type=button] *:hover, body.dark-ui [type=button] *:focus, body.dark-ui [type=button] *:active, body.dark-ui a:hover, body.dark-ui a:focus, body.dark-ui a:active, body.dark-ui a *:hover, body.dark-ui a *:focus, body.dark-ui a *:active {
+    color: #f1b835 !important; }
+    body.dark-ui .button:hover svg path, body.dark-ui :hover[type=submit] svg path, body.dark-ui .button:focus svg path, body.dark-ui :focus[type=submit] svg path, body.dark-ui .button:active svg path, body.dark-ui :active[type=submit] svg path, body.dark-ui a.button:hover svg path, body.dark-ui a:hover[type=submit] svg path, body.dark-ui a.button:focus svg path, body.dark-ui a:focus[type=submit] svg path, body.dark-ui a.button:active svg path, body.dark-ui a:active[type=submit] svg path, body.dark-ui button:hover svg path, body.dark-ui button:focus svg path, body.dark-ui button:active svg path, body.dark-ui [type=submit]:hover svg path, body.dark-ui [type=submit]:focus svg path, body.dark-ui [type=submit]:active svg path, body.dark-ui [type=reset]:hover svg path, body.dark-ui [type=reset]:focus svg path, body.dark-ui [type=reset]:active svg path, body.dark-ui [type=button]:hover svg path, body.dark-ui [type=button]:focus svg path, body.dark-ui [type=button]:active svg path, body.dark-ui .button:hover svg path, body.dark-ui :hover[type=submit] svg path, body.dark-ui .button:focus svg path, body.dark-ui :focus[type=submit] svg path, body.dark-ui .button:active svg path, body.dark-ui :active[type=submit] svg path, body.dark-ui a.button:hover svg path, body.dark-ui a:hover[type=submit] svg path, body.dark-ui a.button:focus svg path, body.dark-ui a:focus[type=submit] svg path, body.dark-ui a.button:active svg path, body.dark-ui a:active[type=submit] svg path, body.dark-ui button:hover svg path, body.dark-ui button:focus svg path, body.dark-ui button:active svg path, body.dark-ui [type=submit]:hover svg path, body.dark-ui [type=submit]:focus svg path, body.dark-ui [type=submit]:active svg path, body.dark-ui [type=reset]:hover svg path, body.dark-ui [type=reset]:focus svg path, body.dark-ui [type=reset]:active svg path, body.dark-ui [type=button] *:hover svg path, body.dark-ui [type=button] *:focus svg path, body.dark-ui [type=button] *:active svg path, body.dark-ui a:hover svg path, body.dark-ui a:focus svg path, body.dark-ui a:active svg path, body.dark-ui a *:hover svg path, body.dark-ui a *:focus svg path, body.dark-ui a *:active svg path {
+      fill: #f1b835; }
+
+body.dark-ui ::placeholder {
+  color: #a1a1a1 !important; }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   ACCESSIBILITY
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* Text meant only for screen readers. */
@@ -514,22 +543,25 @@ body.font-size-md {
 body.font-size-lg {
   font-size: 18px; }
 
-button.font-size {
+button.font-size, button.toggle-contrast {
   background-color: transparent;
-  font-weight: normal;
   color: #9c9e9e;
   padding: 0 0 2px 0;
   margin: 0;
   border: 0;
   border-radius: 0;
-  border-bottom: 2px solid transparent;
-  vertical-align: baseline;
   line-height: 1; }
-  button.font-size:focus {
-    box-shadow: none; }
-  button.font-size:hover, button.font-size:focus, button.font-size:active {
+  button.font-size:hover, button.toggle-contrast:hover, button.font-size:focus, button.toggle-contrast:focus, button.font-size:active, button.toggle-contrast:active {
     background: transparent;
-    color: #2d6378;
+    color: #2d6378; }
+  button.font-size:focus, button.toggle-contrast:focus {
+    box-shadow: none; }
+
+button.font-size {
+  font-weight: normal;
+  border-bottom: 2px solid transparent;
+  vertical-align: baseline; }
+  button.font-size:hover, button.font-size:focus, button.font-size:active {
     border-bottom-color: #2d6378; }
   button.font-size.active {
     color: inherit;
@@ -540,6 +572,13 @@ button.font-size {
     font-size: 1em; }
   button.font-size-lg {
     font-size: 1.2em; }
+
+button.toggle-contrast path {
+  fill: currentColor; }
+
+button.toggle-contrast svg {
+  width: 1.2em;
+  height: 1.2em; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   GRID

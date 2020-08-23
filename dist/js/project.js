@@ -10645,7 +10645,23 @@ $('button.font-size').click(function () {
 });
 
 /**
- * A function which checks for the existence of 'fontsize' cookie on page load. If this exists, append .font-size-* to body element and .active to the button.font-size-*
+ * Function to allow the user to change the contrast mode.
+ */
+$('button.toggle-contrast').click(function () {
+  if ($(this).hasClass('active')) {
+    $(document.body).removeClass('dark-ui');
+    $(this).removeClass('active');
+    jfCreateCookie('ui-mode', 'light');
+  }
+  else {
+    $(document.body).addClass('dark-ui');
+    $(this).addClass('active');
+    jfCreateCookie('ui-mode', 'dark');
+  }
+});
+
+/**
+ * Check for Accessibility cookies 'fontsize' and 'ui-mode' on document ready. Append appropriate classes to body element
  */
 $(document).ready(function() {
   var docFontSize = jfReadCookie('fontsize');
@@ -10668,7 +10684,15 @@ $(document).ready(function() {
     default:
       break;
   };
+  var docUiMode = jfReadCookie('ui-mode');
+  switch (docUiMode) {
+    case 'dark' :
+      $(document.body).addClass('dark-ui');
+      $('button.toggle-contrast').addClass('active');
+      break;
+  }
 });
+
 ;
 /**
  * Creates a cookie
