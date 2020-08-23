@@ -33,6 +33,9 @@
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   Container
   *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  width: $navbar-container-width;
+  max-width: 100%;
+  overflow-y: scroll;
     @include below($nav-expands) {
       padding: 0 $navbar-container-padding;
       display: block;

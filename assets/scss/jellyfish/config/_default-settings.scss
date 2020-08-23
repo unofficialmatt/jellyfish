@@ -11,8 +11,8 @@ $debug-mode-on: false !default;
 /* JELLYFISH DEFAULTS */
 // Base Variables (used before breakpoints are applied)
 $base-col-name: xs !default;
-$base-container-gutter: 15px !default; // define in px
-$base-col-gutter: 10px !default; // define in px
+$base-container-gutter: 30px !default; // define in px
+$base-col-gutter: 20px !default; // define in px
 
 /* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT AT SMALLEST DEVICE WIDTH */
 $root-font-size: 14px !default;
@@ -135,7 +135,8 @@ $card-background-color: $color-background !default;
 /* NAVBAR */
 $nav-expands: 900px !default; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
 $navbar-bg-color: $color-background-alt !default;
-$navbar-container-padding: 10px !default;
+$navbar-container-padding: 10px !default; // Applies below $nav-expands
+$navbar-container-width: inherit !default; // Use 'inherit' to make it the same as the document container, or a percentage to override. Applies from $nav-expands up
 // Links
 $navbar-font-size: 0.8em !default;
 $navbar-text-transform: none !default;

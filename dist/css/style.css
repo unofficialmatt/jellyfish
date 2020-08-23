@@ -1,5 +1,5 @@
 /*! jellyfish-grid 3.0.0
- * © 2020-08-21 Matt Weet - https://www.weareboba.com */
+ * © 2020-08-23 Matt Weet - https://www.weareboba.com */
 
 /* GRID */
 /* JELLYFISH DEFAULTS */
@@ -277,6 +277,11 @@ h6 {
 /* TEXT TRANSFORM */
 
 small,
+.docs pre label {
+  display: block; }
+
+
+small,
 .docs pre label, .small {
   font-size: 0.8em; }
 
@@ -541,7 +546,7 @@ sup {
 .container {
   margin: 0 auto;
   width: 100%;
-  padding: 0 15px; }
+  padding: 0 30px; }
   .container .container {
     width: 100%;
     padding: 0 !important; }
@@ -550,14 +555,14 @@ sup {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: -5px;
-  margin-right: -5px; }
+  margin-left: -10px;
+  margin-right: -10px; }
 
 .col {
   width: 100%;
   position: relative;
-  padding-left: 5px;
-  padding-right: 5px; }
+  padding-left: 10px;
+  padding-right: 10px; }
 
 .col-auto {
   flex: 0 0 auto !important;
@@ -693,7 +698,7 @@ sup {
 
 @media (min-width: 37.5em) {
   .container {
-    width: 94%;
+    width: 100%;
     padding-left: 50px;
     padding-right: 50px; }
   .row {
@@ -849,7 +854,7 @@ sup {
 @media (min-width: 56.25em) {
   .container {
     width: 90%;
-    max-width: 1080px;
+    max-width: 1140px;
     padding-left: 0px;
     padding-right: 0px; }
   .row {
@@ -1002,7 +1007,7 @@ sup {
 
 @media (min-width: 75em) {
   .container {
-    width: 1080px;
+    width: 1140px;
     max-width: none; }
   .row {
     margin-left: -17.5px;
@@ -1154,10 +1159,10 @@ sup {
 
 @media (min-width: 112.5em) {
   .container {
-    width: 1640px; }
+    width: 1280px; }
   .row {
-    margin-left: -22.5px;
-    margin-right: -22.5px; }
+    margin-left: -20px;
+    margin-right: -20px; }
   .row.collapse-xl {
     margin-left: 0;
     margin-right: 0; }
@@ -1165,8 +1170,8 @@ sup {
       padding-left: 0 !important;
       padding-right: 0 !important; }
   .col {
-    padding-left: 22.5px;
-    padding-right: 22.5px; }
+    padding-left: 20px;
+    padding-right: 20px; }
   .col.xl-auto {
     max-width: none;
     flex: 0 0 auto;
@@ -1888,6 +1893,9 @@ select::-ms-expand {
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   Container
   *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    width: 100%;
+    max-width: 100%;
+    overflow-y: scroll;
     display: flex; }
     @media (max-width: 76.1875em) {
       .navbar > .container {
@@ -2286,7 +2294,6 @@ Utilities
   #navbar-sticky .navbar-start {
     margin-right: 0; }
   #navbar-sticky .container {
-    width: 100%;
     padding: 0; }
   #navbar-sticky a.active {
     background-color: #4d7a8c;
