@@ -89,28 +89,29 @@
           <pre class="language-markup"><code>$ grunt</code></pre>
           <h3>Directory structure</h3>
           <p>The project contains the source and destination folders, as well as necessary project files.</p>
-          <ul>
-            <li><strong>/dist</strong> - contains the final css, images and javascript files within sub-directories. The files in this directory are all created by Grunt</li>
-            <li><strong>/assets</strong> - contains the source files for the project:
-              <ul>
-                <li><strong>js</strong> - organised into subdirectories for vendor and project. When Grunt detects a change to any of these directories (new file, edit, remove), it will concatenate and minify javascript and reload your browser with browserSync. Vendor scripts can be automatically copied from an npm package with the Gruntfile task copy:npm.</li>
-                <li><strong>scss</strong>
-                <ul>
-                  <li><strong>/jellyfish</strong> - contains all of the Jellyfish scss files. It is not recommended to edit any of the files within this directory.</li>
-                  <li><strong>/project/</strong> - add your project specific scss files here.</li>
-                  <li><strong>/project/_all.scss</strong> - this file is automatically populated by Grunt to include all other scss files in the project directory.</li>
-                </ul>
-                </li>
-              </ul>
-            </li>
-            <li><strong>/docs</strong> - contains files only used by this documentation. Can be safely removed.</li>
-            <li><strong>.editorconfig</strong> - Keeps code indented to 2 spaces. Feel free to edit to your tastes.</li>
-            <li><strong>.gitignore</strong> - A substantial gitignore file to ignore system files and node_modules.</li>
-            <li><strong>boilerplate.html</strong> - starter HTML template.</li>
-            <li><strong>Gruntfile.js</strong> - Contains lots of useful tasks that are run to help make your dev time more enjoyable. The file is well commented to explain what each task does. Feel free to adapt the file to suit the needs of your project.</li>
-            <li><strong>index.html</strong> - This file! Feel free to delete for your project - or rename and use it as a reference.</li>
-            <li><strong>package.json</strong> - npm package folder to initialise node_modules.</li>
-          </ul>
+          <pre class="language-markup"><code><!--
+          assets/                    :  contains the source files for the project
+          ├── grunt/                 :  partial .js files that are used by the master Gruntfile to run tasks
+          ├── img/                   :  an empty directory for images, which will be minified by Grunt into dist/img
+          ├── js/                    :  when Grunt detects a change to any of these directories (new file, edit, remove), it will concatenate and minify javascript and reload your browser with browserSync
+          │   ├── project/              :  used for project specific js
+          │   ├── vendor/            :  used for vendor / third-party js. Often copied from node-modules with the Gruntfile task copy:npm
+          ├── scss/
+          │   ├── jellyfish/         :  contains all of the Jellyfish scss files. It is not recommended to edit any of the files within this directory
+          │   ├── project/           :  add your project specific scss files here
+          │   ├── project/_all.scss  :  this file is automatically populated by Grunt to include all other scss files in the project directory
+          │   ├── _settings.scss     :  the settings file (variables and options) for overriding Jellyfish defaults
+          dist/                      :  contains the final css, images and javascript files within sub-directories. The files in this directory are all created by Grunt
+          docs/                      :  contains files only used by this documentation. Can be safely removed
+          .editorconfig              :  keeps code indented to 2 spaces. Feel free to edit to your tastes
+          .eslintrc                  :  rules for ES Javascript linting
+          .gitignore                 :  a substantial gitignore file to ignore system files and node_modules
+          boilerplate.html           :  starter HTML template
+          Gruntfile.js               :  compiles tasks from partials in the assets/grunt directory. Tasks are run to help make the dev process more efficient and enjoyable. The partials are well documented.
+          index.html                 :  this file! Feel free to delete for your project - or rename and use it as a reference
+          package.json               :  npm package information to initialise node_modules
+            --></code>
+          </pre>
           <h3>Grunt Tasks</h3>
           <p>For the most part, as long as you follow the guidance above in terms of file hierarchy, you can let Grunt work it's magic without hassle. You can amend the Gruntfile as your project dictates, to edit/remove/add tasks as appropriate from the huge variety available.</p>
           <p>The <span class="file-ref">Gruntfile.js</span> is well commented, here are a summary of the tasks included as default:</p>

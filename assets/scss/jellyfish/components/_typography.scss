@@ -44,6 +44,9 @@ h6 {
 
 /* TEXT TRANSFORM */
 
+small {
+  display: block;
+}
 small, .small {
     font-size: $font-size-small;
 }

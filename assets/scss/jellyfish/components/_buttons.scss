@@ -52,6 +52,7 @@
       // Loop through $theme-colors map and create buttons for each key
       &__#{$name} {
         @include create_button($color);
+        // TODO: Replace all BEM style modifiers with simple .button.tertiary, .button.outline ?
       }
     }
     &__outline {
@@ -90,4 +91,4 @@
     @extend .button__outline;
 }
 
-// TODO: Add a button group? https://getbootstrap.com/docs/4.0/components/button-group/
+// TODO: Add a button group? https://getbootstrap.com/docs/4.0/components/button-group/ Make it so that all buttons inside have the same height.
