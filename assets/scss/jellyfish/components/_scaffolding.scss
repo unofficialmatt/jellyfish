@@ -18,23 +18,23 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+    font: {
+      family: $font-body;
+      size: $root-font-size;
+    }
+    line-height: $root-line-height;
+    @each $point, $i in $breakpoints {
+      // set base font size and line height for each specified media query
+     @include above($point) {
+         font-size: map-deep-get($breakpoints, $point, 'root-font-size');
+         line-height: map-deep-get($breakpoints, $point, 'root-line-height');
+     }
+    }
 }
 
 body {
-    font: {
-        family: $font-body;
-        size: $root-font-size;
-    }
-    line-height: $root-line-height;
     color: $color-text;
     background-color: $color-background;
-    @each $point, $i in $breakpoints {
-        // set base font size and line height for each specified media query
-       @include above($point) {
-           font-size: map-deep-get($breakpoints, $point, 'root-font-size');
-           line-height: map-deep-get($breakpoints, $point, 'root-line-height');
-       }
-   }
    @if $debug-mode-on {
        @extend .jf-debug;
    }
