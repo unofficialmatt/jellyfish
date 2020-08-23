@@ -41,3 +41,49 @@
 #content[tabindex="-1"]:focus {
 	outline: 0;
 }
+
+body.font-size{
+  &-sm {
+  font-size: $acc-font-size-sm;
+  }
+  &-md {
+    font-size: $acc-font-size-md;
+  }
+  &-lg {
+    font-size: $acc-font-size-lg;
+  }
+}
+
+button.font-size {
+  background-color: transparent;
+  font-weight: $acc-button-font-weight;
+  color: $acc-button-color;
+  padding: 0 0 2px 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  border-bottom: $acc-button-border-bottom solid transparent;
+  vertical-align: baseline;
+  line-height: 1;
+  &:focus {
+    box-shadow: none;
+  }
+  &:hover, &:focus, &:active {
+    background: transparent;
+    color: $acc-button-hover-color;
+    border-bottom-color: $acc-button-hover-border-color;
+  }
+  &.active {
+    color: $acc-button-active-color;
+    border-bottom-color: $acc-button-active-border-color;
+  }
+  &-sm {
+    font-size: .8em;
+    }
+  &-md {
+    font-size: 1em;
+  }
+  &-lg {
+    font-size: 1.2em;
+  }
+}

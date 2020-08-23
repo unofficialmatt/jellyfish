@@ -20,7 +20,7 @@
 
 /* COLOURS */
 //$color-text: #333333;
-//$color-text-light: #d9dbdb;
+//$color-text-light: #9c9e9e;
 //$color-white: #fff;
 //$color-background: $color-white;
 //$color-background-alt: #efefef;
@@ -62,6 +62,21 @@ $theme-colors: (
 //$link-color: $color-primary;
 //$link-active: $color-secondary;
 //$link-visited: $color-tertiary;
+
+/* ACCESSIBILITY */
+//$acc-font-size-sm: 14px;
+//$acc-font-size-md: 16px;
+//$acc-font-size-lg: 18px;
+
+//$acc-button-font-weight: normal;
+
+//$acc-button-color: $color-text-light;
+//$acc-button-hover-color: $link-active;
+//$acc-button-active-color: inherit;
+
+//$acc-button-border-bottom: 2px;
+//$acc-button-hover-border-color: $color-secondary;
+//$acc-button-active-border-color: $color-primary;
 
 /* GLOBAL TRANSITION USED IN SMOOTH() */
 //$global-transition: 0.2s ease;

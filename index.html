@@ -40,6 +40,7 @@
             <li><a href="#cards">Cards</a></li>
             <li><a href="#labels">Labels</a></li>
             <li><a href="#callouts">Callouts</a></li>
+            <li><a href="#accessibility">Accessibility</a></li>
             <li><a href="#utilities">Utilities</a></li>
             <li><a href="#mixins">Mixins</a></li>
             <li><a href="#printing">Printing</a></li>
@@ -1895,6 +1896,45 @@ console.log("JellyFish is Awesome!");
           <label>_settings.scss</label>
           </pre>
         </section><!-- /#callouts.docs-section -->
+        <section class="docs-section" id="accessibility">
+          <h2>Accessibility</h2>
+          <h3>Base font-size</h3>
+          <p>Add the class <span class="css-ref">.font-size-sm</span>, <span class="css-ref">.font-size-md</span> or <span class="css-ref">.font-size-lg</span> to the body element to change the base font size. This will allow visitors with limited eye sight to increase the size of type throughout the site.</p>
+          <p>For a quick and easy way to implement this feature, you can add the code snippet below to your project.</p><p><strong>Note:</strong> this approach uses javascript to set a Cookie 'fontsize' to ensure that the setting is persistent across the site. For reference see <span class="file-ref">/assets/js/project/accessibility.js</span>.</p>
+          <pre class="language-markup">
+            <code><!--
+              <span class="screen-reader-text">Adjust font size:</span>
+              <button class="font-size font-size-sm">A</button>
+              <button class="font-size font-size-md">A</button>
+              <button class="font-size font-size-lg">A</button>
+            --></code>
+          </pre>
+          <span class="screen-reader-text">Adjust font size:</span>
+          <button class="font-size font-size-sm">A</button>
+          <button class="font-size font-size-md">A</button>
+          <button class="font-size font-size-lg">A</button>
+        <h4>Font-size settings</h4>
+        <p>Edit font-size settings and customise the button styles in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+          <pre class="language-scss">
+            <code>
+              /* ACCESSIBILITY */
+              $acc-font-size-sm: 14px;
+              $acc-font-size-md: 16px;
+              $acc-font-size-lg: 18px;
+
+              $acc-button-font-weight: normal;
+
+              $acc-button-color: $color-text-light;
+              $acc-button-hover-color: $link-active;
+              $acc-button-active-color: inherit;
+
+              $acc-button-border-bottom: 2px;
+              $acc-button-hover-border-color: $color-secondary;
+              $acc-button-active-border-color: $color-primary;
+            </code>
+            <label>_settings.scss</label>
+          </pre>
+        </section><!-- #accessibility -->
         <section class="docs-section" id="utilities">
           <h2>Utilities</h2>
           <h3>Keep words together</h3>
@@ -2305,40 +2345,42 @@ console.log("JellyFish is Awesome!");
               </pre>
             </div>
           </div>
-          <table>
-            <tr>
-              <td class="tintshade tint-100">Base tint (100%) #aa0000</td>
-              <td class="tintshade tint-80">tint (80%) #bb3333</td>
-              <td class="tintshade tint-60">tint (60%) #cc6666</td>
-              <td class="tintshade tint-40">tint (40%) #dd9999</td>
-              <td class="tintshade tint-20">tint (20%) #eecccc</td>
-              <td class="tintshade tint-0">tint (0%) #ffffff</td>
-            </tr>
-            <tr>
-              <td class="tintshade lighten-0">Base lighten (0%) #aa0000</td>
-              <td class="tintshade lighten-20">lighten (20%) #ff1111</td>
-              <td class="tintshade lighten-40">lighten (40%) #ff7777</td>
-              <td class="tintshade lighten-60">lighten (60%) #ffdddd</td>
-              <td class="tintshade lighten-80">lighten (80%) #ffffff</td>
-              <td class="tintshade lighten-100">lighten (100%) #ffffff</td>
-            </tr>
-            <tr>
-              <td class="tintshade shade-100">Base shade (100%) #aa0000</td>
-              <td class="tintshade shade-80">shade (80%) #880000</td>
-              <td class="tintshade shade-60">shade (60%) #660000</td>
-              <td class="tintshade shade-40">shade (40%) #440000</td>
-              <td class="tintshade shade-20">shade (20%) #220000</td>
-              <td class="tintshade shade-0">shade (0%) #000000</td>
-            </tr>
-            <tr>
-              <td class="tintshade darken-0">Base darken (0%) #aa0000</td>
-              <td class="tintshade darken-20">darken (20%) #440000</td>
-              <td class="tintshade darken-40">darken (40%) #000000</td>
-              <td class="tintshade darken-60">darken (60%) #000000</td>
-              <td class="tintshade darken-80">darken (80%) #000000</td>
-              <td class="tintshade darken-100">darken (100%) #000000</td>
-            </tr>
-          </table>
+          <div class="table-container">
+            <table>
+              <tr>
+                <td class="tintshade tint-100">Base tint (100%) #aa0000</td>
+                <td class="tintshade tint-80">tint (80%) #bb3333</td>
+                <td class="tintshade tint-60">tint (60%) #cc6666</td>
+                <td class="tintshade tint-40">tint (40%) #dd9999</td>
+                <td class="tintshade tint-20">tint (20%) #eecccc</td>
+                <td class="tintshade tint-0">tint (0%) #ffffff</td>
+              </tr>
+              <tr>
+                <td class="tintshade lighten-0">Base lighten (0%) #aa0000</td>
+                <td class="tintshade lighten-20">lighten (20%) #ff1111</td>
+                <td class="tintshade lighten-40">lighten (40%) #ff7777</td>
+                <td class="tintshade lighten-60">lighten (60%) #ffdddd</td>
+                <td class="tintshade lighten-80">lighten (80%) #ffffff</td>
+                <td class="tintshade lighten-100">lighten (100%) #ffffff</td>
+              </tr>
+              <tr>
+                <td class="tintshade shade-100">Base shade (100%) #aa0000</td>
+                <td class="tintshade shade-80">shade (80%) #880000</td>
+                <td class="tintshade shade-60">shade (60%) #660000</td>
+                <td class="tintshade shade-40">shade (40%) #440000</td>
+                <td class="tintshade shade-20">shade (20%) #220000</td>
+                <td class="tintshade shade-0">shade (0%) #000000</td>
+              </tr>
+              <tr>
+                <td class="tintshade darken-0">Base darken (0%) #aa0000</td>
+                <td class="tintshade darken-20">darken (20%) #440000</td>
+                <td class="tintshade darken-40">darken (40%) #000000</td>
+                <td class="tintshade darken-60">darken (60%) #000000</td>
+                <td class="tintshade darken-80">darken (80%) #000000</td>
+                <td class="tintshade darken-100">darken (100%) #000000</td>
+              </tr>
+            </table>
+          </div>
           <h3>Quickly center a block-level element:</h3>
           <p>This will only work if the block has a defined width.</p>
           <pre class="language-scss">
@@ -2617,7 +2659,7 @@ console.log("JellyFish is Awesome!");
 
             /* COLOURS */
             $color-text: #333333;
-            $color-text-light: #d9dbdb;
+            $color-text-light: #9c9e9e;
             $color-white: #fff;
             $color-background: $color-white;
             $color-background-alt: #efefef;
@@ -2659,6 +2701,21 @@ console.log("JellyFish is Awesome!");
             $link-color: $color-primary;
             $link-active: $color-secondary;
             $link-visited: $color-tertiary;
+
+            /* ACCESSIBILITY */
+            $acc-font-size-sm: 14px;
+            $acc-font-size-md: 16px;
+            $acc-font-size-lg: 18px;
+
+            $acc-button-font-weight: normal;
+
+            $acc-button-color: $color-text-light;
+            $acc-button-hover-color: $link-active;
+            $acc-button-active-color: inherit;
+
+            $acc-button-border-bottom: 2px;
+            $acc-button-hover-border-color: $color-secondary;
+            $acc-button-active-border-color: $color-primary;
 
             /* GLOBAL TRANSITION USED IN SMOOTH() */
             $global-transition: 0.2s ease;

@@ -10,6 +10,7 @@
 /* TYPEFACES */
 /* FONT SIZES */
 /* LINKS */
+/* ACCESSIBILITY */
 /* GLOBAL TRANSITION USED IN SMOOTH() */
 /* BORDERS */
 /* USER INTERFACE */
@@ -53,6 +54,7 @@ SCSS FRAMEWORK BY MATT WEET
 /* TYPEFACES */
 /* FONT SIZES */
 /* LINKS */
+/* ACCESSIBILITY */
 /* GLOBAL TRANSITION USED IN SMOOTH() */
 /* BORDERS */
 /* USER INTERFACE */
@@ -191,7 +193,7 @@ pre, samp, kbd, :not(pre) > code, var {
 hr {
   height: 0;
   border: 0;
-  border-top: 1px solid #d9dbdb;
+  border-top: 1px solid #9c9e9e;
   margin: 1rem 0; }
 
 pre {
@@ -200,7 +202,7 @@ pre {
   padding: 20px;
   margin: 0 0 1rem 0;
   background-color: #efefef;
-  border: 1px solid #d9dbdb;
+  border: 1px solid #9c9e9e;
   line-height: 1.2; }
 
 blockquote {
@@ -332,7 +334,7 @@ kbd {
   color: #fff; }
 
 :not(pre) > code {
-  border: 1px solid #d9dbdb; }
+  border: 1px solid #9c9e9e; }
 
 var {
   font-style: italic;
@@ -502,6 +504,42 @@ sup {
 /* Do not show the outline on the skip link target. */
 #content[tabindex="-1"]:focus {
   outline: 0; }
+
+body.font-size-sm {
+  font-size: 14px; }
+
+body.font-size-md {
+  font-size: 16px; }
+
+body.font-size-lg {
+  font-size: 18px; }
+
+button.font-size {
+  background-color: transparent;
+  font-weight: normal;
+  color: #9c9e9e;
+  padding: 0 0 2px 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  vertical-align: baseline;
+  line-height: 1; }
+  button.font-size:focus {
+    box-shadow: none; }
+  button.font-size:hover, button.font-size:focus, button.font-size:active {
+    background: transparent;
+    color: #2d6378;
+    border-bottom-color: #2d6378; }
+  button.font-size.active {
+    color: inherit;
+    border-bottom-color: #b22d4f; }
+  button.font-size-sm {
+    font-size: .8em; }
+  button.font-size-md {
+    font-size: 1em; }
+  button.font-size-lg {
+    font-size: 1.2em; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   GRID
@@ -1504,7 +1542,7 @@ sup {
   Default styling for callout elements
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .callout {
-  border: 1px solid #d9dbdb;
+  border: 1px solid #9c9e9e;
   margin-bottom: 1rem;
   padding: 20px;
   border-radius: 4px; }
@@ -1565,7 +1603,7 @@ sup {
   flex-grow: 1;
   overflow: hidden;
   border-radius: 0px;
-  border: 1px solid #d9dbdb;
+  border: 1px solid #9c9e9e;
   margin-bottom: 1rem;
   background: #fff; }
   .card > :last-child {
@@ -1655,7 +1693,7 @@ table {
   width: 100%; }
 
 td {
-  border-bottom: 1px solid #d9dbdb; }
+  border-bottom: 1px solid #9c9e9e; }
 
 th {
   font-weight: bold; }
@@ -1666,16 +1704,16 @@ td {
   padding: .5em .8em; }
 
 thead th {
-  border-bottom: 2px solid #d9dbdb; }
+  border-bottom: 2px solid #9c9e9e; }
 
 tfoot th {
-  border-top: 2px solid #d9dbdb; }
+  border-top: 2px solid #9c9e9e; }
 
 .table__striped tr:nth-child(odd) td {
-  background: #f4f4f4; }
+  background: #e1e2e2; }
 
 .table__border, .table__border td, .table__border th {
-  border: 1px solid #d9dbdb; }
+  border: 1px solid #9c9e9e; }
 
 .table__hoverable tr:hover td {
   background: #b22d4f !important;
@@ -1691,7 +1729,7 @@ tfoot th {
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 [type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea {
   display: block;
-  border: 1px solid #d9dbdb;
+  border: 1px solid #9c9e9e;
   border-radius: 4px;
   background: #fff;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -1705,7 +1743,7 @@ tfoot th {
   opacity: 1; }
 
 [type=color]:hover, [type=date]:hover, [type=datetime]:hover, [type=datetime-local]:hover, [type=email]:hover, [type=month]:hover, [type=number]:hover, [type=password]:hover, [type=search]:hover, [type=tel]:hover, [type=text]:hover, [type=url]:hover, [type=week]:hover, [type=time]:hover, select:hover, textarea:hover {
-  border-color: #828383; }
+  border-color: #5e5f5f; }
 
 [type=color]:focus, [type=color]:active, [type=date]:focus, [type=date]:active, [type=datetime]:focus, [type=datetime]:active, [type=datetime-local]:focus, [type=datetime-local]:active, [type=email]:focus, [type=email]:active, [type=month]:focus, [type=month]:active, [type=number]:focus, [type=number]:active, [type=password]:focus, [type=password]:active, [type=search]:focus, [type=search]:active, [type=tel]:focus, [type=tel]:active, [type=text]:focus, [type=text]:active, [type=url]:focus, [type=url]:active, [type=week]:focus, [type=week]:active, [type=time]:focus, [type=time]:active, select:focus, select:active, textarea:focus, textarea:active {
   border-color: #b22d4f;
@@ -1713,7 +1751,7 @@ tfoot th {
 
 [type=color]:disabled, [type=date]:disabled, [type=datetime]:disabled, [type=datetime-local]:disabled, [type=email]:disabled, [type=month]:disabled, [type=number]:disabled, [type=password]:disabled, [type=search]:disabled, [type=tel]:disabled, [type=text]:disabled, [type=url]:disabled, [type=week]:disabled, [type=time]:disabled, select:disabled, textarea:disabled, [type=month]:disabled {
   cursor: not-allowed;
-  border: 1px solid #d9dbdb;
+  border: 1px solid #9c9e9e;
   box-shadow: none;
   opacity: 0.5; }
 
@@ -1730,7 +1768,7 @@ input[type=checkbox], input[type=radio] {
   margin-right: 5px; }
 
 fieldset {
-  border: 1px solid #d9dbdb;
+  border: 1px solid #9c9e9e;
   border-radius: 4px;
   padding: 20px;
   margin: 1rem 0; }
@@ -1763,7 +1801,7 @@ select::-ms-expand {
 ::-moz-placeholder,
 :-moz-placeholder,
 :-ms-input-placeholder {
-  color: #d9dbdb; }
+  color: #9c9e9e; }
 
 .form-group, .form-group-inline {
   margin: 3px 0 0.5rem 0; }
@@ -2201,7 +2239,7 @@ Utilities
   Can be removed on live projects.
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .docs .row-boxed {
-  border: 1px solid #d9dbdb;
+  border: 1px solid #9c9e9e;
   min-height: 120px;
   margin-bottom: 0.5rem; }
 
@@ -2261,7 +2299,7 @@ Utilities
 .docs .docs-section {
   margin-top: 4rem;
   padding-bottom: 4rem;
-  border-bottom: 1px solid #d9dbdb; }
+  border-bottom: 1px solid #9c9e9e; }
 
 .docs .smooth-transform {
   transition: transform 0.2s ease; }

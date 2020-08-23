@@ -24,7 +24,7 @@ $element-margin: 1rem !default;
 
 /* COLOURS */
 $color-text: #333333 !default;
-$color-text-light: #d9dbdb !default;
+$color-text-light: #9c9e9e !default;
 $color-white: #fff !default;
 $color-background: $color-white !default;
 $color-background-alt: #efefef !default;
@@ -73,6 +73,21 @@ $font-size-xxxlarge: 2.5em !default; // Used in H1
 $link-color: $color-primary !default;
 $link-active: $color-secondary !default;
 $link-visited: $color-tertiary !default;
+
+/* ACCESSIBILITY */
+$acc-font-size-sm: 14px !default;
+$acc-font-size-md: 16px !default;
+$acc-font-size-lg: 18px !default;
+
+$acc-button-font-weight: normal !default;
+
+$acc-button-color: $color-text-light !default;
+$acc-button-hover-color: $link-active !default;
+$acc-button-active-color: inherit !default;
+
+$acc-button-border-bottom: 2px !default;
+$acc-button-hover-border-color: $color-secondary !default;
+$acc-button-active-border-color: $color-primary !default;
 
 /* GLOBAL TRANSITION USED IN SMOOTH() */
 $global-transition: 0.2s ease !default;
