@@ -52,11 +52,12 @@ Feel free to take Jellyfish for a spin on any of your web projects and let me kn
 
 ## Acknowledgements
 
-A special thanks to all of the developers whos existing frameworks have provided inspiration and pointers:
+A special thanks to all of the developers who's existing frameworks have provided inspiration and pointers:
 
 - [Skeleton CSS](http://getskeleton.com/)
 - [Primitive UI](https://taniarascia.github.io/primitive/)
 - [Shoelace](https://www.shoelace.style/)
+- [Picnic CSS](https://picnicss.com/)
 - [Bulma](https://bulma.io/)
 - [Bootstrap](https://www.shoelace.style/)
 - [Foundation](https://get.foundation/index.html)

@@ -27,6 +27,11 @@ body.dark-ui {
   ::placeholder {
     color: shade($dark-mode-text-color, 70%) !important;
   }
-
+  .hamburger {
+    border: 0;
+  }
+  .hamburger-inner, .hamburger-inner:after, .hamburger-inner:before {
+    background-color: $dark-mode-link-color !important;
+  }
 }
 // TODO: add @media (prefers-color-scheme: dark)

@@ -1,5 +1,5 @@
 /*! jellyfish-grid 3.0.0
- * © 2020-08-23 Matt Weet - https://www.weareboba.com */
+ * © 2020-08-24 Matt Weet - https://www.weareboba.com */
 
 /* GRID */
 /* JELLYFISH DEFAULTS */
@@ -493,6 +493,12 @@ body.dark-ui .button, body.dark-ui [type=submit], body.dark-ui a.button, body.da
 
 body.dark-ui ::placeholder {
   color: #a1a1a1 !important; }
+
+body.dark-ui .hamburger {
+  border: 0; }
+
+body.dark-ui .hamburger-inner, body.dark-ui .hamburger-inner:after, body.dark-ui .hamburger-inner:before {
+  background-color: #58cdf1 !important; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   ACCESSIBILITY
