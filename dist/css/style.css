@@ -2359,7 +2359,7 @@ Utilities
       color: #fff;
       padding: .4em .6em; }
   .docs code[class*="language-"], .docs pre[class*="language-"] {
-    background: #1a1b1d;
+    background: #efefef;
     border: 0; }
   .docs .hero {
     background: url("https://images.unsplash.com/photo-1569689862393-287eaaa677c6?q=100&fm=jpg&w=1080&fit=max&?ixid=123123123");
@@ -2389,6 +2389,8 @@ Utilities
   .docs #navbar-menu {
     justify-content: center;
     min-height: 55px; }
+  .docs .navbar-start {
+    margin-right: 0; }
   .docs body {
     padding-top: 55px; }
   .docs .label__light {

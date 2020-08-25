@@ -109,7 +109,7 @@
     }
   }
   code[class*="language-"], pre[class*="language-"] {
-    background: #1a1b1d;
+    background: $color-background-alt;
     border: 0;
   }
 
@@ -152,6 +152,10 @@
   #navbar-menu {
     justify-content: center;
     min-height: 55px;
+  }
+
+  .navbar-start {
+    margin-right: 0; // centers element
   }
 
   body {
