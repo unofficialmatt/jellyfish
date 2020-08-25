@@ -20,21 +20,21 @@ $root-line-height: 1.4 !default;
 
 /* GLOBAL PADDING/MARGINS */
 $element-padding: 20px !default;
-$element-margin: 1rem !default;
+$element-margin: 1.4rem !default;
 
 /* COLOURS */
 $color-text: #333333 !default;
-$color-text-light: #9c9e9e !default;
+$color-text-light: #7e7f7f !default;
 $color-white: #fff !default;
 $color-background: $color-white !default;
 $color-background-alt: #efefef !default;
-$color-primary: #b22d4f !default;
-$color-secondary: #2d6378 !default;
-$color-tertiary: #5d2b50 !default;
+$color-primary: #001496 !default;
+$color-secondary: #a62579 !default;
+$color-tertiary: #8e1b1f !default;
 
-$color-success: #2CC990 !default;
-$color-warning: #FCB941 !default;
-$color-error: #FC6042 !default;
+$color-success: #77de65 !default;
+$color-warning: #FCCf14 !default;
+$color-error: #FF4200 !default;
 
 // Create an empty map. This allows the map to be defined in the project's settings file to include any colors as required
 $theme-colors: () !default;
@@ -60,14 +60,22 @@ $font-body: $font-primary !default;
 $font-headings: $font-secondary !default;
 
 /* FONT SIZES */
-$font-size-xsmall: 0.6em !default;
-$font-size-small: 0.8em !default;
-$font-size-normal: 1em !default; // Default font size for elements
-$font-size-medium:1.25em !default; // Used in H5
-$font-size-large: 1.5em !default; // Used in H4
-$font-size-xlarge: 1.75em !default; // Used in H3
-$font-size-xxlarge: 2em !default; // Used in H2
-$font-size-xxxlarge: 2.5em !default; // Used in H1
+$font-size--2: 0.6em !default;
+$font-size--1: 0.8em !default;
+$font-size-0: 1em !default;
+$font-size-1:1.5em !default;
+$font-size-2:1.5em !default;
+$font-size-3: 1.75em !default;
+$font-size-4: 2em !default;
+$font-size-5: 2.5em !default;
+$font-size-6: 3em !default;
+
+$font-size-h1: $font-size-6 !default;
+$font-size-h2: $font-size-5 !default;
+$font-size-h3: $font-size-4 !default;
+$font-size-h4: $font-size-3 !default;
+$font-size-h5: $font-size-2 !default;
+$font-size-h6: $font-size-1 !default;
 
 /* LINKS */
 $link-color: $color-primary !default;
@@ -101,7 +109,7 @@ $global-transition: 0.2s ease !default;
 /* BORDERS */
 $border-width: 1px !default;
 $border-style: solid !default;
-$border-color: $color-text-light !default;
+$border-color: tint($color-text-light, 40%) !default;
 $border-radius: 4px !default;
 $borders: $border-width $border-style $border-color !default;
 
@@ -141,8 +149,8 @@ $label-text-color-light: $color-white !default;
 $label-text-color-dark: $color-text !default;
 
 /* TABLES */
-$table-stripe-color: tint($color-text-light,30%) !default;
-$table-hover-background: $color-primary !default;
+$table-stripe-color: $color-background-alt !default;
+$table-hover-background: $color-text-light !default;
 $table-hover-color: $color-white !default;
 
 /* CARDS */
@@ -155,19 +163,19 @@ $card-background-color: $color-background !default;
 
 /* NAVBAR */
 $nav-expands: 900px !default; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
-$navbar-bg-color: $color-background-alt !default;
+$navbar-bg-color: $color-primary !default;
 $navbar-container-padding: 10px !default; // Applies below $nav-expands
 $navbar-container-width: inherit !default; // Use 'inherit' to make it the same as the document container, or a percentage to override. Applies from $nav-expands up
 // Links
 $navbar-font-size: 0.8em !default;
 $navbar-text-transform: none !default;
-$navbar-link-color: $color-primary !default;
+$navbar-link-color: $color-white !default;
 $navbar-link-bg-color: $navbar-bg-color !default;
 $navbar-font-weight: bold !default;
-$navbar-link-border: 1px solid rgba(255,255,255,0.4) !default;
+$navbar-link-border: 1px solid rgba($color-white,0.1) !default;
 // Links: Hover
-$navbar-link-hover-color: $color-secondary !default;
-$navbar-link-hover-bg-color: shade($color-background-alt,90%) !default;
+$navbar-link-hover-color: $color-white !default;
+$navbar-link-hover-bg-color: shade($navbar-bg-color,50%) !default;
 $navbar-link-hover-weight: $navbar-font-weight !default;
 // Links: Padding
 $navbar-link-padding-x: 10px !default;

@@ -10,7 +10,7 @@
 
 #{headings()} {
     font-family: $font-headings;
-    margin: 0 0 .4em 0;
+    margin: 0 0 $element-margin/2 0;
     line-height: 1.2;
     &:not(:first-child) {
       margin-top: $element-margin;
@@ -19,27 +19,27 @@
 }
 
 h1 {
-    font-size: $font-size-xxxlarge;
+    font-size: $font-size-h1;
 }
 
 h2 {
-    font-size: $font-size-xxlarge;
+    font-size: $font-size-h2;
 }
 
 h3 {
-    font-size: $font-size-xlarge;
+    font-size: $font-size-h3;
 }
 
 h4 {
-    font-size: $font-size-large;
+    font-size: $font-size-h4;
 }
 
 h5 {
-    font-size: $font-size-medium;
+    font-size: $font-size-h5;
 }
 
 h6 {
-    font-size: $font-size-normal;
+    font-size: $font-size-h6;
 }
 
 /* TEXT TRANSFORM */
@@ -48,7 +48,7 @@ small {
   display: block;
 }
 small, .small {
-    font-size: $font-size-small;
+    font-size: $font-size--1;
 }
 strong, .bold, b {
     font-weight: bold;
@@ -57,7 +57,7 @@ em, .italic, i {
     font-style: italic;
 }
 .standfirst {
-    font-size: $font-size-medium;
+    font-size: $font-size-1;
 }
 
 // Highlighted
@@ -108,37 +108,36 @@ q {
 
 %inline-code {
     @extend %code;
-    font-size: $font-size-small;
+    font-size: $font-size--1;
     line-height: 1;
     border-radius: $border-radius;
-    padding: .5em;
-    display: inline-block;
+    padding: .3em .35em;
 }
 
 // Keyboard Input
 kbd {
     @extend %inline-code;
-    background-color: #222;
+    background-color: $color-text;
     color: $color-white;
 }
 
 // Code
 :not(pre)>code {
     @extend %inline-code;
-    border: $borders;
+    background-color: $color-background-alt;
 }
 
 // Variable
 var {
     @extend %inline-code;
+    background-color: $color-background-alt;
     font-style: italic;
-    color: $color-white;
-    background-color: $color-secondary;
+    color: $color-secondary;
 }
 
 // Subscript and Superscript
 sub, sup {
-    font-size: $font-size-xsmall;
+    font-size: $font-size--2;
     line-height: 0;
     position: relative;
     vertical-align: baseline;

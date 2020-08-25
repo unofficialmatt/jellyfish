@@ -16,21 +16,21 @@
 
 /* GLOBAL PADDING/MARGINS */
 //$element-padding: 20px;
-//$element-margin: 1rem;
+//$element-margin: 1.4rem;
 
 /* COLOURS */
 //$color-text: #333333;
-//$color-text-light: #9c9e9e;
+//$color-text-light: #7e7f7f;
 //$color-white: #fff;
 //$color-background: $color-white;
 //$color-background-alt: #efefef;
-//$color-primary: #b22d4f;
-//$color-secondary: #2d6378;
-//$color-tertiary: #5d2b50;
+//$color-primary: #001496;
+//$color-secondary: #a62579;
+//$color-tertiary: #8e1b1f;
 
-//$color-success: #2CC990;
-//$color-warning: #FCB941;
-//$color-error: #FC6042;
+//$color-success: #77de65;
+//$color-warning: #FCCf14;
+//$color-error: #FF4200;
 
 /* THEME COLORS */
 // Any variable you add here will have the following classes automatically created: .text-*, .bg-*, .label__*, .button__* and .callout__*
@@ -49,14 +49,22 @@ $theme-colors: (
 //$font-headings: $font-secondary;
 
 /* FONT SIZES */
-//$font-size-xsmall: 0.6em;
-//$font-size-small: 0.8em;
-//$font-size-normal: 1em; // Default font size for elements
-//$font-size-medium:1.25em; // Used in H5
-//$font-size-large: 1.5em; // Used in H4
-//$font-size-xlarge: 1.75em; // Used in H3
-//$font-size-xxlarge: 2em; // Used in H2
-//$font-size-xxxlarge: 2.5em; // Used in H1
+//$font-size--2: 0.6em;
+//$font-size--1: 0.8em;
+//$font-size-0: 1em;
+//$font-size-1:1.5em;
+//$font-size-2:1.5em;
+//$font-size-3: 1.75em;
+//$font-size-4: 2em;
+//$font-size-5: 2.5em;
+//$font-size-6: 3em;
+
+//$font-size-h1: $font-size-6;
+//$font-size-h2: $font-size-5;
+//$font-size-h3: $font-size-4;
+//$font-size-h4: $font-size-3;
+//$font-size-h5: $font-size-2;
+//$font-size-h6: $font-size-1;
 
 /* LINKS */
 //$link-color: $color-primary;
@@ -90,7 +98,7 @@ $theme-colors: (
 /* BORDERS */
 //$border-width: 1px;
 //$border-style: solid;
-//$border-color: $color-text-light;
+//$border-color: tint($color-text-light, 40%);
 //$border-radius: 4px;
 //$borders: $border-width $border-style $border-color;
 
@@ -128,8 +136,8 @@ $theme-colors: (
 //$label-text-color-dark: $color-text;
 
 /* TABLES */
-//$table-stripe-color: tint($color-text-light,30%);
-//$table-hover-background: $color-primary;
+//$table-stripe-color: $color-background-alt;
+//$table-hover-background: $color-text-light;
 //$table-hover-color: $color-white;
 
 /* CARDS */
@@ -142,19 +150,19 @@ $theme-colors: (
 
 /* NAVBAR */
 $nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
-//$navbar-bg-color: $color-background-alt;
+//$navbar-bg-color: $color-primary;
 //$navbar-container-padding: 10px; // Applies below $nav-expands
 $navbar-container-width: 100%; // Use 'inherit' to make it the same as the document container, or a percentage to override. Applies from $nav-expands up
 // Links
 //$navbar-font-size: 0.8em;
 //$navbar-text-transform: uppercase;
-//$navbar-link-color: $color-primary;
+//$navbar-link-color: $color-white;
 //$navbar-link-bg-color: $navbar-bg-color;
 //$navbar-font-weight: bold;
-//$navbar-link-border: 1px solid rgba(255,255,255,0.4);
+//$navbar-link-border: 1px solid rgba($color-white,0.1);
 // Links: Hover
-//$navbar-link-hover-color: $color-secondary;
-//$navbar-link-hover-bg-color: shade($color-background-alt,90%);
+//$navbar-link-hover-color: $color-white;
+//$navbar-link-hover-bg-color: shade($navbar-bg-color,50%);
 //$navbar-link-hover-weight: $navbar-font-weight;
 // Links: Padding
 //$navbar-link-padding-x: 10px;
