@@ -5,7 +5,6 @@
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 // TODO: Change prism styling to light
-// TODO: Use Stickyjs or something to jeep the .section-heading in view until next one comes along
 
 .docs {
 
@@ -20,9 +19,12 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: $element-margin*6;
-    padding-bottom: $element-margin*1;
+    padding-bottom: $element-margin;
+    padding-top: $element-margin;
     margin-bottom: $section-bottom-margin;
     border-bottom: $border-width solid $color-background-alt;
+    z-index: 9;
+    background-color: $color-background;
     .label-group:first-of-type {
       margin-left: auto;
     }

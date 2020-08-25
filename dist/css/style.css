@@ -2303,8 +2303,11 @@ Utilities
     flex-wrap: wrap;
     margin-top: 8.4rem;
     padding-bottom: 1.4rem;
+    padding-top: 1.4rem;
     margin-bottom: 4.2rem;
-    border-bottom: 1px solid #efefef; }
+    border-bottom: 1px solid #efefef;
+    z-index: 9;
+    background-color: #fff; }
     .docs .section-heading .label-group:first-of-type {
       margin-left: auto; }
     .docs .section-heading .label-group {
