@@ -45,14 +45,14 @@
             <li><a href="#mixins">Mixins</a></li>
             <li><a href="#printing">Printing</a></li>
             <li><a href="#breakpoint-settings">Breakpoints</a></li>
-            <li><a href="#configuration">Configuration</a></li>
+            <li><a href="#configuration">Variables</a></li>
             <li><a href="#debug">Debug</a></li>
           </ul>
         </div>
       </div>
     </div>
   </nav>
-  <header class="docs-header">
+  <header class="hero">
     <div class="container">
       <div class="row">
         <div class="col md-10 offset-md-1 xl-8 offset-xl-2">
@@ -70,141 +70,168 @@
     <div class="row">
       <main class="col">
         <section class="docs-section" id="how-to-use">
-          <h2>How to Use</h2>
-          <h3>BrowserSync, Grunt.js, NPM and Sass</h3>
-          <p>Jellyfish makes use of modern technologies in order to make the dev experience more enjoyable.</p>
-          <ul>
-            <li><a href="https://www.browsersync.io/" rel="external">Browsersync</a> opens up a new window in your default browser and live reloads whenever changes are detected to your project's javascript, css or HTML.</li>
-            <li><a href="https://sass-lang.com/" rel="external">Sass (SCSS)</a> is used to extend css, helping to compartmentalise components and organise code into digestible parts. Sass can also make use of useful concepts like nesting, variables and functions.</li>
-            <li><a href="https://www.npmjs.com/" rel="external">NPM</a> is used to manage packages that are required to run Jellyfish.</li>
-            <li><a href="https://gruntjs.com/" rel="external">Grunt.js</a> is a task-runner which is used to reduce hassles in compiling code.</li>
-          </ul>
-          <h3>Starting your project</h3>
-          <p>Make sure that you have npm, browsersync and grunt installed on your system following the guides on their respective websites. Then, clone the project into your required folder with git...</p>
-          <pre class="language-git"><code>$ git clone https://github.com/unofficialmatt/jellyfish.git</code></pre>
-          <p>Install the dev dependencies in the root of the project...</p>
-          <pre class="language-markup"><code>$ npm install</code></pre>
-          <p>Initialise grunt, to rebuild the codebase for a clean start.</p>
-          <pre class="language-markup"><code>$ grunt init</code></pre>
-          <p>Next time, you can just run the default grunt task, to simply start browserSync</p>
-          <pre class="language-markup"><code>$ grunt</code></pre>
-          <h3>Directory structure</h3>
-          <p>The project contains the source and destination folders, as well as necessary project files.</p>
-          <pre class="language-markup"><code><!--
-          assets/                    :  contains the source files for the project
-          ├── grunt/                 :  partial .js files that are used by the master Gruntfile to run tasks
-          ├── img/                   :  an empty directory for images, which will be minified by Grunt into dist/img
-          ├── js/                    :  when Grunt detects a change to any of these directories (new file, edit, remove), it will concatenate and minify javascript and reload your browser with browserSync
-          │   ├── project/              :  used for project specific js
-          │   ├── vendor/            :  used for vendor / third-party js. Often copied from node-modules with the Gruntfile task copy:npm
-          ├── scss/
-          │   ├── jellyfish/         :  contains all of the Jellyfish scss files. It is not recommended to edit any of the files within this directory
-          │   ├── project/           :  add your project specific scss files here
-          │   ├── project/_all.scss  :  this file is automatically populated by Grunt to include all other scss files in the project directory
-          │   ├── _settings.scss     :  the settings file (variables and options) for overriding Jellyfish defaults
-          dist/                      :  contains the final css, images and javascript files within sub-directories. The files in this directory are all created by Grunt
-          docs/                      :  contains files only used by this documentation. Can be safely removed
-          .editorconfig              :  keeps code indented to 2 spaces. Feel free to edit to your tastes
-          .eslintrc                  :  rules for ES Javascript linting
-          .gitignore                 :  a substantial gitignore file to ignore system files and node_modules
-          boilerplate.html           :  starter HTML template
-          Gruntfile.js               :  compiles tasks from partials in the assets/grunt directory. Tasks are run to help make the dev process more efficient and enjoyable. The partials are well documented.
-          index.html                 :  this file! Feel free to delete for your project - or rename and use it as a reference
-          package.json               :  npm package information to initialise node_modules
-            --></code>
-          </pre>
-          <h3>Grunt Tasks</h3>
-          <p>For the most part, as long as you follow the guidance above in terms of file hierarchy, you can let Grunt work it's magic without hassle. You can amend the Gruntfile as your project dictates, to edit/remove/add tasks as appropriate from the huge variety available.</p>
-          <p>The <span class="file-ref">Gruntfile.js</span> is well commented, here are a summary of the tasks included as default:</p>
-          <h4>Project init tasks</h4>
-          <ul>
-            <li>Copy files from node_modules and save into the project build directories:
+          <h2 class="section-heading">How to Use</h2>
+          <article>
+            <h3>BrowserSync, Grunt.js, NPM and Sass</h3>
+            <p class="standfirst">Jellyfish makes use of modern technologies in order to make the dev experience more enjoyable.</p>
               <ul>
-                <li>jquery.js</li>
-                <li>hamburgers.scss</li>
+                <li><a href="https://www.browsersync.io/" rel="external">Browsersync</a> opens up a new window in your default browser and live reloads whenever changes are detected to your project's javascript, css or HTML.</li>
+                <li><a href="https://sass-lang.com/" rel="external">Sass (SCSS)</a> is used to extend css, helping to compartmentalise components and organise code into digestible parts. Sass can also make use of useful concepts like nesting, variables and functions.</li>
+                <li><a href="https://www.npmjs.com/" rel="external">NPM</a> is used to manage packages that are required to run Jellyfish.</li>
+                <li><a href="https://gruntjs.com/" rel="external">Grunt.js</a> is a task-runner which is used to reduce hassles in compiling code.</li>
               </ul>
-            </li>
-            <li>Start watching files for changes.</li>
-            <li>Load up the project in a web browser.</li>
-          </ul>
-          <h4>Watch tasks</h4>
-          <ul>
-            <li><strong>SCSS:</strong> When any scss file within <span class="file-ref">/assets/scss</span> is changed, added or deleted:
-              <ul>
-                <li>@import all _scss partials saved in <span class="file-ref">/assets/scss/project</span> to <span class="file-ref">/assets/scss/project/_all.scss</span>.</li>
-                <li>Run SCSS compile on <span class="file-ref">/assets/scss/compile.scss</span> and output to <span class="file-ref">/dist/css/style.css</span>. This task will include Jellyfish core scss and your project's scss.</li>
-                <li>Run postcss; this task adds vendor prefixes, converts any px values to rem units based on a document default of 16px = 1rem, and minifies the file to <span class="file-ref">/dist/css/style.min.css</span>.</li>
-                <li>Reload the browser</li>
-              </ul>
-            </li>
-            <li><strong>Javascript: </strong> When any javascript file within <span class="file-ref">/assets/js</span> is changed, added or deleted:
-              <ul>
-                <li>Concatenate all javascript files saved in <span class="file-ref">/assets/js/vendor</span> and <span class="file-ref">/assets/js/project</span> and saves to <span class="file-ref">/dist/js/project.js</span></li>
-                <li>Minify <span class="file-ref">/dist/js/project.js</span> to <span class="file-ref">/dist/js/project.min.js</span></li>
-                <li>Reload the browser</li>
-              </ul>
-            </li>
-            <li><strong>Images: </strong> When any image file within <span class="file-ref">/assets/img</span> is changed, added or deleted:
-              <ul>
-                <li>Remove all existing images from <span class="file-ref">/dist/img</span></li>
-                <li>Optimise and compress all images in <span class="file-ref">/assets/img</span> and saves them to <span class="file-ref">/dist/img</span></li>
-                <li>Reload the browser</li>
-              </ul>
-            </li>
-            <li><strong>HTML/CSS: </strong> When any .html or .php file is edited:
-              <ul>
-                <li>Reload the browser</li>
-              </ul>
-          </ul>
+          </article>
+          <article>
+            <h3>Starting your project</h3>
+            <p>Make sure that you have npm, browsersync and grunt installed on your system following the guides on their respective websites. Then, clone the project into your required folder with git...</p>
+            <pre class="language-git"><code>$ git clone https://github.com/unofficialmatt/jellyfish.git</code></pre>
+            <p>Install the dev dependencies in the root of the project...</p>
+            <pre class="language-markup"><code>$ npm install</code></pre>
+            <p>Initialise grunt, to rebuild the codebase for a clean start.</p>
+            <pre class="language-markup"><code>$ grunt init</code></pre>
+            <p>Next time, you can just run the default grunt task, to simply start browserSync</p>
+            <pre class="language-markup"><code>$ grunt</code></pre>
+          </article>
+          <article>
+            <h3>Directory structure</h3>
+            <p>The project contains the source and destination folders, as well as necessary project files.</p>
+            <pre class="language-markup"><code><!--
+            assets/                    :  contains the source files for the project
+            ├── grunt/                 :  partial .js files that are used by the master Gruntfile to run tasks
+            ├── img/                   :  an empty directory for images, which will be minified by Grunt into dist/img
+            ├── js/                    :  when Grunt detects a change to any of these directories (new file, edit, remove), it will concatenate and minify javascript and reload your browser with browserSync
+            │   ├── project/              :  used for project specific js
+            │   ├── vendor/            :  used for vendor / third-party js. Often copied from node-modules with the Gruntfile task copy:npm
+            ├── scss/
+            │   ├── jellyfish/         :  contains all of the Jellyfish scss files. It is not recommended to edit any of the files within this directory
+            │   ├── project/           :  add your project specific scss files here
+            │   ├── project/_all.scss  :  this file is automatically populated by Grunt to include all other scss files in the project directory
+            │   ├── _settings.scss     :  the settings file (variables and options) for overriding Jellyfish defaults
+            dist/                      :  contains the final css, images and javascript files within sub-directories. The files in this directory are all created by Grunt
+            docs/                      :  contains files only used by this documentation. Can be safely removed
+            .editorconfig              :  keeps code indented to 2 spaces. Feel free to edit to your tastes
+            .eslintrc                  :  rules for ES Javascript linting
+            .gitignore                 :  a substantial gitignore file to ignore system files and node_modules
+            boilerplate.html           :  starter HTML template
+            Gruntfile.js               :  compiles tasks from partials in the assets/grunt directory. Tasks are run to help make the dev process more efficient and enjoyable. The partials are well documented.
+            index.html                 :  this file! Feel free to delete for your project - or rename and use it as a reference
+            package.json               :  npm package information to initialise node_modules
+              --></code>
+            </pre>
+          </article>
+          <article>
+            <h3>Grunt Tasks</h3>
+            <p class="standfirst">For the most part, as long as you follow the guidance above in terms of file hierarchy, you can let Grunt work it's magic without hassle.</p><p>You can amend the Gruntfile as your project dictates, to edit/remove/add tasks as appropriate from the huge variety available.</p>
+            <p>The <span class="file-ref">Gruntfile.js</span> and partials are well commented, here are a summary of the tasks included as default:</p>
+            <h4>Project init tasks</h4>
+            <ul>
+              <li>Copy files from node_modules and save into the project build directories:
+                <ul>
+                  <li>jquery.js</li>
+                  <li>hamburgers.scss</li>
+                </ul>
+              </li>
+              <li>Start watching files for changes.</li>
+              <li>Load up the project in a web browser.</li>
+            </ul>
+            <h4>Watch tasks</h4>
+            <ul>
+              <li><strong>SCSS:</strong> When any scss file within <span class="file-ref">/assets/scss</span> is changed, added or deleted:
+                <ul>
+                  <li>@import all _scss partials saved in <span class="file-ref">/assets/scss/project</span> to <span class="file-ref">/assets/scss/project/_all.scss</span>.</li>
+                  <li>Run SCSS compile on <span class="file-ref">/assets/scss/compile.scss</span> and output to <span class="file-ref">/dist/css/style.css</span>. This task will include Jellyfish core scss and your project's scss.</li>
+                  <li>Run postcss; this task adds vendor prefixes, converts any px values to rem units based on a document default of 16px = 1rem, and minifies the file to <span class="file-ref">/dist/css/style.min.css</span>.</li>
+                  <li>Reload the browser</li>
+                </ul>
+              </li>
+              <li><strong>Javascript: </strong> When any javascript file within <span class="file-ref">/assets/js</span> is changed, added or deleted:
+                <ul>
+                  <li>Concatenate all javascript files saved in <span class="file-ref">/assets/js/vendor</span> and <span class="file-ref">/assets/js/project</span> and saves to <span class="file-ref">/dist/js/project.js</span></li>
+                  <li>Minify <span class="file-ref">/dist/js/project.js</span> to <span class="file-ref">/dist/js/project.min.js</span></li>
+                  <li>Reload the browser</li>
+                </ul>
+              </li>
+              <li><strong>Images: </strong> When any image file within <span class="file-ref">/assets/img</span> is changed, added or deleted:
+                <ul>
+                  <li>Remove all existing images from <span class="file-ref">/dist/img</span></li>
+                  <li>Optimise and compress all images in <span class="file-ref">/assets/img</span> and saves them to <span class="file-ref">/dist/img</span></li>
+                  <li>Reload the browser</li>
+                </ul>
+              </li>
+              <li><strong>HTML/CSS: </strong> When any .html or .php file is edited:
+                <ul>
+                  <li>Reload the browser</li>
+                </ul>
+            </ul>
+          </article>
         </section><!-- #how-to-use -->
         <section class="docs-section" id="boilerplate">
-          <h2>HTML Boilerplate</h2>
-          <p>Begin your project with as basic <a href="https://en.wikipedia.org/wiki/HTML5" rel="external">HTML5</a> boilerplate that does the following:</p>
-          <ul>
-            <li>Sets the <a href="https://www.w3schools.com/tags/ref_language_codes.asp" target="_blank">default language</a> and <a href="https://en.wikipedia.org/wiki/UTF-8">character set</a>.</li>
-            <li>Uses the latest <a href="https://msdn.microsoft.com/en-us/library/jj676915(v=vs.85).aspx">Internet Explorer rendering mode</a>.</li>
-            <li>Defines the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag">width of the viewport</a> to enable responsiveness.</li>
-            <li>Includes links to the minified CSS file and minified javascript file.</li>
-          </ul>
-          <pre class="language-markup line-numbers"><code><!--
-            <!DOCTYPE html>
-            <html lang="en" dir="ltr">
+          <h2 class="section-heading">HTML Boilerplate</h2>
+          <article>
+            <p class="standfirst">For when you just want to get up and running.</p>
+            <p>Begin your project with as basic <a href="https://en.wikipedia.org/wiki/HTML5" rel="external">HTML5</a> boilerplate that does the following:</p>
+            <ul>
+              <li>Sets the <a href="https://www.w3schools.com/tags/ref_language_codes.asp" target="_blank">default language</a> and <a href="https://en.wikipedia.org/wiki/UTF-8">character set</a>.</li>
+              <li>Uses the latest <a href="https://msdn.microsoft.com/en-us/library/jj676915(v=vs.85).aspx">Internet Explorer rendering mode</a>.</li>
+              <li>Defines the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag">width of the viewport</a> to enable responsiveness.</li>
+              <li>Includes links to the minified CSS file and minified javascript file.</li>
+            </ul>
+            <pre class="language-markup line-numbers"><code><!--
+              <!DOCTYPE html>
+              <html lang="en" dir="ltr">
 
-            <head>
-              <meta charset="utf-8">
+              <head>
+                <meta charset="utf-8">
 
-              <title></title>
-              <meta name="description" content="">
+                <title></title>
+                <meta name="description" content="">
 
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="x-ua-compatible" content="ie=edge">
-              <link rel="stylesheet" href="dist/css/style.min.css" media="all">
-            </head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta http-equiv="x-ua-compatible" content="ie=edge">
+                <link rel="stylesheet" href="dist/css/style.min.css" media="all">
+              </head>
 
-            <body>
-              <main>
-                <section class="container">
-                  <div class="row">
-                    <div class="col">
-                      <h1>Welcome to my site.</h1>
+              <body>
+                <main>
+                  <section class="container">
+                    <div class="row">
+                      <div class="col">
+                        <h1>Welcome to my site.</h1>
+                      </div>
                     </div>
-                  </div>
-                </section>
-              </main>
-              <script type="text/javascript" src="dist/js/project.min.js"></script>
-            </body>
+                  </section>
+                </main>
+                <script type="text/javascript" src="dist/js/project.min.js"></script>
+              </body>
 
-            </html>
+              </html>
 
-            --></code>
-            <label>boilerplate.html</label>
-          </pre>
+              --></code>
+              <label>boilerplate.html</label>
+            </pre>
+          </article>
         </section><!-- #boilerplate -->
         <section class="docs-section" id="grid">
-          <h2>Grid</h2>
-          <p>Jellyfish's grid system is built on <a href="https://flexboxfroggy.com/" rel="external">flexbox</a>. The grid consists of containers (<span class="css-ref">.container</span>), rows (<span class="css-ref">.row</span>) and columns (<span class="css-ref">.col </span>). These elements are defined in <span class="file-ref">/assets/scss/jellyfish/components/_grid.scss</span>.</p>
-
-          <h4>A basic 2 column grid</h4>
+          <h2 class="section-heading">
+            Grid
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__success">Yes</span>
+            </span>
+          </h2>
+          <article>
+            <p class="standfirst">Jellyfish's grid system is built on <a href="https://flexboxfroggy.com/" rel="external">flexbox</a>.</p><p>The grid consists of containers (<span class="css-ref">.container</span>), rows (<span class="css-ref">.row</span>) and columns (<span class="css-ref">.col </span>). These elements are defined in <span class="file-ref">/assets/scss/jellyfish/components/_grid.scss</span>.</p>
+          </article>
+          <article>
+          <h3>A basic 2 column grid</h3>
           <pre class="language-markup"><code><!--
             <div class="container">
               <div class="row">
@@ -218,298 +245,348 @@
             <div class="col"><div class="boxed">1st column</div></div>
             <div class="col"><div class="boxed">2nd column</div></div>
           </div>
+          </article>
+          <article>
+            <h3>Containers</h3>
+            <p>Containers keep rows and columns - contained! By default, a row will fill all available space (ie 100% width). To restrict the width of the grid and keep elements neatly aligned, a <span class="css-ref">.container</span> can be used. The container is centered and can be customised at each breakpoint with the following settings: width, max-width, padding (left/right). See <a href="#breakpoint-settings">grid breakpoint settings</a> for information. A container with an additional class of <span class="css-ref">.full-width</span> will span 100% of available space.</p>
+            <p>A <span class="css-ref">.container</span> nested inside another will have it's padding left/right reset and it's width set to 100% of the parent element. This is to prevent nested containers from becoming increasingly smaller in width.</p>
+          </article>
+          <article>
+            <h3>Rows</h3>
+            <p>Rows contain a number of <span class="css-ref">.col</span> elements, grouped horizontally. To preserve equal margins on the left and right, the only elements inside a <span class="css-ref">.row</span> should be <span class="css-ref">.col</span> elements.</p>
+          </article>
+          <article>
+            <h3>Columns</h3>
+              <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
 
-          <h3>Containers</h3>
-          <p>Containers keep rows and columns - contained! By default, a row will fill all available space (ie 100% width). To restrict the width of the grid and keep elements neatly aligned, a <span class="css-ref">.container</span> can be used. The container is centered and can be customised at each breakpoint with the following settings: width, max-width, padding (left/right). See <a href="#breakpoint-settings">grid breakpoint settings</a> for information. A container with an additional class of <span class="css-ref">.full-width</span> will span 100% of available space.</p>
-          <p>A <span class="css-ref">.container</span> nested inside another will have it's padding left/right reset and it's width set to 100% of the parent element. This is to prevent nested containers from becoming increasingly smaller in width.</p>
+              <p>Columns are equal-width by default, and expand to fill all available width.</p>
+              <pre class="language-markup"><code><!--
+                <div class="row">
+                  <div class="col">1st column</div>
+                </div>
+                <div class="row">
+                  <div class="col">2nd column</div>
+                  <div class="col">2nd column</div>
+                </div>
+                <div class="row">
+                  <div class="col">3rd column</div>
+                  <div class="col">2nd column</div>
+                  <div class="col">3rd column</div>
+                </div>
+                --></code>
+              </pre>
+              <div class="row">
+                <div class="col"><div class="boxed">1st column</div></div>
+              </div>
+              <div class="row">
+                <div class="col"><div class="boxed">1st column</div></div>
+                <div class="col"><div class="boxed">2nd column</div></div>
+              </div>
+              <div class="row">
+                <div class="col"><div class="boxed">1st column</div></div>
+                <div class="col"><div class="boxed">2nd column</div></div>
+                <div class="col"><div class="boxed">3rd column</div></div>
+              </div>
+              <p>To size a  column based on it's content, use <span class="css-ref">.col-auto</span></p>
+              <pre class="language-markup"><code><!--
+                <div class="row">
+                  <div class="col">.col</div>
+                  <div class="col">.col</div>
+                  <div class="col col-auto">.col-auto</div>
+                  <div class="col">.col</div>
+                </div>
+                --></code>
+              </pre>
+              <div class="row">
+                <div class="col"><div class="boxed">.col</div></div>
+                <div class="col"><div class="boxed">.col</div></div>
+                <div class="col col-auto"><div class="boxed">.col-auto</div></div>
+                <div class="col"><div class="boxed">.col</div></div>
+              </div>
+            </article>
+            <article>
+              <h3>Making Columns Responsive</h3>
+              <p>To set the width of a column, use the breakpoint-based modifier classes to target different viewport widths. Breakpoints are explained in the <a href="#breakpoint-settings">breakpoint settings</a> section.</p>
+              <pre class="language-markup"><code><!--
+                <div class="row">
+                  <div class="col sm-3">sm-3</div>
+                  <div class="col sm-6">sm-6</div>
+                  <div class="col sm-3">sm-3</div>
+                </div>
+                --></code>
+              </pre>
+              <div class="row">
+                <div class="col sm-3"><div class="boxed">sm-3</div></div>
+                <div class="col sm-6"><div class="boxed">sm-6</div></div>
+                <div class="col sm-3"><div class="boxed">sm-3</div></div>
+              </div>
+              <p>Additional columns wrap to a new line.</p>
+              <pre class="language-markup"><code><!--
+                <div class="row">
+                  <div class="col sm-6">sm-6</div>
+                  <div class="col sm-6">sm-6</div>
+                  <div class="col sm-6">sm-6</div>
+                </div>
+                --></code>
+              </pre>
+              <div class="row">
+                <div class="col sm-6"><div class="boxed">sm-6</div></div>
+                <div class="col sm-6"><div class="boxed">sm-6</div></div>
+                <div class="col sm-6"><div class="boxed">sm-6</div></div>
+              </div>
 
-          <h3>Rows</h3>
-          <p>Rows contain a number of <span class="css-ref">.col</span> elements, grouped horizontally. To preserve equal margins on the left and right, the only elements inside a <span class="css-ref">.row</span> should be <span class="css-ref">.col</span> elements.</p>
+              <p>You can  mix and match column sizes over different breakpoints. <strong>Jellyfish is mobile first</strong>, and if no breakpoint number is defined, a column will inherit it's width from the previous breakpoint.</p>
+              <pre class="language-markup"><code><!--
+                <div class="row">
+                  <div class="col sm-6 md-3 lg-7">sm-6 md-3 lg-7</div>
+                  <div class="col sm-6 md-9 lg-5">sm-6 md-9 lg-5</div>
+                </div>
+                <div class="row">
+                  <div class="col sm-6 lg-3">sm-6 lg-3</div>
+                  <div class="col sm-6">sm-6</div>
+                </div>
+                <div class="row">
+                  <div class="col sm-6 lg-4">sm-6 lg-4</div>
+                  <div class="col sm-6 lg-auto">sm-6 lg-auto</div>
+                </div>
+                --></code>
+              </pre>
+              <div class="row">
+                <div class="col sm-6 md-3 lg-7"><div class="boxed">sm-6 md-3 lg-7</div></div>
+                <div class="col sm-6 md-9 lg-5"><div class="boxed">sm-6 md-9 lg-5</div></div>
+              </div>
+              <div class="row">
+                <div class="col sm-6 lg-3"><div class="boxed">sm-6 lg-3</div></div>
+                <div class="col sm-6"><div class="boxed">sm-6</div></div>
+              </div>
+              <div class="row">
+                <div class="col sm-6 lg-4"><div class="boxed">sm-6 lg-4</div></div>
+                <div class="col sm-6 lg-auto"><div class="boxed">sm-6 lg-auto</div></div>
+              </div>
 
-          <h3>Columns</h3>
-            <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+              <p>By default, on the smallest width screens, the columns in Jellyfish will expand to fill 100% width. You can override this behaviour on a per-column basis by using the breakpoint modifier with the name defined in the <span class="variable-ref">$base-col-name</span> variable (default xs).</p>
+              <pre class="language-markup"><code><!--
+                <div class="row">
+                  <div class="col xs-6">xs-6</div>
+                  <div class="col xs-6">xs-6</div>
+                  <div class="col">default</div>
+                </div>
+                --></code>
+              </pre>
+              <div class="row">
+                <div class="col xs-6"><div class="boxed">xs-6</div></div>
+                <div class="col xs-6"><div class="boxed">xs-6</div></div>
+                <div class="col"><div class="boxed">default</div></div>
+              </div>
 
-            <p>Columns are equal-width by default, and expand to fill all available width.</p>
-            <pre class="language-markup"><code><!--
+              <p>You can mix and match sized columns with unsized columns for flexibility. Unsized columns will take up equal widths of the remaining space.</p>
+              <pre class="language-markup"><code><!--
+                <div class="row">
+                  <div class="col">default</div>
+                  <div class="col sm-6">sm-6</div>
+                  <div class="col">default</div>
+                </div>
+                <div class="row">
+                  <div class="col sm-3">sm-3</div>
+                  <div class="col sm-3">sm-3</div>
+                  <div class="col">default</div>
+                </div>
+                <div class="row">
+                  <div class="col sm-3">sm-3</div>
+                  <div class="col sm-3">sm-3</div>
+                  <div class="col sm-3 lg-0">sm-3 lg-0</div>
+                </div>
+                --></code>
+              </pre>
               <div class="row">
-                <div class="col">1st column</div>
+                <div class="col"><div class="boxed">default</div></div>
+                <div class="col sm-6"><div class="boxed">sm-6</div></div>
+                <div class="col"><div class="boxed">default</div></div>
               </div>
               <div class="row">
-                <div class="col">2nd column</div>
-                <div class="col">2nd column</div>
+                <div class="col sm-3"><div class="boxed">sm-3</div></div>
+                <div class="col sm-3"><div class="boxed">sm-3</div></div>
+                <div class="col"><div class="boxed">default</div></div>
               </div>
               <div class="row">
-                <div class="col">3rd column</div>
-                <div class="col">2nd column</div>
-                <div class="col">3rd column</div>
+                <div class="col sm-3"><div class="boxed">sm-3</div></div>
+                <div class="col sm-3"><div class="boxed">sm-3</div></div>
+                <div class="col sm-3 lg-0"><div class="boxed">sm-3 lg-0</div></div>
               </div>
-              --></code>
-            </pre>
-            <div class="row">
-              <div class="col"><div class="boxed">1st column</div></div>
-            </div>
-            <div class="row">
-              <div class="col"><div class="boxed">1st column</div></div>
-              <div class="col"><div class="boxed">2nd column</div></div>
-            </div>
-            <div class="row">
-              <div class="col"><div class="boxed">1st column</div></div>
-              <div class="col"><div class="boxed">2nd column</div></div>
-              <div class="col"><div class="boxed">3rd column</div></div>
-            </div>
-            <p>To size a  column based on it's content, use <span class="css-ref">.col-auto</span></p>
-            <pre class="language-markup"><code><!--
+            </article>
+            <article>
+              <h3>Offsetting Columns</h3>
+              <p>Columns can be offset by using the <span class="css-ref">.offset-$breakpoint-$cols</span> modifiers. Offsets are inherited, and can be reset by using the class <span class="css-ref">.offset-$breakpoint-0</span>. When you offset a columm, all elements that follow are moved along.</p>
+              <pre class="language-markup"><code><!--
+                <div class="row">
+                  <div class="col sm-3">sm-3</div>
+                  <div class="col sm-6 offset-sm-3">sm-6 offset-sm-3</div>
+                </div>
+                <div class="row">
+                  <div class="col sm-6 offset-sm-3">sm-6 offset-sm-3</div>
+                  <div class="col sm-3">sm-3</div>
+                </div>
+                <div class="row">
+                  <div class="col sm-3">sm-3</div>
+                  <div class="col sm-6 offset-sm-3 offset-md-0">sm-6 offset-sm-3 offset-md-0</div>
+                </div>
+                <div class="row">
+                  <div class="col sm-3">sm-3</div>
+                  <div class="col sm-6 offset-sm-3 offset-md-2">sm-6 offset-sm-3 offset-md-2</div>
+                </div>
+                --></code>
+              </pre>
               <div class="row">
-                <div class="col">.col</div>
-                <div class="col">.col</div>
-                <div class="col col-auto">.col-auto</div>
-                <div class="col">.col</div>
-              </div>
-              --></code>
-            </pre>
-            <div class="row">
-              <div class="col"><div class="boxed">.col</div></div>
-              <div class="col"><div class="boxed">.col</div></div>
-              <div class="col col-auto"><div class="boxed">.col-auto</div></div>
-              <div class="col"><div class="boxed">.col</div></div>
-            </div>
-            <h4>Making Columns Responsive</h4>
-            <p>To set the width of a column, use the breakpoint-based modifier classes to target different viewport widths. Breakpoints are explained in the <a href="#breakpoint-settings">breakpoint settings</a> section.</p>
-            <pre class="language-markup"><code><!--
-              <div class="row">
-                <div class="col sm-3">sm-3</div>
-                <div class="col sm-6">sm-6</div>
-                <div class="col sm-3">sm-3</div>
-              </div>
-              --></code>
-            </pre>
-            <div class="row">
-              <div class="col sm-3"><div class="boxed">sm-3</div></div>
-              <div class="col sm-6"><div class="boxed">sm-6</div></div>
-              <div class="col sm-3"><div class="boxed">sm-3</div></div>
-            </div>
-            <p>Additional columns wrap to a new line.</p>
-            <pre class="language-markup"><code><!--
-              <div class="row">
-                <div class="col sm-6">sm-6</div>
-                <div class="col sm-6">sm-6</div>
-                <div class="col sm-6">sm-6</div>
-              </div>
-              --></code>
-            </pre>
-            <div class="row">
-              <div class="col sm-6"><div class="boxed">sm-6</div></div>
-              <div class="col sm-6"><div class="boxed">sm-6</div></div>
-              <div class="col sm-6"><div class="boxed">sm-6</div></div>
-            </div>
-
-            <p>You can  mix and match column sizes over different breakpoints. <strong>Jellyfish is mobile first</strong>, and if no breakpoint number is defined, a column will inherit it's width from the previous breakpoint.</p>
-            <pre class="language-markup"><code><!--
-              <div class="row">
-                <div class="col sm-6 md-3 lg-7">sm-6 md-3 lg-7</div>
-                <div class="col sm-6 md-9 lg-5">sm-6 md-9 lg-5</div>
+                <div class="col sm-3"><div class="boxed">sm-3</div></div>
+                <div class="col sm-6 offset-sm-3"><div class="boxed">sm-6 offset-sm-3</div></div>
               </div>
               <div class="row">
-                <div class="col sm-6 lg-3">sm-6 lg-3</div>
-                <div class="col sm-6">sm-6</div>
+                <div class="col sm-6 offset-sm-3"><div class="boxed">sm-6 offset-sm-3</div></div>
+                <div class="col sm-3"><div class="boxed">sm-3</div></div>
               </div>
               <div class="row">
-                <div class="col sm-6 lg-4">sm-6 lg-4</div>
-                <div class="col sm-6 lg-auto">sm-6 lg-auto</div>
-              </div>
-              --></code>
-            </pre>
-            <div class="row">
-              <div class="col sm-6 md-3 lg-7"><div class="boxed">sm-6 md-3 lg-7</div></div>
-              <div class="col sm-6 md-9 lg-5"><div class="boxed">sm-6 md-9 lg-5</div></div>
-            </div>
-            <div class="row">
-              <div class="col sm-6 lg-3"><div class="boxed">sm-6 lg-3</div></div>
-              <div class="col sm-6"><div class="boxed">sm-6</div></div>
-            </div>
-            <div class="row">
-              <div class="col sm-6 lg-4"><div class="boxed">sm-6 lg-4</div></div>
-              <div class="col sm-6 lg-auto"><div class="boxed">sm-6 lg-auto</div></div>
-            </div>
-
-            <p>By default, on the smallest width screens, the columns in Jellyfish will expand to fill 100% width. You can override this behaviour on a per-column basis by using the breakpoint modifier with the name defined in the <span class="variable-ref">$base-col-name</span> variable (default xs).</p>
-            <pre class="language-markup"><code><!--
-              <div class="row">
-                <div class="col xs-6">xs-6</div>
-                <div class="col xs-6">xs-6</div>
-                <div class="col">default</div>
-              </div>
-              --></code>
-            </pre>
-            <div class="row">
-              <div class="col xs-6"><div class="boxed">xs-6</div></div>
-              <div class="col xs-6"><div class="boxed">xs-6</div></div>
-              <div class="col"><div class="boxed">default</div></div>
-            </div>
-
-            <p>You can mix and match sized columns with unsized columns for flexibility. Unsized columns will take up equal widths of the remaining space.</p>
-            <pre class="language-markup"><code><!--
-              <div class="row">
-                <div class="col">default</div>
-                <div class="col sm-6">sm-6</div>
-                <div class="col">default</div>
+                <div class="col sm-3"><div class="boxed">sm-3</div></div>
+                <div class="col sm-6 offset-sm-3 offset-md-0"><div class="boxed">sm-6 offset-sm-3 offset-md-0</div></div>
               </div>
               <div class="row">
-                <div class="col sm-3">sm-3</div>
-                <div class="col sm-3">sm-3</div>
-                <div class="col">default</div>
+                <div class="col sm-3"><div class="boxed">sm-3</div></div>
+                <div class="col sm-6 offset-sm-3 offset-md-2"><div class="boxed">sm-6 offset-sm-3 offset-md-2</div></div>
+              </div>
+              <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_offset</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+            </article>
+            <article>
+              <h3>Reordering Columns</h3>
+              <p>You can control the order of columns using the <span class="css-ref">.order-$breakpoint-*</span> modifiers. Note that columns without an order modifier will not be affected. Ordering is inherited, and can be reset by using the class <span class="css-ref">.order-$breakpoint-0</span>.</p>
+              <pre class="language-markup"><code><!--
+                <div class="row">
+                  <div class="col">unordered</div>
+                  <div class="col order-md-3">order-md-3</div>
+                  <div class="col order-md-2">order-md-2</div>
+                </div>
+                <div class="row">
+                  <div class="col order-md-3 order-lg-0">order-md-3 order-lg-0</div>
+                  <div class="col order-md-2">order-md-2</div>
+                  <div class="col order-md-1">order-md-1</div>
+                </div>
+                --></code>
+              </pre>
+              <div class="row">
+                <div class="col"><div class="boxed">unordered</div></div>
+                <div class="col order-md-3"><div class="boxed">order-md-3</div></div>
+                <div class="col order-md-2"><div class="boxed">order-md-2</div></div>
               </div>
               <div class="row">
-                <div class="col sm-3">sm-3</div>
-                <div class="col sm-3">sm-3</div>
-                <div class="col sm-3 lg-0">sm-3 lg-0</div>
+                <div class="col order-md-3 order-lg-0"><div class="boxed">order-md-3 order-lg-0</div></div>
+                <div class="col order-md-2"><div class="boxed">order-md-2</div></div>
+                <div class="col order-md-1"><div class="boxed">order-md-1</div></div>
               </div>
-              --></code>
-            </pre>
-            <div class="row">
-              <div class="col"><div class="boxed">default</div></div>
-              <div class="col sm-6"><div class="boxed">sm-6</div></div>
-              <div class="col"><div class="boxed">default</div></div>
-            </div>
-            <div class="row">
-              <div class="col sm-3"><div class="boxed">sm-3</div></div>
-              <div class="col sm-3"><div class="boxed">sm-3</div></div>
-              <div class="col"><div class="boxed">default</div></div>
-            </div>
-            <div class="row">
-              <div class="col sm-3"><div class="boxed">sm-3</div></div>
-              <div class="col sm-3"><div class="boxed">sm-3</div></div>
-              <div class="col sm-3 lg-0"><div class="boxed">sm-3 lg-0</div></div>
-            </div>
-
-            <h4>Offsetting Columns</h4>
-            <p>Columns can be offset by using the <span class="css-ref">.offset-$breakpoint-$cols</span> modifiers. Offsets are inherited, and can be reset by using the class <span class="css-ref">.offset-$breakpoint-0</span>. When you offset a columm, all elements that follow are moved along.</p>
-            <pre class="language-markup"><code><!--
+              <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_ordering</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+            </article>
+            <article>
+              <h3>Hiding Columns</h3>
+              <p>You can hide columns based on breakpoints using <a href="#display-utilities">display utilities</a>.</p>
+            </article>
+            <article>
+              <h3>Collapsing Columns</h3>
+              <p>Columns have horizontal spacing (gutters) around them by default. Should you wish to remove this spacing, apply the <span class="css-ref">.collapse</span> class to the parent <span class="css-ref">.row</span>.</p>
+              <pre class="language-markup"><code><!--
+                <div class="row">
+                  <div class="col">col</div>
+                  <div class="col">col</div>
+                </div>
+                <div class="row collapse">
+                  <div class="col">collapsed col</div>
+                  <div class="col">collapsed col</div>
+                </div>
+                --></code>
+              </pre>
               <div class="row">
-                <div class="col sm-3">sm-3</div>
-                <div class="col sm-6 offset-sm-3">sm-6 offset-sm-3</div>
-              </div>
-              <div class="row">
-                <div class="col sm-6 offset-sm-3">sm-6 offset-sm-3</div>
-                <div class="col sm-3">sm-3</div>
-              </div>
-              <div class="row">
-                <div class="col sm-3">sm-3</div>
-                <div class="col sm-6 offset-sm-3 offset-md-0">sm-6 offset-sm-3 offset-md-0</div>
-              </div>
-              <div class="row">
-                <div class="col sm-3">sm-3</div>
-                <div class="col sm-6 offset-sm-3 offset-md-2">sm-6 offset-sm-3 offset-md-2</div>
-              </div>
-              --></code>
-            </pre>
-            <div class="row">
-              <div class="col sm-3"><div class="boxed">sm-3</div></div>
-              <div class="col sm-6 offset-sm-3"><div class="boxed">sm-6 offset-sm-3</div></div>
-            </div>
-            <div class="row">
-              <div class="col sm-6 offset-sm-3"><div class="boxed">sm-6 offset-sm-3</div></div>
-              <div class="col sm-3"><div class="boxed">sm-3</div></div>
-            </div>
-            <div class="row">
-              <div class="col sm-3"><div class="boxed">sm-3</div></div>
-              <div class="col sm-6 offset-sm-3 offset-md-0"><div class="boxed">sm-6 offset-sm-3 offset-md-0</div></div>
-            </div>
-            <div class="row">
-              <div class="col sm-3"><div class="boxed">sm-3</div></div>
-              <div class="col sm-6 offset-sm-3 offset-md-2"><div class="boxed">sm-6 offset-sm-3 offset-md-2</div></div>
-            </div>
-            <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_offset</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-            <h4>Reordering Columns</h4>
-            <p>You can control the order of columns using the <span class="css-ref">.order-$breakpoint-*</span> modifiers. Note that columns without an order modifier will not be affected. Ordering is inherited, and can be reset by using the class <span class="css-ref">.order-$breakpoint-0</span>.</p>
-            <pre class="language-markup"><code><!--
-              <div class="row">
-                <div class="col">unordered</div>
-                <div class="col order-md-3">order-md-3</div>
-                <div class="col order-md-2">order-md-2</div>
-              </div>
-              <div class="row">
-                <div class="col order-md-3 order-lg-0">order-md-3 order-lg-0</div>
-                <div class="col order-md-2">order-md-2</div>
-                <div class="col order-md-1">order-md-1</div>
-              </div>
-              --></code>
-            </pre>
-            <div class="row">
-              <div class="col"><div class="boxed">unordered</div></div>
-              <div class="col order-md-3"><div class="boxed">order-md-3</div></div>
-              <div class="col order-md-2"><div class="boxed">order-md-2</div></div>
-            </div>
-            <div class="row">
-              <div class="col order-md-3 order-lg-0"><div class="boxed">order-md-3 order-lg-0</div></div>
-              <div class="col order-md-2"><div class="boxed">order-md-2</div></div>
-              <div class="col order-md-1"><div class="boxed">order-md-1</div></div>
-            </div>
-            <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_ordering</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-            <h4>Hiding Columns</h4>
-            <p>You can hide columns based on breakpoints using <a href="#display-utilities">display utilities</a>.</p>
-            <h4>Collapsing Columns</h4>
-            <p>Columns have horizontal spacing (gutters) around them by default. Should you wish to remove this spacing, apply the <span class="css-ref">.collapse</span> class to the parent <span class="css-ref">.row</span>.</p>
-            <pre class="language-markup"><code><!--
-              <div class="row">
-                <div class="col">col</div>
-                <div class="col">col</div>
+                <div class="col"><div class="boxed">col</div></div>
+                <div class="col"><div class="boxed">col</div></div>
               </div>
               <div class="row collapse">
-                <div class="col">collapsed col</div>
-                <div class="col">collapsed col</div>
+                <div class="col"><div class="boxed">collapsed col</div></div>
+                <div class="col"><div class="boxed">collapsed col</div></div>
               </div>
-              --></code>
-            </pre>
-            <div class="row">
-              <div class="col"><div class="boxed">col</div></div>
-              <div class="col"><div class="boxed">col</div></div>
-            </div>
-            <div class="row collapse">
-              <div class="col"><div class="boxed">collapsed col</div></div>
-              <div class="col"><div class="boxed">collapsed col</div></div>
-            </div>
-            <h3>Nested Grids</h3>
-            <p><span class="css-ref">.row</span> and <span class="css-ref">.col</span> elements can be infinitely nested within each other, so long as one golden rule is followed: <strong>A .row can only contain .col elements</strong>.</p>
-            <p><strong>Note:</strong> because column widths are defined as percentages, when you nest a row, it's child columns will span XX% of the parent column's width. e.g. if you nest a row in a .col.sm-6, adding a .col.sm-6 will effectively make that element a .col.sm-3 of the parent row.</p>
-            <pre class="language-markup"><code><!--
+            </article>
+            <article>
+              <h3>Nested Grids</h3>
+              <p><span class="css-ref">.row</span> and <span class="css-ref">.col</span> elements can be infinitely nested within each other, so long as one golden rule is followed: <strong>A .row can only contain .col elements</strong>.</p>
+              <p><strong>Note:</strong> because column widths are defined as percentages, when you nest a row, it's child columns will span XX% of the parent column's width. e.g. if you nest a row in a .col.sm-6, adding a .col.sm-6 will effectively make that element a .col.sm-3 of the parent row.</p>
+              <pre class="language-markup"><code><!--
+                <div class="row">
+                <div class="col md-8">
+                  outer col md-8
+                  <div class="row">
+                    <div class="col md-8">inner md-8</div>
+                    <div class="col md-4">inner md-4</div>
+                  </div>
+                </div>
+                <div class="col md-4">
+                  inner col md-4
+                  <div class="row">
+                    <div class="col md-6">inner md-6</div>
+                    <div class="col md-6">inner md-6</div>
+                </div>
+              </div>
+                --></code>
+              </pre>
               <div class="row">
-              <div class="col md-8">
-                outer col md-8
-                <div class="row">
-                  <div class="col md-8">inner md-8</div>
-                  <div class="col md-4">inner md-4</div>
+                <div class="col md-8">
+                  <div class="boxed">outer col md-8</div>
+                  <div class="row">
+                    <div class="col md-8"><div class="boxed">inner md-8</div></div>
+                    <div class="col md-4"><div class="boxed">inner md-4</div></div>
+                  </div>
+                </div>
+                <div class="col md-4">
+                  <div class="boxed">outer col md-4</div>
+                  <div class="row">
+                    <div class="col md-6"><div class="boxed">inner md-6</div></div>
+                    <div class="col md-6"><div class="boxed">inner md-6</div></div>
+                  </div>
                 </div>
               </div>
-              <div class="col md-4">
-                inner col md-4
-                <div class="row">
-                  <div class="col md-6">inner md-6</div>
-                  <div class="col md-6">inner md-6</div>
-              </div>
-            </div>
-              --></code>
+          </article>
+          <article>
+            <h3>Variables</h3>
+            <p>Grid settings are defined in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+            <pre class="language-scss">
+              <code>
+              /* GRID */
+              $cols: 12;
+              $has_ordering: true;
+              $has_offset: true;
+              $debug-mode-on: false;
+
+              /* JELLYFISH DEFAULTS */
+              // Base Variables (used before breakpoints are applied)
+              $base-col-name: xs;
+              $base-container-gutter: 30px; // define in px
+              $base-col-gutter: 20px; // define in px
+              </code>
+              <label>_settings.scss</label>
             </pre>
-            <div class="row">
-              <div class="col md-8">
-                <div class="boxed">outer col md-8</div>
-                <div class="row">
-                  <div class="col md-8"><div class="boxed">inner md-8</div></div>
-                  <div class="col md-4"><div class="boxed">inner md-4</div></div>
-                </div>
-              </div>
-              <div class="col md-4">
-                <div class="boxed">outer col md-4</div>
-                <div class="row">
-                  <div class="col md-6"><div class="boxed">inner md-6</div></div>
-                  <div class="col md-6"><div class="boxed">inner md-6</div></div>
-                </div>
-              </div>
-            </div>
+          </article>
         </section><!-- #grid -->
         <section class="docs-section" id="navbar">
-          <h2>Navbar</h2>
-          <p>Jellyfish comes with a responsive and versatile horizontal navigation bar, <span class="css-ref">.navbar</span>, that has the following structure:</p>
+          <h2 class="section-heading">
+            Navbar
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__success">Yes</span>
+            </span>
+          </h2>
+          <article>
+          <p class="standfirst">Jellyfish comes with a responsive and versatile horizontal navigation bar, <span class="css-ref">.navbar</span>, that has the following structure:</p>
           <ul>
             <li><strong>.navbar</strong> - the main navbar wrapper
               <ul>
@@ -549,6 +626,7 @@
             <li><strong>.hide-below-nav</strong> - used to hide elements on smaller screens (takes effect below the breakpoint <span class="variable-ref">$nav-expands</span>)</li>
           </ul>
           <p>Jellyfish is dependent on jQuery <em>(...yes, I know!)</em> to expand and show the <span class="css-ref">.navbar-menu</span> on smaller devices.</p>
+        </article><article>
           <h3>Basic Navbar</h3>
           <pre class="language-markup line-numbers">
             <code><!--
@@ -644,6 +722,7 @@
               </div>
             </div>
           </nav>
+        </article><article>
           <h3>Nested menus (submenus)</h3>
           <p>Submenus are not a problem for Jellyfish - you can infinitely nest <code>&lt;ul></code> elements within <code>&lt;li></code> elements.<br>You should apply a class of <span class="css-ref">.has-children</span> to the parent <code>&lt;li></code> of any submenu, to ensure that styling is applied correctly - with consideration for UX!</p>
           <p>On small screens, submenu items have an increased left-padding to aid navigation hierarchy. On larger screens, the first submenu appears vertically, all others move horizontally.</p>
@@ -691,7 +770,8 @@
               </div>
             </div>
           </nav>
-          <h3>Customising the navbar</h3>
+        </article><article>
+          <h3>Variables</h3>
           <p>Jellyfish's navbar is fully customisable with the variables defined in <span class="file-ref">/assets/scss/_settings.scss</span>. You can control:</p>
           <ul>
             <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <strong>Note:</strong> if you change this value from it's default you also need to change the value in <span class="file-ref">/assets/js/project/scripts.js</span>: <code>var navPoint = '900';</code></li>
@@ -728,8 +808,8 @@
               $navbar-link-padding-expanded-x: 10px;
               $navbar-link-padding-expanded-y: 10px;
               // Current Page Link
-              $navbar-current-page-color: $color-secondary;
-              $navbar-current-page-background: inherit;
+              $navbar-current-page-color: $color-white;
+              $navbar-current-page-background: $color-secondary;
               $navbar-current-page-font-weight: bold;
               // Secondary Links
               $navbar-submenu-text-transform: $navbar-text-transform;
@@ -738,8 +818,9 @@
               $navbar-submenu-min-width: 150px;
               $navbar-submenu-max-width: 260px;
             </code>
+            <label>_settings.scss</label>
           </pre>
-          <h3>Customising the hamburger</h3>
+          <h4>Hamburger Menu Variables</h4>
           <p>Jellyfish uses the fantastic <a href="https://jonsuh.com/hamburgers/">hamburgers css library</a> by Jonathan Suh. The code is imported from npm through <a href="#how-to-use">Grunt</a>.</p>
           <p>Rather than including all animation options in the output css, Jellyfish has a variable <span class="variable-ref">$primary-hamburger-type</span> which is used to select only your specified hamburger animation for compile.</p>
           <p>Hamburger settings are all found in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
@@ -765,46 +846,31 @@
               $hamburger-active-layer-color : $hamburger-layer-color;
               $hamburger-active-hover-opacity: $hamburger-hover-opacity;
             </code>
-          </pre>
-        </section><!-- #navbar -->
-        <section class="docs-section" id="typography">
-          <h2>Typography</h2>
-          <p>Jellyfish provides default styling for all standard typography tags. Global font families, line height and size hierarchy are defined in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <p>For easy spacing, Jellyfish removes the top margins and applies a bottom margin to block elements which can be defined with the <span class="variable-ref">$element-margin</span> in <span class="file-ref">/assets/scss/_settings.scss</span>. Text sizing is set with em, cascading from the root. You can use the <a href="#breakpoint-settings">grid breakpoint settings</a> to alter the root font size and line-height at different breakpoints.</p>
-          <p>Jellyfish also sets box-sizing: border-box globally to make it easier to properly size elements.</p>
-          <pre>
-            <code class="language-scss">
-              /* Typefaces */
-              $font-primary: YOUR FONT STACK HERE;
-              $font-secondary: YOUR SECONDARY FONT STACK HERE;
-              $font-code: YOUR CODE FONT HERE;
-              $font-body: $font-primary;
-              $font-headings: $font-secondary;
-
-              /* FONT SIZES */
-              $font-size--2: 0.6em;
-              $font-size--1: 0.8em;
-              $font-size-0: 1em;
-              $font-size-1:1.5em;
-              $font-size-2:1.5em;
-              $font-size-3: 1.75em;
-              $font-size-4: 2em;
-              $font-size-5: 2.5em;
-              $font-size-6: 3em;
-
-              $font-size-h1: $font-size-6;
-              $font-size-h2: $font-size-5;
-              $font-size-h3: $font-size-4;
-              $font-size-h4: $font-size-3;
-              $font-size-h5: $font-size-2;
-              $font-size-h6: $font-size-1;
-
-              $root-font-size: 16px;
-              $root-line-height: 1.5;
-
-            </code>
             <label>_settings.scss</label>
           </pre>
+        </article>
+        </section><!-- #navbar -->
+        <section class="docs-section" id="typography">
+          <h2 class="section-heading">
+            Typography
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__success">Yes</span>
+            </span>
+          </h2>
+          <article>
+          <p class="standfirst">Jellyfish provides default styling for all standard typography tags.</p><p>Global font families, line height and size hierarchy are defined in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+          <p>For easy spacing, Jellyfish removes the top margins and applies a bottom margin to block elements which can be defined with the <span class="variable-ref">$element-margin</span> in <span class="file-ref">/assets/scss/_settings.scss</span>. Text sizing is set with em, cascading from the root. You can use the <a href="#breakpoint-settings">grid breakpoint settings</a> to alter the root font size and line-height at different breakpoints.</p>
+          <p>Jellyfish also sets box-sizing: border-box globally to make it easier to properly size elements.</p>
+          </article><article>
           <h3>Headings <code>&lt;h1>-&lt;h6></code></h3>
           <p>To prevent excess white space, all first-child headings have their top-margin reset.</p>
           <h1>Heading 1</h1>
@@ -813,6 +879,7 @@
           <h4>Heading 4</h4>
           <h5>Heading 5</h5>
           <h6>Heading 6</h6>
+          </article><article>
           <h3>Paragraphs <code>&lt;p></code></h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat excepturi repellendus nostrum dolorum dignissimos quis non, minus debitis laborum vero cupiditate sequi neque, magnam dolore nemo possimus, soluta ducimus eaque.</p>
           <p>Blanditiis ea qui, veritatis animi recusandae praesentium magnam. Commodi placeat, laboriosam accusamus laudantium quasi eveniet soluta illo ducimus quis doloremque mollitia, officia pariatur deleniti reprehenderit, maxime, dicta libero vero cum.</p>
@@ -826,6 +893,7 @@
           <p class="text-center">Blanditiis ea qui, veritatis animi recusandae praesentium magnam. Commodi placeat, laboriosam accusamus laudantium quasi eveniet soluta illo ducimus quis doloremque mollitia, officia pariatur deleniti reprehenderit, maxime, dicta libero vero cum.</p>
           <h5>p.text-justify</h5>
           <p class="text-justify">Blanditiis ea qui, veritatis animi recusandae praesentium magnam. Commodi placeat, laboriosam accusamus laudantium quasi eveniet soluta illo ducimus quis doloremque mollitia, officia pariatur deleniti reprehenderit, maxime, dicta libero vero cum.</p>
+          </article><article>
           <h3>Ordered Lists <code>&lt;ol></code></h3>
           <ol>
             <li>List item 1</li>
@@ -839,6 +907,7 @@
             <li>List item 3</li>
             <li>List item 4</li>
           </ol>
+        </article><article>
           <h3>Unordered Lists <code>&lt;ul></code></h3>
           <ul>
             <li>List item 1</li>
@@ -852,6 +921,7 @@
             <li>List item 3</li>
             <li>List item 4</li>
           </ul>
+        </article><article>
           <h3>Definition Lists <code>&lt;dl></code></h3>
           <dl>
             <dt>Term 1</dt>
@@ -861,15 +931,18 @@
             <dt>Term 3</dt>
             <dd>Nam, ut sint illa vendibiliora, haec uberiora certe sunt.</dd>
           </dl>
+        </article><article>
           <h3>Blockquotes <code>&lt;blockquote></code></h3>
           <blockquote>
             A journey of a thousand leagues begins beneath one’s feet.
             <cite>Lao Tzu</cite>
           </blockquote>
+        </article><article>
           <h3>Pre-formatted Text <code>&lt;pre></code></h3>
           <pre>
 console.log("JellyFish is Awesome!");
           </pre>
+        </article><article>
           <h3>Text Formatting</h3>
           <table class="table__border">
             <thead>
@@ -945,92 +1018,162 @@ console.log("JellyFish is Awesome!");
               </tr>
             </tbody>
           </table>
+        </article><article>
+            <h3>Variables</h3>
+            <pre>
+              <code class="language-scss">
+                /* Typefaces */
+                $font-primary: YOUR FONT STACK HERE;
+                $font-secondary: YOUR SECONDARY FONT STACK HERE;
+                $font-code: YOUR CODE FONT HERE;
+                $font-body: $font-primary;
+                $font-headings: $font-secondary;
 
+                /* FONT SIZES */
+                $font-size--2: 0.6em;
+                $font-size--1: 0.8em;
+                $font-size-0: 1em;
+                $font-size-1:1.5em;
+                $font-size-2:1.5em;
+                $font-size-3: 1.75em;
+                $font-size-4: 2em;
+                $font-size-5: 2.5em;
+                $font-size-6: 3em;
+
+                $font-size-h1: $font-size-6;
+                $font-size-h2: $font-size-5;
+                $font-size-h3: $font-size-4;
+                $font-size-h4: $font-size-3;
+                $font-size-h5: $font-size-2;
+                $font-size-h6: $font-size-1;
+
+                $root-font-size: 16px;
+                $root-line-height: 1.5;
+
+              </code>
+              <label>_settings.scss</label>
+            </pre>
+          </article>
         </section><!-- #typography -->
         <section class="docs-section" id="content">
-          <h2>Content</h2>
-          <h3>Anchors <code>&lt;a></code></h3>
-          <p>Text hyperlinks are styled with a simple hover animation, that uses the <span class="variable-ref">smooth(color)</span> mixin for a consistent transition to the text color. See <a href="#advanced-mixins">mixins</a> for more information.</p>
-          <pre class="language-scss">
-            <code>
-            a {
-              @include smooth(color);
-              text-decoration: underline;
-              &, &:link {
-                  color: $link-color;
+          <h2 class="section-heading">
+            Content
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__success">Yes</span>
+            </span>
+          </h2>
+          <article>
+            <h3>Anchors <code>&lt;a></code></h3>
+            <p class="standfirst">Text hyperlinks are styled with a simple hover animation for accessibility.</p>
+            <p>This animation uses the <span class="variable-ref">smooth(color)</span> mixin for a consistent transition to the text color. See <a href="#advanced-mixins">mixins</a> for more information.</p>
+            <pre class="language-scss">
+              <code>
+              a {
+                @include smooth(color);
+                text-decoration: underline;
+                &, &:link {
+                    color: $link-color;
+                }
+                &:visited {
+                    color: $link-visited;
+                    text-decoration: none;
+                }
+                &:hover, &:active, &:focus {
+                    color: $link-active;
+                }
               }
-              &:visited {
-                  color: $link-visited;
-                  text-decoration: none;
-              }
-              &:hover, &:active, &:focus {
-                  color: $link-active;
-              }
-            }
-            </code>
-            <label>_scaffolding.scss</label>
-          </pre>
-          <p>Link colors are defined in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <pre class="language-scss">
-            <code>
-            /* LINKS */
-            $link-color: $color-primary;
-            $link-active: $color-secondary;
-            $link-visited: $color-tertiary;
-            </code>
-            <label>_settings.scss</label>
-          </pre>
-          <h3>Horizontal Rules <code>&lt;hr></code></h3>
-          <hr>
-          <h3>Images <code>&lt;img></code></h3>
-          <p>All img elements have height and width set to auto, and max-width set to 100%. This prevents images from breaking out of their containers, and also allows width/height to scale as appropriate when a more specific dimension is defined.</p>
-          <div style="width:50%;" class="boxed">
-            <p>This image can't break out of it's container even if it wanted to!</p>
-            <img src="https://unsplash.it/500/300">
-          </div>
-          <h4>Floating images</h4>
-          <p>Images, like all elements, can be floated by applying utility classes. Additional styling automatically applies margins to create white space when images are floated alongside text.</p>
-          <pre class="language-markup line-numbers"><code><!--
-          <h5>align-none</h5>
-          <p><img src="https://www.unsplash.it/200/100" class="align-none">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
-          <h5>align-left</h5>
-          <p><img src="https://www.unsplash.it/200/100" class="align-left">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
-          <h5>align-right</h5>
-          <p><img src="https://www.unsplash.it/200/100" class="align-right">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
-          <h5>align-center</h5>
-          <p><img src="https://www.unsplash.it/200/100" class="align-center">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
-            --></code>
-          </pre>
-          <h5>align-none</h5>
-          <p><img src="https://www.unsplash.it/200/100" class="align-none">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
-          <h5>align-left</h5>
-          <p><img src="https://www.unsplash.it/200/100" class="align-left">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
-          <h5>align-right</h5>
-          <p><img src="https://www.unsplash.it/200/100" class="align-right">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
-          <h5>align-center</h5>
-          <p><img src="https://www.unsplash.it/200/100" class="align-center">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+              </code>
+              <label>_scaffolding.scss</label>
+            </pre>
+            <h4>Variables</h4>
+            <p>Link colors are defined in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+            <pre class="language-scss">
+              <code>
+              /* LINKS */
+              $link-color: $color-primary;
+              $link-active: $color-secondary;
+              $link-visited: $color-tertiary;
+              </code>
+              <label>_settings.scss</label>
+            </pre>
+          </article>
+          <article>
+            <h3>Horizontal Rules <code>&lt;hr></code></h3>
+            <hr>
+          </article>
+          <article>
+            <h3>Images <code>&lt;img></code></h3>
+            <p class="standfirst">All img elements have height and width set to auto, and max-width set to 100%.
+            <p>This prevents images from breaking out of their containers, and also allows width/height to scale as appropriate when a more specific dimension is defined.</p>
+            <div style="width:50%;" class="boxed">
+              <p>This image can't break out of it's container even if it wanted to!</p>
+              <img src="https://unsplash.it/700/300">
+            </div>
+            <h4>Floating images</h4>
+            <p>Images, like all elements, can be floated by applying utility classes. Additional styling automatically applies margins to create white space when images are floated alongside text.</p>
+            <pre class="language-markup line-numbers"><code><!--
+            <h5>align-none</h5>
+            <p><img src="https://www.unsplash.it/200/100" class="align-none">...text...</p>
+            <h5>align-left</h5>
+            <p><img src="https://www.unsplash.it/200/100" class="align-left">...text...</p>
+            <h5>align-right</h5>
+            <p><img src="https://www.unsplash.it/200/100" class="align-right">...text...</p>
+            <h5>align-center</h5>
+            <p><img src="https://www.unsplash.it/200/100" class="align-center">...text...</p>
+              --></code>
+            </pre>
+            <h5>align-none</h5>
+            <p><img src="https://www.unsplash.it/200/100" class="align-none">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+            <h5>align-left</h5>
+            <p><img src="https://www.unsplash.it/200/100" class="align-left">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+            <h5>align-right</h5>
+            <p><img src="https://www.unsplash.it/200/100" class="align-right">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+            <h5>align-center</h5>
+            <p><img src="https://www.unsplash.it/200/100" class="align-center">Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+          </article>
         </section><!-- #content -->
         <section class="docs-section" id="buttons">
-          <h2>Buttons</h2>
-          <p>Button elements, links with a <span class="css-ref">.button</span> class, and input buttons will all render exactly the same.</p>
-          <pre class="language-markup">
-            <code><!--
+          <h2 class="section-heading">
+            Buttons
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__success">Yes</span>
+            </span>
+          </h2>
+          <article>
+            <p class="standfirst">Button elements, anchor elements with a <span class="css-ref">.button</span> class, and input buttons will all render exactly the same.</p>
+            <pre class="language-markup">
+              <code><!--
+              <button>Button</button>
+              <input type="submit" value="Submit">
+              <input type="button" value="Input">
+              <a class="button">Link</a>
+            --></code>
+            </pre>
             <button>Button</button>
             <input type="submit" value="Submit">
             <input type="button" value="Input">
             <a class="button">Link</a>
-          --></code>
-          </pre>
-          <button>Button</button>
-          <input type="submit" value="Submit">
-          <input type="button" value="Input">
-          <a class="button">Link</a>
-          <h3>Button modifiers</h3>
-          <h4>Disabled buttons</h4>
-          <p>To disable a button set the <code>disabled</code> property on a <code>&lt;button></code> element. It is not possible to disable links without additional javascript, so Jellyfish does not allow you to simulate a disabled state on anchor elements.</p>
-          <input type="button" value="Disabled Input Button" disabled>
-          <button disabled>Disabled Button</button>
-          <h4>Colors</h4>
+          </article>
+          <article>
+          <h3>Colors</h3>
           <p>Use the modifiers <span class="css-ref">.button__secondary</span>, <span class="css-ref">.button__tertiary</span>, <span class="css-ref">.button__success</span>, <span class="css-ref">.button__warning</span> or <span class="css-ref">.button__error</span> to change the button color.</p>
           <pre class="language-markup">
             <code><!--
@@ -1046,19 +1189,29 @@ console.log("JellyFish is Awesome!");
           <button class="button__success">Success</button>
           <button class="button__warning">Warning</button>
           <button class="button__error">Error</button>
-          <h4>Outline buttons</h4>
+          </article>
+          <article>
+          <h3>Disabled buttons</h3>
+          <p>To disable a button set the <code>disabled</code> property on a <code>&lt;button></code> element. It is not possible to disable links without additional javascript, so Jellyfish does not allow you to simulate a disabled state on anchor elements.</p>
+          <input type="button" value="Disabled Input Button" disabled>
+          <button disabled>Disabled Button</button>
+          </article>
+          <article>
+          <h3>Outline buttons</h3>
           <p>Add the modifier <span class="css-ref">.button__outline</span> to show buttons without a background fill.</p>
           <pre class="language-markup">
             <code><!--
             <button class="button__outline">Button</button>
             ...
           --></code>
-        </pre>
+          </pre>
           <button class="button__outline">Button</button>
           <input type="submit" value="Submit" class="button__outline">
           <input type="button" value="Input" class="button__outline">
           <a class="button button__outline" >Link</a>
-          <h4>Ghost buttons</h4>
+          </article>
+          <article>
+          <h3>Ghost buttons</h3>
           <p>Add the modifier <span class="css-ref">.button__ghost</span> to make buttons appear as links, whilst retaining the height and properties of a button. This can be used to display ghost buttons on the same row as buttons with background color.</p>
           <pre class="language-markup">
             <code><!--
@@ -1072,7 +1225,9 @@ console.log("JellyFish is Awesome!");
           <input type="button" value="Input" class="button__ghost">
           <a class="button button__ghost" >Link</a>
           <button>Normal</button>
-          <h4>Button sizes</h4>
+          </article>
+          <article>
+          <h3>Button sizes</h3>
           <p>Add the modifier <span class="css-ref">.button___small</span> or <span class="css-ref">.button___large</span> to change the size of buttons.</p>
           <pre class="language-markup">
             <code><!--
@@ -1093,7 +1248,9 @@ console.log("JellyFish is Awesome!");
           --></code>
           </pre>
           <button class="button__block">Block Button</button>
-          <h4>Combining modifiers</h4>
+          </article>
+          <article>
+          <h3>Combining modifiers</h3>
           <p>Modifiers can be combined.</p>
           <pre class="language-markup">
             <code><!--
@@ -1113,7 +1270,9 @@ console.log("JellyFish is Awesome!");
           <button class="button__large button__ghost">Large</button>
           <button class="button__block button__secondary">Block Secondary</button>
           <button class="button__block button__error button__outline button__large">Block Error Outline Large</button>
-          <h4>Creating your own colors</h4>
+          </article>
+          <article>
+          <h3>Create-your-own</h3>
           <p>The recommended way to add button colors is with the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map. Alternatively, you can use the <code>create_button()</code> mixin to create your own buttons, in a consistent style, with ease. The mixin takes the following arguments:</p>
             <ul>
               <li><span class="variable-ref">$button-color</span></li>
@@ -1146,7 +1305,9 @@ console.log("JellyFish is Awesome!");
           <button class="button__gold">Gold</button>
           <button class="button__white">White</button>
           <p>Button text color is determined by an awesome mixin that compares the contrast of the button background color with the two variables <span class="variable-ref">$button-text-color-light</span> and <span class="variable-ref">$button-text-color-dark</span> and chooses the color with the most contrast.  That is why, in the example above, the Gold and White buttons change text color on hover.</p>
-          <h4>Customising Buttons</h4>
+          </article>
+          <article>
+          <h3>Variables</h3>
           <p>Button variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
           <code>
@@ -1162,10 +1323,28 @@ console.log("JellyFish is Awesome!");
           </code>
           <label>_settings.scss</label>
           </pre>
+          </article>
         </section><!-- #buttons -->
         <section class="docs-section" id="forms">
-          <h2>Forms</h2>
-          <p>By default forms will have full-width, block level labels, inputs, selects and textareas. Jellyfish applies styling to form elements to make them look great without hassle or additional classes.</p>
+          <h2 class="section-heading">
+            Forms
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__success">Yes</span>
+            </span>
+          </h2>
+          <article>
+          <p class="standfirst">Jellyfish applies styling to all standard form elements to make them look great without hassle or additional classes.</p>
+          <p>By default forms will have full-width, block level labels, inputs, selects and textareas.</p>
+
           <pre class="language-markup line-numbers">
             <code><!--
             <form>
@@ -1208,6 +1387,9 @@ console.log("JellyFish is Awesome!");
             <input type="submit" value="Submit">
             <input type="reset" value="Reset">
           </form>
+          </article>
+          <article>
+            <h3>Form elements</h3>
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -1290,6 +1472,8 @@ console.log("JellyFish is Awesome!");
               </tr>
             </tbody>
           </table>
+          </article>
+          <article>
           <h3>Working with checkboxes and radioboxes</h3>
           <p>Wrap checkboxes and radio boxes in a <span class="css-ref">.form-group</span> to preserve spacing.</p>
           <pre class="language-markup">
@@ -1321,6 +1505,8 @@ console.log("JellyFish is Awesome!");
             <label><input type="Radio" name="radio"> Radio 2</label>
             <label><input type="Radio" name="radio"> Radio 3</label>
           </div>
+          </article>
+          <article>
           <h3>Fieldsets</h3>
           <p>Related form controls can be grouped in a <code>&lt;fieldset></code>. An optional <code>&lt;legend></code> can be used to display a name for the group.</p>
           <pre class="language-markup">
@@ -1344,6 +1530,8 @@ console.log("JellyFish is Awesome!");
             </div>
               <button type="button">Login</button>
           </fieldset>
+          </article>
+          <article>
           <h3>Form Layout</h3>
           <p>You can layout forms with the same classes as the grid - with <span class="css-ref">.row</span> and <span class="css-ref">.col</span> elements.</p>
           <pre class="language-markup">
@@ -1415,12 +1603,15 @@ console.log("JellyFish is Awesome!");
               </div>
             </div>
           </form>
+          </article>
+          <article>
           <h3>Disabled forms</h3>
           <p>Add the <code>disabled</code> attribute to an input to disable it.</p>
           <input type="text" disabled placeholder="Disabled text input">
           <textarea rows="5" placeholder="Disabled textarea" disabled></textarea>
-
-          <h3>Customising form styles</h3>
+          </article>
+          <article>
+          <h3>Variables</h3>
           <p>Form variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
           <code>
@@ -1433,10 +1624,26 @@ console.log("JellyFish is Awesome!");
           </code>
           <label>_settings.scss</label>
           </pre>
+        </article>
         </section><!-- #forms -->
         <section class="docs-section" id="tables">
-          <h2>Tables</h2>
-          <p>Tables are set to a width of 100% and have some basic formatting applied.</p>
+          <h2 class="section-heading">
+            Tables
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__success">Yes</span>
+            </span>
+          </h2>
+          <article>
+          <p class="standfirst">Tables are set to a width of 100% and have some basic formatting applied.</p>
           <pre class="language-markup">
             <code><!--
             <table>
@@ -1459,6 +1666,7 @@ console.log("JellyFish is Awesome!");
             </tbody>
             <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
           </table>
+        </article><article>
           <h3>Striped Tables</h3>
           <p>Use the class <span class="css-ref">.table__striped</span> to add stripes to alternating rows.</p>
           <pre class="language-markup">
@@ -1477,6 +1685,7 @@ console.log("JellyFish is Awesome!");
             </tbody>
             <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
           </table>
+        </article><article>
           <h3>Bordered Tables</h3>
           <p>Use the class <span class="css-ref">.table__border</span> to add a border to the table.</p>
           <pre class="language-markup">
@@ -1495,6 +1704,7 @@ console.log("JellyFish is Awesome!");
             </tbody>
             <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
           </table>
+        </article><article>
           <h3>Hoverable Rows</h3>
           <p>Use the class <span class="css-ref">.table__hoverable</span> to enable a hover state on rows.</p>
           <pre class="language-markup">
@@ -1513,6 +1723,7 @@ console.log("JellyFish is Awesome!");
             </tbody>
             <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
           </table>
+        </article><article>
           <h3>Responsive Tables</h3>
           <p>Wrap a table in a <span class="css-ref">.table-container</span> to prevent tables with a lot of content from overflowing the grid.</p>
           <pre class="language-markup">
@@ -1533,10 +1744,16 @@ console.log("JellyFish is Awesome!");
               </tbody>
             </table>
           </div>
-          <h3>Table Settings</h3>
+        </article><article>
+          <h3>Variables</h3>
           <p>Table settings can be altered in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
             <code>
+              /* BORDERS */
+              $border-width: 1px;
+              $border-style: solid;
+              $border-color: tint($color-text-light, 40%);
+
               /* TABLES */
               $table-stripe-color: $color-background-alt;
               $table-hover-background: $color-text-light;
@@ -1544,12 +1761,31 @@ console.log("JellyFish is Awesome!");
           </code>
           <label>_settings.scss</label>
           </pre>
+          </article>
         </section><!-- #tables -->
         <div class="docs-section" id="cards">
-          <h2>Cards</h2>
+          <h2 class="section-heading">
+            Cards
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__success">Yes</span>
+            </span>
+          </h2>
+          <article>
+          <p class="standfirst">A simple element to hold self-contained information.</p>
           <p>Most websites use cards in some form or another. A card can contain all sorts of content. Jellyfish provides a straightforward card component and set of useful child styles.</p>
           <p>A card container has no padding, allowing images to bleed to full-width if desired. The <span class="css-ref">.card-section</span> element is used when you want to add a padded section within a card. You can have multiple <span class="css-ref">.card-section</span> elements in a card; when they are stacked the top-padding is removed from subsequent sections.</p>
           <p>Cards will by default take up 100% width of their parent container, however this can of course be manually overridden.</p>
+        </article><article>
+          <h3>A basic card</h3>
           <pre class="language-markup">
             <code><!--
               <div class="card" style="width: 280px">
@@ -1576,6 +1812,7 @@ console.log("JellyFish is Awesome!");
               <small>(Maybe they are both just as awesome)</small>
             </div>
           </div>
+        </article><article>
           <h3>Card Images</h3>
           <p>An element with the class <span class="css-ref">.card-img</span> will expand to 100% width of it's parent. Card images can be used outside of the <span class="css-ref">.card-section</span> to bleed to the edges, or inside the <span class="css-ref">.card-section</span> to have padding.</p>
           <pre class="language-markup">
@@ -1613,6 +1850,7 @@ console.log("JellyFish is Awesome!");
               </div>
             </div>
         </div>
+      </article><article>
         <h3>Same-height cards</h3>
         <p>If you are using cards within a <span class="css-ref">.row</span> and <span class="css-ref">.col</span> structure, you can append the <span class="css-ref">.equal-height</span> class to the <span class="css-ref">.row</span> to force all cards in the row to be 100% height, regardless of their content.</p>
         <pre class="language-markup">
@@ -1665,7 +1903,8 @@ console.log("JellyFish is Awesome!");
             </div>
           </div>
         </div>
-        <h4>Pushing content to the bottom of a card</h4>
+      </article><article>
+        <h3>Pushing content to the bottom of a card</h3>
         <p>If you have a row of same-height cards, you might want to push content to the bottom of the card, for example a call-to-action. Simply put this content into a <span class="css-ref">.card-section</span> with the additional class <span class="css-ref">.card-footer</span>.</p>
         <pre class="language-markup">
           <code><!--
@@ -1733,7 +1972,8 @@ console.log("JellyFish is Awesome!");
             </div>
           </div>
         </div>
-        <h4>Customising Cards</h4>
+      </article><article>
+        <h3>Variables</h3>
           <p>Card variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
           <code>
@@ -1747,10 +1987,30 @@ console.log("JellyFish is Awesome!");
           </code>
           <label>_settings.scss</label>
           </pre>
+          </article>
         </div><!-- /#card.docs-section -->
         <section class="docs-section" id="labels">
-          <h2>Labels</h2>
-          <p>Jellyfish contains simple styles for labels; elements which can be used to display relevant information to the side of a parent. They are sized with em units, to scale based on the parent.</p>
+          <h2 class="section-heading">
+            Labels
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__success">Yes</span>
+            </span>
+          </h2>
+          <article>
+            <p class="standfirst">Label all the things!</p>
+            <p>Jellyfish contains simple styles for labels; elements which can be used to display relevant information to the side of a parent. They are sized with em units, to scale based on the parent.</p>
+          </article>
+          <article>
+            <h3>Colors and Outlines</h3>
           <p>Use modifier classes to change the coloring or to display as an outlined label.</p>
           <pre class="language-markup">
             <code><!--
@@ -1768,7 +2028,25 @@ console.log("JellyFish is Awesome!");
           <h4>Heading 4 <span class="label label__success">Success</span><span class="label label__success label__outline">Outline</span></h4>
           <h5>Heading 5 <span class="label label__warning">Warning</span><span class="label label__warning label__outline">Outline</span></h5>
           <p>Paragraph <span class="label label__error">Error</span><span class="label label__error label__outline">Outline</span></p>
-          <h4>Creating your own colors</h4>
+        </article>
+        <article>
+          <h3>Label Group</h3>
+          <p>Wrap two or more labels in a <span class="css-ref">.label-group</span> class to group them together. Using labels like this makes them behave more like a badge.</p>
+          <pre class="language-markup">
+            <code><!--
+            <div class="label-group">
+              <span class="label label__secondary">Species of Jellyfish found in the UK</span>
+              <span class="label label__warning">6</span>
+            </div>
+          --></code>
+          </pre>
+          <div class="label-group">
+            <span class="label label__secondary">Species of Jellyfish found in the UK</span>
+            <span class="label label__warning">6</span>
+          </div>
+        </article>
+        <article>
+          <h3>Create-your-own</h3>
           <p>The recommended way to add label colors is with the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map. Alternatively, you can use the <code>create_label()</code> mixin to create your own labels, in a consistent style, with ease. The mixin takes one argument, <span class="variable-ref">$label-color</span>.</p>
           <pre class="language-scss">
             <code>
@@ -1794,7 +2072,9 @@ console.log("JellyFish is Awesome!");
           <h5>Heading 5 <span class="label label__gold">Gold</span><span class="label label__gold label__outline">Outline</span></h5>
           <h5>Heading 5 <span class="label label__white">White</span><span class="label label__white label__outline">Outline</span></h5>
           <p>Like <a href="#buttons">buttons</a>, labels use a mixin to determine the text color based on the contrast against the background color. These variables are <span class="variable-ref">$label-text-color-light</span> and <span class="variable-ref">$label-text-color-dark</span>.</p>
-          <h4>Nesting Labels</h4>
+        </article>
+        <article>
+          <h3>Nesting Labels</h3>
           <p>Labels can be nested...</p>
           <pre class="language-markup">
             <code><!--
@@ -1806,7 +2086,9 @@ console.log("JellyFish is Awesome!");
           <h3>Heading 3 <span class="label label__hotpink">Notifications <span class="label label__white">5</span></span></h3>
           <h3>Heading 3 <span class="label label__error">Errors <span class="label label__white">14</span></span></h3>
           <h1>Heading 1 <span class="label label__warning">OK <span class="label label__white">That's<span class="label label__success">enough!</span></span></span></h1>
-          <h4>Customising Labels</h4>
+        </article>
+        <article>
+          <h3>Variables</h3>
           <p>Label variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
           <code>
@@ -1819,10 +2101,28 @@ console.log("JellyFish is Awesome!");
           </code>
           <label>_settings.scss</label>
           </pre>
+          </article>
         </section><!-- /#labels.docs-section -->
         <section class="docs-section" id="callouts">
-          <h2>Callouts</h2>
-          <p>A callout provides a simple way to draw attention to information. It is an element with the class <span class="css-ref">.callout</span> applied.</p>
+          <h2 class="section-heading">
+            Callouts
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__success">Yes</span>
+            </span>
+          </h2>
+          <article>
+          <p class="standfirst">A callout provides a simple way to draw attention to information. It is an element with the class <span class="css-ref">.callout</span> applied.</p>
+          </article><article>
+          <h3>Basic Callout</h3>
           <pre class="language-markup">
             <code><!--
             <aside class="callout" role="alert">
@@ -1837,7 +2137,8 @@ console.log("JellyFish is Awesome!");
             <p>Jellyfish have no brain, heart, bones or eyes. They are made up of a smooth, bag-like body and tentacles armed with tiny, stinging cells. </p>
             <a href="#">Cool - tell me more!</a>
           </aside>
-          <h3>Callout modifiers</h3>
+        </article><article>
+          <h3>Colors</h3>
           <p>Provide more context to callouts by using the modifiers <span class="css-ref">.callout__primary</span>, <span class="css-ref">.callout__secondary</span>, <span class="css-ref">.callout__tertiary</span>, <span class="css-ref">.callout__success</span>, <span class="css-ref">.callout__warning</span> or <span class="css-ref">.callout__error</span>.</p>
           <pre class="language-markup">
             <code><!--
@@ -1855,7 +2156,8 @@ console.log("JellyFish is Awesome!");
           <div class="callout callout__success">Success</div>
           <div class="callout callout__warning">Error</div>
           <div class="callout callout__error">Warning</div>
-          <h4>Callout links</h4>
+        </article><article>
+          <h3>Callout links</h3>
           <p>Use the class <span class="css-ref">.callout-link</span> to apply matching colouring to a link in a callout.</p>
           <pre class="language-markup">
             <code><!--
@@ -1873,7 +2175,8 @@ console.log("JellyFish is Awesome!");
           <div class="callout callout__success">This is a <a href="#" class="callout-link">very important link</a></div>
           <div class="callout callout__warning">This is a <a href="#" class="callout-link">very important link</a></div>
           <div class="callout callout__error">This is a <a href="#" class="callout-link">very important link</a></div>
-          <h4>Creating your own colors</h4>
+        </article><article>
+          <h3>Create-your-own</h3>
           <p>The recommended way to add callout colors is with the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map. Alternatively, you can use the <code>create_callout()</code> mixin to create your own callouts, in a consistent style, with ease. The mixin takes one argument, <span class="variable-ref">$callout-color</span>.</p>
           <pre class="language-scss">
             <code>
@@ -1893,7 +2196,8 @@ console.log("JellyFish is Awesome!");
           </pre>
           <div class="callout callout__hotpink">This is a <a href="#" class="callout-link">Hotpink link</a></div>
           <div class="callout callout__gold">This is a <a href="#" class="callout-link">Gold link</a></div>
-          <h4>Customising Callouts</h4>
+        </article><article>
+          <h3>Variables</h3>
           <p>Callout variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
           <code>
@@ -1903,9 +2207,25 @@ console.log("JellyFish is Awesome!");
           </code>
           <label>_settings.scss</label>
           </pre>
+          </article>
         </section><!-- /#callouts.docs-section -->
         <section class="docs-section" id="accessibility">
-          <h2>Accessibility</h2>
+          <h2 class="section-heading">
+            Accessibility
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__success">Yes</span>
+            </span>
+          </h2>
+          <article>
           <h3>Base font-size</h3>
           <p>Add the class <span class="css-ref">.font-size-sm</span>, <span class="css-ref">.font-size-md</span> or <span class="css-ref">.font-size-lg</span> to the body element to change the base font size. This will allow visitors with limited eye sight to increase the size of type throughout the site.</p>
           <p>For a quick and easy way to implement this feature, you can add the code snippet below to your project.</p><p><strong>Note:</strong> this approach uses javascript to set a Cookie 'fontsize' to ensure that the setting is persistent across the site. For reference see <span class="file-ref">/assets/js/project/accessibility.js</span>.</p>
@@ -1921,7 +2241,7 @@ console.log("JellyFish is Awesome!");
           <button class="font-size font-size-sm" title="Small Font Size">A</button>
           <button class="font-size font-size-md" title="Medium Font Size">A</button>
           <button class="font-size font-size-lg" title="Large Font Size">A</button>
-        <h4>Font-size settings</h4>
+        <h4>Font-size Variables</h4>
         <p>Edit font-size settings and customise the button styles in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
             <code>
@@ -1942,6 +2262,7 @@ console.log("JellyFish is Awesome!");
             </code>
             <label>_settings.scss</label>
           </pre>
+        </article><article>
         <h3>Dark UI / High Contrast Mode</h3>
         <p>Jellyfish has a simple dark UI / high-contrast mode which can be enabled by adding the class <span class="css-ref">.dark-ui</span> to the body element. It is important to note that this is not a stand-alone 'dark-style' theme but instead a way for the user to view the site with a higher contrast and with less 'design'. Dark UI mode forces all elements to have a dark background, turns all copy to a light color, and grayscales images to a configurable percentage.</p>
         <p>For a quick and easy way to implement this feature, you can add the code snippet below.</p>
@@ -1964,7 +2285,7 @@ console.log("JellyFish is Awesome!");
               d="M548 274C548 123.8 427.1 1.8 277.3 0h-8.7c-1.2 0-2.4.1-3.6.1-1 0-2 .1-3 .1-1.2.1-2.4.1-3.5.2-1 .1-2 .1-2.9.2l-3.7.3c-.8.1-1.6.1-2.5.2-7.3.6-14.5 1.6-21.6 2.8-.3.1-.6.1-.9.2l-5 .9c-.4.1-.9.2-1.3.2-1.6.3-3.2.7-4.8 1l-1.4.3c-1.6.4-3.2.7-4.7 1.1-.5.1-1 .2-1.5.4l-4.7 1.2c-.5.1-1 .3-1.5.4-1.5.4-3.1.8-4.6 1.3-.5.1-1 .3-1.5.4-1.5.5-3.1.9-4.6 1.4-.5.2-1 .3-1.5.5l-4.6 1.5c-.4.2-.9.3-1.3.5-1.6.5-3.1 1.1-4.7 1.7-.2.1-.4.1-.6.2-3 1.1-6 2.3-9 3.5l-2.1.9-2.7 1.2-3.3 1.5c-.8.4-1.6.8-2.5 1.1-1.2.5-2.3 1.1-3.5 1.6l-2.4 1.2c-1.1.6-2.3 1.1-3.4 1.7-.8.4-1.6.8-2.4 1.3-1.1.6-2.2 1.2-3.3 1.7-.8.5-1.7.9-2.5 1.4a47.53 47.53 0 0 1-3.1 1.7c-.9.5-1.8 1-2.7 1.6l-2.9 1.7c-1 .6-1.9 1.2-2.9 1.8-.9.5-1.7 1.1-2.6 1.6-1 .7-2.1 1.3-3.1 2-.8.5-1.5 1-2.3 1.5-1.1.7-2.2 1.5-3.3 2.2l-2 1.4c-1.2.8-2.3 1.7-3.5 2.5-.6.4-1.1.8-1.7 1.2l-3.6 2.7-1.5 1.2c-1.2.9-2.4 1.9-3.6 2.8l-1.6 1.3-3.4 2.8c-.3.3-.6.5-1 .8-.3.2-.5.4-.8.7-1.1.9-2.2 1.9-3.3 2.9-.7.6-1.4 1.2-2.1 1.9-.8.8-1.7 1.5-2.5 2.3-.9.9-1.9 1.7-2.8 2.6l-1.4 1.4c-1.3 1.2-2.5 2.4-3.7 3.6-22.1 22-39.6 47-52.7 73.8-.2.5-.5.9-.7 1.4l-3 6.4-.6 1.5c-12 27.3-19.8 56.8-22.3 87.9v.1c-.1 1.7-.3 3.5-.4 5.2 0 .7-.1 1.3-.1 2-.1 1.3-.1 2.6-.2 3.8 0 1.1-.1 2.3-.1 3.4 0 .9 0 1.9-.1 2.8 0 1.5 0 2.9-.1 4.4v2.2c0 1.6 0 3.3.1 4.9v1.9c0 1.7.1 3.4.2 5.1 0 .6.1 1.2.1 1.8l.3 5c0 .6.1 1.3.1 1.9.1 1.6.3 3.2.4 4.8.1.7.1 1.4.2 2.1.2 1.5.3 3 .5 4.4l.3 2.4.6 4c.1.9.3 1.9.4 2.8l.6 3.6c.2 1.1.4 2.1.5 3.2l.6 3c.2 1.2.5 2.4.7 3.6.2.8.4 1.7.5 2.5l.9 4.1c.2.7.3 1.3.5 2 .4 1.5.7 3 1.1 4.5.1.5.3 1 .4 1.5.4 1.6.9 3.3 1.3 4.9.1.4.3.9.4 1.3l1.5 5.1c.2.5.3 1 .5 1.6.5 1.6 1 3.2 1.6 4.8l.9 2.5c.4 1.3.9 2.5 1.3 3.8l1.4 3.8.9 2.5c.6 1.6 1.3 3.1 1.9 4.6l.6 1.5 2.1 4.9c.2.4.4.8.5 1.2.7 1.6 1.4 3.1 2.2 4.6.2.5.4 1 .7 1.4l3 6a67.04 67.04 0 0 0 2 3.7c.4.8.8 1.5 1.2 2.3l1.8 3.2 1.5 2.7 1.6 2.8 1.8 3.1 1.5 2.4c.7 1.1 1.4 2.3 2.2 3.4.4.7.9 1.4 1.3 2 .8 1.2 1.6 2.5 2.5 3.7l1.2 1.8c.9 1.3 1.8 2.6 2.8 3.9.4.5.8 1 1.1 1.5 1 1.4 2 2.7 3 4 .4.5.7 1 1.1 1.4l3.1 4 1.2 1.5c1 1.3 2.1 2.5 3.1 3.8.2.3.5.6.7.9.2.2.4.4.6.7l3.7 4.3c.5.5 1 1.1 1.4 1.6l3.7 4 4.7 4.9c.4.4.8.9 1.3 1.3l4.1 4 .7.7c1.5 1.4 3 2.9 4.6 4.3 17.7 16.1 37.2 29.6 57.7 40.3.7.4 1.4.8 2.1 1.1 1 .5 1.9 1 2.9 1.4l4.1 2c.6.3 1.2.6 1.8.8 1.9.9 3.7 1.7 5.6 2.5l.6.3C198.1 539.9 235.1 548 274 548l8-.1c147.6-4.3 266-125.3 266-273.9zM361.2 480.4a221.29 221.29 0 0 1-79.2 17.4V50.2c27.4 1 54 6.8 79.2 17.4 26.7 11.3 50.6 27.4 71.2 48s36.7 44.5 48 71.2c11.7 27.6 17.6 56.9 17.6 87.2s-5.9 59.6-17.6 87.2c-11.3 26.7-27.4 50.6-48 71.2s-44.6 36.7-71.2 48z" />
           </svg>
         </button>
-        <h4>Dark UI / High Contrast mode settings</h4>
+        <h4>Dark UI / High Contrast Variables</h4>
         <p>Edit Dark UI / High Contrast mode settings in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
           <pre class="language-scss">
             <code>
@@ -1976,9 +2297,25 @@ console.log("JellyFish is Awesome!");
             </code>
             <label>_settings.scss</label>
           </pre>
+          </article>
         </section><!-- #accessibility -->
         <section class="docs-section" id="utilities">
-          <h2>Utilities</h2>
+          <h2 class="section-heading">
+            Utilities
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__error">No</span>
+            </span>
+          </h2>
+          <article>
           <h3>Keep words together</h3>
           <p>If you need to keep certain words together (e.g. brand names), wrap them in a span with the utility class <span class="css-ref">.nowrap</span>.</p>
           <p><strong>Note:</strong> This may cause elements to break out of their container and for paragraphs to be ragged - you have been warned!</p>
@@ -1990,6 +2327,7 @@ console.log("JellyFish is Awesome!");
           </pre>
           <p style="width: 150px;">Since the early 1980's, <span class="nowrap">Jellyfish stingers inc.</span> have been producing high-quality replacement stingers for injured jellyfish.</p>
           <p style="width: 150px;">Since the early 1980's, Jellyfish stingers inc. have been producing high-quality replacement stingers for injured jellyfish.</p>
+        </article><article>
           <h3>Floats</h3>
           <p>Elements can be floated with <span class="css-ref">.align-*</span> classes. Add a <span class="css-ref">.clearfix</span> class to a parent element to clear the floats.</p>
           <pre class="language-markup">
@@ -2010,6 +2348,7 @@ console.log("JellyFish is Awesome!");
             </div>
           </div>
           <div class="align-none boxed">Float None</div>
+        </article><article>
           <h3 id="display-utilities">Display utilities</h3>
           <p>Jellyfish comes with a number of display utilities to allow you to hide and show elements based on the current breakpoint.</p>
           <p>An element with a class of <span class="css-ref">.hide</span> is hidden at all breakpoints. An element can also be set to be hidden (but still take up space on the page) with the class <span class="css-ref">.invisible</span>.</p>
@@ -2044,6 +2383,7 @@ console.log("JellyFish is Awesome!");
             </tr>
             </tbody>
           </table>
+        </article><article>
           <h3>Working with flexboxes</h3>
           <h4>Align items</h4>
           <p>Jellyfish contains a number of flexbox alignment classes to help position columns inside a flexbox row.</p>
@@ -2161,6 +2501,7 @@ console.log("JellyFish is Awesome!");
             <div class="col md-3"><div class="boxed">justify-evenly</div></div>
             <div class="col md-3"><div class="boxed">justify-evenly</div></div>
           </div>
+        </article><article>
           <h3>Manipulating width</h3>
           <p>The utility class <span class="css-ref">.full-width</span> can be applied to any element to make <code>width: 100%</code>.</p>
           <p>An element with the utility class <span class="css-ref">.vw-100</span> will span 100% of the viewport width, breaking out of any containers to do so (without affecting document flow). <strong>Note:</strong> this class should only be used when the center of the parent is in the center of the window.</p>
@@ -2172,6 +2513,7 @@ console.log("JellyFish is Awesome!");
           </pre>
           <div class="full-width boxed">An element with .full-width applied</div>
           <div class="boxed vw-100">An element with .vw-100 applied</div>
+        </article><article>
           <h3>Responsive Video</h3>
           <p>Wrap an embedded video in a container with class <span class="css-ref">.embed-container</span> to ensure the video is responsively resized.</p>
           <pre class="language-markup">
@@ -2184,9 +2526,25 @@ console.log("JellyFish is Awesome!");
           <div class="embed-container">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
+          </article>
         </section><!-- #utilities -->
         <section class="docs-section" id="mixins">
-          <h2>SCSS Mixins and Functions</h2>
+          <h2 class="section-heading">
+            SCSS Mixins and Functions
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__error">No</span>
+            </span>
+          </h2>
+          <article>
           <h3>Manipulate numbers</h3>
           <p>Jellyfish comes with a few simple functions for manipulating numbers.</p>
           <div class="row">
@@ -2223,6 +2581,7 @@ console.log("JellyFish is Awesome!");
               </pre>
             </div>
           </div>
+        </article><article>
           <h3>Create buttons, labels and callouts</h3>
           <p>Add colours to the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map to have Jellyfish automagically create styles for you, or use the following mixins:</p>
           <div class="row">
@@ -2292,6 +2651,7 @@ console.log("JellyFish is Awesome!");
               </pre>
             </div>
           </div>
+        </article><article>
           <h3>Choosing contrasting colors</h3>
           <p>The function <code>choose-contrast-color()</code> empowers Sass to automatically pick the text color with the most contrast to a given background color. The math on this one is complex, the code comes from this excellent <a href="https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796" rel="nofollow">Medium article</a>. All you need to know is that the function takes three arguments:</p>
           <ul>
@@ -2351,6 +2711,7 @@ console.log("JellyFish is Awesome!");
               </pre>
             </div>
           </div>
+        </article><article>
           <h3>Tinting and shading</h3>
           <p>The sass functions <code>lighten()</code> and <code>darken()</code> can give unexpected results, washing out or filling in faster than expected. Use the functions <code>tint()</code> and <code>shade()</code> to progressively lighten and darken colours, for more consistent colour adjusting.</p>
           <div class="row">
@@ -2423,8 +2784,9 @@ console.log("JellyFish is Awesome!");
               </tr>
             </table>
           </div>
+        </article><article>
           <h3>Quickly center a block-level element:</h3>
-          <p>This will only work if the block has a defined width.</p>
+          <p class="bold">Note: This will only work if the block has a defined width.</p>
           <pre class="language-scss">
             <code>
               // Input
@@ -2441,6 +2803,7 @@ console.log("JellyFish is Awesome!");
           <div class="row">
             <div class="col"><div class="boxed" style="width:40%;max-width:400px;margin-left:auto;margin-right:auto;">some-block</div></div>
           </div>
+        </article><article>
           <h3>Working with Pseudo elements ::before and ::after</h3>
           <p>Pseudo elements always need a few properties defined. This mixin accepts three arguments and has default fallbacks.</p>
           <h4>Mixin</h4>
@@ -2485,6 +2848,7 @@ console.log("JellyFish is Awesome!");
               </pre>
             </div>
           </div>
+        </article><article>
           <h3>Target different heading levels</h3>
           <p>Sure, you can use <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code>, <code>h6</code> to target headings in scss, or you can use this helpful function to target specific headings...</p>
           <pre class="language-scss">
@@ -2511,6 +2875,7 @@ console.log("JellyFish is Awesome!");
             <h5 class="h-em-2 h-tomato">Heading 5</h5>
             <h6 class="h-em-2 h-tomato">Heading 6</h6>
           </div>
+        </article><article>
           <h3>Global smooth() transitions</h3>
           <p>Use the mixin <code>@include smooth($properties...)</code> to apply global transitions for a consistent UI feel. The mixin accepts multiple arguments.</p>
           <div class="boxed"><p>Anchor tags have <code>smooth(color)</code> applied by default - <a href="#">hover here to preview</a>.</p></div>
@@ -2523,6 +2888,7 @@ console.log("JellyFish is Awesome!");
               $global-transition: 0.2s ease;
             </code>
           </pre>
+        </article><article>
           <h3>Media queries</h3>
           <p>Jellyfish comes with three media query mixins. These mixins are flexible, allowing you to specify either a <span class="variable-ref">$breakpoint</span> name from your <a href="#breakpoint-settings">breakpoint map</a> or a px value (which is converted automatically by the em() mixin).</p>
           <p>The below examples are all valid uses of the media query mixins.</p>
@@ -2566,10 +2932,26 @@ console.log("JellyFish is Awesome!");
               <tr><td><code>@include below($max) {...}</code></td><td>CSS applies below the given breakpoint, unless overridden by specificity. As a general rule, it's best to use <code>above()</code> rather than <code>below()</code>.</td></tr>
           </tbody>
           </table>
+          </article>
         </section><!-- #mixins -->
         <section class="docs-section" id="printing">
-          <h2>Printing Jellyfish Projects</h2>
-          <p>Jellyfish applies a few small tweaks to make projects more printer-friendly:</p>
+          <h2 class="section-heading">
+            Printing Jellyfish Projects
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__error">No</span>
+            </span>
+          </h2>
+          <article>
+          <p class="standfirst">Jellyfish applies a few small tweaks to make projects more printer-friendly:</p>
           <pre class="language-scss"><code>
             @media print {
               a {
@@ -2615,6 +2997,7 @@ console.log("JellyFish is Awesome!");
             }
           </code>
           </pre>
+        </article><article>
           <h3>Non-printing elements</h3>
           <p>There are several ways of preventing certain elements from printing; by using a class <span class="css-ref">.do-not-print</span>, by <span class="bold">@extending</span> that class <code>@extend .do-not-print</code> or by using a mixin <code>@include do-not-print()</code>. Each of these options result in the compiled code of <code>display:none;</code> for <span class="bold">@media print</span>.</p>
           <p>By default, the following elements will not print: <span class="css-ref">.navbar</span>, iframe.</p>
@@ -2635,11 +3018,27 @@ console.log("JellyFish is Awesome!");
                 display: none; } }
           </code>
           </pre>
+          </article>
         </section><!-- #printing -->
         <section class="docs-section" id="breakpoint-settings">
-          <h2>Breakpoint Settings</h2>
-          <p>Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints - declared through the <span class="variable-ref">$breakpoints</span> map in <span class="file-ref">/assets/scss/_settings.scss</span>. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
-          <h4>Example breakpoint definition</h4>
+          <h2 class="section-heading">
+            Breakpoint Settings
+            <span class="label-group">
+              <span class="label label__light">Modifiers</span>
+              <span class="label label__error">No</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Create-your-own</span>
+              <span class="label label__success">Yes</span>
+            </span>
+            <span class="label-group">
+              <span class="label label__light">Variables</span>
+              <span class="label label__success">Yes</span>
+            </span>
+          </h2>
+          <article>
+          <p class="standfirst">Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints.</p><p>These are declared through the <span class="variable-ref">$breakpoints</span> map in <span class="file-ref">/assets/scss/_settings.scss</span>. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
+          <h3>Example breakpoint definition</h3>
           <pre>
             <code class="language-scss line-numbers">
               sm: (
@@ -2656,7 +3055,8 @@ console.log("JellyFish is Awesome!");
           </pre>
           <p>By default, breakpoints are named <span class="variable-ref">sm</span>, <span class="variable-ref">md</span>, <span class="variable-ref">lg</span>  and <span class="variable-ref">xl</span> however you can name breakpoints as you wish to suit your project requirements and personal naming conventions (e.g. microscopic, small, medium, large, gigantic, mammoth, mobile, tablet, laptop, desktop, jumbotron). Jellyfish will use these names to generate the code for css classes as detailed above.</p>
           <p>If you choose not to declare certain values, they will be inherited.</p>
-          <h4>Terminology</h4>
+        </article><article>
+          <h3>Terminology</h3>
           <table class="table__border">
             <thead>
               <tr><th>Term</th><th>Description</th></tr>
@@ -2672,9 +3072,13 @@ console.log("JellyFish is Awesome!");
               </tbody>
           </table>
           <p><strong>Note:</strong> You can also configure settings for the smallest devices (i.e. before any media queries are activated) by setting the following variables in <span class="file-ref">/assets/scss/_settings.scss</span>: <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$root-font-size</span>, <span class="variable-ref">$root-line-height</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></p>
+          </article>
         </section><!-- #breakpoint-settings-->
         <section class="docs-section" id="configuration">
-          <h2>Configuration</h2>
+          <h2 class="section-heading">
+            Variables
+          </h2>
+          <article>
           <h3>Setting your styles</h3>
           <p>It is recommend to not edit the files within <span class="file-ref">/assets/scss/jellyfish</span> but rather to add your project's scss into <span class="file-ref">/assets/scss/project</span>. In this way you can keep the core functionality separate from your project's codebase.</p>
           <p>The file <span class="file-ref">/assets/scss/_settings.scss</span> contains all of the variables used in Jellyfish, commented out. If you wish to override a default, you can simply uncomment and add your own values. You should add any new variables here to keep your project organised.</p>
@@ -2851,8 +3255,8 @@ console.log("JellyFish is Awesome!");
             $navbar-link-padding-expanded-x: 10px;
             $navbar-link-padding-expanded-y: 10px;
             // Current Page Link
-            $navbar-current-page-color: $color-secondary;
-            $navbar-current-page-background: inherit;
+            $navbar-current-page-color: $color-white;
+            $navbar-current-page-background: $color-secondary;
             $navbar-current-page-font-weight: bold;
             // Secondary Links
             $navbar-submenu-text-transform: $navbar-text-transform;
@@ -2918,7 +3322,9 @@ console.log("JellyFish is Awesome!");
                     )
             );
           </code></pre>
-          <h4 id="theme-colors-map">Theme Colors Map</h4>
+        </article>
+        <article>
+          <h3 id="theme-colors-map">Theme Colors Map</h3>
           <p>Of particular interest here is the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map. You can add your own key/value pairs to the map and Jellyfish will automagically generate classes for <span class="css-ref">.text-{key}</span>, <span class="css-ref">.bg-{key}</span>, <span class="css-ref">.label__{key}</span>, <span class="css-ref">.button__{key}</span> and <span class="css-ref">.callout__{key}</span>.</p>
           <div class="row">
             <div class="col sm-12 md-6">
@@ -2979,9 +3385,11 @@ console.log("JellyFish is Awesome!");
               </pre>
             </div>
           </div>
+        </article>
         </section><!-- #configuration -->
         <section class="docs-section" id="debug">
-          <h2>Debug mode</h2>
+          <h2 class="section-heading">Debug mode</h2>
+          <p class="standfirst">Quickly see the layout of your grid and components.</p>
           <p>Jellyfish comes with a handy debug mode which allows you to quickly see the structure of the grid, and diagnose any layout issues. Debug mode can be enabled in three ways:</p>
           <ol>
               <li>by setting <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="file-ref">/assets/scss/_settings.scss</span>.</li>

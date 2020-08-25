@@ -183,8 +183,8 @@ $navbar-link-padding-y: 8px !default;
 $navbar-link-padding-expanded-x: 10px !default;
 $navbar-link-padding-expanded-y: 10px !default;
 // Current Page Link
-$navbar-current-page-color: $color-secondary !default;
-$navbar-current-page-background: inherit !default;
+$navbar-current-page-color: $color-white !default;
+$navbar-current-page-background: $color-secondary !default;
 $navbar-current-page-font-weight: bold !default;
 // Secondary Links
 $navbar-submenu-text-transform: $navbar-text-transform !default;
