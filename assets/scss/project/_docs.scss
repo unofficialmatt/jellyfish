@@ -168,6 +168,24 @@
     font-weight: normal;
   }
 
+// Copy to Clipboard
+div.code-toolbar {
+  & > .toolbar {
+    top: auto;
+    bottom: 0.5em;
+    right: 0.5em;
+    button {
+      margin: 0;
+      box-shadow: none;
+      padding: .5em;
+      text-transform: uppercase;
+      font-weight: bold;
+      @extend .button__tertiary;
+    }
+  }
+
+}
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   EXAMPLES
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
