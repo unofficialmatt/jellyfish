@@ -44,26 +44,26 @@
 
 body.font-size{
   &-sm {
-  font-size: $acc-font-size-sm;
+  font-size: $accessibility-font-size-sm;
   }
   &-md {
-    font-size: $acc-font-size-md;
+    font-size: $accessibility-font-size-md;
   }
   &-lg {
-    font-size: $acc-font-size-lg;
+    font-size: $accessibility-font-size-lg;
   }
 }
 
 %accessibility-button {
   background-color: transparent;
-  color: $acc-button-color;
+  color: $accessibility-button-color;
   padding: 0 0 2px 0;
   margin: 0;
   border: 0;
   border-radius: 0;
   &:hover, &:focus, &:active {
     background: transparent;
-    color: $acc-button-hover-color;
+    color: $accessibility-button-hover-color;
   }
   line-height: 1;
   &:focus {
@@ -72,15 +72,15 @@ body.font-size{
 }
 button.font-size {
   @extend %accessibility-button;
-  font-weight: $acc-button-font-weight;
-  border-bottom: $acc-button-border-bottom solid transparent;
+  font-weight: $accessibility-button-font-weight;
+  border-bottom: $accessibility-button-border-bottom solid transparent;
   vertical-align: baseline;
   &:hover, &:focus, &:active {
-    border-bottom-color: $acc-button-hover-border-color;
+    border-bottom-color: $accessibility-button-hover-border-color;
   }
   &.active {
-    color: $acc-button-active-color;
-    border-bottom-color: $acc-button-active-border-color;
+    color: $accessibility-button-active-color;
+    border-bottom-color: $accessibility-button-active-border-color;
   }
   &-sm {
     font-size: .8em;

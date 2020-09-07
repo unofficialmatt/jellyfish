@@ -83,19 +83,19 @@ $link-active: $color-secondary !default;
 $link-visited: $color-tertiary !default;
 
 /* ACCESSIBILITY */
-$acc-font-size-sm: 14px !default;
-$acc-font-size-md: 16px !default;
-$acc-font-size-lg: 18px !default;
+$accessibility-font-size-sm: 14px !default;
+$accessibility-font-size-md: 16px !default;
+$accessibility-font-size-lg: 18px !default;
 
-$acc-button-font-weight: normal !default;
+$accessibility-button-font-weight: normal !default;
 
-$acc-button-color: $color-text-light !default;
-$acc-button-hover-color: $link-active !default;
-$acc-button-active-color: inherit !default;
+$accessibility-button-color: $color-text-light !default;
+$accessibility-button-hover-color: $link-active !default;
+$accessibility-button-active-color: inherit !default;
 
-$acc-button-border-bottom: 2px !default;
-$acc-button-hover-border-color: $color-secondary !default;
-$acc-button-active-border-color: $color-primary !default;
+$accessibility-button-border-bottom: 2px !default;
+$accessibility-button-hover-border-color: $color-secondary !default;
+$accessibility-button-active-border-color: $color-primary !default;
 
 $dark-mode-bg-color: #222222 !default;
 $dark-mode-text-color: #e6e6e6 !default;

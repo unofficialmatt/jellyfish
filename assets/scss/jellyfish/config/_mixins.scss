@@ -127,13 +127,10 @@
   color: choose-contrast-color($button-color,$button-text-color-light,$button-text-color-dark);
   &:hover, &:focus, &:active {
     @if $button-color == $hover-color {
-      background-color: call(get-function($ui-hover-function), $hover-color, $hover-perc-amount );
-      border-color: call(get-function($ui-hover-function), $hover-color, $hover-perc-amount );
+      $hover-color: call(get-function($ui-hover-function), $hover-color, $hover-perc-amount );
     }
-    @else {
-      background-color: $hover-color;
-      border-color: $hover-color;
-    }
+    background-color: $hover-color;
+    border-color: $hover-color;
     color: choose-contrast-color($hover-color,$button-text-color-light,$button-text-color-dark);
   }
   &:focus {
