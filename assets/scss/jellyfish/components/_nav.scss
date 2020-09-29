@@ -35,7 +35,6 @@
   *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   width: $navbar-container-width;
   max-width: 100%;
-  //overflow-y: scroll;
     @include below($nav-expands) {
       padding: 0 $navbar-container-padding;
       display: block;
@@ -104,6 +103,20 @@ they should be wrapped in this class to ensure consistent display
         width: auto; // We don't want 100% width li on larger screen sizes
         display: flex;
         align-items: stretch; // children have 100% height
+        &:nth-of-type(n+3) {
+          // Makes all drop downs move left instead of right
+          ul {
+            right: 0;
+            li a::after {
+              transform: rotate(135deg) !important; // Flip arrow to denote fly out location
+            }
+            li ul {
+              // Deeply Nested
+              transform: translate(5px, 0); // Fly out to left
+              left: calc( -100%);
+            }
+          }
+        }
       }
       a {
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
@@ -185,6 +198,9 @@ they should be wrapped in this class to ensure consistent display
       Menu items with children
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
         padding-right: $navbar-link-padding-x*3 !important;
+        @include above($nav-expands) {
+          padding-right: $navbar-link-padding-expanded-x*3 !important;
+        }
         &::after {
           @include pseudo;
           pointer-events: none;

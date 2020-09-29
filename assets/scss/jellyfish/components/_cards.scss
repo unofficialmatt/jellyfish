@@ -17,8 +17,9 @@
     margin-bottom: 0;
   }
 
-  &-img {
+  .card-image, .card-image img {
     width: 100%;
+    margin-bottom: 0;
   }
 
   &-section {
@@ -26,7 +27,7 @@
     & > :last-child {
       margin-bottom: 0;
     }
-    .card-img {
+    .card-image {
       margin-bottom: $element-margin;
     }
 
@@ -37,5 +38,4 @@
   &-footer {
     margin-top: auto;
   }
-
 }

@@ -9,6 +9,6 @@
     color: choose-contrast-color($color,$color-text, $color-white);
   }
   .text-#{$name} {
-    color: $color;
+    color: $color !important;
   }
 }

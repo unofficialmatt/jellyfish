@@ -1,5 +1,5 @@
 /*! jellyfish-grid 3.1.0
- * © 2020-09-07 Matt Weet - https://www.weareboba.com */
+ * © 2020-09-29 Matt Weet - https://www.weareboba.com */
 
 /* GRID */
 /* JELLYFISH DEFAULTS */
@@ -133,16 +133,10 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px; }
-  @media (min-width: 37.5em) {
-    html {
-      font-size: 15px; } }
-  @media (min-width: 56.25em) {
-    html {
-      font-size: 16px; } }
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
 
 body {
+  font-size: 14px;
   color: #333333;
   background-color: #fff;
   line-height: 1.4; }
@@ -1391,42 +1385,42 @@ button.toggle-contrast svg {
   color: #fff; }
 
 .text-primary {
-  color: #001496; }
+  color: #001496 !important; }
 
 .bg-secondary {
   background-color: #a62579;
   color: #fff; }
 
 .text-secondary {
-  color: #a62579; }
+  color: #a62579 !important; }
 
 .bg-tertiary {
   background-color: #8e1b1f;
   color: #fff; }
 
 .text-tertiary {
-  color: #8e1b1f; }
+  color: #8e1b1f !important; }
 
 .bg-success {
   background-color: #77de65;
   color: #333333; }
 
 .text-success {
-  color: #77de65; }
+  color: #77de65 !important; }
 
 .bg-warning {
   background-color: #FCCf14;
   color: #333333; }
 
 .text-warning {
-  color: #FCCf14; }
+  color: #FCCf14 !important; }
 
 .bg-error {
   background-color: #FF4200;
   color: #333333; }
 
 .text-error {
-  color: #FF4200; }
+  color: #FF4200 !important; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   BUTTONS
@@ -1647,13 +1641,14 @@ button.toggle-contrast svg {
   background: #fff; }
   .card > :last-child {
     margin-bottom: 0; }
-  .card-img {
-    width: 100%; }
+  .card .card-image, .card .card-image img {
+    width: 100%;
+    margin-bottom: 0; }
   .card-section {
     padding: 20px; }
     .card-section > :last-child {
       margin-bottom: 0; }
-    .card-section .card-img {
+    .card-section .card-image {
       margin-bottom: 1.4rem; }
     .card-section + .card-section {
       padding-top: 0; }
@@ -2051,7 +2046,14 @@ they should be wrapped in this class to ensure consistent display
         .navbar-menu ul li {
           width: auto;
           display: flex;
-          align-items: stretch; } }
+          align-items: stretch; }
+          .navbar-menu ul li:nth-of-type(n+3) ul {
+            right: 0; }
+            .navbar-menu ul li:nth-of-type(n+3) ul li a::after {
+              transform: rotate(135deg) !important; }
+            .navbar-menu ul li:nth-of-type(n+3) ul li ul {
+              transform: translate(5px, 0);
+              left: calc( -100%); } }
       .navbar-menu ul li a {
         /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
       Link Styles
@@ -2119,6 +2121,9 @@ they should be wrapped in this class to ensure consistent display
       Menu items with children
       *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
         padding-right: 30px !important; }
+        @media (min-width: 76.25em) {
+          .navbar-menu ul li.has-children > a {
+            padding-right: 30px !important; } }
         .navbar-menu ul li.has-children > a::after {
           content: "";
           display: block;

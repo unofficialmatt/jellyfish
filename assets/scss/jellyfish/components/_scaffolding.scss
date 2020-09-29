@@ -18,19 +18,11 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
-    font: {
-      family: $font-body;
-      size: $root-font-size;
-    }
-    @each $point, $i in $breakpoints {
-      // set base font size and line height for each specified media query
-     @include above($point) {
-         font-size: map-deep-get($breakpoints, $point, 'root-font-size');
-     }
-    }
+    font-family: $font-body;
 }
 
 body {
+  font-size: $root-font-size;
   color: $color-text;
   background-color: $color-background;
   line-height: $root-line-height;

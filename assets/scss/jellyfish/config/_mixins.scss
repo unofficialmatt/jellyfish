@@ -134,7 +134,6 @@
     color: choose-contrast-color($hover-color,$button-text-color-light,$button-text-color-dark);
   }
   &:focus {
-    // TODO:Move to using scale instead https://sass-lang.com/documentation/modules/color#scale
     box-shadow: 0px 0px 1px 3px call(get-function($ui-hover-function), $hover-color, $ui-focus-highlight-amount );
   }
   &.button__outline {

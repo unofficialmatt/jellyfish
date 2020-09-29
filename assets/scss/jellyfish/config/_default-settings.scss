@@ -165,6 +165,7 @@ $card-background-color: $color-background !default;
 $nav-expands: 900px !default; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
 $navbar-bg-color: $color-primary !default;
 $navbar-container-padding: 10px !default; // Applies below $nav-expands
+// FIXME: 'inherit' doesn't actually seem to work
 $navbar-container-width: inherit !default; // Use 'inherit' to make it the same as the document container, or a percentage to override. Applies from $nav-expands up
 // Links
 $navbar-font-size: 0.8em !default;
