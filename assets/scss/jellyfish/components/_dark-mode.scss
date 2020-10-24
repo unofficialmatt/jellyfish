@@ -17,7 +17,7 @@ body.dark-ui {
     svg path {
       fill: $dark-mode-link-color;
     }
-    &:hover, &:focus, &:active {
+    &:hover, &:focus {
       color: $dark-mode-link-hover !important;
       svg path {
         fill: $dark-mode-link-hover;

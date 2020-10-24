@@ -61,7 +61,7 @@ body.font-size{
   margin: 0;
   border: 0;
   border-radius: 0;
-  &:hover, &:focus, &:active {
+  &:hover, &:focus {
     background: transparent;
     color: $accessibility-button-hover-color;
   }
@@ -75,7 +75,7 @@ button.font-size {
   font-weight: $accessibility-button-font-weight;
   border-bottom: $accessibility-button-border-bottom solid transparent;
   vertical-align: baseline;
-  &:hover, &:focus, &:active {
+  &:hover, &:focus {
     border-bottom-color: $accessibility-button-hover-border-color;
   }
   &.active {

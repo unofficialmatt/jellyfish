@@ -7,6 +7,11 @@
   .bg-#{$name} {
     background-color: $color;
     color: choose-contrast-color($color,$color-text, $color-white);
+    // TODO: Add to Jellyfish Docs
+    #{headings()} {
+      color: choose-contrast-color($color, $color-white, $color-headings-preferred);
+    }
+    // TODO: Add <a> tag here
   }
   .text-#{$name} {
     color: $color !important;

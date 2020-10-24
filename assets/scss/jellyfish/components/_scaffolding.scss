@@ -20,6 +20,11 @@ html {
     scroll-behavior: smooth;
     font-family: $font-body;
 }
+@media screen and (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
 
 body {
   font-size: $root-font-size;
@@ -49,7 +54,7 @@ a {
         color: $link-visited;
         text-decoration: none;
     }
-    &:hover, &:active, &:focus {
+    &:hover, &:focus {
         color: $link-active;
     }
 }
@@ -67,6 +72,17 @@ table {
     ul, ol {
         margin-bottom: 0;
     }
+}
+// TODO: Document in Jellyfish Docs
+%no-bullets {
+  margin-left: 0;
+  list-style-type: none;
+}
+%inline {
+  @extend %no-bullets;
+  li {
+    display: inline-block;
+  }
 }
 ul {
     @extend %lists;

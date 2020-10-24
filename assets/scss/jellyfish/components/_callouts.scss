@@ -5,7 +5,7 @@
 
 .callout {
   border: $borders;
-  margin-bottom: $element-margin;
+  @extend %mb;
   padding: $element-padding;
   border-radius: $callout-border-radius;
   a.callout-link {
@@ -17,7 +17,7 @@
 
   @each $name, $color in $theme-colors {
     // Loop through $theme-colors map and create callouts for each key
-    &__#{$name} {
+    &.#{$name} {
       @include create_callout($color);
     }
   }

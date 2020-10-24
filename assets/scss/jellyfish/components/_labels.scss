@@ -27,14 +27,14 @@
       font-size: 0.6em;
   }
 
-  @include create_label($color-primary);
+  @include create_label($color-primary); // TODO: Check this isn't doing a whole load, like the button one was
 
   .label {
     // Nested Label
     margin-left: .5em;
   }
 
-  &__outline {
+  &.outline {
     border-style: $label-outline-border-style;
     background-color: transparent !important;
   }
@@ -43,7 +43,7 @@
   $color in $theme-colors {
 
     // Loop through $theme-colors map and create labels for each key
-    &__#{$name} {
+    &.#{$name} {
       @include create_label($color);
     }
   }

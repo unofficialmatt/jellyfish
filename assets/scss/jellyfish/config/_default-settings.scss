@@ -32,9 +32,12 @@ $color-primary: #001496 !default;
 $color-secondary: #a62579 !default;
 $color-tertiary: #8e1b1f !default;
 
-$color-success: #77de65 !default;
-$color-warning: #FCCf14 !default;
-$color-error: #FF4200 !default;
+$color-success: #53cc3e !default;
+$color-warning: #fc7f14 !default;
+$color-error: #f7033c !default;
+
+// TODO: Documentation
+$color-headings-preferred: $color-primary !default;
 
 // Create an empty map. This allows the map to be defined in the project's settings file to include any colors as required
 $theme-colors: () !default;
@@ -77,6 +80,12 @@ $font-size-h4: $font-size-3 !default;
 $font-size-h5: $font-size-2 !default;
 $font-size-h6: $font-size-1 !default;
 
+/* FONT WEIGHTS */
+// TODO: Need documenting
+$weight-light: lighter !default;
+$weight-normal: normal !default;
+$weight-bold: bold !default;
+
 /* LINKS */
 $link-color: $color-primary !default;
 $link-active: $color-secondary !default;
@@ -114,7 +123,7 @@ $border-radius: 4px !default;
 $borders: $border-width $border-style $border-color !default;
 
 /* USER INTERFACE */
-$ui-hover-function: tint !default; // Choose tint or shade
+$ui-hover-function: shade !default; // Choose tint or shade
 $ui-hover-function-amount: 80% !default;
 $ui-focus-highlight-amount: 40% !default;
 
@@ -131,7 +140,7 @@ $form-border-hover: shade($border-color, 60%) !default;
 $form-font: $font-primary;
 
 /* BUTTONS */
-$buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
+$buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]') !default; // Stack of elements to target
 $button-border-width: 1px !default;
 $button-border-radius: 6px !default;
 $button-padding: 1em 1.5em !default;
@@ -140,6 +149,8 @@ $button-font-weight: bold !default;
 $button-text-color-light: $color-white !default;
 $button-text-color-dark: $color-text !default;
 $button-disabled-background: tint($color-text,40%) !default;
+$button-group-max-width: 170px !default; // TODO: Documentation
+$button-group-margin: 'tight' !default;  // Use 'tight' or a value for right-margin // TODO: Documentation
 
 /* LABELS */
 $label-font-weight: bold !default;

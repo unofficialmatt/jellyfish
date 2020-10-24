@@ -35,9 +35,8 @@
     &:hover {
         @extend %forms-hover;
     }
-    &:focus,
-    &:active {
-        @extend %forms-focus;
+    &:focus {
+      @extend %forms-focus;
     }
     &:disabled {
       // Grey out disabled form elements

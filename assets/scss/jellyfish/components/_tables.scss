@@ -20,27 +20,33 @@ td {
     text-align: left;
     padding: .5em .8em;
 }
-thead th {
-    border-bottom: $border-width*2 solid $border-color;
-}
-tfoot th {
-    border-top: $border-width*2 solid $border-color;
-}
-.table__striped {
+table.is-striped {
   tr:nth-child(odd) td {
     background: $table-stripe-color;
   }
 }
-.table__border {
+table.has-border {
   &, td, th {
     border: $borders;
   }
+  thead th {
+    border-bottom-width: $border-width*2;
+  }
+  tfoot th {
+    border-top-width: $border-width*2;
+  }
 }
-.table__hoverable {
+table.is-hoverable {
   tr:hover td {
     background: $table-hover-background !important;
     color: $table-hover-color;
   }
+}
+thead th {
+  border-bottom: $border-width*2 solid $border-color;
+}
+tfoot th {
+  border-top: $border-width*2 solid $border-color;
 }
 // Wrap around a table to prevent it breaking outside the grid
 .table-container {

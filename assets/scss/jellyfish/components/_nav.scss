@@ -15,7 +15,7 @@
     color: $navbar-link-color;
     background-color: $navbar-link-bg-color;
   }
-  &:hover, &:focus, &:active {
+  &:hover, &:focus {
     color: $navbar-link-hover-color;
     background-color: $navbar-link-hover-bg-color;
     font-weight: $navbar-link-hover-weight;
@@ -273,7 +273,7 @@ they should be wrapped in this class to ensure consistent display
       color: $navbar-current-page-color;
       font-weight: $navbar-current-page-font-weight !important;
       }
-      &:hover, &:focus, &:active {
+      &:hover, &:focus {
         color: $navbar-link-hover-color;
         background-color: $navbar-link-hover-bg-color;
       }
@@ -299,7 +299,7 @@ they should be wrapped in this class to ensure consistent display
     padding: 0;
     }
   }
-  input, #{$buttons} {
+  input, .button, a.button {
     margin: $navbar-link-padding-y $navbar-link-padding-x;
     position: relative;
     @include above($nav-expands) {
@@ -329,7 +329,7 @@ they should be wrapped in this class to ensure consistent display
   @include above($nav-expands) {
     display: none; // Hide on larger screens
   }
-  &:hover, &:focus, &:active {
+  &:hover, &:focus {
       background-color: $hamburger-background-color-hover;
       border: $hamburger-border-hover;
   }

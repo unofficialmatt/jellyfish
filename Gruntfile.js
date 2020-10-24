@@ -20,7 +20,7 @@ module.exports = function (grunt) {
       dist_dir: 'dist',
       banner:
       '/*! <%= pkg.name %> <%= pkg.version %>\n' +
-      ' * © <%= grunt.template.today("yyyy-mm-dd") %> <%= pkg.author.name %> - <%= pkg.author.url %> */\n',
+      ' * © <%= grunt.template.today("yyyy-mm") %> <%= pkg.author.name %> - <%= pkg.author.url %> */\n',
     }
   });
 

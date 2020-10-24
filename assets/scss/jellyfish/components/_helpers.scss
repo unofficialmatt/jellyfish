@@ -27,6 +27,11 @@
 .flex {
   display: flex;
 }
+// Converts to flex and displays as a column
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
 // Flex Alignment Classes
 .align-top {
     align-items: flex-start!important;
@@ -128,4 +133,12 @@
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+// Gives elements consistent bottom margin
+%mb {
+  margin-bottom: $element-margin;
+}
+.mb {
+  @extend %mb;
 }

@@ -1,5 +1,5 @@
 /*! jellyfish-grid 3.1.0
- * © 2020-09-29 Matt Weet - https://www.weareboba.com */
+ * © 2020-10 Matt Weet - https://www.weareboba.com */
 
 /* GRID */
 /* JELLYFISH DEFAULTS */
@@ -9,6 +9,7 @@
 /* THEME COLORS */
 /* TYPEFACES */
 /* FONT SIZES */
+/* FONT WEIGHTS */
 /* LINKS */
 /* ACCESSIBILITY */
 /* GLOBAL TRANSITION USED IN SMOOTH() */
@@ -53,6 +54,7 @@ SCSS FRAMEWORK BY MATT WEET
 /* COLOURS */
 /* TYPEFACES */
 /* FONT SIZES */
+/* FONT WEIGHTS */
 /* LINKS */
 /* ACCESSIBILITY */
 /* GLOBAL TRANSITION USED IN SMOOTH() */
@@ -135,6 +137,10 @@ html {
   scroll-behavior: smooth;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
 
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto; } }
+
 body {
   font-size: 14px;
   color: #333333;
@@ -156,15 +162,15 @@ a {
   a:visited {
     color: #8e1b1f;
     text-decoration: none; }
-  a:hover, a:active, a:focus {
+  a:hover, a:focus {
     color: #a62579; }
 
 p,
 table {
-  margin: 0 0 1.4rem 0; }
+  margin: 0 0 24px 0; }
 
 ul, ol {
-  margin: 0 0 1.4rem 2.5em;
+  margin: 0 0 24px 2.5em;
   list-style-position: outside; }
   ul ul, ol ul, ul ol, ol ol {
     margin-bottom: 0; }
@@ -180,11 +186,11 @@ ol {
     list-style-type: lower-alpha; }
 
 dl {
-  margin: 0 0 1.4rem 0; }
+  margin: 0 0 24px 0; }
   dl dt {
     font-weight: bold; }
   dl dd {
-    margin-bottom: 0.7rem; }
+    margin-bottom: 12px; }
 
 pre, samp, kbd, :not(pre) > code, var, .docs .css-ref, .docs .file-ref, .docs .variable-ref {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
@@ -193,27 +199,27 @@ hr {
   height: 0;
   border: 0;
   border-top: 1px solid #cbcccc;
-  margin: 1.4rem 0; }
+  margin: 24px 0; }
 
 pre {
   white-space: pre-wrap;
   tab-size: 2;
   padding: 20px;
-  margin: 0 0 1.4rem 0;
+  margin: 0 0 24px 0;
   background-color: #efefef;
   border: 1px solid #cbcccc;
   line-height: 1.2; }
 
 blockquote {
-  margin: 0 0 1.4rem 0;
-  padding: 0 0 0 1.4rem;
-  border-left: 0.4666666667rem solid #efefef;
+  margin: 0 0 24px 0;
+  padding: 0 0 0 24px;
+  border-left: 8px solid #efefef;
   font-size: 1.5em;
   font-style: italic;
   line-height: 1.4; }
   blockquote cite {
     display: block;
-    margin-top: 0.7rem;
+    margin-top: 12px;
     font-size: 0.6em;
     font-style: normal;
     font-weight: bold;
@@ -221,7 +227,7 @@ blockquote {
 
 img.align-left, img.align-right, img.align-none, img.align-center {
   float: none !important;
-  margin: 1.4rem auto;
+  margin: 24px auto;
   display: block; }
 
 img {
@@ -230,15 +236,15 @@ img {
   vertical-align: top; }
   @media (min-width: 37.5em) {
     img.align-left {
-      margin: 0 1.4rem 1.4rem 0;
+      margin: 0 24px 24px 0;
       float: left !important; }
     img.align-right {
-      margin: 0 0 1.4rem 1.4rem;
+      margin: 0 0 24px 24px;
       float: right !important; }
     img.align-none {
-      margin: 0 0 1.4rem 0; }
+      margin: 0 0 24px 0; }
     img.align-center {
-      margin: 0 auto 1.4rem auto; } }
+      margin: 0 auto 24px auto; } }
 
 ::selection {
   background: #ccd0ea; }
@@ -252,10 +258,10 @@ img {
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 h1, h2, h3, h4, h5, h6 {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  margin: 0 0 0.7rem 0;
+  margin: 0 0 24px 0;
   line-height: 1.2; }
   h1:not(:first-child), h2:not(:first-child), h3:not(:first-child), h4:not(:first-child), h5:not(:first-child), h6:not(:first-child) {
-    margin-top: 1.4rem; }
+    margin-top: 24px; }
 
 h1 {
   font-size: 3em; }
@@ -368,6 +374,10 @@ sup {
 .flex {
   display: flex; }
 
+.flex-column {
+  display: flex;
+  flex-direction: column; }
+
 .align-top {
   align-items: flex-start !important; }
 
@@ -448,7 +458,7 @@ sup {
   height: 0;
   overflow: hidden;
   max-width: 100%;
-  margin: 0.25px 0 1.4rem 0; }
+  margin: 0.25px 0 24px 0; }
 
 .embed-container iframe,
 .embed-container object,
@@ -458,6 +468,9 @@ sup {
   left: 0;
   width: 100%;
   height: 100%; }
+
+.mb, .button-group, .callout, .card, .card-section .card-image {
+  margin-bottom: 24px; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   DARK MODE
@@ -470,13 +483,13 @@ body.dark-ui img {
   filter: grayscale(50%);
   transition: filter 0.2s ease; }
 
-body.dark-ui .button, body.dark-ui [type=submit], body.dark-ui a.button, body.dark-ui a[type=submit], body.dark-ui button, body.dark-ui [type=submit], body.dark-ui [type=reset], body.dark-ui [type=button], body.dark-ui .button, body.dark-ui [type=submit], body.dark-ui a.button, body.dark-ui a[type=submit], body.dark-ui button, body.dark-ui [type=submit], body.dark-ui [type=reset], body.dark-ui [type=button] *, body.dark-ui a, body.dark-ui a * {
+body.dark-ui .button, body.dark-ui a.button, body.dark-ui a.edit-link, body.dark-ui button, body.dark-ui [type=submit], body.dark-ui [type=reset], body.dark-ui [type=button], body.dark-ui .button, body.dark-ui a.button, body.dark-ui a.edit-link, body.dark-ui button, body.dark-ui [type=submit], body.dark-ui [type=reset], body.dark-ui [type=button] *, body.dark-ui a, body.dark-ui a * {
   color: #58cdf1 !important; }
-  body.dark-ui .button svg path, body.dark-ui [type=submit] svg path, body.dark-ui a.button svg path, body.dark-ui a[type=submit] svg path, body.dark-ui button svg path, body.dark-ui [type=submit] svg path, body.dark-ui [type=reset] svg path, body.dark-ui [type=button] svg path, body.dark-ui .button svg path, body.dark-ui [type=submit] svg path, body.dark-ui a.button svg path, body.dark-ui a[type=submit] svg path, body.dark-ui button svg path, body.dark-ui [type=submit] svg path, body.dark-ui [type=reset] svg path, body.dark-ui [type=button] * svg path, body.dark-ui a svg path, body.dark-ui a * svg path {
+  body.dark-ui .button svg path, body.dark-ui a.button svg path, body.dark-ui a.edit-link svg path, body.dark-ui button svg path, body.dark-ui [type=submit] svg path, body.dark-ui [type=reset] svg path, body.dark-ui [type=button] svg path, body.dark-ui .button svg path, body.dark-ui a.button svg path, body.dark-ui a.edit-link svg path, body.dark-ui button svg path, body.dark-ui [type=submit] svg path, body.dark-ui [type=reset] svg path, body.dark-ui [type=button] * svg path, body.dark-ui a svg path, body.dark-ui a * svg path {
     fill: #58cdf1; }
-  body.dark-ui .button:hover, body.dark-ui :hover[type=submit], body.dark-ui .button:focus, body.dark-ui :focus[type=submit], body.dark-ui .button:active, body.dark-ui :active[type=submit], body.dark-ui a.button:hover, body.dark-ui a:hover[type=submit], body.dark-ui a.button:focus, body.dark-ui a:focus[type=submit], body.dark-ui a.button:active, body.dark-ui a:active[type=submit], body.dark-ui button:hover, body.dark-ui button:focus, body.dark-ui button:active, body.dark-ui [type=submit]:hover, body.dark-ui [type=submit]:focus, body.dark-ui [type=submit]:active, body.dark-ui [type=reset]:hover, body.dark-ui [type=reset]:focus, body.dark-ui [type=reset]:active, body.dark-ui [type=button]:hover, body.dark-ui [type=button]:focus, body.dark-ui [type=button]:active, body.dark-ui .button:hover, body.dark-ui :hover[type=submit], body.dark-ui .button:focus, body.dark-ui :focus[type=submit], body.dark-ui .button:active, body.dark-ui :active[type=submit], body.dark-ui a.button:hover, body.dark-ui a:hover[type=submit], body.dark-ui a.button:focus, body.dark-ui a:focus[type=submit], body.dark-ui a.button:active, body.dark-ui a:active[type=submit], body.dark-ui button:hover, body.dark-ui button:focus, body.dark-ui button:active, body.dark-ui [type=submit]:hover, body.dark-ui [type=submit]:focus, body.dark-ui [type=submit]:active, body.dark-ui [type=reset]:hover, body.dark-ui [type=reset]:focus, body.dark-ui [type=reset]:active, body.dark-ui [type=button] *:hover, body.dark-ui [type=button] *:focus, body.dark-ui [type=button] *:active, body.dark-ui a:hover, body.dark-ui a:focus, body.dark-ui a:active, body.dark-ui a *:hover, body.dark-ui a *:focus, body.dark-ui a *:active {
+  body.dark-ui .button:hover, body.dark-ui .button:focus, body.dark-ui a.button:hover, body.dark-ui a.button:focus, body.dark-ui a.edit-link:hover, body.dark-ui a.edit-link:focus, body.dark-ui button:hover, body.dark-ui button:focus, body.dark-ui [type=submit]:hover, body.dark-ui [type=submit]:focus, body.dark-ui [type=reset]:hover, body.dark-ui [type=reset]:focus, body.dark-ui [type=button]:hover, body.dark-ui [type=button]:focus, body.dark-ui .button:hover, body.dark-ui .button:focus, body.dark-ui a.button:hover, body.dark-ui a.button:focus, body.dark-ui a.edit-link:hover, body.dark-ui a.edit-link:focus, body.dark-ui button:hover, body.dark-ui button:focus, body.dark-ui [type=submit]:hover, body.dark-ui [type=submit]:focus, body.dark-ui [type=reset]:hover, body.dark-ui [type=reset]:focus, body.dark-ui [type=button] *:hover, body.dark-ui [type=button] *:focus, body.dark-ui a:hover, body.dark-ui a:focus, body.dark-ui a *:hover, body.dark-ui a *:focus {
     color: #f1b835 !important; }
-    body.dark-ui .button:hover svg path, body.dark-ui :hover[type=submit] svg path, body.dark-ui .button:focus svg path, body.dark-ui :focus[type=submit] svg path, body.dark-ui .button:active svg path, body.dark-ui :active[type=submit] svg path, body.dark-ui a.button:hover svg path, body.dark-ui a:hover[type=submit] svg path, body.dark-ui a.button:focus svg path, body.dark-ui a:focus[type=submit] svg path, body.dark-ui a.button:active svg path, body.dark-ui a:active[type=submit] svg path, body.dark-ui button:hover svg path, body.dark-ui button:focus svg path, body.dark-ui button:active svg path, body.dark-ui [type=submit]:hover svg path, body.dark-ui [type=submit]:focus svg path, body.dark-ui [type=submit]:active svg path, body.dark-ui [type=reset]:hover svg path, body.dark-ui [type=reset]:focus svg path, body.dark-ui [type=reset]:active svg path, body.dark-ui [type=button]:hover svg path, body.dark-ui [type=button]:focus svg path, body.dark-ui [type=button]:active svg path, body.dark-ui .button:hover svg path, body.dark-ui :hover[type=submit] svg path, body.dark-ui .button:focus svg path, body.dark-ui :focus[type=submit] svg path, body.dark-ui .button:active svg path, body.dark-ui :active[type=submit] svg path, body.dark-ui a.button:hover svg path, body.dark-ui a:hover[type=submit] svg path, body.dark-ui a.button:focus svg path, body.dark-ui a:focus[type=submit] svg path, body.dark-ui a.button:active svg path, body.dark-ui a:active[type=submit] svg path, body.dark-ui button:hover svg path, body.dark-ui button:focus svg path, body.dark-ui button:active svg path, body.dark-ui [type=submit]:hover svg path, body.dark-ui [type=submit]:focus svg path, body.dark-ui [type=submit]:active svg path, body.dark-ui [type=reset]:hover svg path, body.dark-ui [type=reset]:focus svg path, body.dark-ui [type=reset]:active svg path, body.dark-ui [type=button] *:hover svg path, body.dark-ui [type=button] *:focus svg path, body.dark-ui [type=button] *:active svg path, body.dark-ui a:hover svg path, body.dark-ui a:focus svg path, body.dark-ui a:active svg path, body.dark-ui a *:hover svg path, body.dark-ui a *:focus svg path, body.dark-ui a *:active svg path {
+    body.dark-ui .button:hover svg path, body.dark-ui .button:focus svg path, body.dark-ui a.button:hover svg path, body.dark-ui a.button:focus svg path, body.dark-ui a.edit-link:hover svg path, body.dark-ui a.edit-link:focus svg path, body.dark-ui button:hover svg path, body.dark-ui button:focus svg path, body.dark-ui [type=submit]:hover svg path, body.dark-ui [type=submit]:focus svg path, body.dark-ui [type=reset]:hover svg path, body.dark-ui [type=reset]:focus svg path, body.dark-ui [type=button]:hover svg path, body.dark-ui [type=button]:focus svg path, body.dark-ui .button:hover svg path, body.dark-ui .button:focus svg path, body.dark-ui a.button:hover svg path, body.dark-ui a.button:focus svg path, body.dark-ui a.edit-link:hover svg path, body.dark-ui a.edit-link:focus svg path, body.dark-ui button:hover svg path, body.dark-ui button:focus svg path, body.dark-ui [type=submit]:hover svg path, body.dark-ui [type=submit]:focus svg path, body.dark-ui [type=reset]:hover svg path, body.dark-ui [type=reset]:focus svg path, body.dark-ui [type=button] *:hover svg path, body.dark-ui [type=button] *:focus svg path, body.dark-ui a:hover svg path, body.dark-ui a:focus svg path, body.dark-ui a *:hover svg path, body.dark-ui a *:focus svg path {
       fill: #f1b835; }
 
 body.dark-ui ::placeholder {
@@ -545,7 +558,7 @@ button.font-size, button.toggle-contrast {
   border: 0;
   border-radius: 0;
   line-height: 1; }
-  button.font-size:hover, button.toggle-contrast:hover, button.font-size:focus, button.toggle-contrast:focus, button.font-size:active, button.toggle-contrast:active {
+  button.font-size:hover, button.toggle-contrast:hover, button.font-size:focus, button.toggle-contrast:focus {
     background: transparent;
     color: #a62579; }
   button.font-size:focus, button.toggle-contrast:focus {
@@ -555,7 +568,7 @@ button.font-size {
   font-weight: normal;
   border-bottom: 2px solid transparent;
   vertical-align: baseline; }
-  button.font-size:hover, button.font-size:focus, button.font-size:active {
+  button.font-size:hover, button.font-size:focus {
     border-bottom-color: #a62579; }
   button.font-size.active {
     color: inherit;
@@ -1383,6 +1396,8 @@ button.toggle-contrast svg {
 .bg-primary {
   background-color: #001496;
   color: #fff; }
+  .bg-primary h1, .bg-primary h2, .bg-primary h3, .bg-primary h4, .bg-primary h5, .bg-primary h6 {
+    color: #fff; }
 
 .text-primary {
   color: #001496 !important; }
@@ -1390,6 +1405,8 @@ button.toggle-contrast svg {
 .bg-secondary {
   background-color: #a62579;
   color: #fff; }
+  .bg-secondary h1, .bg-secondary h2, .bg-secondary h3, .bg-secondary h4, .bg-secondary h5, .bg-secondary h6 {
+    color: #fff; }
 
 .text-secondary {
   color: #a62579 !important; }
@@ -1397,36 +1414,44 @@ button.toggle-contrast svg {
 .bg-tertiary {
   background-color: #8e1b1f;
   color: #fff; }
+  .bg-tertiary h1, .bg-tertiary h2, .bg-tertiary h3, .bg-tertiary h4, .bg-tertiary h5, .bg-tertiary h6 {
+    color: #fff; }
 
 .text-tertiary {
   color: #8e1b1f !important; }
 
 .bg-success {
-  background-color: #77de65;
+  background-color: #53cc3e;
   color: #333333; }
+  .bg-success h1, .bg-success h2, .bg-success h3, .bg-success h4, .bg-success h5, .bg-success h6 {
+    color: #001496; }
 
 .text-success {
-  color: #77de65 !important; }
+  color: #53cc3e !important; }
 
 .bg-warning {
-  background-color: #FCCf14;
+  background-color: #fc7f14;
   color: #333333; }
+  .bg-warning h1, .bg-warning h2, .bg-warning h3, .bg-warning h4, .bg-warning h5, .bg-warning h6 {
+    color: #001496; }
 
 .text-warning {
-  color: #FCCf14 !important; }
+  color: #fc7f14 !important; }
 
 .bg-error {
-  background-color: #FF4200;
-  color: #333333; }
+  background-color: #f7033c;
+  color: #fff; }
+  .bg-error h1, .bg-error h2, .bg-error h3, .bg-error h4, .bg-error h5, .bg-error h6 {
+    color: #fff; }
 
 .text-error {
-  color: #FF4200 !important; }
+  color: #f7033c !important; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   BUTTONS
   Default styling for all buttons
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.button, [type=submit], a.button, a[type=submit], button, [type=submit], [type=reset], [type=button] {
+.button, a.button, a.edit-link, button, [type=submit], [type=reset], [type=button] {
   -webkit-appearance: none;
   user-select: none;
   display: inline-block;
@@ -1442,133 +1467,157 @@ button.toggle-contrast svg {
   border-radius: 6px;
   line-height: 1.3;
   padding: 1em 1.5em;
-  margin: 0.7rem 5px 1.4rem 0;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  margin: 12px 5px 24px 0;
+  transition: all 0.2s ease;
   background-color: #001496;
   border-color: #001496;
   color: #fff; }
-  .button:hover, :hover[type=submit], .button:focus, :focus[type=submit], .button:active, :active[type=submit], a.button:hover, a:hover[type=submit], a.button:focus, a:focus[type=submit], a.button:active, a:active[type=submit], button:hover, button:focus, button:active, [type=submit]:hover, [type=submit]:focus, [type=submit]:active, [type=reset]:hover, [type=reset]:focus, [type=reset]:active, [type=button]:hover, [type=button]:focus, [type=button]:active {
-    background-color: #3343ab;
-    border-color: #3343ab;
-    color: #fff; }
-  .button:focus, :focus[type=submit], a.button:focus, a:focus[type=submit], button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
-    box-shadow: 0px 0px 1px 3px #adb4dd; }
-  .button.button__outline:hover, .button__outline:hover[type=submit], :hover[type=submit][type=reset], .button:hover[type=reset], .button.button__outline:focus, .button__outline:focus[type=submit], :focus[type=submit][type=reset], .button:focus[type=reset], .button.button__outline:active, .button__outline:active[type=submit], :active[type=submit][type=reset], .button:active[type=reset], a.button.button__outline:hover, a.button__outline:hover[type=submit], a:hover[type=submit][type=reset], a.button:hover[type=reset], a.button.button__outline:focus, a.button__outline:focus[type=submit], a:focus[type=submit][type=reset], a.button:focus[type=reset], a.button.button__outline:active, a.button__outline:active[type=submit], a:active[type=submit][type=reset], a.button:active[type=reset], button.button__outline:hover, button:hover[type=reset], button.button__outline:focus, button:focus[type=reset], button.button__outline:active, button:active[type=reset], [type=submit].button__outline:hover, [type=submit]:hover[type=reset], [type=submit].button__outline:focus, [type=submit]:focus[type=reset], [type=submit].button__outline:active, [type=submit]:active[type=reset], [type=reset].button__outline:hover, [type=reset]:hover, [type=reset].button__outline:focus, [type=reset]:focus, [type=reset].button__outline:active, [type=reset]:active, [type=button].button__outline:hover, [type=button]:hover[type=reset], [type=button].button__outline:focus, [type=button]:focus[type=reset], [type=button].button__outline:active, [type=button]:active[type=reset] {
-    color: #001496; }
-  .button::-moz-focus-inner, [type=submit]::-moz-focus-inner, a.button::-moz-focus-inner, a[type=submit]::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
+  .button::-moz-focus-inner, a.button::-moz-focus-inner, a.edit-link::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
     border: 0;
     padding: 0; }
-  .button:focus, :focus[type=submit], a.button:focus, a:focus[type=submit], button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
-    outline: 0; }
-  .button:disabled, :disabled[type=submit], a.button:disabled, a:disabled[type=submit], button:disabled, [type=submit]:disabled, [type=reset]:disabled, [type=button]:disabled {
+  .button:focus, a.button:focus, a.edit-link:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
+    outline: 0;
+    box-shadow: 0px 0px 1px 3px #00083c; }
+  .button:disabled, a.button:disabled, a.edit-link:disabled, button:disabled, [type=submit]:disabled, [type=reset]:disabled, [type=button]:disabled {
     cursor: not-allowed;
     background-color: #adadad;
     border-color: #adadad; }
-    .button:disabled:hover, :disabled:hover[type=submit], .button:disabled:focus, :disabled:focus[type=submit], .button:disabled:active, :disabled:active[type=submit], a.button:disabled:hover, a:disabled:hover[type=submit], a.button:disabled:focus, a:disabled:focus[type=submit], a.button:disabled:active, a:disabled:active[type=submit], button:disabled:hover, button:disabled:focus, button:disabled:active, [type=submit]:disabled:hover, [type=submit]:disabled:focus, [type=submit]:disabled:active, [type=reset]:disabled:hover, [type=reset]:disabled:focus, [type=reset]:disabled:active, [type=button]:disabled:hover, [type=button]:disabled:focus, [type=button]:disabled:active {
+    .button:disabled:hover, .button:disabled:focus, a.button:disabled:hover, a.button:disabled:focus, a.edit-link:disabled:hover, a.edit-link:disabled:focus, button:disabled:hover, button:disabled:focus, [type=submit]:disabled:hover, [type=submit]:disabled:focus, [type=reset]:disabled:hover, [type=reset]:disabled:focus, [type=button]:disabled:hover, [type=button]:disabled:focus {
       background-color: #adadad;
       border-color: #adadad; }
-
-.button__primary, a.button__primary {
-  background-color: #001496;
-  border-color: #001496;
-  color: #fff; }
-  .button__primary:hover, .button__primary:focus, .button__primary:active, a.button__primary:hover, a.button__primary:focus, a.button__primary:active {
-    background-color: #3343ab;
-    border-color: #3343ab;
+  .button:hover, .button:focus, a.button:hover, a.button:focus, a.edit-link:hover, a.edit-link:focus, button:hover, button:focus, [type=submit]:hover, [type=submit]:focus, [type=reset]:hover, [type=reset]:focus, [type=button]:hover, [type=button]:focus {
+    background-color: #001078;
+    border-color: #001078;
     color: #fff; }
-  .button__primary:focus, a.button__primary:focus {
-    box-shadow: 0px 0px 1px 3px #adb4dd; }
-  .button__primary.button__outline:hover, .button__primary:hover[type=reset], .button__primary.button__outline:focus, .button__primary:focus[type=reset], .button__primary.button__outline:active, .button__primary:active[type=reset], a.button__primary.button__outline:hover, a.button__primary:hover[type=reset], a.button__primary.button__outline:focus, a.button__primary:focus[type=reset], a.button__primary.button__outline:active, a.button__primary:active[type=reset] {
-    color: #001496; }
 
-.button__secondary, a.button__secondary {
-  background-color: #a62579;
-  border-color: #a62579;
-  color: #fff; }
-  .button__secondary:hover, .button__secondary:focus, .button__secondary:active, a.button__secondary:hover, a.button__secondary:focus, a.button__secondary:active {
-    background-color: #b85194;
-    border-color: #b85194;
-    color: #fff; }
-  .button__secondary:focus, a.button__secondary:focus {
-    box-shadow: 0px 0px 1px 3px #e3b9d4; }
-  .button__secondary.button__outline:hover, .button__secondary:hover[type=reset], .button__secondary.button__outline:focus, .button__secondary:focus[type=reset], .button__secondary.button__outline:active, .button__secondary:active[type=reset], a.button__secondary.button__outline:hover, a.button__secondary:hover[type=reset], a.button__secondary.button__outline:focus, a.button__secondary:focus[type=reset], a.button__secondary.button__outline:active, a.button__secondary:active[type=reset] {
-    color: #a62579; }
-
-.button__tertiary, .docs div.code-toolbar > .toolbar button, a.button__tertiary {
-  background-color: #8e1b1f;
-  border-color: #8e1b1f;
-  color: #fff; }
-  .button__tertiary:hover, .docs div.code-toolbar > .toolbar button:hover, .button__tertiary:focus, .docs div.code-toolbar > .toolbar button:focus, .button__tertiary:active, .docs div.code-toolbar > .toolbar button:active, a.button__tertiary:hover, a.button__tertiary:focus, a.button__tertiary:active {
-    background-color: #a5494c;
-    border-color: #a5494c;
-    color: #fff; }
-  .button__tertiary:focus, .docs div.code-toolbar > .toolbar button:focus, a.button__tertiary:focus {
-    box-shadow: 0px 0px 1px 3px #dbb6b7; }
-  .button__tertiary.button__outline:hover, .button__tertiary:hover[type=reset], .docs div.code-toolbar > .toolbar button:hover[type=reset], .docs div.code-toolbar > .toolbar button.button__outline:hover, .button__tertiary.button__outline:focus, .button__tertiary:focus[type=reset], .docs div.code-toolbar > .toolbar button:focus[type=reset], .docs div.code-toolbar > .toolbar button.button__outline:focus, .button__tertiary.button__outline:active, .button__tertiary:active[type=reset], .docs div.code-toolbar > .toolbar button:active[type=reset], .docs div.code-toolbar > .toolbar button.button__outline:active, a.button__tertiary.button__outline:hover, a.button__tertiary:hover[type=reset], a.button__tertiary.button__outline:focus, a.button__tertiary:focus[type=reset], a.button__tertiary.button__outline:active, a.button__tertiary:active[type=reset] {
-    color: #8e1b1f; }
-
-.button__success, a.button__success {
-  background-color: #77de65;
-  border-color: #77de65;
-  color: #333333; }
-  .button__success:hover, .button__success:focus, .button__success:active, a.button__success:hover, a.button__success:focus, a.button__success:active {
-    background-color: #92e584;
-    border-color: #92e584;
-    color: #333333; }
-  .button__success:focus, a.button__success:focus {
-    box-shadow: 0px 0px 1px 3px #d3f5ce; }
-  .button__success.button__outline:hover, .button__success:hover[type=reset], .button__success.button__outline:focus, .button__success:focus[type=reset], .button__success.button__outline:active, .button__success:active[type=reset], a.button__success.button__outline:hover, a.button__success:hover[type=reset], a.button__success.button__outline:focus, a.button__success:focus[type=reset], a.button__success.button__outline:active, a.button__success:active[type=reset] {
-    color: #77de65; }
-
-.button__warning, a.button__warning {
-  background-color: #FCCf14;
-  border-color: #FCCf14;
-  color: #333333; }
-  .button__warning:hover, .button__warning:focus, .button__warning:active, a.button__warning:hover, a.button__warning:focus, a.button__warning:active {
-    background-color: #fdd943;
-    border-color: #fdd943;
-    color: #333333; }
-  .button__warning:focus, a.button__warning:focus {
-    box-shadow: 0px 0px 1px 3px #fef0b4; }
-  .button__warning.button__outline:hover, .button__warning:hover[type=reset], .button__warning.button__outline:focus, .button__warning:focus[type=reset], .button__warning.button__outline:active, .button__warning:active[type=reset], a.button__warning.button__outline:hover, a.button__warning:hover[type=reset], a.button__warning.button__outline:focus, a.button__warning:focus[type=reset], a.button__warning.button__outline:active, a.button__warning:active[type=reset] {
-    color: #FCCf14; }
-
-.button__error, a.button__error {
-  background-color: #FF4200;
-  border-color: #FF4200;
-  color: #333333; }
-  .button__error:hover, .button__error:focus, .button__error:active, a.button__error:hover, a.button__error:focus, a.button__error:active {
-    background-color: #ff6833;
-    border-color: #ff6833;
-    color: #333333; }
-  .button__error:focus, a.button__error:focus {
-    box-shadow: 0px 0px 1px 3px #ffc3ad; }
-  .button__error.button__outline:hover, .button__error:hover[type=reset], .button__error.button__outline:focus, .button__error:focus[type=reset], .button__error.button__outline:active, .button__error:active[type=reset], a.button__error.button__outline:hover, a.button__error:hover[type=reset], a.button__error.button__outline:focus, a.button__error:focus[type=reset], a.button__error.button__outline:active, a.button__error:active[type=reset] {
-    color: #FF4200; }
-
-.button__outline, [type=reset], a.button__outline, a[type=reset] {
+[type=reset], .button.outline, a.button.outline, .button.ghost, a.button.ghost {
   background-color: transparent !important;
-  color: inherit; }
-  .button__outline:hover, :hover[type=reset], .button__outline:focus, :focus[type=reset], .button__outline:active, :active[type=reset], a.button__outline:hover, a:hover[type=reset], a.button__outline:focus, a:focus[type=reset], a.button__outline:active, a:active[type=reset] {
-    background-color: transparent !important; }
+  color: #001496; }
+  [type=reset]:hover, [type=reset]:focus, .button.outline:hover, .button.outline:focus, a.button.outline:hover, a.button.outline:focus, .button.ghost:hover, .button.ghost:focus, a.button.ghost:hover, a.button.ghost:focus {
+    background-color: transparent !important;
+    color: #001078; }
 
-.button__ghost, a.button__ghost {
-  background-color: transparent;
-  color: #001496;
-  border-color: transparent; }
-  .button__ghost:hover, .button__ghost:focus, .button__ghost:active, a.button__ghost:hover, a.button__ghost:focus, a.button__ghost:active {
-    background-color: transparent;
-    color: #a62579; }
+.button.ghost, a.button.ghost {
+  border-color: transparent !important; }
+  .button.ghost:hover, .button.ghost:focus, a.button.ghost:hover, a.button.ghost:focus {
+    border-color: transparent !important; }
 
-.button__block, a.button__block {
+.button.expanded, a.button.expanded {
   display: block;
   width: 100%; }
 
-.button__large, a.button__large {
+.button.large, a.button.large {
   font-size: 1.1rem; }
 
-.button__small, a.button__small {
+.button.small, a.button.small {
   font-size: 0.8rem; }
+
+.button.primary, a.button.primary {
+  background-color: #001496;
+  border-color: #001496;
+  color: #fff; }
+  .button.primary:hover, .button.primary:focus, a.button.primary:hover, a.button.primary:focus {
+    background-color: #001078;
+    border-color: #001078;
+    color: #fff; }
+  .button.primary:focus, a.button.primary:focus {
+    box-shadow: 0px 0px 1px 3px #000630; }
+  .button.primary.outline, .button.primary.ghost, a.button.primary.outline, a.button.primary.ghost {
+    color: #001496; }
+    .button.primary.outline:hover, .button.primary.outline:focus, .button.primary.ghost:hover, .button.primary.ghost:focus, a.button.primary.outline:hover, a.button.primary.outline:focus, a.button.primary.ghost:hover, a.button.primary.ghost:focus {
+      color: #001078; }
+
+.button.secondary, a.button.secondary {
+  background-color: #a62579;
+  border-color: #a62579;
+  color: #fff; }
+  .button.secondary:hover, .button.secondary:focus, a.button.secondary:hover, a.button.secondary:focus {
+    background-color: #851e61;
+    border-color: #851e61;
+    color: #fff; }
+  .button.secondary:focus, a.button.secondary:focus {
+    box-shadow: 0px 0px 1px 3px #350c27; }
+  .button.secondary.outline, .button.secondary.ghost, a.button.secondary.outline, a.button.secondary.ghost {
+    color: #a62579; }
+    .button.secondary.outline:hover, .button.secondary.outline:focus, .button.secondary.ghost:hover, .button.secondary.ghost:focus, a.button.secondary.outline:hover, a.button.secondary.outline:focus, a.button.secondary.ghost:hover, a.button.secondary.ghost:focus {
+      color: #851e61; }
+
+.button.tertiary, .docs div.code-toolbar > .toolbar button, a.button.tertiary {
+  background-color: #8e1b1f;
+  border-color: #8e1b1f;
+  color: #fff; }
+  .button.tertiary:hover, .docs div.code-toolbar > .toolbar button:hover, .button.tertiary:focus, .docs div.code-toolbar > .toolbar button:focus, a.button.tertiary:hover, a.button.tertiary:focus {
+    background-color: #721619;
+    border-color: #721619;
+    color: #fff; }
+  .button.tertiary:focus, .docs div.code-toolbar > .toolbar button:focus, a.button.tertiary:focus {
+    box-shadow: 0px 0px 1px 3px #2e090a; }
+  .button.tertiary.outline, .docs div.code-toolbar > .toolbar button.outline, .button.tertiary.ghost, .docs div.code-toolbar > .toolbar button.ghost, a.button.tertiary.outline, a.button.tertiary.ghost {
+    color: #8e1b1f; }
+    .button.tertiary.outline:hover, .docs div.code-toolbar > .toolbar button.outline:hover, .button.tertiary.outline:focus, .docs div.code-toolbar > .toolbar button.outline:focus, .button.tertiary.ghost:hover, .docs div.code-toolbar > .toolbar button.ghost:hover, .button.tertiary.ghost:focus, .docs div.code-toolbar > .toolbar button.ghost:focus, a.button.tertiary.outline:hover, a.button.tertiary.outline:focus, a.button.tertiary.ghost:hover, a.button.tertiary.ghost:focus {
+      color: #721619; }
+
+.button.success, a.button.success {
+  background-color: #53cc3e;
+  border-color: #53cc3e;
+  color: #333333; }
+  .button.success:hover, .button.success:focus, a.button.success:hover, a.button.success:focus {
+    background-color: #42a332;
+    border-color: #42a332;
+    color: #333333; }
+  .button.success:focus, a.button.success:focus {
+    box-shadow: 0px 0px 1px 3px #1a4114; }
+  .button.success.outline, .button.success.ghost, a.button.success.outline, a.button.success.ghost {
+    color: #53cc3e; }
+    .button.success.outline:hover, .button.success.outline:focus, .button.success.ghost:hover, .button.success.ghost:focus, a.button.success.outline:hover, a.button.success.outline:focus, a.button.success.ghost:hover, a.button.success.ghost:focus {
+      color: #42a332; }
+
+.button.warning, a.button.warning {
+  background-color: #fc7f14;
+  border-color: #fc7f14;
+  color: #333333; }
+  .button.warning:hover, .button.warning:focus, a.button.warning:hover, a.button.warning:focus {
+    background-color: #ca6610;
+    border-color: #ca6610;
+    color: #fff; }
+  .button.warning:focus, a.button.warning:focus {
+    box-shadow: 0px 0px 1px 3px #512906; }
+  .button.warning.outline, .button.warning.ghost, a.button.warning.outline, a.button.warning.ghost {
+    color: #fc7f14; }
+    .button.warning.outline:hover, .button.warning.outline:focus, .button.warning.ghost:hover, .button.warning.ghost:focus, a.button.warning.outline:hover, a.button.warning.outline:focus, a.button.warning.ghost:hover, a.button.warning.ghost:focus {
+      color: #ca6610; }
+
+.button.error, a.button.error {
+  background-color: #f7033c;
+  border-color: #f7033c;
+  color: #fff; }
+  .button.error:hover, .button.error:focus, a.button.error:hover, a.button.error:focus {
+    background-color: #c60230;
+    border-color: #c60230;
+    color: #fff; }
+  .button.error:focus, a.button.error:focus {
+    box-shadow: 0px 0px 1px 3px #4f0113; }
+  .button.error.outline, .button.error.ghost, a.button.error.outline, a.button.error.ghost {
+    color: #f7033c; }
+    .button.error.outline:hover, .button.error.outline:focus, .button.error.ghost:hover, .button.error.ghost:focus, a.button.error.outline:hover, a.button.error.outline:focus, a.button.error.ghost:hover, a.button.error.ghost:focus {
+      color: #c60230; }
+
+.button-group {
+  display: inline-flex;
+  vertical-align: middle;
+  position: relative;
+  flex-wrap: wrap; }
+  .button-group .button, .button-group a.button {
+    margin-top: 0;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 250px; }
+  .button-group .button, .button-group a.button {
+    margin-right: 24px; }
+    .button-group .button:last-child, .button-group a.button:last-child {
+      margin-right: 0; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   CALLOUTS
@@ -1576,55 +1625,60 @@ button.toggle-contrast svg {
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .callout {
   border: 1px solid #cbcccc;
-  margin-bottom: 1.4rem;
   padding: 20px;
   border-radius: 4px; }
   .callout a.callout-link {
     font-weight: bold; }
   .callout > :last-child {
     margin-bottom: 0; }
-  .callout__primary {
+  .callout.primary {
     border-color: #001496;
-    background-color: #ccd0ea; }
-    .callout__primary a.callout-link {
+    background-color: #ccd0ea;
+    color: #333333; }
+    .callout.primary a.callout-link {
       color: #001496; }
-      .callout__primary a.callout-link:hover, .callout__primary a.callout-link:focus, .callout__primary a.callout-link:active {
+      .callout.primary a.callout-link:hover, .callout.primary a.callout-link:focus {
         color: #001078; }
-  .callout__secondary {
+  .callout.secondary {
     border-color: #a62579;
-    background-color: #edd3e4; }
-    .callout__secondary a.callout-link {
+    background-color: #edd3e4;
+    color: #333333; }
+    .callout.secondary a.callout-link {
       color: #a62579; }
-      .callout__secondary a.callout-link:hover, .callout__secondary a.callout-link:focus, .callout__secondary a.callout-link:active {
+      .callout.secondary a.callout-link:hover, .callout.secondary a.callout-link:focus {
         color: #851e61; }
-  .callout__tertiary {
+  .callout.tertiary {
     border-color: #8e1b1f;
-    background-color: #e8d1d2; }
-    .callout__tertiary a.callout-link {
+    background-color: #e8d1d2;
+    color: #333333; }
+    .callout.tertiary a.callout-link {
       color: #8e1b1f; }
-      .callout__tertiary a.callout-link:hover, .callout__tertiary a.callout-link:focus, .callout__tertiary a.callout-link:active {
+      .callout.tertiary a.callout-link:hover, .callout.tertiary a.callout-link:focus {
         color: #721619; }
-  .callout__success {
-    border-color: #77de65;
-    background-color: #e4f8e0; }
-    .callout__success a.callout-link {
-      color: #77de65; }
-      .callout__success a.callout-link:hover, .callout__success a.callout-link:focus, .callout__success a.callout-link:active {
-        color: #5fb251; }
-  .callout__warning {
-    border-color: #FCCf14;
-    background-color: #fef5d0; }
-    .callout__warning a.callout-link {
-      color: #FCCf14; }
-      .callout__warning a.callout-link:hover, .callout__warning a.callout-link:focus, .callout__warning a.callout-link:active {
-        color: #caa610; }
-  .callout__error {
-    border-color: #FF4200;
-    background-color: #ffd9cc; }
-    .callout__error a.callout-link {
-      color: #FF4200; }
-      .callout__error a.callout-link:hover, .callout__error a.callout-link:focus, .callout__error a.callout-link:active {
-        color: #cc3500; }
+  .callout.success {
+    border-color: #53cc3e;
+    background-color: #ddf5d8;
+    color: #333333; }
+    .callout.success a.callout-link {
+      color: #53cc3e; }
+      .callout.success a.callout-link:hover, .callout.success a.callout-link:focus {
+        color: #42a332; }
+  .callout.warning {
+    border-color: #fc7f14;
+    background-color: #fee5d0;
+    color: #333333; }
+    .callout.warning a.callout-link {
+      color: #fc7f14; }
+      .callout.warning a.callout-link:hover, .callout.warning a.callout-link:focus {
+        color: #ca6610; }
+  .callout.error {
+    border-color: #f7033c;
+    background-color: #fdcdd8;
+    color: #333333; }
+    .callout.error a.callout-link {
+      color: #f7033c; }
+      .callout.error a.callout-link:hover, .callout.error a.callout-link:focus {
+        color: #c60230; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   CARDS
@@ -1637,7 +1691,6 @@ button.toggle-contrast svg {
   overflow: hidden;
   border-radius: 0px;
   border: 1px solid #cbcccc;
-  margin-bottom: 1.4rem;
   background: #fff; }
   .card > :last-child {
     margin-bottom: 0; }
@@ -1648,8 +1701,6 @@ button.toggle-contrast svg {
     padding: 20px; }
     .card-section > :last-child {
       margin-bottom: 0; }
-    .card-section .card-image {
-      margin-bottom: 1.4rem; }
     .card-section + .card-section {
       padding-top: 0; }
   .card-footer {
@@ -1676,53 +1727,53 @@ button.toggle-contrast svg {
   color: #fff; }
   h1 .label, h2 .label, h3 .label, h4 .label, h5 .label, h6 .label, p .label {
     font-size: 0.6em; }
-  .label.label__outline {
+  .label.outline {
     color: #001496; }
   .label .label {
     margin-left: .5em; }
-  .label__outline {
+  .label.outline {
     border-style: dashed;
     background-color: transparent !important; }
-  .label__primary {
+  .label.primary {
     border-color: #001496;
     background-color: #001496;
     color: #fff; }
-    .label__primary.label__outline {
+    .label.primary.outline {
       color: #001496; }
-  .label__secondary {
+  .label.secondary {
     border-color: #a62579;
     background-color: #a62579;
     color: #fff; }
-    .label__secondary.label__outline {
+    .label.secondary.outline {
       color: #a62579; }
-  .label__tertiary {
+  .label.tertiary {
     border-color: #8e1b1f;
     background-color: #8e1b1f;
     color: #fff; }
-    .label__tertiary.label__outline {
+    .label.tertiary.outline {
       color: #8e1b1f; }
-  .label__success {
-    border-color: #77de65;
-    background-color: #77de65;
+  .label.success {
+    border-color: #53cc3e;
+    background-color: #53cc3e;
     color: #333333; }
-    .label__success.label__outline {
-      color: #77de65; }
-  .label__warning {
-    border-color: #FCCf14;
-    background-color: #FCCf14;
+    .label.success.outline {
+      color: #53cc3e; }
+  .label.warning {
+    border-color: #fc7f14;
+    background-color: #fc7f14;
     color: #333333; }
-    .label__warning.label__outline {
-      color: #FCCf14; }
-  .label__error {
-    border-color: #FF4200;
-    background-color: #FF4200;
-    color: #333333; }
-    .label__error.label__outline {
-      color: #FF4200; }
+    .label.warning.outline {
+      color: #fc7f14; }
+  .label.error {
+    border-color: #f7033c;
+    background-color: #f7033c;
+    color: #fff; }
+    .label.error.outline {
+      color: #f7033c; }
 
 .label-group {
   display: inline-flex;
-  margin: 0.7rem 0.5rem 1.4rem 0; }
+  margin: 12px 0.5rem 24px 0; }
   .label-group .label {
     margin-left: 0; }
   .label-group .label:not(:last-of-type) {
@@ -1752,21 +1803,27 @@ td {
   text-align: left;
   padding: .5em .8em; }
 
+table.is-striped tr:nth-child(odd) td {
+  background: #efefef; }
+
+table.has-border, table.has-border td, table.has-border th {
+  border: 1px solid #cbcccc; }
+
+table.has-border thead th {
+  border-bottom-width: 2px; }
+
+table.has-border tfoot th {
+  border-top-width: 2px; }
+
+table.is-hoverable tr:hover td {
+  background: #7e7f7f !important;
+  color: #fff; }
+
 thead th {
   border-bottom: 2px solid #cbcccc; }
 
 tfoot th {
   border-top: 2px solid #cbcccc; }
-
-.table__striped tr:nth-child(odd) td {
-  background: #efefef; }
-
-.table__border, .table__border td, .table__border th {
-  border: 1px solid #cbcccc; }
-
-.table__hoverable tr:hover td {
-  background: #7e7f7f !important;
-  color: #fff; }
 
 .table-container {
   overflow-x: auto;
@@ -1784,7 +1841,7 @@ tfoot th {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   padding: 10px;
   outline: none;
-  margin: 3px 0 0.7rem 0;
+  margin: 3px 0 12px 0;
   width: 100%;
   max-width: 100%;
   line-height: 1;
@@ -1794,9 +1851,9 @@ tfoot th {
 [type=color]:hover, [type=date]:hover, [type=datetime]:hover, [type=datetime-local]:hover, [type=email]:hover, [type=month]:hover, [type=number]:hover, [type=password]:hover, [type=search]:hover, [type=tel]:hover, [type=text]:hover, [type=url]:hover, [type=week]:hover, [type=time]:hover, select:hover, textarea:hover {
   border-color: #7a7a7a; }
 
-[type=color]:focus, [type=color]:active, [type=date]:focus, [type=date]:active, [type=datetime]:focus, [type=datetime]:active, [type=datetime-local]:focus, [type=datetime-local]:active, [type=email]:focus, [type=email]:active, [type=month]:focus, [type=month]:active, [type=number]:focus, [type=number]:active, [type=password]:focus, [type=password]:active, [type=search]:focus, [type=search]:active, [type=tel]:focus, [type=tel]:active, [type=text]:focus, [type=text]:active, [type=url]:focus, [type=url]:active, [type=week]:focus, [type=week]:active, [type=time]:focus, [type=time]:active, select:focus, select:active, textarea:focus, textarea:active {
+[type=color]:focus, [type=date]:focus, [type=datetime]:focus, [type=datetime-local]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=url]:focus, [type=week]:focus, [type=time]:focus, select:focus, textarea:focus {
   border-color: #001496;
-  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1), 0 0 1px 3px #99a1d5; }
+  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1), 0 0 1px 3px #00083c; }
 
 [type=color]:disabled, [type=date]:disabled, [type=datetime]:disabled, [type=datetime-local]:disabled, [type=email]:disabled, [type=month]:disabled, [type=number]:disabled, [type=password]:disabled, [type=search]:disabled, [type=tel]:disabled, [type=text]:disabled, [type=url]:disabled, [type=week]:disabled, [type=time]:disabled, select:disabled, textarea:disabled, [type=month]:disabled {
   cursor: not-allowed;
@@ -1820,7 +1877,7 @@ fieldset {
   border: 1px solid #cbcccc;
   border-radius: 4px;
   padding: 20px;
-  margin: 1.4rem 0; }
+  margin: 24px 0; }
 
 legend {
   padding: 0 10px;
@@ -1853,13 +1910,13 @@ select::-ms-expand {
   color: #7e7f7f; }
 
 .form-group, .form-group-inline {
-  margin: 3px 0 0.7rem 0; }
+  margin: 3px 0 12px 0; }
 
 .form-group-inline * {
   display: inline-block; }
 
 .form-group-inline label {
-  margin-right: 0.7rem; }
+  margin-right: 12px; }
 
 .form-row {
   margin-left: -5px;
@@ -1964,7 +2021,7 @@ select::-ms-expand {
   .navbar-brand a:not(.img-link), .navbar-menu ul li a, .navbar-brand a:visited:not(.img-link), .navbar-menu ul li a:visited {
     color: #fff;
     background-color: #001496; }
-  .navbar-brand a:hover:not(.img-link), .navbar-menu ul li a:hover, .navbar-brand a:focus:not(.img-link), .navbar-menu ul li a:focus, .navbar-brand a:active:not(.img-link), .navbar-menu ul li a:active {
+  .navbar-brand a:hover:not(.img-link), .navbar-menu ul li a:hover, .navbar-brand a:focus:not(.img-link), .navbar-menu ul li a:focus {
     color: #fff;
     background-color: #000a4b;
     font-weight: bold; }
@@ -2181,7 +2238,7 @@ they should be wrapped in this class to ensure consistent display
       background: #a62579;
       color: #fff;
       font-weight: bold !important; }
-    .navbar-menu .current-page a:hover, .navbar-menu .current-page a:focus, .navbar-menu .current-page a:active {
+    .navbar-menu .current-page a:hover, .navbar-menu .current-page a:focus {
       color: #fff;
       background-color: #000a4b; }
   @media (min-width: 76.25em) {
@@ -2199,11 +2256,11 @@ they should be wrapped in this class to ensure consistent display
         justify-content: flex-end;
         margin-left: auto;
         padding: 0; } }
-  .navbar-menu input, .navbar-menu .button, .navbar-menu [type=submit], .navbar-menu a.button, .navbar-menu a[type=submit], .navbar-menu button, .navbar-menu [type=submit], .navbar-menu [type=reset], .navbar-menu [type=button] {
+  .navbar-menu input, .navbar-menu .button, .navbar-menu a.button {
     margin: 8px 10px;
     position: relative; }
     @media (min-width: 76.25em) {
-      .navbar-menu input, .navbar-menu .button, .navbar-menu [type=submit], .navbar-menu a.button, .navbar-menu a[type=submit], .navbar-menu button, .navbar-menu [type=submit], .navbar-menu [type=reset], .navbar-menu [type=button] {
+      .navbar-menu input, .navbar-menu .button, .navbar-menu a.button {
         margin: 10px 10px; } }
   .navbar-menu input {
     width: auto; }
@@ -2225,7 +2282,7 @@ they should be wrapped in this class to ensure consistent display
   @media (min-width: 76.25em) {
     .hamburger {
       display: none; } }
-  .hamburger:hover, .hamburger:focus, .hamburger:active {
+  .hamburger:hover, .hamburger:focus {
     background-color: #000a4b;
     border: 1px solid #000a4b; }
   .hamburger:focus {
@@ -2282,7 +2339,7 @@ Utilities
     font-size: 1.4em; }
   h3, h4, h5, h6 {
     font-size: 1.2em; }
-  .button, [type=submit], a.button, a[type=submit], button, [type=submit], [type=reset], [type=button] {
+  .button, a.button, a.edit-link, button, [type=submit], [type=reset], [type=button] {
     border: 1px solid black  !important;
     background-color: #fff !important;
     color: black  !important;
@@ -2306,10 +2363,10 @@ Utilities
   .docs .section-heading {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 8.4rem;
-    padding-bottom: 1.4rem;
-    padding-top: 1.4rem;
-    margin-bottom: 4.2rem;
+    margin-top: 144px;
+    padding-bottom: 24px;
+    padding-top: 24px;
+    margin-bottom: 72px;
     border-bottom: 1px solid #efefef;
     z-index: 9;
     background-color: #fff; }
@@ -2323,7 +2380,7 @@ Utilities
   .docs .docs-section .standfirst {
     color: #7e7f7f; }
   .docs .docs-section > article {
-    margin-bottom: 4.2rem; }
+    margin-bottom: 72px; }
   .docs .css-ref, .docs .file-ref, .docs .variable-ref {
     background-color: #efefef; }
   .docs .css-ref {
@@ -2336,7 +2393,7 @@ Utilities
     background: #efefef;
     padding: .7rem .9rem;
     line-height: 1.2;
-    margin: 0 0 1.4rem 0;
+    margin: 0 0 24px 0;
     display: inherit;
     font-size: 0.8em;
     flex: 1;
@@ -2344,14 +2401,14 @@ Utilities
   .docs .row-boxed {
     background-color: #efefef;
     min-height: 160px;
-    margin-bottom: 1.4rem; }
+    margin-bottom: 24px; }
     .docs .row-boxed .boxed {
       margin: 0;
       background-color: #fff;
       border: 1px solid #efefef; }
   .docs pre {
     position: relative;
-    margin: 1.4rem 0 !important;
+    margin: 24px 0 !important;
     font-size: 0.9em !important; }
     .docs pre label {
       font-size: 0.8em;
@@ -2398,12 +2455,12 @@ Utilities
     margin-right: 0; }
   .docs body {
     padding-top: 55px; }
-  .docs .label__light {
+  .docs .label.light {
     border-color: #efefef;
     background-color: #efefef;
     color: #333333;
     font-weight: normal; }
-    .docs .label__light.label__outline {
+    .docs .label.light.outline {
       color: #efefef; }
   .docs div.code-toolbar > .toolbar {
     top: auto;
@@ -2417,86 +2474,94 @@ Utilities
       font-weight: bold; }
   .docs .smooth-transform {
     transition: transform 0.2s ease; }
-    .docs .smooth-transform:hover, .docs .smooth-transform:active {
+    .docs .smooth-transform:hover, .docs .smooth-transform:focus {
       transform: scale(1.1); }
   .docs .smooth-background {
     transition: background 0.2s ease; }
-    .docs .smooth-background:hover, .docs .smooth-background:active {
+    .docs .smooth-background:hover, .docs .smooth-background:focus {
       background-color: #efefef; }
   .docs .smooth-wild {
     transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease; }
-    .docs .smooth-wild:hover, .docs .smooth-wild:active {
+    .docs .smooth-wild:hover, .docs .smooth-wild:focus {
       transform: scale(1.1);
       background-color: #a62579;
       color: #fff;
       transform: matrix(1.08, 0.05, 0.01, 1.1, 1, 4); }
-  .docs .button__hotpink {
+  .docs button.hotpink {
     background-color: hotpink;
     border-color: hotpink;
     color: #333333; }
-    .docs .button__hotpink:hover, .docs .button__hotpink:focus, .docs .button__hotpink:active {
-      background-color: #ff87c3;
-      border-color: #ff87c3;
-      color: #333333; }
-    .docs .button__hotpink:focus {
-      box-shadow: 0px 0px 1px 3px #ffcfe7; }
-    .docs .button__hotpink.button__outline:hover, .docs .button__hotpink:hover[type=reset], .docs .button__hotpink.button__outline:focus, .docs .button__hotpink:focus[type=reset], .docs .button__hotpink.button__outline:active, .docs .button__hotpink:active[type=reset] {
+    .docs button.hotpink:hover, .docs button.hotpink:focus {
+      background-color: #cc5490;
+      border-color: #cc5490;
+      color: #fff; }
+    .docs button.hotpink:focus {
+      box-shadow: 0px 0px 1px 3px #52223a; }
+    .docs button.hotpink.outline, .docs button.hotpink.ghost {
       color: hotpink; }
-  .docs .button__gold {
+      .docs button.hotpink.outline:hover, .docs button.hotpink.outline:focus, .docs button.hotpink.ghost:hover, .docs button.hotpink.ghost:focus {
+        color: #cc5490; }
+  .docs button.gold {
     background-color: gold;
     border-color: gold;
     color: #333333; }
-    .docs .button__gold:hover, .docs .button__gold:focus, .docs .button__gold:active {
+    .docs button.gold:hover, .docs button.gold:focus {
       background-color: brown;
       border-color: brown;
       color: #fff; }
-    .docs .button__gold:focus {
-      box-shadow: 0px 0px 1px 3px #dbaaaa; }
-    .docs .button__gold.button__outline:hover, .docs .button__gold:hover[type=reset], .docs .button__gold.button__outline:focus, .docs .button__gold:focus[type=reset], .docs .button__gold.button__outline:active, .docs .button__gold:active[type=reset] {
+    .docs button.gold:focus {
+      box-shadow: 0px 0px 1px 3px #421111; }
+    .docs button.gold.outline, .docs button.gold.ghost {
       color: gold; }
-  .docs .button__white {
+      .docs button.gold.outline:hover, .docs button.gold.outline:focus, .docs button.gold.ghost:hover, .docs button.gold.ghost:focus {
+        color: brown; }
+  .docs button.white {
     background-color: #fff;
     border-color: #fff;
     color: #333333; }
-    .docs .button__white:hover, .docs .button__white:focus, .docs .button__white:active {
+    .docs button.white:hover, .docs button.white:focus {
       background-color: gray;
       border-color: gray;
       color: #fff; }
-    .docs .button__white:focus {
-      box-shadow: 0px 0px 1px 3px #cccccc; }
-    .docs .button__white.button__outline:hover, .docs .button__white:hover[type=reset], .docs .button__white.button__outline:focus, .docs .button__white:focus[type=reset], .docs .button__white.button__outline:active, .docs .button__white:active[type=reset] {
+    .docs button.white:focus {
+      box-shadow: 0px 0px 1px 3px #333333; }
+    .docs button.white.outline, .docs button.white.ghost {
       color: #fff; }
-  .docs .label__hotpink {
+      .docs button.white.outline:hover, .docs button.white.outline:focus, .docs button.white.ghost:hover, .docs button.white.ghost:focus {
+        color: gray; }
+  .docs .label.hotpink {
     border-color: hotpink;
     background-color: hotpink;
     color: #333333; }
-    .docs .label__hotpink.label__outline {
+    .docs .label.hotpink.outline {
       color: hotpink; }
-  .docs .label__gold {
+  .docs .label.gold {
     border-color: gold;
     background-color: gold;
     color: #333333; }
-    .docs .label__gold.label__outline {
+    .docs .label.gold.outline {
       color: gold; }
-  .docs .label__white {
+  .docs .label.white {
     border-color: white;
     background-color: white;
     color: #333333; }
-    .docs .label__white.label__outline {
+    .docs .label.white.outline {
       color: white; }
-  .docs .callout__hotpink {
+  .docs .callout.hotpink {
     border-color: hotpink;
-    background-color: #ffe1f0; }
-    .docs .callout__hotpink a.callout-link {
+    background-color: #ffe1f0;
+    color: #333333; }
+    .docs .callout.hotpink a.callout-link {
       color: hotpink; }
-      .docs .callout__hotpink a.callout-link:hover, .docs .callout__hotpink a.callout-link:focus, .docs .callout__hotpink a.callout-link:active {
+      .docs .callout.hotpink a.callout-link:hover, .docs .callout.hotpink a.callout-link:focus {
         color: #cc5490; }
-  .docs .callout__gold {
+  .docs .callout.gold {
     border-color: gold;
-    background-color: #fff7cc; }
-    .docs .callout__gold a.callout-link {
+    background-color: #fff7cc;
+    color: #333333; }
+    .docs .callout.gold a.callout-link {
       color: gold; }
-      .docs .callout__gold a.callout-link:hover, .docs .callout__gold a.callout-link:focus, .docs .callout__gold a.callout-link:active {
+      .docs .callout.gold a.callout-link:hover, .docs .callout.gold a.callout-link:focus {
         color: #ccac00; }
   .docs .tintshade {
     height: 100px;
