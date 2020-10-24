@@ -1,18 +1,6 @@
 // Important to use `grunt` as an argument in the function
 module.exports = function (grunt) {
 
-  // Configure Sass Directory Import task
-  // Watches directories for scss file name _all and imports all partials into that file
-  grunt.config('sass_directory_import', {
-    options: {
-      quiet: true,
-    },
-    files: {
-      // The file pattern to add @imports to.
-      src: ['<%= opts.build_dir %>/scss/**/_all.scss']
-    }
-  });
-
   // Configure Sass task
   // Task to run sass on defined scss file(s)
   grunt.config('sass', {
@@ -59,6 +47,19 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.config('import_sass_from_dirs', {
+    // This is an arbitrary name for this sub-task
+    src: {
+      files: {
+          // Put an _all.scss file in any directory inside our scss files, and
+          // this task will write @import statements for every other _*.scss
+          // file in that directory. Then simply @import your _all.scss file to
+          // import the contents of the directory.
+          src: ['<%= opts.build_dir %>/scss/**/_all.scss']
+      }
+    }
+  });
+
   // Configure Usebanner task through config.merge as this task is used across multiple partials
   // Appends a banner to the top of the outputted CSS file(s)
   grunt.config.merge({
@@ -85,7 +86,7 @@ module.exports = function (grunt) {
           event: ['changed', 'added', 'deleted']
         },
         files: ['<%= opts.build_dir %>/scss/**/*.scss'],
-        tasks: ['sass_directory_import', 'sass', 'postcss', 'usebanner:styles']
+        tasks: ['import_sass_from_dirs', 'sass', 'postcss', 'usebanner:styles']
       }
     }
   });
