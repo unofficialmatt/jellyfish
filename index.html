@@ -787,36 +787,39 @@
           <pre class="language-scss">
             <code>
               /* NAVBAR */
-              $nav-expands: 900px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
-              $navbar-bg-color: $color-primary;
-              $navbar-container-padding: 10px; // Applies below $nav-expands
-              $navbar-container-width: 100%; // Use 'inherit' to make it the same as the document container, or a percentage to override. Applies from $nav-expands up
-              // Links
-              $navbar-font-size: 0.8em;
-              $navbar-text-transform: none;
-              $navbar-link-color: $color-white;
-              $navbar-link-bg-color: $navbar-bg-color;
-              $navbar-font-weight: bold;
-              $navbar-link-border: 1px solid rgba($color-white,0.1);
-              // Links: Hover
-              $navbar-link-hover-color: $color-white;
-              $navbar-link-hover-bg-color: shade($navbar-bg-color,50%);
-              $navbar-link-hover-weight: $navbar-font-weight;
-              // Links: Padding
-              $navbar-link-padding-x: 10px;
-              $navbar-link-padding-y: 8px;
-              $navbar-link-padding-expanded-x: 10px;
-              $navbar-link-padding-expanded-y: 10px;
-              // Current Page Link
-              $navbar-current-page-color: $color-white;
-              $navbar-current-page-background: $color-secondary;
-              $navbar-current-page-font-weight: bold;
-              // Secondary Links
-              $navbar-submenu-text-transform: $navbar-text-transform;
-              $navbar-submenu-font-weight: $navbar-font-weight;
-              // Drop down on larger screens
-              $navbar-submenu-min-width: 150px;
-              $navbar-submenu-max-width: 260px;
+            $nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
+            $navbar-bg-color: $color-primary;
+            // Parent Level Links
+            $navbar-font-size: 1em;
+            $navbar-font-family: $font-primary;
+            $navbar-font-weight: bold;
+            $navbar-text-transform: uppercase;
+            $navbar-link-color: $color-white;
+            $navbar-link-bg-color: $navbar-bg-color;
+            $navbar-link-border: 1px solid rgba($color-white,0.1);
+            // Links: Hover
+            $navbar-link-hover-color: $color-white;
+            $navbar-link-hover-bg-color: shade($navbar-bg-color,50%);
+            $navbar-link-hover-weight: $navbar-font-weight;
+            // Child Level Links
+            $navbar-sublink-font-size: 0.9em;
+            $navbar-sublink-font-family: $font-primary;
+            $navbar-sublink-font-weight: $navbar-font-weight;
+            $navbar-sublink-text-transform: $navbar-text-transform;
+            $navbar-sublink-font-weight-hover: $navbar-link-hover-weight;
+            // Links: Padding
+            $navbar-link-padding-x: 10px;
+            $navbar-link-padding-y: 8px;
+            $navbar-link-padding-expanded-x: 10px;
+            $navbar-link-padding-expanded-y: 10px;
+            // THESE SETTINGS APPLY ABOVE $nav-expands ONLY
+            $navbar-sublink-color: $navbar-link-color;
+            $navbar-sublink-bg-color: $navbar-link-bg-color;
+            $navbar-sublink-hover-color: $navbar-link-hover-color;
+            $navbar-sublink-hover-bg-color: $navbar-link-hover-bg-color;
+            $navbar-dropdown-width: 240px;
+            $navbar-start-flex-align: stretch;
+            $navbar-end-flex-align: center;
             </code>
             <label>_settings.scss</label>
           </pre>
@@ -827,24 +830,21 @@
           <pre class="language-scss">
             <code>
               /* HAMBURGER MENU */
-              // @link https://github.com/jonsuh/hamburgers
               $primary-hamburger-type: spin; // Change this to modify animation
-              $hamburger-padding-x: $navbar-link-padding-x;
-              $hamburger-padding-y: $navbar-link-padding-y;
-              $hamburger-margin-y: inherit;
+              $hamburger-margin-y: 0px;
               $hamburger-layer-width: 20px; // Width of the hamburger icon
-              $hamburger-layer-height: 2px; // Thickness of hamburger lines
+              $hamburger-layer-height: 3px; // Thickness of hamburger lines
               $hamburger-layer-spacing: 4px; // Spacing between hamburger lines
-              $hamburger-layer-color: $navbar-link-color; // Color of hamburger
               $hamburger-layer-border-radius: 3px; // Radius of hamburger lines
-              $hamburger-background-color: $navbar-bg-color;
-              $hamburger-background-color-hover: $navbar-link-hover-bg-color;
-              $hamburger-border: $border-width $border-style $hamburger-background-color;
-              $hamburger-border-hover: $border-width $border-style $hamburger-background-color-hover;
+              $hamburger-bg-color: $navbar-bg-color;
+              $hamburger-border: $border-width $border-style $hamburger-bg-color;
               $hamburger-border-radius: 0px;
+              $hamburger-color: $navbar-link-color; // Color of hamburger and label
+              $hamburger-hover-bg-color: $navbar-link-hover-bg-color;
+              $hamburger-hover-border: $border-width $border-style $hamburger-hover-bg-color;
+              $hamburger-hover-color: $hamburger-color;
               $hamburger-hover-opacity: 1;
-              $hamburger-active-layer-color : $hamburger-layer-color;
-              $hamburger-active-hover-opacity: $hamburger-hover-opacity;
+              $hamburger-position: right; // left or right
             </code>
             <label>_settings.scss</label>
           </pre>
@@ -1318,12 +1318,15 @@ console.log("JellyFish is Awesome!");
           /* BUTTONS */
           $button-border-width: 1px;
           $button-border-radius: 6px;
+          $button-font-family: $font-secondary;
           $button-padding: 1em 1.5em;
           $button-text-transform: none;
           $button-font-weight: bold;
           $button-text-color-light: $color-white;
           $button-text-color-dark: $color-text;
           $button-disabled-background: tint($color-text,40%);
+          $button-group-max-width: 250px;
+          $button-group-margin: $element-margin; // Use 'tight' or a value for right-margin
           </code>
           <label>_settings.scss</label>
           </pre>
@@ -1987,7 +1990,6 @@ console.log("JellyFish is Awesome!");
           $card-border-color: $border-color;
           $card-border-width: $border-width;
           $card-padding: $element-padding;
-          $card-background-color: $color-background;
           </code>
           <label>_settings.scss</label>
           </pre>
@@ -3113,12 +3115,14 @@ console.log("JellyFish is Awesome!");
             $color-secondary: #a62579;
             $color-tertiary: #8e1b1f;
 
-            $color-success: #77de65;
-            $color-warning: #FCCf14;
-            $color-error: #FF4200;
+            $color-success: #53cc3e;
+            $color-warning: #fc7f14;
+            $color-error: #f7033c;
+
+            $color-headings-preferred: $color-primary; // TODO: Documentation
 
             /* THEME COLORS */
-            // Any variable you add here will have the following classes automatically created: .text-*, .bg-*, .button.*, .callout.* and .label.*
+            // Any variable you add here will have the following classes automatically created: .text-*, .bg-*, .label.*, .button.* and .callout.*
             $theme-colors: (
               // Eg.
               // "tomato": tomato,
@@ -3137,8 +3141,8 @@ console.log("JellyFish is Awesome!");
             $font-size--2: 0.6em;
             $font-size--1: 0.8em;
             $font-size-0: 1em;
-            $font-size-1:1.5em;
-            $font-size-2:1.5em;
+            $font-size-1: 1.5em;
+            $font-size-2: 1.5em;
             $font-size-3: 1.75em;
             $font-size-4: 2em;
             $font-size-5: 2.5em;
@@ -3150,6 +3154,11 @@ console.log("JellyFish is Awesome!");
             $font-size-h4: $font-size-3;
             $font-size-h5: $font-size-2;
             $font-size-h6: $font-size-1;
+
+            /* FONT WEIGHTS */
+            $weight-light: lighter;
+            $weight-normal: normal;
+            $weight-bold: bold;
 
             /* LINKS */
             $link-color: $color-primary;
@@ -3188,7 +3197,7 @@ console.log("JellyFish is Awesome!");
             $borders: $border-width $border-style $border-color;
 
             /* USER INTERFACE */
-            $ui-hover-function: tint;
+            $ui-hover-function: shade; // Choose tint or shade
             $ui-hover-function-amount: 8%;
             $ui-focus-highlight-amount: 30%;
 
@@ -3206,17 +3215,20 @@ console.log("JellyFish is Awesome!");
             /* BUTTONS */
             $button-border-width: 1px;
             $button-border-radius: 6px;
+            $button-font-family: $font-secondary;
             $button-padding: 1em 1.5em;
             $button-text-transform: none;
             $button-font-weight: bold;
             $button-text-color-light: $color-white;
             $button-text-color-dark: $color-text;
             $button-disabled-background: tint($color-text,40%);
+            $button-group-max-width: 250px;
+            $button-group-margin: $element-margin; // Use 'tight' or a value for right-margin
 
             /* LABELS */
             $label-font-weight: bold;
             $label-border-radius: 4px;
-            $label-outline-border-style: dashed
+            $label-outline-border-style: dashed;
             $label-text-color-light: $color-white;
             $label-text-color-dark: $color-text;
 
@@ -3231,59 +3243,58 @@ console.log("JellyFish is Awesome!");
             $card-border-color: $border-color;
             $card-border-width: $border-width;
             $card-padding: $element-padding;
-            $card-background-color: $color-background;
 
             /* NAVBAR */
             $nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
             $navbar-bg-color: $color-primary;
-            $navbar-container-padding: 10px; // Applies below $nav-expands
-            $navbar-container-width: 100%; // Use 'inherit' to make it the same as the document container, or a percentage to override. Applies from $nav-expands up
-            // Links
-            $navbar-font-size: 0.8em;
+            // Parent Level Links
+            $navbar-font-size: 1em;
+            $navbar-font-family: $font-primary;
+            $navbar-font-weight: bold;
             $navbar-text-transform: uppercase;
             $navbar-link-color: $color-white;
             $navbar-link-bg-color: $navbar-bg-color;
-            $navbar-font-weight: bold;
             $navbar-link-border: 1px solid rgba($color-white,0.1);
             // Links: Hover
             $navbar-link-hover-color: $color-white;
             $navbar-link-hover-bg-color: shade($navbar-bg-color,50%);
             $navbar-link-hover-weight: $navbar-font-weight;
+            // Child Level Links
+            $navbar-sublink-font-size: 0.9em;
+            $navbar-sublink-font-family: $font-primary;
+            $navbar-sublink-font-weight: $navbar-font-weight;
+            $navbar-sublink-text-transform: $navbar-text-transform;
+            $navbar-sublink-font-weight-hover: $navbar-link-hover-weight;
             // Links: Padding
             $navbar-link-padding-x: 10px;
             $navbar-link-padding-y: 8px;
             $navbar-link-padding-expanded-x: 10px;
             $navbar-link-padding-expanded-y: 10px;
-            // Current Page Link
-            $navbar-current-page-color: $color-white;
-            $navbar-current-page-background: $color-secondary;
-            $navbar-current-page-font-weight: bold;
-            // Secondary Links
-            $navbar-submenu-text-transform: $navbar-text-transform;
-            $navbar-submenu-font-weight: $navbar-font-weight;
-            // Drop down on larger screens
-            $navbar-submenu-min-width: 150px;
-            $navbar-submenu-max-width: 260px;
+            // THESE SETTINGS APPLY ABOVE $nav-expands ONLY
+            $navbar-sublink-color: $navbar-link-color;
+            $navbar-sublink-bg-color: $navbar-link-bg-color;
+            $navbar-sublink-hover-color: $navbar-link-hover-color;
+            $navbar-sublink-hover-bg-color: $navbar-link-hover-bg-color;
+            $navbar-dropdown-width: 240px;
+            $navbar-start-flex-align: stretch;
+            $navbar-end-flex-align: center;
 
             /* HAMBURGER MENU */
-            // @link https://github.com/jonsuh/hamburgers
             $primary-hamburger-type: spin; // Change this to modify animation
-            $hamburger-padding-x: $navbar-link-padding-x;
-            $hamburger-padding-y: $navbar-link-padding-y;
-            $hamburger-margin-y: inherit;
+            $hamburger-margin-y: 0px;
             $hamburger-layer-width: 20px; // Width of the hamburger icon
             $hamburger-layer-height: 3px; // Thickness of hamburger lines
             $hamburger-layer-spacing: 4px; // Spacing between hamburger lines
-            $hamburger-layer-color: $navbar-link-color; // Color of hamburger
             $hamburger-layer-border-radius: 3px; // Radius of hamburger lines
-            $hamburger-background-color: $navbar-bg-color;
-            $hamburger-background-color-hover: $navbar-link-hover-bg-color;
-            $hamburger-border: $border-width $border-style $hamburger-background-color;
-            $hamburger-border-hover: $border-width $border-style $hamburger-background-color-hover;
+            $hamburger-bg-color: $navbar-bg-color;
+            $hamburger-border: $border-width $border-style $hamburger-bg-color;
             $hamburger-border-radius: 0px;
+            $hamburger-color: $navbar-link-color; // Color of hamburger and label
+            $hamburger-hover-bg-color: $navbar-link-hover-bg-color;
+            $hamburger-hover-border: $border-width $border-style $hamburger-hover-bg-color;
+            $hamburger-hover-color: $hamburger-color;
             $hamburger-hover-opacity: 1;
-            $hamburger-active-layer-color : $hamburger-layer-color;
-            $hamburger-active-hover-opacity: $hamburger-hover-opacity;
+            $hamburger-position: right; // left or right
 
             $breakpoints: (
                 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
@@ -3291,7 +3302,8 @@ console.log("JellyFish is Awesome!");
                  Note: Comment out or remove a whole size to prevent it being iterated,
                  or individual elements to inherit from the previously defined point.
                  The shorthand names are used in column and modifier classes.
-                 breakpoint and col-gutter are the only !required values
+                 breakpoint and col-gutter are the only !required values.
+                 Sensible breakpoint values @link https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/
                 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
                 sm: (
                     breakpoint: 600px,
@@ -3321,6 +3333,7 @@ console.log("JellyFish is Awesome!");
                     col-gutter: 40px,
                     )
             );
+
           </code></pre>
         </article>
         <article>

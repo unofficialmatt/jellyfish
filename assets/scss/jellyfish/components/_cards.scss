@@ -11,7 +11,6 @@
   border-radius: $card-border-radius;
   border: $card-border-width $card-border-style $card-border-color;
   @extend %mb;
-  background: $card-background-color;
 
   & > :last-child {
     margin-bottom: 0;

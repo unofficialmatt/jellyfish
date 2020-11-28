@@ -7,13 +7,26 @@
   .bg-#{$name} {
     background-color: $color;
     color: choose-contrast-color($color,$color-text, $color-white);
-    // TODO: Add to Jellyfish Docs
-    #{headings()} {
+    #{headings()} { // TODO: Add to Docs
       color: choose-contrast-color($color, $color-white, $color-headings-preferred);
     }
-    // TODO: Add <a> tag here
+    a:not(.button) { // TODO: Add to Docs
+      & {
+        color: choose-contrast-color($color, $link-color, tint($color,30%));
+      }
+      &:visited {
+        color: choose-contrast-color($color, $link-visited, tint($color,30%));
+      }
+      &:hover, &:focus {
+        color: choose-contrast-color($color, $link-active, $color-white);
+      }
+    }
   }
   .text-#{$name} {
     color: $color !important;
   }
+}
+
+.bg-transparent {
+  background-color: transparent;
 }

@@ -54,8 +54,8 @@ $theme-colors: (
 //$font-size--2: 0.6em;
 //$font-size--1: 0.8em;
 //$font-size-0: 1em;
-//$font-size-1:1.5em;
-//$font-size-2:1.5em;
+//$font-size-1: 1.5em;
+//$font-size-2: 1.5em;
 //$font-size-3: 1.75em;
 //$font-size-4: 2em;
 //$font-size-5: 2.5em;
@@ -69,6 +69,7 @@ $theme-colors: (
 //$font-size-h6: $font-size-1;
 
 /* FONT WEIGHTS */
+// TODO: Documentation
 //$weight-light: lighter;
 //$weight-normal: normal;
 //$weight-bold: bold;
@@ -126,22 +127,23 @@ $theme-colors: (
 //$form-font: $font-primary;
 
 /* BUTTONS */
-$buttons: ('.button, a.button, a.edit-link, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
+//$buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
 //$button-border-width: 1px;
 //$button-border-radius: 6px;
+//$button-font-family: $font-secondary;
 //$button-padding: 1em 1.5em;
 //$button-text-transform: none;
 //$button-font-weight: bold;
 //$button-text-color-light: $color-white;
 //$button-text-color-dark: $color-text;
 //$button-disabled-background: tint($color-text,40%);
-$button-group-max-width: 250px; // TODO: Documentation
-$button-group-margin: $element-margin; // Use 'tight' or a value for right-margin // TODO: Documentation
+//$button-group-max-width: 250px;
+//$button-group-margin: $element-margin; // Use 'tight' or a value for right-margin
 
 /* LABELS */
 //$label-font-weight: bold;
 //$label-border-radius: 4px;
-//$label-outline-border-style: dashed
+//$label-outline-border-style: dashed;
 //$label-text-color-light: $color-white;
 //$label-text-color-dark: $color-text;
 
@@ -156,59 +158,58 @@ $button-group-margin: $element-margin; // Use 'tight' or a value for right-margi
 //$card-border-color: $border-color;
 //$card-border-width: $border-width;
 //$card-padding: $element-padding;
-//$card-background-color: $color-background;
 
 /* NAVBAR */
 $nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
 //$navbar-bg-color: $color-primary;
-//$navbar-container-padding: 10px; // Applies below $nav-expands
-$navbar-container-width: 100%; // Use 'inherit' to make it the same as the document container, or a percentage to override. Applies from $nav-expands up
-// Links
-//$navbar-font-size: 0.8em;
+// Parent Level Links
+//$navbar-font-size: 1em;
+//$navbar-font-family: $font-primary;
+//$navbar-font-weight: bold;
 //$navbar-text-transform: uppercase;
 //$navbar-link-color: $color-white;
 //$navbar-link-bg-color: $navbar-bg-color;
-//$navbar-font-weight: bold;
 //$navbar-link-border: 1px solid rgba($color-white,0.1);
 // Links: Hover
 //$navbar-link-hover-color: $color-white;
 //$navbar-link-hover-bg-color: shade($navbar-bg-color,50%);
 //$navbar-link-hover-weight: $navbar-font-weight;
+// Child Level Links
+//$navbar-sublink-font-size: 0.9em;
+//$navbar-sublink-font-family: $font-primary;
+//$navbar-sublink-font-weight: $navbar-font-weight;
+//$navbar-sublink-text-transform: $navbar-text-transform;
+//$navbar-sublink-font-weight-hover: $navbar-link-hover-weight;
 // Links: Padding
 //$navbar-link-padding-x: 10px;
 //$navbar-link-padding-y: 8px;
 //$navbar-link-padding-expanded-x: 10px;
 //$navbar-link-padding-expanded-y: 10px;
-// Current Page Link
-//$navbar-current-page-color: $color-white;
-//$navbar-current-page-background: $color-secondary;
-//$navbar-current-page-font-weight: bold;
-// Secondary Links
-//$navbar-submenu-text-transform: $navbar-text-transform;
-//$navbar-submenu-font-weight: $navbar-font-weight;
-// Drop down on larger screens
-//$navbar-submenu-min-width: 150px;
-//$navbar-submenu-max-width: 260px;
+// THESE SETTINGS APPLY ABOVE $nav-expands ONLY
+//$navbar-sublink-color: $navbar-link-color;
+//$navbar-sublink-bg-color: $navbar-link-bg-color;
+//$navbar-sublink-hover-color: $navbar-link-hover-color;
+//$navbar-sublink-hover-bg-color: $navbar-link-hover-bg-color;
+//$navbar-dropdown-width: 240px;
+//$navbar-start-flex-align: stretch;
+//$navbar-end-flex-align: center;
 
 /* HAMBURGER MENU */
-// @link https://github.com/jonsuh/hamburgers
 //$primary-hamburger-type: spin; // Change this to modify animation
-//$hamburger-padding-x: $navbar-link-padding-x;
-//$hamburger-padding-y: $navbar-link-padding-y;
-//$hamburger-margin-y: inherit;
+//$hamburger-margin-y: 0px;
 //$hamburger-layer-width: 20px; // Width of the hamburger icon
 //$hamburger-layer-height: 3px; // Thickness of hamburger lines
 //$hamburger-layer-spacing: 4px; // Spacing between hamburger lines
-//$hamburger-layer-color: $navbar-link-color; // Color of hamburger
 //$hamburger-layer-border-radius: 3px; // Radius of hamburger lines
-//$hamburger-background-color: $navbar-bg-color;
-//$hamburger-background-color-hover: $navbar-link-hover-bg-color;
-//$hamburger-border: $border-width $border-style $hamburger-background-color;
-//$hamburger-border-hover: $border-width $border-style $hamburger-background-color-hover;
+//$hamburger-bg-color: $navbar-bg-color;
+//$hamburger-border: $border-width $border-style $hamburger-bg-color;
 //$hamburger-border-radius: 0px;
+//$hamburger-color: $navbar-link-color; // Color of hamburger and label
+//$hamburger-hover-bg-color: $navbar-link-hover-bg-color;
+//$hamburger-hover-border: $border-width $border-style $hamburger-hover-bg-color;
+//$hamburger-hover-color: $hamburger-color;
 //$hamburger-hover-opacity: 1;
-//$hamburger-active-layer-color : $hamburger-layer-color;
-//$hamburger-active-hover-opacity: $hamburger-hover-opacity;
+//$hamburger-position: right; // left or right
 
 $breakpoints: (
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*

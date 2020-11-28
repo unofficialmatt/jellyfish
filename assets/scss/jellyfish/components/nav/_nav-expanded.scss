@@ -1,0 +1,172 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  NAV EXPANDED
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+$nav-fade-offset: 10px;
+
+@include above($nav-expands) {
+
+  .navbar {
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  .navbar-item {
+    padding: $navbar-link-padding-expanded-y $navbar-link-padding-expanded-x;
+  }
+
+  .navbar-menu {
+    // Wrapper for the main website navigation
+    display: flex !important;
+    border-top: 0;
+    flex: 1 1 auto; // Ensures the menubar takes up all available width
+    //flex: 1;
+    align-items: stretch; // children have 100% height
+
+    ul {
+      // Navigation List
+      display: flex;
+      align-items: stretch; // children have 100% height
+      flex: 1;
+      flex-wrap: wrap; // TODO: THIS CAN CAUSE ISSUES
+    }
+
+    li {
+      // Navigation Links
+      display: flex;
+      align-items: stretch; // children have 100% height
+      width: auto;
+
+      a {
+        padding: $navbar-link-padding-expanded-y $navbar-link-padding-expanded-x;
+        display: flex;
+        align-items: center;
+        flex: 1 0 auto; // Grow to fill container
+        border: 0;
+      }
+
+      &>ul {
+        // Secondary Level Navigation Menu
+        display: block;
+        z-index: 1;
+        position: absolute;
+        top: -999999em;
+        transform: translateY(-$nav-fade-offset);
+        width: $navbar-dropdown-width;
+        opacity: 0.2;
+        transition: transform 0.1s linear, opacity 0.05s linear;
+
+        a {
+          // Drop down link
+          border-top: $navbar-link-border;
+
+          &,
+          &:visited {
+            color: $navbar-sublink-color;
+            background-color: $navbar-sublink-bg-color;
+          }
+
+          &:hover,
+          &:focus {
+            color: $navbar-sublink-hover-color;
+            background-color: $navbar-sublink-hover-bg-color;
+          }
+        }
+
+        li.has-children a::after {
+          // Nested Nav with Children
+          transform: translate(-10px, -50%) rotate(-45deg); // Flip arrow to denote fly out location
+          transform-origin: center;
+        }
+      }
+
+      ul li ul {
+        // Deep nested nav
+        left: 100%;
+        transform: translate(-$nav-fade-offset, 0);
+      }
+    }
+
+    li.has-children>a {
+      // Menu Items with Children
+      padding-right: $navbar-link-padding-expanded-x + 30px; // 20px is approx the width of the rotated pseudo element and 10px is the padding
+
+      &::after {
+        transform: translate(-10px, -50%) rotate(45deg);
+      }
+    }
+
+    li.has-children:hover,
+    li.has-children:focus-within {
+
+      // Show the drop down on hover or inner-focus
+      >ul {
+        opacity: 1;
+        transform: translateY(0px);
+        top: 100%;
+
+        &>li {
+          display: block;
+        }
+      }
+
+      >a::after {
+        opacity: 0.5;
+      }
+    }
+
+    li ul li.has-children:hover,
+    li ul li.has-children:focus-within {
+
+      // Deeply Nested Hover
+      >ul {
+        top: 0;
+      }
+    }
+
+    li:nth-of-type(n+3) {
+
+      // Makes all drop downs move left instead of right
+      ul {
+        right: 0;
+
+        ul {
+          // Deeply Nested
+          transform: translate($nav-fade-offset, 0); // Fly out to left
+          left: -100%;
+        }
+
+        li.has-children a::after {
+          transform: translate(-10px, -50%) rotate(135deg); // Flip arrow to denote fly out location
+        }
+      }
+
+      &:hover,
+      &:focus-within {
+        >ul {}
+      }
+    }
+
+    input,
+    .button,
+    a.button {
+      margin: $navbar-link-padding-expanded-y $navbar-link-padding-expanded-x;
+    }
+  }
+
+  .navbar-start {
+    justify-content: flex-start; // push to front
+    margin-right: auto;
+    display: flex;
+    align-items: $navbar-start-flex-align;
+  }
+
+  .navbar-end {
+    justify-content: flex-end; // push to end
+    margin-left: auto;
+    display: flex;
+    align-items: $navbar-end-flex-align;
+  }
+}

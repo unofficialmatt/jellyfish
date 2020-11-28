@@ -1,5 +1,5 @@
 /*! jellyfish-grid 3.1.0
- * © 2020-10 Matt Weet - https://www.weareboba.com */
+ * © 2020-11 Matt Weet - https://www.weareboba.com */
 
 /* GRID */
 /* JELLYFISH DEFAULTS */
@@ -167,10 +167,10 @@ a {
 
 p,
 table {
-  margin: 0 0 24px 0; }
+  margin: 0 0 1.4rem 0; }
 
 ul, ol {
-  margin: 0 0 24px 2.5em;
+  margin: 0 0 1.4rem 2.5em;
   list-style-position: outside; }
   ul ul, ol ul, ul ol, ol ol {
     margin-bottom: 0; }
@@ -186,11 +186,11 @@ ol {
     list-style-type: lower-alpha; }
 
 dl {
-  margin: 0 0 24px 0; }
+  margin: 0 0 1.4rem 0; }
   dl dt {
     font-weight: bold; }
   dl dd {
-    margin-bottom: 12px; }
+    margin-bottom: 0.7rem; }
 
 pre, samp, kbd, :not(pre) > code, var, .docs .css-ref, .docs .file-ref, .docs .variable-ref {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
@@ -199,27 +199,27 @@ hr {
   height: 0;
   border: 0;
   border-top: 1px solid #cbcccc;
-  margin: 24px 0; }
+  margin: 1.4rem 0; }
 
 pre {
   white-space: pre-wrap;
   tab-size: 2;
   padding: 20px;
-  margin: 0 0 24px 0;
+  margin: 0 0 1.4rem 0;
   background-color: #efefef;
   border: 1px solid #cbcccc;
   line-height: 1.2; }
 
 blockquote {
-  margin: 0 0 24px 0;
-  padding: 0 0 0 24px;
-  border-left: 8px solid #efefef;
+  margin: 0 0 1.4rem 0;
+  padding: 0 0 0 1.4rem;
+  border-left: 0.4666666667rem solid #efefef;
   font-size: 1.5em;
   font-style: italic;
   line-height: 1.4; }
   blockquote cite {
     display: block;
-    margin-top: 12px;
+    margin-top: 0.7rem;
     font-size: 0.6em;
     font-style: normal;
     font-weight: bold;
@@ -227,7 +227,7 @@ blockquote {
 
 img.align-left, img.align-right, img.align-none, img.align-center {
   float: none !important;
-  margin: 24px auto;
+  margin: 1.4rem auto;
   display: block; }
 
 img {
@@ -236,15 +236,15 @@ img {
   vertical-align: top; }
   @media (min-width: 37.5em) {
     img.align-left {
-      margin: 0 24px 24px 0;
+      margin: 0 1.4rem 1.4rem 0;
       float: left !important; }
     img.align-right {
-      margin: 0 0 24px 24px;
+      margin: 0 0 1.4rem 1.4rem;
       float: right !important; }
     img.align-none {
-      margin: 0 0 24px 0; }
+      margin: 0 0 1.4rem 0; }
     img.align-center {
-      margin: 0 auto 24px auto; } }
+      margin: 0 auto 1.4rem auto; } }
 
 ::selection {
   background: #ccd0ea; }
@@ -258,10 +258,10 @@ img {
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 h1, h2, h3, h4, h5, h6 {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  margin: 0 0 24px 0;
+  margin: 0 0 1.4rem 0;
   line-height: 1.2; }
   h1:not(:first-child), h2:not(:first-child), h3:not(:first-child), h4:not(:first-child), h5:not(:first-child), h6:not(:first-child) {
-    margin-top: 24px; }
+    margin-top: 1.4rem; }
 
 h1 {
   font-size: 3em; }
@@ -458,7 +458,7 @@ sup {
   height: 0;
   overflow: hidden;
   max-width: 100%;
-  margin: 0.25px 0 24px 0; }
+  margin: 0.25px 0 1.4rem 0; }
 
 .embed-container iframe,
 .embed-container object,
@@ -470,7 +470,7 @@ sup {
   height: 100%; }
 
 .mb, .button-group, .callout, .card, .card-section .card-image {
-  margin-bottom: 24px; }
+  margin-bottom: 1.4rem; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   DARK MODE
@@ -483,13 +483,13 @@ body.dark-ui img {
   filter: grayscale(50%);
   transition: filter 0.2s ease; }
 
-body.dark-ui .button, body.dark-ui a.button, body.dark-ui a.edit-link, body.dark-ui button, body.dark-ui [type=submit], body.dark-ui [type=reset], body.dark-ui [type=button], body.dark-ui .button, body.dark-ui a.button, body.dark-ui a.edit-link, body.dark-ui button, body.dark-ui [type=submit], body.dark-ui [type=reset], body.dark-ui [type=button] *, body.dark-ui a, body.dark-ui a * {
+body.dark-ui .button, body.dark-ui a.button, body.dark-ui button, body.dark-ui [type=submit], body.dark-ui [type=reset], body.dark-ui [type=button], body.dark-ui .button, body.dark-ui a.button, body.dark-ui button, body.dark-ui [type=submit], body.dark-ui [type=reset], body.dark-ui [type=button] *, body.dark-ui a, body.dark-ui a * {
   color: #58cdf1 !important; }
-  body.dark-ui .button svg path, body.dark-ui a.button svg path, body.dark-ui a.edit-link svg path, body.dark-ui button svg path, body.dark-ui [type=submit] svg path, body.dark-ui [type=reset] svg path, body.dark-ui [type=button] svg path, body.dark-ui .button svg path, body.dark-ui a.button svg path, body.dark-ui a.edit-link svg path, body.dark-ui button svg path, body.dark-ui [type=submit] svg path, body.dark-ui [type=reset] svg path, body.dark-ui [type=button] * svg path, body.dark-ui a svg path, body.dark-ui a * svg path {
+  body.dark-ui .button svg path, body.dark-ui a.button svg path, body.dark-ui button svg path, body.dark-ui [type=submit] svg path, body.dark-ui [type=reset] svg path, body.dark-ui [type=button] svg path, body.dark-ui .button svg path, body.dark-ui a.button svg path, body.dark-ui button svg path, body.dark-ui [type=submit] svg path, body.dark-ui [type=reset] svg path, body.dark-ui [type=button] * svg path, body.dark-ui a svg path, body.dark-ui a * svg path {
     fill: #58cdf1; }
-  body.dark-ui .button:hover, body.dark-ui .button:focus, body.dark-ui a.button:hover, body.dark-ui a.button:focus, body.dark-ui a.edit-link:hover, body.dark-ui a.edit-link:focus, body.dark-ui button:hover, body.dark-ui button:focus, body.dark-ui [type=submit]:hover, body.dark-ui [type=submit]:focus, body.dark-ui [type=reset]:hover, body.dark-ui [type=reset]:focus, body.dark-ui [type=button]:hover, body.dark-ui [type=button]:focus, body.dark-ui .button:hover, body.dark-ui .button:focus, body.dark-ui a.button:hover, body.dark-ui a.button:focus, body.dark-ui a.edit-link:hover, body.dark-ui a.edit-link:focus, body.dark-ui button:hover, body.dark-ui button:focus, body.dark-ui [type=submit]:hover, body.dark-ui [type=submit]:focus, body.dark-ui [type=reset]:hover, body.dark-ui [type=reset]:focus, body.dark-ui [type=button] *:hover, body.dark-ui [type=button] *:focus, body.dark-ui a:hover, body.dark-ui a:focus, body.dark-ui a *:hover, body.dark-ui a *:focus {
+  body.dark-ui .button:hover, body.dark-ui .button:focus, body.dark-ui a.button:hover, body.dark-ui a.button:focus, body.dark-ui button:hover, body.dark-ui button:focus, body.dark-ui [type=submit]:hover, body.dark-ui [type=submit]:focus, body.dark-ui [type=reset]:hover, body.dark-ui [type=reset]:focus, body.dark-ui [type=button]:hover, body.dark-ui [type=button]:focus, body.dark-ui .button:hover, body.dark-ui .button:focus, body.dark-ui a.button:hover, body.dark-ui a.button:focus, body.dark-ui button:hover, body.dark-ui button:focus, body.dark-ui [type=submit]:hover, body.dark-ui [type=submit]:focus, body.dark-ui [type=reset]:hover, body.dark-ui [type=reset]:focus, body.dark-ui [type=button] *:hover, body.dark-ui [type=button] *:focus, body.dark-ui a:hover, body.dark-ui a:focus, body.dark-ui a *:hover, body.dark-ui a *:focus {
     color: #f1b835 !important; }
-    body.dark-ui .button:hover svg path, body.dark-ui .button:focus svg path, body.dark-ui a.button:hover svg path, body.dark-ui a.button:focus svg path, body.dark-ui a.edit-link:hover svg path, body.dark-ui a.edit-link:focus svg path, body.dark-ui button:hover svg path, body.dark-ui button:focus svg path, body.dark-ui [type=submit]:hover svg path, body.dark-ui [type=submit]:focus svg path, body.dark-ui [type=reset]:hover svg path, body.dark-ui [type=reset]:focus svg path, body.dark-ui [type=button]:hover svg path, body.dark-ui [type=button]:focus svg path, body.dark-ui .button:hover svg path, body.dark-ui .button:focus svg path, body.dark-ui a.button:hover svg path, body.dark-ui a.button:focus svg path, body.dark-ui a.edit-link:hover svg path, body.dark-ui a.edit-link:focus svg path, body.dark-ui button:hover svg path, body.dark-ui button:focus svg path, body.dark-ui [type=submit]:hover svg path, body.dark-ui [type=submit]:focus svg path, body.dark-ui [type=reset]:hover svg path, body.dark-ui [type=reset]:focus svg path, body.dark-ui [type=button] *:hover svg path, body.dark-ui [type=button] *:focus svg path, body.dark-ui a:hover svg path, body.dark-ui a:focus svg path, body.dark-ui a *:hover svg path, body.dark-ui a *:focus svg path {
+    body.dark-ui .button:hover svg path, body.dark-ui .button:focus svg path, body.dark-ui a.button:hover svg path, body.dark-ui a.button:focus svg path, body.dark-ui button:hover svg path, body.dark-ui button:focus svg path, body.dark-ui [type=submit]:hover svg path, body.dark-ui [type=submit]:focus svg path, body.dark-ui [type=reset]:hover svg path, body.dark-ui [type=reset]:focus svg path, body.dark-ui [type=button]:hover svg path, body.dark-ui [type=button]:focus svg path, body.dark-ui .button:hover svg path, body.dark-ui .button:focus svg path, body.dark-ui a.button:hover svg path, body.dark-ui a.button:focus svg path, body.dark-ui button:hover svg path, body.dark-ui button:focus svg path, body.dark-ui [type=submit]:hover svg path, body.dark-ui [type=submit]:focus svg path, body.dark-ui [type=reset]:hover svg path, body.dark-ui [type=reset]:focus svg path, body.dark-ui [type=button] *:hover svg path, body.dark-ui [type=button] *:focus svg path, body.dark-ui a:hover svg path, body.dark-ui a:focus svg path, body.dark-ui a *:hover svg path, body.dark-ui a *:focus svg path {
       fill: #f1b835; }
 
 body.dark-ui ::placeholder {
@@ -1398,6 +1398,12 @@ button.toggle-contrast svg {
   color: #fff; }
   .bg-primary h1, .bg-primary h2, .bg-primary h3, .bg-primary h4, .bg-primary h5, .bg-primary h6 {
     color: #fff; }
+  .bg-primary a:not(.button) {
+    color: #b3b9e0; }
+  .bg-primary a:not(.button):visited {
+    color: #b3b9e0; }
+  .bg-primary a:not(.button):hover, .bg-primary a:not(.button):focus {
+    color: #fff; }
 
 .text-primary {
   color: #001496 !important; }
@@ -1406,6 +1412,12 @@ button.toggle-contrast svg {
   background-color: #a62579;
   color: #fff; }
   .bg-secondary h1, .bg-secondary h2, .bg-secondary h3, .bg-secondary h4, .bg-secondary h5, .bg-secondary h6 {
+    color: #fff; }
+  .bg-secondary a:not(.button) {
+    color: #e4bed7; }
+  .bg-secondary a:not(.button):visited {
+    color: #e4bed7; }
+  .bg-secondary a:not(.button):hover, .bg-secondary a:not(.button):focus {
     color: #fff; }
 
 .text-secondary {
@@ -1416,6 +1428,12 @@ button.toggle-contrast svg {
   color: #fff; }
   .bg-tertiary h1, .bg-tertiary h2, .bg-tertiary h3, .bg-tertiary h4, .bg-tertiary h5, .bg-tertiary h6 {
     color: #fff; }
+  .bg-tertiary a:not(.button) {
+    color: #ddbbbc; }
+  .bg-tertiary a:not(.button):visited {
+    color: #ddbbbc; }
+  .bg-tertiary a:not(.button):hover, .bg-tertiary a:not(.button):focus {
+    color: #fff; }
 
 .text-tertiary {
   color: #8e1b1f !important; }
@@ -1425,6 +1443,12 @@ button.toggle-contrast svg {
   color: #333333; }
   .bg-success h1, .bg-success h2, .bg-success h3, .bg-success h4, .bg-success h5, .bg-success h6 {
     color: #001496; }
+  .bg-success a:not(.button) {
+    color: #001496; }
+  .bg-success a:not(.button):visited {
+    color: #8e1b1f; }
+  .bg-success a:not(.button):hover, .bg-success a:not(.button):focus {
+    color: #a62579; }
 
 .text-success {
   color: #53cc3e !important; }
@@ -1434,6 +1458,12 @@ button.toggle-contrast svg {
   color: #333333; }
   .bg-warning h1, .bg-warning h2, .bg-warning h3, .bg-warning h4, .bg-warning h5, .bg-warning h6 {
     color: #001496; }
+  .bg-warning a:not(.button) {
+    color: #001496; }
+  .bg-warning a:not(.button):visited {
+    color: #8e1b1f; }
+  .bg-warning a:not(.button):hover, .bg-warning a:not(.button):focus {
+    color: #a62579; }
 
 .text-warning {
   color: #fc7f14 !important; }
@@ -1443,15 +1473,24 @@ button.toggle-contrast svg {
   color: #fff; }
   .bg-error h1, .bg-error h2, .bg-error h3, .bg-error h4, .bg-error h5, .bg-error h6 {
     color: #fff; }
+  .bg-error a:not(.button) {
+    color: #001496; }
+  .bg-error a:not(.button):visited {
+    color: #fdb3c5; }
+  .bg-error a:not(.button):hover, .bg-error a:not(.button):focus {
+    color: #fff; }
 
 .text-error {
   color: #f7033c !important; }
+
+.bg-transparent {
+  background-color: transparent; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   BUTTONS
   Default styling for all buttons
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.button, a.button, a.edit-link, button, [type=submit], [type=reset], [type=button] {
+.button, a.button, button, [type=submit], [type=reset], [type=button] {
   -webkit-appearance: none;
   user-select: none;
   display: inline-block;
@@ -1462,30 +1501,31 @@ button.toggle-contrast svg {
   text-align: center;
   font-size: 0.9rem;
   font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   border-width: 1px;
   border-style: solid;
   border-radius: 6px;
   line-height: 1.3;
   padding: 1em 1.5em;
-  margin: 12px 5px 24px 0;
+  margin: 0.7rem 5px 1.4rem 0;
   transition: all 0.2s ease;
   background-color: #001496;
   border-color: #001496;
   color: #fff; }
-  .button::-moz-focus-inner, a.button::-moz-focus-inner, a.edit-link::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
+  .button::-moz-focus-inner, a.button::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
     border: 0;
     padding: 0; }
-  .button:focus, a.button:focus, a.edit-link:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
+  .button:focus, a.button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
     outline: 0;
     box-shadow: 0px 0px 1px 3px #00083c; }
-  .button:disabled, a.button:disabled, a.edit-link:disabled, button:disabled, [type=submit]:disabled, [type=reset]:disabled, [type=button]:disabled {
+  .button:disabled, a.button:disabled, button:disabled, [type=submit]:disabled, [type=reset]:disabled, [type=button]:disabled {
     cursor: not-allowed;
     background-color: #adadad;
     border-color: #adadad; }
-    .button:disabled:hover, .button:disabled:focus, a.button:disabled:hover, a.button:disabled:focus, a.edit-link:disabled:hover, a.edit-link:disabled:focus, button:disabled:hover, button:disabled:focus, [type=submit]:disabled:hover, [type=submit]:disabled:focus, [type=reset]:disabled:hover, [type=reset]:disabled:focus, [type=button]:disabled:hover, [type=button]:disabled:focus {
+    .button:disabled:hover, .button:disabled:focus, a.button:disabled:hover, a.button:disabled:focus, button:disabled:hover, button:disabled:focus, [type=submit]:disabled:hover, [type=submit]:disabled:focus, [type=reset]:disabled:hover, [type=reset]:disabled:focus, [type=button]:disabled:hover, [type=button]:disabled:focus {
       background-color: #adadad;
       border-color: #adadad; }
-  .button:hover, .button:focus, a.button:hover, a.button:focus, a.edit-link:hover, a.edit-link:focus, button:hover, button:focus, [type=submit]:hover, [type=submit]:focus, [type=reset]:hover, [type=reset]:focus, [type=button]:hover, [type=button]:focus {
+  .button:hover, .button:focus, a.button:hover, a.button:focus, button:hover, button:focus, [type=submit]:hover, [type=submit]:focus, [type=reset]:hover, [type=reset]:focus, [type=button]:hover, [type=button]:focus {
     background-color: #001078;
     border-color: #001078;
     color: #fff; }
@@ -1613,11 +1653,16 @@ button.toggle-contrast svg {
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 250px; }
+    max-width: 170px; }
   .button-group .button, .button-group a.button {
-    margin-right: 24px; }
-    .button-group .button:last-child, .button-group a.button:last-child {
-      margin-right: 0; }
+    margin-left: -1px;
+    margin-right: 0; }
+    .button-group .button:not(:first-child), .button-group a.button:not(:first-child) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0; }
+    .button-group .button:not(:last-child), .button-group a.button:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   CALLOUTS
@@ -1690,8 +1735,7 @@ button.toggle-contrast svg {
   flex-grow: 1;
   overflow: hidden;
   border-radius: 0px;
-  border: 1px solid #cbcccc;
-  background: #fff; }
+  border: 1px solid #cbcccc; }
   .card > :last-child {
     margin-bottom: 0; }
   .card .card-image, .card .card-image img {
@@ -1773,7 +1817,7 @@ button.toggle-contrast svg {
 
 .label-group {
   display: inline-flex;
-  margin: 12px 0.5rem 24px 0; }
+  margin: 0.7rem 0.5rem 1.4rem 0; }
   .label-group .label {
     margin-left: 0; }
   .label-group .label:not(:last-of-type) {
@@ -1841,7 +1885,7 @@ tfoot th {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   padding: 10px;
   outline: none;
-  margin: 3px 0 12px 0;
+  margin: 3px 0 0.7rem 0;
   width: 100%;
   max-width: 100%;
   line-height: 1;
@@ -1877,7 +1921,7 @@ fieldset {
   border: 1px solid #cbcccc;
   border-radius: 4px;
   padding: 20px;
-  margin: 24px 0; }
+  margin: 1.4rem 0; }
 
 legend {
   padding: 0 10px;
@@ -1910,13 +1954,13 @@ select::-ms-expand {
   color: #7e7f7f; }
 
 .form-group, .form-group-inline {
-  margin: 3px 0 12px 0; }
+  margin: 3px 0 0.7rem 0; }
 
 .form-group-inline * {
   display: inline-block; }
 
 .form-group-inline label {
-  margin-right: 12px; }
+  margin-right: 0.7rem; }
 
 .form-row {
   margin-left: -5px;
@@ -1935,7 +1979,7 @@ select::-ms-expand {
  * @link https://github.com/jonsuh/hamburgers
  */
 .hamburger {
-  padding: 8px 10px;
+  padding: 15px 15px;
   display: inline-block;
   cursor: pointer;
   transition-property: opacity, filter;
@@ -1955,7 +1999,7 @@ select::-ms-expand {
   .hamburger.is-active .hamburger-inner,
   .hamburger.is-active .hamburger-inner::before,
   .hamburger.is-active .hamburger-inner::after {
-    background-color: #fff; }
+    background-color: #000; }
 
 .hamburger-box {
   width: 20px;
@@ -1970,7 +2014,7 @@ select::-ms-expand {
   .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
     width: 20px;
     height: 3px;
-    background-color: #fff;
+    background-color: #000;
     border-radius: 3px;
     position: absolute;
     transition-property: transform;
@@ -2009,298 +2053,115 @@ select::-ms-expand {
     transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1); }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-  NAV
-  Styling for the burger menu
-  (also see vendor/hamburgers),
-  and responsive navbar
+  NAV BASE STYLES
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.navbar-brand a:not(.img-link), .navbar-menu ul li a {
+.navbar {
+  position: relative;
+  background: #001496;
+  color: #fff; }
+  @media (max-width: 76.1875em) {
+    .navbar .container {
+      width: 100%;
+      padding: 0; } }
+
+.navbar-menu li a {
   text-decoration: none;
   text-transform: none;
-  transition: color 0.2s ease, background-color 0.2s ease, font-weight 0.2s ease; }
-  .navbar-brand a:not(.img-link), .navbar-menu ul li a, .navbar-brand a:visited:not(.img-link), .navbar-menu ul li a:visited {
+  transition: all 0.2s ease; }
+  .navbar-menu li a, .navbar-menu li a:visited {
     color: #fff;
     background-color: #001496; }
-  .navbar-brand a:hover:not(.img-link), .navbar-menu ul li a:hover, .navbar-brand a:focus:not(.img-link), .navbar-menu ul li a:focus {
+  .navbar-menu li a:hover, .navbar-menu li a:focus {
     color: #fff;
     background-color: #000a4b;
     font-weight: bold; }
 
-.navbar {
-  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-.navbar is the parent of all navbar items
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-  background: #001496;
-  color: #fff;
-  position: relative; }
-  .navbar > .container {
-    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-  Container
-  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    width: 100%;
-    max-width: 100%;
-    display: flex; }
-    @media (max-width: 76.1875em) {
-      .navbar > .container {
-        padding: 0 10px;
-        display: block;
-        width: 100%; } }
-
-.navbar-brand {
-  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-.navbar-brand contains the site logo (if used), burger menu, and
-anything else that should always appear on mobile
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-  display: flex;
-  align-items: stretch;
-  flex-shrink: 0; }
-
-.navbar-item {
-  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-.navbar-items are any elements outside of the primary nav menu,
-they should be wrapped in this class to ensure consistent display
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-  display: flex;
-  align-items: center;
-  position: relative;
-  font-size: 0.8em;
-  font-weight: bold;
-  flex: 0 1 auto;
-  padding: 8px 10px;
-  margin: 0; }
-  @media (min-width: 76.25em) {
-    .navbar-item {
-      padding: 10px 10px; } }
-
 .navbar-menu {
-  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-.navbar-menu contains the main website navigation
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   display: none;
   border-top: 1px solid rgba(255, 255, 255, 0.1); }
-  @media (min-width: 76.25em) {
-    .navbar-menu {
-      border-top: 0;
-      align-items: stretch;
-      display: flex !important;
-      flex: 1 0 auto; } }
   .navbar-menu ul {
-    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-  Unordered lists are used for display of website navigation
-  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     list-style-type: none;
     margin: 0;
     width: 100%; }
-    @media (min-width: 76.25em) {
-      .navbar-menu ul {
-        display: flex;
-        align-items: stretch; } }
-    .navbar-menu ul li {
-      width: 100%;
-      margin: 0;
-      position: relative; }
-      @media (min-width: 76.25em) {
-        .navbar-menu ul li {
-          width: auto;
-          display: flex;
-          align-items: stretch; }
-          .navbar-menu ul li:nth-of-type(n+3) ul {
-            right: 0; }
-            .navbar-menu ul li:nth-of-type(n+3) ul li a::after {
-              transform: rotate(135deg) !important; }
-            .navbar-menu ul li:nth-of-type(n+3) ul li ul {
-              transform: translate(5px, 0);
-              left: calc( -100%); } }
-      .navbar-menu ul li a {
-        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-      Link Styles
-      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        font-size: 0.8em;
+  .navbar-menu li {
+    width: 100%;
+    position: relative;
+    margin: 0; }
+    .navbar-menu li a {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 1em;
+      font-weight: bold;
+      display: block;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 10px; }
+    .navbar-menu li > ul {
+      display: none; }
+      .navbar-menu li > ul a {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-size: 0.9em;
         font-weight: bold;
-        display: block;
-        position: relative;
-        padding: 8px 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        @media (min-width: 76.25em) {
-          .navbar-menu ul li a {
-            padding: 10px 10px;
-            display: flex;
-            align-items: center;
-            flex: 1 0 auto;
-            border: 0; } }
-      .navbar-menu ul li ul {
-        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-      Secondary level navigation
-      (drop downs)
-      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        display: none; }
-        .navbar-menu ul li ul a {
-          text-transform: none;
+        text-transform: none; }
+        .navbar-menu li > ul a:hover, .navbar-menu li > ul a:focus {
           font-weight: bold; }
-          @media (max-width: 76.1875em) {
-            .navbar-menu ul li ul a {
-              padding-left: 24px; } }
-        .navbar-menu ul li ul li ul {
-          /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-            Deeply Nested Nav Links
-            *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ }
-          @media (max-width: 76.1875em) {
-            .navbar-menu ul li ul li ul a {
-              padding-left: 40px; } }
-          @media (max-width: 76.1875em) {
-            .navbar-menu ul li ul li ul li ul a {
-              padding-left: 56px; } }
-        @media (min-width: 76.25em) {
-          .navbar-menu ul li ul {
-            background: #001496;
-            position: absolute;
-            z-index: 9999;
-            top: 100%;
-            display: flex;
-            flex-direction: column;
-            min-width: 150px;
-            max-width: 260px;
-            transform: translateY(-5px);
-            opacity: 0.6;
-            transition: transform 0.1s linear, opacity 0.1s linear; }
-            .navbar-menu ul li ul li {
-              display: none;
-              border-top: 1px solid rgba(255, 255, 255, 0.1); }
-              .navbar-menu ul li ul li ul {
-                /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-            Deeply Nested Nav
-            *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-                top: 0;
-                left: 100%;
-                transform: translate(-5px, 0); } }
-      .navbar-menu ul li.has-children > a {
-        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-      Menu items with children
-      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        padding-right: 30px !important; }
-        @media (min-width: 76.25em) {
-          .navbar-menu ul li.has-children > a {
-            padding-right: 30px !important; } }
-        .navbar-menu ul li.has-children > a::after {
-          content: "";
-          display: block;
-          position: absolute;
-          pointer-events: none;
-          height: 12px;
-          width: 12px;
-          border: 3px solid #fff;
-          border-radius: 3px;
-          border-left: 0;
-          border-top: 0;
-          top: 30%;
-          right: 14px;
-          transform: rotate(45deg);
-          transform-origin: center;
-          transition: opacity 0.2s ease; }
-          @media (min-width: 76.25em) {
-            .navbar-menu ul li.has-children > a::after {
-              top: 35%;
-              right: 10px; } }
-      .navbar-menu ul li ul li.has-children > a::after {
-        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-      Nested menu items with children
-      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ }
-        @media (min-width: 76.25em) {
-          .navbar-menu ul li ul li.has-children > a::after {
-            transform: rotate(-45deg);
-            opacity: 0.2; } }
-      @media (max-width: 76.1875em) {
-        .navbar-menu ul li {
-          /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-      When an li has .drop-active applied, show the immediate ul child
-      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ }
-          .navbar-menu ul li.drop-active > ul {
-            display: block; }
-          .navbar-menu ul li.drop-active > a::after {
-            opacity: 0.2; } }
-      @media (min-width: 76.25em) {
-        .navbar-menu ul li {
-          /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-      When an li with children is hovered or the anchor is focused, show the drop down
-      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ }
-          .navbar-menu ul li.has-children:hover > ul, .navbar-menu ul li.has-children:focus-within > ul {
-            opacity: 1;
-            transform: translateY(0px); }
-            .navbar-menu ul li.has-children:hover > ul > li, .navbar-menu ul li.has-children:focus-within > ul > li {
-              display: block; }
-          .navbar-menu ul li.has-children:hover > a::after, .navbar-menu ul li.has-children:focus-within > a::after {
-            opacity: 0.2; } }
-  .navbar-menu .current-page {
-    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-  Styles the currently active page
-  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ }
-    .navbar-menu .current-page a, .navbar-menu .current-page a:visited {
-      background: #a62579;
-      color: #fff;
-      font-weight: bold !important; }
-    .navbar-menu .current-page a:hover, .navbar-menu .current-page a:focus {
-      color: #fff;
-      background-color: #000a4b; }
-  @media (min-width: 76.25em) {
-    .navbar-menu .navbar-start {
-      display: flex;
-      align-items: stretch;
-      justify-content: flex-start;
-      margin-right: auto; } }
-  .navbar-menu .navbar-end {
-    padding: 8px 0;
-    display: flex;
-    align-items: center; }
-    @media (min-width: 76.25em) {
-      .navbar-menu .navbar-end {
-        justify-content: flex-end;
-        margin-left: auto;
-        padding: 0; } }
-  .navbar-menu input, .navbar-menu .button, .navbar-menu a.button {
+  .navbar-menu li.has-children > a {
+    padding-right: 40px; }
+    .navbar-menu li.has-children > a::after {
+      content: "";
+      display: block;
+      position: absolute;
+      pointer-events: none;
+      height: 12px;
+      width: 12px;
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      border-left: 0;
+      border-top: 0;
+      top: 50%;
+      right: 0;
+      transform: translate(-10px, -50%) rotate(45deg);
+      transform-origin: top center;
+      transition: opacity 0.2s ease, border-color 0.2s ease; }
+    .navbar-menu li.has-children > a:hover::after, .navbar-menu li.has-children > a:focus::after {
+      border-color: rgba(255, 255, 255, 0.6); }
+  .navbar-menu li.drop-active > ul {
+    display: block; }
+  .navbar-menu li.drop-active > a::after {
+    border-color: rgba(255, 255, 255, 0.1); }
+  .navbar-menu input,
+  .navbar-menu .button,
+  .navbar-menu a.button {
     margin: 8px 10px;
     position: relative; }
-    @media (min-width: 76.25em) {
-      .navbar-menu input, .navbar-menu .button, .navbar-menu a.button {
-        margin: 10px 10px; } }
   .navbar-menu input {
     width: auto; }
 
-.hamburger {
-  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-.hamburger is only shown on smaller devices
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-  margin-left: auto;
-  margin-top: inherit;
-  margin-bottom: inherit;
-  background-color: #001496;
-  border: 1px solid #001496;
-  border-radius: 0px;
-  text-align: right;
+.navbar-brand {
   display: flex;
   align-items: center;
-  transition: background-color 0.2s ease, border 0.2s ease; }
-  @media (min-width: 76.25em) {
-    .hamburger {
-      display: none; } }
-  .hamburger:hover, .hamburger:focus {
-    background-color: #000a4b;
-    border: 1px solid #000a4b; }
-  .hamburger:focus {
-    outline: 0;
-    box-shadow: none !important; }
+  flex-shrink: 0; }
 
-.hamburger-label {
+.navbar-item {
+  font-size: 1em;
   font-weight: bold;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  color: #fff;
-  margin: 0 8px; }
-  .is-active .hamburger-label {
-    color: #fff; }
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 0;
+  padding: 8px 10px;
+  flex: 0 1 auto;
+  color: #fff; }
+  .navbar-item * {
+    margin: 0; }
+  .navbar-item a, .navbar-item a:visited {
+    color: #fff;
+    text-decoration: none; }
+  .navbar-item a:hover, .navbar-item a:focus {
+    color: #fff;
+    font-weight: bold; }
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-Utilities
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  UTILITIES
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 @media (min-width: 76.25em) {
   .hide-above-nav {
     display: none !important; } }
@@ -2308,6 +2169,140 @@ Utilities
 @media (max-width: 76.1875em) {
   .hide-below-nav {
     display: none !important; } }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  IMPORTS
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  HAMBURGER MENU
+  @link https://github.com/jonsuh/hamburgers
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.hamburger {
+  transition: background-color 0.2s ease, border 0.2s ease, color 0.2s ease;
+  margin-left: auto;
+  background-color: #001496;
+  border-radius: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border: 1px solid #001496;
+  color: #fff;
+  display: flex;
+  align-items: center; }
+  @media (min-width: 76.25em) {
+    .hamburger {
+      display: none; } }
+  .hamburger .is-active {
+    color: #fff; }
+  .hamburger:focus {
+    outline: 0;
+    box-shadow: none !important; }
+  .hamburger:hover, .hamburger:focus {
+    background-color: #000a4b;
+    border: 1px solid #000a4b;
+    color: #fff; }
+
+.hamburger-label {
+  font-weight: bold;
+  font-size: 1em;
+  text-transform: uppercase;
+  margin: 0 8px 0 0; }
+
+.hamburger-inner, .hamburger-inner:after, .hamburger-inner:before {
+  background-color: #fff; }
+  .hamburger:hover .hamburger-inner, .hamburger:focus .hamburger-inner, .hamburger:hover .hamburger-inner:after, .hamburger:focus .hamburger-inner:after, .hamburger:hover .hamburger-inner:before, .hamburger:focus .hamburger-inner:before {
+    background-color: #fff; }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  NAV EXPANDED
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+@media (min-width: 76.25em) {
+  .navbar .container {
+    display: flex;
+    flex-wrap: wrap; }
+  .navbar-item {
+    padding: 10px 10px; }
+  .navbar-menu {
+    display: flex !important;
+    border-top: 0;
+    flex: 1 1 auto;
+    align-items: stretch; }
+    .navbar-menu ul {
+      display: flex;
+      align-items: stretch;
+      flex: 1;
+      flex-wrap: wrap; }
+    .navbar-menu li {
+      display: flex;
+      align-items: stretch;
+      width: auto; }
+      .navbar-menu li a {
+        padding: 10px 10px;
+        display: flex;
+        align-items: center;
+        flex: 1 0 auto;
+        border: 0; }
+      .navbar-menu li > ul {
+        display: block;
+        z-index: 1;
+        position: absolute;
+        top: -999999em;
+        transform: translateY(-10px);
+        width: 240px;
+        opacity: 0.2;
+        transition: transform 0.1s linear, opacity 0.05s linear; }
+        .navbar-menu li > ul a {
+          border-top: 1px solid rgba(255, 255, 255, 0.1); }
+          .navbar-menu li > ul a, .navbar-menu li > ul a:visited {
+            color: #fff;
+            background-color: #001496; }
+          .navbar-menu li > ul a:hover, .navbar-menu li > ul a:focus {
+            color: #fff;
+            background-color: #000a4b; }
+        .navbar-menu li > ul li.has-children a::after {
+          transform: translate(-10px, -50%) rotate(-45deg);
+          transform-origin: center; }
+      .navbar-menu li ul li ul {
+        left: 100%;
+        transform: translate(-10px, 0); }
+    .navbar-menu li.has-children > a {
+      padding-right: 40px; }
+      .navbar-menu li.has-children > a::after {
+        transform: translate(-10px, -50%) rotate(45deg); }
+    .navbar-menu li.has-children:hover > ul,
+    .navbar-menu li.has-children:focus-within > ul {
+      opacity: 1;
+      transform: translateY(0px);
+      top: 100%; }
+      .navbar-menu li.has-children:hover > ul > li,
+      .navbar-menu li.has-children:focus-within > ul > li {
+        display: block; }
+    .navbar-menu li.has-children:hover > a::after,
+    .navbar-menu li.has-children:focus-within > a::after {
+      opacity: 0.5; }
+    .navbar-menu li ul li.has-children:hover > ul,
+    .navbar-menu li ul li.has-children:focus-within > ul {
+      top: 0; }
+    .navbar-menu li:nth-of-type(n+3) ul {
+      right: 0; }
+      .navbar-menu li:nth-of-type(n+3) ul ul {
+        transform: translate(10px, 0);
+        left: -100%; }
+      .navbar-menu li:nth-of-type(n+3) ul li.has-children a::after {
+        transform: translate(-10px, -50%) rotate(135deg); }
+    .navbar-menu input,
+    .navbar-menu .button,
+    .navbar-menu a.button {
+      margin: 10px 10px; }
+  .navbar-start {
+    justify-content: flex-start;
+    margin-right: auto;
+    display: flex;
+    align-items: stretch; }
+  .navbar-end {
+    justify-content: flex-end;
+    margin-left: auto;
+    display: flex;
+    align-items: center; } }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   PRINT
@@ -2339,7 +2334,7 @@ Utilities
     font-size: 1.4em; }
   h3, h4, h5, h6 {
     font-size: 1.2em; }
-  .button, a.button, a.edit-link, button, [type=submit], [type=reset], [type=button] {
+  .button, a.button, button, [type=submit], [type=reset], [type=button] {
     border: 1px solid black  !important;
     background-color: #fff !important;
     color: black  !important;
@@ -2363,10 +2358,10 @@ Utilities
   .docs .section-heading {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 144px;
-    padding-bottom: 24px;
-    padding-top: 24px;
-    margin-bottom: 72px;
+    margin-top: 8.4rem;
+    padding-bottom: 1.4rem;
+    padding-top: 1.4rem;
+    margin-bottom: 4.2rem;
     border-bottom: 1px solid #efefef;
     z-index: 9;
     background-color: #fff; }
@@ -2380,7 +2375,7 @@ Utilities
   .docs .docs-section .standfirst {
     color: #7e7f7f; }
   .docs .docs-section > article {
-    margin-bottom: 72px; }
+    margin-bottom: 4.2rem; }
   .docs .css-ref, .docs .file-ref, .docs .variable-ref {
     background-color: #efefef; }
   .docs .css-ref {
@@ -2393,7 +2388,7 @@ Utilities
     background: #efefef;
     padding: .7rem .9rem;
     line-height: 1.2;
-    margin: 0 0 24px 0;
+    margin: 0 0 1.4rem 0;
     display: inherit;
     font-size: 0.8em;
     flex: 1;
@@ -2401,14 +2396,14 @@ Utilities
   .docs .row-boxed {
     background-color: #efefef;
     min-height: 160px;
-    margin-bottom: 24px; }
+    margin-bottom: 1.4rem; }
     .docs .row-boxed .boxed {
       margin: 0;
       background-color: #fff;
       border: 1px solid #efefef; }
   .docs pre {
     position: relative;
-    margin: 24px 0 !important;
+    margin: 1.4rem 0 !important;
     font-size: 0.9em !important; }
     .docs pre label {
       font-size: 0.8em;
