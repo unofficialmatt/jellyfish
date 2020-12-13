@@ -1,0 +1,94 @@
+// Convert px to em
+@function em($pixels) {
+  @return #{$pixels/16px}em;
+}
+
+// Get a value from deep inside a map. Arguments:
+// $map - name of map
+// $keys - name of keys to retrieve. This can work with an infinitely nested map
+@function map-deep-get($map, $keys...) {
+@each $key in $keys {
+  $map: map-get($map, $key);
+  @if not $map {
+    //@warn "`#{$key}` does not exist in the queried key."; // Redacted as this is not super useful, because we only have one key value and not the parent key
+  }
+}
+@return $map;
+}
+
+// Returns a given number divided by 2
+@function h($num) {
+@return $num/2;
+}
+
+// Returns the negative value of a given number
+@function n($num) {
+@return -$num;
+}
+
+// Returns the negative and halved value of a given number
+@function nh($num) {
+@return n(h($num));
+}
+@function hn($num) {
+@return n(h($num));
+}
+
+// Lighten a colour progressively, much better than lighten()
+@function tint($color, $percentage) {
+@return mix($color, white, $percentage);
+}
+
+// Darken a colour progressively, much better than darken()
+@function shade($color, $percentage) {
+@return mix($color, black, $percentage);
+}
+
+// Allows us to use #{headings(1,6)} to apply css to all headings
+@function headings($from:1, $to:6) {
+  @if $from == $to {
+      @return 'h#{$from}';
+  } @else {
+      @return 'h#{$from},' + headings($from+1, $to);
+  }
+}
+
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ * @link https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
+ */
+ @function luminance($color) {
+  $red: nth($linear-channel-values, red($color) + 1);
+  $green: nth($linear-channel-values, green($color) + 1);
+  $blue: nth($linear-channel-values, blue($color) + 1);
+
+  @return .2126 * $red + .7152 * $green + .0722 * $blue;
+}
+
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ * @link https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
+ */
+@function contrast($back, $front) {
+  $backLum: luminance($back) + .05;
+  $foreLum: luminance($front) + .05;
+
+  @return max($backLum, $foreLum) / min($backLum, $foreLum);
+}
+
+/**
+ * Determine whether to use dark or light text on top of given color.
+ */
+@function choose-contrast-color($color, $light-color: $color-white, $dark-color: $color-text) {
+  $lightContrast: contrast($color, $light-color);
+  $darkContrast: contrast($color, $dark-color);
+
+  @if ($lightContrast > $darkContrast) {
+    @return $light-color;
+  }
+  @else {
+    @return $dark-color;
+  }
+}

@@ -1,0 +1,135 @@
+// TODO: Start using CSS Variables?
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    font-family: $font-body;
+}
+@media screen and (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+body {
+  font-size: $root-font-size;
+  color: $color-text;
+  background-color: $color-background;
+  line-height: $root-line-height;
+   @each $point, $i in $breakpoints {
+    // set base font size and line height for each specified media query
+   @include above($point) {
+       font-size: map-deep-get($breakpoints, $point, 'root-font-size');
+       line-height: map-deep-get($breakpoints, $point, 'root-line-height');
+   }
+  }
+}
+
+// Links
+a {
+    @include smooth(color);
+    text-decoration: underline;
+    &, &:link {
+        color: $link-color;
+    }
+    &:visited {
+        color: $link-visited;
+        text-decoration: none;
+    }
+    &:hover, &:focus {
+        color: $link-active;
+    }
+}
+
+// Consistent Margins
+p,
+table {
+    margin: 0 0 $element-margin 0;
+}
+
+// Lists
+%lists {
+    margin: 0 0 $element-margin 2.5em;
+    list-style-position: outside;
+    ul, ol {
+        margin-bottom: 0;
+    }
+}
+ul {
+    @extend %lists;
+    list-style-type: disc;
+    ul {
+        list-style-type: circle;
+    }
+}
+ol {
+    @extend %lists;
+    list-style-type: decimal;
+    ol {
+        list-style-type: lower-alpha;
+    }
+}
+dl {
+    margin: 0 0 $element-margin 0;
+    dt {
+        font-weight: bold;
+    }
+    dd {
+      margin-bottom: h($element-margin);
+    }
+}
+
+// Code Typeface
+%code {
+    font-family: $font-code;
+}
+
+// Line break
+hr {
+    height: 0;
+    border: 0;
+    border-top: 1px $border-style $border-color;
+    margin: $element-margin 0;
+}
+
+// Code block styling
+pre {
+    white-space: pre-wrap;
+    tab-size: 2;
+    @extend %code;
+    padding: $element-padding;
+    margin: 0 0 $element-margin 0;
+    background-color: $color-background-alt;
+    border: $borders;
+    line-height: 1.2;
+}
+
+// Blockquote
+blockquote {
+    margin: 0 0 $element-margin 0;
+    padding: 0 0 0 $element-margin;
+    border-left: $element-margin/3 solid $color-background-alt;
+    font-size: $font-size-2;
+    font-style: italic;
+    line-height: 1.4;
+}
+cite {
+  display: block;
+  margin-top: h($element-margin);
+  font-size: $font-size--2;
+  font-style: normal;
+  font-weight: bold;
+  text-align: right;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: top; // Removes the white space under images
+}
+
+// Highlighted text
+::selection {
+background: tint($color-primary,20%);
+}

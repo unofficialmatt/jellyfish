@@ -1,0 +1,25 @@
+
+// Wrap text in a .nowrap span to keep it together when otherwise it would break over two lines
+.nowrap {
+  white-space: nowrap !important;
+}
+
+// Gives elements consistent bottom margin
+%mb {
+  margin-bottom: $element-margin;
+}
+.mb {
+  @extend %mb;
+}
+
+// TODO: Document in Jellyfish Docs
+%no-bullets {
+  margin-left: 0;
+  list-style-type: none;
+}
+%inline {
+  @extend %no-bullets;
+  li {
+    display: inline-block;
+  }
+}

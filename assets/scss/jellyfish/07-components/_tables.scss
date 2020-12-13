@@ -1,0 +1,6 @@
+
+// Wrap around a table to prevent it breaking outside the grid
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+}

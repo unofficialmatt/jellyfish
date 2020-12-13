@@ -55,7 +55,7 @@ module.exports = function (grunt) {
           // this task will write @import statements for every other _*.scss
           // file in that directory. Then simply @import your _all.scss file to
           // import the contents of the directory.
-          src: ['<%= opts.build_dir %>/scss/**/_all.scss']
+          src: ['<%= opts.build_dir %>/scss/**/__all.scss']
       }
     }
   });

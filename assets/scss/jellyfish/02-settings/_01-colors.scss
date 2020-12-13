@@ -1,0 +1,30 @@
+$color-text: #333333 !default;
+$color-text-light: #7e7f7f !default;
+$color-white: #fff !default;
+$color-background: $color-white !default;
+$color-background-alt: #efefef !default;
+$color-primary: #001496 !default;
+$color-secondary: #a62579 !default;
+$color-tertiary: #8e1b1f !default;
+
+$color-success: #53cc3e !default;
+$color-warning: #fc7f14 !default;
+$color-error: #f7033c !default;
+
+$color-headings-preferred: $color-primary !default;
+
+// Create an empty map. This allows the map to be defined in the project's settings file to include any colors as required
+$theme-colors: () !default;
+
+// Merge default colours into the map
+$theme-colors: map-merge(
+  (
+    "primary": $color-primary,
+    "secondary": $color-secondary,
+    "tertiary": $color-tertiary,
+    "success": $color-success,
+    "warning": $color-warning,
+    "error": $color-error,
+  ),
+  $theme-colors
+);

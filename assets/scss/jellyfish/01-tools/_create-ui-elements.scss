@@ -1,0 +1,50 @@
+// Apply consistent styling to buttons. In most cases, you only need to pass the $button-color value for your buttons to look great
+@mixin create_button(
+    $button-color: null,
+    $hover-color: $button-color,
+    $hover-perc-amount: $ui-hover-function-amount
+  ) {
+  background-color: $button-color;
+  border-color: $button-color;
+  color: choose-contrast-color($button-color,$button-text-color-light,$button-text-color-dark);
+  &:hover, &:focus {
+    @if $button-color == $hover-color {
+      $hover-color: call(get-function($ui-hover-function), $hover-color, $hover-perc-amount );
+    }
+    background-color: $hover-color;
+    border-color: $hover-color;
+    color: choose-contrast-color($hover-color,$button-text-color-light,$button-text-color-dark);
+  }
+  &:focus {
+    box-shadow: 0px 0px 1px 3px call(get-function($ui-hover-function), $hover-color, $ui-focus-highlight-amount );
+  }
+  &.outline, &.ghost {
+    color: $button-color;
+    &:hover, &:focus {
+      color: $hover-color;
+    }
+  }
+}
+
+// Apply consistent styling to labels
+@mixin create_label($label-color) {
+  border-color: $label-color;
+  background-color: $label-color;
+  color: choose-contrast-color($label-color,$label-text-color-light,$label-text-color-dark);
+  &.outline {
+    color: $label-color;
+  }
+}
+
+// Apply consistent styling to callouts
+@mixin create_callout($callout-color) {
+  border-color: $callout-color;
+  background-color: tint($callout-color, $callout-tint-perc);
+  color: choose-contrast-color(tint($callout-color, $callout-tint-perc),$color-text,$color-white);
+  a.callout-link {
+    color: $callout-color;
+    &:hover, &:focus {
+      color: shade($callout-color, 80%)
+    }
+  }
+}

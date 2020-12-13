@@ -1,0 +1,33 @@
+body.dark-ui {
+  &, & * {
+    background-color: $dark-mode-bg-color !important;
+    color: $dark-mode-text-color !important;
+    //border-color: $dark-mode-text-color;
+  }
+  img {
+      filter: grayscale($dark-mode-img-grayscale-perc);
+      @include smooth(filter);
+  }
+  #{$buttons}, #{$buttons} *, a, a * {
+    color: $dark-mode-link-color !important;
+    svg path {
+      fill: $dark-mode-link-color;
+    }
+    &:hover, &:focus {
+      color: $dark-mode-link-hover !important;
+      svg path {
+        fill: $dark-mode-link-hover;
+      }
+    }
+  }
+  ::placeholder {
+    color: shade($dark-mode-text-color, 70%) !important;
+  }
+  .hamburger {
+    border: 0;
+  }
+  .hamburger-inner, .hamburger-inner:after, .hamburger-inner:before {
+    background-color: $dark-mode-link-color !important;
+  }
+}
+// TODO: add @media (prefers-color-scheme: dark)

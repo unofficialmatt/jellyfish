@@ -1,0 +1,114 @@
+.col-auto {
+  flex: 0 0 auto !important;
+  width: auto;
+  max-width: none !important;
+}
+
+// Remove column padding on collapsed rows
+.row.collapse {
+  margin-left: 0;
+  margin-right: 0;
+
+  &>.col {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+// Iterate for our smallest defined column class ($base-col-name)
+@for $i from 1 through ($cols) {
+  @if $has_ordering {
+    .order-#{$base-col-name}-#{$i} {
+      order: $i;
+    }
+  }
+
+  @if $has_offset {
+    $offset: 100% - ($one_col * $i);
+
+    .offset-#{$base-col-name}-#{$cols - $i} {
+      margin-left: $offset;
+    }
+  }
+}
+
+@each $point,
+$i in $breakpoints {
+
+  // for each breakpoint defined...
+  @include above($point) {
+
+    // Create Collapse classes
+    .row.collapse-#{$point} {
+      margin-left: 0;
+      margin-right: 0;
+
+      .col {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+    }
+
+    // TODO: Create a reset-collapse?
+
+    // Columns expand to size of content
+    .col.#{$point}-auto {
+      max-width: none;
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    // Column expands to remaining space in row
+    .col.#{$point}-0 {
+      max-width: 100%;
+      flex: 1 1 0;
+    }
+
+    @for $i from 1 through ($cols) {
+      .col.#{$point}-#{$i} {
+        max-width: ($one_col * $i);
+        flex: 0 0 ($one_col * $i); // Define flex properties to fix the width of this col
+      }
+
+      @if $has_ordering {
+        .order-#{$point}-#{$i} {
+          order: $i;
+        }
+
+        .order-#{$point}-0 {
+          order: unset;
+        }
+      }
+
+      @if $has_offset {
+        $offset: 100% - ($one_col * $i);
+
+        .offset-#{$point}-#{$cols - $i} {
+          margin-left: $offset;
+        }
+      }
+    }
+  }
+
+  .jf-debug {
+    @if $has_ordering {
+      [class*='order-#{$point}'] {
+        outline: 2px solid #fe53BB;
+      }
+
+      [class*='order-#{$point}-0'] {
+        outline: 0;
+      }
+    }
+
+    @if $has_offset {
+      [class*='offset-#{$point}'] {
+        outline: 2px solid #fe53BB;
+      }
+
+      [class*='offset-#{$point}-0'] {
+        outline: 0;
+      }
+    }
+  }
+}

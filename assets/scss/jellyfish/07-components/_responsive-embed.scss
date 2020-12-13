@@ -1,0 +1,22 @@
+
+// Embed videos responsively by wrapping them in an .embed-container
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  margin: .25px 0 $element-margin 0;
+}
+
+//TODO: Add variations https://get.foundation/sites/docs/responsive-embed.html
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

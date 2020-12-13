@@ -1,0 +1,354 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  DOCS
+  Contains additional styles used in documentation.
+  Can be removed on live projects.
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+// TODO: Change prism styling to light
+
+.docs {
+
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+    STYLE OVERRIDES
+  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+  $section-bottom-margin: $element-margin*3;
+
+  // H2 Section Headings
+  .section-heading {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: $element-margin*6;
+    padding-bottom: $element-margin;
+    padding-top: $element-margin;
+    margin-bottom: $section-bottom-margin;
+    border-bottom: $border-width solid $color-background-alt;
+    z-index: 9;
+    background-color: $color-background;
+    .label-group:first-of-type {
+      margin-left: auto;
+    }
+    .label-group {
+      font-size: 70%;
+    }
+  }
+
+  // Standfirst
+  .standfirst {
+    font-size: $font-size-2;
+    font-weight: 300;
+  }
+  .docs-section .standfirst {
+    color: $color-text-light;
+  }
+
+  // Sub Section
+  .docs-section>article {
+    margin-bottom: $section-bottom-margin;
+  }
+
+  // Inline references
+  %reference {
+    @extend %inline-code;
+    display: inline;
+    background-color: $color-background-alt;
+  }
+
+  .css-ref {
+    @extend %reference;
+    color: $color-primary;
+  }
+
+  .file-ref {
+    @extend %reference;
+    color: $color-secondary;
+  }
+
+  .variable-ref {
+    @extend %reference;
+    color: $color-tertiary;
+  }
+
+  // Boxed Out Example
+  .boxed {
+    background: $color-background-alt;
+    padding: .7rem .9rem;
+    line-height: 1.2;
+    margin: 0 0 $element-margin 0;
+    display: inherit;
+    font-size: $font-size--1;
+    flex: 1;
+    font-family: $font-code;
+  }
+  .row-boxed {
+    background-color: $color-background-alt;
+    min-height: 160px;
+    margin-bottom: $element-margin;
+    .boxed {
+      margin: 0;
+      background-color: $color-white;
+      border:1px solid $color-background-alt;
+    }
+  }
+
+  // Code Block
+  pre {
+    position: relative;
+    margin: $element-margin 0 !important;
+    font-size: 0.9em !important;
+
+    label {
+      font-size: $font-size--1;
+      top: 0;
+      right: 0;
+      position: absolute;
+      float: right;
+      display: block;
+      background-color: $color-secondary;
+      color: #fff;
+      padding: .4em .6em;
+    }
+  }
+  code[class*="language-"], pre[class*="language-"] {
+    background: $color-background-alt;
+    border: 0;
+  }
+
+  // Hero
+  .hero {
+    background: url('https://images.unsplash.com/photo-1569689862393-287eaaa677c6?q=100&fm=jpg&w=1080&fit=max&?ixid=123123123');
+    background-position: center;
+    background-size: cover;
+    padding: 100px 0;
+    text-align: center;
+    color: $color-white;
+    a {
+      color: $color-white;
+    }
+  }
+
+  // Navbar
+  #navbar-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    min-height: 55px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.8);
+
+    .container {
+      padding: 0;
+      overflow-y: scroll; // TODO: What is a more permanent fix for an overflowing navbar?
+    }
+
+    a.active {
+      background-color: tint($color-secondary, 95%);
+      color: $color-white;
+    }
+  }
+
+  #navbar-menu {
+    justify-content: center;
+    min-height: 55px;
+  }
+
+  .navbar-start {
+    margin-right: 0; // centers element
+  }
+
+  body {
+    padding-top: 55px; // Offset for Navbar
+  }
+
+  // Used for badges
+  .label.light {
+    @include create_label($color-background-alt);
+    font-weight: normal;
+  }
+
+// Copy to Clipboard
+div.code-toolbar {
+  & > .toolbar {
+    top: auto;
+    bottom: 0.5em;
+    right: 0.5em;
+    button {
+      margin: 0;
+      box-shadow: none;
+      padding: .5em;
+      text-transform: uppercase;
+      font-weight: bold;
+      @extend .button.tertiary;
+    }
+  }
+
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  EXAMPLES
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+  // smooth() mixin
+  .smooth- {
+    &transform {
+      @include smooth(transform);
+
+      &:hover,
+      &:focus {
+        transform: scale(1.1);
+      }
+    }
+
+    &background {
+      @include smooth(background);
+
+      &:hover,
+      &:focus {
+        background-color: $color-background-alt;
+      }
+    }
+
+    &wild {
+      @include smooth(color, transform, background);
+
+      &:hover,
+      &:focus {
+        transform: scale(1.1);
+        background-color: $color-secondary;
+        color: $color-white;
+        transform: matrix(1.08, .05, .01, 1.1, 1, 4);
+      }
+    }
+  }
+
+  // Buttons
+  button.hotpink {
+    @include create_button(hotpink);
+  }
+  button.gold {
+    @include create_button(gold, brown, 20% );
+  }
+  button.white {
+    @include create_button(#fff, gray);
+  }
+
+  // Labels
+  .label.hotpink {
+    @include create_label(hotpink);
+  }
+  .label.gold {
+    @include create_label(gold);
+  }
+  .label.white {
+    @include create_label(white);
+  }
+
+  // Callouts
+  .callout.hotpink {
+    @include create_callout(hotpink);
+  }
+  .callout.gold {
+    @include create_callout(gold);
+  }
+
+  // Tints and Shades
+  $tintshade: #aa0000;
+  .tintshade {
+    height: 100px;
+    width: calc(100%/6);
+    font-size: 0.9em;
+    border-bottom: 0;
+    vertical-align: middle;
+    text-align: center;
+    background-color: $tintshade;
+    &.tint-100 {
+      background-color: tint($tintshade, 100%)
+    }
+    &.tint-80 {
+      background-color: tint($tintshade, 80%)
+    }
+    &.tint-60 {
+      background-color: tint($tintshade, 60%)
+    }
+    &.tint-40 {
+      background-color: tint($tintshade, 40%)
+    }
+    &.tint-20 {
+      background-color: tint($tintshade, 20%)
+    }
+    &.tint-0 {
+      background-color: tint($tintshade, 0%)
+    }
+    &.lighten-100 {
+      background-color: lighten($tintshade, 100%)
+    }
+    &.lighten-80 {
+      background-color: lighten($tintshade, 80%)
+    }
+    &.lighten-60 {
+      background-color: lighten($tintshade, 60%)
+    }
+    &.lighten-40 {
+      background-color: lighten($tintshade, 40%)
+    }
+    &.lighten-20 {
+      background-color: lighten($tintshade, 20%)
+    }
+    &.lighten-0 {
+      background-color: lighten($tintshade, 0%)
+    }
+    &[class*=" shade"], &[class*=" darken"] {
+      color: #fff;
+    }
+    &.shade-100 {
+      background-color: shade($tintshade, 100%)
+    }
+    &.shade-80 {
+      background-color: shade($tintshade, 80%)
+    }
+    &.shade-60 {
+      background-color: shade($tintshade, 60%)
+    }
+    &.shade-40 {
+      background-color: shade($tintshade, 40%)
+    }
+    &.shade-20 {
+      background-color: shade($tintshade, 20%)
+    }
+    &.shade-0 {
+      background-color: shade($tintshade, 0%)
+    }
+    &.darken-100 {
+      background-color: darken($tintshade, 100%)
+    }
+    &.darken-80 {
+      background-color: darken($tintshade, 80%)
+    }
+    &.darken-60 {
+      background-color: darken($tintshade, 60%)
+    }
+    &.darken-40 {
+      background-color: darken($tintshade, 40%)
+    }
+    &.darken-20 {
+      background-color: darken($tintshade, 20%)
+    }
+    &.darken-0 {
+      background-color: darken($tintshade, 0%)
+    }
+  }
+
+  // Simulated Heading Styling
+  .h-em-2 {
+    font-size: 2em;
+  }
+  .h-tomato {
+    color: tomato;
+  }
+  .h-ul {
+    text-decoration: underline;
+  }
+}

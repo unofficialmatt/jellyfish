@@ -1,0 +1,23 @@
+// Table expands to full width of container
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+td {
+    border-bottom: $borders;
+}
+th {
+    font-weight: bold;
+}
+th,
+td {
+    text-align: left;
+    padding: .5em .8em;
+}
+thead th {
+  border-bottom: $border-width*2 solid $border-color;
+}
+tfoot th {
+  border-top: $border-width*2 solid $border-color;
+}

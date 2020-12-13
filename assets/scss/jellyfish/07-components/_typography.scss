@@ -1,0 +1,15 @@
+.standfirst {
+  font-size: $font-size-1;
+}
+
+.small {
+  @extend small;
+}
+
+.bold {
+  @extend strong;
+}
+
+.italic {
+  @extend em;
+}

@@ -1,0 +1,23 @@
+//$color-text: #333333;
+//$color-text-light: #7e7f7f;
+$color-white: #fff;
+//$color-background: $color-white;
+//$color-background-alt: #efefef;
+//$color-primary: #001496;
+//$color-secondary: #a62579;
+//$color-tertiary: #8e1b1f;
+
+//$color-success: #53cc3e;
+//$color-warning: #fc7f14;
+//$color-error: #f7033c;
+
+//$color-headings-preferred: $color-primary; // TODO: Documentation
+
+// THEME COLORS
+// Any variable you add here will have the following classes automatically created: .text-*, .bg-*, .label.*, .button.* and .callout.*
+$theme-colors: (
+  // Eg.
+  // "tomato": tomato,
+  // "black": #000,
+  // "white": #fff
+);

@@ -1,0 +1,59 @@
+.hide {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+.hide-above-nav {
+  @include above($nav-expands) {
+    display: none !important;
+  }
+}
+
+.hide-below-nav {
+  @include below($nav-expands) {
+    display: none !important;
+  }
+}
+
+$loop_count: 1;
+
+@each $point,
+$i in $breakpoints {
+
+  // If we're not on the first loop through, set up classes that only affect this breakpoint size
+  @if $loop_count !=1 {
+    @include between($last, $point) {
+      .hide-#{$last} {
+        display: none !important;
+      }
+    }
+  }
+
+  // Apply .hide class for the last item in the map
+  @if $loop_count==length($breakpoints) {
+    .hide-#{$point} {
+      display: none !important;
+    }
+  }
+
+  .hide-below {
+    &-#{$point} {
+      @include below($point) {
+        display: none !important;
+      }
+    }
+  }
+
+  .hide-above {
+    &-#{$point} {
+      @include above($point) {
+        display: none !important;
+      }
+    }
+  }
+  $last: $point; // Store the current point to be used on the next loop
+  $loop_count: $loop_count+1; // Increment loop count
+}

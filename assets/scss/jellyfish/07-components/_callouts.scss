@@ -1,0 +1,12 @@
+.callout {
+  border: $borders;
+  @extend %mb;
+  padding: $element-padding;
+  border-radius: $callout-border-radius;
+  a.callout-link {
+    font-weight: bold;
+  }
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}

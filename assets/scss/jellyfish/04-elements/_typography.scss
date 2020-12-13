@@ -1,0 +1,139 @@
+// Headings
+
+#{headings()} {
+    font-family: $font-headings;
+    margin: 0 0 $element-margin 0;
+    line-height: 1.2;
+    &:not(:first-child) {
+      margin-top: $element-margin;
+      // TODO: Change this to instead add top margin by default and remove if .col + $heading
+    }
+}
+
+h1 {
+    font-size: $font-size-h1;
+}
+
+h2 {
+    font-size: $font-size-h2;
+}
+
+h3 {
+    font-size: $font-size-h3;
+}
+
+h4 {
+    font-size: $font-size-h4;
+}
+
+h5 {
+    font-size: $font-size-h5;
+}
+
+h6 {
+    font-size: $font-size-h6;
+}
+
+/* TEXT TRANSFORM */
+
+small {
+  display: block;
+}
+small {
+    font-size: $font-size--1;
+}
+strong, b {
+  font-weight: $weight-bold;
+}
+em, i {
+  font-style: italic;
+}
+
+// Highlighted
+mark {
+    background: yellow;
+    padding: .15em .3em;
+    display: inline-block;
+}
+
+// Inserted text
+ins {
+    text-decoration: underline;
+}
+
+// Deleted text
+del {
+    text-decoration: line-through;
+}
+
+// Computer Output
+samp {
+    @extend %code;
+}
+
+// Abbreviation
+abbr {
+    border-bottom: $border-width dotted $color-text;
+    cursor: help;
+}
+
+// Definition
+dfn {
+    font-style: italic;
+}
+
+// Citation
+cite {
+    font-style: italic;
+}
+
+// Inline Quote
+q {
+    font-style: italic;
+    &::before, &::after {
+        content:'"';
+    }
+}
+
+%inline-code {
+    @extend %code;
+    font-size: $font-size--1;
+    line-height: 1;
+    border-radius: $border-radius;
+    padding: .3em .35em;
+}
+
+// Keyboard Input
+kbd {
+    @extend %inline-code;
+    background-color: $color-text;
+    color: $color-white;
+}
+
+// Code
+:not(pre)>code {
+    @extend %inline-code;
+    background-color: $color-background-alt;
+}
+
+// Variable
+var {
+    @extend %inline-code;
+    background-color: $color-background-alt;
+    font-style: italic;
+    color: $color-secondary;
+}
+
+// Subscript and Superscript
+sub, sup {
+    font-size: $font-size--2;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+sub {
+    bottom: -0.25em;
+}
+sup {
+    top: -.75em;
+}

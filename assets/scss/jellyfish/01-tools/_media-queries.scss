@@ -1,0 +1,56 @@
+// Media queries check the breakpoint map to see if a given string exists, else they convert a given pixel value to em.
+@mixin above($min) {
+  $bp-min: $min;
+  @if map-has-key($breakpoints, $min) {
+      $bp-min: map-deep-get($breakpoints, $min, 'breakpoint');
+  }
+  @else if (str-index(#{$min}, 'px')) {
+    // Do nothing, move to next step
+  }
+  @else {
+   @error "The specified breakpoint `#{$min}` does not exist in the breakpoint map. Compile stopping.";
+  }
+  @media (min-width: em($bp-min)) {
+      @content;
+  }
+}
+@mixin between($min, $max) {
+  $bp-min: $min;
+  @if map-has-key($breakpoints, $min) {
+      $bp-min: map-deep-get($breakpoints, $min, 'breakpoint');
+  }
+  @else if (str-index(#{$min}, 'px')) {
+    // Do nothing, move to next step
+  }
+  @else {
+   @error "The specified breakpoint `#{$min}` does not exist in the breakpoint map. Compile stopping.";
+  }
+  $bp-max: $max;
+  @if map-has-key($breakpoints, $max) {
+      $bp-max: map-deep-get($breakpoints, $max, 'breakpoint');
+  }
+  @else if (str-index(#{$max}, 'px')) {
+    // Do nothing, move to next step
+  }
+  @else {
+   @error "The specified breakpoint `#{$max}` does not exist in the breakpoint map. Compile stopping.";
+  }
+  @media (min-width: em($bp-min)) and (max-width: em($bp-max - 1px)) {
+      @content;
+  }
+}
+@mixin below($max) {
+  $bp-max: $max;
+  @if map-has-key($breakpoints, $max) {
+      $bp-max: map-deep-get($breakpoints, $max, 'breakpoint');
+  }
+  @else if (str-index(#{$max}, 'px')) {
+    // Do nothing, move to next step
+  }
+  @else {
+   @error "The specified breakpoint `#{$max}` does not exist in the breakpoint map. Compile stopping.";
+  }
+  @media (max-width: em($bp-max - 1px)) {
+      @content;
+  }
+}

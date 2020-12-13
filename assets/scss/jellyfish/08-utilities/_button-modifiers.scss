@@ -1,0 +1,34 @@
+[type=reset], .button.outline, a.button.outline, .button.ghost, a.button.ghost {
+  // Outline and ghost buttons have a transparent fill
+  background-color: transparent !important;
+  color: $color-primary;
+  &:hover, &:focus {
+    background-color: transparent !important;
+    color: call(get-function($ui-hover-function), $color-primary, $ui-hover-function-amount );
+  }
+}
+
+.button, a.button {
+    &.ghost {
+        border-color: transparent !important;
+        &:hover, &:focus {
+          border-color: transparent !important;
+        }
+    }
+    &.expanded {
+        display: block;
+        width: 100%;
+    }
+    &.large {
+        font-size: 1.1rem;
+    }
+    &.small {
+        font-size: 0.8rem;
+    }
+    @each $name, $color in $theme-colors {
+      // Loop through $theme-colors map and create buttons for each key
+      &.#{$name} {
+        @include create_button($color);
+      }
+    }
+}

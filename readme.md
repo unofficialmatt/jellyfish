@@ -73,3 +73,6 @@ Please feel free to fork, comment, critique, or submit a pull request.
 ## License
 
 This project is open source and available under the [MIT License](LICENSE.md).
+
+
+#### TODO: Docs need rewriting to account for new ITCSS structure

@@ -1,0 +1,32 @@
+// ANCHOR LINKS
+$link-color: $color-primary !default;
+$link-active: $color-secondary !default;
+$link-visited: $color-tertiary !default;
+
+// BORDERS
+$border-width: 1px !default;
+$border-style: solid !default;
+$border-color: tint($color-text-light, 40%) !default;
+$border-radius: 4px !default;
+$borders: $border-width $border-style $border-color !default;
+
+// TABLES
+$table-stripe-color: $color-background-alt !default;
+$table-hover-background: $color-text-light !default;
+$table-hover-color: $color-white !default;
+
+// FORMS
+$form-items: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]'); // Stack of elements to target
+$input-background: $color-white !default;
+$placeholder-color: $color-text-light !default;
+$form-text-size: 1rem !default;
+$form-border-hover: shade($border-color, 60%) !default;
+$form-font: $font-primary !default;
+
+// USER INTERFACE
+$ui-hover-function: shade !default; // Choose tint or shade
+$ui-hover-function-amount: 80% !default;
+$ui-focus-highlight-amount: 40% !default;
+
+// GLOBAL TRANSITION USED IN SMOOTH()
+$global-transition: 0.2s ease !default;

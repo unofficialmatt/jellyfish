@@ -1,0 +1,15 @@
+
+.label.outline {
+  border-style: $label-outline-border-style;
+  background-color: transparent !important;
+}
+
+.label {
+  @each $name,
+  $color in $theme-colors {
+    // Loop through $theme-colors map and create labels for each key
+    &.#{$name} {
+      @include create_label($color);
+    }
+  }
+}

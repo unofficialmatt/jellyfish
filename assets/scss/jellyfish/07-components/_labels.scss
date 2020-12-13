@@ -1,0 +1,48 @@
+.label {
+  padding: .35em .5em;
+  display: inline-flex;
+
+  font: {
+    size: 0.85em;
+    weight: $label-font-weight;
+  }
+
+  margin-left: 1rem;
+  line-height: 1;
+  position: relative;
+  top: -.2em;
+
+  border: {
+    radius: $label-border-radius;
+    width: 1px;
+    style: solid;
+  }
+
+  h1 &,h2 &,h3 &,h4 &,h5 &,h6 &, p & {
+      font-size: 0.6em;
+  }
+
+  @include create_label($color-primary); // TODO: Check this isn't doing a whole load, like the button one was
+
+  .label {
+    // Nested Label
+    margin-left: .5em;
+  }
+
+}
+
+.label-group {
+  display: inline-flex;
+  margin: h($element-margin) .5rem $element-margin 0;
+  .label {
+    margin-left: 0;
+  }
+  .label:not(:last-of-type) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .label:not(:first-of-type) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

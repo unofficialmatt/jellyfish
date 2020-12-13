@@ -1,0 +1,43 @@
+%embedded-content {
+  float:none !important;
+  margin: $element-margin auto;
+  display: block;
+}
+
+img {
+  &.align-left {
+      @extend %embedded-content;
+  }
+  &.align-right {
+      @extend %embedded-content;
+  }
+  &.align-none {
+      @extend %embedded-content;
+  }
+  &.align-center {
+      @extend %embedded-content;
+  }
+  $is_first: 1; // Variable to check if first point in breakpoint
+  @each $point,
+  $i in $breakpoints {
+    @include above($point) {
+      @if $is_first == 1 {
+        &.align-left {
+          margin: 0 $element-margin $element-margin 0;
+          float: left !important;
+        }
+        &.align-right {
+          margin: 0 0 $element-margin $element-margin;
+          float: right !important;
+        }
+        &.align-none {
+            margin: 0 0 $element-margin 0;
+        }
+        &.align-center {
+            margin: 0 auto $element-margin auto;
+        }
+      }
+    }
+    $is_first: 0; // Reset to zero
+  }
+}
