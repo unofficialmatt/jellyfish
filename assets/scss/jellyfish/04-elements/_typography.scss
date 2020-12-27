@@ -11,27 +11,93 @@
 }
 
 h1 {
-    font-size: $font-size-h1;
+  @each $point, $size in $font-sizes-h1 {
+    @if $point == 'root' {
+      // Root font size at smallest device width
+      font-size: $size;
+    }
+    @else {
+      // Otherwise use the breakpoint map to set the font size
+      @include above($point) {
+        font-size: $size;
+      }
+    }
+  }
 }
 
 h2 {
-    font-size: $font-size-h2;
+    @each $point, $size in $font-sizes-h2 {
+    @if $point == 'root' {
+      // Root font size at smallest device width
+      font-size: $size;
+    }
+    @else {
+      // Otherwise use the breakpoint map to set the font size
+      @include above($point) {
+        font-size: $size;
+      }
+    }
+  }
 }
 
 h3 {
-    font-size: $font-size-h3;
+    @each $point, $size in $font-sizes-h3 {
+    @if $point == 'root' {
+      // Root font size at smallest device width
+      font-size: $size;
+    }
+    @else {
+      // Otherwise use the breakpoint map to set the font size
+      @include above($point) {
+        font-size: $size;
+      }
+    }
+  }
 }
 
 h4 {
-    font-size: $font-size-h4;
+    @each $point, $size in $font-sizes-h4 {
+    @if $point == 'root' {
+      // Root font size at smallest device width
+      font-size: $size;
+    }
+    @else {
+      // Otherwise use the breakpoint map to set the font size
+      @include above($point) {
+        font-size: $size;
+      }
+    }
+  }
 }
 
 h5 {
-    font-size: $font-size-h5;
+    @each $point, $size in $font-sizes-h5 {
+    @if $point == 'root' {
+      // Root font size at smallest device width
+      font-size: $size;
+    }
+    @else {
+      // Otherwise use the breakpoint map to set the font size
+      @include above($point) {
+        font-size: $size;
+      }
+    }
+  }
 }
 
 h6 {
-    font-size: $font-size-h6;
+    @each $point, $size in $font-sizes-h6 {
+    @if $point == 'root' {
+      // Root font size at smallest device width
+      font-size: $size;
+    }
+    @else {
+      // Otherwise use the breakpoint map to set the font size
+      @include above($point) {
+        font-size: $size;
+      }
+    }
+  }
 }
 
 /* TEXT TRANSFORM */

@@ -18,14 +18,44 @@
 //$font-size-5: 2.5em;
 //$font-size-6: 3em;
 
-//$font-size-h1: $font-size-6;
-//$font-size-h2: $font-size-5;
-//$font-size-h3: $font-size-4;
-//$font-size-h4: $font-size-3;
-//$font-size-h5: $font-size-2;
-//$font-size-h6: $font-size-1;
+// TODO: Need documenting
+$font-sizes-h1: (
+  "root": 2em,
+  "sm": 3em,
+  "lg": 4em
+);
+$font-sizes-h2: (
+  "root": 1.8em,
+  "sm": 2em,
+  "lg": 2.4em
+);
+$font-sizes-h3: (
+  "root": 1.6em,
+  "sm": 2em,
+);
+$font-sizes-h4: (
+  "root": 1.4em,
+  "sm": 1.6em,
+);
+$font-sizes-h5: (
+  "root": 1.2em,
+  "sm": 1.4em,
+);
+$font-sizes-h6: (
+  "root": 1em,
+  "sm": 1.2em,
+);
 
-// TODO: Documentation
-//$weight-light: lighter;
-//$weight-normal: normal;
-//$weight-bold: bold;
+// TODO: Need documenting and do all - like 100,200,300,400,500,600,700,800 etc
+// TODO: Max Line Length for paragraphs- how to do this?
+
+
+// $weight-hairline: 100;
+// $weight-thin:     200;
+// $weight-light:    300;
+// $weight-normal:   400;
+// $weight-medium:   500;
+// $weight-semibold: 600;
+// $weight-bold:     700;
+// $weight-xbold:    800;
+// $weight-black:    900;
