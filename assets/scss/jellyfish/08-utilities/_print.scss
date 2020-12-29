@@ -7,7 +7,7 @@ iframe, .navbar {
 }
 @media print {
   a {
-    color: $color-primary !important;
+    color: get-color(primary) !important;
     text-decoration: underline;
     ::after {
       // Display URL after links on print
@@ -24,7 +24,7 @@ iframe, .navbar {
     font-family: Arial;
   }
   #{headings()} {
-    font-weight: bold;
+    font-weight: $weight-bold;
     margin-bottom: .2em;
   }
   h1 {
@@ -38,7 +38,7 @@ iframe, .navbar {
   }
   #{$buttons} {
     border: 1px solid black  !important;
-    background-color: $color-white  !important;
+    background-color: get-color(neutral,000)  !important;
     color: black  !important;
     display: inline-block !important;
     width: auto !important;

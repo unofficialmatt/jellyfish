@@ -1,32 +1,32 @@
 // ANCHOR LINKS
-$link-color: $color-primary !default;
-$link-active: $color-secondary !default;
-$link-visited: $color-tertiary !default;
+$link-color: get-color(primary) !default;
+$link-active: get-color(primary,400) !default;
+$link-visited: get-color(primary,700) !default;
 
 // BORDERS
 $border-width: 1px !default;
 $border-style: solid !default;
-$border-color: tint($color-text-light, 40%) !default;
+$border-color: get-color(neutral,300) !default;
 $border-radius: 4px !default;
 $borders: $border-width $border-style $border-color !default;
 
 // TABLES
-$table-stripe-color: $color-background-alt !default;
-$table-hover-background: $color-text-light !default;
-$table-hover-color: $color-white !default;
+$table-stripe-color: get-color(neutral,100) !default;
+$table-hover-background: get-color(neutral,500) !default;
+$table-hover-color: get-color(neutral,000) !default;
 
 // FORMS
 $form-items: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]'); // Stack of elements to target
-$input-background: $color-white !default;
-$placeholder-color: $color-text-light !default;
+$input-background: get-color(neutral, 000) !default;
+$placeholder-color: get-color(neutral, 500) !default;
 $form-text-size: 1rem !default;
-$form-border-hover: shade($border-color, 60%) !default;
+$form-border-hover: get-color(neutral) !default;
 $form-font: $font-primary !default;
-
-// USER INTERFACE
-$ui-hover-function: shade !default; // Choose tint or shade
-$ui-hover-function-amount: 80% !default;
-$ui-focus-highlight-amount: 40% !default;
+$form-focus-border-color: get-color(neutral, 500) !default;
+$form-focus-shadow-inner: inset 1px 2px 1px 0px get-color(neutral, 200) !default;
+$form-focus-shadow-inner: 0px !default;
+$form-focus-shadow-outer: inset -1px -2px 1px 0px get-color(primary, 100) !default;
+$form-fieldset-border: $border-width $border-style get-color(neutral,200) !default;
 
 // GLOBAL TRANSITION USED IN SMOOTH()
 $global-transition: 0.2s ease !default;

@@ -2,6 +2,7 @@
 .label.outline {
   border-style: $label-outline-border-style;
   background-color: transparent !important;
+  color: inherit !important;
 }
 
 .label {

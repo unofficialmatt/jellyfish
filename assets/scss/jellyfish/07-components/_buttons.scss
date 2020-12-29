@@ -30,26 +30,21 @@
     }
     &:focus {
         outline: 0;
-        box-shadow: 0px 0px 1px 3px call(get-function($ui-hover-function), $color-primary, $ui-focus-highlight-amount );
     }
     &:disabled {
       cursor: not-allowed;
+      // TODO: Replace with :disabled versions using rgba() inside create_button?
       background-color: $button-disabled-background;
       border-color: $button-disabled-background;
+      color: choose-contrast-color($button-disabled-background, $button-text-color-light, $button-text-color-dark);
       &:hover, &:focus {
         background-color: $button-disabled-background;
         border-color: $button-disabled-background;
+        color: choose-contrast-color($button-disabled-background, $button-text-color-light, $button-text-color-dark);
       }
     }
     // Default Styles
-    background-color: $color-primary;
-    border-color: $color-primary;
-    color: choose-contrast-color($color-primary,$button-text-color-light,$button-text-color-dark);
-    &:hover, &:focus {
-      background-color: call(get-function($ui-hover-function), $color-primary, $ui-hover-function-amount );
-      border-color: call(get-function($ui-hover-function), $color-primary, $ui-hover-function-amount );
-      color: choose-contrast-color($color-primary,$button-text-color-light,$button-text-color-dark);
-    }
+    @include create_button('primary');
 }
 
 .button-group {
@@ -65,7 +60,7 @@
     justify-content: center;
     max-width: $button-group-max-width;
   }
-  @extend %mb;
+  margin-bottom: $element-margin;
   @if $button-group-margin == 'tight' {
     .button, a.button {
       margin-left: n($button-border-width);

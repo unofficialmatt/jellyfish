@@ -20,8 +20,8 @@
 }
 
 %forms-focus {
-    border-color: $color-primary;
-    box-shadow: inset 0 2px 2px rgba(0, 0, 0, .1), 0 0 1px 3px call(get-function($ui-hover-function), $color-primary, $ui-focus-highlight-amount );
+    border-color: $form-focus-border-color;
+    box-shadow: $form-focus-shadow-inner, $form-focus-shadow-outer;
 }
 
 // Forms stack defined in _settings.scss
@@ -62,7 +62,7 @@ input[type=checkbox], input[type=radio] {
 
 // Field Sets
 fieldset {
-    border: $borders;
+    border: $form-fieldset-border;
     border-radius: $border-radius;
     padding: $element-padding;
     margin: $element-margin 0;
@@ -70,7 +70,7 @@ fieldset {
 legend {
     padding: 0 10px;
     margin-left: -10px;
-    font-weight: bold;
+    font-weight: $weight-bold;
 }
 
 // Make range full width
@@ -83,7 +83,7 @@ select {
   color: $color-text;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: $input-background url("data:image/svg+xml;charset=utf-8,%3Csvg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='#999999' d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/%3E%3C/svg%3E") right 10px center no-repeat;
+  background: $input-background url("data:image/svg+xml;charset=utf-8,%3Csvg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='#{$placeholder-color}' d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/%3E%3C/svg%3E") right 10px center no-repeat;
   background-size: .75rem;
   line-height: 1.4; // ensures text doesn't get cut off
 }
@@ -109,7 +109,9 @@ vertical-align: middle;
 }
 
 // TODO: Add styling for range slider @link https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+// TODO: etter styling of radio and checkboxes
 // TODO: add a field-group container
 // TODO: Add input groups and input addons https://www.shoelace.style/docs/forms.html
 // TODO: Add validation?
 // TODO: Add Input Group https://getbootstrap.com/docs/4.0/components/input-group/
+

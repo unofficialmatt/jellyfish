@@ -105,8 +105,7 @@
             ├── scss/
             │   ├── jellyfish/         :  contains all of the Jellyfish scss files. It is not recommended to edit any of the files within this directory
             │   ├── project/           :  add your project specific scss files here
-            │   ├── project/_all.scss  :  this file is automatically populated by Grunt to include all other scss files in the project directory
-            │   ├── _settings.scss     :  the settings file (variables and options) for overriding Jellyfish defaults
+            │   ├── compile.scss       :  compiles the scss files for processing into /dist/css
             dist/                      :  contains the final css, images and javascript files within sub-directories. The files in this directory are all created by Grunt
             docs/                      :  contains files only used by this documentation. Can be safely removed
             .editorconfig              :  keeps code indented to 2 spaces. Feel free to edit to your tastes
@@ -118,6 +117,18 @@
             package.json               :  npm package information to initialise node_modules
               --></code>
             </pre>
+          </article>
+          <article>
+            <h3>SCSS coding standards</h3>
+            <p>Jellyfish is designed to follow the <a href="https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/" target="_blank" rel="nofollow">ITCSS triangle</a> structure with partials organised in specificity order.</p>
+            <p>Jellyfish has one minor change from the normal ITCSS structure, in that Tools and Settings are flipped - so that functions can be used as variables (eg. tint/shade). Otherwise, it is strongly advised to conform to the principles of ITCSS in order to make code more maintainable and to minimise issues with the cascade.</p>
+            <p>For more information, read the <span class="file-ref">README.md</span> files inside the SCSS directories, or visit the following links:</p>
+            <ul>
+              <li><a href="https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/" rel="nofollow" target="_blank">ITCSS: Scalable and Maintainable CSS Architecture</a></li>
+              <li><a href="https://www.freecodecamp.org/news/managing-large-s-css-projects-using-the-inverted-triangle-architecture-3c03e4b1e6df/" rel="nofollow" target="_blank">The Inverted Triangle Architecture: how to manage large CSS Projects</a></li>
+              <li><a href="https://medium.com/@jordankoschei/how-i-shrank-my-css-by-84kb-by-refactoring-with-itcss-2e8dafee123a" rel="nofollow" target="_blank">How I Shrank my CSS by 84kb by Refactoring with ITCSS</a></li>
+              <li><a href="https://www.getchisel.co/docs/development/itcss/" rel="nofollow" target="_blank">Chisel: Guide to ITCSS</a></li>
+            </ul>
           </article>
           <article>
             <h3>Grunt Tasks</h3>
@@ -257,7 +268,7 @@
           </article>
           <article>
             <h3>Columns</h3>
-              <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+              <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable in <span class="file-ref">/assets/scss/project/02-settings/00-grid.scss</span>.</p>
 
               <p>Columns are equal-width by default, and expand to fill all available width.</p>
               <pre class="language-markup"><code><!--
@@ -416,7 +427,7 @@
             </article>
             <article>
               <h3>Offsetting Columns</h3>
-              <p>Columns can be offset by using the <span class="css-ref">.offset-$breakpoint-$cols</span> modifiers. Offsets are inherited, and can be reset by using the class <span class="css-ref">.offset-$breakpoint-0</span>. When you offset a columm, all elements that follow are moved along.</p>
+              <p>Columns can be offset by using the <span class="css-ref">.offset-$breakpoint-$cols</span> modifiers. Offsets are inherited, and can be reset by using the class <span class="css-ref">.offset-$breakpoint-0</span>. When you offset a column, all elements that follow are moved along.</p>
               <pre class="language-markup"><code><!--
                 <div class="row">
                   <div class="col sm-3">sm-3</div>
@@ -452,7 +463,7 @@
                 <div class="col sm-3"><div class="boxed">sm-3</div></div>
                 <div class="col sm-6 offset-sm-3 offset-md-2"><div class="boxed">sm-6 offset-sm-3 offset-md-2</div></div>
               </div>
-              <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_offset</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+              <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_offset</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/project/02-settings/00-grid.scss</span>.</p>
             </article>
             <article>
               <h3>Reordering Columns</h3>
@@ -480,7 +491,7 @@
                 <div class="col order-md-2"><div class="boxed">order-md-2</div></div>
                 <div class="col order-md-1"><div class="boxed">order-md-1</div></div>
               </div>
-              <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_ordering</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
+              <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_ordering</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/project/02-settings/00-grid.scss</span>.</p>
             </article>
             <article>
               <h3>Hiding Columns</h3>
@@ -550,23 +561,7 @@
           </article>
           <article>
             <h3>Variables</h3>
-            <p>Grid settings are defined in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-            <pre class="language-scss">
-              <code>
-              /* GRID */
-              $cols: 12;
-              $has_ordering: true;
-              $has_offset: true;
-              $debug-mode-on: false;
-
-              /* JELLYFISH DEFAULTS */
-              // Base Variables (used before breakpoints are applied)
-              $base-col-name: xs;
-              $base-container-gutter: 30px; // define in px
-              $base-col-gutter: 20px; // define in px
-              </code>
-              <label>_settings.scss</label>
-            </pre>
+            <p>Grid settings are defined in <span class="file-ref">/assets/scss/project/02-settings/00-grid.scss</span>.</p>
           </article>
         </section><!-- #grid -->
         <section class="docs-section" id="navbar">
@@ -586,6 +581,7 @@
             </span>
           </h2>
           <article>
+          <!-- TODO: This may need re-writing based on new nav stylesheets -->
           <p class="standfirst">Jellyfish comes with a responsive and versatile horizontal navigation bar, <span class="css-ref">.navbar</span>, that has the following structure:</p>
           <ul>
             <li><strong>.navbar</strong> - the main navbar wrapper
@@ -634,8 +630,8 @@
                 <div class="container">
                   <div class="navbar-brand">
                     <a class="img-link navbar-item" href="#"><img src="https://www.unsplash.it/60/40" alt="Site Logo"></a>
-                    <a href="#" class="hide-above-nav navbar-item">Mobile Link</a>
-                    <a href="#" class="hide-above-nav navbar-item">Mobile Link</a>
+                    <span class="navbar-item"><a href="#" class="hide-above-nav">Mobile Link</a></span>
+                    <span class="navbar-item"><a href="#" class="hide-above-nav">Mobile Link</a></span>
                     <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
                       <span class="hamburger-label">Menu</span>
                       <span class="hamburger-box">
@@ -681,8 +677,8 @@
             <div class="container">
               <div class="navbar-brand">
                 <a class="img-link navbar-item" href="#"><img src="https://www.unsplash.it/60/40" alt="Site Logo"></a>
-                <a href="#" class="hide-above-nav navbar-item">Mobile Link</a>
-                <a href="#" class="hide-above-nav navbar-item">Mobile Link</a>
+                <span class="navbar-item"><a href="#" class="hide-above-nav">Mobile Link</a></span>
+                <span class="navbar-item"><a href="#" class="hide-above-nav">Mobile Link</a></span>
                 <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
                   <span class="hamburger-label">Menu</span>
                   <span class="hamburger-box">
@@ -772,7 +768,8 @@
           </nav>
         </article><article>
           <h3>Variables</h3>
-          <p>Jellyfish's navbar is fully customisable with the variables defined in <span class="file-ref">/assets/scss/_settings.scss</span>. You can control:</p>
+          <p>Jellyfish's navbar is fully customisable with the variables defined in <span class="file-ref">/assets/scss/project/02-settings/04-navbar.scss</span>. You can control:</p>
+          <!-- TODO: Check these are all still relevant -->
           <ul>
             <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <strong>Note:</strong> if you change this value from it's default you also need to change the value in <span class="file-ref">/assets/js/project/scripts.js</span>: <code>var navPoint = '900';</code></li>
             <li>Background color and container padding</li>
@@ -784,70 +781,10 @@
             <li>Submenu text transform and weight</li>
             <li>Submenu min and max width on larger devices</li>
           </ul>
-          <pre class="language-scss">
-            <code>
-              /* NAVBAR */
-            $nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
-            $navbar-bg-color: $color-primary;
-            // Parent Level Links
-            $navbar-font-size: 1em;
-            $navbar-font-family: $font-primary;
-            $navbar-font-weight: bold;
-            $navbar-text-transform: uppercase;
-            $navbar-link-color: $color-white;
-            $navbar-link-bg-color: $navbar-bg-color;
-            $navbar-link-border: 1px solid rgba($color-white,0.1);
-            // Links: Hover
-            $navbar-link-hover-color: $color-white;
-            $navbar-link-hover-bg-color: shade($navbar-bg-color,50%);
-            $navbar-link-hover-weight: $navbar-font-weight;
-            // Child Level Links
-            $navbar-sublink-font-size: 0.9em;
-            $navbar-sublink-font-family: $font-primary;
-            $navbar-sublink-font-weight: $navbar-font-weight;
-            $navbar-sublink-text-transform: $navbar-text-transform;
-            $navbar-sublink-font-weight-hover: $navbar-link-hover-weight;
-            // Links: Padding
-            $navbar-link-padding-x: 10px;
-            $navbar-link-padding-y: 8px;
-            $navbar-link-padding-expanded-x: 10px;
-            $navbar-link-padding-expanded-y: 10px;
-            // THESE SETTINGS APPLY ABOVE $nav-expands ONLY
-            $navbar-sublink-color: $navbar-link-color;
-            $navbar-sublink-bg-color: $navbar-link-bg-color;
-            $navbar-sublink-hover-color: $navbar-link-hover-color;
-            $navbar-sublink-hover-bg-color: $navbar-link-hover-bg-color;
-            $navbar-dropdown-width: 240px;
-            $navbar-start-flex-align: stretch;
-            $navbar-end-flex-align: center;
-            </code>
-            <label>_settings.scss</label>
-          </pre>
           <h4>Hamburger Menu Variables</h4>
           <p>Jellyfish uses the fantastic <a href="https://jonsuh.com/hamburgers/">hamburgers css library</a> by Jonathan Suh. The code is imported from npm through <a href="#how-to-use">Grunt</a>.</p>
           <p>Rather than including all animation options in the output css, Jellyfish has a variable <span class="variable-ref">$primary-hamburger-type</span> which is used to select only your specified hamburger animation for compile.</p>
-          <p>Hamburger settings are all found in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <pre class="language-scss">
-            <code>
-              /* HAMBURGER MENU */
-              $primary-hamburger-type: spin; // Change this to modify animation
-              $hamburger-margin-y: 0px;
-              $hamburger-layer-width: 20px; // Width of the hamburger icon
-              $hamburger-layer-height: 3px; // Thickness of hamburger lines
-              $hamburger-layer-spacing: 4px; // Spacing between hamburger lines
-              $hamburger-layer-border-radius: 3px; // Radius of hamburger lines
-              $hamburger-bg-color: $navbar-bg-color;
-              $hamburger-border: $border-width $border-style $hamburger-bg-color;
-              $hamburger-border-radius: 0px;
-              $hamburger-color: $navbar-link-color; // Color of hamburger and label
-              $hamburger-hover-bg-color: $navbar-link-hover-bg-color;
-              $hamburger-hover-border: $border-width $border-style $hamburger-hover-bg-color;
-              $hamburger-hover-color: $hamburger-color;
-              $hamburger-hover-opacity: 1;
-              $hamburger-position: right; // left or right
-            </code>
-            <label>_settings.scss</label>
-          </pre>
+          <p>Hamburger settings are all found in <span class="file-ref">/assets/scss/project/02-settings/05-hamburgers.scss</span>.</p>
         </article>
         </section><!-- #navbar -->
         <section class="docs-section" id="typography">
@@ -867,8 +804,9 @@
             </span>
           </h2>
           <article>
-          <p class="standfirst">Jellyfish provides default styling for all standard typography tags.</p><p>Global font families, line height and size hierarchy are defined in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <p>For easy spacing, Jellyfish removes the top margins and applies a bottom margin to block elements which can be defined with the <span class="variable-ref">$element-margin</span> in <span class="file-ref">/assets/scss/_settings.scss</span>. Text sizing is set with em, cascading from the root. You can use the <a href="#breakpoint-settings">grid breakpoint settings</a> to alter the root font size and line-height at different breakpoints.</p>
+          <!-- TODO: This will need re-writing -->
+          <p class="standfirst">Jellyfish provides default styling for all standard typography tags.</p><p>Global font families, line height and size hierarchy are defined in <span class="file-ref">/assets/scss/project/02-settings/02-typography.scss</span>.</p>
+          <p>For easy spacing, Jellyfish removes the top margins and applies a bottom margin to block elements which can be defined with the <span class="variable-ref">$element-margin</span> in <span class="file-ref">/assets/scss/project/02-settings/02-typography.scss</span>. Text sizing is set with em, cascading from the root. You can use the <a href="#breakpoint-settings">grid breakpoint settings</a> to alter the root font size and line-height at different breakpoints.</p>
           <p>Jellyfish also sets box-sizing: border-box globally to make it easier to properly size elements.</p>
           </article><article>
           <h3>Headings <code>&lt;h1>-&lt;h6></code></h3>
@@ -1018,42 +956,7 @@ console.log("JellyFish is Awesome!");
               </tr>
             </tbody>
           </table>
-        </article><article>
-            <h3>Variables</h3>
-            <pre>
-              <code class="language-scss">
-                /* Typefaces */
-                $font-primary: YOUR FONT STACK HERE;
-                $font-secondary: YOUR SECONDARY FONT STACK HERE;
-                $font-code: YOUR CODE FONT HERE;
-                $font-body: $font-primary;
-                $font-headings: $font-secondary;
-
-                /* FONT SIZES */
-                $font-size--2: 0.6em;
-                $font-size--1: 0.8em;
-                $font-size-0: 1em;
-                $font-size-1:1.5em;
-                $font-size-2:1.5em;
-                $font-size-3: 1.75em;
-                $font-size-4: 2em;
-                $font-size-5: 2.5em;
-                $font-size-6: 3em;
-
-                $font-size-h1: $font-size-6;
-                $font-size-h2: $font-size-5;
-                $font-size-h3: $font-size-4;
-                $font-size-h4: $font-size-3;
-                $font-size-h5: $font-size-2;
-                $font-size-h6: $font-size-1;
-
-                $root-font-size: 16px;
-                $root-line-height: 1.5;
-
-              </code>
-              <label>_settings.scss</label>
-            </pre>
-          </article>
+        </article>
         </section><!-- #typography -->
         <section class="docs-section" id="content">
           <h2 class="section-heading">
@@ -1095,16 +998,7 @@ console.log("JellyFish is Awesome!");
               <label>_scaffolding.scss</label>
             </pre>
             <h4>Variables</h4>
-            <p>Link colors are defined in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-            <pre class="language-scss">
-              <code>
-              /* LINKS */
-              $link-color: $color-primary;
-              $link-active: $color-secondary;
-              $link-visited: $color-tertiary;
-              </code>
-              <label>_settings.scss</label>
-            </pre>
+            <p>Link colors are defined in <span class="file-ref">/assets/scss/project/02-settings/03-elements.scss</span>.</p>
           </article>
           <article>
             <h3>Horizontal Rules <code>&lt;hr></code></h3>
@@ -1175,18 +1069,16 @@ console.log("JellyFish is Awesome!");
           </article>
           <article>
           <h3>Colors</h3>
-          <p>Use the modifiers <span class="css-ref">.secondary</span>, <span class="css-ref">.tertiary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span> or <span class="css-ref">.error</span> to change the button color.</p>
+          <p>Use the modifiers <span class="css-ref">.secondary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span> or <span class="css-ref">.error</span> to change the button color.</p>
           <pre class="language-markup">
             <code><!--
             <button class="button secondary">Secondary</button>
-            <button class="button tertiary">Tertiary</button>
             <button class="button success">Success</button>
             <button class="button warning">Warning</button>
             <button class="button error">Error</button>
           --></code>
           </pre>
           <button class="button secondary">Secondary</button>
-          <button class="button tertiary">Tertiary</button>
           <button class="button success">Success</button>
           <button class="button warning">Warning</button>
           <button class="button error">Error</button>
@@ -1272,16 +1164,15 @@ console.log("JellyFish is Awesome!");
           <button class="button secondary outline">Secondary Outline</button>
           <button class="button warning outline large">Warning Outline Large</button>
           <button class="button large ghost">Large Ghost</button>
-          <button class="button expanded secondary">Block Secondary</button>
-          <button class="button expanded error outline large">Block Error Outline Large</button>
+          <button class="button expanded secondary">Expanded Secondary</button>
+          <button class="button expanded error outline large">Expanded Error Outline Large</button>
           </article>
           <article>
           <h3>Create-your-own</h3>
           <p>The recommended way to add button colors is with the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map. Alternatively, you can use the <code>create_button()</code> mixin to create your own buttons, in a consistent style, with ease. The mixin takes the following arguments:</p>
             <ul>
-              <li><span class="variable-ref">$button-color</span></li>
-              <li><span class="variable-ref">$hover-color</span> (override the default hover color)</li>
-              <li><span class="variable-ref">$hover-perc-amount</span> (% override to apply to the $ui-hover-function variable)</li>
+              <li><span class="variable-ref">$button-color</span>: The base background color for the button</li>
+              <li><span class="variable-ref">$hover-color</span>: Define a specific background color for :hover state <em>(optional)</em></li>
             </ul>
           <pre class="language-scss">
             <code>
@@ -1289,7 +1180,7 @@ console.log("JellyFish is Awesome!");
                 @include create_button(hotpink);
               }
               .button.gold {
-                @include create_button(gold, brown, 20% );
+                @include create_button(gold, brown);
               }
               .button.white {
                 @include create_button(#fff, gray);
@@ -1308,28 +1199,11 @@ console.log("JellyFish is Awesome!");
           <button class="button hotpink outline">Hotpink Outline</button>
           <button class="button gold">Gold</button>
           <button class="button white">White</button>
-          <p>Button text color is determined by an awesome mixin that compares the contrast of the button background color with the two variables <span class="variable-ref">$button-text-color-light</span> and <span class="variable-ref">$button-text-color-dark</span> and chooses the color with the most contrast.  That is why, in the example above, the Gold and White buttons change text color on hover.</p>
+          <p>Button text color is determined by an awesome mixin that compares the contrast of the button background color with the two variables <span class="variable-ref">$button-text-color-light</span> and <span class="variable-ref">$button-text-color-dark</span> and chooses the color with the most contrast.  That is why, in the example above, the Gold and White and Hotpink buttons change text color on hover.</p>
           </article>
           <article>
           <h3>Variables</h3>
-          <p>Button variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <pre class="language-scss">
-          <code>
-          /* BUTTONS */
-          $button-border-width: 1px;
-          $button-border-radius: 6px;
-          $button-font-family: $font-secondary;
-          $button-padding: 1em 1.5em;
-          $button-text-transform: none;
-          $button-font-weight: bold;
-          $button-text-color-light: $color-white;
-          $button-text-color-dark: $color-text;
-          $button-disabled-background: tint($color-text,40%);
-          $button-group-max-width: 250px;
-          $button-group-margin: $element-margin; // Use 'tight' or a value for right-margin
-          </code>
-          <label>_settings.scss</label>
-          </pre>
+          <p>Button variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_components.scss</span>.</p>
           </article>
         </section><!-- #buttons -->
         <section class="docs-section" id="forms">
@@ -1619,18 +1493,7 @@ console.log("JellyFish is Awesome!");
           </article>
           <article>
           <h3>Variables</h3>
-          <p>Form variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <pre class="language-scss">
-          <code>
-          /* FORMS */
-          $input-background: $color-white;
-          $placeholder-color: $color-text-light;
-          $form-text-size: 1rem;
-          $form-border-hover: shade($border-color, 60%);
-          $form-font: $font-primary;
-          </code>
-          <label>_settings.scss</label>
-          </pre>
+          <p>Form variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/03-elements.scss</span>.</p>
         </article>
         </section><!-- #forms -->
         <section class="docs-section" id="tables">
@@ -1732,6 +1595,7 @@ console.log("JellyFish is Awesome!");
           </table>
         </article><article>
           <h3>Responsive Tables</h3>
+          <!-- TODO: MAKE THESE BETTER - SEE OASIS -->
           <p>Wrap a table in a <span class="css-ref">.table-container</span> to prevent tables with a lot of content from overflowing the grid.</p>
           <pre class="language-markup">
             <code><!--
@@ -1753,21 +1617,7 @@ console.log("JellyFish is Awesome!");
           </div>
         </article><article>
           <h3>Variables</h3>
-          <p>Table settings can be altered in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <pre class="language-scss">
-            <code>
-              /* BORDERS */
-              $border-width: 1px;
-              $border-style: solid;
-              $border-color: tint($color-text-light, 40%);
-
-              /* TABLES */
-              $table-stripe-color: $color-background-alt;
-              $table-hover-background: $color-text-light;
-              $table-hover-color: $color-white;
-          </code>
-          <label>_settings.scss</label>
-          </pre>
+          <p>Table settings can be altered in <span class="file-ref">/assets/scss/project/02-settings/03-elements</span>.</p>
           </article>
         </section><!-- #tables -->
         <div class="docs-section" id="cards">
@@ -1924,7 +1774,7 @@ console.log("JellyFish is Awesome!");
                   <p>This card has just a small amount of text.</p>
                 </div>
                 <footer class="card-section card-footer">
-                  <a href="#" class="button small tertiary">Awesome!</a>
+                  <a href="#" class="button small secondary">Awesome!</a>
                 </footer>
               </div>
             </div>
@@ -1950,7 +1800,7 @@ console.log("JellyFish is Awesome!");
                 <p>This card has just a small amount of text.</p>
               </div>
               <footer class="card-section card-footer">
-                <a href="#" class="button small tertiary">Awesome!</a>
+                <a href="#" class="button small secondary">Awesome!</a>
               </footer>
             </div>
           </div>
@@ -1962,7 +1812,7 @@ console.log("JellyFish is Awesome!");
                 <p>This card has just a a lot of text. I am going to write a few sentences of gibberish so that the height of this card grows. This will force other cards in the same row to expand to 100% height. You'll see the effect on the card border.</p>
               </div>
               <footer class="card-section card-footer">
-                <a href="#" class="button small tertiary">Awesome!</a>
+                <a href="#" class="button small secondary">Awesome!</a>
               </footer>
             </div>
           </div>
@@ -1974,25 +1824,14 @@ console.log("JellyFish is Awesome!");
                 <p>This card has just a small amount of text.</p>
               </div>
               <footer class="card-section card-footer">
-                <a href="#" class="button small tertiary">Awesome!</a>
+                <a href="#" class="button small secondary">Awesome!</a>
               </footer>
             </div>
           </div>
         </div>
       </article><article>
         <h3>Variables</h3>
-          <p>Card variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <pre class="language-scss">
-          <code>
-          /* CARDS */
-          $card-border-radius: 0px;
-          $card-border-style: $border-style;
-          $card-border-color: $border-color;
-          $card-border-width: $border-width;
-          $card-padding: $element-padding;
-          </code>
-          <label>_settings.scss</label>
-          </pre>
+          <p>Card variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_components.scss</span>.</p>
           </article>
         </div><!-- /#card.docs-section -->
         <section class="docs-section" id="labels">
@@ -2021,16 +1860,16 @@ console.log("JellyFish is Awesome!");
           <pre class="language-markup">
             <code><!--
             <h1>Heading 1 <span class="label">Normal</span><span class="label outline">Outline</span></h1>
-            <h2>Heading 2 <span class="label secondary">Secondary</span><span class="label secondary outline">Outline</span></h2>
-            <h3>Heading 3 <span class="label tertiary">Tertiary</span><span class="label tertiary outline">Outline</span></h3>
+            <h2>Heading 2 <span class="label primary">Primary</span><span class="label primary outline">Outline</span></h2>
+            <h3>Heading 3 <span class="label secondary">Secondary</span><span class="label secondary outline">Outline</span></h3>
             <h4>Heading 4 <span class="label success">Success</span><span class="label success outline">Outline</span></h4>
             <h5>Heading 5 <span class="label warning">Warning</span><span class="label warning outline">Outline</span></h5>
             <p>Paragraph <span class="label error">Error</span><span class="label error outline">Outline</span></p>
           --></code>
           </pre>
           <h1>Heading 1 <span class="label">Normal</span><span class="label outline">Outline</span></h1>
-          <h2>Heading 2 <span class="label secondary">Secondary</span><span class="label secondary outline">Outline</span></h2>
-          <h3>Heading 3 <span class="label tertiary">Tertiary</span><span class="label tertiary outline">Outline</span></h3>
+          <h2>Heading 2 <span class="label primary">Primary</span><span class="label primary outline">Outline</span></h2>
+          <h3>Heading 3 <span class="label secondary">Secondary</span><span class="label secondary outline">Outline</span></h3>
           <h4>Heading 4 <span class="label success">Success</span><span class="label success outline">Outline</span></h4>
           <h5>Heading 5 <span class="label warning">Warning</span><span class="label warning outline">Outline</span></h5>
           <p>Paragraph <span class="label error">Error</span><span class="label error outline">Outline</span></p>
@@ -2041,14 +1880,14 @@ console.log("JellyFish is Awesome!");
           <pre class="language-markup">
             <code><!--
             <div class="label-group">
-              <span class="label secondary">Species of Jellyfish found in the UK</span>
-              <span class="label warning">6</span>
+              <span class="label">Species of Jellyfish found in the UK</span>
+              <span class="label success">6</span>
             </div>
           --></code>
           </pre>
           <div class="label-group">
-            <span class="label secondary">Species of Jellyfish found in the UK</span>
-            <span class="label warning">6</span>
+            <span class="label">Species of Jellyfish found in the UK</span>
+            <span class="label success">6</span>
           </div>
         </article>
         <article>
@@ -2082,6 +1921,7 @@ console.log("JellyFish is Awesome!");
         <article>
           <h3>Nesting Labels</h3>
           <p>Labels can be nested...</p>
+          <!-- TODO: This doesn't look so great -->
           <pre class="language-markup">
             <code><!--
             <h3>Heading 3 <span class="label hotpink">Notifications <span class="label white">5</span></span></h3>
@@ -2095,18 +1935,7 @@ console.log("JellyFish is Awesome!");
         </article>
         <article>
           <h3>Variables</h3>
-          <p>Label variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <pre class="language-scss">
-          <code>
-          /* LABELS */
-          $label-font-weight: bold;
-          $label-border-radius: 4px;
-          $label-outline-border-style: dashed
-          $label-text-color-light: $color-white;
-          $label-text-color-dark: $color-text;
-          </code>
-          <label>_settings.scss</label>
-          </pre>
+          <p>Label variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_components.scss</span>.</p>
           </article>
         </section><!-- /#labels.docs-section -->
         <section class="docs-section" id="callouts">
@@ -2145,42 +1974,38 @@ console.log("JellyFish is Awesome!");
           </aside>
         </article><article>
           <h3>Colors</h3>
-          <p>Provide more context to callouts by using the modifiers <span class="css-ref">.primary</span>, <span class="css-ref">.secondary</span>, <span class="css-ref">.tertiary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span> or <span class="css-ref">.error</span>.</p>
+          <p>Provide more context to callouts by using the modifiers <span class="css-ref">.primary</span>, <span class="css-ref">.secondary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span> or <span class="css-ref">.error</span>.</p>
           <pre class="language-markup">
             <code><!--
-            <div class="callout primary">Primary</div>
-            <div class="callout secondary">Secondary</div>
-            <div class="callout tertiary">Tertiary</div>
-            <div class="callout success">Success</div>
-            <div class="callout warning">Error</div>
-            <div class="callout error">Warning</div>
+            <div class="callout primary"><h6>This is a primary call out</h6>...</div>
+            <div class="callout secondary"><h6>This is a secondary call out</h6>...</div>
+            <div class="callout success"><h6>This is a success call out</h6>...</div>
+            <div class="callout warning"><h6>This is a warning call out</h6>...</div>
+            <div class="callout error"><h6>This is an error call out</h6>...</div>
           --></code>
           </pre>
-          <div class="callout primary">Primary</div>
-          <div class="callout secondary">Secondary</div>
-          <div class="callout tertiary">Tertiary</div>
-          <div class="callout success">Success</div>
-          <div class="callout warning">Error</div>
-          <div class="callout error">Warning</div>
+          <div class="callout primary"><h6>This is a primary call out</h6><p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p></div>
+          <div class="callout secondary"><h6>This is a secondary call out</h6><p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p></div>
+          <div class="callout success"><h6>This is a success call out</h6><p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p></div>
+          <div class="callout warning"><h6>This is a warning call out</h6><p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p></div>
+          <div class="callout error"><h6>This is an error call out</h6><p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p></div>
         </article><article>
           <h3>Callout links</h3>
           <p>Use the class <span class="css-ref">.callout-link</span> to apply matching colouring to a link in a callout.</p>
           <pre class="language-markup">
             <code><!--
-            <div class="callout primary">This is a <a href="#" class="callout-link">very important link</a></div>
-            <div class="callout secondary">This is a <a href="#" class="callout-link">very important link</a></div>
-            <div class="callout tertiary">This is a <a href="#" class="callout-link">very important link</a></div>
-            <div class="callout success">This is a <a href="#" class="callout-link">very important link</a></div>
-            <div class="callout warning">This is a <a href="#" class="callout-link">very important link</a></div>
-            <div class="callout error">This is a <a href="#" class="callout-link">very important link</a></div>
+            <div class="callout primary"><h6>This is a primary call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+            <div class="callout secondary"><h6>This is a secondary call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+            <div class="callout success"><h6>This is a success call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+            <div class="callout warning"><h6>This is a warning call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+            <div class="callout error"><h6>This is an error call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
           --></code>
           </pre>
-          <div class="callout primary">This is a <a href="#" class="callout-link">very important link</a></div>
-          <div class="callout secondary">This is a <a href="#" class="callout-link">very important link</a></div>
-          <div class="callout tertiary">This is a <a href="#" class="callout-link">very important link</a></div>
-          <div class="callout success">This is a <a href="#" class="callout-link">very important link</a></div>
-          <div class="callout warning">This is a <a href="#" class="callout-link">very important link</a></div>
-          <div class="callout error">This is a <a href="#" class="callout-link">very important link</a></div>
+          <div class="callout primary"><h6>This is a primary call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+          <div class="callout secondary"><h6>This is a secondary call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+          <div class="callout success"><h6>This is a success call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+          <div class="callout warning"><h6>This is a warning call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+          <div class="callout error"><h6>This is an error call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
         </article><article>
           <h3>Create-your-own</h3>
           <p>The recommended way to add callout colors is with the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map. Alternatively, you can use the <code>create_callout()</code> mixin to create your own callouts, in a consistent style, with ease. The mixin takes one argument, <span class="variable-ref">$callout-color</span>.</p>
@@ -2204,15 +2029,7 @@ console.log("JellyFish is Awesome!");
           <div class="callout gold">This is a <a href="#" class="callout-link">Gold link</a></div>
         </article><article>
           <h3>Variables</h3>
-          <p>Callout variables can be edited in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <pre class="language-scss">
-          <code>
-          /* CALLOUTS */
-          $callout-tint-perc: 20%;
-          $callout-border-radius: $border-radius;
-          </code>
-          <label>_settings.scss</label>
-          </pre>
+          <p>Callout variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_components.scss</span>.</p>
           </article>
         </section><!-- /#callouts.docs-section -->
         <section class="docs-section" id="accessibility">
@@ -2248,31 +2065,12 @@ console.log("JellyFish is Awesome!");
           <button class="font-size font-size-md" title="Medium Font Size">A</button>
           <button class="font-size font-size-lg" title="Large Font Size">A</button>
         <h4>Font-size Variables</h4>
-        <p>Edit font-size settings and customise the button styles in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <pre class="language-scss">
-            <code>
-              /* ACCESSIBILITY */
-              $accessibility-font-size-sm: 14px;
-              $accessibility-font-size-md: 16px;
-              $accessibility-font-size-lg: 18px;
-
-              $accessibility-button-font-weight: normal;
-
-              $accessibility-button-color: $color-text-light;
-              $accessibility-button-hover-color: $link-active;
-              $accessibility-button-active-color: inherit;
-
-              $accessibility-button-border-bottom: 2px;
-              $accessibility-button-hover-border-color: $color-secondary;
-              $accessibility-button-active-border-color: $color-primary;
-            </code>
-            <label>_settings.scss</label>
-          </pre>
+        <p>Edit font-size settings and customise the button styles in <span class="file-ref">/assets/scss/project/02-settings/_accessibility.scss</span>.</p>
         </article><article>
         <h3>Dark UI / High Contrast Mode</h3>
         <p>Jellyfish has a simple dark UI / high-contrast mode which can be enabled by adding the class <span class="css-ref">.dark-ui</span> to the body element. It is important to note that this is not a stand-alone 'dark-style' theme but instead a way for the user to view the site with a higher contrast and with less 'design'. Dark UI mode forces all elements to have a dark background, turns all copy to a light color, and grayscales images to a configurable percentage.</p>
         <p>For a quick and easy way to implement this feature, you can add the code snippet below.</p>
-        <p><strong>Note:</strong> this approach uses javascript to set a Cookie 'ui-mode' to ensure that the setting is persistnt across the site. For reference see <span class="file-ref">/assets/js/project/accessibility.js</span>.</p>
+        <p><strong>Note:</strong> this approach uses javascript to set a Cookie 'ui-mode' to ensure that the setting is persistent across the site. For reference see <span class="file-ref">/assets/js/project/accessibility.js</span>.</p>
         <pre class="language-markup">
           <code><!--
             <span class="screen-reader-text">Toggle Contrast Mode:</span>
@@ -2292,17 +2090,7 @@ console.log("JellyFish is Awesome!");
           </svg>
         </button>
         <h4>Dark UI / High Contrast Variables</h4>
-        <p>Edit Dark UI / High Contrast mode settings in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <pre class="language-scss">
-            <code>
-              $dark-mode-bg-color: #222222;
-              $dark-mode-text-color: #e6e6e6;
-              $dark-mode-img-grayscale-perc: 50%;
-              $dark-mode-link-color: #58cdf1;
-              $dark-mode-link-hover: #f1b835;
-            </code>
-            <label>_settings.scss</label>
-          </pre>
+        <p>Edit Dark UI / High Contrast mode settings in <span class="file-ref">/assets/scss/project/02-settings/_accessibility.scss</span>.</p>
           </article>
         </section><!-- #accessibility -->
         <section class="docs-section" id="utilities">
@@ -2389,6 +2177,7 @@ console.log("JellyFish is Awesome!");
             </tr>
             </tbody>
           </table>
+          <!-- TODO: Add other hide/show for example navbar -->
         </article><article>
           <h3>Working with flexboxes</h3>
           <h4>Align items</h4>
@@ -2520,8 +2309,8 @@ console.log("JellyFish is Awesome!");
           <div class="full-width boxed">An element with .full-width applied</div>
           <div class="boxed vw-100">An element with .vw-100 applied</div>
         </article><article>
-          <h3>Responsive Video</h3>
-          <p>Wrap an embedded video in a container with class <span class="css-ref">.embed-container</span> to ensure the video is responsively resized.</p>
+          <h3>Responsive Embeds</h3>
+          <p>Wrap an embedded iFrame in a container with class <span class="css-ref">.embed-container</span> to ensure the iFrame is responsively resized.</p>
           <pre class="language-markup">
             <code><!--
             <div class="embed-container">
@@ -2596,7 +2385,7 @@ console.log("JellyFish is Awesome!");
               <pre class="language-scss">
                 <code>
                   .button.gold {
-                    @include create_button(gold, brown, 20% );
+                    @include create_button(gold, brown );
                   }
                   .label.seagreen {
                     @include create_label(seagreen);
@@ -2614,22 +2403,31 @@ console.log("JellyFish is Awesome!");
                   .button.gold {
                     background-color: gold;
                     border-color: gold;
-                    color: #333333; }
+                    color: #1f2933;
+                  }
 
                   .button.gold:hover,
                   .button.gold:focus {
                     background-color: brown;
                     border-color: brown;
-                    color: #fff; }
+                    color: white;
+                  }
 
                   .button.gold:focus {
-                    box-shadow: 0px 0px 1px 3px #dbaaaa; }
+                    box-shadow: 0px 0px 1px 3px #dfbc00;
+                  }
+
+                  .button.gold.outline,
+                  .button.gold.ghost {
+                    color: gold;
+                  }
 
                   .button.gold.outline:hover,
-                  .button.gold:hover[type=reset],
                   .button.gold.outline:focus,
-                  .button.gold:focus[type=reset] {
-                    color: gold; }
+                  .button.gold.ghost:hover,
+                  .button.gold.ghost:focus {
+                    color: brown;
+                  }
 
                   .label.seagreen {
                     border-color: seagreen;
@@ -2722,14 +2520,14 @@ console.log("JellyFish is Awesome!");
               <pre class="language-scss">
                 <code>
                   .some-tinted-element {
-                    background-color: #ff0000; // Base color
-                    color: lighten(#ff0000, 50%); // lighten()
-                    border-color: tint(#ff0000, 50%); // tint() }
+                    background-color: #ff0000;
+                    color: lighten(#ff0000, 50%);
+                    border-color: tint(#ff0000, 50%);}
 
                   .some-shaded-element {
-                    background-color: #00ff00; // Base color
-                    color: darken(#00ff00, 40%); // lighten()
-                    border-color: shade(#00ff00, 60%); // tint() }
+                    background-color: #00ff00;
+                    color: darken(#00ff00, 40%);
+                    border-color: shade(#00ff00, 60%);}
                 </code>
               </pre>
             </div>
@@ -2884,12 +2682,7 @@ console.log("JellyFish is Awesome!");
           <div class="smooth-transform boxed"><p>This element has <code>smooth(transform)</code> applied to it. Hover to preview.</p></div>
           <div class="smooth-background boxed"><p>This element has <code>smooth(background)</code> applied to it. Hover to preview.</p></div>
           <div class="smooth-wild boxed"><p>This element has <code>smooth(background, transform, color)</code> applied to it. Hover to preview.</p></div>
-          <p>You can adjust the transition in <span class="file-ref">/assets/scss/_settings.scss</span>.</p>
-          <pre class="language-scss">
-            <code>
-              $global-transition: 0.2s ease;
-            </code>
-          </pre>
+          <p>You can adjust the transition in <span class="file-ref">/assets/scss/project/02-settings/03-elements.scss</span>.</p>
         </article><article>
           <h3>Media queries</h3>
           <p>Jellyfish comes with three media query mixins. These mixins are flexible, allowing you to specify either a <span class="variable-ref">$breakpoint</span> name from your <a href="#breakpoint-settings">breakpoint map</a> or a px value (which is converted automatically by the em() mixin).</p>
@@ -2954,10 +2747,11 @@ console.log("JellyFish is Awesome!");
           </h2>
           <article>
           <p class="standfirst">Jellyfish applies a few small tweaks to make projects more printer-friendly:</p>
+          <!-- TODO: Come back to this -->
           <pre class="language-scss"><code>
             @media print {
               a {
-                color: $color-primary !important;
+                color: get-color(primary) !important;
                 text-decoration: underline;
                 ::after {
                   // Display URL after links on print
@@ -2974,7 +2768,7 @@ console.log("JellyFish is Awesome!");
                 font-family: Arial;
               }
               #{headings()} {
-                font-weight: bold;
+                font-weight: $weight-bold;
                 margin-bottom: .2em;
               }
               h1 {
@@ -2988,7 +2782,7 @@ console.log("JellyFish is Awesome!");
               }
               #{$buttons} {
                 border: 1px solid black  !important;
-                background-color: $color-white  !important;
+                background-color: get-color(neutral, 000)  !important;
                 color: black  !important;
                 display: inline-block !important;
                 width: auto !important;
@@ -3039,7 +2833,7 @@ console.log("JellyFish is Awesome!");
             </span>
           </h2>
           <article>
-          <p class="standfirst">Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints.</p><p>These are declared through the <span class="variable-ref">$breakpoints</span> map in <span class="file-ref">/assets/scss/_settings.scss</span>. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
+          <p class="standfirst">Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints.</p><p>These are declared through the <span class="variable-ref">$breakpoints</span> map in <span class="file-ref">/assets/scss/project/02-settings/_breakpoints.scss</span>. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
           <h3>Example breakpoint definition</h3>
           <pre>
             <code class="language-scss line-numbers">
@@ -3053,7 +2847,7 @@ console.log("JellyFish is Awesome!");
                 root-line-height: 1.48em
                 ),
             </code>
-            <label>_settings.scss</label>
+            <label>project/02-settings/_breakpoints.scss</label>
           </pre>
           <p>By default, breakpoints are named <span class="variable-ref">sm</span>, <span class="variable-ref">md</span>, <span class="variable-ref">lg</span>  and <span class="variable-ref">xl</span> however you can name breakpoints as you wish to suit your project requirements and personal naming conventions (e.g. microscopic, small, medium, large, gigantic, mammoth, mobile, tablet, laptop, desktop, jumbotron). Jellyfish will use these names to generate the code for css classes as detailed above.</p>
           <p>If you choose not to declare certain values, they will be inherited.</p>
@@ -3073,7 +2867,7 @@ console.log("JellyFish is Awesome!");
                   <tr><td class="code">root-line-height</td><td>Global base line-height (applied to <span class="css-ref">body</span>) which will affect all elements that do not have a line-height applied. Can be provided as a number, em or px.</td></tr>
               </tbody>
           </table>
-          <p><strong>Note:</strong> You can also configure settings for the smallest devices (i.e. before any media queries are activated) by setting the following variables in <span class="file-ref">/assets/scss/_settings.scss</span>: <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$root-font-size</span>, <span class="variable-ref">$root-line-height</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></p>
+          <p><strong>Note:</strong> You can also configure settings for the smallest devices (i.e. before any media queries are activated) by setting the following variables in <span class="file-ref">/assets/scss/project/02-settings/_breakpoints.scss</span>: <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$root-font-size</span>, <span class="variable-ref">$root-line-height</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></p>
           </article>
         </section><!-- #breakpoint-settings-->
         <section class="docs-section" id="configuration">
@@ -3083,331 +2877,175 @@ console.log("JellyFish is Awesome!");
           <article>
           <h3>Setting your styles</h3>
           <p>It is recommend to not edit the files within <span class="file-ref">/assets/scss/jellyfish</span> but rather to add your project's scss into <span class="file-ref">/assets/scss/project</span>. In this way you can keep the core functionality separate from your project's codebase.</p>
-          <p>The file <span class="file-ref">/assets/scss/_settings.scss</span> contains all of the variables used in Jellyfish, commented out. If you wish to override a default, you can simply uncomment and add your own values. You should add any new variables here to keep your project organised.</p>
+          <p>The files in <span class="file-ref">/assets/scss/project/02-settings</span> contain all of the variables used in Jellyfish, commented out. If you wish to override a default, you can simply uncomment and add your own values. You should add any new variables here to keep your project organised.</p>
           <pre class="language-scss"><code>
-            /* GRID */
-            $cols: 12;
-            $has_ordering: true;
-            $has_offset: true;
-            $debug-mode-on: false;
 
-            /* JELLYFISH DEFAULTS */
-            // Base Variables (used before breakpoints are applied)
-            $base-col-name: xs;
-            $base-container-gutter: 30px; // define in px
-            $base-col-gutter: 20px; // define in px
-
-            /* DOCUMENT ROOT FONT SIZE AND LINE HEIGHT AT SMALLEST DEVICE WIDTH */
-            $root-font-size: 14px;
-            $root-line-height: 1.4;
-
-            /* GLOBAL PADDING/MARGINS */
-            $element-padding: 20px;
-            $element-margin: 1.4rem;
-
-            /* COLOURS */
-            $color-text: #333333;
-            $color-text-light: #7e7f7f;
-            $color-white: #fff;
-            $color-background: $color-white;
-            $color-background-alt: #efefef;
-            $color-primary: #001496;
-            $color-secondary: #a62579;
-            $color-tertiary: #8e1b1f;
-
-            $color-success: #53cc3e;
-            $color-warning: #fc7f14;
-            $color-error: #f7033c;
-
-            $color-headings-preferred: $color-primary; // TODO: Documentation
-
-            /* THEME COLORS */
-            // Any variable you add here will have the following classes automatically created: .text-*, .bg-*, .label.*, .button.* and .callout.*
-            $theme-colors: (
-              // Eg.
-              // "tomato": tomato,
-              // "black": #000,
-              // "white": #fff
-            );
-
-            /* TYPEFACES */
-            $font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            $font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            $font-code: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-            $font-body: $font-primary;
-            $font-headings: $font-secondary;
-
-            /* FONT SIZES */
-            $font-size--2: 0.6em;
-            $font-size--1: 0.8em;
-            $font-size-0: 1em;
-            $font-size-1: 1.5em;
-            $font-size-2: 1.5em;
-            $font-size-3: 1.75em;
-            $font-size-4: 2em;
-            $font-size-5: 2.5em;
-            $font-size-6: 3em;
-
-            $font-size-h1: $font-size-6;
-            $font-size-h2: $font-size-5;
-            $font-size-h3: $font-size-4;
-            $font-size-h4: $font-size-3;
-            $font-size-h5: $font-size-2;
-            $font-size-h6: $font-size-1;
-
-            /* FONT WEIGHTS */
-            $weight-light: lighter;
-            $weight-normal: normal;
-            $weight-bold: bold;
-
-            /* LINKS */
-            $link-color: $color-primary;
-            $link-active: $color-secondary;
-            $link-visited: $color-tertiary;
-
-            /* ACCESSIBILITY */
-            $accessibility-font-size-sm: 14px;
-            $accessibility-font-size-md: 16px;
-            $accessibility-font-size-lg: 18px;
-
-            $accessibility-button-font-weight: normal;
-
-            $accessibility-button-color: $color-text-light;
-            $accessibility-button-hover-color: $link-active;
-            $accessibility-button-active-color: inherit;
-
-            $accessibility-button-border-bottom: 2px;
-            $accessibility-button-hover-border-color: $color-secondary;
-            $accessibility-button-active-border-color: $color-primary;
-
-            $dark-mode-bg-color: #222222;
-            $dark-mode-text-color: #e6e6e6;
-            $dark-mode-img-grayscale-perc: 50%;
-            $dark-mode-link-color: #58cdf1;
-            $dark-mode-link-hover: #f1b835;
-
-            /* GLOBAL TRANSITION USED IN SMOOTH() */
-            $global-transition: 0.2s ease;
-
-            /* BORDERS */
-            $border-width: 1px;
-            $border-style: solid;
-            $border-color: tint($color-text-light, 40%);
-            $border-radius: 4px;
-            $borders: $border-width $border-style $border-color;
-
-            /* USER INTERFACE */
-            $ui-hover-function: shade; // Choose tint or shade
-            $ui-hover-function-amount: 8%;
-            $ui-focus-highlight-amount: 30%;
-
-            /* CALLOUTS */
-            $callout-tint-perc: 20%;
-            $callout-border-radius: $border-radius;
-
-            /* FORMS */
-            $input-background: $color-white;
-            $placeholder-color: $color-text-light;
-            $form-text-size: 1rem;
-            $form-border-hover: shade($border-color, 60%);
-            $form-font: $font-primary;
-
-            /* BUTTONS */
-            $button-border-width: 1px;
-            $button-border-radius: 6px;
-            $button-font-family: $font-secondary;
-            $button-padding: 1em 1.5em;
-            $button-text-transform: none;
-            $button-font-weight: bold;
-            $button-text-color-light: $color-white;
-            $button-text-color-dark: $color-text;
-            $button-disabled-background: tint($color-text,40%);
-            $button-group-max-width: 250px;
-            $button-group-margin: $element-margin; // Use 'tight' or a value for right-margin
-
-            /* LABELS */
-            $label-font-weight: bold;
-            $label-border-radius: 4px;
-            $label-outline-border-style: dashed;
-            $label-text-color-light: $color-white;
-            $label-text-color-dark: $color-text;
-
-            /* TABLES */
-            $table-stripe-color: $color-background-alt;
-            $table-hover-background: $color-text-light;
-            $table-hover-color: $color-white;
-
-            /* CARDS */
-            $card-border-radius: 0px;
-            $card-border-style: $border-style;
-            $card-border-color: $border-color;
-            $card-border-width: $border-width;
-            $card-padding: $element-padding;
-
-            /* NAVBAR */
-            $nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
-            $navbar-bg-color: $color-primary;
-            // Parent Level Links
-            $navbar-font-size: 1em;
-            $navbar-font-family: $font-primary;
-            $navbar-font-weight: bold;
-            $navbar-text-transform: uppercase;
-            $navbar-link-color: $color-white;
-            $navbar-link-bg-color: $navbar-bg-color;
-            $navbar-link-border: 1px solid rgba($color-white,0.1);
-            // Links: Hover
-            $navbar-link-hover-color: $color-white;
-            $navbar-link-hover-bg-color: shade($navbar-bg-color,50%);
-            $navbar-link-hover-weight: $navbar-font-weight;
-            // Child Level Links
-            $navbar-sublink-font-size: 0.9em;
-            $navbar-sublink-font-family: $font-primary;
-            $navbar-sublink-font-weight: $navbar-font-weight;
-            $navbar-sublink-text-transform: $navbar-text-transform;
-            $navbar-sublink-font-weight-hover: $navbar-link-hover-weight;
-            // Links: Padding
-            $navbar-link-padding-x: 10px;
-            $navbar-link-padding-y: 8px;
-            $navbar-link-padding-expanded-x: 10px;
-            $navbar-link-padding-expanded-y: 10px;
-            // THESE SETTINGS APPLY ABOVE $nav-expands ONLY
-            $navbar-sublink-color: $navbar-link-color;
-            $navbar-sublink-bg-color: $navbar-link-bg-color;
-            $navbar-sublink-hover-color: $navbar-link-hover-color;
-            $navbar-sublink-hover-bg-color: $navbar-link-hover-bg-color;
-            $navbar-dropdown-width: 240px;
-            $navbar-start-flex-align: stretch;
-            $navbar-end-flex-align: center;
-
-            /* HAMBURGER MENU */
-            $primary-hamburger-type: spin; // Change this to modify animation
-            $hamburger-margin-y: 0px;
-            $hamburger-layer-width: 20px; // Width of the hamburger icon
-            $hamburger-layer-height: 3px; // Thickness of hamburger lines
-            $hamburger-layer-spacing: 4px; // Spacing between hamburger lines
-            $hamburger-layer-border-radius: 3px; // Radius of hamburger lines
-            $hamburger-bg-color: $navbar-bg-color;
-            $hamburger-border: $border-width $border-style $hamburger-bg-color;
-            $hamburger-border-radius: 0px;
-            $hamburger-color: $navbar-link-color; // Color of hamburger and label
-            $hamburger-hover-bg-color: $navbar-link-hover-bg-color;
-            $hamburger-hover-border: $border-width $border-style $hamburger-hover-bg-color;
-            $hamburger-hover-color: $hamburger-color;
-            $hamburger-hover-opacity: 1;
-            $hamburger-position: right; // left or right
-
-            $breakpoints: (
-                /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-                 Breakpoints are defined here
-                 Note: Comment out or remove a whole size to prevent it being iterated,
-                 or individual elements to inherit from the previously defined point.
-                 The shorthand names are used in column and modifier classes.
-                 breakpoint and col-gutter are the only !required values.
-                 Sensible breakpoint values @link https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/
-                *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-                sm: (
-                    breakpoint: 600px,
-                    container-width: 100%,
-                    container-gutter: 50px,
-                    col-gutter: 20px,
-                    root-font-size: 15px,
-                    root-line-height: 1.48
-                    ),
-                md: (
-                    breakpoint: 900px,
-                    container-width: 90%,
-                    container-max-width: 1140px,
-                    container-gutter: 0px,
-                    col-gutter: 30px,
-                    root-font-size: 16px
-                    ),
-                lg: (
-                    breakpoint: 1200px,
-                    container-width: 1140px,
-                    container-max-width: none,
-                    col-gutter: 35px,
-                    ),
-                xl: (
-                    breakpoint: 1800px,
-                    container-width: 1280px,
-                    col-gutter: 40px,
-                    )
-            );
-
+            // TODO: ADD ALL FILES HERE
           </code></pre>
         </article>
         <article>
-          <h3 id="theme-colors-map">Theme Colors Map</h3>
-          <p>Of particular interest here is the <a href="#theme-colors-map"><span class="variable-ref">$theme-colors</span></a> map. You can add your own key/value pairs to the map and Jellyfish will automagically generate classes for <span class="css-ref">.text-{key}</span>, <span class="css-ref">.bg-{key}</span>, <span class="css-ref">.button.{key}</span>, <span class="css-ref">.label.{key}</span> and <span class="css-ref">.callout.{key}</span>.</p>
+          <h3>Working with Colors</h3>
+          <h4 id="colors-map">$colors map</h4>
+          <p>Jellyfish uses a <span class="variable-ref">$colors</span> map wherein all project colors should be defined. By default, Jellyfish includes styling for primary, secondary, neutral, success, warning and error - though it is expected these are overrided based on the project's theme.</p>
+          <p>A color key includes a minimum of 3 and a recommended 9 tints/shades, where 500 is the base color (eg. a brand color).</p><p>Many of Jellyfish's functions (such as <code>create_button</code>) attempt to use values from this map (fallbacks are in place), so it is recommended to set these where possible for best color reproduction.</p>
+          <h3>Default colors</h3>
+          <pre>
+            <code class="language-scss line-numbers">
+              primary: (
+                900: hsl(330, 79%, 20%),
+                800: hsl(331, 74%, 27%),
+                700: hsl(330, 70%, 36%),
+                600: hsl(330, 68%, 40%),
+                500: hsl(330, 63%, 47%),
+                400: hsl(330, 66%, 57%),
+                300: hsl(330, 77%, 76%),
+                200: hsl(330, 87%, 85%),
+                100: hsl(329, 100%, 96%)
+              ),
+              secondary: (
+                900: hsl(188, 91%, 23%),
+                800: hsl(186, 91%, 29%),
+                700: hsl(184, 90%, 34%),
+                600: hsl(182, 85%, 39%),
+                500: hsl(180, 77%, 47%),
+                400: hsl(176, 87%, 67%),
+                300: hsl(174, 96%, 78%),
+                200: hsl(172, 97%, 88%),
+                100: hsl(171, 82%, 96%)
+              ),
+              neutral: (
+                900: hsl(210, 24%, 16%),
+                800: hsl(209, 20%, 25%),
+                700: hsl(209, 18%, 30%),
+                600: hsl(209, 14%, 37%),
+                500: hsl(211, 12%, 49%),
+                400: hsl(211, 13%, 65%),
+                300: hsl(210, 16%, 82%),
+                200: hsl(214, 15%, 91%),
+                100: hsl(216, 33%, 97%),
+                000: hsl(0, 0%, 100%)
+              ),
+              success: (
+                900: hsl(81, 86%, 14%),
+                500: hsl(83, 55%, 52%),
+                100: hsl(83, 88%, 94%)
+              ),
+              warning: (
+                900: hsl(15, 86%, 30%),
+                500: hsl(42, 87%, 55%),
+                100: hsl(49, 100%, 96%)
+              ),
+              error: (
+                900: hsl(360, 92%, 20%),
+                500: hsl(360, 67%, 44%),
+                100: hsl(360, 100%, 97%)
+              )
+            )
+            </code>
+            <label>project/02-settings/_01-colors.scss</label>
+          </pre>
+          <h5>Selecting colors from the map</h5>
+          <div class="row">
+            <div class="col">
+              <p>Use the function <code>get-color($base, $shade)</code> to select a color from this map.</p>
+              <pre>
+                <code class="language-scss">
+                  .my-element {
+                    color: get-color(primary);
+                    background-color: get-color(primary,100);
+                    border-color: get-color(primary, 900);
+                  }
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <h6>Returns:</h6>
+              <pre>
+                <code class="language-scss">
+                  .my-element {
+                    color: hsl(330, 63%, 47%);
+                    background-color: hsl(329, 100%, 96%);
+                    border-color: hsl(330, 79%, 20%);
+                  }
+                </code>
+              </pre>
+            </div>
+          </div>
+          <h4 id="theme-colors-map">$theme-colors map</h4>
+          <p>You can add your own key/value pairs to the <span class="variable-ref">$theme-colors</span> map and Jellyfish will automagically generate classes for <span class="css-ref">.text-{key}</span>, <span class="css-ref">.button.{key}</span>, <span class="css-ref">.label.{key}</span> and <span class="css-ref">.callout.{key}</span>.</p>
+          <p>Values can be either a valid CSS color value (hex, rgb, hsl, name etc) or a string from within the <a href="#colors-map"><span class="variable-ref">$colors</span></a> map (eg. 'primary').</p>
+          <p>By default, Jellyfish will create classes for <span class="css-ref">.primary</span>, <span class="css-ref">.secondary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span> and <span class="css-ref">.error</span>.</p>
           <div class="row">
             <div class="col sm-12 md-6">
               <h5>Input:</h5>
               <pre class="language-scss">
                 <code>
                   $theme-colors: (
-                    "sienna": sienna
+                    "purple": rebeccapurple,
+                    "silver": #A0A0A0,
+                    "brand": 'primary'
                   );
                 </code>
               </pre>
             </div>
             <div class="col sm-12 md-6">
               <h5>Returns:</h5>
-              <pre class="language-scss">
-                <code>
+              <h3 class="text-purple">Purple Heading <div class="label-group"><div class="label purple">Purple label</div><div class="label">5</div></div></h3>
+              <div class="button-group"><button class="button purple">Purple Button</button><button class="button purple outline"> Outline Button</button></div>
+              <div class="callout purple"><h5>A purple callout</h5><p>This is a very purple callout. <a class="callout-link" href="#">Callout link</a></p></div>
 
-                  /* BACKGROUND COLOR AND CONTRASTING TEXT */
-                  .bg-sienna {
-                    background-color: sienna;
-                    color: #fff; }
-                  .bg-sienna h1,
-                  .bg-sienna h2,
-                  .bg-sienna h3,
-                  .bg-sienna h4,
-                  .bg-sienna h5,
-                  .bg-sienna h6 {
-                    color: #fff; }
+              <h3 class="text-silver">Silver Heading <div class="label-group"><div class="label silver">Silver label</div><div class="label">5</div></div></h3>
+              <div class="button-group"><button class="button silver">Silver Button</button><button class="button silver outline"> Outline Button</button></div>
+              <div class="callout silver"><h5>A silver callout</h5><p>This is a very silver callout. <a class="callout-link" href="#">Callout link</a></p></div>
 
-                  /* TEXT */
-                  .text-sienna {
-                    color: sienna; }
-
-                  /* BUTTON */
-                  .button.sienna, a.button.sienna {
-                    background-color: sienna;
-                    border-color: sienna;
-                    color: #fff; }
-                    .button.sienna:hover, .button.sienna:focus, a.button.sienna:hover, a.button.sienna:focus {
-                      background-color: #804224;
-                      border-color: #804224;
-                      color: #fff; }
-                    .button.sienna:focus, a.button.sienna:focus {
-                      box-shadow: 0px 0px 1px 3px #331a0e; }
-                    .button.sienna.outline, .button.sienna.ghost, a.button.sienna.outline, a.button.sienna.ghost {
-                      color: sienna; }
-                      .button.sienna.outline:hover, .button.sienna.outline:focus, .button.sienna.ghost:hover, .button.sienna.ghost:focus, a.button.sienna.outline:hover, a.button.sienna.outline:focus, a.button.sienna.ghost:hover, a.button.sienna.ghost:focus {
-                        color: #804224; }
-
-                  /* LABEL */
-                  .label.sienna {
-                    border-color: sienna;
-                    background-color: sienna;
-                    color: #fff; }
-                    .label.sienna.outline {
-                      color: sienna; }
-
-                  /* CALLOUT */
-                  .callout.sienna {
-                    border-color: sienna;
-                    background-color: #ecdcd5;
-                    color: #333333; }
-                    .callout.sienna a.callout-link {
-                      color: sienna; }
-                      .callout.sienna a.callout-link:hover, .callout.sienna a.callout-link:focus {
-                        color: #804224; }
-                </code>
-              </pre>
+              <h3 class="text-primary">Brand Heading <div class="label-group"><div class="label primary">Brand label</div><div class="label">5</div></div></h3>
+              <div class="button-group"><button class="button primary">Brand Button</button><button class="button primary outline"> Outline Button</button></div>
+              <div class="callout primary"><h5>A branded callout</h5><p>This is a very branded callout. <a class="callout-link" href="#">Callout link</a></p></div>
             </div>
           </div>
+            <h4 id="background-colors-map">$background-colors map</h4>
+            <p>Similar to the <span class="variable-ref">$theme-colors</span> map, you can add key/value pairs to the <span class="variable-ref">$background-colors</span> map and Jellyfish will output CSS for background class modifiers <span class="css-ref">.bg-{key}</span>. Values passed must be valid CSS color references. Strings are not allowed here.</p>
+            <p>Jellyfish will also use the <code>choose-contrast-color()</code> mixin to ensure that text, headings and anchors are legible on top of the background color.</p>
+            <p>By default, Jellyfish will only create modifiers for <span class="css-ref">.bg-white</span> and <span class="css-ref">.bg-dark</span>.</p>
+            <div class="row">
+              <div class="col"><div class="padded bg-white">
+                <h6>A box with a white background <code>.bg-white</code></h6>
+                <p>Here is a paragraph <a href="#">With a link</a></p>
+              </div></div>
+              <div class="col"><div class="padded bg-dark">
+                <h6>A box with a dark background <code>.bg-dark</code></h6>
+                <p>Here is a paragraph <a href="#">With a link</a></p>
+              </div></div>
+            </div>
+            <div class="row">
+              <div class="col sm-12 md-6">
+                <h5>Input:</h5>
+                <pre class="language-scss">
+                  <code>
+                    $background-colors: (
+                      "primary": get-color(primary),
+                      "secondary": get-color(secondary,800),
+                      "blue": royalblue
+                    );
+                  </code>
+                </pre>
+              </div>
+              <div class="col sm-12 md-6">
+                <h5>Returns:</h5>
+                <div class="padded bg-primary">
+                  <h6>A box with a primary background <code>.bg-primary</code></h6>
+                  <p>Here is a paragraph <a href="#">With a link</a></p>
+                </div>
+                <div class="padded bg-secondary">
+                  <h6>A box with a secondary (shade) background <code>.bg-secondary</code></h6>
+                  <p>Here is a paragraph <a href="#">With a link</a></p>
+                </div>
+                <div class="padded bg-blue">
+                  <h6>A box with a blue background <code>.bg-blue</code></h6>
+                  <p>Here is a paragraph <a href="#">With a link</a></p>
+                </div>
+              </div>
+            </div>
         </article>
         </section><!-- #configuration -->
         <section class="docs-section" id="debug">
@@ -3415,7 +3053,7 @@ console.log("JellyFish is Awesome!");
           <p class="standfirst">Quickly see the layout of your grid and components.</p>
           <p>Jellyfish comes with a handy debug mode which allows you to quickly see the structure of the grid, and diagnose any layout issues. Debug mode can be enabled in three ways:</p>
           <ol>
-              <li>by setting <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="file-ref">/assets/scss/_settings.scss</span>.</li>
+              <li>by setting <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="file-ref">/assets/scss/project/02-settings/00-grid.scss</span>.</li>
               <li>by adding the class <span class="css-ref">.jf-debug</span> to the body or html element - either within the code itself or through a browser's inspector.</li>
               <li>by running <code>jfdebug()</code> in the console.</li>
           </ol>
@@ -3424,7 +3062,7 @@ console.log("JellyFish is Awesome!");
             <li>The highest level <span class="css-ref">.row</span> element will have a striped background showing the base column layout.</li>
             <li><span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(245, 211, 0, .8);">glow in yellow</span></li>
             <li><span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(8, 247, 254, .7);">glow in turquoise</span></li>
-            <li>If <span class="variable-ref">$has_offset</span> or <span class="variable-ref">$has_ordering</span> are set to true in <span class="file-ref">/assets/scss/_settings.scss</span>, elements with a class <span class="css-ref">.offset-*</span> and <span class="css-ref">.order-*</span> will be <span style="outline: 2px solid #fe53BB">highlighted in pink</span></li>
+            <li>If <span class="variable-ref">$has_offset</span> or <span class="variable-ref">$has_ordering</span> are set to true in <span class="file-ref">/assets/scss/project/02-settings/00-grid.scss</span>, elements with a class <span class="css-ref">.offset-*</span> and <span class="css-ref">.order-*</span> will be <span style="outline: 2px solid #fe53BB">highlighted in pink</span></li>
             <li>The current breakpoint name is shown in the top left corner of the window.</li>
           </ul>
           <p>Try it out - <a onclick="jfdebug()" style="cursor:pointer;">click here</a> to toggle debug mode on and off onto this page.</p>

@@ -22,9 +22,9 @@
     padding-bottom: $element-margin;
     padding-top: $element-margin;
     margin-bottom: $section-bottom-margin;
-    border-bottom: $border-width solid $color-background-alt;
+    border-bottom: 2px solid get-color(neutral,200);
     z-index: 9;
-    background-color: $color-background;
+    background-color: get-color(neutral,000);
     .label-group:first-of-type {
       margin-left: auto;
     }
@@ -39,7 +39,7 @@
     font-weight: 300;
   }
   .docs-section .standfirst {
-    color: $color-text-light;
+    color: get-color(neutral,500);
   }
 
   // Sub Section
@@ -51,27 +51,32 @@
   %reference {
     @extend %inline-code;
     display: inline;
-    background-color: $color-background-alt;
+    background-color: get-color(neutral,200);
   }
 
   .css-ref {
     @extend %reference;
-    color: $color-primary;
+    color: get-color(primary);
   }
 
   .file-ref {
     @extend %reference;
-    color: $color-secondary;
+    color: get-color(secondary, 900);
   }
 
   .variable-ref {
     @extend %reference;
-    color: $color-tertiary;
+    color: get-color(secondary,700);
+  }
+
+  .padded {
+    padding: .7rem .9rem;
+    margin-bottom: $element-margin;
   }
 
   // Boxed Out Example
   .boxed {
-    background: $color-background-alt;
+    background: get-color(neutral,100);
     padding: .7rem .9rem;
     line-height: 1.2;
     margin: 0 0 $element-margin 0;
@@ -81,13 +86,14 @@
     font-family: $font-code;
   }
   .row-boxed {
-    background-color: $color-background-alt;
+    background-color: get-color(neutral,100);
     min-height: 160px;
     margin-bottom: $element-margin;
+    padding: .7rem 0;
     .boxed {
       margin: 0;
-      background-color: $color-white;
-      border:1px solid $color-background-alt;
+      background-color: get-color(neutral,000);
+      border:1px solid get-color(neutral,100);
     }
   }
 
@@ -104,13 +110,13 @@
       position: absolute;
       float: right;
       display: block;
-      background-color: $color-secondary;
+      background-color: get-color(secondary);
       color: #fff;
       padding: .4em .6em;
     }
   }
   code[class*="language-"], pre[class*="language-"] {
-    background: $color-background-alt;
+    background: get-color(neutral,100);
     border: 0;
   }
 
@@ -121,9 +127,12 @@
     background-size: cover;
     padding: 100px 0;
     text-align: center;
-    color: $color-white;
+    color: get-color(neutral,000);
     a {
-      color: $color-white;
+      color: get-color(primary,200);
+    }
+    h1 {
+      color: get-color(neutral, 000);
     }
   }
 
@@ -145,8 +154,8 @@
     }
 
     a.active {
-      background-color: tint($color-secondary, 95%);
-      color: $color-white;
+      background-color: get-color(primary,700);
+      color: get-color(neutral,000);
     }
   }
 
@@ -165,7 +174,7 @@
 
   // Used for badges
   .label.light {
-    @include create_label($color-background-alt);
+    @include create_label(get-color(neutral,100));
     font-weight: normal;
   }
 
@@ -180,8 +189,8 @@ div.code-toolbar {
       box-shadow: none;
       padding: .5em;
       text-transform: uppercase;
-      font-weight: bold;
-      @extend .button.tertiary;
+      font-weight: $weight-bold;
+      //@extend .button.tertiary;
     }
   }
 
@@ -194,6 +203,7 @@ div.code-toolbar {
   // smooth() mixin
   .smooth- {
     &transform {
+      cursor: pointer;
       @include smooth(transform);
 
       &:hover,
@@ -203,22 +213,24 @@ div.code-toolbar {
     }
 
     &background {
+      cursor: pointer;
       @include smooth(background);
 
       &:hover,
       &:focus {
-        background-color: $color-background-alt;
+        background-color: get-color(primary,200);
       }
     }
 
     &wild {
+      cursor: pointer;
       @include smooth(color, transform, background);
 
       &:hover,
       &:focus {
         transform: scale(1.1);
-        background-color: $color-secondary;
-        color: $color-white;
+        background-color: get-color(secondary);
+        color: get-color(neutral,000);
         transform: matrix(1.08, .05, .01, 1.1, 1, 4);
       }
     }
@@ -229,10 +241,16 @@ div.code-toolbar {
     @include create_button(hotpink);
   }
   button.gold {
-    @include create_button(gold, brown, 20% );
+    @include create_button(gold, brown );
   }
   button.white {
     @include create_button(#fff, gray);
+  }
+  button.purple {
+    @include create_button(rebeccapurple);
+  }
+  button.silver {
+    @include create_button(#A0A0A0);
   }
 
   // Labels
@@ -245,13 +263,33 @@ div.code-toolbar {
   .label.white {
     @include create_label(white);
   }
-
+  .label.purple {
+    @include create_label(rebeccapurple);
+  }
+  .label.silver {
+    @include create_label(#A0A0A0);
+  }
   // Callouts
   .callout.hotpink {
     @include create_callout(hotpink);
   }
   .callout.gold {
     @include create_callout(gold);
+  }
+  .callout.purple {
+    @include create_callout(rebeccapurple);
+  }
+  .callout.silver {
+    @include create_callout(#A0A0A0);
+  }
+
+  // Text
+
+  .text-silver {
+    color: #A0A0A0 !important;
+  }
+  .text-purple {
+    color: rebeccapurple !important;
   }
 
   // Tints and Shades
@@ -352,3 +390,39 @@ div.code-toolbar {
     text-decoration: underline;
   }
 }
+
+.bg-primary {
+  background-color: #c32c78;
+  color: white; }
+  .bg-primary h1, .bg-primary h2, .bg-primary h3, .bg-primary h4, .bg-primary h5, .bg-primary h6 {
+    color: white; }
+  .bg-primary a {
+    color: #edc0d6; }
+  .bg-primary a:visited {
+    color: #edc0d6; }
+  .bg-primary a:hover, .bg-primary a:focus {
+    color: white; }
+
+.bg-secondary {
+  background-color: #07808d;
+  color: white; }
+  .bg-secondary h1, .bg-secondary h2, .bg-secondary h3, .bg-secondary h4, .bg-secondary h5, .bg-secondary h6 {
+    color: white; }
+  .bg-secondary a {
+    color: #b4d9dd; }
+  .bg-secondary a:visited {
+    color: #b4d9dd; }
+  .bg-secondary a:hover, .bg-secondary a:focus {
+    color: white; }
+
+.bg-blue {
+  background-color: royalblue;
+  color: white; }
+  .bg-blue h1, .bg-blue h2, .bg-blue h3, .bg-blue h4, .bg-blue h5, .bg-blue h6 {
+    color: white; }
+  .bg-blue a {
+    color: #c6d2f6; }
+  .bg-blue a:visited {
+    color: #c6d2f6; }
+  .bg-blue a:hover, .bg-blue a:focus {
+    color: white; }

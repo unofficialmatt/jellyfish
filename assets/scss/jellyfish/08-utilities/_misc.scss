@@ -4,12 +4,8 @@
   white-space: nowrap !important;
 }
 
-// Gives elements consistent bottom margin
-%mb {
-  margin-bottom: $element-margin;
-}
 .mb {
-  @extend %mb;
+  margin-bottom: $element-margin;
 }
 
 // TODO: Document in Jellyfish Docs

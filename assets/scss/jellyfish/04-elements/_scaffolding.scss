@@ -15,7 +15,7 @@ html {
 body {
   font-size: $root-font-size;
   color: $color-text;
-  background-color: $color-background;
+  background-color: get-color(neutral,000);
   line-height: $root-line-height;
    @each $point, $i in $breakpoints {
     // set base font size and line height for each specified media query
@@ -73,7 +73,7 @@ ol {
 dl {
     margin: 0 0 $element-margin 0;
     dt {
-        font-weight: bold;
+        font-weight: $weight-bold;
     }
     dd {
       margin-bottom: h($element-margin);
@@ -100,7 +100,7 @@ pre {
     @extend %code;
     padding: $element-padding;
     margin: 0 0 $element-margin 0;
-    background-color: $color-background-alt;
+    background-color: get-color(neutral,100);
     border: $borders;
     line-height: 1.2;
 }
@@ -109,7 +109,7 @@ pre {
 blockquote {
     margin: 0 0 $element-margin 0;
     padding: 0 0 0 $element-margin;
-    border-left: $element-margin/3 solid $color-background-alt;
+    border-left: $element-margin/3 solid get-color(neutral,200);
     font-size: $font-size-2;
     font-style: italic;
     line-height: 1.4;
@@ -119,7 +119,7 @@ cite {
   margin-top: h($element-margin);
   font-size: $font-size--2;
   font-style: normal;
-  font-weight: bold;
+  font-weight: $weight-bold;
   text-align: right;
 }
 
@@ -131,5 +131,5 @@ img {
 
 // Highlighted text
 ::selection {
-background: tint($color-primary,20%);
+background: get-color(primary,200);
 }

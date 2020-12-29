@@ -22,7 +22,7 @@
       font-size: 0.6em;
   }
 
-  @include create_label($color-primary); // TODO: Check this isn't doing a whole load, like the button one was
+  @include create_label(get-color(neutral,200));
 
   .label {
     // Nested Label

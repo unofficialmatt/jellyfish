@@ -1,31 +1,31 @@
 // ANCHOR LINKS
-//$link-color: $color-primary;
-//$link-active: $color-secondary;
-//$link-visited: $color-tertiary;
+//$link-color: get-color(primary);
+//$link-active: get-color(primary,400);
+//$link-visited: get-color(primary,700);
 
 // BORDERS
 //$border-width: 1px;
 //$border-style: solid;
-//$border-color: tint($color-text-light, 40%);
+//$border-color: get-color(neutral,300);
 //$border-radius: 4px;
 //$borders: $border-width $border-style $border-color;
 
 // TABLES
-//$table-stripe-color: $color-background-alt;
-//$table-hover-background: $color-text-light;
-//$table-hover-color: $color-white;
+//$table-stripe-color: get-color(neutral,100);
+//$table-hover-background: get-color(neutral,500);
+//$table-hover-color: get-color(neutral,000);
 
 // FORMS
-//$input-background: $color-white;
-//$placeholder-color: $color-text-light;
+//$input-background: get-color(neutral,000);
+//$placeholder-color: get-color(neutral,500);
 //$form-text-size: 1rem;
-//$form-border-hover: shade($border-color, 60%);
+//$form-border-hover: get-color(neutral);
 //$form-font: $font-primary;
-
-// USER INTERFACE
-//$ui-hover-function: shade; // Choose tint or shade
-//$ui-hover-function-amount: 8%;
-//$ui-focus-highlight-amount: 30%;
+//$form-focus-border-color: get-color(neutral, 500);
+//$form-focus-shadow-inner: inset 1px 2px 1px 0px get-color(neutral, 200);
+//$form-focus-shadow-inner: 0px;
+//$form-focus-shadow-outer: inset -1px -2px 1px 0px get-color(primary, 100);
+//$form-fieldset-border: $border-width $border-style get-color(neutral,200);
 
 // GLOBAL TRANSITION USED IN SMOOTH()
 //$global-transition: 0.2s ease;

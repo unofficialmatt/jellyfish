@@ -1,10 +1,14 @@
 .callout {
-  border: $borders;
-  @extend %mb;
+  border-width: $callout-border-width;
+  border-style: solid;
+  border-color: get-color(neutral,300);
+  margin-bottom: $element-margin;
   padding: $element-padding;
   border-radius: $callout-border-radius;
+  //@include create_callout(get-color(neutral));
+
   a.callout-link {
-    font-weight: bold;
+    font-weight: $weight-bold;
   }
   & > :last-child {
     margin-bottom: 0;

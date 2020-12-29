@@ -5,7 +5,7 @@
   overflow: hidden;
   border-radius: $card-border-radius;
   border: $card-border-width $card-border-style $card-border-color;
-  @extend %mb;
+  margin-bottom: $element-margin;
 
   & > :last-child {
     margin-bottom: 0;
@@ -22,7 +22,7 @@
       margin-bottom: 0;
     }
     .card-image {
-      @extend %mb;
+      margin-bottom: $element-margin;
     }
 
     &+.card-section {

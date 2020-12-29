@@ -1,0 +1,42 @@
+@each $name, $color in $background-colors {
+  // TODO: Add to documentation
+  // Loop through $background-colors map and create classes for .bg-*
+  .bg-#{$name} {
+    background-color: $color;
+    // TODO: Make this more specific eg. p, ul, ol ?
+    color: choose-contrast-color($color,$color-text, get-color(neutral,000));
+    #{headings()} {
+      color: choose-contrast-color($color, get-color(neutral,000), $color-headings-preferred);
+    }
+    // TODO: THIS ANCHOR STUFF WILL NEED REWRITING.... BETTER TO USE A VALUE FROM THE $cOLORS MAP FOR HOVER STATES I THINK
+    //a:not(.button)
+    a {
+      & {
+        color: choose-contrast-color($color, $link-color, tint($color,30%));
+      }
+      &:visited {
+        color: choose-contrast-color($color, $link-visited, tint($color,30%));
+      }
+      &:hover, &:focus {
+        color: choose-contrast-color($color, $link-active, get-color(neutral,000));
+      }
+    }
+  }
+}
+
+// Loop through $theme-colors map and create classes for .text-*
+@each $name, $color in $theme-colors {
+  .text-#{$name} {
+    @if map-has-key($colors, $color) {
+      // If the string exists in the $colors map, use this value
+      color: get-color($color) !important;
+    }
+    @else {
+      color: $color !important;
+    }
+  }
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}

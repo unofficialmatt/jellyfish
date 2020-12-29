@@ -16,6 +16,32 @@
 @return $map;
 }
 
+// Test if map has all `$keys` nested with each others
+// @author Hugo Giraudel
+// @link https://www.sitepoint.com/extra-map-functions-sass/
+// @param {Map} $map - Map
+// @param {Arglist} $keys - Keys to test
+// @return {Bool}
+@function map-has-nested-keys($map, $keys...) {
+  @each $key in $keys {
+    @if not map-has-key($map, $key) {
+      @return false;
+    }
+    $map: map-get($map, $key);
+  }
+  @return true;
+}
+
+@function get-color($base, $shade: 500) {
+  @if map-has-nested-keys($colors, $base, $shade) {
+    $color: map-get(map-get($colors, $base), $shade);
+    @return $color;
+  }
+  @else {
+    @error "Key: '#{$base}', Value: '#{$shade}' not found in $colors map. Cancelling compile.";
+  }
+}
+
 // Returns a given number divided by 2
 @function h($num) {
 @return $num/2;
@@ -81,7 +107,7 @@
 /**
  * Determine whether to use dark or light text on top of given color.
  */
-@function choose-contrast-color($color, $light-color: $color-white, $dark-color: $color-text) {
+@function choose-contrast-color($color, $light-color: get-color(neutral,000), $dark-color: $color-text) {
   $lightContrast: contrast($color, $light-color);
   $darkContrast: contrast($color, $dark-color);
 

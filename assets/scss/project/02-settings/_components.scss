@@ -1,22 +1,27 @@
 // BUTTONS
 //$buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]'); // Stack of elements to target
 //$button-border-width: 1px;
-//$button-border-radius: 6px;
+//$button-border-radius: 3px;
 //$button-font-family: $font-secondary;
-//$button-padding: 1em 1.5em;
+//$button-padding: 1em 1.5em; // TODO: Refactor based on UI book
 //$button-text-transform: none;
-//$button-font-weight: bold;
-//$button-text-color-light: $color-white;
+//$button-font-weight: $weight-bold;
+//$button-hover-value: 800; // Note: setting this variable to 500 does not create default hover states for buttons
+//$button-hover-fallback-percent: 62.5%; // Note: if $button-hover-value > 500, function is shade(), else function is tint()
+//$button-focus-box-shadow-value: 600;
+//$button-focus-box-shadow-fallback-percent: 87.5%; // Note: if $button-focus-box-shadow-value > 500, function is shade(), else function is tint()
+//$button-box-shadow: 0px 0px 1px 3px;
+//$button-text-color-light: get-color(neutral,000);
 //$button-text-color-dark: $color-text;
-//$button-disabled-background: tint($color-text,40%);
-//$button-group-max-width: 250px;
-//$button-group-margin: $element-margin; // Use 'tight' or a value for right-margin
+//$button-disabled-background: get-color(neutral,300); // TODO: Remove in favour of using rgba() inside create_button mixin
+//$button-group-max-width: 170px; // TODO: This needs some work
+//$button-group-margin: 'tight';  // Use 'tight' or a value for right-margin
 
 // LABELS
-//$label-font-weight: bold;
+//$label-font-weight: $weight-bold;
 //$label-border-radius: 4px;
-//$label-outline-border-style: dashed;
-//$label-text-color-light: $color-white;
+//$label-outline-border-style: solid
+//$label-text-color-light: get-color(neutral,000);
 //$label-text-color-dark: $color-text;
 
 // CARDS
@@ -27,5 +32,5 @@
 //$card-padding: $element-padding;
 
 // CALLOUTS
-//$callout-tint-perc: 20%;
-//$callout-border-radius: $border-radius;
+//$callout-border-radius: 0px $border-radius $border-radius 0px;
+//$callout-border-width: 1px 1px 1px 9px;

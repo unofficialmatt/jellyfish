@@ -1,19 +1,19 @@
-$accessibility-font-size-sm: 14px !default;
-$accessibility-font-size-md: 16px !default;
-$accessibility-font-size-lg: 18px !default;
+$accessibility-font-size-sm: 14px !default; // TODO: Replace with a calculated value
+$accessibility-font-size-md: 16px !default; // TODO: Replace with a calculated value
+$accessibility-font-size-lg: 18px !default; // TODO: Replace with a calculated value
 
 $accessibility-button-font-weight: normal !default;
 
-$accessibility-button-color: $color-text-light !default;
+$accessibility-button-color: get-color(neutral,500) !default;
 $accessibility-button-hover-color: $link-active !default;
 $accessibility-button-active-color: inherit !default;
 
 $accessibility-button-border-bottom: 2px !default;
-$accessibility-button-hover-border-color: $color-secondary !default;
-$accessibility-button-active-border-color: $color-primary !default;
+$accessibility-button-hover-border-color: get-color(secondary) !default;
+$accessibility-button-active-border-color: get-color(primary) !default;
 
-$dark-mode-bg-color: #222222 !default;
-$dark-mode-text-color: #e6e6e6 !default;
+$dark-mode-bg-color: #222222 !default; // TODO: Replace with values from $colors map
+$dark-mode-text-color: #e6e6e6 !default; // TODO: Replace with values from $colors map
 $dark-mode-img-grayscale-perc: 50% !default;
-$dark-mode-link-color: #58cdf1 !default;
-$dark-mode-link-hover: #f1b835 !default;
+$dark-mode-link-color: #58cdf1 !default; // TODO: Replace with values from $colors map
+$dark-mode-link-hover: #f1b835 !default; // TODO: Replace with values from $colors map

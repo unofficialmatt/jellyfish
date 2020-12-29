@@ -1,17 +1,17 @@
 // NAVBAR
 $nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
-//$navbar-bg-color: $color-primary;
+//$navbar-bg-color: get-color(primary);
 // Parent Level Links
 //$navbar-font-size: 1em;
 //$navbar-font-family: $font-primary;
-//$navbar-font-weight: bold;
-//$navbar-text-transform: uppercase;
-//$navbar-link-color: $color-white;
+//$navbar-font-weight: $weight-bold;
+//$navbar-text-transform: none;
+//$navbar-link-color: get-color(neutral,000);
 //$navbar-link-bg-color: $navbar-bg-color;
-//$navbar-link-border: 1px solid rgba($color-white,0.1);
+//$navbar-link-border: 1px solid rgba(get-color(neutral,000),0.1);
 // Links: Hover
-//$navbar-link-hover-color: $color-white;
-//$navbar-link-hover-bg-color: shade($navbar-bg-color,50%);
+//$navbar-link-hover-color: get-color(neutral,000);
+//$navbar-link-hover-bg-color: get-color(primary,600);
 //$navbar-link-hover-weight: $navbar-font-weight;
 // Child Level Links
 //$navbar-sublink-font-size: 0.9em;

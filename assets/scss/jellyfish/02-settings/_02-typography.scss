@@ -4,7 +4,7 @@ $root-line-height: 1.4 !default;
 
 // TODO: Replace with https://gist.github.com/fabricelejeune/bcdd3d4725d4e4cea672 ?
 $font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
-$font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-secondary: $font-primary !default;
 $font-code: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace !default;
 $font-body: $font-primary !default;
 $font-headings: $font-secondary !default;
