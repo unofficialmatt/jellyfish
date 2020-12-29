@@ -268,7 +268,7 @@
           </article>
           <article>
             <h3>Columns</h3>
-              <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable in <span class="file-ref">/assets/scss/project/02-settings/00-grid.scss</span>.</p>
+              <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable in <span class="file-ref">/assets/scss/project/02-settings/06-grid.scss</span>.</p>
 
               <p>Columns are equal-width by default, and expand to fill all available width.</p>
               <pre class="language-markup"><code><!--
@@ -463,7 +463,7 @@
                 <div class="col sm-3"><div class="boxed">sm-3</div></div>
                 <div class="col sm-6 offset-sm-3 offset-md-2"><div class="boxed">sm-6 offset-sm-3 offset-md-2</div></div>
               </div>
-              <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_offset</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/project/02-settings/00-grid.scss</span>.</p>
+              <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_offset</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/project/02-settings/06-grid.scss</span>.</p>
             </article>
             <article>
               <h3>Reordering Columns</h3>
@@ -491,7 +491,7 @@
                 <div class="col order-md-2"><div class="boxed">order-md-2</div></div>
                 <div class="col order-md-1"><div class="boxed">order-md-1</div></div>
               </div>
-              <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_ordering</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/project/02-settings/00-grid.scss</span>.</p>
+              <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_ordering</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/project/02-settings/06-grid.scss</span>.</p>
             </article>
             <article>
               <h3>Hiding Columns</h3>
@@ -561,7 +561,7 @@
           </article>
           <article>
             <h3>Variables</h3>
-            <p>Grid settings are defined in <span class="file-ref">/assets/scss/project/02-settings/00-grid.scss</span>.</p>
+            <p>Grid settings are defined in <span class="file-ref">/assets/scss/project/02-settings/06-grid.scss</span>.</p>
           </article>
         </section><!-- #grid -->
         <section class="docs-section" id="navbar">
@@ -768,7 +768,7 @@
           </nav>
         </article><article>
           <h3>Variables</h3>
-          <p>Jellyfish's navbar is fully customisable with the variables defined in <span class="file-ref">/assets/scss/project/02-settings/04-navbar.scss</span>. You can control:</p>
+          <p>Jellyfish's navbar is fully customisable with the variables defined in <span class="file-ref">/assets/scss/project/02-settings/07--navbar.scss</span>. You can control:</p>
           <!-- TODO: Check these are all still relevant -->
           <ul>
             <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <strong>Note:</strong> if you change this value from it's default you also need to change the value in <span class="file-ref">/assets/js/project/scripts.js</span>: <code>var navPoint = '900';</code></li>
@@ -784,7 +784,7 @@
           <h4>Hamburger Menu Variables</h4>
           <p>Jellyfish uses the fantastic <a href="https://jonsuh.com/hamburgers/">hamburgers css library</a> by Jonathan Suh. The code is imported from npm through <a href="#how-to-use">Grunt</a>.</p>
           <p>Rather than including all animation options in the output css, Jellyfish has a variable <span class="variable-ref">$primary-hamburger-type</span> which is used to select only your specified hamburger animation for compile.</p>
-          <p>Hamburger settings are all found in <span class="file-ref">/assets/scss/project/02-settings/05-hamburgers.scss</span>.</p>
+          <p>Hamburger settings are all found in <span class="file-ref">/assets/scss/project/02-settings/07-hamburger.scss</span>.</p>
         </article>
         </section><!-- #navbar -->
         <section class="docs-section" id="typography">
@@ -998,7 +998,7 @@ console.log("JellyFish is Awesome!");
               <label>_scaffolding.scss</label>
             </pre>
             <h4>Variables</h4>
-            <p>Link colors are defined in <span class="file-ref">/assets/scss/project/02-settings/03-elements.scss</span>.</p>
+            <p>Link colors are defined in <span class="file-ref">/assets/scss/project/02-settings/03-anchor.scss</span>.</p>
           </article>
           <article>
             <h3>Horizontal Rules <code>&lt;hr></code></h3>
@@ -1203,7 +1203,7 @@ console.log("JellyFish is Awesome!");
           </article>
           <article>
           <h3>Variables</h3>
-          <p>Button variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_components.scss</span>.</p>
+          <p>Button variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_07-button.scss</span>.</p>
           </article>
         </section><!-- #buttons -->
         <section class="docs-section" id="forms">
@@ -1493,7 +1493,7 @@ console.log("JellyFish is Awesome!");
           </article>
           <article>
           <h3>Variables</h3>
-          <p>Form variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/03-elements.scss</span>.</p>
+          <p>Form variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/04-forms.scss</span>.</p>
         </article>
         </section><!-- #forms -->
         <section class="docs-section" id="tables">
@@ -1617,7 +1617,7 @@ console.log("JellyFish is Awesome!");
           </div>
         </article><article>
           <h3>Variables</h3>
-          <p>Table settings can be altered in <span class="file-ref">/assets/scss/project/02-settings/03-elements</span>.</p>
+          <p>Table settings can be altered in <span class="file-ref">/assets/scss/project/02-settings/04-tables</span>.</p>
           </article>
         </section><!-- #tables -->
         <div class="docs-section" id="cards">
@@ -1831,7 +1831,7 @@ console.log("JellyFish is Awesome!");
         </div>
       </article><article>
         <h3>Variables</h3>
-          <p>Card variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_components.scss</span>.</p>
+          <p>Card variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_07-card.scss</span>.</p>
           </article>
         </div><!-- /#card.docs-section -->
         <section class="docs-section" id="labels">
@@ -1935,7 +1935,7 @@ console.log("JellyFish is Awesome!");
         </article>
         <article>
           <h3>Variables</h3>
-          <p>Label variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_components.scss</span>.</p>
+          <p>Label variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_07-label.scss</span>.</p>
           </article>
         </section><!-- /#labels.docs-section -->
         <section class="docs-section" id="callouts">
@@ -2029,7 +2029,7 @@ console.log("JellyFish is Awesome!");
           <div class="callout gold">This is a <a href="#" class="callout-link">Gold link</a></div>
         </article><article>
           <h3>Variables</h3>
-          <p>Callout variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_components.scss</span>.</p>
+          <p>Callout variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_07-callout.scss</span>.</p>
           </article>
         </section><!-- /#callouts.docs-section -->
         <section class="docs-section" id="accessibility">
@@ -2682,7 +2682,7 @@ console.log("JellyFish is Awesome!");
           <div class="smooth-transform boxed"><p>This element has <code>smooth(transform)</code> applied to it. Hover to preview.</p></div>
           <div class="smooth-background boxed"><p>This element has <code>smooth(background)</code> applied to it. Hover to preview.</p></div>
           <div class="smooth-wild boxed"><p>This element has <code>smooth(background, transform, color)</code> applied to it. Hover to preview.</p></div>
-          <p>You can adjust the transition in <span class="file-ref">/assets/scss/project/02-settings/03-elements.scss</span>.</p>
+          <p>You can adjust the transition in <span class="file-ref">/assets/scss/project/02-settings/08-transition.scss</span>.</p>
         </article><article>
           <h3>Media queries</h3>
           <p>Jellyfish comes with three media query mixins. These mixins are flexible, allowing you to specify either a <span class="variable-ref">$breakpoint</span> name from your <a href="#breakpoint-settings">breakpoint map</a> or a px value (which is converted automatically by the em() mixin).</p>
@@ -2942,7 +2942,7 @@ console.log("JellyFish is Awesome!");
               )
             )
             </code>
-            <label>project/02-settings/_01-colors.scss</label>
+            <label>project/02-settings/_02-colors.scss</label>
           </pre>
           <h5>Selecting colors from the map</h5>
           <div class="row">
@@ -3053,7 +3053,7 @@ console.log("JellyFish is Awesome!");
           <p class="standfirst">Quickly see the layout of your grid and components.</p>
           <p>Jellyfish comes with a handy debug mode which allows you to quickly see the structure of the grid, and diagnose any layout issues. Debug mode can be enabled in three ways:</p>
           <ol>
-              <li>by setting <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="file-ref">/assets/scss/project/02-settings/00-grid.scss</span>.</li>
+              <li>by setting <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="file-ref">/assets/scss/project/02-settings/06-grid.scss</span>.</li>
               <li>by adding the class <span class="css-ref">.jf-debug</span> to the body or html element - either within the code itself or through a browser's inspector.</li>
               <li>by running <code>jfdebug()</code> in the console.</li>
           </ol>
@@ -3062,7 +3062,7 @@ console.log("JellyFish is Awesome!");
             <li>The highest level <span class="css-ref">.row</span> element will have a striped background showing the base column layout.</li>
             <li><span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(245, 211, 0, .8);">glow in yellow</span></li>
             <li><span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(8, 247, 254, .7);">glow in turquoise</span></li>
-            <li>If <span class="variable-ref">$has_offset</span> or <span class="variable-ref">$has_ordering</span> are set to true in <span class="file-ref">/assets/scss/project/02-settings/00-grid.scss</span>, elements with a class <span class="css-ref">.offset-*</span> and <span class="css-ref">.order-*</span> will be <span style="outline: 2px solid #fe53BB">highlighted in pink</span></li>
+            <li>If <span class="variable-ref">$has_offset</span> or <span class="variable-ref">$has_ordering</span> are set to true in <span class="file-ref">/assets/scss/project/02-settings/06-grid.scss</span>, elements with a class <span class="css-ref">.offset-*</span> and <span class="css-ref">.order-*</span> will be <span style="outline: 2px solid #fe53BB">highlighted in pink</span></li>
             <li>The current breakpoint name is shown in the top left corner of the window.</li>
           </ul>
           <p>Try it out - <a onclick="jfdebug()" style="cursor:pointer;">click here</a> to toggle debug mode on and off onto this page.</p>

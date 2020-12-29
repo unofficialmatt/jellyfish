@@ -13,5 +13,6 @@ $base-container-gutter: 30px !default; // define in px
 $base-col-gutter: 20px !default; // define in px
 
 // GLOBAL PADDING/MARGINS
+// TODO: Replace with a map of sizes generated from Refactoring UI
 $element-padding: 20px !default;
 $element-margin: 1.4rem !default;

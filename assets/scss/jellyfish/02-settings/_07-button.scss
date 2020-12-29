@@ -16,21 +16,3 @@ $button-text-color-dark: $color-text !default;
 $button-disabled-background: get-color(neutral,300) !default; // TODO: Remove in favour of using rgba() inside create_button mixin
 $button-group-max-width: 170px !default; // TODO: This needs some work
 $button-group-margin: 'tight' !default;  // Use 'tight' or a value for right-margin
-
-// LABELS -- TODO: RENAME TO BADGES
-$label-font-weight: $weight-bold !default;
-$label-border-radius: 4px !default;
-$label-outline-border-style: solid !default
-$label-text-color-light: get-color(neutral,000) !default;
-$label-text-color-dark: $color-text !default;
-
-// CARDS
-$card-border-radius: 0px !default;
-$card-border-style: $border-style !default;
-$card-border-color: $border-color !default;
-$card-border-width: $border-width !default;
-$card-padding: $element-padding !default;
-
-// CALLOUTS
-$callout-border-radius: 0px $border-radius $border-radius 0px !default;
-$callout-border-width: 1px 1px 1px 9px !default;

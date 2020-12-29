@@ -3,7 +3,6 @@ $colors: () !default;
 $theme-colors: () !default;
 $background-colors: () !default;
 
-// TODO: DOCUMENTATION
 $colors: map-merge(
   (
     // Base color is always set at 500, tints and shades should also be set where possible

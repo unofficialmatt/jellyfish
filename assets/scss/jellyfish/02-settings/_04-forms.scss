@@ -1,19 +1,9 @@
-// ANCHOR LINKS
-$link-color: get-color(primary) !default;
-$link-active: get-color(primary,400) !default;
-$link-visited: get-color(primary,700) !default;
-
 // BORDERS
 $border-width: 1px !default;
 $border-style: solid !default;
 $border-color: get-color(neutral,300) !default;
 $border-radius: 4px !default;
 $borders: $border-width $border-style $border-color !default;
-
-// TABLES
-$table-stripe-color: get-color(neutral,100) !default;
-$table-hover-background: get-color(neutral,500) !default;
-$table-hover-color: get-color(neutral,000) !default;
 
 // FORMS
 $form-items: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]'); // Stack of elements to target
@@ -27,6 +17,3 @@ $form-focus-shadow-inner: inset 1px 2px 1px 0px get-color(neutral, 200) !default
 $form-focus-shadow-inner: 0px !default;
 $form-focus-shadow-outer: inset -1px -2px 1px 0px get-color(primary, 100) !default;
 $form-fieldset-border: $border-width $border-style get-color(neutral,200) !default;
-
-// GLOBAL TRANSITION USED IN SMOOTH()
-$global-transition: 0.2s ease !default;
