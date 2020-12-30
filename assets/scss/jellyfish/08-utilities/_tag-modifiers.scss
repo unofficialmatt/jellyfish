@@ -1,0 +1,16 @@
+
+.tag.outline {
+  border-style: $tag-outline-border-style;
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+.tag {
+  @each $name,
+  $color in $theme-colors {
+    // Loop through $theme-colors map and create tags for each key
+    &.#{$name} {
+      @include create_tag($color);
+    }
+  }
+}

@@ -1,0 +1,80 @@
+.tag {
+  padding: $tag-padding;
+  display: inline-flex;
+  vertical-align: baseline;
+  align-items: center;
+  line-height: 1;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  font: {
+    size: $tag-base-font-size;
+    weight: $tag-font-weight;
+  }
+  border: {
+    radius: $tag-border-radius;
+    width: $tag-border-width;
+    style: solid;
+  }
+
+  h1 &,h2 &,h3 &,h4 &,h5 &,h6 &, p & {
+    font-size: 0.6em;
+    top: -.2em;
+  }
+
+  @include create_tag(get-color(neutral,200));
+
+  .tag {
+    // Nested tag
+    margin-left: 8px;
+    top: 0;
+  }
+
+}
+
+.tag-list {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  .tag, .tag-group {
+    margin-bottom: 8px;
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+  &:last-child {
+    margin-bottom: -8px; // Reset margin
+  }
+  .tag-group {
+    .tag {
+      margin: 0;
+    }
+  }
+  h1 &,h2 &,h3 &,h4 &,h5 &,h6 &, p & {
+    display: inline-flex;
+    .tag, .tag-group {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.tag-group {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  //margin: h($element-margin) .5rem $element-margin 0;
+  .tag {
+    margin-left: 0;
+  }
+  .tag:not(:last-of-type) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .tag:not(:first-of-type) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

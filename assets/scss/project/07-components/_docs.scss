@@ -4,8 +4,6 @@
   Can be removed on live projects.
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-// TODO: Change prism styling to light
-
 .docs {
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
@@ -25,11 +23,12 @@
     border-bottom: 2px solid get-color(neutral,200);
     z-index: 9;
     background-color: get-color(neutral,000);
-    .label-group:first-of-type {
+    .tag-group:first-of-type {
       margin-left: auto;
     }
-    .label-group {
+    .tag-group {
       font-size: 70%;
+      margin-left: 10px;
     }
   }
 
@@ -120,6 +119,25 @@
     border: 0;
   }
 
+  .language-markup {
+    line-height: 1.6;
+  }
+
+  // Unstyle Tags inside code blocks
+  .language-markup .tag {
+    padding: 0;
+    background: none;
+    border: none;
+    display: initial;
+    font-size: 1em;
+    font-weight: initial;
+    line-height: initial;
+    margin: 0;
+    top: 0;
+    border-radius: 0;
+  }
+
+
   // Hero
   .hero {
     background: url('https://images.unsplash.com/photo-1569689862393-287eaaa677c6?q=100&fm=jpg&w=1080&fit=max&?ixid=123123123');
@@ -172,9 +190,9 @@
     padding-top: 55px; // Offset for Navbar
   }
 
-  // Used for badges
-  .label.light {
-    @include create_label(get-color(neutral,100));
+  // Used for tags
+  .tag.light {
+    @include create_tag(get-color(neutral,100));
     font-weight: normal;
   }
 
@@ -253,21 +271,21 @@ div.code-toolbar {
     @include create_button(#A0A0A0);
   }
 
-  // Labels
-  .label.hotpink {
-    @include create_label(hotpink);
+  // Tags
+  .tag.hotpink {
+    @include create_tag(hotpink);
   }
-  .label.gold {
-    @include create_label(gold);
+  .tag.gold {
+    @include create_tag(gold);
   }
-  .label.white {
-    @include create_label(white);
+  .tag.white {
+    @include create_tag(white);
   }
-  .label.purple {
-    @include create_label(rebeccapurple);
+  .tag.purple {
+    @include create_tag(rebeccapurple);
   }
-  .label.silver {
-    @include create_label(#A0A0A0);
+  .tag.silver {
+    @include create_tag(#A0A0A0);
   }
   // Callouts
   .callout.hotpink {
@@ -426,3 +444,4 @@ div.code-toolbar {
     color: #c6d2f6; }
   .bg-blue a:hover, .bg-blue a:focus {
     color: white; }
+

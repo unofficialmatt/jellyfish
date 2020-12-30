@@ -12,7 +12,7 @@ Jellyfish has one minor change from the normal ITCSS structure, in that Tools an
 4. **04-elements**: Styling for bare HTML elements (like H1, A, etc.). Redefines the default styles from the browser.
 5. **05-vendor**: Import any vendor or third-party styles here, so that they can be modified further down the triangle if required.
 6. **06-objects**: Class based selectors which define undecorated design patterns. In Jellyfish, the grid framework is defined here.
-7. **07-components**: The bread and butter of the project. This is where all styled UI components should be defined, for example buttons, labels, cards.
+7. **07-components**: The bread and butter of the project. This is where all styled UI components should be defined, for example buttons, tags, callouts, cards.
 8. **08-utilities**: Utilities and helper classes which have the ability to override anything which has come before in the triangle. For example, hide/show classes.
 
 ## Useful Reading:

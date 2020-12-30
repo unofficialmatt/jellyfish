@@ -125,21 +125,20 @@
 
 }
 
-// Apply consistent styling to labels
-@mixin create_label($label-color) {
+// Apply consistent styling to .tag
+@mixin create_tag($tag-color) {
 
-  // If passed string exists in the $colors map, get the value for the label-color
-  @if map-has-key($colors, $label-color) {
-    $label-color: get-color($label-color);
+  // If passed string exists in the $colors map, get the value for the tag-color
+  @if map-has-key($colors, $tag-color) {
+    $tag-color: get-color($tag-color);
   }
 
-  border-color: $label-color;
-  background-color: $label-color;
-  color: choose-contrast-color($label-color, $label-text-color-light, $label-text-color-dark);
+  border-color: $tag-color;
+  background-color: $tag-color;
+  color: choose-contrast-color($tag-color, $tag-text-color-light, $tag-text-color-dark);
   &.outline {
-    //color: $label-color;
+    //color: $tag-color;
   }
-  // TODO: Allow labels to be anchors with hover states
 }
 
 // Apply consistent styling to callouts
