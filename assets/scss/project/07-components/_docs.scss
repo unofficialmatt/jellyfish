@@ -287,6 +287,19 @@ div.code-toolbar {
   .tag.silver {
     @include create_tag(#A0A0A0);
   }
+  // Progress Bars
+  .progress.hotpink {
+    @include create_progressbar(
+  hotpink);
+  }
+  .progress.tomato {
+    @include create_progressbar(
+  tomato);
+  }
+  .progress.lime {
+    @include create_progressbar(
+  lime);
+  }
   // Callouts
   .callout.hotpink {
     @include create_callout(hotpink);

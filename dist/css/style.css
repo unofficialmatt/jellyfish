@@ -901,6 +901,47 @@ button.toggle-contrast svg {
     padding-left: 5px;
     padding-right: 5px; }
 
+.progress {
+  appearance: none;
+  border: none;
+  background-size: auto;
+  display: block;
+  width: 100%;
+  height: 16px;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 200px; }
+  .progress::-webkit-progress-bar {
+    background-color: #e5e8eb; }
+  .progress::-webkit-progress-value {
+    background-color: #515f6c;
+    border-radius: 0px; }
+  .progress::-moz-progress-bar {
+    background-color: #515f6c;
+    border-radius: 0px; }
+  .progress::-ms-fill {
+    background-color: #515f6c;
+    border-radius: 0px; }
+  .progress:indeterminate {
+    background-color: #e5e8eb;
+    background-image: linear-gradient(to right, rgba(81, 95, 108, 0.35) 20%, #e5e8eb 20%);
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: 150% 150%;
+    animation: animateIndeterminate 2.5s linear 0s infinite; }
+    .progress:indeterminate::-webkit-progress-bar {
+      background-color: transparent; }
+    .progress:indeterminate::-moz-progress-bar {
+      background-color: transparent; }
+    .progress:indeterminate::-ms-fill {
+      animation-name: none; }
+
+@keyframes animateIndeterminate {
+  from {
+    background-position: 200% 0; }
+  to {
+    background-position: -200% 0; } }
+
 .embed-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -1475,6 +1516,30 @@ button.toggle-contrast svg {
     border-color: #A0A0A0;
     background-color: #A0A0A0;
     color: #1f2933; }
+  .docs .progress.hotpink::-webkit-progress-value {
+    background-color: hotpink; }
+  .docs .progress.hotpink::-moz-progress-bar {
+    background-color: hotpink; }
+  .docs .progress.hotpink::-ms-fill {
+    background-color: hotpink; }
+  .docs .progress.hotpink:indeterminate {
+    background-image: linear-gradient(to right, rgba(255, 105, 180, 0.35) 20%, #e5e8eb 20%); }
+  .docs .progress.tomato::-webkit-progress-value {
+    background-color: tomato; }
+  .docs .progress.tomato::-moz-progress-bar {
+    background-color: tomato; }
+  .docs .progress.tomato::-ms-fill {
+    background-color: tomato; }
+  .docs .progress.tomato:indeterminate {
+    background-image: linear-gradient(to right, rgba(255, 99, 71, 0.35) 20%, #e5e8eb 20%); }
+  .docs .progress.lime::-webkit-progress-value {
+    background-color: lime; }
+  .docs .progress.lime::-moz-progress-bar {
+    background-color: lime; }
+  .docs .progress.lime::-ms-fill {
+    background-color: lime; }
+  .docs .progress.lime:indeterminate {
+    background-image: linear-gradient(to right, rgba(0, 255, 0, 0.35) 20%, #e5e8eb 20%); }
   .docs .callout.hotpink {
     border-color: hotpink;
     background-color: #fff0f8; }
@@ -2708,6 +2773,66 @@ img.align-left, img.align-right, img.align-none, img.align-center {
     width: auto !important; }
   .container {
     width: 100%; } }
+
+.progress.primary::-webkit-progress-value {
+  background-color: #c32c78; }
+
+.progress.primary::-moz-progress-bar {
+  background-color: #c32c78; }
+
+.progress.primary::-ms-fill {
+  background-color: #c32c78; }
+
+.progress.primary:indeterminate {
+  background-image: linear-gradient(to right, rgba(195, 44, 120, 0.35) 20%, #e5e8eb 20%); }
+
+.progress.secondary::-webkit-progress-value {
+  background-color: #1cd4d4; }
+
+.progress.secondary::-moz-progress-bar {
+  background-color: #1cd4d4; }
+
+.progress.secondary::-ms-fill {
+  background-color: #1cd4d4; }
+
+.progress.secondary:indeterminate {
+  background-image: linear-gradient(to right, rgba(28, 212, 212, 0.35) 20%, #e5e8eb 20%); }
+
+.progress.success::-webkit-progress-value {
+  background-color: #94c841; }
+
+.progress.success::-moz-progress-bar {
+  background-color: #94c841; }
+
+.progress.success::-ms-fill {
+  background-color: #94c841; }
+
+.progress.success:indeterminate {
+  background-image: linear-gradient(to right, rgba(148, 200, 65, 0.35) 20%, #e5e8eb 20%); }
+
+.progress.warning::-webkit-progress-value {
+  background-color: #f0b428; }
+
+.progress.warning::-moz-progress-bar {
+  background-color: #f0b428; }
+
+.progress.warning::-ms-fill {
+  background-color: #f0b428; }
+
+.progress.warning:indeterminate {
+  background-image: linear-gradient(to right, rgba(240, 180, 40, 0.35) 20%, #e5e8eb 20%); }
+
+.progress.error::-webkit-progress-value {
+  background-color: #bb2525; }
+
+.progress.error::-moz-progress-bar {
+  background-color: #bb2525; }
+
+.progress.error::-ms-fill {
+  background-color: #bb2525; }
+
+.progress.error:indeterminate {
+  background-image: linear-gradient(to right, rgba(187, 37, 37, 0.35) 20%, #e5e8eb 20%); }
 
 table.is-striped tr:nth-child(odd) td {
   background: #f5f7fa; }

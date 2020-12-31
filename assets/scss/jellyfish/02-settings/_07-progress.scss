@@ -1,0 +1,7 @@
+// PROGRESS BAR
+$progressbar-color: get-color(neutral, 200) !default;
+$progressbar-progress-color: get-color(neutral, 600) !default;
+$progressbar-height: 16px !default;
+$progressbar-border-radius: 200px !default;
+$progressbar-value-border-radius: 0px !default;
+$progressbar-indeterminate-duration: 2.5s !default;

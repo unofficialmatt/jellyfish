@@ -1,0 +1,8 @@
+.progress {
+  @each $name, $color in $theme-colors {
+    // Loop through $theme-colors map and create progress bars for each key
+    &.#{$name} {
+      @include create_progressbar($color);
+    }
+  }
+}

@@ -141,6 +141,28 @@
   }
 }
 
+// Apply consistent styling to .progress
+@mixin create_progressbar($bar-color) {
+
+  // If passed string exists in the $colors map, get the value for the bar-color
+  @if map-has-key($colors, $bar-color) {
+    $bar-color: get-color($bar-color);
+  }
+  &::-webkit-progress-value {
+    background-color: $bar-color;
+  }
+  &::-moz-progress-bar {
+    background-color: $bar-color;
+  }
+  &::-ms-fill {
+    background-color: $bar-color;
+  }
+  &:indeterminate {
+    background-image: linear-gradient(to right, rgba($bar-color,0.35) 20%, $progressbar-color 20%);
+  }
+}
+
+
 // Apply consistent styling to callouts
 @mixin create_callout($callout-color) {
 
