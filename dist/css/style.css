@@ -152,92 +152,97 @@ select::-ms-expand {
 :-ms-input-placeholder {
   color: #6e7c8c; }
 
-input[type=range] {
+[type=range] {
   -webkit-appearance: none;
-  margin: 10px 0;
-  width: 100%; }
-
-input[type=range]:focus {
-  outline: none; }
-
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 12.8px;
-  cursor: pointer;
-  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  background: #cad1d8;
-  border-radius: 25px;
-  border: 0px solid #000101; }
-
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  border: 0px solid #000000;
-  height: 20px;
-  width: 39px;
-  border-radius: 7px;
-  background: #c32c78;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -3.6px; }
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #cad1d8; }
-
-input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 12.8px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  background: #cad1d8;
-  border-radius: 25px;
-  border: 0px solid #000101; }
-
-input[type=range]::-moz-range-thumb {
-  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  border: 0px solid #000000;
-  height: 20px;
-  width: 39px;
-  border-radius: 7px;
-  background: #c32c78;
-  cursor: pointer; }
-
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 12.8px;
-  cursor: pointer;
-  animate: 0.2s;
   background: transparent;
-  border-color: transparent;
-  border-width: 39px 0;
-  color: transparent; }
-
-input[type=range]::-ms-fill-lower {
-  background: #cad1d8;
-  border: 0px solid #000101;
-  border-radius: 50px;
-  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d; }
-
-input[type=range]::-ms-fill-upper {
-  background: #cad1d8;
-  border: 0px solid #000101;
-  border-radius: 50px;
-  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d; }
-
-input[type=range]::-ms-thumb {
-  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  border: 0px solid #000000;
-  height: 20px;
-  width: 39px;
-  border-radius: 7px;
-  background: #c32c78;
-  cursor: pointer; }
-
-input[type=range]:focus::-ms-fill-lower {
-  background: #cad1d8; }
-
-input[type=range]:focus::-ms-fill-upper {
-  background: #cad1d8; }
+  margin: 12px 0;
+  width: 100%; }
+  [type='range']::-moz-focus-outer {
+    border: 0; }
+  [type='range']:focus {
+    outline: 0; }
+    [type='range']:focus::-webkit-slider-runnable-track {
+      background: #e5e8eb; }
+    [type='range']:focus::-ms-fill-lower {
+      background: #e5e8eb; }
+    [type='range']:focus::-ms-fill-upper {
+      background: #e5e8eb; }
+    [type='range']:focus::-webkit-slider-thumb {
+      background-color: #c32c78; }
+    [type='range']:focus::-moz-range-thumb {
+      background-color: #c32c78; }
+    [type='range']:focus::-ms-thumb {
+      background-color: #c32c78; }
+  [type='range']::-webkit-slider-runnable-track {
+    cursor: default;
+    height: 12px;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-shadow: 0px 0px 0px transparent;
+    background: #f5f7fa;
+    border: 1px solid #cad1d8;
+    border-radius: 4px; }
+  [type='range']::-webkit-slider-thumb {
+    box-shadow: 0px 1px 6px rgba(51, 64, 77, 0.4);
+    background: #6e7c8c;
+    border: 2px solid white;
+    border-radius: 12px;
+    box-sizing: border-box;
+    cursor: default;
+    height: 24px;
+    width: 24px;
+    -webkit-appearance: none;
+    margin-top: -7px; }
+  [type='range']::-moz-range-track {
+    box-shadow: 0px 0px 0px transparent;
+    cursor: default;
+    height: 12px;
+    transition: all 0.2s ease;
+    width: 100%;
+    background: #f5f7fa;
+    border: 1px solid #cad1d8;
+    border-radius: 4px;
+    height: 6px; }
+  [type='range']::-moz-range-thumb {
+    box-shadow: 0px 1px 6px rgba(51, 64, 77, 0.4);
+    background: #6e7c8c;
+    border: 2px solid white;
+    border-radius: 12px;
+    box-sizing: border-box;
+    cursor: default;
+    height: 24px;
+    width: 24px; }
+  [type='range']::-ms-track {
+    cursor: default;
+    height: 12px;
+    transition: all 0.2s ease;
+    width: 100%;
+    background: transparent;
+    border-color: transparent;
+    border-width: 12px 0;
+    color: transparent; }
+  [type='range']::-ms-fill-lower {
+    box-shadow: 0px 0px 0px transparent;
+    background: #cad1d8;
+    border: 1px solid #cad1d8;
+    border-radius: 8px; }
+  [type='range']::-ms-fill-upper {
+    box-shadow: 0px 0px 0px transparent;
+    background: #f5f7fa;
+    border: 1px solid #cad1d8;
+    border-radius: 8px; }
+  [type='range']::-ms-thumb {
+    box-shadow: 0px 1px 6px rgba(51, 64, 77, 0.4);
+    background: #6e7c8c;
+    border: 2px solid white;
+    border-radius: 12px;
+    box-sizing: border-box;
+    cursor: default;
+    height: 24px;
+    width: 24px;
+    margin-top: 3px; }
+  [type='range']:disabled::-webkit-slider-thumb, [type='range']:disabled::-moz-range-thumb, [type='range']:disabled::-ms-thumb, [type='range']:disabled::-webkit-slider-runnable-track, [type='range']:disabled::-ms-fill-lower, [type='range']:disabled::-ms-fill-upper {
+    cursor: not-allowed; }
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -792,8 +797,8 @@ button.toggle-contrast svg {
   background-color: #c32c78;
   border-color: #c32c78;
   color: white;
-  /* // Button uses value `800` in key `primary`, in the $colors map for it's :hover color */
-  /* // Button uses value `600` in key `primary`, in the $colors map for it's :focus box-shadow color */ }
+  /* // Button uses value `600` in key `primary`, in the $colors map for it's :hover color */
+  /* // Button uses value `300` in key `primary`, in the $colors map for it's :focus box-shadow color */ }
   .button::-moz-focus-inner, a.button::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
     border: 0;
     padding: 0; }
@@ -809,15 +814,15 @@ button.toggle-contrast svg {
       border-color: #cad1d8;
       color: #1f2933; }
   .button:hover, .button:focus, a.button:hover, a.button:focus, button:hover, button:focus, [type=submit]:hover, [type=submit]:focus, [type=reset]:hover, [type=reset]:focus, [type=button]:hover, [type=button]:focus {
-    background-color: #781243;
-    border-color: #781243;
+    background-color: #ab2166;
+    border-color: #ab2166;
     color: white; }
   .button:focus, a.button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
-    box-shadow: 0px 0px 1px 3px #ab2166; }
+    box-shadow: 0px 0px 1px 3px #f193c2; }
   .button.outline, .button.ghost, a.button.outline, a.button.ghost, button.outline, button.ghost, [type=submit].outline, [type=submit].ghost, [type=reset].outline, [type=reset].ghost, [type=button].outline, [type=button].ghost {
     color: #c32c78; }
     .button.outline:hover, .button.outline:focus, .button.ghost:hover, .button.ghost:focus, a.button.outline:hover, a.button.outline:focus, a.button.ghost:hover, a.button.ghost:focus, button.outline:hover, button.outline:focus, button.ghost:hover, button.ghost:focus, [type=submit].outline:hover, [type=submit].outline:focus, [type=submit].ghost:hover, [type=submit].ghost:focus, [type=reset].outline:hover, [type=reset].outline:focus, [type=reset].ghost:hover, [type=reset].ghost:focus, [type=button].outline:hover, [type=button].outline:focus, [type=button].ghost:hover, [type=button].ghost:focus {
-      color: #781243; }
+      color: #ab2166; }
 
 .button-group {
   display: inline-flex;
@@ -1370,31 +1375,31 @@ button.toggle-contrast svg {
     background-color: hotpink;
     border-color: hotpink;
     color: #1f2933;
-    /* // Button uses shade(hotpink, 62.5%) for it's :hover color */
-    /* // Button uses shade(hotpink, 87.5%) for it's :focus box-shadow color */ }
+    /* // Button uses shade(hotpink, 87.5%) for it's :hover color */
+    /* // Button uses tint(hotpink, 42.5%) for it's :focus box-shadow color */ }
     .docs button.hotpink:hover, .docs button.hotpink:focus {
-      background-color: #9f4271;
-      border-color: #9f4271;
-      color: white; }
+      background-color: #df5c9e;
+      border-color: #df5c9e;
+      color: #1f2933; }
     .docs button.hotpink:focus {
-      box-shadow: 0px 0px 1px 3px #df5c9e; }
+      box-shadow: 0px 0px 1px 3px #ffbfdf; }
     .docs button.hotpink.outline, .docs button.hotpink.ghost {
       color: hotpink; }
       .docs button.hotpink.outline:hover, .docs button.hotpink.outline:focus, .docs button.hotpink.ghost:hover, .docs button.hotpink.ghost:focus {
-        color: #9f4271; }
+        color: #df5c9e; }
   .docs button.gold {
     /* // Button uses a specific color value as it's base color */
     background-color: gold;
     border-color: gold;
     color: #1f2933;
     /* Button uses a specific color value as it's hover color */
-    /* // Button uses shade(gold, 87.5%) for it's :focus box-shadow color */ }
+    /* // Button uses tint(gold, 42.5%) for it's :focus box-shadow color */ }
     .docs button.gold:hover, .docs button.gold:focus {
       background-color: brown;
       border-color: brown;
       color: white; }
     .docs button.gold:focus {
-      box-shadow: 0px 0px 1px 3px #dfbc00; }
+      box-shadow: 0px 0px 1px 3px #ffee93; }
     .docs button.gold.outline, .docs button.gold.ghost {
       color: gold; }
       .docs button.gold.outline:hover, .docs button.gold.outline:focus, .docs button.gold.ghost:hover, .docs button.gold.ghost:focus {
@@ -1405,13 +1410,13 @@ button.toggle-contrast svg {
     border-color: #fff;
     color: #1f2933;
     /* Button uses a specific color value as it's hover color */
-    /* // Button uses shade(#fff, 87.5%) for it's :focus box-shadow color */ }
+    /* // Button uses tint(#fff, 42.5%) for it's :focus box-shadow color */ }
     .docs button.white:hover, .docs button.white:focus {
       background-color: gray;
       border-color: gray;
       color: white; }
     .docs button.white:focus {
-      box-shadow: 0px 0px 1px 3px #dfdfdf; }
+      box-shadow: 0px 0px 1px 3px white; }
     .docs button.white.outline, .docs button.white.ghost {
       color: #fff; }
       .docs button.white.outline:hover, .docs button.white.outline:focus, .docs button.white.ghost:hover, .docs button.white.ghost:focus {
@@ -1421,35 +1426,35 @@ button.toggle-contrast svg {
     background-color: rebeccapurple;
     border-color: rebeccapurple;
     color: white;
-    /* // Button uses shade(rebeccapurple, 62.5%) for it's :hover color */
-    /* // Button uses shade(rebeccapurple, 87.5%) for it's :focus box-shadow color */ }
+    /* // Button uses shade(rebeccapurple, 87.5%) for it's :hover color */
+    /* // Button uses tint(rebeccapurple, 42.5%) for it's :focus box-shadow color */ }
     .docs button.purple:hover, .docs button.purple:focus {
-      background-color: #402060;
-      border-color: #402060;
+      background-color: #592d86;
+      border-color: #592d86;
       color: white; }
     .docs button.purple:focus {
-      box-shadow: 0px 0px 1px 3px #592d86; }
+      box-shadow: 0px 0px 1px 3px #bea8d4; }
     .docs button.purple.outline, .docs button.purple.ghost {
       color: rebeccapurple; }
       .docs button.purple.outline:hover, .docs button.purple.outline:focus, .docs button.purple.ghost:hover, .docs button.purple.ghost:focus {
-        color: #402060; }
+        color: #592d86; }
   .docs button.silver {
     /* // Button uses a specific color value as it's base color */
     background-color: #A0A0A0;
     border-color: #A0A0A0;
     color: #1f2933;
-    /* // Button uses shade(#A0A0A0, 62.5%) for it's :hover color */
-    /* // Button uses shade(#A0A0A0, 87.5%) for it's :focus box-shadow color */ }
+    /* // Button uses shade(#A0A0A0, 87.5%) for it's :hover color */
+    /* // Button uses tint(#A0A0A0, 42.5%) for it's :focus box-shadow color */ }
     .docs button.silver:hover, .docs button.silver:focus {
-      background-color: #646464;
-      border-color: #646464;
-      color: white; }
+      background-color: #8c8c8c;
+      border-color: #8c8c8c;
+      color: #1f2933; }
     .docs button.silver:focus {
-      box-shadow: 0px 0px 1px 3px #8c8c8c; }
+      box-shadow: 0px 0px 1px 3px #d7d7d7; }
     .docs button.silver.outline, .docs button.silver.ghost {
       color: #A0A0A0; }
       .docs button.silver.outline:hover, .docs button.silver.outline:focus, .docs button.silver.ghost:hover, .docs button.silver.ghost:focus {
-        color: #646464; }
+        color: #8c8c8c; }
   .docs .tag.hotpink {
     border-color: hotpink;
     background-color: hotpink;
@@ -1691,90 +1696,90 @@ button.toggle-contrast svg {
   background-color: #c32c78;
   border-color: #c32c78;
   color: white;
-  /* // Button uses value `800` in key `primary`, in the $colors map for it's :hover color */
-  /* // Button uses value `600` in key `primary`, in the $colors map for it's :focus box-shadow color */ }
+  /* // Button uses value `600` in key `primary`, in the $colors map for it's :hover color */
+  /* // Button uses value `300` in key `primary`, in the $colors map for it's :focus box-shadow color */ }
   .button.primary:hover, .button.primary:focus, a.button.primary:hover, a.button.primary:focus {
-    background-color: #781243;
-    border-color: #781243;
+    background-color: #ab2166;
+    border-color: #ab2166;
     color: white; }
   .button.primary:focus, a.button.primary:focus {
-    box-shadow: 0px 0px 1px 3px #ab2166; }
+    box-shadow: 0px 0px 1px 3px #f193c2; }
   .button.primary.outline, .button.primary.ghost, a.button.primary.outline, a.button.primary.ghost {
     color: #c32c78; }
     .button.primary.outline:hover, .button.primary.outline:focus, .button.primary.ghost:hover, .button.primary.ghost:focus, a.button.primary.outline:hover, a.button.primary.outline:focus, a.button.primary.ghost:hover, a.button.primary.ghost:focus {
-      color: #781243; }
+      color: #ab2166; }
 
 .button.secondary, a.button.secondary {
   /* // Button uses base color from SASS $colors map */
   background-color: #1cd4d4;
   border-color: #1cd4d4;
   color: #1f2933;
-  /* // Button uses value `800` in key `secondary`, in the $colors map for it's :hover color */
-  /* // Button uses value `600` in key `secondary`, in the $colors map for it's :focus box-shadow color */ }
+  /* // Button uses value `600` in key `secondary`, in the $colors map for it's :hover color */
+  /* // Button uses value `300` in key `secondary`, in the $colors map for it's :focus box-shadow color */ }
   .button.secondary:hover, .button.secondary:focus, a.button.secondary:hover, a.button.secondary:focus {
-    background-color: #07808d;
-    border-color: #07808d;
-    color: white; }
+    background-color: #0fb2b8;
+    border-color: #0fb2b8;
+    color: #1f2933; }
   .button.secondary:focus, a.button.secondary:focus {
-    box-shadow: 0px 0px 1px 3px #0fb2b8; }
+    box-shadow: 0px 0px 1px 3px #91fdf2; }
   .button.secondary.outline, .button.secondary.ghost, a.button.secondary.outline, a.button.secondary.ghost {
     color: #1cd4d4; }
     .button.secondary.outline:hover, .button.secondary.outline:focus, .button.secondary.ghost:hover, .button.secondary.ghost:focus, a.button.secondary.outline:hover, a.button.secondary.outline:focus, a.button.secondary.ghost:hover, a.button.secondary.ghost:focus {
-      color: #07808d; }
+      color: #0fb2b8; }
 
 .button.success, a.button.success {
   /* // Button uses base color from SASS $colors map */
   background-color: #94c841;
   border-color: #94c841;
   color: #1f2933;
-  /* // Button uses shade(#94c841, 62.5%) for it's :hover color */
-  /* // Button uses shade(#94c841, 87.5%) for it's :focus box-shadow color */ }
+  /* // Button uses shade(#94c841, 87.5%) for it's :hover color */
+  /* // Button uses tint(#94c841, 42.5%) for it's :focus box-shadow color */ }
   .button.success:hover, .button.success:focus, a.button.success:hover, a.button.success:focus {
-    background-color: #5d7d29;
-    border-color: #5d7d29;
-    color: white; }
+    background-color: #82af39;
+    border-color: #82af39;
+    color: #1f2933; }
   .button.success:focus, a.button.success:focus {
-    box-shadow: 0px 0px 1px 3px #82af39; }
+    box-shadow: 0px 0px 1px 3px #d2e8ae; }
   .button.success.outline, .button.success.ghost, a.button.success.outline, a.button.success.ghost {
     color: #94c841; }
     .button.success.outline:hover, .button.success.outline:focus, .button.success.ghost:hover, .button.success.ghost:focus, a.button.success.outline:hover, a.button.success.outline:focus, a.button.success.ghost:hover, a.button.success.ghost:focus {
-      color: #5d7d29; }
+      color: #82af39; }
 
 .button.warning, a.button.warning {
   /* // Button uses base color from SASS $colors map */
   background-color: #f0b428;
   border-color: #f0b428;
   color: #1f2933;
-  /* // Button uses shade(#f0b428, 62.5%) for it's :hover color */
-  /* // Button uses shade(#f0b428, 87.5%) for it's :focus box-shadow color */ }
+  /* // Button uses shade(#f0b428, 87.5%) for it's :hover color */
+  /* // Button uses tint(#f0b428, 42.5%) for it's :focus box-shadow color */ }
   .button.warning:hover, .button.warning:focus, a.button.warning:hover, a.button.warning:focus {
-    background-color: #967119;
-    border-color: #967119;
-    color: white; }
+    background-color: #d29e23;
+    border-color: #d29e23;
+    color: #1f2933; }
   .button.warning:focus, a.button.warning:focus {
-    box-shadow: 0px 0px 1px 3px #d29e23; }
+    box-shadow: 0px 0px 1px 3px #f9dfa4; }
   .button.warning.outline, .button.warning.ghost, a.button.warning.outline, a.button.warning.ghost {
     color: #f0b428; }
     .button.warning.outline:hover, .button.warning.outline:focus, .button.warning.ghost:hover, .button.warning.ghost:focus, a.button.warning.outline:hover, a.button.warning.outline:focus, a.button.warning.ghost:hover, a.button.warning.ghost:focus {
-      color: #967119; }
+      color: #d29e23; }
 
 .button.error, a.button.error {
   /* // Button uses base color from SASS $colors map */
   background-color: #bb2525;
   border-color: #bb2525;
   color: white;
-  /* // Button uses shade(#bb2525, 62.5%) for it's :hover color */
-  /* // Button uses shade(#bb2525, 87.5%) for it's :focus box-shadow color */ }
+  /* // Button uses shade(#bb2525, 87.5%) for it's :hover color */
+  /* // Button uses tint(#bb2525, 42.5%) for it's :focus box-shadow color */ }
   .button.error:hover, .button.error:focus, a.button.error:hover, a.button.error:focus {
-    background-color: #751717;
-    border-color: #751717;
+    background-color: #a42020;
+    border-color: #a42020;
     color: white; }
   .button.error:focus, a.button.error:focus {
-    box-shadow: 0px 0px 1px 3px #a42020; }
+    box-shadow: 0px 0px 1px 3px #e2a2a2; }
   .button.error.outline, .button.error.ghost, a.button.error.outline, a.button.error.ghost {
     color: #bb2525; }
     .button.error.outline:hover, .button.error.outline:focus, .button.error.ghost:hover, .button.error.ghost:focus, a.button.error.outline:hover, a.button.error.outline:focus, a.button.error.ghost:hover, a.button.error.ghost:focus {
-      color: #751717; }
+      color: #a42020; }
 
 .callout.primary {
   border-color: #c32c78;
