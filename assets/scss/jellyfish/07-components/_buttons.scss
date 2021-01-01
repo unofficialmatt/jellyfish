@@ -22,7 +22,7 @@
     }
     line-height: 1.3;
     padding: $button-padding;
-    margin: h($element-margin) 5px $element-margin 0;
+    margin: 0 0 $element-margin 0;
     @include smooth(all);
     &::-moz-focus-inner {
         border: 0;
@@ -32,55 +32,46 @@
         outline: 0;
     }
     &:disabled {
+      opacity: $button-disabled-opacity;
       cursor: not-allowed;
-      // TODO: Replace with :disabled versions using rgba() inside create_button?
-      background-color: $button-disabled-background;
-      border-color: $button-disabled-background;
-      color: choose-contrast-color($button-disabled-background, $button-text-color-light, $button-text-color-dark);
-      &:hover, &:focus {
-        background-color: $button-disabled-background;
-        border-color: $button-disabled-background;
-        color: choose-contrast-color($button-disabled-background, $button-text-color-light, $button-text-color-dark);
-      }
     }
     // Default Styles
-    @include create_button('primary');
+    @include create_button('neutral');
 }
 
+%button-groups {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.button-list {
+  display: flex;
+  @extend %button-groups;
+  margin-bottom: calc(#{$element-margin} - #{$button-list-button-margin});
+  .button, a.button {
+    margin: 0 $button-list-button-margin $button-list-button-margin 0;
+    //display: inline-flex;
+  }
+}
 .button-group {
   display: inline-flex;
-  vertical-align: middle;
-  position: relative;
-  flex-wrap: wrap;
-  .button, a.button {
-    margin-top: 0;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: $button-group-max-width;
-  }
+  @extend %button-groups;
   margin-bottom: $element-margin;
-  @if $button-group-margin == 'tight' {
-    .button, a.button {
-      margin-left: n($button-border-width);
-      margin-right: 0;
-      &:not(:first-child) {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-      &:not(:last-child) {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
+  .button, a.button {
+    margin: 0 0 0 n($button-border-width);
+    &:not(:first-child) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    &:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     }
   }
-  @else {
-    .button, a.button {
-      margin-right: $button-group-margin;
-      &:last-child {
-        margin-right: 0;
-      }
-    }
+  &+& {
+    margin-left: $element-margin;
   }
+}
+
+.button-list .button-group {
+  margin-bottom: calc(#{$element-margin} - #{$button-list-button-margin});
 }

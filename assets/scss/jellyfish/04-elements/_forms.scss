@@ -108,6 +108,12 @@ vertical-align: middle;
   color: $placeholder-color;
 }
 
+form {
+  [type=submit], [type=reset], [type=button] {
+    margin-top: 3px;
+  }
+}
+
 // TODO: etter styling of radio and checkboxes - eg. https://scottaohara.github.io/a11y_styled_form_controls/
 // TODO: add a field-group container
 // TODO: Add input groups and input addons https://www.shoelace.style/docs/forms.html

@@ -23,11 +23,14 @@
     // @warn "#{$button-color} is not a key in the $colors map. .button modifiers will still be generated, however the colors will be simulated with tint() and shade().";
   }
   // If the provided value is not a color, SASS compilation will fail
+  // Output the base CSS and disabled:hover state (prevents other hover states taking effect)
 
-  // Output the base CSS
-  background-color: $button-base-color;
-  border-color: $button-base-color;
-  color: choose-contrast-color($button-base-color, $button-text-color-light, $button-text-color-dark);
+  &,
+  &:disabled:hover {
+    background-color: $button-base-color;
+    border-color: $button-base-color;
+    color: choose-contrast-color($button-base-color, $button-text-color-light, $button-text-color-dark);
+  }
 
   // Only run if $button-hover-value != 500
   @if $button-hover-value != 500 {
@@ -114,12 +117,13 @@
   }
 
   &.outline, &.ghost {
+    background-color: transparent;
     color: $button-base-color;
-    // Only run if $button-hover-value != 500
-    @if $button-hover-value != 500 {
-      &:hover, &:focus {
-        color: $button-hover-color;
-      }
+  }
+  &.outline {
+    &:hover, &:focus {
+      background-color: $button-hover-color;
+      color: choose-contrast-color($button-hover-color, $button-text-color-light, $button-text-color-dark);
     }
   }
 

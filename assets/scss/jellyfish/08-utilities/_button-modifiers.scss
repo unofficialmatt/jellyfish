@@ -1,17 +1,19 @@
-[type=reset], .button.outline, a.button.outline, .button.ghost, a.button.ghost {
-  // Outline and ghost buttons have a transparent fill
-  background-color: transparent !important;
-  color: get-color(primary);
+[type=reset], .button.outline, a.button.outline {
+  background-color: transparent;
+  color: get-color(neutral);
   &:hover, &:focus {
-    background-color: transparent !important;
+    background-color: get-color(neutral, $button-hover-value);
+    color: choose-contrast-color(get-color(neutral, $button-hover-value), $button-text-color-dark, $button-text-color-light)
   }
 }
 
 .button, a.button {
     &.ghost {
         border-color: transparent !important;
+        background-color: transparent !important;
         &:hover, &:focus {
           border-color: transparent !important;
+          text-decoration: underline;
         }
     }
     &.expanded {
