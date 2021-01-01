@@ -134,7 +134,7 @@ select {
   color: #1f2933;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: white url("data:image/svg+xml;charset=utf-8,%3Csvg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='#6e7c8c' d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/%3E%3C/svg%3E") right 10px center no-repeat;
+  background: white url("data:image/svg+xml;charset=utf-8,<svg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'><path fill='#6e7c8c' d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/></svg>") right 10px center no-repeat;
   background-size: .75rem;
   line-height: 1.4; }
 
@@ -945,6 +945,76 @@ button.toggle-contrast svg {
     background-position: 200% 0; }
   to {
     background-position: -200% 0; } }
+
+.radio, .checkbox {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-gap: .5em;
+  margin-bottom: .5em; }
+
+.radio__control, .checkbox__control {
+  width: 1em;
+  height: 1em;
+  border: 0.15em solid #cad1d8; }
+
+.radio__control {
+  display: block;
+  border-radius: 50%;
+  display: grid;
+  place-items: center; }
+
+.checkbox__control {
+  display: inline-grid;
+  border-radius: 4px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat; }
+
+input + .radio__control::before {
+  content: "";
+  width: .5em;
+  height: .5em;
+  box-shadow: inset 0.5em 0.5em #515f6c;
+  border-radius: 50%;
+  transition: 180ms transform ease-in-out;
+  transform: scale(0); }
+
+input:checked + .radio__control::before {
+  transform: scale(1); }
+
+input:checked + .checkbox__control {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path fill='none' stroke='#515f6c' stroke-width='6' d='M1.73 12.91l6.37 6.37L22.79 4.59'/></svg>"); }
+
+.radio__label {
+  line-height: 1; }
+
+.radio__input {
+  display: flex; }
+  .radio__input input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0; }
+
+.checkbox__input {
+  display: grid;
+  grid-template-areas: "checkbox"; }
+  .checkbox__input > * {
+    grid-area: checkbox; }
+  .checkbox__input input {
+    opacity: 0;
+    width: 1em;
+    height: 1em;
+    margin: 0; }
+
+.radio__input input:focus + .radio__control,
+.checkbox__input input:focus + .checkbox__control {
+  box-shadow: 0 0 0 0.05em #fff, 0 0 0.2em 0.15em #cad1d8; }
+
+.radio input:disabled + .radio__control,
+.checkbox input:disabled + .checkbox__control {
+  opacity: 0.65;
+  cursor: not-allowed; }
 
 .embed-container {
   position: relative;

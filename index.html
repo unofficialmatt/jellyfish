@@ -1418,8 +1418,8 @@ console.log("JellyFish is Awesome!");
                 <td><code>&lt;input type="radio"&gt;</code></td>
                 <td>
                   <div class="form-group">
-                    <label><input type="Radio" name="radio" checked=""> Radio 1</label>
-                    <label><input type="Radio" name="radio"> Radio 2</label>
+                    <label><input type="radio" name="radio" checked=""> Radio 1</label>
+                    <label><input type="radio" name="radio"> Radio 2</label>
                   </div>
                 </td>
               </tr>
@@ -1457,25 +1457,25 @@ console.log("JellyFish is Awesome!");
           </table>
           </article>
           <article>
-          <h3>Working with checkboxes and radioboxes</h3>
-          <p>Wrap checkboxes and radio boxes in a <span class="css-ref">.form-group</span> to preserve spacing.</p>
+          <h3>Working with checkboxes and radio buttons</h3>
+          <p>Wrap checkboxes and radio buttons in a <span class="css-ref">.form-group</span> to preserve spacing.</p>
           <pre class="language-markup">
             <code><!--
             <input type="text">
             <div class="form-group">
-              <label><input type="Radio" name="radio" checked=""> Radio 1</label>
-              <label><input type="Radio" name="radio"> Radio 2</label>
+              <label><input type="radio" name="radio" checked=""> Radio 1</label>
+              <label><input type="radio" name="radio"> Radio 2</label>
             </div>
             <textarea></textarea>
           --></code>
           </pre>
           <input type="text">
           <div class="form-group">
-            <label><input type="Radio" name="radio" checked=""> Radio 1</label>
-            <label><input type="Radio" name="radio"> Radio 2</label>
+            <label><input type="radio" name="radio" checked=""> Radio 1</label>
+            <label><input type="radio" name="radio"> Radio 2</label>
           </div>
           <textarea></textarea>
-          <p>Add the class <span class="css-ref">.form-group-inline</span> to make checkboxes and radioboxes inline-block elements rather than block.</p>
+          <p>Add the class <span class="css-ref">.form-group-inline</span> to make checkboxes and radio buttons inline-block elements rather than block.</p>
           <pre class="language-markup">
             <code><!--
             <div class="form-group-inline">
@@ -1484,10 +1484,134 @@ console.log("JellyFish is Awesome!");
           --></code>
           </pre>
           <div class="form-group-inline">
-            <label><input type="Radio" name="radio" checked=""> Radio 1</label>
-            <label><input type="Radio" name="radio"> Radio 2</label>
-            <label><input type="Radio" name="radio"> Radio 3</label>
+            <label><input type="radio" name="radio" checked=""> Radio 1</label>
+            <label><input type="radio" name="radio"> Radio 2</label>
+            <label><input type="radio" name="radio"> Radio 3</label>
           </div>
+          <h4>Better styling for checkboxes and radio buttons</h4>
+          <p>By default, Jellyfish will inherit the browser's default styling for checkboxes and radio buttons. You can override this using the HTML structure below. This styling has cross-browser support and is fully accessible. Checkboxes and Radio Buttons styled this way will inherit the font-size of the parent label, allowing scaling.</p>
+          <pre class="language-markup">
+            <code><!--
+            <label class="radio">
+              <span class="radio__input">
+                <input type="radio" name="radio-styled">
+                <span class="radio__control"></span>
+              </span>
+              <span class="radio__label">Radio button</span>
+            </label>
+            <label class="radio">
+              <span class="radio__input">
+                <input type="radio" name="radio-styled" checked>
+                <span class="radio__control"></span>
+              </span>
+              <span class="radio__label">Radio button - checked</span>
+            </label>
+            <label class="radio">
+              <span class="radio__input">
+                <input type="radio" name="radio-styled" disabled>
+                <span class="radio__control"></span>
+              </span>
+              <span class="radio__label">Radio button - disabled</span>
+            </label>
+
+            <label class="checkbox">
+              <span class="checkbox__input">
+                <input type="checkbox" name="checkbox">
+                <span class="checkbox__control"></span>
+              </span>
+              <span class="radio__label">Checkbox</span>
+            </label>
+            <label class="checkbox">
+              <span class="checkbox__input">
+                <input type="checkbox" name="checked" checked>
+                <span class="checkbox__control"></span>
+              </span>
+              <span class="radio__label">Checkbox - checked</span>
+            </label>
+            <label class="checkbox">
+              <span class="checkbox__input">
+                <input type="checkbox" name="checked" disabled>
+                <span class="checkbox__control"></span>
+              </span>
+              <span class="radio__label">Checkbox - disabled</span>
+            </label>
+          --></code>
+          </pre>
+          <label class="radio">
+            <span class="radio__input">
+              <input type="radio" name="radio-styled">
+              <span class="radio__control"></span>
+            </span>
+            <span class="radio__label">Radio button</span>
+          </label>
+          <label class="radio">
+            <span class="radio__input">
+              <input type="radio" name="radio-styled" checked>
+              <span class="radio__control"></span>
+            </span>
+            <span class="radio__label">Radio button - checked</span>
+          </label>
+          <label class="radio">
+            <span class="radio__input">
+              <input type="radio" name="radio-styled" disabled>
+              <span class="radio__control"></span>
+            </span>
+            <span class="radio__label">Radio button - disabled</span>
+          </label>
+
+          <label class="checkbox">
+            <span class="checkbox__input">
+              <input type="checkbox" name="checkbox">
+              <span class="checkbox__control"></span>
+            </span>
+            <span class="radio__label">Checkbox</span>
+          </label>
+          <label class="checkbox">
+            <span class="checkbox__input">
+              <input type="checkbox" name="checked" checked>
+              <span class="checkbox__control"></span>
+            </span>
+            <span class="radio__label">Checkbox - checked</span>
+          </label>
+          <label class="checkbox">
+            <span class="checkbox__input">
+              <input type="checkbox" name="checked" disabled>
+              <span class="checkbox__control"></span>
+            </span>
+            <span class="radio__label">Checkbox - disabled</span>
+          </label>
+
+          <br>
+          <label class="radio" style="font-size: 2rem">
+            <span class="radio__input">
+              <input type="radio" name="radio-large" checked>
+              <span class="radio__control"></span>
+            </span>
+            <span class="radio__label">This is a larger radio button - checked</span>
+          </label>
+          <label class="radio" style="font-size: 2rem">
+            <span class="radio__input">
+              <input type="radio" name="radio-large">
+              <span class="radio__control"></span>
+            </span>
+            <span class="radio__label">This is a larger radio button</span>
+          </label>
+
+          <label class="checkbox" style="font-size: 2rem">
+            <span class="checkbox__input">
+              <input type="checkbox" name="checkbox">
+              <span class="checkbox__control"></span>
+            </span>
+            <span class="radio__label">Larger checkbox</span>
+          </label>
+          <label class="checkbox" style="font-size: 2rem">
+            <span class="checkbox__input">
+              <input type="checkbox" name="checked" checked>
+              <span class="checkbox__control"></span>
+            </span>
+            <span class="radio__label">Larger checkbox - Checked</span>
+          </label>
+
           </article>
           <article>
           <h3>Fieldsets</h3>

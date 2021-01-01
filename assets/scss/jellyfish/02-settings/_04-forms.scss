@@ -43,3 +43,7 @@ $range-track-shadow-color: transparent !default;
 $range-track-border-width: $border-width !default;
 $range-track-border-color: $border-color !default;
 $range-track-radius: $border-radius !default;
+
+$radio-check-box-color: get-color(neutral,600) !default;
+$radio-check-box-focus-shadow: get-color(neutral,300) !default;
+$radio-check-box-transform-adjust: 0px !default;
