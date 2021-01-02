@@ -9,10 +9,9 @@ $one_col: (100% / $cols);
 
 // Base Variables (used before breakpoints are applied)
 $base-col-name: xs !default;
-$base-container-gutter: 30px !default; // define in px
-$base-col-gutter: 20px !default; // define in px
+$base-container-gutter: get-size(1.5) !default; // define in px
+$base-col-gutter: get-size(1) !default; // define in px
 
 // GLOBAL PADDING/MARGINS
-// TODO: Replace with a map of sizes generated from Refactoring UI
-$element-padding: 20px !default;
-$element-margin: 1.4rem !default;
+$element-padding: get-size(1.5) !default;
+$element-margin: get-size(1.5) !default;

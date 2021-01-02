@@ -12,6 +12,7 @@
 	width: 1px;
 	word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
 
+  // TODO: Refactor
 	&:focus {
 		background-color: get-color(neutral,000);
 		border-radius: 3px;
@@ -36,18 +37,6 @@
 /* Do not show the outline on the skip link target. */
 #content[tabindex="-1"]:focus {
 	outline: 0;
-}
-
-body.font-size{
-  &-sm {
-  font-size: $accessibility-font-size-sm;
-  }
-  &-md {
-    font-size: $accessibility-font-size-md;
-  }
-  &-lg {
-    font-size: $accessibility-font-size-lg;
-  }
 }
 
 %accessibility-button {

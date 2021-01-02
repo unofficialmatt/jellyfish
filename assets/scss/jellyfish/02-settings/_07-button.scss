@@ -3,7 +3,7 @@ $buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button
 $button-border-width: 1px !default;
 $button-border-radius: 3px !default;
 $button-font-family: $font-secondary !default;
-$button-padding: 1em 1.5em !default; // TODO: Refactor based on UI book
+$button-padding: 1em 1.5em !default; // TODO: Refactor based on UI book - different for sm, md and lg
 $button-text-transform: none !default;
 $button-font-weight: $weight-bold !default;
 $button-hover-value: 600 !default; // Note: setting this variable to 500 does not create default hover states for buttons
@@ -14,4 +14,6 @@ $button-box-shadow: 0px 0px 1px 3px !default;
 $button-text-color-light: get-color(neutral,000) !default;
 $button-text-color-dark: $color-text !default;
 $button-disabled-opacity: .65 !default;
-$button-list-button-margin: 10px !default;
+$button-list-button-margin: get-size(.75) !default;
+
+// TODO: Look at setting min and max-width of buttons with ch (character height)

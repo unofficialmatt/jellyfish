@@ -2,7 +2,7 @@
 $nav-expands: 900px !default; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
 $navbar-bg-color: get-color(primary) !default;
 // Parent Level Links
-$navbar-font-size: 1em !default;
+$navbar-font-size: font-size('size-0') !default;
 $navbar-font-family: $font-primary !default;
 $navbar-font-weight: $weight-bold !default;
 $navbar-text-transform: none !default;
@@ -14,21 +14,21 @@ $navbar-link-hover-color: get-color(neutral,000) !default;
 $navbar-link-hover-bg-color: get-color(primary,600) !default;
 $navbar-link-hover-weight: $navbar-font-weight !default;
 // Child Level Links
-$navbar-sublink-font-size: 0.9em !default;
+$navbar-sublink-font-size: font-size('size-m1') !default;
 $navbar-sublink-font-family: $font-primary !default;
 $navbar-sublink-font-weight: $navbar-font-weight !default;
 $navbar-sublink-text-transform: $navbar-text-transform !default;
 $navbar-sublink-font-weight-hover: $navbar-link-hover-weight !default;
 // Links: Padding
-$navbar-link-padding-x: 10px !default;
-$navbar-link-padding-y: 8px !default;
-$navbar-link-padding-expanded-x: 10px !default;
-$navbar-link-padding-expanded-y: 10px !default;
+$navbar-link-padding-x: get-size(0.75) !default;
+$navbar-link-padding-y: get-size(0.5) !default;
+$navbar-link-padding-expanded-x: get-size(0.75) !default;
+$navbar-link-padding-expanded-y: get-size(0.75) !default;
 // THESE SETTINGS APPLY ABOVE $nav-expands ONLY
 $navbar-sublink-color: $navbar-link-color !default;
 $navbar-sublink-bg-color: $navbar-link-bg-color !default;
 $navbar-sublink-hover-color: $navbar-link-hover-color !default;
 $navbar-sublink-hover-bg-color: $navbar-link-hover-bg-color !default;
-$navbar-dropdown-width: 240px !default;
+$navbar-dropdown-width: get-size(16) !default;
 $navbar-start-flex-align: stretch !default;
 $navbar-end-flex-align: center !default;

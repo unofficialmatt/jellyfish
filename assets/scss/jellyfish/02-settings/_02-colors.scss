@@ -1,6 +1,6 @@
 // Create empty maps. This allows the maps to be defined in the project's settings file to override and add any colors as required
-$colors: () !default;
-$theme-colors: () !default;
+$colors:            () !default;
+$theme-colors:      () !default;
 $background-colors: () !default;
 
 $colors: map-merge(

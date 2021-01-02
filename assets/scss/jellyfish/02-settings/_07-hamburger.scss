@@ -2,7 +2,7 @@
 // @link https://github.com/jonsuh/hamburgers
 $primary-hamburger-type: spin !default; // Change this to modify animation
 $hamburger-margin-y: 0px !default;
-$hamburger-layer-width: 20px !default; // Width of the hamburger icon
+$hamburger-layer-width: get-size(1.5) !default; // Width of the hamburger icon
 $hamburger-layer-height: 3px !default; // Thickness of hamburger lines
 $hamburger-layer-spacing: 4px !default; // Spacing between hamburger lines
 $hamburger-layer-border-radius: 3px !default; // Radius of hamburger lines

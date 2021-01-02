@@ -1,34 +1,34 @@
 // NAVBAR
 $nav-expands: 1220px; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
-//$navbar-bg-color: get-color(primary);
+// $navbar-bg-color: get-color(primary);
 // Parent Level Links
-//$navbar-font-size: 1em;
-//$navbar-font-family: $font-primary;
-//$navbar-font-weight: $weight-bold;
-//$navbar-text-transform: none;
-//$navbar-link-color: get-color(neutral,000);
-//$navbar-link-bg-color: $navbar-bg-color;
-//$navbar-link-border: 1px solid rgba(get-color(neutral,000),0.1);
+// $navbar-font-size: font-size('size-0');
+// $navbar-font-family: $font-primary;
+// $navbar-font-weight: $weight-bold;
+// $navbar-text-transform: none;
+// $navbar-link-color: get-color(neutral,000);
+// $navbar-link-bg-color: $navbar-bg-color;
+// $navbar-link-border: 1px solid rgba(get-color(neutral,000),0.1);
 // Links: Hover
-//$navbar-link-hover-color: get-color(neutral,000);
-//$navbar-link-hover-bg-color: get-color(primary,600);
-//$navbar-link-hover-weight: $navbar-font-weight;
+// $navbar-link-hover-color: get-color(neutral,000);
+// $navbar-link-hover-bg-color: get-color(primary,600);
+// $navbar-link-hover-weight: $navbar-font-weight;
 // Child Level Links
-//$navbar-sublink-font-size: 0.9em;
-//$navbar-sublink-font-family: $font-primary;
-//$navbar-sublink-font-weight: $navbar-font-weight;
-//$navbar-sublink-text-transform: $navbar-text-transform;
-//$navbar-sublink-font-weight-hover: $navbar-link-hover-weight;
+// $navbar-sublink-font-size: font-size('size-m1');
+// $navbar-sublink-font-family: $font-primary;
+// $navbar-sublink-font-weight: $navbar-font-weight;
+// $navbar-sublink-text-transform: $navbar-text-transform;
+// $navbar-sublink-font-weight-hover: $navbar-link-hover-weight;
 // Links: Padding
-//$navbar-link-padding-x: 10px;
-//$navbar-link-padding-y: 8px;
-//$navbar-link-padding-expanded-x: 10px;
-//$navbar-link-padding-expanded-y: 10px;
+// $navbar-link-padding-x: get-size(0.75);
+// $navbar-link-padding-y: get-size(0.5);
+// $navbar-link-padding-expanded-x: get-size(0.75);
+// $navbar-link-padding-expanded-y: get-size(0.75);
 // THESE SETTINGS APPLY ABOVE $nav-expands ONLY
-//$navbar-sublink-color: $navbar-link-color;
-//$navbar-sublink-bg-color: $navbar-link-bg-color;
-//$navbar-sublink-hover-color: $navbar-link-hover-color;
-//$navbar-sublink-hover-bg-color: $navbar-link-hover-bg-color;
-//$navbar-dropdown-width: 240px;
-//$navbar-start-flex-align: stretch;
-//$navbar-end-flex-align: center;
+// $navbar-sublink-color: $navbar-link-color;
+// $navbar-sublink-bg-color: $navbar-link-bg-color;
+// $navbar-sublink-hover-color: $navbar-link-hover-color;
+// $navbar-sublink-hover-bg-color: $navbar-link-hover-bg-color;
+// $navbar-dropdown-width: get-size(16);
+// $navbar-start-flex-align: stretch;
+// $navbar-end-flex-align: center;

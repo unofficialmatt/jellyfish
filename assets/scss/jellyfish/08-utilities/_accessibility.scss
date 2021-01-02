@@ -1,0 +1,11 @@
+body.font-size{
+  &-sm {
+    font-size: $accessibility-font-size-sm;
+  }
+  &-md {
+    font-size: $accessibility-font-size-md;
+  }
+  &-lg {
+    font-size: $accessibility-font-size-lg;
+  }
+}

@@ -5,11 +5,11 @@
       position: fixed;
       top: 0;
       left: 0;
-      padding: 10px;
+      padding: get-size(0.75);
       z-index: 10000;
       background: get-color(neutral,000);
       font-size: 12px;
-      color: #555555;
+      color: get-color(neutral);
       font-family: $font-body;
       @each $point,
       $i in $breakpoints {

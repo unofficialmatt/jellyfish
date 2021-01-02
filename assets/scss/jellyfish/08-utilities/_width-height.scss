@@ -5,11 +5,10 @@
 }
 
 .vw-100 {
-// TODO: vw-100 doesn't work when the center of the parent is not in the center of the screen.
-width: 100vw !important;
-position: relative !important;
-left: 50% !important;
-right: 50% !important;
-margin-left: -50vw !important;
-margin-right: -50vw !important;
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
 }

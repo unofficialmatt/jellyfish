@@ -52,6 +52,16 @@
   }
 }
 
+@function get-size($size) {
+  @if map-has-key($sizing-system, $size) {
+    $return-size: map-get($sizing-system, $size);
+    @return $return-size;
+  }
+  @else {
+    @error "Key: '#{$size}' not found in $sizing-system map. Cancelling compile.";
+  }
+}
+
 // Returns a given number divided by 2
 @function h($num) {
 @return $num/2;

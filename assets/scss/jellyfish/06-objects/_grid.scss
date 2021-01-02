@@ -12,15 +12,15 @@
     flex-direction: row;
     flex-wrap: wrap;
     // Add negative margin to all rows, equal to half the col gutter - keeps things neatly aligned
-    margin-left: -.5*$base-col-gutter;
-    margin-right: -.5*$base-col-gutter;
+    margin-left: nh($base-col-gutter);
+    margin-right: nh($base-col-gutter);
 }
 .col {
     width: 100%;
     position: relative;
     // give our cols l-r margin equal to half col gutter
-    padding-left: .5*$base-col-gutter;
-    padding-right: .5*$base-col-gutter;
+    padding-left: h($base-col-gutter);
+    padding-right: h($base-col-gutter);
 }
 
 // Iterate for our smallest defined column class ($base-col-name)

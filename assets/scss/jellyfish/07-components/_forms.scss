@@ -1,6 +1,6 @@
 // Wrapper to apply better margins to radioboxes and checkboxes
 .form-group {
-  margin: 3px 0 h($element-margin) 0;
+  margin: get-size(0.25) 0 get-size(0.75) 0;
 }
 
 // Make checkboxes/radioboxes inline-block
@@ -10,18 +10,18 @@
     display: inline-block;
   }
   label {
-    margin-right: h($element-margin);
+    margin-right: get-size(0.5);
   }
 }
 
 // Tighter gutters on form rows
 .form-row {
-  margin-left: -5px;
-  margin-right: -5px;
+  margin-left: nh(get-size(0.5));
+  margin-right: nh(get-size(0.5));
   display: flex;
   flex-wrap: wrap;
   .col {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: h(get-size(0.5));
+    padding-right: h(get-size(0.5));
   }
 }

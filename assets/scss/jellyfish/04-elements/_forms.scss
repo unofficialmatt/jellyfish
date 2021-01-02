@@ -7,11 +7,11 @@
     font-family: $form-font;
     padding: 10px;
     outline: none;
-    margin: 3px 0 h($element-margin) 0;
+    margin: get-size(0.25) 0 get-size(0.75) 0;
     width: 100%;
     max-width: 100%;
     line-height: 1;
-    font-size: $form-text-size;
+    font-size: 16px !important;
     opacity: 1;
 }
 
@@ -57,7 +57,7 @@ label {
 
 // Add margin to checkboxes and radioboxes
 input[type=checkbox], input[type=radio] {
-  margin-right: 5px;
+  margin-right: get-size(0.25);
 }
 
 // Field Sets
@@ -68,8 +68,8 @@ fieldset {
     margin: $element-margin 0;
 }
 legend {
-    padding: 0 10px;
-    margin-left: -10px;
+    padding: 0 get-size(0.75);
+    margin-left: n(get-size(0.75));
     font-weight: $weight-bold;
 }
 
@@ -84,7 +84,7 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   background: $input-background url("data:image/svg+xml;charset=utf-8,<svg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'><path fill='#{$placeholder-color}' d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/></svg>") right 10px center no-repeat;
-  background-size: .75rem;
+  background-size: .75em;
   line-height: 1.4; // ensures text doesn't get cut off
 }
 
@@ -95,8 +95,8 @@ select::-ms-expand {
 
 // Make color picker look better
 [type=color] {
-height: 3rem;
-padding: 3px 5px;
+height: get-size(3);
+padding: get-size(0.25) get-size(0.5);
 vertical-align: middle;
 }
 
@@ -110,7 +110,7 @@ vertical-align: middle;
 
 form {
   [type=submit], [type=reset], [type=button] {
-    margin-top: 3px;
+    margin-top: get-size(0.25);
   }
 }
 

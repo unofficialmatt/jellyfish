@@ -9,13 +9,11 @@ $borders: $border-width $border-style $border-color !default;
 $form-items: ('[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]'); // Stack of elements to target
 $input-background: get-color(neutral, 000) !default;
 $placeholder-color: get-color(neutral, 500) !default;
-$form-text-size: 1rem !default;
 $form-border-hover: get-color(neutral) !default;
 $form-font: $font-primary !default;
 $form-focus-border-color: get-color(neutral, 500) !default;
-$form-focus-shadow-inner: inset 1px 2px 1px 0px get-color(neutral, 200) !default;
-$form-focus-shadow-inner: 0px !default;
-$form-focus-shadow-outer: inset -1px -2px 1px 0px get-color(primary, 100) !default;
+$form-focus-shadow-inner: inset 1px 2px 1px 0px get-color(neutral, 300) !default;
+$form-focus-shadow-outer: inset -1px -2px 1px 0px get-color(neutral, 200) !default;
 $form-fieldset-border: $border-width $border-style get-color(neutral,200) !default;
 
 // INPUT[type="range"]
@@ -27,7 +25,7 @@ $range-track-color-bottom-ie: get-color(neutral,300) !default;
 $range-thumb-color-focus: get-color(primary) !default;
 $range-track-color-focus: get-color(neutral,200) !default;
 
-$range-thumb-height: 24px !default;
+$range-thumb-height: get-size(1.5) !default;
 $range-thumb-width: $range-thumb-height !default;
 $range-thumb-radius: $range-thumb-height/2 !default;
 $range-thumb-shadow-size: 0px 1px !default;

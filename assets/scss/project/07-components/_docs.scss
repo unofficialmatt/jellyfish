@@ -28,7 +28,7 @@
     }
     .tag-group {
       font-size: 70%;
-      margin-left: 10px;
+      margin-left: get-size(0.75);
     }
   }
 
@@ -70,14 +70,14 @@
   }
 
   .padded {
-    padding: .7rem .9rem;
+    padding: $element-padding;
     margin-bottom: $element-margin;
   }
 
   // Boxed Out Example
   .boxed {
     background: get-color(neutral,100);
-    padding: .7rem .9rem;
+    padding: $element-padding;
     line-height: 1.2;
     margin: 0 0 $element-margin 0;
     display: inherit;
@@ -89,11 +89,11 @@
     background-color: get-color(neutral,100);
     min-height: 160px;
     margin-bottom: $element-margin;
-    padding: .7rem 0;
+    padding: $element-padding 0;
     .boxed {
       margin: 0;
       background-color: get-color(neutral,000);
-      border:1px solid get-color(neutral,100);
+      border: 1px solid get-color(neutral,200);
     }
   }
 
@@ -144,7 +144,7 @@
     background: url('https://images.unsplash.com/photo-1569689862393-287eaaa677c6?q=100&fm=jpg&w=1080&fit=max&?ixid=123123123');
     background-position: center;
     background-size: cover;
-    padding: 100px 0;
+    padding: get-size(8) 0;
     text-align: center;
     color: get-color(neutral,000);
     a {

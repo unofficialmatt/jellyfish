@@ -1,7 +1,7 @@
 // ACCESSIBILITY
-$accessibility-font-size-sm: 14px !default; // TODO: Replace with a calculated value
-$accessibility-font-size-md: 16px !default; // TODO: Replace with a calculated value
-$accessibility-font-size-lg: 18px !default; // TODO: Replace with a calculated value
+$accessibility-font-size-sm: font-size('size-m1') !default;
+$accessibility-font-size-md: font-size('size-0') !default;
+$accessibility-font-size-lg: font-size('size-1') !default;
 
 $accessibility-button-font-weight: normal !default;
 
