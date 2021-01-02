@@ -2,8 +2,9 @@
 #{$buttons} {
     -webkit-appearance: none;
     user-select: none;
-    display: inline-block;
-    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     text:{
       decoration: none;

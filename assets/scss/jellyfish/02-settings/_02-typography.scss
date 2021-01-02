@@ -1,5 +1,32 @@
+// Create empty maps. This allows the maps to be defined in the project's settings file to override and add any colors as required
+$type-scale: () !default;
+$font-sizes-h1: () !default;
+$font-sizes-h2: () !default;
+$font-sizes-h3: () !default;
+$font-sizes-h4: () !default;
+$font-sizes-h5: () !default;
+$font-sizes-h6: () !default;
+
+// Merge default colours into the map
+$type-scale: map-merge(
+  (
+    'size-m2': 12px,
+    'size-m1': 14px,
+    'size-0':  16px,
+    'size-1':  18px,
+    'size-2':  20px,
+    'size-3':  24px,
+    'size-4':  30px,
+    'size-5':  36px,
+    'size-6':  48px,
+    'size-7':  60px,
+    'size-8':  72px
+  ),
+  $type-scale
+);
+
 // DOCUMENT ROOT FONT SIZE AND LINE HEIGHT AT SMALLEST DEVICE WIDTH
-$root-font-size: 14px !default;
+$root-font-size: font-size('size-m1') !default;
 $root-line-height: 1.4 !default;
 
 // TODO: Replace with https://gist.github.com/fabricelejeune/bcdd3d4725d4e4cea672 ?
@@ -9,34 +36,24 @@ $font-code: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monos
 $font-body: $font-primary !default;
 $font-headings: $font-secondary !default;
 
-$font-size--2: 0.6em !default;
-$font-size--1: 0.8em !default;
-$font-size-0: 1em !default;
-$font-size-1: 1.5em !default;
-$font-size-2: 1.5em !default;
-$font-size-3: 1.75em !default;
-$font-size-4: 2em !default;
-$font-size-5: 2.5em !default;
-$font-size-6: 3em !default;
-
-// TODO: Need documenting
+// TODO: Documentation
 $font-sizes-h1: map-merge(
-  ( "root": 2em ), $font-sizes-h1
+  ( "root": font-size('size-6') ), $font-sizes-h1
 );
 $font-sizes-h2: map-merge(
-  ( "root": 1.8em ), $font-sizes-h2
+  ( "root": font-size('size-5') ), $font-sizes-h2
 );
 $font-sizes-h3: map-merge(
-  ( "root": 1.6em ), $font-sizes-h3
+  ( "root": font-size('size-4') ), $font-sizes-h3
 );
 $font-sizes-h4: map-merge(
-  ( "root": 1.4em ), $font-sizes-h4
+  ( "root": font-size('size-3') ), $font-sizes-h4
 );
 $font-sizes-h5: map-merge(
-  ( "root": 1.2em ), $font-sizes-h5
+  ( "root": font-size('size-3') ), $font-sizes-h5
 );
 $font-sizes-h6: map-merge(
-  ( "root": 1em ), $font-sizes-h6
+  ( "root": font-size('size-2') ), $font-sizes-h6
 );
 
 // TODO: Need documenting

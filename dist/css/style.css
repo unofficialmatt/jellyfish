@@ -268,7 +268,11 @@ body {
       line-height: 1.48; } }
   @media (min-width: 56.25em) {
     body {
-      font-size: 16px; } }
+      font-size: 16px;
+      line-height: 1.5; } }
+  @media (min-width: 75em) {
+    body {
+      line-height: 1.6; } }
 
 a {
   transition: color 0.2s ease;
@@ -330,14 +334,14 @@ blockquote {
   margin: 0 0 1.4rem 0;
   padding: 0 0 0 1.4rem;
   border-left: 0.4666666667rem solid #e5e8eb;
-  font-size: 1.5em;
+  font-size: 24px;
   font-style: italic;
   line-height: 1.4; }
 
 cite {
   display: block;
   margin-top: 0.7rem;
-  font-size: 0.6em;
+  font-size: 12px;
   font-style: normal;
   font-weight: 700;
   text-align: right; }
@@ -381,46 +385,26 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 1.4rem; }
 
 h1 {
-  font-size: 2em; }
-  @media (min-width: 37.5em) {
-    h1 {
-      font-size: 3em; } }
-  @media (min-width: 75em) {
-    h1 {
-      font-size: 4em; } }
+  font-size: 48px; }
 
 h2 {
-  font-size: 1.8em; }
-  @media (min-width: 37.5em) {
-    h2 {
-      font-size: 2em; } }
-  @media (min-width: 75em) {
-    h2 {
-      font-size: 2.4em; } }
+  font-size: 36px; }
 
 h3 {
-  font-size: 1.6em; }
-  @media (min-width: 37.5em) {
-    h3 {
-      font-size: 2em; } }
+  font-size: 30px; }
 
 h4 {
-  font-size: 1.4em; }
-  @media (min-width: 37.5em) {
-    h4 {
-      font-size: 1.6em; } }
+  font-size: 24px; }
 
 h5 {
-  font-size: 1.2em; }
-  @media (min-width: 37.5em) {
-    h5 {
-      font-size: 1.4em; } }
+  font-size: 24px; }
 
 h6 {
-  font-size: 1em; }
-  @media (min-width: 37.5em) {
-    h6 {
-      font-size: 1.2em; } }
+  font-size: 20px; }
+
+p, li, h1, h2, h3, h4, h5, h6 {
+  word-break: break-word;
+  hyphens: auto; }
 
 /* TEXT TRANSFORM */
 
@@ -431,7 +415,7 @@ small,
 
 small,
 .small {
-  font-size: 0.8em; }
+  font-size: 14px; }
 
 strong, b {
   font-weight: 700; }
@@ -466,7 +450,7 @@ q {
     content: '"'; }
 
 kbd, :not(pre) > code, var, .docs .css-ref, .docs .file-ref, .docs .variable-ref {
-  font-size: 0.8em;
+  font-size: 14px;
   line-height: 1;
   border-radius: 4px;
   padding: .3em .35em; }
@@ -485,7 +469,7 @@ var {
   color: #1cd4d4; }
 
 sub, sup {
-  font-size: 0.6em;
+  font-size: 12px;
   line-height: 0;
   position: relative;
   vertical-align: baseline; }
@@ -780,8 +764,9 @@ button.toggle-contrast svg {
 .button, a.button, button, [type=submit], [type=reset], [type=button] {
   -webkit-appearance: none;
   user-select: none;
-  display: inline-block;
-  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   text-decoration: none;
   text-transform: none;
@@ -1094,7 +1079,7 @@ input:checked + .checkbox__control {
     border-bottom-left-radius: 0; }
 
 .standfirst {
-  font-size: 1.5em; }
+  font-size: 18px; }
 
 .navbar {
   position: relative;
@@ -1352,8 +1337,9 @@ input:checked + .checkbox__control {
       font-size: 70%;
       margin-left: 10px; }
   .docs .standfirst {
-    font-size: 1.5em;
-    font-weight: 300; }
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.3; }
   .docs .docs-section .standfirst {
     color: #6e7c8c; }
   .docs .docs-section > article {
@@ -1376,7 +1362,7 @@ input:checked + .checkbox__control {
     line-height: 1.2;
     margin: 0 0 1.4rem 0;
     display: inherit;
-    font-size: 0.8em;
+    font-size: 14px;
     flex: 1;
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
   .docs .row-boxed {
@@ -1393,7 +1379,7 @@ input:checked + .checkbox__control {
     margin: 1.4rem 0 !important;
     font-size: 0.9em !important; }
     .docs pre label {
-      font-size: 0.8em;
+      font-size: 14px;
       top: 0;
       right: 0;
       position: absolute;

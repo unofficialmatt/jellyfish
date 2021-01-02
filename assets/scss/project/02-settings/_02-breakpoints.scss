@@ -21,13 +21,15 @@ $breakpoints: (
         container-max-width: 1140px,
         container-gutter: 0px,
         col-gutter: 30px,
-        root-font-size: 16px
+        root-font-size: 16px,
+        root-line-height: 1.5
         ),
     lg: (
         breakpoint: 1200px,
         container-width: 1140px,
         container-max-width: none,
         col-gutter: 35px,
+        root-line-height: 1.6
         ),
     xl: (
         breakpoint: 1800px,

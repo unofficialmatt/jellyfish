@@ -42,6 +42,16 @@
   }
 }
 
+@function font-size($size) {
+  @if map-has-key($type-scale, $size) {
+    $font-size: map-get($type-scale, $size);
+    @return $font-size;
+  }
+  @else {
+    @error "Key: '#{$size}' not found in $type-scale map. Cancelling compile.";
+  }
+}
+
 // Returns a given number divided by 2
 @function h($num) {
 @return $num/2;
