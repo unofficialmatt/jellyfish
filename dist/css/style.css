@@ -1,5 +1,5 @@
 /*! jellyfish-grid 3.1.0
- * © 2021-01 Matt Weet - https://www.weareboba.com */
+ * © 2021-05 Matt Weet - https://www.weareboba.com */
 
 /**
  * Calculate the luminance for a color.
@@ -406,8 +406,7 @@ h6 {
   font-size: 1.25em; }
 
 p, li, h1, h2, h3, h4, h5, h6 {
-  word-break: break-word;
-  hyphens: auto; }
+  word-break: break-all; }
 
 /* TEXT TRANSFORM */
 
