@@ -28,19 +28,19 @@ $('button.font-size').click(function () {
     $(document.body).removeClass('font-size-md font-size-lg').addClass('font-size-sm');
     $('button.font-size').removeClass('active');
     $(this).addClass('active');
-    jfCreateCookie('fontsize', 'sm');
+    jfSetCookie('fontsize', 'sm');
   }
   else if ($(this).hasClass('font-size-md')) {
     $(document.body).removeClass('font-size-sm font-size-lg').addClass('font-size-md');
     $('button.font-size').removeClass('active');
     $(this).addClass('active');
-    jfCreateCookie('fontsize', 'md');
+    jfSetCookie('fontsize', 'md');
   }
   else if ($(this).hasClass('font-size-lg')) {
     $(document.body).removeClass('font-size-sm font-size-md').addClass('font-size-lg');
     $('button.font-size').removeClass('active');
     $(this).addClass('active');
-    jfCreateCookie('fontsize', 'lg');
+    jfSetCookie('fontsize', 'lg');
   };
 });
 
@@ -51,20 +51,20 @@ $('button.toggle-contrast').click(function () {
   if ($(this).hasClass('active')) {
     $(document.body).removeClass('dark-ui');
     $(this).removeClass('active');
-    jfCreateCookie('ui-mode', 'light');
+    jfSetCookie('ui-mode', 'light');
   }
   else {
     $(document.body).addClass('dark-ui');
     $(this).addClass('active');
-    jfCreateCookie('ui-mode', 'dark');
+    jfSetCookie('ui-mode', 'dark');
   }
 });
 
 /**
  * Check for Accessibility cookies 'fontsize' and 'ui-mode' on document ready. Append appropriate classes to body element
  */
-$(document).ready(function() {
-  var docFontSize = jfReadCookie('fontsize');
+$(document).ready(function () {
+  var docFontSize = jfGetCookie('fontsize');
   switch (docFontSize) {
     case 'sm':
       $(document.body).removeClass('font-size-md font-size-lg').addClass('font-size-sm');
@@ -84,24 +84,27 @@ $(document).ready(function() {
     default:
       break;
   };
-  var docUiMode = jfReadCookie('ui-mode');
+  var docUiMode = jfGetCookie('ui-mode');
   switch (docUiMode) {
-    case 'dark' :
+    case 'dark':
       $(document.body).addClass('dark-ui');
       $('button.toggle-contrast').addClass('active');
       break;
   }
 });
+;
+;
+/**
+* TODO: Add Documentation
+ */
 
-;
-;
 /**
  * Creates a cookie
  * @param {string} name
  * @param {string} value
  * @param {number} days before expiry (optional)
  */
-function jfCreateCookie(name, value, days) {
+function jfSetCookie(name, value, days) {
   var expires;
   if (days) {
     var date = new Date();
@@ -119,7 +122,7 @@ function jfCreateCookie(name, value, days) {
  * Reads and returns the value of a cookie
  * @param {string} cookiename
  */
-function jfReadCookie(cookiename) {
+function jfGetCookie(cookiename) {
   var name = cookiename + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
@@ -135,13 +138,112 @@ function jfReadCookie(cookiename) {
   return "";
 }
 
-// todo; add destroy
+/**
+ * Destroys a cookie
+ */
+function jfDestroyCookie(name) {
+  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+}
 ;
 function jfdebug() {
   // Trigger debug mode by applying .jf-debug to document
   var docBody = document.getElementsByTagName('body')[0];
   docBody.classList.toggle('jf-debug');
 };
+;
+/**
+ * Send interaction events to Google Analytics
+ * TODO: Add Documentation
+ */
+(function ($) {
+  if (typeof gtag == "function") {
+    // Send mailto: events
+    $('a[href^="mailto:"]').click(function () {
+      gtag("event", "contact", {
+        event_category: "Email Enquiry",
+        event_action: "Mailto Click",
+        event_label: $(this).attr("href"),
+      });
+      return true;
+    });
+
+    // Send tel: events
+    $('a[href^="tel:"]').click(function () {
+      gtag("event", "contact", {
+        event_category: "Telephone Enquiry",
+        event_action: "Tel Link Click",
+        event_label: $(this).attr("href"),
+      });
+      return true;
+    });
+
+    // Send *.pdf download events
+    $('a[href$=".pdf"]').click(function () {
+      gtag("event", "contact", {
+        event_category: "PDF Download",
+        event_action: "Download",
+        event_label: $(this).attr("href"),
+      });
+      return true;
+    });
+
+    // Send external link clicks
+    $(
+      "a:not([href*='" +
+      document.domain +
+      "'],[href*='mailto'],[href*='tel'],a[href$='.pdf'])"
+    ).click(function (event) {
+      // Prevent # and javascript links being sent
+      if (
+        $(this).attr("href").charAt(0) != "#" &&
+        !$(this).attr("href").startsWith("javascript")
+      ) {
+        gtag("event", "contact", {
+          event_category: "External Link",
+          event_action: "Link Click",
+          event_label: $(this).attr("href"),
+        });
+        return true;
+      }
+    });
+  }
+})(jQuery);
+;
+/**
+ * Lazy Load of BG Images
+ * Forked from @link https://web.dev/lazy-loading-images/
+ * TODO: Add Documentation
+ */
+
+function jfLazyLoadBackgroundImage(element) {
+  var bgImage = element.getAttribute('data-bg-img');
+  element.style.backgroundImage = "url(" + bgImage + ")";
+  element.removeAttribute('data-bg-img');
+}
+document.addEventListener("DOMContentLoaded", function () {
+  var lazyBackgroundElements = [].slice.call(document.querySelectorAll(".has-bg-img"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyBackgroundObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          jfLazyLoadBackgroundImage(entry.target);
+          lazyBackgroundObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px 300px 0px" }); // Pre-empt by loading 300px early
+
+    lazyBackgroundElements.forEach(function (lazyBackground) {
+      lazyBackgroundObserver.observe(lazyBackground);
+    });
+  }
+  else {
+    // For browsers that don't support intersection observer, load all images straight away
+    lazyBackgroundElements.forEach(function (lazyBackground) {
+      jfLazyLoadBackgroundImage(lazyBackground);
+    });
+  }
+});
 ;
 jQuery(document).ready(function ($) {
   var navPoint = '900'; // px value at which the navigation should change from a burger menu to inline list
@@ -160,6 +262,7 @@ jQuery(document).ready(function ($) {
       $(this).attr('aria-expanded', 'true');
     }
   });
+  // todo: incopr hamburger
 
   // If a menu item with children is clicked...
   $(document).on("click", 'li.has-children > a:not(".clicked"), li.menu-item-has-children > a:not(".clicked")', function (e) {
@@ -174,3 +277,5 @@ jQuery(document).ready(function ($) {
     }
   });
 });
+
+// todo: refactor based on jellypress latest

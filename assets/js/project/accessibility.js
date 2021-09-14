@@ -6,19 +6,19 @@ $('button.font-size').click(function () {
     $(document.body).removeClass('font-size-md font-size-lg').addClass('font-size-sm');
     $('button.font-size').removeClass('active');
     $(this).addClass('active');
-    jfCreateCookie('fontsize', 'sm');
+    jfSetCookie('fontsize', 'sm');
   }
   else if ($(this).hasClass('font-size-md')) {
     $(document.body).removeClass('font-size-sm font-size-lg').addClass('font-size-md');
     $('button.font-size').removeClass('active');
     $(this).addClass('active');
-    jfCreateCookie('fontsize', 'md');
+    jfSetCookie('fontsize', 'md');
   }
   else if ($(this).hasClass('font-size-lg')) {
     $(document.body).removeClass('font-size-sm font-size-md').addClass('font-size-lg');
     $('button.font-size').removeClass('active');
     $(this).addClass('active');
-    jfCreateCookie('fontsize', 'lg');
+    jfSetCookie('fontsize', 'lg');
   };
 });
 
@@ -29,20 +29,20 @@ $('button.toggle-contrast').click(function () {
   if ($(this).hasClass('active')) {
     $(document.body).removeClass('dark-ui');
     $(this).removeClass('active');
-    jfCreateCookie('ui-mode', 'light');
+    jfSetCookie('ui-mode', 'light');
   }
   else {
     $(document.body).addClass('dark-ui');
     $(this).addClass('active');
-    jfCreateCookie('ui-mode', 'dark');
+    jfSetCookie('ui-mode', 'dark');
   }
 });
 
 /**
  * Check for Accessibility cookies 'fontsize' and 'ui-mode' on document ready. Append appropriate classes to body element
  */
-$(document).ready(function() {
-  var docFontSize = jfReadCookie('fontsize');
+$(document).ready(function () {
+  var docFontSize = jfGetCookie('fontsize');
   switch (docFontSize) {
     case 'sm':
       $(document.body).removeClass('font-size-md font-size-lg').addClass('font-size-sm');
@@ -62,12 +62,11 @@ $(document).ready(function() {
     default:
       break;
   };
-  var docUiMode = jfReadCookie('ui-mode');
+  var docUiMode = jfGetCookie('ui-mode');
   switch (docUiMode) {
-    case 'dark' :
+    case 'dark':
       $(document.body).addClass('dark-ui');
       $('button.toggle-contrast').addClass('active');
       break;
   }
 });
-
