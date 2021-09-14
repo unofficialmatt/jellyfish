@@ -3536,6 +3536,16 @@ console.log("JellyFish is Awesome!");
               </div>
             </article>
             <article>
+              <h3>Replacing Text with an image</h3>
+              <p>Sometimes you might want to use text on a page for semantics or SEO, but display an image in place. You can do this with the mixin <code>text-replace</code> or the css class <span class="css-ref">.text-replace</span>. It's important to note that you need to give the element a fixed height and width to match your image in order for this to work correctly.</p>
+              <pre class="language-markup">
+                <code><!--
+                <h3 class="text-replace" style="background-image:url(https://placekitten.com/200/150);height:150px;width:200px;">This text will be replaced with a kitten.</h3>
+              --></code>
+              </pre>
+              <h3 class="text-replace" style="background-image:url(https://placekitten.com/200/150);height:150px;width:200px;">This text will be replaced with a kitten.</h3>
+            </article>
+            <article>
               <h3>Quickly center a block-level element:</h3>
               <p class="bold">Note: This will only work if the block has a defined width.</p>
               <pre class="language-scss">
