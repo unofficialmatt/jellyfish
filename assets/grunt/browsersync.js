@@ -6,17 +6,16 @@ module.exports = function (grunt) {
   grunt.config('browserSync', {
     bsFiles: {
       src: [
-        '<%= opts.dist_dir %>/css/style.min.css',
-        '<%= opts.dist_dir %>/js/project.js',
-        '<%= opts.dist_dir %>/img/*',
+        '<%= opts.dist_dir %>/css/jellyfish.min.css',
+        '<%= opts.dist_dir %>/js/jellyfish.min.js',
         '**/*.html'
       ]
     },
     options: {
       watchTask: true,
       server: {
-          baseDir: "./",
-          https: true
+        baseDir: "./",
+        https: true
       }
     }
   });

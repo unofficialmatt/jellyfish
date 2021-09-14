@@ -11,7 +11,7 @@ module.exports = function (grunt) {
     dist: {
       files: [{
         src: '<%= opts.build_dir %>/scss/compile.scss',
-        dest: '<%= opts.dist_dir %>/css/style.css'
+        dest: '<%= opts.dist_dir %>/css/jellyfish.css'
       }
       ]
     }
@@ -37,8 +37,8 @@ module.exports = function (grunt) {
     },
     dist: {
       files: [{
-        src: '<%= opts.dist_dir %>/css/style.css',
-        dest: '<%= opts.dist_dir %>/css/style.min.css'
+        src: '<%= opts.dist_dir %>/css/jellyfish.css',
+        dest: '<%= opts.dist_dir %>/css/jellyfish.min.css'
       }
       ]
     }

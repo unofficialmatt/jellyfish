@@ -1,5 +1,5 @@
-/*! jellyfish-grid 3.1.0
- * © 2021-01 Matt Weet - https://www.weareboba.com */
+/*! jellyfish-ui 3.1.0
+ * © 2021-09 Matt Weet - https://www.mattweet.com */
 
 /**
  * Calculate the luminance for a color.
@@ -681,6 +681,30 @@ sup {
     padding-left: 20px;
     padding-right: 20px; } }
 
+.bg-white {
+  background-color: white;
+  color: #1f2933; }
+  .bg-white h1, .bg-white h2, .bg-white h3, .bg-white h4, .bg-white h5, .bg-white h6 {
+    color: #33404d; }
+  .bg-white a {
+    color: #c32c78; }
+  .bg-white a:visited {
+    color: #9c1c5c; }
+  .bg-white a:hover, .bg-white a:focus {
+    color: #da4991; }
+
+.bg-dark {
+  background-color: #1f2933;
+  color: white; }
+  .bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4, .bg-dark h5, .bg-dark h6 {
+    color: white; }
+  .bg-dark a {
+    color: #bcbfc2; }
+  .bg-dark a:visited {
+    color: #bcbfc2; }
+  .bg-dark a:hover, .bg-dark a:focus {
+    color: white; }
+
 /* Text meant only for screen readers. */
 .screen-reader-text {
   border: 0;
@@ -786,7 +810,7 @@ button.toggle-contrast svg {
   .button:disabled, a.button:disabled, button:disabled, [type=submit]:disabled, [type=reset]:disabled, [type=button]:disabled {
     opacity: 0.65;
     cursor: not-allowed; }
-  .button, .button:disabled:hover, a.button, a.button:disabled:hover, button, button:disabled:hover, [type=submit], [type=submit]:disabled:hover, [type=reset], [type=reset]:disabled:hover, [type=button], [type=button]:disabled:hover {
+  .button, .button:visited, .button:disabled:hover, a.button, a.button:visited, a.button:disabled:hover, button, button:visited, button:disabled:hover, [type=submit], [type=submit]:visited, [type=submit]:disabled:hover, [type=reset], [type=reset]:visited, [type=reset]:disabled:hover, [type=button], [type=button]:visited, [type=button]:disabled:hover {
     background-color: #6e7c8c;
     border-color: #6e7c8c;
     color: white; }
@@ -1171,10 +1195,12 @@ input:checked + .checkbox__control {
   color: white; }
   .navbar-item * {
     margin: 0; }
-  .navbar-item a, .navbar-item a:visited {
+  .navbar-item a,
+  .navbar-item a:visited {
     color: white;
     text-decoration: none; }
-  .navbar-item a:hover, .navbar-item a:focus {
+  .navbar-item a:hover,
+  .navbar-item a:focus {
     color: white;
     font-weight: 700; }
 
@@ -1266,18 +1292,24 @@ input:checked + .checkbox__control {
       padding-right: 42px; }
       .navbar-menu li.has-children > a::after {
         transform: translate(-10px, -50%) rotate(45deg); }
-    .navbar-menu li.has-children:hover > ul,
+    .navbar-menu li.has-children:hover > ul {
+      opacity: 1;
+      transform: translateY(0px);
+      top: 100%; }
+      .navbar-menu li.has-children:hover > ul > li {
+        display: block; }
+    .navbar-menu li.has-children:hover > a::after {
+      opacity: 0.5; }
     .navbar-menu li.has-children:focus-within > ul {
       opacity: 1;
       transform: translateY(0px);
       top: 100%; }
-      .navbar-menu li.has-children:hover > ul > li,
       .navbar-menu li.has-children:focus-within > ul > li {
         display: block; }
-    .navbar-menu li.has-children:hover > a::after,
     .navbar-menu li.has-children:focus-within > a::after {
       opacity: 0.5; }
-    .navbar-menu li ul li.has-children:hover > ul,
+    .navbar-menu li ul li.has-children:hover > ul {
+      top: 0; }
     .navbar-menu li ul li.has-children:focus-within > ul {
       top: 0; }
     .navbar-menu li:nth-of-type(n+3) ul {
@@ -1468,7 +1500,7 @@ input:checked + .checkbox__control {
     /* // Button uses a specific color value as it's base color */
     /* // Button uses shade(hotpink, 87.5%) for it's :hover color */
     /* // Button uses tint(hotpink, 42.5%) for it's :focus box-shadow color */ }
-    .docs button.hotpink, .docs button.hotpink:disabled:hover {
+    .docs button.hotpink, .docs button.hotpink:visited, .docs button.hotpink:disabled:hover {
       background-color: hotpink;
       border-color: hotpink;
       color: #1f2933; }
@@ -1488,7 +1520,7 @@ input:checked + .checkbox__control {
     /* // Button uses a specific color value as it's base color */
     /* Button uses a specific color value as it's hover color */
     /* // Button uses tint(gold, 42.5%) for it's :focus box-shadow color */ }
-    .docs button.gold, .docs button.gold:disabled:hover {
+    .docs button.gold, .docs button.gold:visited, .docs button.gold:disabled:hover {
       background-color: gold;
       border-color: gold;
       color: #1f2933; }
@@ -1508,7 +1540,7 @@ input:checked + .checkbox__control {
     /* // Button uses a specific color value as it's base color */
     /* Button uses a specific color value as it's hover color */
     /* // Button uses tint(#fff, 42.5%) for it's :focus box-shadow color */ }
-    .docs button.white, .docs button.white:disabled:hover {
+    .docs button.white, .docs button.white:visited, .docs button.white:disabled:hover {
       background-color: #fff;
       border-color: #fff;
       color: #1f2933; }
@@ -1528,7 +1560,7 @@ input:checked + .checkbox__control {
     /* // Button uses a specific color value as it's base color */
     /* // Button uses shade(rebeccapurple, 87.5%) for it's :hover color */
     /* // Button uses tint(rebeccapurple, 42.5%) for it's :focus box-shadow color */ }
-    .docs button.purple, .docs button.purple:disabled:hover {
+    .docs button.purple, .docs button.purple:visited, .docs button.purple:disabled:hover {
       background-color: rebeccapurple;
       border-color: rebeccapurple;
       color: white; }
@@ -1548,7 +1580,7 @@ input:checked + .checkbox__control {
     /* // Button uses a specific color value as it's base color */
     /* // Button uses shade(#A0A0A0, 87.5%) for it's :hover color */
     /* // Button uses tint(#A0A0A0, 42.5%) for it's :focus box-shadow color */ }
-    .docs button.silver, .docs button.silver:disabled:hover {
+    .docs button.silver, .docs button.silver:visited, .docs button.silver:disabled:hover {
       background-color: #A0A0A0;
       border-color: #A0A0A0;
       color: #1f2933; }
@@ -1761,48 +1793,6 @@ input:checked + .checkbox__control {
 .bg-blue a:hover, .bg-blue a:focus {
   color: white; }
 
-.bg-white {
-  background-color: white;
-  color: #1f2933; }
-  .bg-white h1, .bg-white h2, .bg-white h3, .bg-white h4, .bg-white h5, .bg-white h6 {
-    color: #33404d; }
-  .bg-white a {
-    color: #c32c78; }
-  .bg-white a:visited {
-    color: #9c1c5c; }
-  .bg-white a:hover, .bg-white a:focus {
-    color: #da4991; }
-
-.bg-dark {
-  background-color: #1f2933;
-  color: white; }
-  .bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4, .bg-dark h5, .bg-dark h6 {
-    color: white; }
-  .bg-dark a {
-    color: #bcbfc2; }
-  .bg-dark a:visited {
-    color: #bcbfc2; }
-  .bg-dark a:hover, .bg-dark a:focus {
-    color: white; }
-
-.text-primary {
-  color: #c32c78 !important; }
-
-.text-secondary {
-  color: #1cd4d4 !important; }
-
-.text-success {
-  color: #7bb027 !important; }
-
-.text-warning {
-  color: #e9b949 !important; }
-
-.text-error {
-  color: #bb2525 !important; }
-
-.bg-transparent {
-  background-color: transparent !important; }
-
 body.font-size-sm {
   font-size: 0.875em; }
 
@@ -1840,7 +1830,7 @@ body.font-size-lg {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `primary`, in the $colors map for it's :hover color */
   /* // Button uses value `300` in key `primary`, in the $colors map for it's :focus box-shadow color */ }
-  .button.primary, .button.primary:disabled:hover, a.button.primary, a.button.primary:disabled:hover {
+  .button.primary, .button.primary:visited, .button.primary:disabled:hover, a.button.primary, a.button.primary:visited, a.button.primary:disabled:hover {
     background-color: #c32c78;
     border-color: #c32c78;
     color: white; }
@@ -1861,7 +1851,7 @@ body.font-size-lg {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `secondary`, in the $colors map for it's :hover color */
   /* // Button uses value `300` in key `secondary`, in the $colors map for it's :focus box-shadow color */ }
-  .button.secondary, .button.secondary:disabled:hover, a.button.secondary, a.button.secondary:disabled:hover {
+  .button.secondary, .button.secondary:visited, .button.secondary:disabled:hover, a.button.secondary, a.button.secondary:visited, a.button.secondary:disabled:hover {
     background-color: #1cd4d4;
     border-color: #1cd4d4;
     color: #1f2933; }
@@ -1882,7 +1872,7 @@ body.font-size-lg {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `success`, in the $colors map for it's :hover color */
   /* // Button uses value `300` in key `success`, in the $colors map for it's :focus box-shadow color */ }
-  .button.success, .button.success:disabled:hover, a.button.success, a.button.success:disabled:hover {
+  .button.success, .button.success:visited, .button.success:disabled:hover, a.button.success, a.button.success:visited, a.button.success:disabled:hover {
     background-color: #7bb027;
     border-color: #7bb027;
     color: #1f2933; }
@@ -1903,7 +1893,7 @@ body.font-size-lg {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `warning`, in the $colors map for it's :hover color */
   /* // Button uses value `300` in key `warning`, in the $colors map for it's :focus box-shadow color */ }
-  .button.warning, .button.warning:disabled:hover, a.button.warning, a.button.warning:disabled:hover {
+  .button.warning, .button.warning:visited, .button.warning:disabled:hover, a.button.warning, a.button.warning:visited, a.button.warning:disabled:hover {
     background-color: #e9b949;
     border-color: #e9b949;
     color: #1f2933; }
@@ -1924,7 +1914,7 @@ body.font-size-lg {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `error`, in the $colors map for it's :hover color */
   /* // Button uses value `300` in key `error`, in the $colors map for it's :focus box-shadow color */ }
-  .button.error, .button.error:disabled:hover, a.button.error, a.button.error:disabled:hover {
+  .button.error, .button.error:visited, .button.error:disabled:hover, a.button.error, a.button.error:visited, a.button.error:disabled:hover {
     background-color: #bb2525;
     border-color: #bb2525;
     color: white; }
@@ -2975,6 +2965,24 @@ table.is-hoverable tr:hover td {
   background-color: #bb2525;
   color: white; }
 
+.text-primary {
+  color: #c32c78 !important; }
+
+.text-secondary {
+  color: #1cd4d4 !important; }
+
+.text-success {
+  color: #7bb027 !important; }
+
+.text-warning {
+  color: #e9b949 !important; }
+
+.text-error {
+  color: #bb2525 !important; }
+
+.bg-transparent {
+  background-color: transparent !important; }
+
 .bold {
   font-weight: 700 !important; }
 
@@ -3004,4 +3012,4 @@ table.is-hoverable tr:hover td {
   background: lime !important;
   box-decoration-break: clone !important; }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=jellyfish.css.map */

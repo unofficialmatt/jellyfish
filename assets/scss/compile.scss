@@ -1,7 +1,8 @@
-// Compiles all scss files into dist/css/style.css
+// Compiles all scss files into dist/css/jellyfish.css
 @charset "UTF-8";
 @import "project/01-tools/__all";
 @import "project/02-settings/__all";
+@import "jellyfish/02-settings/__all";
 @import "project/03-generic/__all";
 @import "project/04-elements/__all";
 @import "project/05-vendor/__all";

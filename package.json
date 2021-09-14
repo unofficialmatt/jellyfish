@@ -1,12 +1,12 @@
 {
-  "name": "jellyfish-grid",
+  "name": "jellyfish-ui",
   "version": "3.1.0",
   "author": {
     "name": "Matt Weet",
     "email": "hello@mattweet.com",
     "url": "https://www.mattweet.com"
   },
-  "description": "Jellyfish is yet another SCSS grid framework, with a few stings in it's tail.",
+  "description": "Jellyfish is a front end SCSS and JS framework for creating modern and performant websites. It has similar class names and components as Bootstrap, but without the bloat. Jellyfish also comes with some useful helpers in JS for common project requirements.",
   "homepage": "https://unofficialmatt.github.io/jellyfish/",
   "main": "Gruntfile.js",
   "repository": {
@@ -38,10 +38,8 @@
     "grunt": "^1.3.0",
     "grunt-banner": "^0.6.0",
     "grunt-browser-sync": "^2.2.0",
-    "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-imagemin": "^3.1.0",
     "grunt-contrib-uglify-es": "^3.3.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-eslint": "^22.0.0",
