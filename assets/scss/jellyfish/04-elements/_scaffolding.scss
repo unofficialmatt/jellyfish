@@ -111,14 +111,14 @@ blockquote {
     margin: 0 0 $element-margin 0;
     padding: 0 0 0 $element-margin;
     border-left: get-size(0.5) solid get-color(neutral,200);
-    font-size: font-size('size-3');
+    font-size: font-size(3);
     font-style: italic;
     line-height: 1.4;
 }
 cite {
   display: block;
   margin-top: h($element-margin);
-  font-size: font-size('size-m2');
+  font-size: font-size(-2);
   font-style: normal;
   font-weight: $weight-bold;
   text-align: right;

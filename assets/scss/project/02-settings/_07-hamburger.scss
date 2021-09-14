@@ -9,7 +9,8 @@
 // $hamburger-bg-color: $navbar-bg-color;
 // $hamburger-border: $border-width $border-style $hamburger-bg-color;
 // $hamburger-border-radius: 0px;
-// $hamburger-color: $navbar-link-color; // Color of hamburger and label
+// $hamburger-color: $navbar-link-color !default; // Color of hamburger
+// $hamburger-layer-color: $hamburger-color !default; // Color of label
 // $hamburger-hover-bg-color: $navbar-link-hover-bg-color;
 // $hamburger-hover-border: $border-width $border-style $hamburger-hover-bg-color;
 // $hamburger-hover-color: $hamburger-color;

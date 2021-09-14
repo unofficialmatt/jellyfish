@@ -3,4 +3,8 @@
 .table-container {
   overflow-x: auto;
   width: 100%;
+  table {
+    margin-bottom: 0;
+  }
+  margin-bottom: $element-margin;
 }

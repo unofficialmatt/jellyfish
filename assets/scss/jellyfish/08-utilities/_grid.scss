@@ -1,7 +1,7 @@
-.col-auto {
-  flex: 0 0 auto !important;
+.col.col-auto {
+  flex: 0 0 auto;
   width: auto;
-  max-width: none !important;
+  max-width: none;
 }
 
 // Remove column padding on collapsed rows
@@ -9,9 +9,9 @@
   margin-left: 0;
   margin-right: 0;
 
-  &>.col {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+  & > .col {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -32,24 +32,27 @@
   }
 }
 
-@each $point,
-$i in $breakpoints {
-
+@each $point, $i in $breakpoints {
   // for each breakpoint defined...
   @include above($point) {
-
     // Create Collapse classes
     .row.collapse-#{$point} {
       margin-left: 0;
       margin-right: 0;
 
       .col {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+        padding-left: 0;
+        padding-right: 0;
       }
     }
-
-    // TODO: Create a reset-collapse?
+    .row.nocollapse-#{$point} {
+      margin-left: -0.5 * (map-deep-get($breakpoints, $point, "col-gutter"));
+      margin-right: -0.5 * (map-deep-get($breakpoints, $point, "col-gutter"));
+      .col {
+        padding-left: 0.5 * map-deep-get($breakpoints, $point, "col-gutter");
+        padding-right: 0.5 * map-deep-get($breakpoints, $point, "col-gutter");
+      }
+    }
 
     // Columns expand to size of content
     .col.#{$point}-auto {
@@ -92,22 +95,47 @@ $i in $breakpoints {
 
   .jf-debug {
     @if $has_ordering {
-      [class*='order-#{$point}'] {
-        outline: 2px solid #fe53BB;
+      [class*="order-#{$point}"] {
+        outline: 2px solid #fe53bb;
       }
 
-      [class*='order-#{$point}-0'] {
+      [class*="order-#{$point}-0"] {
         outline: 0;
       }
     }
 
     @if $has_offset {
-      [class*='offset-#{$point}'] {
-        outline: 2px solid #fe53BB;
+      [class*="offset-#{$point}"] {
+        outline: 2px solid #fe53bb;
       }
 
-      [class*='offset-#{$point}-0'] {
+      [class*="offset-#{$point}-0"] {
         outline: 0;
+      }
+    }
+  }
+}
+.container.is-wide {
+  @include above(sm) {
+    width: 100%;
+    max-width: none;
+  }
+  @each $point, $i in $breakpoints {
+    // for each breakpoint defined...
+    @include above($point) {
+      $container-width: map-deep-get($breakpoints, $point, "container-width");
+      $container-gutter: map-deep-get($breakpoints, $point, "container-gutter");
+
+      // If container is 100% wide set the padding to half of the gutter
+      @if $container-width == 100% {
+        @if $container-gutter {
+          padding-left: h($container-gutter);
+          padding-right: h($container-gutter);
+        }
+      } @else {
+        $padding: calc((100vw-#{$container-width}) / 4);
+        padding-left: $padding;
+        padding-right: $padding;
       }
     }
   }

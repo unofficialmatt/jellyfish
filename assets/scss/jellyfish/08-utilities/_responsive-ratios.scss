@@ -1,0 +1,15 @@
+// TODO: Document
+.embed-container {
+  &.ratio-16x9 {
+    padding-bottom: 56.25%;
+  }
+  &.ratio-1x1 {
+    padding-bottom: calc(1 / 1 * 100%);
+  }
+  &.ratio-4x3 {
+    padding-bottom: calc(3 / 4 * 100%);
+  }
+  &.ratio-21x9 {
+    padding-bottom: calc(1 / 2.37 * 100%);
+  }
+}

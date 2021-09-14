@@ -605,7 +605,7 @@
             </article>
             <article>
               <h3>Collapsing Columns</h3>
-              <p>Columns have horizontal spacing (gutters) around them by default. Should you wish to remove this spacing, apply the <span class="css-ref">.collapse</span> class to the parent <span class="css-ref">.row</span>.</p>
+              <p>Columns have horizontal spacing (gutters) around them by default. Should you wish to remove this spacing, apply the <span class="css-ref">.collapse</span> class to the parent <span class="css-ref">.row</span>. You can target from specific breakpoints with <span class="css-ref">.collapse-$breakpoint</span> and reset with <span class="css-ref">.nocollapse-$breakpoint</span></p>
               <pre class="language-markup"><code><!--
                 <div class="row">
                   <div class="col">col</div>
@@ -614,6 +614,10 @@
                 <div class="row collapse">
                   <div class="col">collapsed col</div>
                   <div class="col">collapsed col</div>
+                </div>
+                <div class="row collapse-sm nocollapse-lg">
+                  <div class="col">collapsed at sm, reset at lg</div>
+                  <div class="col">collapsed at sm, reset at lg</div>
                 </div>
                 --></code>
               </pre>
@@ -631,6 +635,14 @@
                 </div>
                 <div class="col">
                   <div class="boxed">collapsed col</div>
+                </div>
+              </div>
+              <div class="row collapse-sm nocollapse-lg">
+                <div class="col">
+                  <div class="boxed">collapsed at sm, reset at lg</div>
+                </div>
+                <div class="col">
+                  <div class="boxed">collapsed at sm, reset at lg</div>
                 </div>
               </div>
             </article>
@@ -1284,14 +1296,16 @@ console.log("JellyFish is Awesome!");
             </article>
             <article>
               <h3>Button sizes</h3>
-              <p>Add the modifier <span class="css-ref">.small</span> or <span class="css-ref">.large</span> to change the size of a button.</p>
+              <p>Add the modifier <span class="css-ref">.xsmall</span>, <span class="css-ref">.small</span> or <span class="css-ref">.large</span> to change the size of a button.</p>
               <pre class="language-markup">
             <code><!--
+              <button class="button xsmall">X Small</button>
             <button class="button small">Small</button>
             <button>Regular</button>
             <button class="button large">Large</button>
           --></code>
           </pre>
+              <button class="button xsmall">X Small</button>
               <button class="button small">Small</button>
               <button>Regular</button>
               <button class="button large">Large</button>
@@ -2135,8 +2149,8 @@ console.log("JellyFish is Awesome!");
             </article>
             <article>
               <h3>Responsive Tables</h3>
-              <!-- TODO: MAKE THESE BETTER - SEE OASIS -->
-              <p>Wrap a table in a <span class="css-ref">.table-container</span> to prevent tables with a lot of content from overflowing the grid.</p>
+              <p>Jellyfish provides two methods of making tables more responsive. The first adds a scroll bar on smaller devices; the second uses data-attributes on the TD elements to display headings inline with the content.</p>
+              <p>Method One: wrap a table in a <span class="css-ref">.table-container</span> to add a scroll bar on smaller devices.</p>
               <pre class="language-markup">
             <code><!--
             <div class="table-container">
@@ -2172,6 +2186,49 @@ console.log("JellyFish is Awesome!");
                   </tbody>
                 </table>
               </div>
+              <p>Method Two: Apply a class of <span class="css-ref">.is-responsive</span> to the table, and replicate the <code>&lt;th></code> labels as <code>data-label</code> properties on each <code>&lt;td></code>.</p>
+              <pre class="language-markup">
+            <code><!--
+              <table class="is-responsive">
+                <thead>
+                  <tr>
+                    <th>Jellyfish Species</th>
+                    ...
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Jellyfish Species">....</td>
+                    ...
+                  </tr>
+                </tbody>
+              </table>
+          --></code>
+          </pre>
+              <table class="has-border is-responsive">
+                <thead>
+                  <tr>
+                    <th>Jellyfish Species</th>
+                    <th>Stinger</th>
+                    <th>Habitat</th>
+                    <th>How to identify it</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Jellyfish Species">Cotylorhiza tuberculata</td>
+                    <td data-label="Stinger">Harmless to humans, but it is better not to touch it. It is probably harmless also for most fishes. Just as for Rhizostoma, it is often associated to young fish that use it as a shelter</td>
+                    <td data-label="Habitat">Very abundant in the Mediterranean Sea, expecially in bays. In 2009 it was more frequent in the southern part of Italy, showing a preference for warmer waters, but this was not confirmed in 2010 and 2011, since this species was very frequent throughout the whole Italian coast, especially in the second half of the summer.</td>
+                    <td data-label="How to identify it">One of the most beautiful jellyfish of the Mediterranean Sea. The umbrella can measure 30 cm in diameter, it is very rigid and roundish in its centre, where it has a reddish or yellow color. The external part of the manubrium is motile and pulsates vigorously. Under the umbrella, the manubrium resembles a bouquet of flowers, with blue-purple buttons, inserted into stout arms. Some tentacles, also terminating with blue buttons, are inserted on the manubrium. Cotylorhiza can have symbiotic microalgae that live in its tissues, just as those of tropical corals. Functionally it is a “plant”, even if it can feed on zooplankton.</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Jellyfish Species">Rhopilema nomadica</td>
+                    <td data-label="Stinger">A bad stinger, it can be confused with the almost harmless Rhizostoma from which it can be distinguished due to the characteristic blue rim of Rhizostoma</td>
+                    <td data-label="Habitat">The genus Rhopilema is typical of the Indo-Pacific ocean and has no Atlantic or Mediterranean representatives. It never reached the Italian seas, possibly because the temperatures are not high enough for this tropical species. In the Eighties this species became suddenly abundant along the Israeli coasts of the Mediterranean Sea: it probably reached the Mediterranean from the Red Sea, through the Suez Canal, hence the specific name “nomadica”. In the eastern Mediterranean it causes great harm to tourism, fisheries, and industry.</td>
+                    <td data-label="How to identify it">It does not pass unnoticed, since it can reach 80 cm in diameter and can form extensive swarms. The current global warming might pave its way towards the expansion of this species in the Western Mediterranean.</td>
+                  </tr>
+                </tbody>
+              </table>
             </article>
             <article>
               <h3>Variables</h3>
@@ -2794,6 +2851,21 @@ console.log("JellyFish is Awesome!");
               </span>
             </h2>
             <article>
+              <h3>Font Weight</h3>
+              <p>Providing your typeface supports these weights, you can use <span class="css-ref">weight-*</span> modifiers to change text weight.</p>
+              <ul>
+                <li><span class="weight-hairline">.weight-hairline</span></li>
+                <li><span class="weight-thin">.weight-thin</span></li>
+                <li><span class="weight-light">.weight-light</span></li>
+                <li><span class="weight-normal">.weight-normal</span></li>
+                <li><span class="weight-medium">.weight-medium</span></li>
+                <li><span class="weight-semibold">.weight-semibold</span></li>
+                <li><span class="weight-bold">.weight-bold or .bold</span></li>
+                <li><span class="weight-xbold">.weight-xbold</span></li>
+                <li><span class="weight-black">.weight-black</span></li>
+              </ul>
+            </article>
+            <article>
               <h3>Keep words together</h3>
               <p>If you need to keep certain words together (e.g. brand names), wrap them in a span with the utility class <span class="css-ref">.nowrap</span>.</p>
               <p><strong>Note:</strong> This may cause elements to break out of their container and for paragraphs to be ragged - you have been warned!</p>
@@ -2827,6 +2899,39 @@ console.log("JellyFish is Awesome!");
                 </div>
               </div>
               <div class="align-none boxed">Float None</div>
+            </article>
+            <article>
+              <h3>Margin, padding and borders</h3>
+              <p>Use <span class="css-ref">m*-0</span>, <span class="css-ref">p*-0</span> and <span class="css-ref">m*-0</span> modifiers to reset margin/padding/border to 0 for a given side.</p>
+              <ul>
+                <li>Margin:
+                  <ul>
+                    <li><span class="css-ref">m-0</span> sets margin: 0px</li>
+                    <li><span class="css-ref">mt-0</span> sets margin-top: 0px</li>
+                    <li><span class="css-ref">mr-0</span> sets margin-right: 0px</li>
+                    <li><span class="css-ref">mb-0</span> sets margin-bottom: 0px</li>
+                    <li><span class="css-ref">ml-0</span> sets margin-left: 0px</li>
+                  </ul>
+                </li>
+                <li>Padding:
+                  <ul>
+                    <li><span class="css-ref">p-0</span> sets padding: 0px</li>
+                    <li><span class="css-ref">pt-0</span> sets padding-top: 0px</li>
+                    <li><span class="css-ref">pr-0</span> sets padding-right: 0px</li>
+                    <li><span class="css-ref">pb-0</span> sets padding-bottom: 0px</li>
+                    <li><span class="css-ref">pl-0</span> sets padding-left: 0px</li>
+                  </ul>
+                </li>
+                <li>Border:
+                  <ul>
+                    <li><span class="css-ref">b-0</span> sets border: 0px</li>
+                    <li><span class="css-ref">bt-0</span> sets border-top: 0px</li>
+                    <li><span class="css-ref">br-0</span> sets border-right: 0px</li>
+                    <li><span class="css-ref">bb-0</span> sets border-bottom: 0px</li>
+                    <li><span class="css-ref">bl-0</span> sets border-left: 0px</li>
+                  </ul>
+                </li>
+              </ul>
             </article>
             <article>
               <h3 id="display-utilities">Display utilities</h3>
@@ -2881,6 +2986,12 @@ console.log("JellyFish is Awesome!");
             <div class="row align-bottom">
               ...
             </div>
+            <div class="row align-baseline">
+              ...
+            </div>
+            <div class="row align-stretch">
+              ...
+            </div>
             <div class="row">
               <div class="col align-self-top">align-self-top</div>
               <div class="col align-self-middle">align-self-middle</div>
@@ -2919,6 +3030,28 @@ console.log("JellyFish is Awesome!");
                 </div>
                 <div class="col">
                   <div class="boxed">align-bottom</div>
+                </div>
+              </div>
+              <div class="row align-baseline row-boxed">
+                <div class="col">
+                  <div class="boxed">align-baseline</div>
+                </div>
+                <div class="col">
+                  <div class="boxed" style="font-size: 1.4em">align-baseline</div>
+                </div>
+                <div class="col">
+                  <div class="boxed">align-baseline</div>
+                </div>
+              </div>
+              <div class="row align-stretch row-boxed">
+                <div class="col">
+                  <div class="boxed" style="height:100%;">align-stretch (any elements inside the .col must be 100% height)</div>
+                </div>
+                <div class="col">
+                  <div class="boxed" style="height:100%;">align-stretch (any elements inside the .col must be 100% height)</div>
+                </div>
+                <div class="col">
+                  <div class="boxed" style="height:100%;">align-stretch (any elements inside the .col must be 100% height)</div>
                 </div>
               </div>
               <div class="row row-boxed">
@@ -3064,6 +3197,22 @@ console.log("JellyFish is Awesome!");
           </pre>
               <div class="full-width boxed">An element with .full-width applied</div>
               <div class="boxed vw-100">An element with .vw-100 applied</div>
+              <h4>Wider <span class="css-ref">.container</span> elements</h4>
+              <p>Add a class of <span class="css-ref">.is-wide</span> to a <span class="css-ref">.container</span> to have it break out of the usual grid.</p>
+              <pre class="language-markup">
+                <code><!--
+                <div class="container">...</div>
+                <div class="container is-wide">...</div>
+              --></code>
+              </pre>
+              <div class="container">
+                <div class="boxed">This is a regular container element</div>
+              </div>
+              <div class="vw-100">
+                <div class="container is-wide">
+                  <div class="boxed">This container is wider</div>
+                </div>
+              </div>
             </article>
             <article>
               <h3>Responsive Embeds</h3>
@@ -3071,12 +3220,53 @@ console.log("JellyFish is Awesome!");
               <pre class="language-markup">
             <code><!--
             <div class="embed-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           --></code>
           </pre>
               <div class="embed-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <p>Use modifiers to account for different aspect ratios.</p>
+              <pre class="language-markup">
+                <code><!--
+                <div class="embed-container ratio-16x9">
+                  ...
+                </div>
+                <div class="embed-container ratio-21x9">
+                  ...
+                </div>
+                <div class="embed-container ratio-1x1">
+                  ...
+                </div>
+                <div class="embed-container ratio-4x3">
+                  ...
+                </div>
+              --></code>
+              </pre>
+              <div class="row">
+                <div class="col">
+                  <div class="embed-container ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="embed-container ratio-21x9">
+                    <iframe src="https://www.youtube.com/embed/1jdknVf5mxw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="embed-container ratio-1x1">
+                    <iframe src="https://player.vimeo.com/video/170780266?h=2912c26a2d" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="embed-container ratio-4x3">
+                    <iframe src="https://www.youtube.com/embed/mM5_T-F1Yn4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                </div>
               </div>
             </article>
           </section><!-- #utilities -->

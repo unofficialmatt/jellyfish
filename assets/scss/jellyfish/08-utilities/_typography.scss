@@ -1,9 +1,31 @@
+.italic {
+  font-style: italic !important;
+}
+.weight-hairline {
+  font-weight: $weight-hairline !important;
+}
+.weight-thin {
+  font-weight: $weight-thin !important;
+}
+.weight-light {
+  font-weight: $weight-light !important;
+}
+.weight-normal {
+  font-weight: $weight-normal !important;
+}
+.weight-medium {
+  font-weight: $weight-medium !important;
+}
+.weight-semibold {
+  font-weight: $weight-semibold !important;
+}
+.weight-bold,
 .bold {
   font-weight: $weight-bold !important;
 }
-.light {
-  font-weight: $weight-light !important;
+.weight-xbold {
+  font-weight: $weight-xbold !important;
 }
-.italic {
-  font-style: italic !important;
+.weight-black {
+  font-weight: $weight-black !important;
 }

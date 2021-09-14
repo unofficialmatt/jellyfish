@@ -11,7 +11,3 @@ $one_col: (100% / $cols);
 $base-col-name: xs !default;
 $base-container-gutter: get-size(1.5) !default; // define in px
 $base-col-gutter: get-size(1) !default; // define in px
-
-// GLOBAL PADDING/MARGINS
-$element-padding: get-size(1.5) !default;
-$element-margin: get-size(1.5) !default;

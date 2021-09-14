@@ -12,7 +12,7 @@
       align: center;
     }
     font:{
-      size: 0.9rem;
+      size: $button-font-size;
       weight: $button-font-weight;
       family: $button-font-family;
     }
@@ -37,7 +37,7 @@
       cursor: not-allowed;
     }
     // Default Styles
-    @include create_button('neutral');
+    @include create_button($button-base-color);
 }
 
 %button-groups {
@@ -46,16 +46,21 @@
 }
 .button-list {
   display: flex;
+  align-items: center;
   @extend %button-groups;
   margin-bottom: calc(#{$element-margin} - #{$button-list-button-margin});
+  @include above(sm) {
+    margin-right: n($button-list-button-margin);
+    margin-left: n($button-list-button-margin);
+  }
   .button, a.button {
-    margin: 0 $button-list-button-margin $button-list-button-margin 0;
+    margin: 0 $button-list-button-margin $button-list-button-margin*2 $button-list-button-margin;
     //display: inline-flex;
   }
 }
 .button-group {
-  display: inline-flex;
   @extend %button-groups;
+  display: inline-flex;
   margin-bottom: $element-margin;
   .button, a.button {
     margin: 0 0 0 n($button-border-width);

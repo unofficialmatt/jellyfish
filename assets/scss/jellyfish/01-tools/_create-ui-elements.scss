@@ -26,6 +26,7 @@
   // Output the base CSS and disabled:hover state (prevents other hover states taking effect)
 
   &,
+  &:visited,
   &:disabled:hover {
     background-color: $button-base-color;
     border-color: $button-base-color;

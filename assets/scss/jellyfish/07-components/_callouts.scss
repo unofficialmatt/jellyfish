@@ -5,6 +5,8 @@
   margin-bottom: $element-margin;
   padding: $element-padding;
   border-radius: $callout-border-radius;
+  display: block;
+  width: 100%;
   //@include create_callout(get-color(neutral));
 
   a.callout-link {

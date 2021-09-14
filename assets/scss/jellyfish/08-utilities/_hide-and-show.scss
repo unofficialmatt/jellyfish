@@ -57,3 +57,7 @@ $i in $breakpoints {
   $last: $point; // Store the current point to be used on the next loop
   $loop_count: $loop_count+1; // Increment loop count
 }
+
+.text-replace {
+  @include text-replace;
+}

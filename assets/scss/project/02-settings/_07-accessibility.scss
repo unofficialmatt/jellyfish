@@ -1,7 +1,7 @@
 // ACCESSIBILITY
-// $accessibility-font-size-sm: font-size('size-m1');
-// $accessibility-font-size-md: font-size('size-0');
-// $accessibility-font-size-lg: font-size('size-1');
+// $accessibility-font-size-sm: font-size(-1);
+// $accessibility-font-size-md: font-size(0);
+// $accessibility-font-size-lg: font-size(1);
 
 // $accessibility-button-font-weight: normal;
 
@@ -13,8 +13,8 @@
 // $accessibility-button-hover-border-color: get-color(secondary);
 // $accessibility-button-active-border-color: get-color(primary);
 
-// $dark-mode-bg-color: #222222; // TODO: Replace with values from $colors map
-// $dark-mode-text-color: #e6e6e6; // TODO: Replace with values from $colors map
+// $dark-mode-bg-color: get-color(neutral,900);
+// $dark-mode-text-color: get-color(neutral,100);
 // $dark-mode-img-grayscale-perc: 50%;
-// $dark-mode-link-color: #58cdf1; // TODO: Replace with values from $colors map
-// $dark-mode-link-hover: #f1b835; // TODO: Replace with values from $colors map
+// $dark-mode-link-color: get-color(primary,400);
+// $dark-mode-link-hover: get-color(primary);

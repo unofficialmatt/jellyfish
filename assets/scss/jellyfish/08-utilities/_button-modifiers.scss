@@ -17,14 +17,20 @@
         }
     }
     &.expanded {
-        display: block;
-        width: 100%;
+      display: block;
+      width: 100%;
     }
-    &.large {
-        font-size: 1.1rem;
+    &.xsmall {
+      font-size: $button-font-size-xsmall;
+      padding: $button-padding-xsmall;
     }
     &.small {
-        font-size: 0.8rem;
+      font-size: $button-font-size-small;
+      padding: $button-padding-small;
+    }
+    &.large {
+      font-size: $button-font-size-large;
+      padding: $button-padding-large;
     }
     @each $name, $color in $theme-colors {
       // Loop through $theme-colors map and create buttons for each key

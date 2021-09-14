@@ -5,24 +5,23 @@
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .docs {
-
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
     STYLE OVERRIDES
   *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-  $section-bottom-margin: $element-margin*3;
+  $section-bottom-margin: $element-margin * 3;
 
   // H2 Section Headings
   .section-heading {
     display: flex;
     flex-wrap: wrap;
-    margin-top: $element-margin*6;
+    margin-top: $element-margin * 6;
     padding-bottom: $element-margin;
     padding-top: $element-margin;
     margin-bottom: $section-bottom-margin;
-    border-bottom: 2px solid get-color(neutral,200);
+    border-bottom: 2px solid get-color(neutral, 200);
     z-index: 9;
-    background-color: get-color(neutral,000);
+    background-color: get-color(neutral, 000);
     .tag-group:first-of-type {
       margin-left: auto;
     }
@@ -34,16 +33,16 @@
 
   // Standfirst
   .standfirst {
-    font-size: font-size('size-3');
+    font-size: font-size(3);
     font-weight: 300;
     line-height: 1.3;
   }
   .docs-section .standfirst {
-    color: get-color(neutral,500);
+    color: get-color(neutral, 500);
   }
 
   // Sub Section
-  .docs-section>article {
+  .docs-section > article {
     margin-bottom: $section-bottom-margin;
   }
 
@@ -51,7 +50,7 @@
   %reference {
     @extend %inline-code;
     display: inline;
-    background-color: get-color(neutral,200);
+    background-color: get-color(neutral, 200);
   }
 
   .css-ref {
@@ -66,7 +65,7 @@
 
   .variable-ref {
     @extend %reference;
-    color: get-color(secondary,700);
+    color: get-color(secondary, 700);
   }
 
   .padded {
@@ -76,24 +75,24 @@
 
   // Boxed Out Example
   .boxed {
-    background: get-color(neutral,100);
+    background: get-color(neutral, 100);
     padding: $element-padding;
     line-height: 1.2;
     margin: 0 0 $element-margin 0;
     display: inherit;
-    font-size: font-size('size-m1');
+    font-size: font-size(-1);
     flex: 1;
     font-family: $font-code;
   }
   .row-boxed {
-    background-color: get-color(neutral,100);
+    background-color: get-color(neutral, 100);
     min-height: 160px;
     margin-bottom: $element-margin;
     padding: $element-padding 0;
     .boxed {
       margin: 0;
-      background-color: get-color(neutral,000);
-      border: 1px solid get-color(neutral,200);
+      background-color: get-color(neutral, 000);
+      border: 1px solid get-color(neutral, 200);
     }
   }
 
@@ -104,7 +103,7 @@
     font-size: 0.9em !important;
 
     label {
-      font-size: font-size('size-m1');
+      font-size: font-size(-1);
       top: 0;
       right: 0;
       position: absolute;
@@ -112,11 +111,12 @@
       display: block;
       background-color: get-color(secondary);
       color: #fff;
-      padding: .4em .6em;
+      padding: 0.4em 0.6em;
     }
   }
-  code[class*="language-"], pre[class*="language-"] {
-    background: get-color(neutral,100);
+  code[class*="language-"],
+  pre[class*="language-"] {
+    background: get-color(neutral, 100);
     border: 0;
   }
 
@@ -138,17 +138,16 @@
     border-radius: 0;
   }
 
-
   // Hero
   .hero {
-    background: url('https://images.unsplash.com/photo-1569689862393-287eaaa677c6?q=100&fm=jpg&w=1080&fit=max&?ixid=123123123');
+    background: url("https://images.unsplash.com/photo-1569689862393-287eaaa677c6?q=100&fm=jpg&w=1080&fit=max&?ixid=123123123");
     background-position: center;
     background-size: cover;
     padding: get-size(8) 0;
     text-align: center;
-    color: get-color(neutral,000);
+    color: get-color(neutral, 000);
     a {
-      color: get-color(primary,200);
+      color: get-color(primary, 200);
     }
     h1 {
       color: get-color(neutral, 000);
@@ -173,8 +172,8 @@
     }
 
     a.active {
-      background-color: get-color(primary,700);
-      color: get-color(neutral,000);
+      background-color: get-color(primary, 700);
+      color: get-color(neutral, 000);
     }
   }
 
@@ -193,29 +192,28 @@
 
   // Used for tags
   .tag.light {
-    @include create_tag(get-color(neutral,100));
+    @include create_tag(get-color(neutral, 100));
     font-weight: normal;
   }
 
-// Copy to Clipboard
-div.code-toolbar {
-  & > .toolbar {
-    top: auto;
-    bottom: 0.5em;
-    right: 0.5em;
-    button {
-      margin: 0;
-      box-shadow: none;
-      padding: .5em;
-      text-transform: uppercase;
-      font-weight: $weight-bold;
-      //@extend .button.tertiary;
+  // Copy to Clipboard
+  div.code-toolbar {
+    & > .toolbar {
+      top: auto;
+      bottom: 0.5em;
+      right: 0.5em;
+      button {
+        margin: 0;
+        box-shadow: none;
+        padding: 0.5em;
+        text-transform: uppercase;
+        font-weight: $weight-bold;
+        //@extend .button.tertiary;
+      }
     }
   }
 
-}
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
   EXAMPLES
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -237,7 +235,7 @@ div.code-toolbar {
 
       &:hover,
       &:focus {
-        background-color: get-color(primary,200);
+        background-color: get-color(primary, 200);
       }
     }
 
@@ -249,8 +247,8 @@ div.code-toolbar {
       &:focus {
         transform: scale(1.1);
         background-color: get-color(secondary);
-        color: get-color(neutral,000);
-        transform: matrix(1.08, .05, .01, 1.1, 1, 4);
+        color: get-color(neutral, 000);
+        transform: matrix(1.08, 0.05, 0.01, 1.1, 1, 4);
       }
     }
   }
@@ -260,7 +258,7 @@ div.code-toolbar {
     @include create_button(hotpink);
   }
   button.gold {
-    @include create_button(gold, brown );
+    @include create_button(gold, brown);
   }
   button.white {
     @include create_button(#fff, gray);
@@ -269,7 +267,7 @@ div.code-toolbar {
     @include create_button(rebeccapurple);
   }
   button.silver {
-    @include create_button(#A0A0A0);
+    @include create_button(#a0a0a0);
   }
 
   // Tags
@@ -286,20 +284,17 @@ div.code-toolbar {
     @include create_tag(rebeccapurple);
   }
   .tag.silver {
-    @include create_tag(#A0A0A0);
+    @include create_tag(#a0a0a0);
   }
   // Progress Bars
   .progress.hotpink {
-    @include create_progressbar(
-  hotpink);
+    @include create_progressbar(hotpink);
   }
   .progress.tomato {
-    @include create_progressbar(
-  tomato);
+    @include create_progressbar(tomato);
   }
   .progress.lime {
-    @include create_progressbar(
-  lime);
+    @include create_progressbar(lime);
   }
   // Callouts
   .callout.hotpink {
@@ -312,13 +307,13 @@ div.code-toolbar {
     @include create_callout(rebeccapurple);
   }
   .callout.silver {
-    @include create_callout(#A0A0A0);
+    @include create_callout(#a0a0a0);
   }
 
   // Text
 
   .text-silver {
-    color: #A0A0A0 !important;
+    color: #a0a0a0 !important;
   }
   .text-purple {
     color: rebeccapurple !important;
@@ -328,86 +323,87 @@ div.code-toolbar {
   $tintshade: #aa0000;
   .tintshade {
     height: 100px;
-    width: calc(100%/6);
+    width: calc(100% / 6);
     font-size: 0.9em;
     border-bottom: 0;
     vertical-align: middle;
     text-align: center;
     background-color: $tintshade;
     &.tint-100 {
-      background-color: tint($tintshade, 100%)
+      background-color: tint($tintshade, 100%);
     }
     &.tint-80 {
-      background-color: tint($tintshade, 80%)
+      background-color: tint($tintshade, 80%);
     }
     &.tint-60 {
-      background-color: tint($tintshade, 60%)
+      background-color: tint($tintshade, 60%);
     }
     &.tint-40 {
-      background-color: tint($tintshade, 40%)
+      background-color: tint($tintshade, 40%);
     }
     &.tint-20 {
-      background-color: tint($tintshade, 20%)
+      background-color: tint($tintshade, 20%);
     }
     &.tint-0 {
-      background-color: tint($tintshade, 0%)
+      background-color: tint($tintshade, 0%);
     }
     &.lighten-100 {
-      background-color: lighten($tintshade, 100%)
+      background-color: lighten($tintshade, 100%);
     }
     &.lighten-80 {
-      background-color: lighten($tintshade, 80%)
+      background-color: lighten($tintshade, 80%);
     }
     &.lighten-60 {
-      background-color: lighten($tintshade, 60%)
+      background-color: lighten($tintshade, 60%);
     }
     &.lighten-40 {
-      background-color: lighten($tintshade, 40%)
+      background-color: lighten($tintshade, 40%);
     }
     &.lighten-20 {
-      background-color: lighten($tintshade, 20%)
+      background-color: lighten($tintshade, 20%);
     }
     &.lighten-0 {
-      background-color: lighten($tintshade, 0%)
+      background-color: lighten($tintshade, 0%);
     }
-    &[class*=" shade"], &[class*=" darken"] {
+    &[class*=" shade"],
+    &[class*=" darken"] {
       color: #fff;
     }
     &.shade-100 {
-      background-color: shade($tintshade, 100%)
+      background-color: shade($tintshade, 100%);
     }
     &.shade-80 {
-      background-color: shade($tintshade, 80%)
+      background-color: shade($tintshade, 80%);
     }
     &.shade-60 {
-      background-color: shade($tintshade, 60%)
+      background-color: shade($tintshade, 60%);
     }
     &.shade-40 {
-      background-color: shade($tintshade, 40%)
+      background-color: shade($tintshade, 40%);
     }
     &.shade-20 {
-      background-color: shade($tintshade, 20%)
+      background-color: shade($tintshade, 20%);
     }
     &.shade-0 {
-      background-color: shade($tintshade, 0%)
+      background-color: shade($tintshade, 0%);
     }
     &.darken-100 {
-      background-color: darken($tintshade, 100%)
+      background-color: darken($tintshade, 100%);
     }
     &.darken-80 {
-      background-color: darken($tintshade, 80%)
+      background-color: darken($tintshade, 80%);
     }
     &.darken-60 {
-      background-color: darken($tintshade, 60%)
+      background-color: darken($tintshade, 60%);
     }
     &.darken-40 {
-      background-color: darken($tintshade, 40%)
+      background-color: darken($tintshade, 40%);
     }
     &.darken-20 {
-      background-color: darken($tintshade, 20%)
+      background-color: darken($tintshade, 20%);
     }
     &.darken-0 {
-      background-color: darken($tintshade, 0%)
+      background-color: darken($tintshade, 0%);
     }
   }
 
@@ -425,37 +421,69 @@ div.code-toolbar {
 
 .bg-primary {
   background-color: #c32c78;
-  color: white; }
-  .bg-primary h1, .bg-primary h2, .bg-primary h3, .bg-primary h4, .bg-primary h5, .bg-primary h6 {
-    color: white; }
-  .bg-primary a {
-    color: #edc0d6; }
-  .bg-primary a:visited {
-    color: #edc0d6; }
-  .bg-primary a:hover, .bg-primary a:focus {
-    color: white; }
+  color: white;
+}
+.bg-primary h1,
+.bg-primary h2,
+.bg-primary h3,
+.bg-primary h4,
+.bg-primary h5,
+.bg-primary h6 {
+  color: white;
+}
+.bg-primary a {
+  color: #edc0d6;
+}
+.bg-primary a:visited {
+  color: #edc0d6;
+}
+.bg-primary a:hover,
+.bg-primary a:focus {
+  color: white;
+}
 
 .bg-secondary {
   background-color: #07808d;
-  color: white; }
-  .bg-secondary h1, .bg-secondary h2, .bg-secondary h3, .bg-secondary h4, .bg-secondary h5, .bg-secondary h6 {
-    color: white; }
-  .bg-secondary a {
-    color: #b4d9dd; }
-  .bg-secondary a:visited {
-    color: #b4d9dd; }
-  .bg-secondary a:hover, .bg-secondary a:focus {
-    color: white; }
+  color: white;
+}
+.bg-secondary h1,
+.bg-secondary h2,
+.bg-secondary h3,
+.bg-secondary h4,
+.bg-secondary h5,
+.bg-secondary h6 {
+  color: white;
+}
+.bg-secondary a {
+  color: #b4d9dd;
+}
+.bg-secondary a:visited {
+  color: #b4d9dd;
+}
+.bg-secondary a:hover,
+.bg-secondary a:focus {
+  color: white;
+}
 
 .bg-blue {
   background-color: royalblue;
-  color: white; }
-  .bg-blue h1, .bg-blue h2, .bg-blue h3, .bg-blue h4, .bg-blue h5, .bg-blue h6 {
-    color: white; }
-  .bg-blue a {
-    color: #c6d2f6; }
-  .bg-blue a:visited {
-    color: #c6d2f6; }
-  .bg-blue a:hover, .bg-blue a:focus {
-    color: white; }
-
+  color: white;
+}
+.bg-blue h1,
+.bg-blue h2,
+.bg-blue h3,
+.bg-blue h4,
+.bg-blue h5,
+.bg-blue h6 {
+  color: white;
+}
+.bg-blue a {
+  color: #c6d2f6;
+}
+.bg-blue a:visited {
+  color: #c6d2f6;
+}
+.bg-blue a:hover,
+.bg-blue a:focus {
+  color: white;
+}

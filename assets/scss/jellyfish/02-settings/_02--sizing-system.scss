@@ -25,3 +25,7 @@ $sizing-system: map-merge(
   ),
   $sizing-system
 );
+
+// GLOBAL PADDING/MARGINS
+$element-padding: get-size(1.5) !default;
+$element-margin: get-size(1.5) !default;

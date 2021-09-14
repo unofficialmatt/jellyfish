@@ -1,22 +1,23 @@
-@mixin smooth($properties...) { // Global transition
-    $result: (); // Create empty variable
-    @each $property in $properties {
-        // Loop through each argument and append to result variable
-        $result: append($result, #{$property} $global-transition, comma);
-    }
-    transition: $result;
+@mixin smooth($properties...) {
+  // Global transition
+  $result: (); // Create empty variable
+  @each $property in $properties {
+    // Loop through each argument and append to result variable
+    $result: append($result, #{$property} $global-transition, comma);
+  }
+  transition: $result;
 }
 
 // Center a block level element without worrying about top and bottom margins
 @mixin center-block {
   margin: {
-      left: auto;
-      right: auto;
+    left: auto;
+    right: auto;
   }
 }
 
 // DRY mixin for Pseudo elements. Pass optional args or leave as default
-@mixin pseudo($content: '', $display: block, $pos: absolute){
+@mixin pseudo($content: "", $display: block, $pos: absolute) {
   content: $content;
   display: $display;
   position: $pos;
@@ -29,4 +30,12 @@
   }
 }
 
-//TODO: Add Image Replacement mixin https://getbootstrap.com/docs/4.0/utilities/image-replacement/
+@mixin text-replace {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
