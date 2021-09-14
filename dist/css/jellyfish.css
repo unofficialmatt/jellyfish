@@ -420,8 +420,15 @@ h5 {
 h6 {
   font-size: 1.25em; }
 
-p, li, h1, h2, h3, h4, h5, h6 {
-  word-break: break-word; }
+p,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  word-break: break-all; }
 
 /* TEXT TRANSFORM */
 
@@ -434,15 +441,17 @@ small,
 .small {
   font-size: 0.875em; }
 
-strong, b {
+strong,
+b {
   font-weight: 700; }
 
-em, i {
+em,
+i {
   font-style: italic; }
 
 mark {
   background: yellow;
-  padding: .15em .3em;
+  padding: 0.15em 0.3em;
   display: inline-block; }
 
 ins {
@@ -470,7 +479,7 @@ kbd, :not(pre) > code, var, .docs .css-ref, .docs .file-ref, .docs .variable-ref
   font-size: 0.875em;
   line-height: 1;
   border-radius: 4px;
-  padding: .3em .35em; }
+  padding: 0.3em 0.35em; }
 
 kbd {
   background-color: #1f2933;
@@ -485,7 +494,8 @@ var {
   font-style: italic;
   color: #515f6c; }
 
-sub, sup {
+sub,
+sup {
   font-size: 0.75em;
   line-height: 0;
   position: relative;
@@ -495,7 +505,7 @@ sub {
   bottom: -0.25em; }
 
 sup {
-  top: -.75em; }
+  top: -0.75em; }
 
 /*!
  * Hamburgers

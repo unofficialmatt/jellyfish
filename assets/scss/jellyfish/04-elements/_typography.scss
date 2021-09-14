@@ -1,23 +1,22 @@
 // Headings
 
 #{headings()} {
-    font-family: $font-headings;
-    margin: 0 0 $element-margin 0;
-    line-height: $heading-line-height;
-    color: $color-headings-preferred;
-    &:not(:first-child) {
-      margin-top: $element-margin;
-      // TODO: Change this to instead add top margin by default and remove if .col + $heading
-    }
+  font-family: $font-headings;
+  margin: 0 0 $element-margin 0;
+  line-height: $heading-line-height;
+  color: $color-headings-preferred;
+  &:not(:first-child) {
+    margin-top: $element-margin;
+    // TODO: Change this to instead add top margin by default and remove if .col + $heading
+  }
 }
 
 h1 {
   @each $point, $size in $font-sizes-h1 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size;
-    }
-    @else {
+    } @else {
       // Otherwise use the breakpoint map to set the font size
       @include above($point) {
         font-size: $size;
@@ -27,12 +26,11 @@ h1 {
 }
 
 h2 {
-    @each $point, $size in $font-sizes-h2 {
-    @if $point == 'root' {
+  @each $point, $size in $font-sizes-h2 {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size;
-    }
-    @else {
+    } @else {
       // Otherwise use the breakpoint map to set the font size
       @include above($point) {
         font-size: $size;
@@ -42,12 +40,11 @@ h2 {
 }
 
 h3 {
-    @each $point, $size in $font-sizes-h3 {
-    @if $point == 'root' {
+  @each $point, $size in $font-sizes-h3 {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size;
-    }
-    @else {
+    } @else {
       // Otherwise use the breakpoint map to set the font size
       @include above($point) {
         font-size: $size;
@@ -57,12 +54,11 @@ h3 {
 }
 
 h4 {
-    @each $point, $size in $font-sizes-h4 {
-    @if $point == 'root' {
+  @each $point, $size in $font-sizes-h4 {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size;
-    }
-    @else {
+    } @else {
       // Otherwise use the breakpoint map to set the font size
       @include above($point) {
         font-size: $size;
@@ -72,12 +68,11 @@ h4 {
 }
 
 h5 {
-    @each $point, $size in $font-sizes-h5 {
-    @if $point == 'root' {
+  @each $point, $size in $font-sizes-h5 {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size;
-    }
-    @else {
+    } @else {
       // Otherwise use the breakpoint map to set the font size
       @include above($point) {
         font-size: $size;
@@ -87,12 +82,11 @@ h5 {
 }
 
 h6 {
-    @each $point, $size in $font-sizes-h6 {
-    @if $point == 'root' {
+  @each $point, $size in $font-sizes-h6 {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size;
-    }
-    @else {
+    } @else {
       // Otherwise use the breakpoint map to set the font size
       @include above($point) {
         font-size: $size;
@@ -101,8 +95,15 @@ h6 {
   }
 }
 
-p, li, h1, h2, h3, h4, h5, h6 {
-  word-break: break-word;
+p,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  word-break: break-all;
   //hyphens: auto;
 }
 /* TEXT TRANSFORM */
@@ -111,101 +112,105 @@ small {
   display: block;
 }
 small {
-    font-size: font-size(-1);
+  font-size: font-size(-1);
 }
-strong, b {
+strong,
+b {
   font-weight: $weight-bold;
 }
-em, i {
+em,
+i {
   font-style: italic;
 }
 
 // Highlighted
 mark {
-    background: yellow;
-    padding: .15em .3em;
-    display: inline-block;
+  background: yellow;
+  padding: 0.15em 0.3em;
+  display: inline-block;
 }
 
 // Inserted text
 ins {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 // Deleted text
 del {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 // Computer Output
 samp {
-    @extend %code;
+  @extend %code;
 }
 
 // Abbreviation
 abbr {
-    border-bottom: $border-width dotted $color-text;
-    cursor: help;
+  border-bottom: $border-width dotted $color-text;
+  cursor: help;
 }
 
 // Definition
 dfn {
-    font-style: italic;
+  font-style: italic;
 }
 
 // Citation
 cite {
-    font-style: italic;
+  font-style: italic;
 }
 
 // Inline Quote
 q {
-    font-style: italic;
-    &::before, &::after {
-        content:'"';
-    }
+  font-style: italic;
+  &::before,
+  &::after {
+    content: '"';
+  }
 }
 
 %inline-code {
-    @extend %code;
-    font-size: font-size(-1);
-    line-height: 1;
-    border-radius: $border-radius;
-    padding: .3em .35em;
+  @extend %code;
+  font-size: font-size(-1);
+  line-height: 1;
+  border-radius: $border-radius;
+  padding: 0.3em 0.35em;
 }
 
 // Keyboard Input
 kbd {
-    @extend %inline-code;
-    background-color: $color-text;
-    color: get-color(neutral,000);
+  @extend %inline-code;
+  background-color: $color-text;
+  color: get-color(neutral, 000);
 }
 
 // Code
-:not(pre)>code {
-    @extend %inline-code;
-    background-color: get-color(neutral,200);
-    color: $color-text;
+:not(pre) > code {
+  @extend %inline-code;
+  background-color: get-color(neutral, 200);
+  color: $color-text;
 }
 
 // Variable
 var {
-    @extend %inline-code;
-    background-color: get-color(neutral,200);
-    font-style: italic;
-    color: get-color(neutral,600);
+  @extend %inline-code;
+  background-color: get-color(neutral, 200);
+  font-style: italic;
+  color: get-color(neutral, 600);
 }
 
 // Subscript and Superscript
-sub, sup {
-    font-size: font-size(-2);
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
+sub,
+sup {
+  font-size: font-size(-2);
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
 }
 sub {
-    bottom: -0.25em;
+  bottom: -0.25em;
 }
 sup {
-    top: -.75em;
+  top: -0.75em;
 }
