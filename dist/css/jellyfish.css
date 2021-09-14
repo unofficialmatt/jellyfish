@@ -695,30 +695,6 @@ sup {
     padding-left: 20px;
     padding-right: 20px; } }
 
-.bg-white {
-  background-color: white;
-  color: #1f2933; }
-  .bg-white h1, .bg-white h2, .bg-white h3, .bg-white h4, .bg-white h5, .bg-white h6 {
-    color: #33404d; }
-  .bg-white a {
-    color: #c32c78; }
-  .bg-white a:visited {
-    color: #9c1c5c; }
-  .bg-white a:hover, .bg-white a:focus {
-    color: #da4991; }
-
-.bg-dark {
-  background-color: #1f2933;
-  color: white; }
-  .bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4, .bg-dark h5, .bg-dark h6 {
-    color: white; }
-  .bg-dark a {
-    color: #bcbfc2; }
-  .bg-dark a:visited {
-    color: #bcbfc2; }
-  .bg-dark a:hover, .bg-dark a:focus {
-    color: white; }
-
 /* Text meant only for screen readers. */
 .screen-reader-text {
   border: 0;
@@ -3229,6 +3205,30 @@ table.is-hoverable tr:hover td {
 
 .bg-transparent {
   background-color: transparent !important; }
+
+.bg-white {
+  background-color: white;
+  color: #1f2933; }
+  .bg-white h1, .bg-white h2, .bg-white h3, .bg-white h4, .bg-white h5, .bg-white h6 {
+    color: #33404d; }
+  .bg-white a:not(.button) {
+    color: #c32c78; }
+  .bg-white a:not(.button):visited {
+    color: #9c1c5c; }
+  .bg-white a:not(.button):hover, .bg-white a:not(.button):focus {
+    color: #da4991; }
+
+.bg-dark {
+  background-color: #1f2933;
+  color: white; }
+  .bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4, .bg-dark h5, .bg-dark h6 {
+    color: white; }
+  .bg-dark a:not(.button) {
+    color: #bcbfc2; }
+  .bg-dark a:not(.button):visited {
+    color: #bcbfc2; }
+  .bg-dark a:not(.button):hover, .bg-dark a:not(.button):focus {
+    color: white; }
 
 .italic {
   font-style: italic !important; }
