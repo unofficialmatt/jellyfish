@@ -1,6 +1,5 @@
 /**
  * Send interaction events to Google Analytics
- * TODO: Add Documentation
  */
 (function ($) {
   if (typeof gtag == "function") {
@@ -37,8 +36,8 @@
     // Send external link clicks
     $(
       "a:not([href*='" +
-      document.domain +
-      "'],[href*='mailto'],[href*='tel'],a[href$='.pdf'])"
+        document.domain +
+        "'],[href*='mailto'],[href*='tel'],a[href$='.pdf'])"
     ).click(function (event) {
       // Prevent # and javascript links being sent
       if (

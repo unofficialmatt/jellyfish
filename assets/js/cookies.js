@@ -1,8 +1,4 @@
 /**
-* TODO: Add Documentation
- */
-
-/**
  * Creates a cookie
  * @param {string} name
  * @param {string} value

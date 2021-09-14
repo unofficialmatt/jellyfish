@@ -1,155 +1,162 @@
-// TODO: Add an option for off-canvas. Take a look at how Tatton was done.
-// TODO: Work Out why this doesn't work on Virtual MAchines
-
-.navbar {
-  position: relative;
-  // Outer 100% width wrapper usually used with a <nav> element
-  background: $navbar-bg-color;
-  color: $navbar-link-color; // To ensure all non-link text is styled
-  .container {
-    @include below($nav-expands) {
-      width: 100%;
-      padding: 0;
-    }
-  }
-}
-
-// Break out so it can be extended
-%navbar-links {
-  text-decoration: none;
-  text-transform: $navbar-text-transform;
-  @include smooth(all);
-  &, &:visited {
-    color: $navbar-link-color;
-    background-color: $navbar-link-bg-color;
-  }
-  &:hover, &:focus {
-    color: $navbar-link-hover-color;
-    background-color: $navbar-link-hover-bg-color;
-    font-weight: $navbar-link-hover-weight;
-  }
-}
-
-.navbar-menu {
-  // Wrapper for the main website navigation
-  display: none; // Hide until toggled
-  border-top: $navbar-link-border;
-  ul {
-    // Navigation List
-    list-style-type: none;
-    margin: 0;
-    width: 100%;
-  }
-  li {
-    // Navigation Links
-    width: 100%;
+@if ($generate-navbar) == true {
+  .navbar {
     position: relative;
-    margin: 0;
-    a {
-      @extend %navbar-links;
-      font: {
-        family: $navbar-font-family;
-        size: $navbar-font-size;
-        weight: $navbar-font-weight;
-      }
-      display: block;
-      position: relative;
-      border-bottom: $navbar-link-border;
-      padding: $navbar-link-padding-y $navbar-link-padding-x;
-
-    }
-    &>ul {
-      // Secondary Level Navigation Menu
-      display: none; // Hide until required
-      // Links
-      a {
-        font: {
-          family: $navbar-sublink-font-family;
-          size: $navbar-sublink-font-size;
-          weight: $navbar-sublink-font-weight;
-        }
-        text-transform: $navbar-sublink-text-transform;
-        &:hover, &:focus {
-          font-weight: $navbar-sublink-font-weight-hover;
-        }
+    // Outer 100% width wrapper usually used with a <nav> element
+    background: $navbar-bg-color;
+    color: $navbar-link-color; // To ensure all non-link text is styled
+    .container {
+      @include below($nav-expands) {
+        width: 100%;
+        padding: 0;
       }
     }
   }
-  li.has-children > a {
-    // Menu Items with Children
-    padding-right: $navbar-link-padding-x + 30px; // 20px is approx the width of the rotated pseudo element and 10px is the padding
-    &::after {
-      @include pseudo;
-      pointer-events: none;
-      height: 12px;
-      width: 12px;
-      border: $hamburger-layer-height solid rgba($navbar-link-color, 0.6);
-      border-left: 0;
-      border-top: 0;
-      top: 50%;
-      right: 0;
-      transform: translate(-10px,-50%) rotate(45deg);
-      transform-origin: top center;
-      @include smooth(opacity, border-color);
-    }
-    &:hover, &:focus {
-      &::after {
-        border-color: rgba($navbar-link-hover-color, 0.6);
-      }
-    }
-  }
-  li.drop-active {
-    // Display sub nav if class of parent has .drop-active
-    > ul {
-      display: block;
-    }
-    & > a::after {
-      // Fade out drop down arrow
-      border-color: rgba($navbar-link-color, 0.1);
-    }
-  }
-  input,
-  .button,
-  a.button {
-    margin: $navbar-link-padding-y $navbar-link-padding-x;
-    position: relative;
-  }
-  input {
-    width: auto;
-  }
-}
 
-// Element in the top left of the navbar.
-// Typically contains the logo. Also contains the hamburger icon
-// Visible on smaller devices
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0; // Don't allow this to shrink
-}
-
-// Elements outside of the primary nav menu that we want to appear in a consistent style to menu links
-.navbar-item {
-  font: {
-    size: $navbar-font-size;
-    weight: $navbar-font-weight;
-  }
-  display: flex;
-  align-items: center;
-  position: relative;
-  margin: 0;
-  * {
-    margin: 0;
-  }
-  padding: $navbar-link-padding-y $navbar-link-padding-x;
-  flex: 0 1 auto; // Allows items to grow horizontally if there is room, if there is not enough room they will grow vertically
-  color: $navbar-link-color;
-  a, a:visited {
-    color: $navbar-link-color;
+  // Break out so it can be extended
+  %navbar-links {
     text-decoration: none;
+    text-transform: $navbar-text-transform;
+    @include smooth(background, color, font-weight);
+    &,
+    &:visited {
+      color: $navbar-link-color;
+      background-color: $navbar-link-bg-color;
+    }
+    &:hover,
+    &:focus {
+      color: $navbar-link-hover-color;
+      background-color: $navbar-link-hover-bg-color;
+      font-weight: $navbar-link-hover-weight;
+    }
   }
-  a:hover, a:focus {
-    color: $navbar-link-hover-color;
-    font-weight: $navbar-link-hover-weight;
+
+  .navbar-menu {
+    // Wrapper for the main website navigation
+    display: none; // Hide until toggled
+    border-top: $navbar-link-border;
+    ul {
+      // Navigation List
+      list-style-type: none;
+      margin: 0;
+      width: 100%;
+    }
+    li {
+      // Navigation Links
+      width: 100%;
+      position: relative;
+      margin: 0;
+      a {
+        @extend %navbar-links;
+        font: {
+          family: $navbar-font-family;
+          size: $navbar-font-size;
+          weight: $navbar-font-weight;
+        }
+        display: block;
+        position: relative;
+        border-bottom: $navbar-link-border;
+        padding: $navbar-link-padding-y $navbar-link-padding-x;
+      }
+      & > ul {
+        // Secondary Level Navigation Menu
+        display: none; // Hide until required
+        // Links
+        a {
+          font: {
+            family: $navbar-sublink-font-family;
+            size: $navbar-sublink-font-size;
+            weight: $navbar-sublink-font-weight;
+          }
+          text-transform: $navbar-sublink-text-transform;
+          &:hover,
+          &:focus {
+            font-weight: $navbar-sublink-font-weight-hover;
+          }
+        }
+      }
+    }
+    li.has-children > a {
+      // Menu Items with Children
+      padding-right: $navbar-link-padding-x +
+        30px; // 20px is approx the width of the rotated pseudo element and 10px is the padding
+      &::after {
+        @include pseudo;
+        pointer-events: none;
+        height: 12px;
+        width: 12px;
+        border: $hamburger-layer-height solid rgba($navbar-link-color, 0.6);
+        border-left: 0;
+        border-top: 0;
+        top: 50%;
+        right: 0;
+        transform: translate(-10px, -50%) rotate(45deg);
+        transform-origin: top center;
+        @include smooth(opacity, border-color);
+      }
+      &:hover,
+      &:focus {
+        &::after {
+          border-color: rgba($navbar-link-hover-color, 0.6);
+        }
+      }
+    }
+    li.drop-active {
+      // Display sub nav if class of parent has .drop-active
+      > ul {
+        display: block;
+      }
+      & > a::after {
+        // Fade out drop down arrow
+        border-color: rgba($navbar-link-color, 0.1);
+      }
+    }
+    input,
+    .button,
+    a.button {
+      margin: $navbar-link-padding-y $navbar-link-padding-x;
+      position: relative;
+    }
+    input {
+      width: auto;
+    }
+  }
+
+  // Element in the top left of the navbar.
+  // Typically contains the logo. Also contains the hamburger icon
+  // Visible on smaller devices
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0; // Don't allow this to shrink
+  }
+
+  // Elements outside of the primary nav menu that we want to appear in a consistent style to menu links
+  .navbar-item {
+    font: {
+      size: $navbar-font-size;
+      weight: $navbar-font-weight;
+    }
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0;
+    * {
+      margin: 0;
+    }
+    padding: $navbar-link-padding-y $navbar-link-padding-x;
+    flex: 0
+      1
+      auto; // Allows items to grow horizontally if there is room, if there is not enough room they will grow vertically
+    color: $navbar-link-color;
+    a,
+    a:visited {
+      color: $navbar-link-color;
+      text-decoration: none;
+    }
+    a:hover,
+    a:focus {
+      color: $navbar-link-hover-color;
+      font-weight: $navbar-link-hover-weight;
+    }
   }
 }
