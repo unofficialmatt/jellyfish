@@ -9,13 +9,10 @@ module.exports = function (grunt) {
       sourceMap: true
     },
     dist: {
-      options: {
-        banner: '/*! Test */'
-      },
       files: [{
-          src: '<%= opts.build_dir %>/scss/compile.scss',
-          dest: '<%= opts.dist_dir %>/css/style.css'
-        }
+        src: '<%= opts.build_dir %>/scss/compile.scss',
+        dest: '<%= opts.dist_dir %>/css/style.css'
+      }
       ]
     }
   });
@@ -40,9 +37,9 @@ module.exports = function (grunt) {
     },
     dist: {
       files: [{
-          src: '<%= opts.dist_dir %>/css/style.css',
-          dest: '<%= opts.dist_dir %>/css/style.min.css'
-        }
+        src: '<%= opts.dist_dir %>/css/style.css',
+        dest: '<%= opts.dist_dir %>/css/style.min.css'
+      }
       ]
     }
   });
@@ -51,11 +48,11 @@ module.exports = function (grunt) {
     // This is an arbitrary name for this sub-task
     src: {
       files: {
-          // Put an _all.scss file in any directory inside our scss files, and
-          // this task will write @import statements for every other _*.scss
-          // file in that directory. Then simply @import your _all.scss file to
-          // import the contents of the directory.
-          src: ['<%= opts.build_dir %>/scss/**/__all.scss']
+        // Put an _all.scss file in any directory inside our scss files, and
+        // this task will write @import statements for every other _*.scss
+        // file in that directory. Then simply @import your _all.scss file to
+        // import the contents of the directory.
+        src: ['<%= opts.build_dir %>/scss/**/__all.scss']
       }
     }
   });

@@ -8,10 +8,6 @@ module.exports = function (grunt) {
       npm: {
         files: [
           {
-            src: ['node_modules/jquery/dist/jquery.js'],
-            dest: '<%= opts.build_dir %>/js/vendor/jquery.js'
-          },
-          {
             expand: true,
             cwd: 'node_modules/hamburgers/_sass/hamburgers',
             src: ['**/*'],

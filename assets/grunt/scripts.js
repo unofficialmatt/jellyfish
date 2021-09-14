@@ -9,7 +9,7 @@ module.exports = function (grunt) {
       separator: ';\r\n'
     },
     dist: {
-      src: ['<%= opts.build_dir %>/js/vendor/*.js', '<%= opts.build_dir %>/js/project/*.js'],
+      src: ['<%= opts.build_dir %>/js/*.js'],
       dest: '<%= opts.dist_dir %>/js/project.js',
     }
   });

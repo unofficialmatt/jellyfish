@@ -9,6 +9,7 @@ jQuery(document).ready(function ($) {
     $(navmenu).slideToggle();
     // Toggle the state of the aria-expanded attribute for screen readers
     var menuItem = $(e.currentTarget);
+    $(this).toggleClass("is-active");
     if (menuItem.attr('aria-expanded') === 'true') {
       $(this).attr('aria-expanded', 'false');
     } else {
@@ -29,3 +30,5 @@ jQuery(document).ready(function ($) {
     }
   });
 });
+
+// todo: refactor based on jellypress latest
