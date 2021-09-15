@@ -9,7 +9,8 @@ module.exports = function (grunt) {
       separator: ';\r\n'
     },
     dist: {
-      src: ['<%= opts.build_dir %>/js/**/*.js'],
+      src: ['<%= opts.build_dir %>/js/**/*.js',
+        '!<%= opts.build_dir %>/js/breakpoints.js'],
       dest: '<%= opts.dist_dir %>/js/jellyfish.js',
     }
   });

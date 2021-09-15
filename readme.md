@@ -1,5 +1,7 @@
 # 🎐 Jellyfish SCSS Framework
 
+## TODO: The docs need rewriting now that we are on npm
+
 <p>
 <img src="https://img.shields.io/github/stars/unofficialmatt/jellyfish.svg?style=flat-square&logo=github"/>
 <img src="https://img.shields.io/github/issues/unofficialmatt/jellyfish.svg?style=flat-square&logo=github"/>
