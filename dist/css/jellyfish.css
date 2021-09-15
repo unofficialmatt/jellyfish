@@ -1,4 +1,4 @@
-/*! jellyfish-ui 3.1.0
+/*! jellyfish-ui 3.1.2
  * © 2021-09 Matt Weet - https://www.mattweet.com */
 
 /**
@@ -428,7 +428,7 @@ h3,
 h4,
 h5,
 h6 {
-  word-break: break-all; }
+  word-break: break-word; }
 
 /* TEXT TRANSFORM */
 
