@@ -19,15 +19,14 @@
       display: flex !important;
       border-top: 0;
       flex: 1 1 auto; // Ensures the menubar takes up all available width
-      //flex: 1;
       align-items: stretch; // children have 100% height
 
       ul {
         // Navigation List
         display: flex;
         align-items: stretch; // children have 100% height
-        flex: 1;
-        flex-wrap: wrap; // TODO: THIS CAN CAUSE ISSUES
+        flex: 1 1 auto;
+        flex-wrap: wrap;
       }
 
       li {

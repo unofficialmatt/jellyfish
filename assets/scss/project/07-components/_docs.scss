@@ -81,7 +81,7 @@
     margin: 0 0 $element-margin 0;
     display: inherit;
     font-size: font-size(-1);
-    flex: 1;
+    flex: 1 1 auto;
     font-family: $font-code;
   }
   .row-boxed {
@@ -114,8 +114,8 @@
       padding: 0.4em 0.6em;
     }
   }
-  code[class*="language-"],
-  pre[class*="language-"] {
+  code[class*='language-'],
+  pre[class*='language-'] {
     background: get-color(neutral, 100);
     border: 0;
   }
@@ -140,7 +140,7 @@
 
   // Hero
   .hero {
-    background: url("https://images.unsplash.com/photo-1569689862393-287eaaa677c6?q=100&fm=jpg&w=1080&fit=max&?ixid=123123123");
+    background: url('https://images.unsplash.com/photo-1569689862393-287eaaa677c6?q=100&fm=jpg&w=1080&fit=max&?ixid=123123123');
     background-position: center;
     background-size: cover;
     padding: get-size(8) 0;
@@ -365,8 +365,8 @@
     &.lighten-0 {
       background-color: lighten($tintshade, 0%);
     }
-    &[class*=" shade"],
-    &[class*=" darken"] {
+    &[class*=' shade'],
+    &[class*=' darken'] {
       color: #fff;
     }
     &.shade-100 {
