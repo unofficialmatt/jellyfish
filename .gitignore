@@ -10,6 +10,7 @@ _.git/
 src/
 deprecated/
 tests/
+TODO.md
 
 ### macOS ###
 # General
