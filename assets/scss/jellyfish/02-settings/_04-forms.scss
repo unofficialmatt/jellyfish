@@ -27,14 +27,14 @@ $range-track-color-focus: get-color(neutral,200) !default;
 
 $range-thumb-height: get-size(1.5) !default;
 $range-thumb-width: $range-thumb-height !default;
-$range-thumb-radius: $range-thumb-height/2 !default;
+$range-thumb-radius: $range-thumb-height*0.5 !default;
 $range-thumb-shadow-size: 0px 1px !default;
 $range-thumb-shadow-blur: 6px !default;
 $range-thumb-shadow-color: rgba(get-color(neutral,800), .4) !default;
 $range-thumb-border-width: 2px !default;
 $range-thumb-border-color: get-color(neutral,000) !default;
 
-$range-track-height: $range-thumb-height/2 !default;
+$range-track-height: $range-thumb-height*0.5 !default;
 $range-track-shadow-size: 0px 0px !default;
 $range-track-shadow-blur: 0px !default;
 $range-track-shadow-color: transparent !default;

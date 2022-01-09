@@ -1,6 +1,8 @@
 // Convert px to em
+@use "sass:math";
+
 @function em($pixels) {
-  @return #{$pixels/16px}em;
+  @return #{math.div($pixels, 16px)}em;
 }
 
 // Get a value from deep inside a map. Arguments:
@@ -61,7 +63,7 @@
 
 // Returns a given number divided by 2
 @function h($num) {
-  @return $num/2;
+  @return $num*0.5;
 }
 
 // Returns the negative value of a given number
@@ -118,7 +120,7 @@
   $backLum: luminance($back) + 0.05;
   $foreLum: luminance($front) + 0.05;
 
-  @return max($backLum, $foreLum) / min($backLum, $foreLum);
+  @return math.div(max($backLum, $foreLum), min($backLum, $foreLum));
 }
 
 /**

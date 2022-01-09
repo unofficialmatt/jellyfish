@@ -29,7 +29,7 @@
 [type='range'] {
   -webkit-appearance: none;
   background: transparent;
-  margin: $range-thumb-height / 2 0;
+  margin: $range-thumb-height * 0.5 0;
   width: 100%;
 
   &::-moz-focus-outer {
@@ -75,7 +75,7 @@
   &::-webkit-slider-thumb {
     @include input-range-thumb;
     -webkit-appearance: none;
-    margin-top: ((-$range-track-border-width * 2 + $range-track-height) / 2 - $range-thumb-height / 2);
+    margin-top: ((-$range-track-border-width * 2 + $range-track-height) * 0.5 - $range-thumb-height * 0.5);
   }
 
   &::-moz-range-track {
@@ -84,7 +84,7 @@
     background: $range-track-color;
     border: $range-track-border-width solid $range-track-border-color;
     border-radius: $range-track-radius;
-    height: $range-track-height / 2;
+    height: $range-track-height * 0.5;
   }
 
   &::-moz-range-thumb {
@@ -95,7 +95,7 @@
     @include input-range-track;
     background: transparent;
     border-color: transparent;
-    border-width: ($range-thumb-height / 2) 0;
+    border-width: ($range-thumb-height * 0.5) 0;
     color: transparent;
   }
 
@@ -115,7 +115,7 @@
 
   &::-ms-thumb {
     @include input-range-thumb;
-    margin-top: $range-track-height / 4;
+    margin-top: $range-track-height * 0.25;
   }
 
   &:disabled {

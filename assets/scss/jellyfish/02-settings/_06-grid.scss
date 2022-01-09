@@ -1,11 +1,13 @@
 // GRID
+@use "sass:math";
+
 $cols: 12 !default;
 $has_ordering: true !default;
 $has_offset: true !default;
 $debug-mode-on: false !default;
 
 // Calculate width of one column based on amount defined in settings
-$one_col: (100% / $cols);
+$one_col: math.div(100%, $cols);
 
 // Base Variables (used before breakpoints are applied)
 $base-col-name: xs !default;
