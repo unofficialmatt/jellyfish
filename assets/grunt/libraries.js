@@ -7,12 +7,12 @@ module.exports = function (grunt) {
     copy: {
       npm: {
         files: [
-          {
-            expand: true,
-            cwd: 'node_modules/hamburgers/_sass/hamburgers',
-            src: ['**/*'],
-            dest: '<%= opts.build_dir %>/scss/jellyfish/05-vendor/hamburgers'
-          }
+          //{
+          //  expand: true,
+          //  cwd: 'node_modules/hamburgers/_sass/hamburgers',
+          //  src: ['**/*'],
+          //  dest: '<%= opts.build_dir %>/scss/jellyfish/05-vendor/hamburgers'
+          //}
         ],
       }
     }
