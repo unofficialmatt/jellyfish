@@ -3,6 +3,8 @@ $accessibility-focus-color: rgb(0, 140, 255) !default;
 $accessibility-focus-outline-width: 3px !default;
 $accessibility-focus-outline-offset: 2px !default;
 
+$force-color-contrast-ratio: true !default;
+
 $accessibility-font-size-sm: font-size(-1) !default;
 $accessibility-font-size-md: font-size(0) !default;
 $accessibility-font-size-lg: font-size(1) !default;
@@ -22,5 +24,3 @@ $dark-mode-text-color: get-color(neutral, 100) !default;
 $dark-mode-img-grayscale-perc: 50% !default;
 $dark-mode-link-color: get-color(primary, 400) !default;
 $dark-mode-link-hover: get-color(primary) !default;
-
-// TODO: Add in SASS Warning if contrast not good enough

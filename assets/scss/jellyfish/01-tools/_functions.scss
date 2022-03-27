@@ -63,7 +63,7 @@
 
 // Returns a given number divided by 2
 @function h($num) {
-  @return $num*0.5;
+  @return $num * 0.5;
 }
 
 // Returns the negative value of a given number
@@ -129,10 +129,34 @@
 @function choose-contrast-color($color, $light-color: get-color(neutral, 000), $dark-color: $color-text) {
   $lightContrast: calculate-contrast($color, $light-color);
   $darkContrast: calculate-contrast($color, $dark-color);
+  @if ($force-color-contrast-ratio == false) {
+    @if ($lightContrast < 4.5 and $darkContrast < 4.5) {
+      @warn "Neither #{$light-color} (#{$lightContrast}) nor #{$dark-color} (#{$darkContrast}) has a significant contrast to #{$color} to reach WCAG 2.1 AA compliance (4.5:1). Consider using a different colour. Alternatively set $force-color-contrast-ratio to true to have SASS take care of things.";
+    }
+  }
+  @if ($force-color-contrast-ratio == true) {
+    @if ($lightContrast < 4.5 and $darkContrast < 4.5) {
+      // Let's try again, but this time we'll set the colors to black and white to try to force the accessibility.
+
+      $light-color-was: $light-color;
+      $lightContrast-was: $lightContrast;
+
+      $dark-color-was: $dark-color;
+      $darkContrast-was: $darkContrast;
+
+      $light-color: #fff;
+      $dark-color: #000;
+      $lightContrast: calculate-contrast($color, $light-color);
+      $darkContrast: calculate-contrast($color, $dark-color);
+      //@warn "To meet WCAG 2.1 AA guidelines, Sass has calculated new contrast ratios for background color #{$color}. #{$light-color-was} (#{$lightContrast-was}) is now #{$light-color} (#{$lightContrast}) and #{$dark-color-was} (#{$darkContrast-was}) is now #{$dark-color} (#{$darkContrast}).";
+    }
+  }
 
   @if ($lightContrast > $darkContrast) {
+    //@warn "The best contrast against #{$color} is light, which is #{$light-color}.";
     @return $light-color;
   } @else {
+    // @warn "The best contrast against #{$color} is dark, which is #{$dark-color}.";
     @return $dark-color;
   }
 }
