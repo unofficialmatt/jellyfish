@@ -34,7 +34,6 @@
 
   // Only run if $button-hover-value != 500
   @if $button-hover-value != 500 {
-
     // Determine which hover-function to use for values that aren't in the $colors map
     // Approximations vs $colors map: 900 ~ 50%, 800 ~ 62.5%, 700 ~ 75%, 600 ~ 87.5%, 500 ~ 100%
     @if $button-hover-value > 500 {
@@ -196,6 +195,7 @@
   // Output the computed styles...
   border-color: $callout-border-color;
   background-color: $callout-bg-color;
+  color: choose-contrast-color($callout-bg-color);
   // Adds a nice contrast to callout headings
   #{headings()} {
     color: $callout-heading-color;

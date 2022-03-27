@@ -1,15 +1,3 @@
-// Loop through $theme-colors map and create classes for .text-*
-@each $name, $color in $theme-colors {
-  .text-#{$name} {
-    @if map-has-key($colors, $color) {
-      // If the string exists in the $colors map, use this value
-      color: get-color($color) !important;
-    } @else {
-      color: $color !important;
-    }
-  }
-}
-
 .bg-transparent {
   background-color: transparent !important;
 }

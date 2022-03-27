@@ -1,41 +1,58 @@
-[type=reset], .button.outline, a.button.outline {
+[type='reset'],
+.button.outline,
+a.button.outline {
   background-color: transparent;
   color: get-color(neutral);
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: get-color(neutral, $button-hover-value);
-    color: choose-contrast-color(get-color(neutral, $button-hover-value), $button-text-color-dark, $button-text-color-light)
+    color: choose-contrast-color(
+      get-color(neutral, $button-hover-value),
+      $button-text-color-dark,
+      $button-text-color-light
+    );
   }
 }
 
-.button, a.button {
-    &.ghost {
-        border-color: transparent !important;
-        background-color: transparent !important;
-        &:hover, &:focus {
-          border-color: transparent !important;
-          text-decoration: underline;
-        }
+// Fix for buttons that are placed on colored backgrounds - the text color would inherit from the bg
+#{$buttons} {
+  [class*='bg-'] & {
+    color: gold;
+    @include create_button($button-base-color);
+  }
+}
+
+.button,
+a.button {
+  &.ghost {
+    border-color: transparent !important;
+    background-color: transparent !important;
+    &:hover,
+    &:focus {
+      border-color: transparent !important;
+      text-decoration: underline;
     }
-    &.expanded {
-      display: block;
-      width: 100%;
+  }
+  &.expanded {
+    display: block;
+    width: 100%;
+  }
+  &.xsmall {
+    font-size: $button-font-size-xsmall;
+    padding: $button-padding-xsmall;
+  }
+  &.small {
+    font-size: $button-font-size-small;
+    padding: $button-padding-small;
+  }
+  &.large {
+    font-size: $button-font-size-large;
+    padding: $button-padding-large;
+  }
+  @each $name, $color in $theme-colors {
+    // Loop through $theme-colors map and create buttons for each key
+    &.#{$name} {
+      @include create_button($color);
     }
-    &.xsmall {
-      font-size: $button-font-size-xsmall;
-      padding: $button-padding-xsmall;
-    }
-    &.small {
-      font-size: $button-font-size-small;
-      padding: $button-padding-small;
-    }
-    &.large {
-      font-size: $button-font-size-large;
-      padding: $button-padding-large;
-    }
-    @each $name, $color in $theme-colors {
-      // Loop through $theme-colors map and create buttons for each key
-      &.#{$name} {
-        @include create_button($color);
-      }
-    }
+  }
 }

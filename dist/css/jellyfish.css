@@ -988,7 +988,7 @@ button.toggle-contrast svg {
 .button, .button:visited, .button:disabled:hover, a.button, a.button:visited, a.button:disabled:hover, button, button:visited, button:disabled:hover, [type=submit], [type=submit]:visited, [type=submit]:disabled:hover, [type=reset], [type=reset]:visited, [type=reset]:disabled:hover, [type=button], [type=button]:visited, [type=button]:disabled:hover {
   background-color: #6e7c8c;
   border-color: #6e7c8c;
-  color: white;
+  color: #000;
 }
 .button:hover, .button:focus, a.button:hover, a.button:focus, button:hover, button:focus, [type=submit]:hover, [type=submit]:focus, [type=reset]:hover, [type=reset]:focus, [type=button]:hover, [type=button]:focus {
   background-color: #515f6c;
@@ -1949,7 +1949,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs button.hotpink:hover, .docs button.hotpink:focus {
   background-color: #df5c9e;
   border-color: #df5c9e;
-  color: #1f2933;
+  color: #000;
 }
 .docs button.hotpink.outline, .docs button.hotpink.ghost {
   background-color: transparent;
@@ -1957,7 +1957,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 }
 .docs button.hotpink.outline:hover, .docs button.hotpink.outline:focus {
   background-color: #df5c9e;
-  color: #1f2933;
+  color: #000;
 }
 .docs button.gold {
   /* // Button uses a specific color value as it's base color */
@@ -1993,7 +1993,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs button.white:hover, .docs button.white:focus {
   background-color: gray;
   border-color: gray;
-  color: white;
+  color: #000;
 }
 .docs button.white.outline, .docs button.white.ghost {
   background-color: transparent;
@@ -2001,7 +2001,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 }
 .docs button.white.outline:hover, .docs button.white.outline:focus {
   background-color: gray;
-  color: white;
+  color: #000;
 }
 .docs button.purple {
   /* // Button uses a specific color value as it's base color */
@@ -2037,7 +2037,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs button.silver:hover, .docs button.silver:focus {
   background-color: #8c8c8c;
   border-color: #8c8c8c;
-  color: #1f2933;
+  color: #000;
 }
 .docs button.silver.outline, .docs button.silver.ghost {
   background-color: transparent;
@@ -2045,7 +2045,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 }
 .docs button.silver.outline:hover, .docs button.silver.outline:focus {
   background-color: #8c8c8c;
-  color: #1f2933;
+  color: #000;
 }
 .docs .tag.hotpink {
   border-color: hotpink;
@@ -2111,6 +2111,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs .callout.hotpink {
   border-color: hotpink;
   background-color: #fff0f8;
+  color: #1f2933;
 }
 .docs .callout.hotpink h1, .docs .callout.hotpink h2, .docs .callout.hotpink h3, .docs .callout.hotpink h4, .docs .callout.hotpink h5, .docs .callout.hotpink h6 {
   color: #80355a;
@@ -2124,6 +2125,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs .callout.gold {
   border-color: gold;
   background-color: #fffbe6;
+  color: #1f2933;
 }
 .docs .callout.gold h1, .docs .callout.gold h2, .docs .callout.gold h3, .docs .callout.gold h4, .docs .callout.gold h5, .docs .callout.gold h6 {
   color: #806c00;
@@ -2137,6 +2139,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs .callout.purple {
   border-color: rebeccapurple;
   background-color: #f0ebf5;
+  color: #1f2933;
 }
 .docs .callout.purple h1, .docs .callout.purple h2, .docs .callout.purple h3, .docs .callout.purple h4, .docs .callout.purple h5, .docs .callout.purple h6 {
   color: #331a4d;
@@ -2150,6 +2153,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs .callout.silver {
   border-color: #a0a0a0;
   background-color: #f6f6f6;
+  color: #1f2933;
 }
 .docs .callout.silver h1, .docs .callout.silver h2, .docs .callout.silver h3, .docs .callout.silver h4, .docs .callout.silver h5, .docs .callout.silver h6 {
   color: #505050;
@@ -2456,6 +2460,44 @@ body.font-size-lg {
   font-size: 1.125em;
 }
 
+.bg-transparent {
+  background-color: transparent !important;
+}
+
+.bg-white {
+  background-color: white;
+  color: #1f2933;
+}
+.bg-white h1, .bg-white h2, .bg-white h3, .bg-white h4, .bg-white h5, .bg-white h6 {
+  color: #33404d;
+}
+.bg-white a:not(.button) {
+  color: #c32c78;
+}
+.bg-white a:not(.button):visited {
+  color: #9c1c5c;
+}
+.bg-white a:not(.button):hover, .bg-white a:not(.button):focus {
+  color: #000;
+}
+
+.bg-dark {
+  background-color: #1f2933;
+  color: white;
+}
+.bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4, .bg-dark h5, .bg-dark h6 {
+  color: white;
+}
+.bg-dark a:not(.button) {
+  color: #bcbfc2;
+}
+.bg-dark a:not(.button):visited {
+  color: #bcbfc2;
+}
+.bg-dark a:not(.button):hover, .bg-dark a:not(.button):focus {
+  color: white;
+}
+
 .b-0 {
   border: none !important;
 }
@@ -2476,146 +2518,233 @@ body.font-size-lg {
   border-left: none !important;
 }
 
-[type=reset], .button.outline, a.button.outline {
+[type=reset],
+.button.outline,
+a.button.outline {
   background-color: transparent;
   color: #6e7c8c;
 }
-[type=reset]:hover, [type=reset]:focus, .button.outline:hover, .button.outline:focus, a.button.outline:hover, a.button.outline:focus {
+[type=reset]:hover, [type=reset]:focus,
+.button.outline:hover,
+.button.outline:focus,
+a.button.outline:hover,
+a.button.outline:focus {
   background-color: #515f6c;
   color: white;
 }
 
-.button.ghost, a.button.ghost {
+[class*=bg-] .button, [class*=bg-] a.button, [class*=bg-] button, [class*=bg-] [type=submit], [class*=bg-] [type=reset], [class*=bg-] [type=button] {
+  color: gold;
+  /* // Button uses base color from SASS $colors map */
+  /* // Button uses value `600` in key `neutral`, in the $colors map for it's :hover color */
+}
+[class*=bg-] .button, [class*=bg-] .button:visited, [class*=bg-] .button:disabled:hover, [class*=bg-] a.button, [class*=bg-] a.button:visited, [class*=bg-] a.button:disabled:hover, [class*=bg-] button, [class*=bg-] button:visited, [class*=bg-] button:disabled:hover, [class*=bg-] [type=submit], [class*=bg-] [type=submit]:visited, [class*=bg-] [type=submit]:disabled:hover, [class*=bg-] [type=reset], [class*=bg-] [type=reset]:visited, [class*=bg-] [type=reset]:disabled:hover, [class*=bg-] [type=button], [class*=bg-] [type=button]:visited, [class*=bg-] [type=button]:disabled:hover {
+  background-color: #6e7c8c;
+  border-color: #6e7c8c;
+  color: #000;
+}
+[class*=bg-] .button:hover, [class*=bg-] .button:focus, [class*=bg-] a.button:hover, [class*=bg-] a.button:focus, [class*=bg-] button:hover, [class*=bg-] button:focus, [class*=bg-] [type=submit]:hover, [class*=bg-] [type=submit]:focus, [class*=bg-] [type=reset]:hover, [class*=bg-] [type=reset]:focus, [class*=bg-] [type=button]:hover, [class*=bg-] [type=button]:focus {
+  background-color: #515f6c;
+  border-color: #515f6c;
+  color: white;
+}
+[class*=bg-] .button.outline, [class*=bg-] .button.ghost, [class*=bg-] a.button.outline, [class*=bg-] a.button.ghost, [class*=bg-] button.outline, [class*=bg-] button.ghost, [class*=bg-] [type=submit].outline, [class*=bg-] [type=submit].ghost, [class*=bg-] [type=reset].outline, [class*=bg-] [type=reset].ghost, [class*=bg-] [type=button].outline, [class*=bg-] [type=button].ghost {
+  background-color: transparent;
+  color: #6e7c8c;
+}
+[class*=bg-] .button.outline:hover, [class*=bg-] .button.outline:focus, [class*=bg-] a.button.outline:hover, [class*=bg-] a.button.outline:focus, [class*=bg-] button.outline:hover, [class*=bg-] button.outline:focus, [class*=bg-] [type=submit].outline:hover, [class*=bg-] [type=submit].outline:focus, [class*=bg-] [type=reset].outline:hover, [class*=bg-] [type=reset].outline:focus, [class*=bg-] [type=button].outline:hover, [class*=bg-] [type=button].outline:focus {
+  background-color: #515f6c;
+  color: white;
+}
+
+.button.ghost,
+a.button.ghost {
   border-color: transparent !important;
   background-color: transparent !important;
 }
-.button.ghost:hover, .button.ghost:focus, a.button.ghost:hover, a.button.ghost:focus {
+.button.ghost:hover, .button.ghost:focus,
+a.button.ghost:hover,
+a.button.ghost:focus {
   border-color: transparent !important;
   text-decoration: underline;
 }
-.button.expanded, a.button.expanded {
+.button.expanded,
+a.button.expanded {
   display: block;
   width: 100%;
 }
-.button.xsmall, a.button.xsmall {
+.button.xsmall,
+a.button.xsmall {
   font-size: 0.75em;
   padding: 0.5em 0.75em;
 }
-.button.small, a.button.small {
+.button.small,
+a.button.small {
   font-size: 0.875em;
   padding: 0.6em 1em;
 }
-.button.large, a.button.large {
+.button.large,
+a.button.large {
   font-size: 1.25em;
   padding: 0.75em 1.5em;
 }
-.button.primary, a.button.primary {
+.button.primary,
+a.button.primary {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `primary`, in the $colors map for it's :hover color */
 }
-.button.primary, .button.primary:visited, .button.primary:disabled:hover, a.button.primary, a.button.primary:visited, a.button.primary:disabled:hover {
+.button.primary, .button.primary:visited, .button.primary:disabled:hover,
+a.button.primary,
+a.button.primary:visited,
+a.button.primary:disabled:hover {
   background-color: #c32c78;
   border-color: #c32c78;
   color: white;
 }
-.button.primary:hover, .button.primary:focus, a.button.primary:hover, a.button.primary:focus {
+.button.primary:hover, .button.primary:focus,
+a.button.primary:hover,
+a.button.primary:focus {
   background-color: #ab2166;
   border-color: #ab2166;
   color: white;
 }
-.button.primary.outline, .button.primary.ghost, a.button.primary.outline, a.button.primary.ghost {
+.button.primary.outline, .button.primary.ghost,
+a.button.primary.outline,
+a.button.primary.ghost {
   background-color: transparent;
   color: #c32c78;
 }
-.button.primary.outline:hover, .button.primary.outline:focus, a.button.primary.outline:hover, a.button.primary.outline:focus {
+.button.primary.outline:hover, .button.primary.outline:focus,
+a.button.primary.outline:hover,
+a.button.primary.outline:focus {
   background-color: #ab2166;
   color: white;
 }
-.button.secondary, a.button.secondary {
+.button.secondary,
+a.button.secondary {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `secondary`, in the $colors map for it's :hover color */
 }
-.button.secondary, .button.secondary:visited, .button.secondary:disabled:hover, a.button.secondary, a.button.secondary:visited, a.button.secondary:disabled:hover {
+.button.secondary, .button.secondary:visited, .button.secondary:disabled:hover,
+a.button.secondary,
+a.button.secondary:visited,
+a.button.secondary:disabled:hover {
   background-color: #1cd4d4;
   border-color: #1cd4d4;
   color: #1f2933;
 }
-.button.secondary:hover, .button.secondary:focus, a.button.secondary:hover, a.button.secondary:focus {
+.button.secondary:hover, .button.secondary:focus,
+a.button.secondary:hover,
+a.button.secondary:focus {
   background-color: #0fb2b8;
   border-color: #0fb2b8;
   color: #1f2933;
 }
-.button.secondary.outline, .button.secondary.ghost, a.button.secondary.outline, a.button.secondary.ghost {
+.button.secondary.outline, .button.secondary.ghost,
+a.button.secondary.outline,
+a.button.secondary.ghost {
   background-color: transparent;
   color: #1cd4d4;
 }
-.button.secondary.outline:hover, .button.secondary.outline:focus, a.button.secondary.outline:hover, a.button.secondary.outline:focus {
+.button.secondary.outline:hover, .button.secondary.outline:focus,
+a.button.secondary.outline:hover,
+a.button.secondary.outline:focus {
   background-color: #0fb2b8;
   color: #1f2933;
 }
-.button.success, a.button.success {
+.button.success,
+a.button.success {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `success`, in the $colors map for it's :hover color */
 }
-.button.success, .button.success:visited, .button.success:disabled:hover, a.button.success, a.button.success:visited, a.button.success:disabled:hover {
+.button.success, .button.success:visited, .button.success:disabled:hover,
+a.button.success,
+a.button.success:visited,
+a.button.success:disabled:hover {
   background-color: #7bb027;
   border-color: #7bb027;
   color: #1f2933;
 }
-.button.success:hover, .button.success:focus, a.button.success:hover, a.button.success:focus {
+.button.success:hover, .button.success:focus,
+a.button.success:hover,
+a.button.success:focus {
   background-color: #65931a;
   border-color: #65931a;
-  color: #1f2933;
+  color: #000;
 }
-.button.success.outline, .button.success.ghost, a.button.success.outline, a.button.success.ghost {
+.button.success.outline, .button.success.ghost,
+a.button.success.outline,
+a.button.success.ghost {
   background-color: transparent;
   color: #7bb027;
 }
-.button.success.outline:hover, .button.success.outline:focus, a.button.success.outline:hover, a.button.success.outline:focus {
+.button.success.outline:hover, .button.success.outline:focus,
+a.button.success.outline:hover,
+a.button.success.outline:focus {
   background-color: #65931a;
-  color: #1f2933;
+  color: #000;
 }
-.button.warning, a.button.warning {
+.button.warning,
+a.button.warning {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `warning`, in the $colors map for it's :hover color */
 }
-.button.warning, .button.warning:visited, .button.warning:disabled:hover, a.button.warning, a.button.warning:visited, a.button.warning:disabled:hover {
+.button.warning, .button.warning:visited, .button.warning:disabled:hover,
+a.button.warning,
+a.button.warning:visited,
+a.button.warning:disabled:hover {
   background-color: #e9b949;
   border-color: #e9b949;
   color: #1f2933;
 }
-.button.warning:hover, .button.warning:focus, a.button.warning:hover, a.button.warning:focus {
+.button.warning:hover, .button.warning:focus,
+a.button.warning:hover,
+a.button.warning:focus {
   background-color: #c8992d;
   border-color: #c8992d;
   color: #1f2933;
 }
-.button.warning.outline, .button.warning.ghost, a.button.warning.outline, a.button.warning.ghost {
+.button.warning.outline, .button.warning.ghost,
+a.button.warning.outline,
+a.button.warning.ghost {
   background-color: transparent;
   color: #e9b949;
 }
-.button.warning.outline:hover, .button.warning.outline:focus, a.button.warning.outline:hover, a.button.warning.outline:focus {
+.button.warning.outline:hover, .button.warning.outline:focus,
+a.button.warning.outline:hover,
+a.button.warning.outline:focus {
   background-color: #c8992d;
   color: #1f2933;
 }
-.button.error, a.button.error {
+.button.error,
+a.button.error {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `error`, in the $colors map for it's :hover color */
 }
-.button.error, .button.error:visited, .button.error:disabled:hover, a.button.error, a.button.error:visited, a.button.error:disabled:hover {
+.button.error, .button.error:visited, .button.error:disabled:hover,
+a.button.error,
+a.button.error:visited,
+a.button.error:disabled:hover {
   background-color: #bb2525;
   border-color: #bb2525;
   color: white;
 }
-.button.error:hover, .button.error:focus, a.button.error:hover, a.button.error:focus {
+.button.error:hover, .button.error:focus,
+a.button.error:hover,
+a.button.error:focus {
   background-color: #a71b1b;
   border-color: #a71b1b;
   color: white;
 }
-.button.error.outline, .button.error.ghost, a.button.error.outline, a.button.error.ghost {
+.button.error.outline, .button.error.ghost,
+a.button.error.outline,
+a.button.error.ghost {
   background-color: transparent;
   color: #bb2525;
 }
-.button.error.outline:hover, .button.error.outline:focus, a.button.error.outline:hover, a.button.error.outline:focus {
+.button.error.outline:hover, .button.error.outline:focus,
+a.button.error.outline:hover,
+a.button.error.outline:focus {
   background-color: #a71b1b;
   color: white;
 }
@@ -2623,6 +2752,7 @@ body.font-size-lg {
 .callout.primary {
   border-color: #c32c78;
   background-color: #ffebf5;
+  color: #1f2933;
 }
 .callout.primary h1, .callout.primary h2, .callout.primary h3, .callout.primary h4, .callout.primary h5, .callout.primary h6 {
   color: #5b0b33;
@@ -2636,6 +2766,7 @@ body.font-size-lg {
 .callout.secondary {
   border-color: #1cd4d4;
   background-color: #ecfdfb;
+  color: #1f2933;
 }
 .callout.secondary h1, .callout.secondary h2, .callout.secondary h3, .callout.secondary h4, .callout.secondary h5, .callout.secondary h6 {
   color: #056270;
@@ -2649,6 +2780,7 @@ body.font-size-lg {
 .callout.success {
   border-color: #7bb027;
   background-color: #f3fde2;
+  color: #1f2933;
 }
 .callout.success h1, .callout.success h2, .callout.success h3, .callout.success h4, .callout.success h5, .callout.success h6 {
   color: #2d4205;
@@ -2662,6 +2794,7 @@ body.font-size-lg {
 .callout.warning {
   border-color: #e9b949;
   background-color: #fffaeb;
+  color: #1f2933;
 }
 .callout.warning h1, .callout.warning h2, .callout.warning h3, .callout.warning h4, .callout.warning h5, .callout.warning h6 {
   color: #513c06;
@@ -2675,6 +2808,7 @@ body.font-size-lg {
 .callout.error {
   border-color: #bb2525;
   background-color: #fff0f0;
+  color: #1f2933;
 }
 .callout.error h1, .callout.error h2, .callout.error h3, .callout.error h4, .callout.error h5, .callout.error h6 {
   color: #620404;
@@ -4381,44 +4515,6 @@ table.is-hoverable tr:hover td {
 
 .text-error {
   color: #bb2525 !important;
-}
-
-.bg-transparent {
-  background-color: transparent !important;
-}
-
-.bg-white {
-  background-color: white;
-  color: #1f2933;
-}
-.bg-white h1, .bg-white h2, .bg-white h3, .bg-white h4, .bg-white h5, .bg-white h6 {
-  color: #33404d;
-}
-.bg-white a:not(.button) {
-  color: #c32c78;
-}
-.bg-white a:not(.button):visited {
-  color: #9c1c5c;
-}
-.bg-white a:not(.button):hover, .bg-white a:not(.button):focus {
-  color: #da4991;
-}
-
-.bg-dark {
-  background-color: #1f2933;
-  color: white;
-}
-.bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4, .bg-dark h5, .bg-dark h6 {
-  color: white;
-}
-.bg-dark a:not(.button) {
-  color: #bcbfc2;
-}
-.bg-dark a:not(.button):visited {
-  color: #bcbfc2;
-}
-.bg-dark a:not(.button):hover, .bg-dark a:not(.button):focus {
-  color: white;
 }
 
 .italic {
