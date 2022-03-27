@@ -1,12 +1,14 @@
 // BUTTONS
-$buttons: ('.button, a.button, button, [type=submit], [type=reset], [type=button]') !default; // Stack of elements to target
+$buttons: (
+  '.button, a.button, button, [type=submit], [type=reset], [type=button]'
+) !default; // Stack of elements to target
 $button-border-width: 1px !default;
 $button-border-radius: 3px !default;
 $button-font-family: $font-secondary !default;
 $button-padding-xsmall: 0.5em 0.75em !default;
 $button-padding-small: 0.6em 1em !default;
 $button-padding: 0.75em 1.25em !default;
-$button-padding-large: .75em 1.5em !default;
+$button-padding-large: 0.75em 1.5em !default;
 $button-text-transform: none !default;
 $button-font-weight: $weight-bold !default;
 $button-font-size-xsmall: font-size(-2) !default;
@@ -15,12 +17,9 @@ $button-font-size: font-size(0) !default;
 $button-font-size-large: font-size(2) !default;
 $button-hover-value: 600 !default; // Note: setting this variable to 500 does not create default hover states for buttons
 $button-hover-fallback-percent: 87.5% !default; // Note: if $button-hover-value > 500, function is shade(), else function is tint()
-$button-focus-box-shadow-value: 300 !default;
-$button-focus-box-shadow-fallback-percent: 42.5% !default; // Note: if $button-focus-box-shadow-value > 500, function is shade(), else function is tint()
-$button-box-shadow: 0px 0px 1px 3px !default;
-$button-text-color-light: get-color(neutral,000) !default;
+$button-text-color-light: get-color(neutral, 000) !default;
 $button-text-color-dark: $color-text !default;
-$button-disabled-opacity: .65 !default;
+$button-disabled-opacity: 0.65 !default;
 // TODO: Look at setting min and max-width of buttons with ch (character height)
-$button-list-button-margin: get-size(.5) !default;
+$button-list-button-margin: get-size(0.5) !default;
 $button-base-color: 'neutral' !default;

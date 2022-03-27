@@ -1,4 +1,114 @@
-body.font-size{
+@mixin accessible-focus-state {
+  outline: $accessibility-focus-outline-width solid $accessibility-focus-color;
+  outline-offset: $accessibility-focus-outline-offset;
+  z-index: 1;
+  position: relative;
+}
+
+// Accessible focus using :focus-visible
+%accessible-focus {
+  //--- Focus States that only show for users tabbing with a keyboard, to help with accessibility
+  // For browsers that don't support :focus-visible. Or for states that we want all browsers to adopt.
+  &:focus {
+    @include accessible-focus-state;
+  }
+  // Remove :focus styling for browsers that do support :focus-visible.
+  &:focus:not(:focus-visible) {
+    outline: 0;
+  }
+  // Add focus styling back in browsers that do support :focus-visible
+  &:focus-visible {
+    @include accessible-focus-state;
+  }
+}
+
+// Buttons and Anchors
+#{$buttons},
+a {
+  @extend %accessible-focus;
+}
+
+// Base Form Elements
+#{$form-items} {
+  @extend %accessible-focus;
+  &:focus {
+    border-color: $form-focus-border-color;
+    box-shadow: $form-focus-shadow-inner, $form-focus-shadow-outer;
+  }
+}
+
+// Additional Form Inputs
+input[type='checkbox'],
+input[type='radio'] {
+  @extend %accessible-focus;
+}
+
+// Styling for nicer radio buttons and checkboxes
+.radio input[type='radio'] {
+  &:focus + .radio-control {
+    @include accessible-focus-state;
+  }
+  // Remove :focus styling for browsers that do support :focus-visible.
+  &:focus:not(:focus-visible) + .radio-control {
+    outline: 0;
+  }
+  // Add focus styling back in browsers that do support :focus-visible
+  &:focus-visible + .radio-control {
+    @include accessible-focus-state;
+  }
+}
+.checkbox input[type='checkbox'] {
+  &:focus + .checkbox-control {
+    @include accessible-focus-state;
+  }
+  // Remove :focus styling for browsers that do support :focus-visible.
+  &:focus:not(:focus-visible) + .checkbox-control {
+    outline: 0;
+  }
+  // Add focus styling back in browsers that do support :focus-visible
+  &:focus-visible + .checkbox-control {
+    @include accessible-focus-state;
+  }
+}
+// Range slider - outline the thumb not the track
+input[type='range'] {
+  // Range slider vendor prefixes don't combine - the browser will ignore the whole statement, so they need to be defined individually...
+  &:focus {
+    &::-webkit-slider-thumb {
+      @include accessible-focus-state;
+    }
+    &::-moz-range-thumb {
+      @include accessible-focus-state;
+    }
+    &::-ms-thumb {
+      @include accessible-focus-state;
+    }
+  }
+  &:focus:not(:focus-visible) {
+    &::-webkit-slider-thumb {
+      outline: 0;
+    }
+    &::-moz-range-thumb {
+      outline: 0;
+    }
+    &::-ms-thumb {
+      outline: 0;
+    }
+  }
+  &:focus-visible {
+    &::-webkit-slider-thumb {
+      @include accessible-focus-state;
+    }
+    &::-moz-range-thumb {
+      @include accessible-focus-state;
+    }
+    &::-ms-thumb {
+      @include accessible-focus-state;
+    }
+  }
+}
+
+body.font-size {
   &-sm {
     font-size: $accessibility-font-size-sm;
   }

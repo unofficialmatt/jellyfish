@@ -1,5 +1,5 @@
 /*! jellyfish-ui 3.3.0
- * © 2022-01 Matt Weet - https://www.mattweet.com */
+ * © 2022-03 Matt Weet - https://www.mattweet.com */
 
 /**
  * Calculate the luminance for a color.
@@ -106,11 +106,6 @@ table {
   border-color: #6e7c8c;
 }
 
-[type=color]:focus, [type=date]:focus, [type=datetime]:focus, [type=datetime-local]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=url]:focus, [type=week]:focus, [type=time]:focus, select:focus, textarea:focus {
-  border-color: #6e7c8c;
-  box-shadow: inset 1px 2px 1px 0px #cad1d8, inset -1px -2px 1px 0px #e5e8eb;
-}
-
 [type=color]:disabled, [type=date]:disabled, [type=datetime]:disabled, [type=datetime-local]:disabled, [type=email]:disabled, [type=month]:disabled, [type=number]:disabled, [type=password]:disabled, [type=search]:disabled, [type=tel]:disabled, [type=text]:disabled, [type=url]:disabled, [type=week]:disabled, [type=time]:disabled, select:disabled, textarea:disabled, [type=month]:disabled {
   cursor: not-allowed;
   border: 1px solid #cad1d8;
@@ -129,7 +124,8 @@ label {
   margin: 0;
 }
 
-input[type=checkbox], input[type=radio] {
+input[type=checkbox],
+input[type=radio] {
   margin-right: 4px;
 }
 
@@ -137,7 +133,7 @@ fieldset {
   border: 1px solid #e5e8eb;
   border-radius: 4px;
   padding: 24px;
-  margin: 24px 0;
+  margin: 16px 0;
 }
 
 legend {
@@ -176,7 +172,9 @@ select::-ms-expand {
   color: #6e7c8c;
 }
 
-form [type=submit], form [type=reset], form [type=button] {
+form [type=submit],
+form [type=reset],
+form [type=button] {
   margin-top: 4px;
 }
 
@@ -342,11 +340,11 @@ a:hover, a:focus {
 
 p,
 table {
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0;
 }
 
 ol, ul {
-  margin: 0 0 24px 2.5em;
+  margin: 0 0 16px 2.5em;
   list-style-position: outside;
 }
 ol ul, ul ul, ol ol, ul ol {
@@ -372,13 +370,13 @@ li + li {
 }
 
 dl {
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0;
 }
 dl dt {
   font-weight: 700;
 }
 dl dd {
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .docs .variable-ref, .docs .file-ref, .docs .css-ref, var, :not(pre) > code, kbd, samp, pre {
@@ -389,22 +387,22 @@ hr {
   height: 0;
   border: 0;
   border-top: 1px solid #cad1d8;
-  margin: 24px 0;
+  margin: 16px 0;
 }
 
 pre {
   white-space: pre-wrap;
   tab-size: 2;
   padding: 24px;
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0;
   background-color: #f5f7fa;
   border: 1px solid #cad1d8;
   line-height: 1.2;
 }
 
 blockquote {
-  margin: 0 0 24px 0;
-  padding: 0 0 0 24px;
+  margin: 0 0 16px 0;
+  padding: 0 0 0 16px;
   border-left: 8px solid #e5e8eb;
   font-size: 1.5em;
   font-style: italic;
@@ -413,7 +411,7 @@ blockquote {
 
 cite {
   display: block;
-  margin-top: 12px;
+  margin-top: 8px;
   font-size: 0.75em;
   font-style: normal;
   font-weight: 700;
@@ -460,12 +458,12 @@ tfoot th {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0;
   line-height: 1.2;
   color: #33404d;
 }
 h1:not(:first-child), h2:not(:first-child), h3:not(:first-child), h4:not(:first-child), h5:not(:first-child), h6:not(:first-child) {
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
 h1 {
@@ -974,18 +972,14 @@ button.toggle-contrast svg {
   border-radius: 3px;
   line-height: 1.3;
   padding: 0.75em 1.25em;
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0;
   transition: all 0.2s ease;
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `neutral`, in the $colors map for it's :hover color */
-  /* // Button uses value `300` in key `neutral`, in the $colors map for it's :focus box-shadow color */
 }
 .button::-moz-focus-inner, a.button::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
   border: 0;
   padding: 0;
-}
-.button:focus, a.button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
-  outline: 0;
 }
 .button:disabled, a.button:disabled, button:disabled, [type=submit]:disabled, [type=reset]:disabled, [type=button]:disabled {
   opacity: 0.65;
@@ -1000,9 +994,6 @@ button.toggle-contrast svg {
   background-color: #515f6c;
   border-color: #515f6c;
   color: white;
-}
-.button:focus, a.button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus {
-  box-shadow: 0px 0px 1px 3px #cad1d8;
 }
 .button.outline, .button.ghost, a.button.outline, a.button.ghost, button.outline, button.ghost, [type=submit].outline, [type=submit].ghost, [type=reset].outline, [type=reset].ghost, [type=button].outline, [type=button].ghost {
   background-color: transparent;
@@ -1021,7 +1012,7 @@ button.toggle-contrast svg {
 .button-list {
   display: flex;
   align-items: center;
-  margin-bottom: calc(24px - 8px);
+  margin-bottom: calc(16px - 8px);
 }
 @media (min-width: 37.5em) {
   .button-list {
@@ -1029,38 +1020,42 @@ button.toggle-contrast svg {
     margin-left: -8px;
   }
 }
-.button-list .button, .button-list a.button {
+.button-list .button,
+.button-list a.button {
   margin: 0 8px 16px 8px;
 }
 
 .button-group {
   display: inline-flex;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
-.button-group .button, .button-group a.button {
+.button-group .button,
+.button-group a.button {
   margin: 0 0 0 -1px;
 }
-.button-group .button:not(:first-child), .button-group a.button:not(:first-child) {
+.button-group .button:not(:first-child),
+.button-group a.button:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-.button-group .button:not(:last-child), .button-group a.button:not(:last-child) {
+.button-group .button:not(:last-child),
+.button-group a.button:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 .button-group + .button-group {
-  margin-left: 24px;
+  margin-left: 16px;
 }
 
 .button-list .button-group {
-  margin-bottom: calc(24px - 8px);
+  margin-bottom: calc(16px - 8px);
 }
 
 .callout {
   border-width: 1px 1px 1px 8px;
   border-style: solid;
   border-color: #cad1d8;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   padding: 24px;
   border-radius: 0px 4px 4px 0px;
   display: block;
@@ -1079,7 +1074,7 @@ button.toggle-contrast svg {
   flex-grow: 1;
   overflow: hidden;
   border: 1px solid #cad1d8;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 .card > :last-child {
   margin-bottom: 0;
@@ -1095,7 +1090,7 @@ button.toggle-contrast svg {
   margin-bottom: 0;
 }
 .card-section .card-image {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 .card-section + .card-section {
   padding-top: 0;
@@ -1178,27 +1173,29 @@ button.toggle-contrast svg {
     background-position: -200% 0;
   }
 }
-.radio, .checkbox {
+.radio,
+.checkbox {
   display: grid;
   grid-template-columns: min-content auto;
   grid-gap: 0.5em;
   margin-bottom: 0.5em;
 }
 
-.radio__control, .checkbox__control {
+.radio-control,
+.checkbox-control {
   width: 1em;
   height: 1em;
   border: 0.15em solid #cad1d8;
 }
 
-.radio__control {
+.radio-control {
   display: block;
   border-radius: 50%;
   display: grid;
   place-items: center;
 }
 
-.checkbox__control {
+.checkbox-control {
   display: inline-grid;
   border-radius: 4px;
   background-size: 0.65em;
@@ -1206,7 +1203,7 @@ button.toggle-contrast svg {
   background-repeat: no-repeat;
 }
 
-input + .radio__control::before {
+input + .radio-control::before {
   content: "";
   width: 0.5em;
   height: 0.5em;
@@ -1216,11 +1213,11 @@ input + .radio__control::before {
   transform: scale(0);
 }
 
-input:checked + .radio__control::before {
+input:checked + .radio-control::before {
   transform: scale(1);
 }
 
-input:checked + .checkbox__control {
+input:checked + .checkbox-control {
   background-image: url("data:image/svg+xml;charset=utf-8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path fill='none' stroke='#515f6c' stroke-width='6' d='M1.73 12.91l6.37 6.37L22.79 4.59'/></svg>");
 }
 
@@ -1252,13 +1249,13 @@ input:checked + .checkbox__control {
   margin: 0;
 }
 
-.radio__input input:focus + .radio__control,
-.checkbox__input input:focus + .checkbox__control {
+.radio__input input:focus + .radio-control,
+.checkbox__input input:focus + .checkbox-control {
   box-shadow: 0 0 0 0.05em #fff, 0 0 0.2em 0.15em #cad1d8;
 }
 
-.radio input:disabled + .radio__control,
-.checkbox input:disabled + .checkbox__control {
+.radio input:disabled + .radio-control,
+.checkbox input:disabled + .checkbox-control {
   opacity: 0.65;
   cursor: not-allowed;
 }
@@ -1269,7 +1266,7 @@ input:checked + .checkbox__control {
   height: 0;
   overflow: hidden;
   max-width: 100%;
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0;
 }
 .embed-container iframe, .embed-container object, .embed-container embed {
   position: absolute;
@@ -1282,7 +1279,7 @@ input:checked + .checkbox__control {
 .table-container {
   overflow-x: auto;
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 .table-container table {
   margin-bottom: 0;
@@ -1755,10 +1752,10 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs .section-heading {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 144px;
-  padding-bottom: 24px;
-  padding-top: 24px;
-  margin-bottom: 72px;
+  margin-top: 96px;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  margin-bottom: 48px;
   border-bottom: 2px solid #e5e8eb;
   z-index: 9;
   background-color: white;
@@ -1779,7 +1776,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
   color: #6e7c8c;
 }
 .docs .docs-section > article {
-  margin-bottom: 72px;
+  margin-bottom: 48px;
 }
 .docs .variable-ref, .docs .file-ref, .docs .css-ref {
   display: inline;
@@ -1796,13 +1793,13 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 }
 .docs .padded {
   padding: 24px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 .docs .boxed {
   background: #f5f7fa;
   padding: 24px;
   line-height: 1.2;
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0;
   display: inherit;
   font-size: 0.875em;
   flex: 1 1 auto;
@@ -1811,7 +1808,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs .row-boxed {
   background-color: #f5f7fa;
   min-height: 160px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   padding: 24px 0;
 }
 .docs .row-boxed .boxed {
@@ -1821,7 +1818,7 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 }
 .docs pre {
   position: relative;
-  margin: 24px 0 !important;
+  margin: 16px 0 !important;
   font-size: 0.9em !important;
 }
 .docs pre label {
@@ -1943,7 +1940,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs button.hotpink {
   /* // Button uses a specific color value as it's base color */
   /* // Button uses shade(hotpink, 87.5%) for it's :hover color */
-  /* // Button uses tint(hotpink, 42.5%) for it's :focus box-shadow color */
 }
 .docs button.hotpink, .docs button.hotpink:visited, .docs button.hotpink:disabled:hover {
   background-color: hotpink;
@@ -1954,9 +1950,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
   background-color: #df5c9e;
   border-color: #df5c9e;
   color: #1f2933;
-}
-.docs button.hotpink:focus {
-  box-shadow: 0px 0px 1px 3px #ffbfdf;
 }
 .docs button.hotpink.outline, .docs button.hotpink.ghost {
   background-color: transparent;
@@ -1969,7 +1962,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs button.gold {
   /* // Button uses a specific color value as it's base color */
   /* Button uses a specific color value as it's hover color */
-  /* // Button uses tint(gold, 42.5%) for it's :focus box-shadow color */
 }
 .docs button.gold, .docs button.gold:visited, .docs button.gold:disabled:hover {
   background-color: gold;
@@ -1980,9 +1972,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
   background-color: brown;
   border-color: brown;
   color: white;
-}
-.docs button.gold:focus {
-  box-shadow: 0px 0px 1px 3px #ffee93;
 }
 .docs button.gold.outline, .docs button.gold.ghost {
   background-color: transparent;
@@ -1995,7 +1984,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs button.white {
   /* // Button uses a specific color value as it's base color */
   /* Button uses a specific color value as it's hover color */
-  /* // Button uses tint(#fff, 42.5%) for it's :focus box-shadow color */
 }
 .docs button.white, .docs button.white:visited, .docs button.white:disabled:hover {
   background-color: #fff;
@@ -2006,9 +1994,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
   background-color: gray;
   border-color: gray;
   color: white;
-}
-.docs button.white:focus {
-  box-shadow: 0px 0px 1px 3px white;
 }
 .docs button.white.outline, .docs button.white.ghost {
   background-color: transparent;
@@ -2021,7 +2006,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs button.purple {
   /* // Button uses a specific color value as it's base color */
   /* // Button uses shade(rebeccapurple, 87.5%) for it's :hover color */
-  /* // Button uses tint(rebeccapurple, 42.5%) for it's :focus box-shadow color */
 }
 .docs button.purple, .docs button.purple:visited, .docs button.purple:disabled:hover {
   background-color: rebeccapurple;
@@ -2032,9 +2016,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
   background-color: #592d86;
   border-color: #592d86;
   color: white;
-}
-.docs button.purple:focus {
-  box-shadow: 0px 0px 1px 3px #bea8d4;
 }
 .docs button.purple.outline, .docs button.purple.ghost {
   background-color: transparent;
@@ -2047,7 +2028,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .docs button.silver {
   /* // Button uses a specific color value as it's base color */
   /* // Button uses shade(#a0a0a0, 87.5%) for it's :hover color */
-  /* // Button uses tint(#a0a0a0, 42.5%) for it's :focus box-shadow color */
 }
 .docs button.silver, .docs button.silver:visited, .docs button.silver:disabled:hover {
   background-color: #a0a0a0;
@@ -2058,9 +2038,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
   background-color: #8c8c8c;
   border-color: #8c8c8c;
   color: #1f2933;
-}
-.docs button.silver:focus {
-  box-shadow: 0px 0px 1px 3px #d7d7d7;
 }
 .docs button.silver.outline, .docs button.silver.ghost {
   background-color: transparent;
@@ -2364,6 +2341,111 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
   color: white;
 }
 
+input[type=checkbox]:focus,
+input[type=radio]:focus, [type=color]:focus, [type=date]:focus, [type=datetime]:focus, [type=datetime-local]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=url]:focus, [type=week]:focus, [type=time]:focus, select:focus, textarea:focus, .button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus,
+a:focus {
+  outline: 3px solid #008cff;
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+input[type=checkbox]:focus:not(:focus-visible),
+input[type=radio]:focus:not(:focus-visible), [type=color]:focus:not(:focus-visible), [type=date]:focus:not(:focus-visible), [type=datetime]:focus:not(:focus-visible), [type=datetime-local]:focus:not(:focus-visible), [type=email]:focus:not(:focus-visible), [type=month]:focus:not(:focus-visible), [type=number]:focus:not(:focus-visible), [type=password]:focus:not(:focus-visible), [type=search]:focus:not(:focus-visible), [type=tel]:focus:not(:focus-visible), [type=text]:focus:not(:focus-visible), [type=url]:focus:not(:focus-visible), [type=week]:focus:not(:focus-visible), [type=time]:focus:not(:focus-visible), select:focus:not(:focus-visible), textarea:focus:not(:focus-visible), .button:focus:not(:focus-visible), button:focus:not(:focus-visible), [type=submit]:focus:not(:focus-visible), [type=reset]:focus:not(:focus-visible), [type=button]:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: 0;
+}
+input[type=checkbox]:focus-visible,
+input[type=radio]:focus-visible, [type=color]:focus-visible, [type=date]:focus-visible, [type=datetime]:focus-visible, [type=datetime-local]:focus-visible, [type=email]:focus-visible, [type=month]:focus-visible, [type=number]:focus-visible, [type=password]:focus-visible, [type=search]:focus-visible, [type=tel]:focus-visible, [type=text]:focus-visible, [type=url]:focus-visible, [type=week]:focus-visible, [type=time]:focus-visible, select:focus-visible, textarea:focus-visible, .button:focus-visible, button:focus-visible, [type=submit]:focus-visible, [type=reset]:focus-visible, [type=button]:focus-visible,
+a:focus-visible {
+  outline: 3px solid #008cff;
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+
+[type=color]:focus, [type=date]:focus, [type=datetime]:focus, [type=datetime-local]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=url]:focus, [type=week]:focus, [type=time]:focus, select:focus, textarea:focus, [type=month]:focus {
+  border-color: #6e7c8c;
+  box-shadow: inset 1px 2px 1px 0px #cad1d8, inset -1px -2px 1px 0px #e5e8eb;
+}
+
+.radio input[type=radio]:focus + .radio-control {
+  outline: 3px solid #008cff;
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+.radio input[type=radio]:focus:not(:focus-visible) + .radio-control {
+  outline: 0;
+}
+.radio input[type=radio]:focus-visible + .radio-control {
+  outline: 3px solid #008cff;
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+
+.checkbox input[type=checkbox]:focus + .checkbox-control {
+  outline: 3px solid #008cff;
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+.checkbox input[type=checkbox]:focus:not(:focus-visible) + .checkbox-control {
+  outline: 0;
+}
+.checkbox input[type=checkbox]:focus-visible + .checkbox-control {
+  outline: 3px solid #008cff;
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+
+input[type=range]:focus::-webkit-slider-thumb {
+  outline: 3px solid #008cff;
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+input[type=range]:focus::-moz-range-thumb {
+  outline: 3px solid #008cff;
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+input[type=range]:focus::-ms-thumb {
+  outline: 3px solid #008cff;
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+input[type=range]:focus:not(:focus-visible)::-webkit-slider-thumb {
+  outline: 0;
+}
+input[type=range]:focus:not(:focus-visible)::-moz-range-thumb {
+  outline: 0;
+}
+input[type=range]:focus:not(:focus-visible)::-ms-thumb {
+  outline: 0;
+}
+input[type=range]:focus-visible::-webkit-slider-thumb {
+  outline: 3px solid #008cff;
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+input[type=range]:focus-visible::-moz-range-thumb {
+  outline: 3px solid #008cff;
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+input[type=range]:focus-visible::-ms-thumb {
+  outline: 3px solid #008cff;
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+
 body.font-size-sm {
   font-size: 0.875em;
 }
@@ -2430,7 +2512,6 @@ body.font-size-lg {
 .button.primary, a.button.primary {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `primary`, in the $colors map for it's :hover color */
-  /* // Button uses value `300` in key `primary`, in the $colors map for it's :focus box-shadow color */
 }
 .button.primary, .button.primary:visited, .button.primary:disabled:hover, a.button.primary, a.button.primary:visited, a.button.primary:disabled:hover {
   background-color: #c32c78;
@@ -2441,9 +2522,6 @@ body.font-size-lg {
   background-color: #ab2166;
   border-color: #ab2166;
   color: white;
-}
-.button.primary:focus, a.button.primary:focus {
-  box-shadow: 0px 0px 1px 3px #f193c2;
 }
 .button.primary.outline, .button.primary.ghost, a.button.primary.outline, a.button.primary.ghost {
   background-color: transparent;
@@ -2456,7 +2534,6 @@ body.font-size-lg {
 .button.secondary, a.button.secondary {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `secondary`, in the $colors map for it's :hover color */
-  /* // Button uses value `300` in key `secondary`, in the $colors map for it's :focus box-shadow color */
 }
 .button.secondary, .button.secondary:visited, .button.secondary:disabled:hover, a.button.secondary, a.button.secondary:visited, a.button.secondary:disabled:hover {
   background-color: #1cd4d4;
@@ -2467,9 +2544,6 @@ body.font-size-lg {
   background-color: #0fb2b8;
   border-color: #0fb2b8;
   color: #1f2933;
-}
-.button.secondary:focus, a.button.secondary:focus {
-  box-shadow: 0px 0px 1px 3px #91fdf2;
 }
 .button.secondary.outline, .button.secondary.ghost, a.button.secondary.outline, a.button.secondary.ghost {
   background-color: transparent;
@@ -2482,7 +2556,6 @@ body.font-size-lg {
 .button.success, a.button.success {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `success`, in the $colors map for it's :hover color */
-  /* // Button uses value `300` in key `success`, in the $colors map for it's :focus box-shadow color */
 }
 .button.success, .button.success:visited, .button.success:disabled:hover, a.button.success, a.button.success:visited, a.button.success:disabled:hover {
   background-color: #7bb027;
@@ -2493,9 +2566,6 @@ body.font-size-lg {
   background-color: #65931a;
   border-color: #65931a;
   color: #1f2933;
-}
-.button.success:focus, a.button.success:focus {
-  box-shadow: 0px 0px 1px 3px #c7ea90;
 }
 .button.success.outline, .button.success.ghost, a.button.success.outline, a.button.success.ghost {
   background-color: transparent;
@@ -2508,7 +2578,6 @@ body.font-size-lg {
 .button.warning, a.button.warning {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `warning`, in the $colors map for it's :hover color */
-  /* // Button uses value `300` in key `warning`, in the $colors map for it's :focus box-shadow color */
 }
 .button.warning, .button.warning:visited, .button.warning:disabled:hover, a.button.warning, a.button.warning:visited, a.button.warning:disabled:hover {
   background-color: #e9b949;
@@ -2519,9 +2588,6 @@ body.font-size-lg {
   background-color: #c8992d;
   border-color: #c8992d;
   color: #1f2933;
-}
-.button.warning:focus, a.button.warning:focus {
-  box-shadow: 0px 0px 1px 3px #f8e3a5;
 }
 .button.warning.outline, .button.warning.ghost, a.button.warning.outline, a.button.warning.ghost {
   background-color: transparent;
@@ -2534,7 +2600,6 @@ body.font-size-lg {
 .button.error, a.button.error {
   /* // Button uses base color from SASS $colors map */
   /* // Button uses value `600` in key `error`, in the $colors map for it's :hover color */
-  /* // Button uses value `300` in key `error`, in the $colors map for it's :focus box-shadow color */
 }
 .button.error, .button.error:visited, .button.error:disabled:hover, a.button.error, a.button.error:visited, a.button.error:disabled:hover {
   background-color: #bb2525;
@@ -2545,9 +2610,6 @@ body.font-size-lg {
   background-color: #a71b1b;
   border-color: #a71b1b;
   color: white;
-}
-.button.error:focus, a.button.error:focus {
-  box-shadow: 0px 0px 1px 3px #f29c9c;
 }
 .button.error.outline, .button.error.ghost, a.button.error.outline, a.button.error.ghost {
   background-color: transparent;
@@ -2706,24 +2768,24 @@ body.dark-ui .hamburger-inner, body.dark-ui .hamburger-inner:after, body.dark-ui
 
 img.align-center, img.align-none, img.align-right, img.align-left {
   float: none !important;
-  margin: 24px auto;
+  margin: 16px auto;
   display: block;
 }
 
 @media (min-width: 37.5em) {
   img.align-left {
-    margin: 0 24px 24px 0;
+    margin: 0 16px 16px 0;
     float: left !important;
   }
   img.align-right {
-    margin: 0 0 24px 24px;
+    margin: 0 0 16px 16px;
     float: right !important;
   }
   img.align-none {
-    margin: 0 0 24px 0;
+    margin: 0 0 16px 0;
   }
   img.align-center {
-    margin: 0 auto 24px auto;
+    margin: 0 auto 16px auto;
   }
 }
 .equal-height > .col {
@@ -4095,7 +4157,7 @@ img.align-center, img.align-none, img.align-right, img.align-left {
 }
 
 .mb {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 @media print {

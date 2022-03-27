@@ -1,6 +1,5 @@
 // Apply consistent styling to buttons. In most cases, you only need to pass the $button-color value for your buttons to look great
-@mixin create_button( $button-color: 'primary', $hover-color: $button-color) {
-
+@mixin create_button($button-color: 'primary', $hover-color: $button-color) {
   // Set all variables to null
   $button-base-color: null;
   $button-hover-color: null;
@@ -59,13 +58,17 @@
       // If so, get the color value and attempt to emulate a tint/shade being defined in the $colors map
       @else if map-has-key($colors, $hover-color) {
         /* // Button uses #{$button-hover-function}(#{get-color($hover-color)}, #{$button-hover-fallback-percent}) for it's :hover color */
-        $button-hover-color: call(get-function($button-hover-function), get-color($hover-color), $button-hover-fallback-percent);
+        $button-hover-color: call(
+          get-function($button-hover-function),
+          get-color($hover-color),
+          $button-hover-fallback-percent
+        );
       }
       // $hover-color is an actual color, so tint/shade accordingly
       // Attempts to emulate a tint/shade being defined in the $colors map
       @else {
         /* // Button uses #{$button-hover-function}(#{$hover-color}, #{$button-hover-fallback-percent}) for it's :hover color */
-        $button-hover-color: call(get-function($button-hover-function), $hover-color, $button-hover-fallback-percent );
+        $button-hover-color: call(get-function($button-hover-function), $hover-color, $button-hover-fallback-percent);
       }
     }
     // If $hover-color is not the same as $button-color, use this argument as passed (must be a valid CSS color)
@@ -74,65 +77,31 @@
       $button-hover-color: $hover-color;
     }
 
-  // Finally, output the code
-  &:hover, &:focus {
-    background-color: $button-hover-color;
-    border-color: $button-hover-color;
-    color: choose-contrast-color($button-hover-color, $button-text-color-light, $button-text-color-dark);
-  }
-  }
-
-  // Determine which focus-function to use for values that aren't in the $colors map
-  // Approximations vs $colors map: 900 ~ 50%, 800 ~ 62.5%, 700 ~ 75%, 600 ~ 87.5%, 500 ~ 100%
-  @if $button-focus-box-shadow-value > 500 {
-    // Shade the background
-    $button-focus-function: shade;
-  }
-  @if $button-focus-box-shadow-value < 500 {
-    // Tint the background
-    $button-focus-function: tint;
-  }
-
-  // Determine the :focus box-shadow color of the button
-  @if $button-focus-box-shadow-value != 500 {
-
-    // If value $button-focus-box-shadow-value exists in $colors map, use this for button :focus box-shadow color
-    @if map-has-nested-keys($colors, $button-color-key, $button-focus-box-shadow-value) {
-      /* // Button uses value `#{$button-focus-box-shadow-value}` in key `#{$button-color-key}`, in the $colors map for it's :focus box-shadow color */
-      $button-focus-box-shadow-color: get-color($button-color-key, $button-focus-box-shadow-value);
-    }
-    // Attempts to emulate a tint/shade being defined in the $colors map
-    @else {
-      /* // Button uses #{$button-focus-function}(#{$button-base-color}, #{$button-focus-box-shadow-fallback-percent}) for it's :focus box-shadow color */
-      $button-focus-box-shadow-color: call(get-function($button-focus-function), $button-base-color, $button-focus-box-shadow-fallback-percent );
-    }
-  }
-  @else {
-    // Allows 500 to be passed as a value
-    /* // Button uses $button-base-color #{$button-base-color} for it's :focus box-shadow color */
-    $button-focus-box-shadow-color: $button-base-color;
-  }
-
-  &:focus {
-    box-shadow: $button-box-shadow $button-focus-box-shadow-color;
-  }
-
-  &.outline, &.ghost {
-    background-color: transparent;
-    color: $button-base-color;
-  }
-  &.outline {
-    &:hover, &:focus {
+    // Finally, output the code
+    &:hover,
+    &:focus {
       background-color: $button-hover-color;
+      border-color: $button-hover-color;
       color: choose-contrast-color($button-hover-color, $button-text-color-light, $button-text-color-dark);
     }
   }
 
+  &.outline,
+  &.ghost {
+    background-color: transparent;
+    color: $button-base-color;
+  }
+  &.outline {
+    &:hover,
+    &:focus {
+      background-color: $button-hover-color;
+      color: choose-contrast-color($button-hover-color, $button-text-color-light, $button-text-color-dark);
+    }
+  }
 }
 
 // Apply consistent styling to .tag
 @mixin create_tag($tag-color) {
-
   // If passed string exists in the $colors map, get the value for the tag-color
   @if map-has-key($colors, $tag-color) {
     $tag-color: get-color($tag-color);
@@ -148,7 +117,6 @@
 
 // Apply consistent styling to .progress
 @mixin create_progressbar($bar-color) {
-
   // If passed string exists in the $colors map, get the value for the bar-color
   @if map-has-key($colors, $bar-color) {
     $bar-color: get-color($bar-color);
@@ -163,14 +131,12 @@
     background-color: $bar-color;
   }
   &:indeterminate {
-    background-image: linear-gradient(to right, rgba($bar-color,0.35) 20%, $progressbar-color 20%);
+    background-image: linear-gradient(to right, rgba($bar-color, 0.35) 20%, $progressbar-color 20%);
   }
 }
 
-
 // Apply consistent styling to callouts
 @mixin create_callout($callout-color) {
-
   // Set all variables to null
   $callout-border-color: null;
   $callout-bg-color: null;
@@ -237,9 +203,9 @@
   // Styles links
   a.callout-link {
     color: $callout-link-color;
-    &:hover, &:focus {
-      color: $callout-link-color-hover
+    &:hover,
+    &:focus {
+      color: $callout-link-color-hover;
     }
   }
-
 }
