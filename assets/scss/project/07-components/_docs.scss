@@ -21,7 +21,7 @@
     margin-bottom: $section-bottom-margin;
     border-bottom: 2px solid get-color(neutral, 200);
     z-index: 9;
-    background-color: get-color(neutral, 000);
+    background-color: $color-white;
     .tag-group:first-of-type {
       margin-left: auto;
     }
@@ -91,7 +91,7 @@
     padding: $element-padding 0;
     .boxed {
       margin: 0;
-      background-color: get-color(neutral, 000);
+      background-color: $color-white;
       border: 1px solid get-color(neutral, 200);
     }
   }
@@ -145,12 +145,12 @@
     background-size: cover;
     padding: get-size(8) 0;
     text-align: center;
-    color: get-color(neutral, 000);
+    color: $color-white;
     a {
       color: get-color(primary, 200);
     }
     h1 {
-      color: get-color(neutral, 000);
+      color: $color-white;
     }
   }
 
@@ -173,7 +173,7 @@
 
     a.active {
       background-color: get-color(primary, 700);
-      color: get-color(neutral, 000);
+      color: $color-white;
     }
   }
 
@@ -247,7 +247,7 @@
       &:focus {
         transform: scale(1.1);
         background-color: get-color(secondary);
-        color: get-color(neutral, 000);
+        color: $color-white;
         transform: matrix(1.08, 0.05, 0.01, 1.1, 1, 4);
       }
     }
@@ -431,16 +431,6 @@
 .bg-primary h6 {
   color: white;
 }
-.bg-primary a {
-  color: #edc0d6;
-}
-.bg-primary a:visited {
-  color: #edc0d6;
-}
-.bg-primary a:hover,
-.bg-primary a:focus {
-  color: white;
-}
 
 .bg-secondary {
   background-color: #07808d;
@@ -454,16 +444,6 @@
 .bg-secondary h6 {
   color: white;
 }
-.bg-secondary a {
-  color: #b4d9dd;
-}
-.bg-secondary a:visited {
-  color: #b4d9dd;
-}
-.bg-secondary a:hover,
-.bg-secondary a:focus {
-  color: white;
-}
 
 .bg-blue {
   background-color: royalblue;
@@ -475,15 +455,5 @@
 .bg-blue h4,
 .bg-blue h5,
 .bg-blue h6 {
-  color: white;
-}
-.bg-blue a {
-  color: #c6d2f6;
-}
-.bg-blue a:visited {
-  color: #c6d2f6;
-}
-.bg-blue a:hover,
-.bg-blue a:focus {
   color: white;
 }

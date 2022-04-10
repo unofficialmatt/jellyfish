@@ -1,5 +1,5 @@
 // TABLES
-$table-stripe-color: get-color(neutral,100) !default;
-$table-hover-background: get-color(neutral,500) !default;
-$table-hover-color: get-color(neutral,000) !default;
-$table-cell-padding: .5em .8em !default;
+$table-stripe-color: get-color(neutral, 100) !default;
+$table-hover-background: get-color(neutral, 500) !default;
+$table-hover-color: $color-white !default;
+$table-cell-padding: 0.5em 0.8em !default;

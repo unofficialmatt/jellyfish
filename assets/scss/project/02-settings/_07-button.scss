@@ -15,7 +15,7 @@
 // $button-font-size-large: font-size(2);
 // $button-hover-value: 600; // Note: setting this variable to 500 does not create default hover states for buttons
 // $button-hover-fallback-percent: 87.5%; // Note: if $button-hover-value > 500, function is shade(), else function is tint()
-// $button-text-color-light: get-color(neutral,000);
+// $button-text-color-light: $color-white;
 // $button-text-color-dark: $color-text;
 // $button-disabled-opacity: .65;
 // $button-list-button-margin: get-size(.5);

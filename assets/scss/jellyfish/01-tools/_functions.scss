@@ -126,7 +126,7 @@
 /**
  * Determine whether to use dark or light text on top of given color.
  */
-@function choose-contrast-color($color, $light-color: get-color(neutral, 000), $dark-color: $color-text) {
+@function choose-contrast-color($color, $light-color: $color-white, $dark-color: $color-text) {
   $lightContrast: calculate-contrast($color, $light-color);
   $darkContrast: calculate-contrast($color, $dark-color);
   @if ($force-color-contrast-ratio == false) {

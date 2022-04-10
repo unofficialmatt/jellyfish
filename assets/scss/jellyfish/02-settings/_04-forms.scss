@@ -9,7 +9,7 @@ $borders: $border-width $border-style $border-color !default;
 $form-items: (
   '[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]'
 ); // Stack of elements to target
-$input-background: get-color(neutral, 000) !default;
+$input-background: $color-white !default;
 $placeholder-color: get-color(neutral, 500) !default;
 $form-border-hover: get-color(neutral) !default;
 $form-font: $font-primary !default;
@@ -34,7 +34,7 @@ $range-thumb-shadow-size: 0px 1px !default;
 $range-thumb-shadow-blur: 6px !default;
 $range-thumb-shadow-color: rgba(get-color(neutral, 800), 0.4) !default;
 $range-thumb-border-width: 2px !default;
-$range-thumb-border-color: get-color(neutral, 000) !default;
+$range-thumb-border-color: $color-white !default;
 
 $range-track-height: $range-thumb-height * 0.5 !default;
 $range-track-shadow-size: 0px 0px !default;

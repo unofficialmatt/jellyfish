@@ -5,37 +5,39 @@ html {
     font-family: $font-body;
 }
 @media screen and (prefers-reduced-motion: reduce) {
-	html {
-		scroll-behavior: auto;
-	}
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 body {
-  font-size: $root-font-size;
-  color: $color-text;
-  background-color: get-color(neutral,000);
-  line-height: $root-line-height;
-   @each $point, $i in $breakpoints {
-    // set base font size and line height for each specified media query
-   @include above($point) {
-       font-size: map-deep-get($breakpoints, $point, 'root-font-size');
-       line-height: map-deep-get($breakpoints, $point, 'root-line-height');
-   }
-  }
+    font-size: $root-font-size;
+    color: $color-text;
+    background-color: $color-white;
+    line-height: $root-line-height;
+    @each $point, $i in $breakpoints {
+        // set base font size and line height for each specified media query
+        @include above($point) {
+            font-size: map-deep-get($breakpoints, $point, 'root-font-size');
+            line-height: map-deep-get($breakpoints, $point, 'root-line-height');
+        }
+    }
 }
 
 // Links
 a {
     @include smooth(color);
     text-decoration: underline;
-    &, &:link {
+    &,
+    &:link {
         color: $link-color;
     }
     &:visited {
         color: $link-visited;
         text-decoration: none;
     }
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         color: $link-active;
     }
 }
@@ -50,7 +52,8 @@ table {
 %lists {
     margin: 0 0 $element-margin 2.5em;
     list-style-position: outside;
-    ul, ol {
+    ul,
+    ol {
         margin-bottom: 0;
     }
 }
@@ -68,8 +71,8 @@ ol {
         list-style-type: lower-alpha;
     }
 }
-li+li {
-  margin-top: get-size(0.25);
+li + li {
+    margin-top: get-size(0.25);
 }
 dl {
     margin: 0 0 $element-margin 0;
@@ -77,7 +80,7 @@ dl {
         font-weight: $weight-bold;
     }
     dd {
-      margin-bottom: h($element-margin);
+        margin-bottom: h($element-margin);
     }
 }
 
@@ -101,7 +104,7 @@ pre {
     @extend %code;
     padding: $element-padding;
     margin: 0 0 $element-margin 0;
-    background-color: get-color(neutral,100);
+    background-color: get-color(neutral, 100);
     border: $borders;
     line-height: 1.2;
 }
@@ -110,27 +113,27 @@ pre {
 blockquote {
     margin: 0 0 $element-margin 0;
     padding: 0 0 0 $element-margin;
-    border-left: get-size(0.5) solid get-color(neutral,200);
+    border-left: get-size(0.5) solid get-color(neutral, 200);
     font-size: font-size(3);
     font-style: italic;
     line-height: 1.4;
 }
 cite {
-  display: block;
-  margin-top: h($element-margin);
-  font-size: font-size(-2);
-  font-style: normal;
-  font-weight: $weight-bold;
-  text-align: right;
+    display: block;
+    margin-top: h($element-margin);
+    font-size: font-size(-2);
+    font-style: normal;
+    font-weight: $weight-bold;
+    text-align: right;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
-  vertical-align: top; // Removes the white space under images
+    max-width: 100%;
+    height: auto;
+    vertical-align: top; // Removes the white space under images
 }
 
 // Highlighted text
 ::selection {
-background: get-color(primary,200);
+    background: get-color(primary, 200);
 }

@@ -2,7 +2,8 @@
   @include do-not-print();
 }
 
-iframe, .navbar {
+iframe,
+.navbar {
   @extend .do-not-print;
 }
 @media print {
@@ -11,21 +12,22 @@ iframe, .navbar {
     text-decoration: underline;
     ::after {
       // Display URL after links on print
-      content: "(" attr(href) ")";
+      content: '(' attr(href) ')';
       display: inline-block;
       text-decoration: none;
-      margin-left: .25em;
+      margin-left: 0.25em;
     }
   }
   // Make websites more printer-friendly
-  html, body {
+  html,
+  body {
     font-size: 9pt;
     line-height: 1.2;
     font-family: Arial;
   }
   #{headings()} {
     font-weight: $weight-bold;
-    margin-bottom: .2em;
+    margin-bottom: 0.2em;
   }
   h1 {
     font-size: 1.6em;
@@ -37,13 +39,13 @@ iframe, .navbar {
     font-size: 1.2em;
   }
   #{$buttons} {
-    border: 1px solid black  !important;
-    background-color: get-color(neutral,000)  !important;
-    color: black  !important;
+    border: 1px solid black !important;
+    background-color: $color-white !important;
+    color: black !important;
     display: inline-block !important;
     width: auto !important;
   }
   .container {
-    width:100%;
+    width: 100%;
   }
 }

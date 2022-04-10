@@ -13,7 +13,7 @@
 
 h1 {
   @each $point, $size in $font-sizes-h1 {
-    @if $point == "root" {
+    @if $point == 'root' {
       // Root font size at smallest device width
       font-size: $size;
     } @else {
@@ -27,7 +27,7 @@ h1 {
 
 h2 {
   @each $point, $size in $font-sizes-h2 {
-    @if $point == "root" {
+    @if $point == 'root' {
       // Root font size at smallest device width
       font-size: $size;
     } @else {
@@ -41,7 +41,7 @@ h2 {
 
 h3 {
   @each $point, $size in $font-sizes-h3 {
-    @if $point == "root" {
+    @if $point == 'root' {
       // Root font size at smallest device width
       font-size: $size;
     } @else {
@@ -55,7 +55,7 @@ h3 {
 
 h4 {
   @each $point, $size in $font-sizes-h4 {
-    @if $point == "root" {
+    @if $point == 'root' {
       // Root font size at smallest device width
       font-size: $size;
     } @else {
@@ -69,7 +69,7 @@ h4 {
 
 h5 {
   @each $point, $size in $font-sizes-h5 {
-    @if $point == "root" {
+    @if $point == 'root' {
       // Root font size at smallest device width
       font-size: $size;
     } @else {
@@ -83,7 +83,7 @@ h5 {
 
 h6 {
   @each $point, $size in $font-sizes-h6 {
-    @if $point == "root" {
+    @if $point == 'root' {
       // Root font size at smallest device width
       font-size: $size;
     } @else {
@@ -182,7 +182,7 @@ q {
 kbd {
   @extend %inline-code;
   background-color: $color-text;
-  color: get-color(neutral, 000);
+  color: $color-white;
 }
 
 // Code
