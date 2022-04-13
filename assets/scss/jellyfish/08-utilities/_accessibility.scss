@@ -2,7 +2,7 @@
   outline: $accessibility-focus-outline-width solid $accessibility-focus-color;
   outline-offset: $accessibility-focus-outline-offset;
   z-index: 1;
-  position: relative;
+  //position: relative;
 }
 
 // Accessible focus using :focus-visible
