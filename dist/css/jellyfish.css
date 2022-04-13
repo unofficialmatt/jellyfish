@@ -1,5 +1,5 @@
 /*! jellyfish-ui 3.3.0
- * © 2022-03 Matt Weet - https://www.mattweet.com */
+ * © 2022-04 Matt Weet - https://www.mattweet.com */
 
 /**
  * Calculate the luminance for a color.
@@ -331,11 +331,11 @@ a, a:link {
   color: #c32c78;
 }
 a:visited {
-  color: #9c1c5c;
+  color: #da4991;
   text-decoration: none;
 }
 a:hover, a:focus {
-  color: #da4991;
+  color: #ab2166;
 }
 
 p,
@@ -347,7 +347,9 @@ ol, ul {
   margin: 0 0 16px 2.5em;
   list-style-position: outside;
 }
-ol ul, ul ul, ol ol, ul ol {
+ol ul, ul ul,
+ol ol,
+ul ol {
   margin-bottom: 0;
 }
 
@@ -918,7 +920,7 @@ button.toggle-contrast, button.font-size {
 }
 button.toggle-contrast:hover, button.font-size:hover, button.toggle-contrast:focus, button.font-size:focus {
   background: transparent;
-  color: #da4991;
+  color: #ab2166;
 }
 button.toggle-contrast:focus, button.font-size:focus {
   box-shadow: none;
@@ -2278,19 +2280,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
   color: white;
 }
 
-.bg-primary a {
-  color: #edc0d6;
-}
-
-.bg-primary a:visited {
-  color: #edc0d6;
-}
-
-.bg-primary a:hover,
-.bg-primary a:focus {
-  color: white;
-}
-
 .bg-secondary {
   background-color: #07808d;
   color: white;
@@ -2305,19 +2294,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
   color: white;
 }
 
-.bg-secondary a {
-  color: #b4d9dd;
-}
-
-.bg-secondary a:visited {
-  color: #b4d9dd;
-}
-
-.bg-secondary a:hover,
-.bg-secondary a:focus {
-  color: white;
-}
-
 .bg-blue {
   background-color: royalblue;
   color: white;
@@ -2329,19 +2305,6 @@ h1 .tag-list .tag, h1 .tag-list .tag-group, h2 .tag-list .tag, h2 .tag-list .tag
 .bg-blue h4,
 .bg-blue h5,
 .bg-blue h6 {
-  color: white;
-}
-
-.bg-blue a {
-  color: #c6d2f6;
-}
-
-.bg-blue a:visited {
-  color: #c6d2f6;
-}
-
-.bg-blue a:hover,
-.bg-blue a:focus {
   color: white;
 }
 
@@ -2451,13 +2414,13 @@ input[type=range]:focus-visible::-ms-thumb {
 }
 
 body.font-size-sm {
-  font-size: 0.875em;
-}
-body.font-size-md {
   font-size: 1em;
 }
-body.font-size-lg {
+body.font-size-md {
   font-size: 1.125em;
+}
+body.font-size-lg {
+  font-size: 1.25em;
 }
 
 .bg-transparent {
@@ -2471,15 +2434,6 @@ body.font-size-lg {
 .bg-white h1, .bg-white h2, .bg-white h3, .bg-white h4, .bg-white h5, .bg-white h6 {
   color: #33404d;
 }
-.bg-white a:not(.button) {
-  color: #c32c78;
-}
-.bg-white a:not(.button):visited {
-  color: #9c1c5c;
-}
-.bg-white a:not(.button):hover, .bg-white a:not(.button):focus {
-  color: #000;
-}
 
 .bg-dark {
   background-color: #1f2933;
@@ -2488,14 +2442,12 @@ body.font-size-lg {
 .bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4, .bg-dark h5, .bg-dark h6 {
   color: white;
 }
-.bg-dark a:not(.button) {
-  color: #bcbfc2;
+
+[class^=bg-] .bg-white {
+  color: #1f2933;
 }
-.bg-dark a:not(.button):visited {
-  color: #bcbfc2;
-}
-.bg-dark a:not(.button):hover, .bg-dark a:not(.button):focus {
-  color: white;
+[class^=bg-] .bg-white h1, [class^=bg-] .bg-white h2, [class^=bg-] .bg-white h3, [class^=bg-] .bg-white h4, [class^=bg-] .bg-white h5, [class^=bg-] .bg-white h6 {
+  color: #1f2933;
 }
 
 .b-0 {
@@ -4295,7 +4247,8 @@ img.align-center, img.align-none, img.align-right, img.align-left {
 }
 
 @media print {
-  .do-not-print, iframe, .navbar {
+  .do-not-print, iframe,
+.navbar {
     display: none;
   }
 }
@@ -4312,7 +4265,8 @@ img.align-center, img.align-none, img.align-right, img.align-left {
     margin-left: 0.25em;
   }
 
-  html, body {
+  html,
+body {
     font-size: 9pt;
     line-height: 1.2;
     font-family: Arial;
