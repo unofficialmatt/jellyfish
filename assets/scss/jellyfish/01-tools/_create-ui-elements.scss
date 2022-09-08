@@ -1,12 +1,9 @@
 // Apply consistent styling to buttons. In most cases, you only need to pass the $button-color value for your buttons to look great
-@mixin create_button($button-color: 'primary', $hover-color: $button-color) {
+@mixin create_button($button-color, $hover-color: $button-color) {
   // Set all variables to null
   $button-base-color: null;
   $button-hover-color: null;
   $button-color-key: null;
-  $button-hover-function: null;
-  $button-focus-function: null;
-  $button-focus-box-shadow-color: null;
 
   // Determine base background/border color of button
   // If passed string exists in the $colors map, use this for the button-base-color
@@ -17,9 +14,8 @@
   }
   // Otherwise, the assumption is that the passed value is a valid color value
   @else {
-    /* // Button uses a specific color value as it's base color */
+    /* Button uses a specific color value as it's base color */
     $button-base-color: $button-color;
-    // @warn "#{$button-color} is not a key in the $colors map. .button modifiers will still be generated, however the colors will be simulated with tint() and shade().";
   }
   // If the provided value is not a color, SASS compilation will fail
   // Output the base CSS and disabled:hover state (prevents other hover states taking effect)
@@ -34,16 +30,7 @@
 
   // Only run if $button-hover-value != 500
   @if $button-hover-value != 500 {
-    // Determine which hover-function to use for values that aren't in the $colors map
-    // Approximations vs $colors map: 900 ~ 50%, 800 ~ 62.5%, 700 ~ 75%, 600 ~ 87.5%, 500 ~ 100%
-    @if $button-hover-value > 500 {
-      // Shade the background
-      $button-hover-function: shade;
-    }
-    @if $button-hover-value < 500 {
-      // Tint the background
-      $button-hover-function: tint;
-    }
+
 
     // Determine the hover color of the button
     // $hover-color defaults to $button-color if no $hover-color arg is passed (default for most buttons)
@@ -66,8 +53,8 @@
       // $hover-color is an actual color, so tint/shade accordingly
       // Attempts to emulate a tint/shade being defined in the $colors map
       @else {
-        /* // Button uses #{$button-hover-function}(#{$hover-color}, #{$button-hover-fallback-percent}) for it's :hover color */
-        $button-hover-color: call(get-function($button-hover-function), $hover-color, $button-hover-fallback-percent);
+      @warn "#{$button-color} is not a color from the $colors map and you have not passed a $hover-color argument. A .button modifier will still be generated, however the hover color will be simulated with shade().";
+      $button-hover-color: shade($hover-color,60%);
       }
     }
     // If $hover-color is not the same as $button-color, use this argument as passed (must be a valid CSS color)
@@ -109,9 +96,7 @@
   border-color: $tag-color;
   background-color: $tag-color;
   color: choose-contrast-color($tag-color, $tag-text-color-light, $tag-text-color-dark);
-  &.outline {
-    //color: $tag-color;
-  }
+
 }
 
 // Apply consistent styling to .progress
@@ -152,13 +137,13 @@
   }
   // Otherwise, the assumption is that the passed value is a valid color value
   @else {
+    @warn "#{$callout-color} is not a color from the $colors map. A .callout modifier will still be generated, however the colors will be simulated with tint() and shade().";
     $callout-border-color: $callout-color;
-    // @warn "#{$callout-color} is not a color from the $colors map. A .callout modifier will still be generated, however the colors will be simulated with tint() and shade().";
   }
 
-  // If value 100 exists in $colors map, use this for background color
-  @if map-has-nested-keys($colors, $callout-color-key, 100) {
-    $callout-bg-color: get-color($callout-color-key, 100);
+  // If value 50 exists in $colors map, use this for background color
+  @if map-has-nested-keys($colors, $callout-color-key, 50) {
+    $callout-bg-color: get-color($callout-color-key, 50);
   }
   // Otherwise revert to a 10% tint
   @else {
