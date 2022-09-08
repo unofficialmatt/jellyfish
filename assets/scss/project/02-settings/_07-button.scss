@@ -12,13 +12,12 @@
 // $button-font-size-xsmall: font-size(-2);
 // $button-font-size-small: font-size(-1);
 // $button-font-size: font-size(0);
-// $button-font-size-large: font-size(2);
+// $button-font-size-large: font-size(1);
 // $button-hover-value: 600; // Note: setting this variable to 500 does not create default hover states for buttons
-// $button-hover-fallback-percent: 87.5%; // Note: if $button-hover-value > 500, function is shade(), else function is tint()
 // $button-text-color-light: $color-white;
 // $button-text-color-dark: $color-text;
 // $button-disabled-opacity: .65;
 // $button-list-button-margin: get-size(.5);
-// $button-base-color: 'neutral';
+// $button-base-color: 'primary';
 
 // TODO: Change button mods to .is-small etc
