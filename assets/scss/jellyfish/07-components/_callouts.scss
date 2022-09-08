@@ -1,14 +1,12 @@
 .callout {
   border-width: $callout-border-width;
   border-style: solid;
-  border-color: get-color(neutral,300);
   margin-bottom: $element-margin;
   padding: $element-padding;
   border-radius: $callout-border-radius;
   display: block;
   width: 100%;
-  //@include create_callout(get-color(neutral));
-
+  @include create_callout('neutral');
   a.callout-link {
     font-weight: $weight-bold;
   }
