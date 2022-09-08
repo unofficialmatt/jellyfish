@@ -1,27 +1,3 @@
-[type='reset'],
-.button.outline,
-a.button.outline {
-  background-color: transparent;
-  color: get-color(neutral);
-  &:hover,
-  &:focus {
-    background-color: get-color(neutral, $button-hover-value);
-    color: choose-contrast-color(
-      get-color(neutral, $button-hover-value),
-      $button-text-color-dark,
-      $button-text-color-light
-    );
-  }
-}
-
-// Fix for buttons that are placed on colored backgrounds - the text color would inherit from the bg
-#{$buttons} {
-  [class*='bg-'] & {
-    color: gold;
-    @include create_button($button-base-color);
-  }
-}
-
 .button,
 a.button {
   &.ghost {
