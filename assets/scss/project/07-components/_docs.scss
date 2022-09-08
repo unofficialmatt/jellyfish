@@ -9,63 +9,67 @@
     STYLE OVERRIDES
   *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-  $section-bottom-margin: $element-margin * 3;
-
   // H2 Section Headings
   .section-heading {
+    padding: get-size(0.75) 0;
     display: flex;
     flex-wrap: wrap;
-    margin-top: $element-margin * 6;
-    padding-bottom: $element-margin;
-    padding-top: $element-margin;
-    margin-bottom: $section-bottom-margin;
-    border-bottom: 2px solid get-color(neutral, 200);
+    align-items: baseline;
     z-index: 9;
-    background-color: $color-white;
+    background-color: rgba($color-white,0.9);
+    backdrop-filter: blur(3px);
+    color: get-color(primary,700);
+    font-weight: $weight-light;
     .tag-group:first-of-type {
       margin-left: auto;
     }
     .tag-group {
-      font-size: 70%;
+      font-size: font-size(-2);
       margin-left: get-size(0.75);
+    }
+    &:before {
+      content:"# ";
+      color: get-color(neutral,100);
+      margin-right: get-size(.5);
     }
   }
 
   // Standfirst
   .standfirst {
-    font-size: font-size(3);
-    font-weight: 300;
+    font-size: font-size(2);
+    font-weight: $weight-medium;
     line-height: 1.3;
   }
   .docs-section .standfirst {
-    color: get-color(neutral, 500);
+    color: get-color(primary);
   }
 
   // Sub Section
   .docs-section > article {
-    margin-bottom: $section-bottom-margin;
+    margin-bottom: get-size(1.5);
   }
 
   // Inline references
   %reference {
     @extend %inline-code;
-    display: inline;
-    background-color: get-color(neutral, 200);
+    display: inline-block;
+    background-color: get-color(neutral, 50);
+    border: 1px solid get-color(neutral,100);
   }
 
   .css-ref {
     @extend %reference;
-    color: get-color(primary);
+    color: get-color(primary,700);
   }
 
   .file-ref {
     @extend %reference;
-    color: get-color(secondary, 900);
+    color: get-color(success, 700);
   }
 
   .variable-ref {
     @extend %reference;
-    color: get-color(secondary, 700);
+    color: get-color(secondary, 900);
   }
 
   .padded {
@@ -75,7 +79,7 @@
 
   // Boxed Out Example
   .boxed {
-    background: get-color(neutral, 100);
+    background: get-color(neutral, 50);
     padding: $element-padding;
     line-height: 1.2;
     margin: 0 0 $element-margin 0;
@@ -85,14 +89,14 @@
     font-family: $font-code;
   }
   .row-boxed {
-    background-color: get-color(neutral, 100);
+    background-color: get-color(neutral, 50);
     min-height: 160px;
     margin-bottom: $element-margin;
     padding: $element-padding 0;
     .boxed {
       margin: 0;
       background-color: $color-white;
-      border: 1px solid get-color(neutral, 200);
+      border: 1px solid get-color(neutral, 300);
     }
   }
 
@@ -100,7 +104,7 @@
   pre {
     position: relative;
     margin: $element-margin 0 !important;
-    font-size: 0.9em !important;
+    font-size: font-size(-1) !important;
 
     label {
       font-size: font-size(-1);
@@ -109,15 +113,15 @@
       position: absolute;
       float: right;
       display: block;
-      background-color: get-color(secondary);
-      color: #fff;
+      background-color: get-color(neutral,400);
+      color: $color-white;
       padding: 0.4em 0.6em;
+      text-shadow: none;
     }
   }
   code[class*='language-'],
   pre[class*='language-'] {
-    background: get-color(neutral, 100);
-    border: 0;
+    background: get-color(neutral, 50);
   }
 
   .language-markup {
@@ -140,14 +144,19 @@
 
   // Hero
   .hero {
-    background: url('https://images.unsplash.com/photo-1569689862393-287eaaa677c6?q=100&fm=jpg&w=1080&fit=max&?ixid=123123123');
-    background-position: center;
-    background-size: cover;
-    padding: get-size(8) 0;
+    padding: get-size(4) 0;
     text-align: center;
     color: $color-white;
+    background-image: linear-gradient(
+      -45deg,
+      get-color(primary,900) 0%,
+      get-color(primary,1000) 100%
+    );
+    background-size: 300% 300%;
+    animation: hero 9s infinite linear;
+
     a {
-      color: get-color(primary, 200);
+      color: get-color(primary, 100);
     }
     h1 {
       color: $color-white;
@@ -156,20 +165,15 @@
 
   // Navbar
   #navbar-sticky {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10;
-    min-height: 55px;
+    z-index: 10000000;
     display: flex;
     align-items: center;
-    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.8);
-
-    .container {
-      padding: 0;
-      overflow-y: scroll; // TODO: What is a more permanent fix for an overflowing navbar?
-    }
+    backdrop-filter: blur(3px);
+    margin-bottom: get-size(2);
 
     a.active {
       background-color: get-color(primary, 700);
@@ -178,17 +182,15 @@
   }
 
   #navbar-menu {
-    justify-content: center;
-    min-height: 55px;
+    ul {
+      justify-content: center;
+    }
   }
 
   .navbar-start {
     margin-right: 0; // centers element
   }
 
-  body {
-    padding-top: 55px; // Offset for Navbar
-  }
 
   // Used for tags
   .tag.light {
@@ -253,62 +255,11 @@
     }
   }
 
-  // Buttons
-  button.hotpink {
-    @include create_button(hotpink);
-  }
-  button.gold {
-    @include create_button(gold, brown);
-  }
-  button.white {
-    @include create_button(#fff, gray);
-  }
-  button.purple {
-    @include create_button(rebeccapurple);
-  }
-  button.silver {
-    @include create_button(#a0a0a0);
+
+  .button.mediumaquamarinepurple {
+    @include create_button(mediumaquamarine, rebeccapurple);
   }
 
-  // Tags
-  .tag.hotpink {
-    @include create_tag(hotpink);
-  }
-  .tag.gold {
-    @include create_tag(gold);
-  }
-  .tag.white {
-    @include create_tag(white);
-  }
-  .tag.purple {
-    @include create_tag(rebeccapurple);
-  }
-  .tag.silver {
-    @include create_tag(#a0a0a0);
-  }
-  // Progress Bars
-  .progress.hotpink {
-    @include create_progressbar(hotpink);
-  }
-  .progress.tomato {
-    @include create_progressbar(tomato);
-  }
-  .progress.lime {
-    @include create_progressbar(lime);
-  }
-  // Callouts
-  .callout.hotpink {
-    @include create_callout(hotpink);
-  }
-  .callout.gold {
-    @include create_callout(gold);
-  }
-  .callout.purple {
-    @include create_callout(rebeccapurple);
-  }
-  .callout.silver {
-    @include create_callout(#a0a0a0);
-  }
 
   // Text
 
@@ -419,41 +370,44 @@
   }
 }
 
-.bg-primary {
-  background-color: #c32c78;
-  color: white;
+.docs {
+display: flex;
+flex-direction: column;
+@include below($nav-expands) {
+  .navbar {
+    order: 1;
+    margin-bottom: 0 !important;
+  }
+  .hero {
+    order: 2;
+    margin-bottom: get-size(1.5) !important;
+  }
+  #main {
+    order: 3;
+  }
 }
-.bg-primary h1,
-.bg-primary h2,
-.bg-primary h3,
-.bg-primary h4,
-.bg-primary h5,
-.bg-primary h6 {
-  color: white;
-}
-
-.bg-secondary {
-  background-color: #07808d;
-  color: white;
-}
-.bg-secondary h1,
-.bg-secondary h2,
-.bg-secondary h3,
-.bg-secondary h4,
-.bg-secondary h5,
-.bg-secondary h6 {
-  color: white;
 }
 
-.bg-blue {
-  background-color: royalblue;
-  color: white;
+.palette {
+  .col {
+    padding: get-size(0.75);
+    @include above(sm){
+      height: 100px;
+    }
+    display: flex;
+    align-items:center;
+    justify-content: center;
+  }
+  @include above(sm){
+    span {
+      transform: rotate(-90deg);
+      display: block;
+    }
+  }
 }
-.bg-blue h1,
-.bg-blue h2,
-.bg-blue h3,
-.bg-blue h4,
-.bg-blue h5,
-.bg-blue h6 {
-  color: white;
+
+@keyframes hero {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
