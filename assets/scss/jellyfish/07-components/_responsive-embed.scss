@@ -2,8 +2,13 @@
 // Embed videos responsively by wrapping them in an .embed-container
 .embed-container {
   position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
+  @supports (aspect-ratio: 16/9) {
+    aspect-ratio: 16/9;
+  }
+  @supports not (aspect-ratio: 16/9) {
+    padding-bottom: 56.25%;
+    height: 0;
+  }
   overflow: hidden;
   max-width: 100%;
   margin: 0 0 $element-margin 0;

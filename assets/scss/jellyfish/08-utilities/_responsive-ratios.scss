@@ -1,15 +1,32 @@
-// TODO: Document
-.embed-container {
-  &.ratio-16x9 {
-    padding-bottom: 56.25%;
+.ratio-16x9 {
+  @supports (aspect-ratio: 16/9) {
+    aspect-ratio: 16/9;
   }
-  &.ratio-1x1 {
-    padding-bottom: calc(1 / 1 * 100%);
+  @supports not (aspect-ratio: 16/9) {
+    padding-bottom: 56.25% !important;
   }
-  &.ratio-4x3 {
-    padding-bottom: calc(3 / 4 * 100%);
+}
+.ratio-1x1 {
+  @supports (aspect-ratio: 1/1) {
+    aspect-ratio: 1/1;
   }
-  &.ratio-21x9 {
-    padding-bottom: calc(1 / 2.37 * 100%);
+  @supports not (aspect-ratio: 1/1) {
+    padding-bottom: calc(1 / 1 * 100%) !important;
+  }
+}
+.ratio-4x3 {
+  @supports (aspect-ratio: 4/3) {
+    aspect-ratio: 4/3;
+  }
+  @supports not (aspect-ratio: 4/3) {
+    padding-bottom: calc(3 / 4 * 100%) !important;
+  }
+}
+.ratio-21x9 {
+  @supports (aspect-ratio: 21/9) {
+    aspect-ratio: 21/9;
+  }
+  @supports not (aspect-ratio: 21/9) {
+    padding-bottom: calc(1 / 2.37 * 100%) !important;
   }
 }
