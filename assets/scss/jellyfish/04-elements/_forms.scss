@@ -19,6 +19,10 @@
   border-color: $form-border-hover;
 }
 
+body {
+  accent-color: $form-accent-color;
+}
+
 // Forms stack defined in _settings.scss
 #{$form-items} {
   @extend %forms;
@@ -47,10 +51,12 @@ label {
   margin: 0;
 }
 
-// Add margin to checkboxes and radioboxes
 input[type='checkbox'],
 input[type='radio'] {
   margin-right: get-size(0.25);
+  font-size: 1em;
+  width: .75em;
+  height: .75em;
 }
 
 // Field Sets

@@ -9,6 +9,7 @@ $borders: $border-width $border-style $border-color !default;
 $form-items: (
   '[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]'
 ); // Stack of elements to target
+$form-accent-color: get-color(primary) !default;
 $input-background: $color-white !default;
 $placeholder-color: get-color(neutral, 500) !default;
 $form-border-hover: get-color(neutral) !default;
@@ -43,7 +44,3 @@ $range-track-shadow-color: transparent !default;
 $range-track-border-width: $border-width !default;
 $range-track-border-color: $border-color !default;
 $range-track-radius: $border-radius !default;
-
-$radio-check-box-color: get-color(neutral, 600) !default;
-$radio-check-box-focus-shadow: get-color(neutral, 300) !default;
-$radio-check-box-transform-adjust: 0px !default;
