@@ -45,6 +45,9 @@ module.exports = function (grunt) {
   });
 
   grunt.config('import_sass_from_dirs', {
+    options: {
+      quiet: true
+    },
     // This is an arbitrary name for this sub-task
     src: {
       files: {

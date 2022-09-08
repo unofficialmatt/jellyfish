@@ -87,7 +87,9 @@ module.exports = function (grunt) {
 
         newFileContents = newFileContents.join('\n');
         if (newFileContents === oldFileContents) {
-          grunt.log.writeln('\n' + ' No change in ' + filepath.yellow + ':');
+          if (!quiet) {
+            grunt.log.writeln('\n' + ' No change in ' + filepath.yellow + ':');
+          }
         } else {
           grunt.file.write(filepath, newFileContents);
         }
