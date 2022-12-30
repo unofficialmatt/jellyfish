@@ -53,7 +53,7 @@
       // $hover-color is an actual color, so tint/shade accordingly
       // Attempts to emulate a tint/shade being defined in the $colors map
       @else {
-      @warn "#{$button-color} is not a color from the $colors map and you have not passed a $hover-color argument. A .button modifier will still be generated, however the hover color will be simulated with shade().";
+     // @warn "#{$button-color} is not a color from the $colors map and you have not passed a $hover-color argument. A .button modifier will still be generated, however the hover color will be simulated with shade().";
       $button-hover-color: shade($hover-color,60%);
       }
     }
@@ -137,7 +137,7 @@
   }
   // Otherwise, the assumption is that the passed value is a valid color value
   @else {
-    @warn "#{$callout-color} is not a color from the $colors map. A .callout modifier will still be generated, however the colors will be simulated with tint() and shade().";
+    //@warn "#{$callout-color} is not a color from the $colors map. A .callout modifier will still be generated, however the colors will be simulated with tint() and shade().";
     $callout-border-color: $callout-color;
   }
 

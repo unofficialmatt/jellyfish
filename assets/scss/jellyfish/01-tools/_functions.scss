@@ -131,7 +131,7 @@
   $darkContrast: calculate-contrast($color, $dark-color);
   @if ($force-color-contrast-ratio == false) {
     @if ($lightContrast < 4.5 and $darkContrast < 4.5) {
-      @warn "Neither #{$light-color} (#{$lightContrast}) nor #{$dark-color} (#{$darkContrast}) has a significant contrast to #{$color} to reach WCAG 2.1 AA compliance (4.5:1). Consider using a different colour. Alternatively set $force-color-contrast-ratio to true to have SASS take care of things.";
+     // @warn "Neither #{$light-color} (#{$lightContrast}) nor #{$dark-color} (#{$darkContrast}) has a significant contrast to #{$color} to reach WCAG 2.1 AA compliance (4.5:1). Consider using a different colour. Alternatively set $force-color-contrast-ratio to true to have SASS take care of things.";
     }
   }
   @if ($force-color-contrast-ratio == true) {

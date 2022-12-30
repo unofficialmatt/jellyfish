@@ -26,7 +26,7 @@
             <p class="standfirst">Yet another lightweight SCSS framework to add to the <a href="https://github.com/search?q=css+frameworks" rel="external">ever-growing list</a>.</p>
             <p>Jellyfish has a few useful features that other frameworks don't have; primarily the ability to give breakpoint modifiers your own class names <em>(want to name them micro, medium, mammoth - go for it!</em> and the ability to define how many columns are in your grid <em>(want a 13 column grid? You go for it, tiger! I won't judge)</em>.</p>
             <p>Aside from that, Jellyfish has all the usual styling, classes and modifiers you have come to expect in a modern flex-based CSS framework.</p>
-            <p>Jellyfish is powered by <a href="#project-init">Grunt.js</a> to compile scss and javascript, adding prefixers, concatenating and minifying in the process.</p>
+            <p>Jellyfish is powered by <a href="#project-init">Gulp.js</a> to compile scss and javascript, adding prefixers, concatenating and minifying in the process.</p>
             <p><a class="github-button" href="https://github.com/unofficialmatt/jellyfish" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star unofficialmatt/jellyfish on GitHub">Star</a> <a class="github-button" href="https://github.com/unofficialmatt" data-size="large" data-show-count="true" aria-label="Follow @unofficialmatt on GitHub">Follow @unofficialmatt</a></p>
           </div>
         </div>
@@ -80,47 +80,46 @@
       <section class="docs-section" id="how-to-use">
         <h2 class="section-heading">How to Use</h2>
         <article>
-          <h3>BrowserSync, Grunt.js, NPM and Sass</h3>
+          <h3>BrowserSync, Gulp.js, NPM and Sass</h3>
           <p class="standfirst">Jellyfish makes use of modern technologies in order to make the dev experience more enjoyable.</p>
           <ul>
             <li><a href="https://www.browsersync.io/" rel="external">Browsersync</a> opens up a new window in your default browser and live reloads whenever changes are detected to your project's javascript, css or HTML.</li>
             <li><a href="https://sass-lang.com/" rel="external">Sass (SCSS)</a> is used to extend css, helping to compartmentalise components and organise code into digestible parts. Sass can also make use of useful concepts like nesting, variables and functions.</li>
             <li><a href="https://www.npmjs.com/" rel="external">NPM</a> is used to manage packages that are required to run Jellyfish.</li>
-            <li><a href="https://gruntjs.com/" rel="external">Grunt.js</a> is a task-runner which is used to reduce hassles in compiling code.</li>
+            <li><a href="https://gulpjs.com/" rel="external">Gulp.js</a> is a task-runner which is used to reduce hassles in compiling code.</li>
           </ul>
         </article>
         <article>
           <h3>Starting your project</h3>
-          <p>Make sure that you have npm, browsersync and grunt installed on your system following the guides on their respective websites. Then, clone the project into your required folder with git...</p>
+          <p>Make sure that you have npm, browsersync and Gulp installed on your system following the guides on their respective websites. Then, clone the project into your required folder with git...</p>
           <pre class="language-git"><code>$ git clone https://github.com/unofficialmatt/jellyfish.git</code></pre>
           <p>Install the dev dependencies in the root of the project...</p>
           <pre class="language-markup"><code>$ npm install</code></pre>
-          <p>Initialise grunt, to rebuild the codebase for a clean start.</p>
-          <pre class="language-markup"><code>$ grunt init</code></pre>
-          <p>Next time, you can just run the default grunt task, to simply start browserSync</p>
-          <pre class="language-markup"><code>$ grunt</code></pre>
+          <p>Initialise Gulp, to rebuild the codebase for a clean start.</p>
+          <pre class="language-markup"><code>$ gulp init</code></pre>
+          <p>Next time, you can just run the default Gulp task, to simply start browserSync and Watch</p>
+          <pre class="language-markup"><code>$ gulp</code></pre>
         </article>
         <article>
           <h3>Directory structure</h3>
           <p>The project contains the source and destination folders, as well as necessary project files.</p>
           <pre class="language-markup"><code><!--
             assets/                    :  contains the source files for the project
-            ├── grunt/                 :  partial .js files that are used by the master Gruntfile to run tasks
-            ├── img/                   :  an empty directory for images, which will be minified by Grunt into dist/img
-            ├── js/                    :  when Grunt detects a change to any of these directories (new file, edit, remove), it will concatenate and minify javascript and reload your browser with browserSync
+            ├── img/                   :  an empty directory for images, which will be minified by Gulp into dist/img
+            ├── js/                    :  when Gulp detects a change to any of these directories (new file, edit, remove), it will concatenate and minify javascript and reload your browser with browserSync
             │   ├── project/              :  used for project specific js
-            │   ├── vendor/            :  used for vendor / third-party js. Often copied from node-modules with the Gruntfile task copy:npm
+            │   ├── vendor/            :  used for vendor / third-party js. Often copied from node-modules by Gulp
             ├── scss/
             │   ├── jellyfish/         :  contains all of the Jellyfish scss files. It is not recommended to edit any of the files within this directory
             │   ├── project/           :  add your project specific scss files here
             │   ├── compile.scss       :  compiles the scss files for processing into /dist/css
-            dist/                      :  contains the final css, images and javascript files within sub-directories. The files in this directory are all created by Grunt
+            dist/                      :  contains the final css, images and javascript files within sub-directories. The files in this directory are all created by Gulp
             docs/                      :  contains files only used by this documentation. Can be safely removed
             .editorconfig              :  keeps code indented to 2 spaces. Feel free to edit to your tastes
             .eslintrc                  :  rules for ES Javascript linting
             .gitignore                 :  a substantial gitignore file to ignore system files and node_modules
             boilerplate.html           :  starter HTML template
-            Gruntfile.js               :  compiles tasks from partials in the assets/grunt directory. Tasks are run to help make the dev process more efficient and enjoyable. The partials are well documented.
+            gulpfile.js                :  Task runner configuration
             index.html                 :  this file! Feel free to delete for your project - or rename and use it as a reference
             package.json               :  npm package information to initialise node_modules
               --></code>
@@ -136,52 +135,6 @@
             <li><a href="https://www.freecodecamp.org/news/managing-large-s-css-projects-using-the-inverted-triangle-architecture-3c03e4b1e6df/" rel="nofollow" target="_blank">The Inverted Triangle Architecture: how to manage large CSS Projects</a></li>
             <li><a href="https://medium.com/@jordankoschei/how-i-shrank-my-css-by-84kb-by-refactoring-with-itcss-2e8dafee123a" rel="nofollow" target="_blank">How I Shrank my CSS by 84kb by Refactoring with ITCSS</a></li>
             <li><a href="https://www.getchisel.co/docs/development/itcss/" rel="nofollow" target="_blank">Chisel: Guide to ITCSS</a></li>
-          </ul>
-        </article>
-        <article>
-          <h3>Grunt Tasks</h3>
-          <p class="standfirst">For the most part, as long as you follow the guidance above in terms of file hierarchy, you can let Grunt work it's magic without hassle.</p>
-          <p>You can amend the Gruntfile as your project dictates, to edit/remove/add tasks as appropriate from the huge variety available.</p>
-          <p>The <span class="file-ref">Gruntfile.js</span> and partials are well commented, here are a summary of the tasks included as default:</p>
-          <h4>Project init tasks</h4>
-          <ul>
-            <li>Copy files from node_modules and save into the project build directories:
-              <ul>
-                <li>jquery.js</li>
-                <li>hamburgers.scss</li>
-              </ul>
-            </li>
-            <li>Start watching files for changes.</li>
-            <li>Load up the project in a web browser.</li>
-          </ul>
-          <h4>Watch tasks</h4>
-          <ul>
-            <li><strong>SCSS:</strong> When any scss file within <span class="file-ref">/assets/scss</span> is changed, added or deleted:
-              <ul>
-                <li>@import all _scss partials saved in <span class="file-ref">/assets/scss/project</span> to <span class="file-ref">/assets/scss/project/_all.scss</span>.</li>
-                <li>Run SCSS compile on <span class="file-ref">/assets/scss/compile.scss</span> and output to <span class="file-ref">/dist/css/jellyfish.css</span>. This task will include Jellyfish core scss and your project's scss.</li>
-                <li>Run postcss; this task adds vendor prefixes, converts any px values to rem units based on a document default of 16px = 1rem, and minifies the file to <span class="file-ref">/dist/css/jellyfish.min.css</span>.</li>
-                <li>Reload the browser</li>
-              </ul>
-            </li>
-            <li><strong>Javascript: </strong> When any javascript file within <span class="file-ref">/assets/js</span> is changed, added or deleted:
-              <ul>
-                <li>Concatenate all javascript files saved in <span class="file-ref">/assets/js/vendor</span> and <span class="file-ref">/assets/js/project</span> and saves to <span class="file-ref">/dist/js/jellyfish.js</span></li>
-                <li>Minify <span class="file-ref">/dist/js/jellyfish.js</span> to <span class="file-ref">/dist/js/jellyfish.min.js</span></li>
-                <li>Reload the browser</li>
-              </ul>
-            </li>
-            <li><strong>Images: </strong> When any image file within <span class="file-ref">/assets/img</span> is changed, added or deleted:
-              <ul>
-                <li>Remove all existing images from <span class="file-ref">/dist/img</span></li>
-                <li>Optimise and compress all images in <span class="file-ref">/assets/img</span> and saves them to <span class="file-ref">/dist/img</span></li>
-                <li>Reload the browser</li>
-              </ul>
-            </li>
-            <li><strong>HTML/CSS: </strong> When any .html or .php file is edited:
-              <ul>
-                <li>Reload the browser</li>
-              </ul>
           </ul>
         </article>
       </section><!-- #how-to-use -->
@@ -990,7 +943,7 @@
             <li>Whether the nav drawer should be off canvas on smaller devices</li>
           </ul>
           <h4>Hamburger Menu Variables</h4>
-          <p>Jellyfish uses the fantastic <a href="https://jonsuh.com/hamburgers/">hamburgers css library</a> by Jonathan Suh. The code is imported from npm through <a href="#how-to-use">Grunt</a>.</p>
+          <p>Jellyfish uses the fantastic <a href="https://jonsuh.com/hamburgers/">hamburgers css library</a> by Jonathan Suh. The code is imported from npm through Gulp.</p>
           <p>Rather than including all animation options in the output css, Jellyfish has a variable <span class="variable-ref">$primary-hamburger-type</span> which is used to select only your specified hamburger animation for compile.</p>
           <p>Hamburger settings are all found in <span class="file-ref">/assets/scss/project/02-settings/07-hamburger.scss</span>.</p>
         </article>

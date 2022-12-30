@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "deprecated/": true,
+    "tests/": true
+  }
+}

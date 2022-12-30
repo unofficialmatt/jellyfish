@@ -14,7 +14,7 @@
 Jellyfish is yet another front-end design framework for developing responsive, browser-consistent web projects.
 Jellyfish has a few stings in it's tail:
 - [NPM](https://www.npmjs.com/) is used to manage packages
-- [Grunt.js](https://gruntjs.com/) is used to run tasks to make compile easier
+- [Gulp.js](https://gulpjs.com/) is used to run tasks to make compile easier
 - [Sass (SCSS)](https://sass-lang.com/) is used to compartmentalise components and organise css into digestible parts
 - [BrowserSync](https://www.browsersync.io/) opens up a new window in your default browser and live reloads whenever changes are detected to your project's javascript, css or HTML
 - Jellyfish is hugely customisable with a large settings file to quickly theme the base styles to your project. Jellyfish differs from most grid systems in that you can change the amount of columns in your grid and the breakpoint names - the logic built into sass will automatically compile the appropriate code
@@ -23,7 +23,7 @@ Jellyfish has a few stings in it's tail:
 
 ## Installation
 
-Make sure that you have npm, browsersync and grunt installed on your system following the guides on their respective websites. Then, clone the project into your required folder with git:
+Make sure that you have npm, browsersync and gulp installed on your system following the guides on their respective websites. Then, clone the project into your required folder with git:
 
 ```bash
 git clone https://github.com/unofficialmatt/jellyfish.git
@@ -39,7 +39,7 @@ npm install
 And start:
 
 ```bash
-grunt
+gulp
 ```
 
 Your project is now up and running, and you can begin extending the code to suit your project - and editing the variables in `/assets/scss/_settings.scss`.

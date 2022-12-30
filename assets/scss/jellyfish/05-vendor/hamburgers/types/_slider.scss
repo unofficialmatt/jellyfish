@@ -6,7 +6,7 @@
    */
   .hamburger--slider {
     .hamburger-inner {
-      top: $hamburger-layer-height * 0.5;
+      top: math.div($hamburger-layer-height, 2);
 
       &::before {
         top: $hamburger-layer-height + $hamburger-layer-spacing;

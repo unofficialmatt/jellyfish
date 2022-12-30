@@ -1,15 +1,14 @@
 ### Project ###
 
-# ignore node/grunt dependency directories
+# ignore packages
 node_modules/
 
 # ignore Git folder
 _.git/
 
-# ignore src folder
-src/
-deprecated/
+# ignore these dev folders
 tests/
+deprecated/
 TODO.md
 
 ### macOS ###
