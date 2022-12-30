@@ -42,7 +42,7 @@ And start:
 gulp
 ```
 
-Your project is now up and running, and you can begin extending the code to suit your project - and editing the variables in `/assets/scss/_settings.scss`.
+Your project is now up and running, and you can begin extending the code to suit your project - and editing the variables in `/src/scss/_settings.scss`.
 
 ## Do we really need another SCSS framework?
 

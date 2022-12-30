@@ -104,7 +104,7 @@
           <h3>Directory structure</h3>
           <p>The project contains the source and destination folders, as well as necessary project files.</p>
           <pre class="language-markup"><code><!--
-            assets/                    :  contains the source files for the project
+            src/                    :  contains the source files for the project
             ├── img/                   :  an empty directory for images, which will be minified by Gulp into dist/img
             ├── js/                    :  when Gulp detects a change to any of these directories (new file, edit, remove), it will concatenate and minify javascript and reload your browser with browserSync
             │   ├── project/              :  used for project specific js
@@ -202,7 +202,7 @@
         </h2>
         <article>
           <p class="standfirst">Jellyfish's grid system is built on <a href="https://flexboxfroggy.com/" rel="external">flexbox</a>.</p>
-          <p>The grid consists of containers (<span class="css-ref">.container</span>), rows (<span class="css-ref">.row</span>) and columns (<span class="css-ref">.col </span>). These elements are defined in <span class="file-ref">/assets/scss/jellyfish/components/_grid.scss</span>.</p>
+          <p>The grid consists of containers (<span class="css-ref">.container</span>), rows (<span class="css-ref">.row</span>) and columns (<span class="css-ref">.col </span>). These elements are defined in <span class="file-ref">/src/scss/jellyfish/components/_grid.scss</span>.</p>
         </article>
         <article>
           <h3>A basic 2 column grid</h3>
@@ -235,7 +235,7 @@
         </article>
         <article>
           <h3>Columns</h3>
-          <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable in <span class="file-ref">/assets/scss/project/02-settings/06-grid.scss</span>.</p>
+          <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable in <span class="file-ref">/src/scss/project/02-settings/06-grid.scss</span>.</p>
 
           <p>Columns are equal-width by default, and expand to fill all available width.</p>
           <pre class="language-markup"><code><!--
@@ -514,7 +514,7 @@
               <div class="boxed">sm-6 offset-sm-3 offset-md-2</div>
             </div>
           </div>
-          <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_offset</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/project/02-settings/06-grid.scss</span>.</p>
+          <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_offset</span> to <span class="bold">false</span> in <span class="file-ref">/src/scss/project/02-settings/06-grid.scss</span>.</p>
         </article>
         <article>
           <h3>Reordering Columns</h3>
@@ -554,7 +554,7 @@
               <div class="boxed">order-md-1</div>
             </div>
           </div>
-          <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_ordering</span> to <span class="bold">false</span> in <span class="file-ref">/assets/scss/project/02-settings/06-grid.scss</span>.</p>
+          <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$has_ordering</span> to <span class="bold">false</span> in <span class="file-ref">/src/scss/project/02-settings/06-grid.scss</span>.</p>
         </article>
         <article>
           <h3>Hiding Columns</h3>
@@ -652,7 +652,7 @@
         </article>
         <article>
           <h3>Variables</h3>
-          <p>Grid settings are defined in <span class="file-ref">/assets/scss/project/02-settings/06-grid.scss</span>.</p>
+          <p>Grid settings are defined in <span class="file-ref">/src/scss/project/02-settings/06-grid.scss</span>.</p>
         </article>
       </section><!-- #grid -->
       <section class="docs-section" id="navbar">
@@ -928,10 +928,10 @@
         </article>
         <article>
           <h3>Variables</h3>
-          <p>Jellyfish's navbar is fully customisable with the variables defined in <span class="file-ref">/assets/scss/project/02-settings/07--navbar.scss</span>. You can control:</p>
+          <p>Jellyfish's navbar is fully customisable with the variables defined in <span class="file-ref">/src/scss/project/02-settings/07--navbar.scss</span>. You can control:</p>
           <!-- TODO: Check these are all still relevant -->
           <ul>
-            <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <strong>Note:</strong> if you change this value from it's default you also need to change the value in <span class="file-ref">/assets/js/project/scripts.js</span>: <code>var navPoint = '900';</code></li>
+            <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <strong>Note:</strong> if you change this value from it's default you also need to change the value in <span class="file-ref">/src/js/project/scripts.js</span>: <code>var navPoint = '900';</code></li>
             <li>Background color and container padding</li>
             <li>Font size and text transform</li>
             <li>Link color, link background color, link weight - and hover states for all three</li>
@@ -945,7 +945,7 @@
           <h4>Hamburger Menu Variables</h4>
           <p>Jellyfish uses the fantastic <a href="https://jonsuh.com/hamburgers/">hamburgers css library</a> by Jonathan Suh. The code is imported from npm through Gulp.</p>
           <p>Rather than including all animation options in the output css, Jellyfish has a variable <span class="variable-ref">$primary-hamburger-type</span> which is used to select only your specified hamburger animation for compile.</p>
-          <p>Hamburger settings are all found in <span class="file-ref">/assets/scss/project/02-settings/07-hamburger.scss</span>.</p>
+          <p>Hamburger settings are all found in <span class="file-ref">/src/scss/project/02-settings/07-hamburger.scss</span>.</p>
         </article>
       </section><!-- #navbar -->
       <section class="docs-section" id="typography">
@@ -967,8 +967,8 @@
         <article>
           <!-- TODO: This will need re-writing -->
           <p class="standfirst">Jellyfish provides default styling for all standard typography tags.</p>
-          <p>Global font families, line height and size hierarchy are defined in <span class="file-ref">/assets/scss/project/02-settings/02-typography.scss</span>.</p>
-          <p>For easy spacing, Jellyfish removes the top margins and applies a bottom margin to block elements which can be defined with the <span class="variable-ref">$element-margin</span> in <span class="file-ref">/assets/scss/project/02-settings/02-typography.scss</span>. Text sizing is set with em, cascading from the root. You can use the <a href="#breakpoint-settings">grid breakpoint settings</a> to alter the root font size and line-height at different breakpoints.</p>
+          <p>Global font families, line height and size hierarchy are defined in <span class="file-ref">/src/scss/project/02-settings/02-typography.scss</span>.</p>
+          <p>For easy spacing, Jellyfish removes the top margins and applies a bottom margin to block elements which can be defined with the <span class="variable-ref">$element-margin</span> in <span class="file-ref">/src/scss/project/02-settings/02-typography.scss</span>. Text sizing is set with em, cascading from the root. You can use the <a href="#breakpoint-settings">grid breakpoint settings</a> to alter the root font size and line-height at different breakpoints.</p>
           <p>Jellyfish also sets box-sizing: border-box globally to make it easier to properly size elements.</p>
         </article>
         <article>
@@ -1210,7 +1210,7 @@ console.log("JellyFish is Awesome!");
               <label>_scaffolding.scss</label>
             </pre>
           <h4>Variables</h4>
-          <p>Link colors are defined in <span class="file-ref">/assets/scss/project/02-settings/03-anchor.scss</span>.</p>
+          <p>Link colors are defined in <span class="file-ref">/src/scss/project/02-settings/03-anchor.scss</span>.</p>
         </article>
         <article>
           <h3>Horizontal Rules <code>&lt;hr></code></h3>
@@ -1515,7 +1515,7 @@ console.log("JellyFish is Awesome!");
         </article>
         <article>
           <h3>Variables</h3>
-          <p>Button variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_07-button.scss</span>.</p>
+          <p>Button variables can be edited in <span class="file-ref">/src/scss/project/02-settings/_07-button.scss</span>.</p>
         </article>
       </section><!-- #buttons -->
       <section class="docs-section" id="forms">
@@ -1819,7 +1819,7 @@ console.log("JellyFish is Awesome!");
         </article>
         <article>
           <h3>Variables</h3>
-          <p>Form variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/04-forms.scss</span>.</p>
+          <p>Form variables can be edited in <span class="file-ref">/src/scss/project/02-settings/04-forms.scss</span>.</p>
         </article>
       </section><!-- #forms -->
       <section class="docs-section" id="progress">
@@ -2169,7 +2169,7 @@ console.log("JellyFish is Awesome!");
         </article>
         <article>
           <h3>Variables</h3>
-          <p>Table settings can be altered in <span class="file-ref">/assets/scss/project/02-settings/04-tables</span>.</p>
+          <p>Table settings can be altered in <span class="file-ref">/src/scss/project/02-settings/04-tables</span>.</p>
         </article>
       </section><!-- #tables -->
       <div class="docs-section" id="cards">
@@ -2388,7 +2388,7 @@ console.log("JellyFish is Awesome!");
         </article>
         <article>
           <h3>Variables</h3>
-          <p>Card variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_07-card.scss</span>.</p>
+          <p>Card variables can be edited in <span class="file-ref">/src/scss/project/02-settings/_07-card.scss</span>.</p>
         </article>
       </div><!-- /#card.docs-section -->
       <section class="docs-section" id="tags">
@@ -2571,7 +2571,7 @@ console.log("JellyFish is Awesome!");
         </article>
         <article>
           <h3>Variables</h3>
-          <p>Tag variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_07-tag.scss</span>.</p>
+          <p>Tag variables can be edited in <span class="file-ref">/src/scss/project/02-settings/_07-tag.scss</span>.</p>
         </article>
       </section><!-- /#tags.docs-section -->
       <section class="docs-section" id="callouts">
@@ -2693,7 +2693,7 @@ console.log("JellyFish is Awesome!");
         </article>
         <article>
           <h3>Variables</h3>
-          <p>Callout variables can be edited in <span class="file-ref">/assets/scss/project/02-settings/_07-callout.scss</span>.</p>
+          <p>Callout variables can be edited in <span class="file-ref">/src/scss/project/02-settings/_07-callout.scss</span>.</p>
         </article>
       </section><!-- /#callouts.docs-section -->
       <section class="docs-section" id="accessibility">
@@ -2729,7 +2729,7 @@ console.log("JellyFish is Awesome!");
           <h3>Base font-size</h3>
           <p>Add the class <span class="css-ref">.font-size-sm</span>, <span class="css-ref">.font-size-md</span> or <span class="css-ref">.font-size-lg</span> to the body element to change the base font size. This will allow visitors with limited eye sight to increase the size of type throughout the site.</p>
           <p>For a quick and easy way to implement this feature, you can add the code snippet below to your project.</p>
-          <p><strong>Note:</strong> this approach uses javascript to set a Cookie 'fontsize' to ensure that the setting is persistent across the site. For reference see <span class="file-ref">/assets/js/project/accessibility.js</span>.</p>
+          <p><strong>Note:</strong> this approach uses javascript to set a Cookie 'fontsize' to ensure that the setting is persistent across the site. For reference see <span class="file-ref">/src/js/project/accessibility.js</span>.</p>
           <pre class="language-markup">
             <code><!--
               <span class="screen-reader-text">Adjust font size:</span>
@@ -2743,13 +2743,13 @@ console.log("JellyFish is Awesome!");
           <button class="font-size font-size-md" title="Medium Font Size">A</button>
           <button class="font-size font-size-lg" title="Large Font Size">A</button>
           <h4>Font-size Variables</h4>
-          <p>Edit font-size settings and customise the button styles in <span class="file-ref">/assets/scss/project/02-settings/_accessibility.scss</span>.</p>
+          <p>Edit font-size settings and customise the button styles in <span class="file-ref">/src/scss/project/02-settings/_accessibility.scss</span>.</p>
         </article>
         <article>
           <h3>Dark UI / High Contrast Mode</h3>
           <p>Jellyfish has a simple dark UI / high-contrast mode which can be enabled by adding the class <span class="css-ref">.dark-ui</span> to the body element. It is important to note that this is not a stand-alone 'dark-style' theme but instead a way for the user to view the site with a higher contrast and with less 'design'. Dark UI mode forces all elements to have a dark background, turns all copy to a light color, and grayscales images to a configurable percentage.</p>
           <p>For a quick and easy way to implement this feature, you can add the code snippet below.</p>
-          <p><strong>Note:</strong> this approach uses javascript to set a Cookie 'ui-mode' to ensure that the setting is persistent across the site. For reference see <span class="file-ref">/assets/js/project/accessibility.js</span>.</p>
+          <p><strong>Note:</strong> this approach uses javascript to set a Cookie 'ui-mode' to ensure that the setting is persistent across the site. For reference see <span class="file-ref">/src/js/project/accessibility.js</span>.</p>
           <pre class="language-markup">
           <code><!--
             <span class="screen-reader-text">Toggle Contrast Mode:</span>
@@ -2769,7 +2769,7 @@ console.log("JellyFish is Awesome!");
             </svg>
           </button>
           <h4>Dark UI / High Contrast Variables</h4>
-          <p>Edit Dark UI / High Contrast mode settings in <span class="file-ref">/assets/scss/project/02-settings/_accessibility.scss</span>.</p>
+          <p>Edit Dark UI / High Contrast mode settings in <span class="file-ref">/src/scss/project/02-settings/_accessibility.scss</span>.</p>
         </article>
       </section><!-- #accessibility -->
       <section class="docs-section" id="utilities">
@@ -3595,7 +3595,7 @@ console.log("JellyFish is Awesome!");
           <div class="smooth-wild boxed">
             <p>This element has <code>smooth(background, transform, color)</code> applied to it. Hover to preview.</p>
           </div>
-          <p>You can adjust the transition in <span class="file-ref">/assets/scss/project/02-settings/08-transition.scss</span>.</p>
+          <p>You can adjust the transition in <span class="file-ref">/src/scss/project/02-settings/08-transition.scss</span>.</p>
         </article>
         <article>
           <h3>Media queries</h3>
@@ -3761,7 +3761,7 @@ console.log("JellyFish is Awesome!");
         </h2>
         <article>
           <p class="standfirst">Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints.</p>
-          <p>These are declared through the <span class="variable-ref">$breakpoints</span> map in <span class="file-ref">/assets/scss/project/02-settings/_breakpoints.scss</span>. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
+          <p>These are declared through the <span class="variable-ref">$breakpoints</span> map in <span class="file-ref">/src/scss/project/02-settings/_breakpoints.scss</span>. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
           <h3>Example breakpoint definition</h3>
           <pre>
             <code class="language-scss line-numbers">
@@ -3820,7 +3820,7 @@ console.log("JellyFish is Awesome!");
               </tr>
             </tbody>
           </table>
-          <p><strong>Note:</strong> You can also configure settings for the smallest devices (i.e. before any media queries are activated) by setting the following variables in <span class="file-ref">/assets/scss/project/02-settings/_breakpoints.scss</span>: <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$root-font-size</span>, <span class="variable-ref">$root-line-height</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></p>
+          <p><strong>Note:</strong> You can also configure settings for the smallest devices (i.e. before any media queries are activated) by setting the following variables in <span class="file-ref">/src/scss/project/02-settings/_breakpoints.scss</span>: <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$root-font-size</span>, <span class="variable-ref">$root-line-height</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></p>
         </article>
       </section><!-- #breakpoint-settings-->
       <section class="docs-section" id="configuration">
@@ -3829,8 +3829,8 @@ console.log("JellyFish is Awesome!");
         </h2>
         <article>
           <h3>Setting your styles</h3>
-          <p>It is recommend to not edit the files within <span class="file-ref">/assets/scss/jellyfish</span> but rather to add your project's scss into <span class="file-ref">/assets/scss/project</span>. In this way you can keep the core functionality separate from your project's codebase.</p>
-          <p>The files in <span class="file-ref">/assets/scss/project/02-settings</span> contain all of the variables used in Jellyfish, commented out. If you wish to override a default, you can simply uncomment and add your own values. You should add any new variables here to keep your project organised.</p>
+          <p>It is recommend to not edit the files within <span class="file-ref">/src/scss/jellyfish</span> but rather to add your project's scss into <span class="file-ref">/src/scss/project</span>. In this way you can keep the core functionality separate from your project's codebase.</p>
+          <p>The files in <span class="file-ref">/src/scss/project/02-settings</span> contain all of the variables used in Jellyfish, commented out. If you wish to override a default, you can simply uncomment and add your own values. You should add any new variables here to keep your project organised.</p>
         </article>
         <article>
           <h3>Working with Colors</h3>
@@ -3838,7 +3838,7 @@ console.log("JellyFish is Awesome!");
           <p>Jellyfish uses a <span class="variable-ref">$colors</span> SASS map wherein all project colors should be defined.</p>
           <p>The colors map consists of key value pairs; the value should make use of the <code>makeColorPalette()</code> function in order to automatically create a color palette with shades ranging from 50 to 1000.</p>
           <p>The <code>makeColorPalette()</code> takes two arguments; the first is a CSS color value (any format: hex, hsl, rgb etc) and the second is a boolean which defines whether Jellyfish should add the colors generated into the <span class="variable-ref">$background-colors</span> map</p>
-          <p>All default colors can be overridden in the project's theme <span class="file-ref">/assets/scss/project/02-settings/_02-colors.scss</span>.</p>
+          <p>All default colors can be overridden in the project's theme <span class="file-ref">/src/scss/project/02-settings/_02-colors.scss</span>.</p>
           <h5>Default colors</h5>
           <pre>
             <code class="language-scss line-numbers">
@@ -4013,7 +4013,7 @@ console.log("JellyFish is Awesome!");
         <p class="standfirst">Quickly see the layout of your grid and components.</p>
         <p>Jellyfish comes with a handy debug mode which allows you to quickly see the structure of the grid, and diagnose any layout issues. Debug mode can be enabled in three ways:</p>
         <ol>
-          <li>by setting <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="file-ref">/assets/scss/project/02-settings/06-grid.scss</span>.</li>
+          <li>by setting <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong> in <span class="file-ref">/src/scss/project/02-settings/06-grid.scss</span>.</li>
           <li>by adding the class <span class="css-ref">.jf-debug</span> to the body or html element - either within the code itself or through a browser's inspector.</li>
           <li>by running <code>jfdebug()</code> in the console.</li>
         </ol>
@@ -4022,7 +4022,7 @@ console.log("JellyFish is Awesome!");
           <li>The highest level <span class="css-ref">.row</span> element will have a striped background showing the base column layout.</li>
           <li><span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(245, 211, 0, .8);">glow in yellow</span></li>
           <li><span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(8, 247, 254, .7);">glow in turquoise</span></li>
-          <li>If <span class="variable-ref">$has_offset</span> or <span class="variable-ref">$has_ordering</span> are set to true in <span class="file-ref">/assets/scss/project/02-settings/06-grid.scss</span>, elements with a class <span class="css-ref">.offset-*</span> and <span class="css-ref">.order-*</span> will be <span style="outline: 2px solid #fe53BB">highlighted in pink</span></li>
+          <li>If <span class="variable-ref">$has_offset</span> or <span class="variable-ref">$has_ordering</span> are set to true in <span class="file-ref">/src/scss/project/02-settings/06-grid.scss</span>, elements with a class <span class="css-ref">.offset-*</span> and <span class="css-ref">.order-*</span> will be <span style="outline: 2px solid #fe53BB">highlighted in pink</span></li>
           <li>The current breakpoint name is shown in the top left corner of the window.</li>
         </ul>
         <p>Try it out - <a onclick="jfdebug()" style="cursor:pointer;">click here</a> to toggle debug mode on and off onto this page.</p>
@@ -4053,7 +4053,7 @@ console.log("JellyFish is Awesome!");
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
-    <script type="text/javascript" src="assets/js/breakpoints.js"></script>
+    <script type="text/javascript" src="src/js/breakpoints.js"></script>
     <script type="text/javascript" src="dist/js/jellyfish.min.js"></script>
     <!-- Highlight Code Syntax with Prism.js -->
     <script src="docs/prism.js"></script>

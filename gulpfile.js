@@ -13,7 +13,7 @@ const glob        = require('glob');
 
 // Sets options which are used later on in this file
 const opts = {
-  src_dir: './assets',
+  src_dir: './src',
   dist_dir: './dist',
   bannerText: '/**\n' +
   ' * <%= pkg.name %> v<%= pkg.version %>\n' +
