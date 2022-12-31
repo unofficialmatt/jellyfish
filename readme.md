@@ -5,7 +5,6 @@
 <p>
 <img src="https://img.shields.io/github/stars/unofficialmatt/jellyfish.svg?style=flat-square&logo=github"/>
 <img src="https://img.shields.io/github/issues/unofficialmatt/jellyfish.svg?style=flat-square&logo=github"/>
-<img src="https://img.shields.io/maintenance/yes/2020.svg?style=flat-square&logo=github"/>
 <img src="https://img.shields.io/github/commit-activity/y/unofficialmatt/jellyfish.svg?style=flat-square&logo=github"/>
 <img src="https://img.shields.io/github/last-commit/unofficialmatt/jellyfish.svg?style=flat-square&logo=github"/>
 <img src="https://img.shields.io/badge/license-MIT-yellow.svg?style=flat-square"/>

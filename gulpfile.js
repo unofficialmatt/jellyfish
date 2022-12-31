@@ -11,6 +11,15 @@ const fs          = require('fs');
 const path        = require('path');
 const glob        = require('glob');
 
+var eslint        = require('gulp-eslint');
+var uglify        = require('gulp-uglify');
+var concat        = require('gulp-concat');
+var sass          = require('gulp-sass')(require('sass'));
+var postcss       = require('gulp-postcss');
+var pxtorem       = require('postcss-pxtorem');
+var autoprefixer  = require('autoprefixer');
+var cssnano       = require('cssnano');
+
 // Sets options which are used later on in this file
 const opts = {
   src_dir: './src',
@@ -26,7 +35,7 @@ const opts = {
 };
 
 // Task to initialize browserSync client
-function browsersyncInit(cb){
+function browsersyncInit(done){
   browsersync.init({
     tunnel: "jellyfish-ui",
     open: "tunnel",
@@ -34,54 +43,53 @@ function browsersyncInit(cb){
       baseDir: './'
     }
   });
-  cb();
+  done();
 }
 
 // Task to manually reload browserSync
-function browsersyncReload(cb){
+function browsersyncReload(done){
   browsersync.reload();
-  cb();
+  done();
 }
 
 // Tasks which watch for changes in specified files/dirs and run tasks based on filetypes edited
-function watchTask(){
+function watchTask() {
+
   watch('*.html', browsersyncReload);
-  watch(opts.src_dir + '/js/**/*.js', javascriptTasks);
-  watch(opts.src_dir + '/scss/**/!(__all).scss', series(sassPartials,sassTasks));
+
+  watch(opts.src_dir + '/scss/**/!(__all).scss', series(sassAutomaticImports, sassProcess));
+
+  watch(opts.src_dir + '/js/**/*.js', javascriptProcess);
   watch('./gulpfile.js', series(
-    gulpfileTasks,
+    gulpfileLint,
     parallel(
-      series(sassPartials, sassTasks),
-      javascriptTasks
+      series(sassAutomaticImports, sassProcess),
+      javascriptProcess
     )
   ));
+
 }
 
 // Tasks which run when this file is edited (when watch is running)
-function gulpfileTasks() {
-  var eslint = require('gulp-eslint');
+function gulpfileLint() {
   return src('./gulpfile.js')
     .pipe(eslint())
     .pipe(eslint.format());
 }
 
 // Copy files from node modules
-function copyLibs(cb) {
+function copyLibs(done) {
 
   return src([
     'node_modules/hamburgers/_sass/hamburgers/**/*'
   ])
   .pipe(dest(opts.src_dir+'/scss/jellyfish/05-vendor/hamburgers/'));
 
-  cb();
+  done();
 }
 
 // Tasks which process the core javascript files
-function javascriptTasks() {
-
-  var eslint   = require('gulp-eslint');
-  var uglify   = require('gulp-uglify');
-  var concat   = require('gulp-concat');
+function javascriptProcess() {
 
   return src([
     opts.src_dir + '/js/**/*.js',
@@ -101,7 +109,7 @@ function javascriptTasks() {
 }
 
 // Recursive task which traverses a directory and it's subdirectories to compile an array of all sass partials
-const getSassPartials = function (dirPath, arrayOfFiles, relativeDir = '') {
+const getSassDirPartials = function (dirPath, arrayOfFiles, relativeDir = '') {
 
   files = fs.readdirSync(dirPath);
 
@@ -109,7 +117,7 @@ const getSassPartials = function (dirPath, arrayOfFiles, relativeDir = '') {
 
   files.forEach(function (file) {
     if (fs.statSync(dirPath + "/" + file).isDirectory()) {
-      arrayOfFiles = getSassPartials(dirPath + "/" + file, arrayOfFiles, path.join(relativeDir, file));
+      arrayOfFiles = getSassDirPartials(dirPath + "/" + file, arrayOfFiles, path.join(relativeDir, file));
     }
     else if (
       // Exclude the dynamically generated file
@@ -129,7 +137,7 @@ const getSassPartials = function (dirPath, arrayOfFiles, relativeDir = '') {
  * @see https://nateeagle.com/2014/05/22/sass-directory-imports-with-gulp/
  * @see https://coderrocketfuel.com/article/recursively-list-all-the-files-in-a-directory-using-node-js
  */
-function sassPartials(cb) {
+function sassAutomaticImports(done) {
 
   // Array of directories where the __all files exist
   var srcFiles = opts.src_dir + [
@@ -148,7 +156,7 @@ function sassPartials(cb) {
       var directory = path.dirname(allFile);
       try {
 
-        let partials = getSassPartials(directory);
+        let partials = getSassDirPartials(directory);
 
         // Append import statements for each partial
         partials.forEach(function (partial) {
@@ -163,17 +171,11 @@ function sassPartials(cb) {
 		});
 	});
 
-	cb();
+	done();
 };
 
 // Tasks which run on sass files
-function sassTasks () {
-
-  var sass          = require('gulp-sass')(require('sass'));
-  var postcss       = require('gulp-postcss');
-  var pxtorem       = require('postcss-pxtorem');
-  var autoprefixer  = require('autoprefixer');
-  var cssnano       = require('cssnano');
+function sassProcess () {
 
   var processors = [
     autoprefixer(),
@@ -206,10 +208,10 @@ const buildScripts = series(
   copyLibs,
   parallel(
   series(
-    sassPartials,
-    sassTasks
+    sassAutomaticImports,
+    sassProcess
   ),
-  javascriptTasks
+  javascriptProcess
   )
 );
 
