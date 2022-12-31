@@ -100,10 +100,10 @@ function javascriptProcess() {
     .pipe(eslint.format())
     .pipe(concat('jellyfish.min.js'))
     .pipe(uglify({ mangle: true }))
-    .pipe(sourcemaps.write('.'))
     .pipe(banner(opts.bannerText, {
       pkg: pkg
     }))
+    .pipe(sourcemaps.write('.'))
     .pipe(dest(opts.dist_dir + '/js'))
     .pipe(browsersync.reload({ stream: true }));
 }
@@ -195,10 +195,10 @@ function sassProcess () {
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(processors))
     .pipe(rename('jellyfish.min.css'))
-    .pipe(sourcemaps.write('.'))
     .pipe(banner(opts.bannerText, {
       pkg: pkg
     }))
+    .pipe(sourcemaps.write('.'))
     .pipe(dest(opts.dist_dir + '/css'))
     .pipe(browsersync.reload({ stream: true }));
 }
