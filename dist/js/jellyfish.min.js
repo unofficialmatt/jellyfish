@@ -1,5 +1,5 @@
 /**
- * jellyfish-ui v3.4.1
+ * jellyfish-ui v3.4.2
  * Jellyfish is a front end SCSS and JS framework for creating modern and performant websites. It has similar class names and components as Bootstrap, but without the bloat. Jellyfish also comes with some useful helpers in JS for common project requirements. Jellyfish uses gulp as a task runner, to help with build tasks.
  * https://unofficialmatt.github.io/jellyfish/
  *
