@@ -1,0 +1,209 @@
+// TODO: Move .container to be relative to it's parent https://css-tricks.com/next-gen-css-container/
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 $base-container-gutter;
+  .container {
+    width: 100%;
+    padding: 0;
+  }
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  // Add negative margin to all rows, equal to half the col gutter - keeps things neatly aligned
+  margin-left: calc(v(grid-gutter) * -0.5);
+  margin-right: calc(v(grid-gutter) * -0.5);
+}
+.col {
+  width: 100%;
+  position: relative;
+  // give our cols l-r margin equal to half col gutter
+  padding-left: calc(v(grid-gutter) * 0.5);
+  padding-right: calc(v(grid-gutter) * 0.5);
+}
+
+// Iterate for our smallest defined column class ($base-col-name)
+@for $i from 1 through ($cols) {
+  .col.#{$base-col-name}-#{$i} {
+    max-width: ($one_col * $i);
+    flex: 0
+      0
+      ($one_col * $i); // Define flex properties to fix the width of this col
+  }
+}
+
+$loop_count: 1;
+@each $point, $i in $breakpoints {
+  // for each breakpoint defined...
+  @include above($point) {
+    // if a breakpoint is found, set media query min-width
+    .container {
+      // give our container a width/max width, and padding to border content
+      width: map-deep-get($breakpoints, $point, "container-width");
+      max-width: map-deep-get($breakpoints, $point, "container-max-width");
+      padding-left: map-deep-get($breakpoints, $point, "container-gutter");
+      padding-right: map-deep-get($breakpoints, $point, "container-gutter");
+    }
+
+    .col {
+      @if $loop_count == 1 {
+        max-width: 100%;
+        // Ensures that if there are no breakpoint settings defined, columns fill available space on the row
+        flex: 1 1 0px;
+      }
+    }
+  }
+  $last: $point; // Store the current point to be used on the next loop
+  $loop_count: $loop_count + 1; // Increment loop count
+}
+
+// Modifiers
+.col.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: none;
+}
+
+// Remove column padding on collapsed rows
+.row.collapse {
+  margin-left: 0;
+  margin-right: 0;
+
+  & > .col {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+// Iterate for our smallest defined column class ($base-col-name)
+@for $i from 1 through ($cols) {
+  @if $grid-has-order {
+    .order-#{$base-col-name}-#{$i} {
+      order: $i;
+    }
+  }
+
+  @if $grid-has-offset {
+    $offset: 100% - ($one_col * $i);
+
+    .offset-#{$base-col-name}-#{$cols - $i} {
+      margin-left: $offset;
+    }
+  }
+}
+
+@each $point, $i in $breakpoints {
+  // for each breakpoint defined...
+  @include above($point) {
+    // Create Collapse classes
+    .row.collapse-#{$point} {
+      margin-left: 0;
+      margin-right: 0;
+
+      .col {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+    .row.nocollapse-#{$point} {
+      margin-left: calc(v(grid-gutter) * -0.5);
+      margin-right: calc(v(grid-gutter) * -0.5);
+      .col {
+        padding-left: calc(v(grid-gutter) * 0.5);
+        padding-right: calc(v(grid-gutter) * 0.5);
+      }
+    }
+
+    // Columns expand to size of content
+    .col.#{$point}-auto {
+      max-width: none;
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    // Column expands to remaining space in row
+    .col.#{$point}-0 {
+      max-width: 100%;
+      flex: 1 1 0;
+    }
+
+    @for $i from 1 through ($cols) {
+      .col.#{$point}-#{$i} {
+        max-width: ($one_col * $i);
+        flex: 0
+          0
+          (
+            $one_col * $i
+          ); // Define flex properties to fix the width of this col
+      }
+
+      @if $grid-has-order {
+        .order-#{$point}-#{$i} {
+          order: $i;
+        }
+
+        .order-#{$point}-0 {
+          order: unset;
+        }
+      }
+
+      @if $grid-has-offset {
+        $offset: 100% - ($one_col * $i);
+
+        .offset-#{$point}-#{$cols - $i} {
+          margin-left: $offset;
+        }
+      }
+    }
+  }
+
+  .jf-debug {
+    @if $grid-has-order {
+      [class*="order-#{$point}"] {
+        outline: 2px solid #fe53bb;
+      }
+
+      [class*="order-#{$point}-0"] {
+        outline: 0;
+      }
+    }
+
+    @if $grid-has-offset {
+      [class*="offset-#{$point}"] {
+        outline: 2px solid #fe53bb;
+      }
+
+      [class*="offset-#{$point}-0"] {
+        outline: 0;
+      }
+    }
+  }
+}
+.container.is-wide {
+  @include above(sm) {
+    width: 100%;
+    max-width: none;
+  }
+  @each $point, $i in $breakpoints {
+    // for each breakpoint defined...
+    @include above($point) {
+      $container-width: map-deep-get($breakpoints, $point, "container-width");
+      $container-gutter: map-deep-get($breakpoints, $point, "container-gutter");
+
+      // If container is 100% wide set the padding to half of the gutter
+      @if $container-width == 100% {
+        @if $container-gutter {
+          padding-left: h($container-gutter);
+          padding-right: h($container-gutter);
+        }
+      } @else {
+        $padding: calc(calc(100vw - #{$container-width}) / 4);
+        padding-left: $padding;
+        padding-right: $padding;
+      }
+    }
+  }
+}

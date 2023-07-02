@@ -1,0 +1,267 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "SCSS Mixins and Functions",
+"description": "Useful mixins and functions to help you reduce repetition.",
+})
+
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Mixins and Functions</h1>
+
+<div>
+  <h2 class="h3">Shorthand CSS properties</h2>
+  <p>Use the shorthand function <span class="code-ref">v($value)</span> to output a custom CSS property. You'll need to interpolate the function if using inside another CSS prop:</p>
+  <pre class="language-scss">
+    <code>
+      // Input:
+      .element {
+        --font-family: #{v(font-primary)};
+        font-family: v(font-primary);
+      }
+
+      // Output:
+      .element {
+        --font-family: var(--font-primary);
+        font-family: var(--font-primary);
+      }
+    </code>
+  </pre>
+</div>
+<div>
+  <h2 class="h3">Working with Colors</h2>
+  <h3 class="h4">makeColorPalette() function</h3>
+  <p>The <code class="code-ref">makeColorPalette($color, $gen-bg: "false")</code> function is used within the <span class="variable-ref">$colors</span> SCSS map to generate a harmonious color palette for each of your project's core colors. This function generates 12 colors of various tints and shades, around the provided base color. </p>
+  <p>The function takes two arguments; the first is a CSS color value (any valid format: hex, hsl, rgb) and the second is a boolean string "true" or "false" (default "false") which defines whether Jellyfish should automatically create <span class="css-ref">.bg-*</span> modifiers for each of the colors <a href="./theme-colors.html">(see Theme Colors)</a>.</p>
+  <div class="row collapse text-center mb">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-1000);">
+      <span>1000</span>
+    </div>
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-900);">
+      <span>900</span>
+    </div>
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-800);">
+      <span>800</span>
+    </div>
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-700);">
+      <span>700</span>
+    </div>
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-600);">
+      <span>600</span>
+    </div>
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-500);">
+      <span style="line-height:1.2 !important;display:block;">500<br>(base)</span>
+    </div>
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-400);">
+      <span>400</span>
+    </div>
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-background:var(--color-primary-300);">
+      <span>300</span>
+    </div>
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-background:var(--color-primary-200);">
+      <span>200</span>
+    </div>
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-background:var(--color-primary-100);">
+      <span>100</span>
+    </div>
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-background:var(--color-primary-50);">
+      <span>50</span>
+    </div>
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-background:var(--color-primary-25);">
+      <span>25</span>
+    </div>
+  </div>
+  <h3 class="h4">get-color() function</h3>
+  <p>The <code class="code-ref">get-color($base, $shade: 500)</code> function allows you to reference a color from the <span class="variable-ref">$colors</span> SCSS map, returning the custom CSS property for the color and shade.</p>
+  <pre class="language-scss">
+    <code>
+      // Input:
+      .element {
+        color: get-color(primary, 200);
+        background-color: get-color(neutral, 1000);
+        border-color: get-color(secondary);
+      }
+
+      // Output:
+      .element {
+        color: --var(--color-primary-200);
+        background-color: --var(--color-neutral-1000);
+        border-color: --var(--color-secondary-500);
+      }
+    </code>
+  </pre>
+  <h3 class="h4">get-color-raw() function</h3>
+  <p>The <code class="code-ref">get-color-raw($base, $shade: 500)</code> function allows you to reference a color from the <span class="variable-ref">$colors</span> SCSS map, returning the raw CSS value. This should only be used when you need to perform color-based functions such as calculating contrast.</p>
+  <pre class="language-scss">
+    <code>
+      // Input:
+      .element {
+        color: get-color(primary, 200);
+        background-color: get-color(neutral, 1000);
+        border-color: get-color(secondary);
+      }
+
+      // Output:
+      .element {
+        color: #ff9eba;
+        background-color: #232931;
+        border-color: #ffa0cd;
+      }
+    </code>
+  </pre>
+
+  <h3 class="h4">resolve-contrast-color() function</h3>
+  <p>The <code class="code-ref">resolve-contrast-color($color)</code> function takes one argument; the background color of an element, and returns the best color for text, based on the new <a href="https://git.apcacontrast.com" target="_blank">APCA contrast algorithm</a>. This function is used when generating all UI elements (buttons, backgrounds, chips)</p>
+  <p>Where possible, the function will return a custom CSS property rather than a CSS color value.</p>
+
+</div>
+
+
+<div>
+  <h2 class="h3">Working with Text</h2>
+  <h3 class="h4">font-size() function</h3>
+  <p>The <code class="code-ref">font-size($size)</code> function returns the provided size from the <span class="variable-ref">$type-scale</span> SCSS map.</p>
+  <pre class="language-scss">
+    <code>
+      // Input:
+      .element {
+        font-size: font-size(-1);
+      }
+      .element-2 {
+        font-size: font-size(6);
+      }
+
+      // Output:
+      .element {
+        font-size: 0.875em;
+      }
+      .element-2 {
+        font-size: 3em;
+      }
+
+    </code>
+  </pre>
+  <h3 class="h4">headings() function</h3>
+  <p>The <code class="code-ref">headings($from: 1, $to: 6)</code> function allows you to apply styles to h1-h6 tags with ease.</p>
+  <pre class="language-scss">
+    <code>
+      // Input:
+      #{headings()} {
+        font-size: 2em;
+      }
+      #{headings(3)} {
+        color: tomato;
+      }
+      #{headings(1,4)} {
+        text-decoration: underline;
+      }
+
+      // Output:
+      h1, h2, h3, h4, h5, h6 {
+        font-size: 2em;
+      }
+      h3, h4, h5, h6 {
+        color: tomato;
+      }
+      h1, h2, h3, h4 {
+        text-decoration: underline;
+      }
+
+    </code>
+  </pre>
+  <h3 class="h4">Replacing Text with an image</h3>
+  <p>Sometimes you might want to use text on a page for semantics or SEO, but display an image in place. You can do this with the mixin <span class="code-ref">text-replace</span> or the css class <span class="css-ref">.text-replace</span>. It's important to note that you need to give the element a fixed height and width to match your image in order for this to work correctly.</p>
+  <pre class="language-markup">
+        <code><!--
+        <h3 class="text-replace" style="background-image:url(/img/jellyfish-badge.svg);height:150px;width:138px;">Jellyfish UI</h3>
+      --></code>
+      </pre>
+  <h3 class="text-replace" style="background-image:url(/img/jellyfish-badge.svg);height:150px;width:138px;">Jellyfish UI</h3>
+</div>
+<div>
+  <h2 class="h3">Working with numbers</h2>
+  <h3 class="h4">get-size() function</h3>
+  <p>The <code class="code-ref">get-size($size)</code> function returns the provided size from the <span class="variable-ref">$sizing-system</span> SCSS map.</p>
+  <pre class="language-scss">
+    <code>
+      // Input:
+      .element {
+        width: get-size(0.25);
+        height: get-size(4);
+      }
+
+      // Output:
+      .element {
+        width: 0.25rem;
+        height: 4rem;
+      }
+
+    </code>
+  </pre>
+  <p>Jellyfish comes with a few simple functions for manipulating numbers.</p>
+  <pre class="language-scss">
+    <code>
+      // Input:
+      .some-element {
+        width: em(32px);        // 1. Convert a pixel value to an em value based on a docroot em sixe of 16px
+        height: h(100vh);       // 2. Half a given value
+        margin-left: n(20px);   // 3. Return the negative of a given value
+        margin-right: hn(30px); // 4. Return the negative, half of a given value
+        margin-top: nh(50px);   // 4. Return the negative, half of a given value
+      }
+
+      // Output:
+      .some-element {
+        width: 2em;             // 1. Convert a pixel value to an em value based on a docroot em sixe of 16px
+        height: 50vh;           // 2. Half a given value
+        margin-left: -20px;     // 3. Return the negative of a given value
+        margin-right: -15px;    // 4. Return the negative, half of a given value
+        margin-top: -25px;      // 4. Return the negative, half of a given value
+      }
+
+    </code>
+  </pre>
+</div>
+
+<div>
+  <h2 class="h3">Global smooth() transitions</h2>
+  <p>Use the mixin <code class="code-ref">@include smooth($properties...)</code> to apply global transitions for a consistent UI experience. The mixin accepts multiple arguments.</p>
+  <div class="boxed">
+    <p>Anchor tags have <code class="code-ref">smooth(color)</code> applied by default - <a href="#">hover here to preview</a>.</p>
+  </div>
+  <div class="smooth-transform boxed">
+    <p>This element has <code class="code-ref">smooth(transform)</code> applied to it. Hover to preview.</p>
+  </div>
+  <div class="smooth-background boxed">
+    <p>This element has <code class="code-ref">smooth(background)</code> applied to it. Hover to preview.</p>
+  </div>
+  <div class="smooth-wild boxed">
+    <p>This element has <code class="code-ref">smooth(background, transform, color)</code> applied to it. Hover to preview.</p>
+  </div>
+</div>
+
+<div>
+  <h2 class="h3">Working with Pseudo elements ::before and ::after</h2>
+  <p>Pseudo elements always need a few properties defined. The <span class="code-ref">pseudo($content: "", $display: block, $pos: absolute)</span> mixin accepts three arguments and has default fallbacks.</p>
+  <pre class="language-scss">
+    <code>
+      // Input
+      .some-element::before {
+        @include pseudo;
+      }
+      .some-other-element::before {
+        @include pseudo('> ','inline-block','relative')
+      }
+
+      // Output
+      .some-element::before {
+        content: '';
+        display: block;
+        position: absolute;
+      }
+      .some-other-element::before {
+        content: '> ';
+        display: inline-block;
+        position: relative;
+      }
+    </code>
+  </pre>
+</div>
+@@include('./src/docs/partials/html-footer.html')

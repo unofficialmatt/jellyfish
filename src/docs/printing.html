@@ -1,0 +1,34 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Printing",
+"description": "Helpful base styles for printing.",
+})
+
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Printing Jellyfish Projects</h1>
+<div>
+  <p class="standfirst">Jellyfish applies a few small tweaks to make projects more printer-friendly.</p>
+  <p>That said, the framework is by no means printer-optimised so caution should be taken if a project will rely heavily on the ability for users to print web pages.</p>
+</div>
+<div>
+  <h2 class="h3">Non-printing elements</h2>
+  <p>There are several ways of preventing certain elements from printing; by using a class <span class="css-ref">.do-not-print</span>, by @extending that class <code class="code-ref">@extend .do-not-print</code> or by using a mixin <code class="code-ref">@include do-not-print()</code>. Each of these options result in the compiled code of <code class="code-ref">display:none;</code> for <span class="bold">@media print</span>.</p>
+  <p>By default, the following elements will not print: <span class="css-ref">.navbar</span>, iframe.</p>
+  <pre class="language-scss"><code>
+    .element {
+      @extend do-not-print;
+    }
+    .element-2 {
+      @include do-not-print();
+    }
+    // Compiled output:
+    @media print {
+      .do-not-print, .element {
+        display: none; } }
+
+    @media print {
+      .element-2 {
+        display: none; } }
+  </code>
+  </pre>
+</div>
+@@include('./src/docs/partials/html-footer.html')

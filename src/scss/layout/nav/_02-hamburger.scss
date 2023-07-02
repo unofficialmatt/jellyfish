@@ -1,0 +1,61 @@
+@if ($generate-navbar) == true {
+  button.hamburger {
+    @include smooth(background-color, border, color);
+    @extend .hamburger--#{$primary-hamburger-type}; // extends class from hamburgers.scss to select specified animation
+    @include above($nav-expands) {
+      display: none; // Hide on larger screens
+    }
+    margin-left: auto; // Maybe needs to be on the left instead
+    background-color: $hamburger-bg-color;
+    border-radius: $hamburger-border-radius;
+    margin-top: $hamburger-margin-y;
+    margin-bottom: $hamburger-margin-y;
+    border: $hamburger-border;
+    color: $hamburger-color;
+    &.is-active {
+      color: $hamburger-active-layer-color;
+    }
+    &:focus {
+      outline: 0;
+      box-shadow: none !important;
+    }
+    &:hover,
+    &:focus {
+      background-color: $hamburger-hover-bg-color;
+      border: $hamburger-hover-border;
+      color: $hamburger-hover-color;
+    }
+    display: flex;
+    align-items: center;
+  }
+
+  .hamburger-label {
+    font-weight: $navbar-font-weight;
+    font-size: $navbar-font-size;
+    text-transform: uppercase;
+    margin: 0 get-size(0.75) 0 0;
+  }
+
+  // The actual hamburger
+  .hamburger-inner,
+  .hamburger-inner:after,
+  .hamburger-inner:before {
+    background-color: $hamburger-color;
+    .hamburger:hover &,
+    .hamburger:focus & {
+      background-color: $hamburger-hover-color;
+    }
+  }
+
+  @if $hamburger-position == "left" {
+    .hamburger {
+      order: 1;
+      margin-left: 0;
+      //margin-right: auto;
+    }
+    .navbar-brand .navbar-item {
+      order: 2;
+      //margin-left: auto;
+    }
+  }
+}

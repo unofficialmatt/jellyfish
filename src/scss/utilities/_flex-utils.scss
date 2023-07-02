@@ -1,0 +1,59 @@
+// Use on a .row to make all immediate child columns the same height
+.equal-height {
+  > .col {
+    display: flex !important;
+  }
+}
+// Converts anything into a flex container {
+.flex {
+  display: flex !important;
+}
+// Converts to flex and displays as a column
+.flex-column {
+  display: flex !important;
+  flex-direction: column !important;
+}
+// Flex Alignment Classes
+.align-top {
+  align-items: flex-start !important;
+}
+.align-middle {
+  align-items: center !important;
+}
+.align-bottom {
+  align-items: flex-end !important;
+}
+.align-baseline {
+  align-items: baseline !important;
+}
+.align-stretch {
+  align-items: stretch !important;
+}
+.align-self-top {
+  align-self: flex-start !important;
+}
+.align-self-middle {
+  align-self: center !important;
+}
+.align-self-bottom {
+  align-self: flex-end !important;
+}
+// Flex Justify Classes
+.justify-start {
+  justify-content: flex-start !important;
+}
+.justify-center {
+  justify-content: center !important;
+}
+.justify-end {
+  justify-content: flex-end !important;
+}
+.justify-around {
+  justify-content: space-around !important;
+}
+.justify-between {
+  justify-content: space-between !important;
+}
+.justify-evenly {
+  justify-content: space-evenly !important;
+}

@@ -1,0 +1,36 @@
+/**
+  * Breakpoints inherit upwards from the previous breakpoint.
+  * The keys are used in column and modifier classes.
+  * breakpoint and container-width are the only required values.
+  **/
+
+$breakpoints: () !default;
+$breakpoints: map-merge(
+  (
+    sm: (
+      breakpoint: 600px,
+      container-width: 100%,
+      container-gutter: get-size(4),
+      col-gutter: get-size(1.5),
+    ),
+    md: (
+      breakpoint: 900px,
+      container-width: 90%,
+      container-max-width: 1140px,
+      container-gutter: 0px,
+      root-font-size: 18px,
+      root-line-height: 1.6,
+      col-gutter: get-size(2),
+    ),
+    lg: (
+      breakpoint: 1200px,
+      container-width: 1140px,
+      container-max-width: none,
+    ),
+    xl: (
+      breakpoint: 1800px,
+      container-width: 1280px,
+    ),
+  ),
+  $breakpoints
+);

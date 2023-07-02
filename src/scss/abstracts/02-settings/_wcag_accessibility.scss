@@ -1,0 +1,14 @@
+$accessibility-focus-color: rgb(0, 140, 255) !default;
+$accessibility-focus-outline-width: 3px !default;
+$accessibility-focus-outline-offset: 2px !default;
+
+$force-color-contrast-ratio: true !default;
+
+$accessibility-button-font-weight: $weight-bold !default;
+$accessibility-button-color: get-color(neutral, 500) !default;
+$accessibility-button-hover-color: $link-active !default;
+$accessibility-button-active-color: inherit !default;
+
+$accessibility-button-border-bottom: 2px !default;
+$accessibility-button-hover-border-color: get-color(secondary) !default;
+$accessibility-button-active-border-color: get-color(primary) !default;

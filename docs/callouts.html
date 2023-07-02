@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Callouts ~ 🎐 Jellyfish UI</title>
+    <meta name="description" content="Provide information in a themed box, using color to indicate importance or context.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+    <link href="./prism.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+  </head>
+
+  <body>
+
+<div class="docs-container">
+  <div class="row">
+    <aside class="col xs-12 md-3">
+      <div class="sidebar">
+        <a href="../index.html" class="navbar-brand">
+          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+        </a>
+        <ul>
+          <li class="li-title mt-0">
+            HTML
+          </li>
+          <li>
+            <a href="./getting-started.html">Getting Started</a>
+          </li>
+          <li>
+            <a href="./grid.html">Grid</a>
+          </li>
+          <li>
+            <a href="./navbar.html">Navbar</a>
+          </li>
+          <li>
+            <a href="./typography.html">Typography</a>
+          </li>
+          <li>
+            <a href="./media.html">Images and Media</a>
+          </li>
+          <li>
+            <a href="./tables.html">Tables</a>
+          </li>
+          <li>
+            <a href="./forms.html">Forms</a>
+          </li>
+          <li>
+            <a href="./progress.html">Progress Bars</a>
+          </li>
+          <li>
+            <a href="./buttons.html">Buttons</a>
+          </li>
+          <li>
+            <a href="./chips.html">Chips</a>
+          </li>
+          <li>
+            <a href="./callouts.html">Callouts</a>
+          </li>
+          <li>
+            <a href="./cards.html">Cards</a>
+          </li>
+          <li class="li-title">
+            SCSS
+          </li>
+          <li>
+            <a href="./breakpoints.html">Breakpoints</a>
+          </li>
+          <li>
+            <a href="./mixins.html">Mixins</a>
+          </li>
+          <li>
+            <a href="./variables.html">Variables</a>
+          </li>
+          <li class="li-title">
+            Javascript
+          </li>
+          <li>
+            <a href="./javascript.html">Javascript Functions</a>
+          </li>
+          <li class="li-title">
+            Utilities
+          </li>
+          <li>
+            <a href="./theme-colors.html">Theme Colors</a>
+          </li>
+          <li>
+            <a href="./accessibility.html">Accessibility</a>
+          </li>
+          <li>
+            <a href="./printing.html">Printing</a>
+          </li>
+          <li>
+            <a href="./utilities.html">Utility Classes</a>
+          </li>
+          <li>
+            <a href="./debug.html">Debugging</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="col xs-12 md-9 content">
+      <section class="docs-section">
+<h1 class="section-heading h2">Callouts<a href="./variables.html#callouts">[ Variable Reference ]</a></h1>
+<div>
+  <p class="standfirst">A callout provides a simple way to draw attention to information. It is an element with the class <span class="css-ref">.callout</span> applied.</p>
+</div>
+<div>
+  <h2 class="h3">Basic Callout</h2>
+  <pre class="language-markup">
+    <code><!--
+    <aside class="callout" role="alert">
+      <h2 class="callout-heading">Important information!</h2>
+      <p>Jellyfish have no brain, heart, bones or eyes. They are made up of a smooth, bag-like body and tentacles armed with tiny, stinging cells.</p>
+      <a href="#">Cool - tell me more!</a>
+    </aside>
+  --></code>
+  </pre>
+  <aside class="callout" role="alert">
+    <h2 class="callout-heading">Important information!</h2>
+    <p>Jellyfish have no brain, heart, bones or eyes. They are made up of a smooth, bag-like body and tentacles armed with tiny, stinging cells. </p>
+    <a href="#">Cool - tell me more!</a>
+  </aside>
+</div>
+<div>
+  <h2 class="h3">Colors</h2>
+  <p>Provide more context to callouts by using the modifiers <span class="css-ref">.primary</span>, <span class="css-ref">.secondary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span> or <span class="css-ref">.error</span>.</p>
+  <pre class="language-markup">
+    <code><!--
+    <div class="callout primary"><h6 class="callout-heading">This is a primary call out</h6>...</div>
+    <div class="callout secondary"><h6 class="callout-heading">This is a secondary call out</h6>...</div>
+    <div class="callout success"><h6 class="callout-heading">This is a success call out</h6>...</div>
+    <div class="callout warning"><h6 class="callout-heading">This is a warning call out</h6>...</div>
+    <div class="callout error"><h6 class="callout-heading">This is an error call out</h6>...</div>
+  --></code>
+  </pre>
+  <div class="callout primary">
+    <h6 class="callout-heading">This is a primary call out</h6>
+    <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
+  </div>
+  <div class="callout secondary">
+    <h6 class="callout-heading">This is a secondary call out</h6>
+    <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
+  </div>
+  <div class="callout success">
+    <h6 class="callout-heading">This is a success call out</h6>
+    <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
+  </div>
+  <div class="callout warning">
+    <h6 class="callout-heading">This is a warning call out</h6>
+    <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
+  </div>
+  <div class="callout error">
+    <h6 class="callout-heading">This is an error call out</h6>
+    <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Callout links</h2>
+  <p>Use the class <span class="css-ref">.callout-link</span> to apply matching colouring to a link in a callout.</p>
+  <pre class="language-markup">
+    <code><!--
+    <div class="callout primary"><h6 class="callout-heading">This is a primary call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+    <div class="callout secondary"><h6 class="callout-heading">This is a secondary call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+    <div class="callout success"><h6 class="callout-heading">This is a success call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+    <div class="callout warning"><h6 class="callout-heading">This is a warning call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+    <div class="callout error"><h6 class="callout-heading">This is an error call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+  --></code>
+  </pre>
+  <div class="callout primary">
+    <h6 class="callout-heading">This is a primary call out</h6>This is a <a href="#" class="callout-link">very important link</a>
+  </div>
+  <div class="callout secondary">
+    <h6 class="callout-heading">This is a secondary call out</h6>This is a <a href="#" class="callout-link">very important link</a>
+  </div>
+  <div class="callout success">
+    <h6 class="callout-heading">This is a success call out</h6>This is a <a href="#" class="callout-link">very important link</a>
+  </div>
+  <div class="callout warning">
+    <h6 class="callout-heading">This is a warning call out</h6>This is a <a href="#" class="callout-link">very important link</a>
+  </div>
+  <div class="callout error">
+    <h6 class="callout-heading">This is an error call out</h6>This is a <a href="#" class="callout-link">very important link</a>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Create-your-own</h2>
+  <p>It's easy to create callouts with additional color schemes; simply add a new color to the <span class="variable-ref">$colors</span> SCSS map.</p>
+</div>
+</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stickybits/3.7.11/stickybits.min.js" integrity="sha512-ji6fCLZlHjqkE7xw3WorjIXDalqEPsRE5NRAbjl8WHB4AMhU3zk/t5Zt6O/buVEWHQ+2SVfTxqPXU3P6bmxL1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./prism.js"></script>
+<script type="text/javascript">
+  let navbarHeight = 0;
+  $(document).ready(function ($) {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+
+    let sidebarLinks = $('.sidebar a');
+    if (sidebarLinks.length > 0) {
+      sidebarLinks.each(function () {
+        let link = $(this).attr('href');
+        link = link.replace('./', '');
+        let currentPage = window.location.pathname.split('/').pop();
+        if (link == currentPage) {
+          $(this).addClass('is-active');
+        }
+
+      });
+    }
+  });
+  window.addEventListener('resize', () => {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+  });
+</script>
+</body>
+
+</html>

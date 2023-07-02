@@ -1,0 +1,205 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Cards",
+"description": "A simple element to display self-contained information such as a news post or call to action.",
+})
+
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Cards<a href="./variables.html#cards">[ Variable Reference ]</a></h1>
+<div>
+  <p class="standfirst">Most websites use cards in some form or another. A card can contain all sorts of content. Jellyfish provides a straightforward card component and a set of useful child styles.</p>
+  <p>A card container has no padding, allowing images to bleed to full-width if desired. The <span class="css-ref">.card-section</span> element is used when you want to add a padded section within a card. You can have multiple <span class="css-ref">.card-section</span> elements in a card; when they are stacked the top-padding is removed from subsequent sections.</p>
+  <p>Cards will take up 100% width of their parent container, however this can of course be manually overridden as shown below.</p>
+</div>
+<div>
+  <h2 class="h3">A basic card</h2>
+  <pre class="language-markup">
+    <code><!--
+      <div class="card" style="max-width: 280px">
+        <img class="card-image" src="http://placekitten.com/300/180">
+        <div class="card-section">
+          <h3>Kittens are cute</h3>
+          <p>But Jellyfish are still better!</p>
+          <a href="#" class="button secondary small">Whatever!</a>
+        </div>
+        <div class="card-section">
+          <p class="small">(Maybe they are both just as awesome)</p>
+        </div>
+      </div>
+  --></code>
+  </pre>
+  <div class="card" style="max-width: 280px">
+    <img class="card-image" src="http://placekitten.com/300/180">
+    <div class="card-section">
+      <h3>Kittens are cute</h3>
+      <p>But Jellyfish are still better!</p>
+      <a href="#" class="button secondary small">Whatever!</a>
+    </div>
+    <div class="card-section">
+      <p class="small">(Maybe they are both just as awesome)</p>
+    </div>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Card Images</h2>
+  <p>An element with the class <span class="css-ref">.card-image</span> will expand to 100% width of it's parent. Card images can be used outside of the <span class="css-ref">.card-section</span> to bleed to the edges, or inside the <span class="css-ref">.card-section</span> to have padding.</p>
+  <pre class="language-markup">
+    <code><!--
+      <div class="card">
+        <img class="card-image" src="http://placekitten.com/300/170">
+        <div class="card-section">
+          <p>This card has an image outside of the <span class="css-ref">.card-section</span> element.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-section">
+          <img class="card-image" src="http://placekitten.com/300/200">
+          <p>This card has an image within the <span class="css-ref">.card-section</span> element.</p>
+        </div>
+      </div>
+  --></code>
+  </pre>
+  <div class="row">
+    <div class="col sm-6 lg-4">
+      <div class="card">
+        <img class="card-image" src="http://placekitten.com/300/170">
+        <div class="card-section">
+          <p>This card has an image outside of the <span class="css-ref">.card-section</span> element.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col sm-6 lg-4">
+      <div class="card">
+        <div class="card-section">
+          <img class="card-image" src="http://placekitten.com/300/200">
+          <p>This card has an image within the <span class="css-ref">.card-section</span> element.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Same-height cards</h2>
+  <p>If you are using cards within a <span class="css-ref">.row</span> and <span class="css-ref">.col</span> structure, you can append the <span class="css-ref">.equal-height</span> class to the <span class="css-ref">.row</span> to force all cards in the row to be 100% height, regardless of their content.</p>
+  <pre class="language-markup">
+  <code><!--
+  <div class="row equal-height">
+    <div class="col">
+      <div class="card">
+        ...
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        This card has more content in it...
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        ...
+      </div>
+    </div>
+  </div>
+--></code>
+</pre>
+  <div class="row equal-height">
+    <div class="col">
+      <div class="card">
+        <img class="card-image" src="http://placekitten.com/300/180">
+        <div class="card-section">
+          <h4>My Awesome Card</h4>
+          <p>This card has just a small amount of text.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <img class="card-image" src="http://placekitten.com/300/180">
+        <div class="card-section">
+          <h4>My Awesome Card</h4>
+          <p>This card has just a a lot of text. I am going to write a few sentences of gibberish so that the height of this card grows. This will force other cards in the same row to expand to 100% height. You'll see the effect on the card border.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <img class="card-image" src="http://placekitten.com/300/180">
+        <div class="card-section">
+          <h4>My Awesome Card</h4>
+          <p>This card has just a small amount of text.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Pushing content to the bottom of a card</h2>
+  <p>If you have a row of same-height cards, you might want to push content to the bottom of the card, for example a call-to-action. Simply put this content into a <span class="css-ref">.card-section</span> with the additional class <span class="css-ref">.card-footer</span>.</p>
+  <pre class="language-markup">
+  <code><!--
+  <div class="row equal-height">
+    <div class="col">
+      <div class="card">
+        <img class="card-image" src="http://placekitten.com/300/180">
+        <div class="card-section">
+          <h4>My Awesome Card</h4>
+          <p>This card has just a small amount of text.</p>
+        </div>
+        <footer class="card-section card-footer">
+          <a href="#" class="button small secondary">Awesome!</a>
+        </footer>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        ...
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        ...
+      </div>
+    </div>
+  </div>
+--></code>
+</pre>
+  <div class="row equal-height">
+    <div class="col">
+      <div class="card">
+        <img class="card-image" src="http://placekitten.com/300/180">
+        <div class="card-section">
+          <h4>My Awesome Card</h4>
+          <p>This card has just a small amount of text.</p>
+        </div>
+        <footer class="card-section card-footer">
+          <a href="#" class="button small secondary">Awesome!</a>
+        </footer>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <img class="card-image" src="http://placekitten.com/300/180">
+        <div class="card-section">
+          <h4>My Awesome Card</h4>
+          <p>This card has just a a lot of text. I am going to write a few sentences of gibberish so that the height of this card grows. This will force other cards in the same row to expand to 100% height. You'll see the effect on the card border.</p>
+        </div>
+        <footer class="card-section card-footer">
+          <a href="#" class="button small secondary">Awesome!</a>
+        </footer>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <img class="card-image" src="http://placekitten.com/300/180">
+        <div class="card-section">
+          <h4>My Awesome Card</h4>
+          <p>This card has just a small amount of text.</p>
+        </div>
+        <footer class="card-section card-footer">
+          <a href="#" class="button small secondary">Awesome!</a>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+@@include('./src/docs/partials/html-footer.html')

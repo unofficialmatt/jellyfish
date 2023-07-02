@@ -1,0 +1,112 @@
+@if $generate-chips == true {
+  .chip {
+    --chip-color-theme: #{v(color-neutral-50)};
+    --chip-color-text: #{resolve-contrast-color(get-color-raw(neutral, 50))};
+    padding: $chip-padding;
+    display: inline-flex;
+    vertical-align: baseline;
+    align-items: center;
+    line-height: 1;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    user-select: none;
+    font: {
+      size: $chip-font-size;
+      weight: $chip-font-weight;
+    }
+    color: v(chip-color-text);
+    background-color: v(chip-color-theme);
+    border: {
+      color: v(chip-color-theme);
+      radius: $chip-border-radius;
+      width: $chip-border-width;
+      style: solid;
+    }
+
+    @each $key, $map in $colors {
+      &.#{$key} {
+        @include createChip($key);
+      }
+    }
+    &.white {
+      --chip-color-theme: #{v(color-white)};
+      --chip-color-text: #{v(color-text)};
+    }
+    &.outline {
+      --chip-color-text: inherit;
+      background: transparent;
+      border-style: $chip-border-style;
+    }
+
+    h1 &,
+    h2 &,
+    h3 &,
+    h4 &,
+    h5 &,
+    h6 &,
+    p & {
+      font-size: 0.6em;
+      top: -0.2em;
+    }
+
+    .chip {
+      // Nested chip
+      margin-left: get-size(0.5);
+      top: 0;
+    }
+  }
+
+  .chip-list {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    .chip,
+    .chip-group {
+      margin-bottom: get-size(0.5);
+      &:not(:last-child) {
+        margin-right: get-size(0.5);
+      }
+    }
+    &:last-child {
+      margin-bottom: n(get-size(0.5)); // Reset margin
+    }
+    .chip-group {
+      .chip {
+        margin: 0;
+      }
+    }
+    h1 &,
+    h2 &,
+    h3 &,
+    h4 &,
+    h5 &,
+    h6 &,
+    p & {
+      display: inline-flex;
+      .chip,
+      .chip-group {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .chip-group {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    .chip {
+      margin-left: 0;
+    }
+    .chip:not(:last-of-type) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .chip:not(:first-of-type) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}

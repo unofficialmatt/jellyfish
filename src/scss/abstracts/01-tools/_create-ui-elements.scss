@@ -1,0 +1,81 @@
+@mixin createButton($color) {
+  @if map-has-key($colors, $color) {
+    // We don't need to run this if the color is the same as the base color
+    @if $button-base-color != $color {
+      $resolved-color: resolve-contrast-color(get-color-raw($color));
+      $button-color-unmod: resolve-contrast-color(
+        get-color-raw($button-base-color)
+      );
+
+      --button-color-theme: #{v(color-#{$color}-500)};
+      // Save some output CSS by only setting the color variable if it's different from the base color
+      @if ($resolved-color != $button-color-unmod) {
+        --button-color-text: #{$resolved-color};
+      }
+
+      @if $button-hover-value != 500 {
+        $hover-color: resolve-contrast-color(
+          get-color-raw($color, $button-hover-value)
+        );
+        $hover-color-unmod: resolve-contrast-color(
+          get-color-raw($button-base-color, $button-hover-value)
+        );
+        --button-hover-color-theme: #{v(
+            color-#{$color}-#{$button-hover-value}
+          )};
+
+        // Save some output CSS by only setting the color variable if it's different from the base color
+        @if ($hover-color != $hover-color-unmod) {
+          --button-hover-color-text: #{$hover-color};
+        }
+      }
+
+      &.ghost {
+        @if $button-hover-value != 500 {
+          --button-hover-color-text: #{v(
+              color-#{$color}-#{$button-hover-value}
+            )};
+        }
+      }
+    }
+  } @else {
+    @warn "#{$color} was not found in the $colors map. Cannot create a button. Aborting.";
+  }
+}
+
+@mixin createChip($color) {
+  // If passed string exists in the $colors map, get the value for the tag-color
+  @if map-has-key($colors, $color) {
+    $chip-color-unmod: resolve-contrast-color(get-color-raw(neutral, 100));
+    $resolved-color: resolve-contrast-color(get-color-raw($color));
+
+    --chip-color-theme: #{v(color-#{$color}-500)};
+    @if ($resolved-color != $chip-color-unmod) {
+      --chip-color-text: #{$resolved-color};
+    }
+  } @else {
+    @warn "#{$color} was not found in the $colors map. Cannot create a chip. Aborting.";
+  }
+}
+
+@mixin createProgressBar($color) {
+  // If passed string exists in the $colors map, get the value for the bar-color
+  @if map-has-key($colors, $color) {
+    --progress-bar-color: #{v(color-#{$color}-500)};
+    --progress-bar-color-unknown: #{v(color-#{$color}-100)};
+  } @else {
+    @warn "#{$color} was not found in the $colors map. Cannot create a progress bar. Aborting.";
+  }
+}
+
+@mixin createCallout($color) {
+  @if map-has-key($colors, $color) {
+    --callout-bg-color: #{v(color-#{$color}-25)};
+    --callout-border-color: #{v(color-#{$color}-200)};
+    --callout-link-color: #{v(color-#{$color}-700)};
+    --callout-link-color-hover: #{v(color-#{$color}-900)};
+    --callout-heading-color: #{v(color-#{$color}-800)};
+  } @else {
+    @warn "#{$color} was not found in the $colors map. Cannot create a callout. Aborting.";
+  }
+}

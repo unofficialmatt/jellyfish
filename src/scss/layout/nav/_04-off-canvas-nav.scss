@@ -1,0 +1,68 @@
+@if ($generate-navbar) == true {
+  @include below($nav-expands) {
+    .navbar-menu.is-off-canvas {
+      position: fixed;
+      z-index: 50000;
+      top: 0;
+      height: 100vh; // TODO: Make this dynamic vh
+      height: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start !important;
+      width: $navbar-offcanvas-width;
+      max-width: $navbar-offcanvas-maxwidth;
+      background: $navbar-offcanvas-bg-color;
+      @if ($navbar-offcanvas-position == "right") {
+        transform: translateX(100%);
+        right: 0;
+      } @else {
+        transform: translateX(-100%);
+        left: 0;
+      }
+      &.closing,
+      &.is-active {
+        transition: transform $navbar-offcanvas-transition-speed
+          cubic-bezier(0.07, 0.23, 0.34, 1);
+      }
+      &.is-active {
+        transform: translateX(0);
+      }
+    }
+    .navbar-start,
+    .navbar-end {
+      overflow: auto;
+    }
+    .navbar-start + .navbar-end {
+      margin-top: auto;
+      overflow: hidden;
+    }
+  }
+  .navbar-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .hamburger {
+      margin-left: auto;
+    }
+    @include above($nav-expands) {
+      display: none !important;
+    }
+  }
+
+  @include below($nav-expands) {
+    body.has-active-nav {
+      overflow: hidden;
+      &::before {
+        @include pseudo("", block, fixed);
+        background: $navbar-offcanvas-body-overlay;
+        z-index: 49999;
+        height: 100vh;
+        height: -webkit-fill-available;
+        width: 100vw;
+      }
+      .navbar-brand {
+        padding-right: $navbar-link-padding-x;
+      }
+    }
+  }
+}

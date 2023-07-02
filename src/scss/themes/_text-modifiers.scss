@@ -1,0 +1,6 @@
+// FIXME to use CSS prop
+@each $key, $map in $colors {
+  .text-#{$key} {
+    color: get-color($key) !important;
+  }
+}

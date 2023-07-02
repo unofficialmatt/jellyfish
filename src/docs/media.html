@@ -1,0 +1,79 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Images and Media",
+"description": "Displaying images and responsively embedding media in your project.",
+})
+
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Images and Media</h1>
+<div>
+  <h2 class="h3">Images <span class="chip">&lt;img></span></h2>
+  <p>All img elements have height and width set to auto, and max-width set to 100%. This prevents images from breaking out of their containers, and also allows width/height to scale as appropriate when a more specific dimension is defined.</p>
+  <div style="width:900px;max-width:60%;" class="boxed">
+    <p class="bold">This image can't break out of it's container even if it wanted to!</p>
+    <img src="https://unsplash.it/700/300">
+  </div>
+  <h3 class="h4">Floating images</h3>
+  <p>Images can be floated by applying utility classes. Additional styling automatically applies margins to create white space when images are floated alongside text.</p>
+  <pre class="language-markup line-numbers"><code><!--
+    <p><img src="https://unsplash.it/200/100" class="align-none">...text...</p>
+    <p><img src="https://unsplash.it/200/100" class="align-left">...text...</p>
+    <p><img src="https://unsplash.it/200/100" class="align-right">...text...</p>
+    <p><img src="https://unsplash.it/200/100" class="align-center">...text...</p>
+      --></code>
+    </pre>
+  <p><img src="https://unsplash.it/200/100" class="align-none"><span class="bold">align-none</span><br>Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+  <p><img src="https://unsplash.it/200/100" class="align-left"><span class="bold">align-left</span><br>Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+  <p><img src="https://unsplash.it/200/100" class="align-right"><span class="bold">align-right</span><br>Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+  <p><img src="https://unsplash.it/200/100" class="align-center"><span class="bold">align-center</span><br>Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+</div>
+
+<div>
+  <h2 class="h3">Responsive Embeds</h2>
+  <p>Wrap an iFrame in a container with class <span class="css-ref">.embed-container</span> to ensure the iFrame is responsively resized.</p>
+  <p>Use modifiers to account for different aspect ratios. <span class="strong">Note: these modifiers can be used on any element - not just embed-containers.</span></p>
+  <pre class="language-markup">
+    <code><!--
+    <div class="embed-container">
+      <iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow"></iframe>
+    </div>
+    <div class="embed-container ratio-16x9">
+      ...
+    </div>
+    <div class="embed-container ratio-21x9">
+      ...
+    </div>
+    <div class="embed-container ratio-1x1">
+      ...
+    </div>
+    <div class="ratio-4x3">
+      Hello world!
+    </div>
+  --></code>
+  </pre>
+  <div class="embed-container">
+    <iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="row">
+    <div class="col sm-10 md-9 lg-7">
+      <div class="embed-container ratio-16x9">
+        <iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="col sm-10 md-9 lg-7">
+      <div class="embed-container ratio-21x9">
+        <iframe src="https://www.youtube.com/embed/1jdknVf5mxw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="col sm-10 md-9 lg-7">
+      <div class="embed-container ratio-1x1">
+        <iframe src="https://player.vimeo.com/video/170780266?h=2912c26a2d" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="col sm-10 md-9 lg-7">
+      <div class="boxed ratio-4x3">
+        Hello world!
+      </div>
+    </div>
+  </div>
+</div>
+@@include('./src/docs/partials/html-footer.html')

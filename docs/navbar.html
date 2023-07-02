@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Navbar ~ 🎐 Jellyfish UI</title>
+    <meta name="description" content="A flexible and responsive navbar component">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+    <link href="./prism.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+  </head>
+
+  <body>
+
+<div class="docs-container">
+  <div class="row">
+    <aside class="col xs-12 md-3">
+      <div class="sidebar">
+        <a href="../index.html" class="navbar-brand">
+          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+        </a>
+        <ul>
+          <li class="li-title mt-0">
+            HTML
+          </li>
+          <li>
+            <a href="./getting-started.html">Getting Started</a>
+          </li>
+          <li>
+            <a href="./grid.html">Grid</a>
+          </li>
+          <li>
+            <a href="./navbar.html">Navbar</a>
+          </li>
+          <li>
+            <a href="./typography.html">Typography</a>
+          </li>
+          <li>
+            <a href="./media.html">Images and Media</a>
+          </li>
+          <li>
+            <a href="./tables.html">Tables</a>
+          </li>
+          <li>
+            <a href="./forms.html">Forms</a>
+          </li>
+          <li>
+            <a href="./progress.html">Progress Bars</a>
+          </li>
+          <li>
+            <a href="./buttons.html">Buttons</a>
+          </li>
+          <li>
+            <a href="./chips.html">Chips</a>
+          </li>
+          <li>
+            <a href="./callouts.html">Callouts</a>
+          </li>
+          <li>
+            <a href="./cards.html">Cards</a>
+          </li>
+          <li class="li-title">
+            SCSS
+          </li>
+          <li>
+            <a href="./breakpoints.html">Breakpoints</a>
+          </li>
+          <li>
+            <a href="./mixins.html">Mixins</a>
+          </li>
+          <li>
+            <a href="./variables.html">Variables</a>
+          </li>
+          <li class="li-title">
+            Javascript
+          </li>
+          <li>
+            <a href="./javascript.html">Javascript Functions</a>
+          </li>
+          <li class="li-title">
+            Utilities
+          </li>
+          <li>
+            <a href="./theme-colors.html">Theme Colors</a>
+          </li>
+          <li>
+            <a href="./accessibility.html">Accessibility</a>
+          </li>
+          <li>
+            <a href="./printing.html">Printing</a>
+          </li>
+          <li>
+            <a href="./utilities.html">Utility Classes</a>
+          </li>
+          <li>
+            <a href="./debug.html">Debugging</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="col xs-12 md-9 content">
+      <section class="docs-section">
+<h1 class="section-heading h2">Navbar<a href="./variables.html#navbar">[ Variable Reference ]</a></h1>
+
+<div>
+  <p class="standfirst">Jellyfish comes with a responsive and versatile horizontal navigation bar, <span class="css-ref">.navbar</span>, that has the following structure:</p>
+  <ul>
+    <li><span class="css-ref">.navbar</span> - the main navbar wrapper
+      <ul>
+        <li><span class="css-ref">.container</span> - keeps the navbar elements contained
+          <ul>
+            <li><span class="css-ref">.navbar-brand</span> - an area on the left side of the navigation, which is <em>always visible</em>. This can contain the website's logo, key links, icons etc. It also contains the hamburger icon.
+              <ul>
+                <li><span class="css-ref">.hamburger</span> - a button which when clicked expands the <span class="css-ref">.navbar-menu</span> on smaller devices
+                  <ul>
+                    <li><span class="css-ref">.hamburger-label</span> - <em>optional</em> element to add a label to the button</li>
+                    <li><span class="css-ref">.hamburger-box</span> - the hamburger icon itself</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><span class="css-ref">.navbar-menu</span> - the primary navigation menu which appears on the right side of the navbar on larger devices, and is <em>hidden by default</em> on smaller screens
+              <ul>
+                <li><span class="css-ref">.navbar-start</span> the <em>left part</em> of the menu, which appears next to the navbar brand on larger screens. This wrapper is <em>optional</em>
+                  <ul>
+                    <li><span class="css-ref">&lt;ul></span> - any ul elements contained in <span class="css-ref">.navbar-menu</span> will be assumed to be your website's navigation</li>
+                  </ul>
+                </li>
+                <li><span class="css-ref">.navbar-end</span> the <em>right part</em> of the menu, which appears at the end of the navbar. This wrapper is <em>optional</em></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><span class="css-ref">.navbar-item</span> - an item that is displayed in the navbar. It can be an <code class="code-ref">a</code>, <code class="code-ref">p</code>, <code class="code-ref">span</code> or <code class="code-ref">div</code>. Using this class ensures that the item is centered vertically and uses display:flex</li>
+  </ul>
+  <p>The navbar has a few additional classes to aid with the user interface:</p>
+  <ul>
+    <li><span class="css-ref">.current-page</span> - the current page item, appears with a modified style</li>
+    <li><span class="css-ref">.has-children</span> - used to denote that a parent item has children (submenu)</li>
+    <li><span class="css-ref">.hide-above-nav</span> - used to hide elements on larger screens (takes effect above the breakpoint <span class="variable-ref">$nav-expands</span>)</li>
+    <li><span class="css-ref">.hide-below-nav</span> - used to hide elements on smaller screens (takes effect below the breakpoint <span class="variable-ref">$nav-expands</span>)</li>
+  </ul>
+  <p>Jellyfish is dependent on jQuery <em>(...yes, I know!)</em> to expand and show the <span class="css-ref">.navbar-menu</span> on smaller devices.</p>
+</div>
+<div>
+  <h2 class="h3">Basic Navbar</h2>
+  <pre class="language-markup line-numbers">
+    <code><!--
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <a class="img-link navbar-item" href="#"><img src="/img/favicon.png" alt="Jellyfish Logo" style="width:40px"></a>
+            <span class="navbar-item"><a href="#" class="hide-above-nav">Mobile Link</a></span>
+            <span class="navbar-item"><a href="#" class="hide-above-nav">Mobile Link</a></span>
+            <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
+              <span class="hamburger-label">Menu</span>
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+            </button>
+          </div>
+          <div id="navbar-menu" class="navbar-menu">
+            <div class="navbar-start">
+              <ul>
+                <li class="current-page"><a href="#">Current Page</a></li>
+                <li class="has-children"><a href="#">Has Children</a>
+                  <ul>
+                    <li class="has-children"><a href="#">Has Children</a>
+                      <ul>
+                        <li><a href="#">Menu Item</a></li>
+                        <li><a href="#">Menu Item</a></li>
+                        <li><a href="#">Menu Item</a></li>
+                        <li><a href="#">Menu Item</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-children"><a href="#">Has Children</a>
+                      <ul>
+                        <li><a href="#">Menu Item</a></li>
+                        <li><a href="#">Menu Item</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="#">Menu Item</a></li>
+              </ul>
+            </div>
+            <div class="navbar-end">
+              <input class="navbar-item" type="text" placeholder="Search....">
+              <a href="#" class="button small white navbar-item">Button</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    --></code>
+  </pre>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="img-link navbar-item" href="#"><img src="/img/favicon.png" alt="Jellyfish Logo" style="width:40px"></a>
+        <span class="navbar-item"><a href="#" class="hide-above-nav">Mobile Link</a></span>
+        <span class="navbar-item"><a href="#" class="hide-above-nav">Mobile Link</a></span>
+        <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
+          <span class="hamburger-label">Menu</span>
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+      <div id="navbar-menu" class="navbar-menu">
+        <div class="navbar-start">
+          <ul>
+            <li class="current-page"><a href="#">Current Page</a></li>
+            <li class="has-children"><a href="#">Has Children</a>
+              <ul>
+                <li class="has-children"><a href="#">Has Children</a>
+                  <ul>
+                    <li><a href="#">Menu Item</a></li>
+                    <li><a href="#">Menu Item</a></li>
+                    <li><a href="#">Menu Item</a></li>
+                    <li><a href="#">Menu Item</a></li>
+                  </ul>
+                </li>
+                <li class="has-children"><a href="#">Has Children</a>
+                  <ul>
+                    <li><a href="#">Menu Item</a></li>
+                    <li><a href="#">Menu Item</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">Menu Item</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end">
+          <input class="navbar-item" type="text" placeholder="Search....">
+          <a href="#" class="button small white navbar-item">Button</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+<div>
+  <h2 class="h3">Nested menus (submenus)</h2>
+  <p>Submenus are not a problem for Jellyfish - you can infinitely nest <code class="code-ref">&lt;ul></code> elements within <code class="code-ref">&lt;li></code> elements.<br>You should apply a class of <span class="css-ref">.has-children</span> to the parent <code class="code-ref">&lt;li></code> of any submenu, to ensure that styling is applied correctly - with consideration for UX!</p>
+  <p>On small screens, submenu items have an increased left-padding to aid navigation hierarchy. On larger screens, the first submenu appears vertically, all others move horizontally.</p>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">
+        <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
+          <span class="hamburger-label">Menu</span>
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+      <div id="navbar-menu" class="navbar-menu">
+        <ul>
+          <li class="has-children"><a href="#">Has Children</a>
+            <ul>
+              <li class="has-children"><a href="#">Has Children</a>
+                <ul>
+                  <li><a href="#">Menu Item</a></li>
+                  <li><a href="#">Menu Item</a></li>
+                  <li class="has-children"><a href="#">Has Children</a>
+                    <ul>
+                      <li><a href="#">Menu Item</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">Menu Item</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div>
+  <h2 class="h3">Off Canvas Nav Drawer</h2>
+  <p>You only need to change the markup slightly, and add a class of <span class="css-ref">.is-off-canvas</span> to the <span class="css-ref">.navbar-menu</span> element to make the navbar drawer open off-canvas on smaller screens.</p>
+  <pre class="language-markup line-numbers">
+        <code><!--
+          <nav class="navbar">
+            <div class="container">
+              <div class="navbar-brand">
+                <a class="img-link navbar-item" href="#"><img src="/img/favicon.png" alt="Jellyfish Logo" style="width:40px"></a>
+                <span class="navbar-item"><a href="#" class="hide-above-nav">Mobile Link</a></span>
+                <span class="navbar-item"><a href="#" class="hide-above-nav">Mobile Link</a></span>
+                <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
+                  <span class="hamburger-label">Menu</span>
+                  <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                  </span>
+                </button>
+              </div>
+              <div id="navbar-menu" class="navbar-menu is-off-canvas">
+                <div class="navbar-start">
+                  <ul>
+                    ...
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        --></code>
+      </pre>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="img-link navbar-item" href="#"><img src="/img/favicon.png" alt="Jellyfish Logo" style="width:40px"></a>
+        <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+      <div id="navbar-menu" class="navbar-menu is-off-canvas">
+        <div class="navbar-top">
+          <a class="img-link navbar-item" href="#"><img src="/img/favicon.png" alt="Jellyfish Logo" style="width:40px"></a>
+          <button class="hamburger" type="button" aria-label="Menu" aria-controls="navbar-menu">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+        </div>
+        <div class="navbar-start">
+          <ul>
+            <li><a href="#">Menu Item</a></li>
+            <li><a href="#">Menu Item</a></li>
+            <li><a href="#">Menu Item</a></li>
+            <li><a href="#">Menu Item</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end bg-primary-200">
+          <a href="#" class="button white small">Button</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+<div>
+  <h2 class="h3">Variables</h2>
+  <p>Jellyfish's navbar is fully customisable with variables. You can control:</p>
+  <ul>
+    <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <span class="bold">Note:</span> if you change this value from it's default you also need to change the Javascript variable <code class="code-ref">var navPoint = '900';</code></li>
+    <li>Background color</li>
+    <li>Font size and text transform</li>
+    <li>Link color, link background color, link weight - and hover states for all three</li>
+    <li>Link border seperator</li>
+    <li>Item padding X,Y on small devices and larger devices</li>
+    <li>Current page color, background and font weight</li>
+    <li>Submenu text transform and weight</li>
+    <li>Submenu min and max width on larger devices</li>
+    <li>Whether the nav drawer should be off canvas on smaller devices</li>
+    <li class="italic">And more...</li>
+  </ul>
+  <h4>Hamburger Menu Variables</h4>
+  <p>Jellyfish uses the fantastic <a href="https://jonsuh.com/hamburgers/" target="_blank">hamburgers css library</a> by Jonathan Suh. The code is imported from npm through Gulp.</p>
+  <p>Rather than including all animation options in the output css, Jellyfish has a variable <span class="variable-ref">$primary-hamburger-type</span> which is used to select your chosen animation type for compilation.</p>
+</div>
+
+</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stickybits/3.7.11/stickybits.min.js" integrity="sha512-ji6fCLZlHjqkE7xw3WorjIXDalqEPsRE5NRAbjl8WHB4AMhU3zk/t5Zt6O/buVEWHQ+2SVfTxqPXU3P6bmxL1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./prism.js"></script>
+<script type="text/javascript">
+  let navbarHeight = 0;
+  $(document).ready(function ($) {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+
+    let sidebarLinks = $('.sidebar a');
+    if (sidebarLinks.length > 0) {
+      sidebarLinks.each(function () {
+        let link = $(this).attr('href');
+        link = link.replace('./', '');
+        let currentPage = window.location.pathname.split('/').pop();
+        if (link == currentPage) {
+          $(this).addClass('is-active');
+        }
+
+      });
+    }
+  });
+  window.addEventListener('resize', () => {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+  });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Utilities ~ 🎐 Jellyfish UI</title>
+    <meta name="description" content="Utility classes for manipulating elements - for when you need to break the rules.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+    <link href="./prism.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+  </head>
+
+  <body>
+
+<div class="docs-container">
+  <div class="row">
+    <aside class="col xs-12 md-3">
+      <div class="sidebar">
+        <a href="../index.html" class="navbar-brand">
+          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+        </a>
+        <ul>
+          <li class="li-title mt-0">
+            HTML
+          </li>
+          <li>
+            <a href="./getting-started.html">Getting Started</a>
+          </li>
+          <li>
+            <a href="./grid.html">Grid</a>
+          </li>
+          <li>
+            <a href="./navbar.html">Navbar</a>
+          </li>
+          <li>
+            <a href="./typography.html">Typography</a>
+          </li>
+          <li>
+            <a href="./media.html">Images and Media</a>
+          </li>
+          <li>
+            <a href="./tables.html">Tables</a>
+          </li>
+          <li>
+            <a href="./forms.html">Forms</a>
+          </li>
+          <li>
+            <a href="./progress.html">Progress Bars</a>
+          </li>
+          <li>
+            <a href="./buttons.html">Buttons</a>
+          </li>
+          <li>
+            <a href="./chips.html">Chips</a>
+          </li>
+          <li>
+            <a href="./callouts.html">Callouts</a>
+          </li>
+          <li>
+            <a href="./cards.html">Cards</a>
+          </li>
+          <li class="li-title">
+            SCSS
+          </li>
+          <li>
+            <a href="./breakpoints.html">Breakpoints</a>
+          </li>
+          <li>
+            <a href="./mixins.html">Mixins</a>
+          </li>
+          <li>
+            <a href="./variables.html">Variables</a>
+          </li>
+          <li class="li-title">
+            Javascript
+          </li>
+          <li>
+            <a href="./javascript.html">Javascript Functions</a>
+          </li>
+          <li class="li-title">
+            Utilities
+          </li>
+          <li>
+            <a href="./theme-colors.html">Theme Colors</a>
+          </li>
+          <li>
+            <a href="./accessibility.html">Accessibility</a>
+          </li>
+          <li>
+            <a href="./printing.html">Printing</a>
+          </li>
+          <li>
+            <a href="./utilities.html">Utility Classes</a>
+          </li>
+          <li>
+            <a href="./debug.html">Debugging</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="col xs-12 md-9 content">
+      <section class="docs-section">
+<h1 class="section-heading h2">Utilities</h1>
+
+<div>
+  <h2 class="h3">Floats</h2>
+  <p>Elements can be floated with <span class="css-ref">.align-*</span> classes. Add a <span class="css-ref">.clearfix</span> class to a parent element to clear the floats.</p>
+  <p>Float's should generally be avoided, we're not in the early 00's anymore!</p>
+  <pre class="language-markup">
+    <code><!--
+    <div class="clearfix">
+      <div class="align-right boxed">Float Right</div>
+      <div class="align-left boxed">Float Left</div>
+    </div>
+    <div class="align-none boxed">Float None</div>
+  --></code>
+  </pre>
+  <div class="clearfix">
+    <div class="align-right boxed">
+      Float Right
+    </div>
+    <div class="align-left boxed">
+      Float Left
+    </div>
+  </div>
+  <div class="align-none boxed">Float None</div>
+</div>
+<div>
+  <h2 class="h3">Margin, padding and borders</h2>
+  <p>Use <span class="css-ref">m*-0</span>, <span class="css-ref">p*-0</span> and <span class="css-ref">b*-0</span> modifiers to reset margin/padding/border to 0 for a given side.</p>
+  <ul>
+    <li>Margin:
+      <ul>
+        <li><span class="css-ref">m-0</span> sets margin: 0px !important</li>
+        <li><span class="css-ref">mt-0</span> sets margin-top: 0px !important</li>
+        <li><span class="css-ref">mr-0</span> sets margin-right: 0px !important</li>
+        <li><span class="css-ref">mb-0</span> sets margin-bottom: 0px !important</li>
+        <li><span class="css-ref">ml-0</span> sets margin-left: 0px !important</li>
+        <li><span class="css-ref">mb</span> sets margin-bottom: <span class="variable-ref">$element-margin</span> !important</li>
+      </ul>
+    </li>
+    <li>Padding:
+      <ul>
+        <li><span class="css-ref">p-0</span> sets padding: 0px !important</li>
+        <li><span class="css-ref">pt-0</span> sets padding-top: 0px !important</li>
+        <li><span class="css-ref">pr-0</span> sets padding-right: 0px !important</li>
+        <li><span class="css-ref">pb-0</span> sets padding-bottom: 0px !important</li>
+        <li><span class="css-ref">pl-0</span> sets padding-left: 0px !important</li>
+      </ul>
+    </li>
+    <li>Border:
+      <ul>
+        <li><span class="css-ref">b-0</span> sets border: 0px !important</li>
+        <li><span class="css-ref">bt-0</span> sets border-top: 0px !important</li>
+        <li><span class="css-ref">br-0</span> sets border-right: 0px !important</li>
+        <li><span class="css-ref">bb-0</span> sets border-bottom: 0px !important</li>
+        <li><span class="css-ref">bl-0</span> sets border-left: 0px !important</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<div>
+  <h3 id="display-utilities">Display utilities</h2>
+    <p>Jellyfish comes with a number of display utilities to allow you to hide and show elements based on the current breakpoint.</p>
+    <p>An element with a class of <span class="css-ref">.hide</span> is hidden at all breakpoints. An element can also be set to be hidden (but still take up space on the page) with the class <span class="css-ref">.invisible</span>.</p>
+    <p>Use <span class="css-ref">.hide-*</span> to hide an element only at a specific breakpoint. Use <span class="css-ref">.hide-above-*</span> to hide an element at and above a specific breakpoint. Use <span class="css-ref">hide-below-*</span> to hide an element at and below a specific breakpoint.</p>
+    <table class="has-border">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>.invisible</td>
+          <td><span class="invisible">This text is invisible but still takes up space on the page. So if it falls across multiple lines, the table cell will grow to fit it.</span></td>
+        </tr>
+        <tr>
+          <td>.hide</td>
+          <td><span class="hide">This text will be hidden on all devices.</span></td>
+        </tr>
+        <tr>
+          <td>.hide-*</td>
+          <td><span class="hide-xs boxed">hide-xs</span><span class="hide-sm boxed">hide-sm</span><span class="hide-md boxed">hide-md</span><span class="hide-lg boxed">hide-lg</span><span class="hide-xl boxed">hide-xl</span></td>
+        </tr>
+        <tr>
+          <td>.hide-below-*</td>
+          <td><span class="hide-below-sm boxed">hide-below-sm</span><span class="hide-below-md boxed">hide-below-md</span><span class="hide-below-lg boxed">hide-below-lg</span><span class="hide-below-xl boxed">hide-below-xl</span></td>
+        </tr>
+        <tr>
+          <td>.hide-above-*</td>
+          <td><span class="hide-above-sm boxed">hide-above-sm</span><span class="hide-above-md boxed">hide-above-md</span><span class="hide-above-lg boxed">hide-above-lg</span><span class="hide-above-xl boxed">hide-above-xl</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- TODO: Add other hide/show for example navbar -->
+</div>
+<div>
+  <h2 class="h3">Working with flexboxes</h2>
+  <h3 class="h4">Align items</h3>
+  <p>Jellyfish contains a number of flexbox alignment classes to help position columns inside a flexbox row.</p>
+  <p><span class="css-ref">.align-*</span> classes are added to the parent row to align elements vertically within a row. <span class="css-ref">.align-self-*</span> classes are applied to the columns themselves to achieve the same outcome.</p>
+  <pre class="language-markup">
+    <code><!--
+    <div class="row align-top">
+      ...
+    </div>
+    <div class="row align-middle">
+      ...
+    </div>
+    <div class="row align-bottom">
+      ...
+    </div>
+    <div class="row align-baseline">
+      ...
+    </div>
+    <div class="row align-stretch">
+      ...
+    </div>
+    <div class="row">
+      <div class="col align-self-top">align-self-top</div>
+      <div class="col align-self-middle">align-self-middle</div>
+      <div class="col align-self-bottom">align-self-bottom</div>
+    </div>
+  --></code>
+  </pre>
+  <div class="row align-top row-boxed">
+    <div class="col">
+      <div class="boxed">align-top</div>
+    </div>
+    <div class="col">
+      <div class="boxed">align-top</div>
+    </div>
+    <div class="col">
+      <div class="boxed">align-top</div>
+    </div>
+  </div>
+  <div class="row align-middle row-boxed">
+    <div class="col">
+      <div class="boxed">align-middle</div>
+    </div>
+    <div class="col">
+      <div class="boxed">align-middle</div>
+    </div>
+    <div class="col">
+      <div class="boxed">align-middle</div>
+    </div>
+  </div>
+  <div class="row align-bottom row-boxed">
+    <div class="col">
+      <div class="boxed">align-bottom</div>
+    </div>
+    <div class="col">
+      <div class="boxed">align-bottom</div>
+    </div>
+    <div class="col">
+      <div class="boxed">align-bottom</div>
+    </div>
+  </div>
+  <div class="row align-baseline row-boxed">
+    <div class="col">
+      <div class="boxed">align-baseline</div>
+    </div>
+    <div class="col">
+      <div class="boxed" style="font-size: 1.4em">align-baseline</div>
+    </div>
+    <div class="col">
+      <div class="boxed">align-baseline</div>
+    </div>
+  </div>
+  <div class="row align-stretch row-boxed">
+    <div class="col">
+      <div class="boxed" style="height:100%;">align-stretch (any elements inside the .col must be 100% height)</div>
+    </div>
+    <div class="col">
+      <div class="boxed" style="height:100%;">align-stretch (any elements inside the .col must be 100% height)</div>
+    </div>
+    <div class="col">
+      <div class="boxed" style="height:100%;">align-stretch (any elements inside the .col must be 100% height)</div>
+    </div>
+  </div>
+  <div class="row row-boxed">
+    <div class="col align-self-top">
+      <div class="boxed">align-self-top</div>
+    </div>
+    <div class="col align-self-middle">
+      <div class="boxed">align-self-middle</div>
+    </div>
+    <div class="col align-self-bottom">
+      <div class="boxed">align-self-bottom</div>
+    </div>
+  </div>
+  <p>Adding a class of <span class="css-ref">.flex</span> will convert any element into <code class="code-ref">display: flex;</code>. Apply an <span class="css-ref">.equal-height</span> class to a parent row to make all immediate child columns <code class="code-ref">display:flex;</code></p>
+  <pre class="language-markup">
+    <code><!--
+    <div class="row">
+      <div class="col">Flex item</div>
+      <div class="col flex">Flex item with .flex...</div>
+    </div>
+    <div class="row equal-height">
+      ...
+    </div>
+  --></code>
+  </pre>
+  <div class="row row-boxed">
+    <div class="col">
+      <div class="boxed">Flex item</div>
+    </div>
+    <div class="col flex">
+      <div class="boxed">Flex item with .flex converts this column to a flex. The child element has flex:1 which makes it take up 100% height.</div>
+    </div>
+  </div>
+  <div class="row equal-height row-boxed">
+    <div class="col">
+      <div class="boxed">equal-height</div>
+    </div>
+    <div class="col">
+      <div class="boxed">equal-height</div>
+    </div>
+  </div>
+  <p></p>
+  <h4>Justify content</h4>
+  <p>Use the <span class="css-ref">.justify-*</span> modifiers on a row to justify the child columns.</p>
+  <pre class="language-markup">
+    <code><!--
+    <div class="row justify-start">
+      ...
+    </div>
+     <div class="row justify-center">
+      ...
+    </div>
+     <div class="row justify-end">
+      ...
+    </div>
+     <div class="row justify-around">
+      ...
+    </div>
+     <div class="row justify-between">
+      ...
+    </div>
+    <div class="row justify-evenly">
+      ...
+    </div>
+  --></code>
+  </pre>
+  <div class="row row-boxed justify-start">
+    <div class="col md-3">
+      <div class="boxed">justify-start</div>
+    </div>
+    <div class="col md-3">
+      <div class="boxed">justify-start</div>
+    </div>
+    <div class="col md-3">
+      <div class="boxed">justify-start</div>
+    </div>
+  </div>
+  <div class="row row-boxed justify-center">
+    <div class="col md-3">
+      <div class="boxed">justify-center</div>
+    </div>
+    <div class="col md-3">
+      <div class="boxed">justify-center</div>
+    </div>
+    <div class="col md-3">
+      <div class="boxed">justify-center</div>
+    </div>
+  </div>
+  <div class="row row-boxed justify-end">
+    <div class="col md-3">
+      <div class="boxed">justify-end</div>
+    </div>
+    <div class="col md-3">
+      <div class="boxed">justify-end</div>
+    </div>
+    <div class="col md-3">
+      <div class="boxed">justify-end</div>
+    </div>
+  </div>
+  <div class="row row-boxed justify-around">
+    <div class="col md-3">
+      <div class="boxed">justify-around</div>
+    </div>
+    <div class="col md-3">
+      <div class="boxed">justify-around</div>
+    </div>
+    <div class="col md-3">
+      <div class="boxed">justify-around</div>
+    </div>
+  </div>
+  <div class="row row-boxed justify-between">
+    <div class="col md-3">
+      <div class="boxed">justify-between</div>
+    </div>
+    <div class="col md-3">
+      <div class="boxed">justify-between</div>
+    </div>
+    <div class="col md-3">
+      <div class="boxed">justify-between</div>
+    </div>
+  </div>
+  <div class="row row-boxed justify-evenly">
+    <div class="col md-3">
+      <div class="boxed">justify-evenly</div>
+    </div>
+    <div class="col md-3">
+      <div class="boxed">justify-evenly</div>
+    </div>
+    <div class="col md-3">
+      <div class="boxed">justify-evenly</div>
+    </div>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Manipulating width</h2>
+  <p>The utility class <span class="css-ref">.full-width</span> can be applied to any element to make <code class="code-ref">width: 100%</code>.</p>
+  <p>An element with the utility class <span class="css-ref">.vw-100</span> will span 100% of the viewport width, breaking out of any containers to do so (without affecting document flow). <strong>Note:</strong> this class should only be used when the center of the parent is in the center of the window.</p>
+</div>
+</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stickybits/3.7.11/stickybits.min.js" integrity="sha512-ji6fCLZlHjqkE7xw3WorjIXDalqEPsRE5NRAbjl8WHB4AMhU3zk/t5Zt6O/buVEWHQ+2SVfTxqPXU3P6bmxL1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./prism.js"></script>
+<script type="text/javascript">
+  let navbarHeight = 0;
+  $(document).ready(function ($) {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+
+    let sidebarLinks = $('.sidebar a');
+    if (sidebarLinks.length > 0) {
+      sidebarLinks.each(function () {
+        let link = $(this).attr('href');
+        link = link.replace('./', '');
+        let currentPage = window.location.pathname.split('/').pop();
+        if (link == currentPage) {
+          $(this).addClass('is-active');
+        }
+
+      });
+    }
+  });
+  window.addEventListener('resize', () => {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+  });
+</script>
+</body>
+
+</html>

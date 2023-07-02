@@ -1,0 +1,41 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Progress Bars",
+"description": "Native HTML progress bars can be styled with modifiers to display different colors depending on the context.",
+})
+
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Progress Bars<a href="./variables.html#progress">[ Variable Reference ]</a></h1>
+<div>
+  <p class="standfirst">Jellyfish includes a simple CSS class <span class="css-ref">.progress</span> for the native <code class="code-ref">&lt;progress></code> HTML element.</p>
+  <pre class="language-markup">
+      <code><!--
+      <progress class="progress" max="100"></progress>
+      <progress class="progress" value="25" max="100">25%</progress>
+    --></code>
+    </pre>
+  <h2 class="h4">Indeterminate State</h2>
+  <p>Displays when no value is set - it is used to show that progress is occuring but the value is not yet determined.</p>
+  <progress class="progress mb" max="100"></progress>
+  <h2 class="h4">Known value</h2>
+  <progress class="progress" value="25" max="100">25%</progress>
+</div>
+<div>
+  <h2 class="h3">Colors</h2>
+  <p>Use the usual modifiers <span class="css-ref">.primary</span>, <span class="css-ref">.secondary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span> or <span class="css-ref">.error</span> to change the progress bar color.
+  </p>
+  <progress class="progress mb primary"></progress>
+  <progress class="progress mb primary" value="25" max="100">25%</progress>
+  <progress class="progress mb secondary"></progress>
+  <progress class="progress mb secondary" value="45" max="100">45%</progress>
+  <progress class="progress mb success"></progress>
+  <progress class="progress mb success" value="65" max="100">65%</progress>
+  <progress class="progress mb warning"></progress>
+  <progress class="progress mb warning" value="85" max="100">85%</progress>
+  <progress class="progress mb error"></progress>
+  <progress class="progress mb error" value="100" max="100">100%</progress>
+</div>
+<div>
+  <h2 class="h3">Create-your-own</h2>
+  <p>In order to create additional progress bar themes, simply add a new color to the <span class="variable-ref">$colors</span> SCSS map and the framework will do the rest.</p>
+</div>
+@@include('./src/docs/partials/html-footer.html')

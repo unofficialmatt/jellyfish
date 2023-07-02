@@ -1,8 +1,10 @@
-// Note: These should match the values set in scss. Currently it is a manual process to keep them in sync
-var breakPoints = {
-  navBar: 1220,
-  sm: 600,
-  md: 900,
-  lg: 1200,
-  xl: 1800,
-};
+// Only declare if not already declared
+if (typeof breakPoints === "undefined") {
+  breakPoints = {
+    navBar: 1200,
+    sm: 600,
+    md: 900,
+    lg: 1200,
+    xl: 1800,
+  };
+}

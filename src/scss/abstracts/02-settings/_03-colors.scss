@@ -1,0 +1,43 @@
+// Create empty maps. This allows the maps to be defined in the project's settings file to override and add any colors as required
+$colors: () !default;
+$theme-colors: () !default;
+$background-colors: () !default;
+
+$colors: map-merge(
+  (
+    "primary": makeColorPalette(#ff3c74),
+    "secondary": makeColorPalette(#ffa0cd),
+    "neutral": makeColorPalette(#64748b),
+    "success": makeColorPalette(#00c851),
+    "warning": makeColorPalette(#ffbb33),
+    "error": makeColorPalette(#ff4444),
+  ),
+  $colors
+);
+
+$color-white: #ffffff !default;
+$color-black: #000000 !default;
+$body-background-color: v(color-white) !default;
+
+// Merge colors from $colors map into $background-colors if 'bg' is set to 'true'
+@each $color-name, $color-pallette in $colors {
+  @if map-get($color-pallette, "bg") == "true" {
+    @each $key, $val in $color-pallette {
+      @if $key == "bg" {
+        // DO NOTHING
+      } @else {
+        $background-colors: map-merge(
+          (#{$color-name}-#{$key}: get-color($color-name, $key)),
+          $background-colors
+        );
+      }
+    }
+  }
+}
+
+// Merge default colours into the map
+$background-colors: map-merge((), $background-colors);
+
+// These both need to be css color values rather than CSS props as they are used to check for contrast
+$color-text: get-color-raw(neutral, 1000) !default;
+$color-headings-preferred: get-color-raw(neutral, 700) !default;

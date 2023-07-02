@@ -1,0 +1,81 @@
+@if $generate-progressbar == true {
+  .progress {
+    --progress-bar-bg-color: #{v(color-neutral-50)};
+    --progress-bar-color: #{v(color-neutral-200)};
+    --progress-bar-color-unknown: #{v(color-neutral-100)};
+    appearance: none;
+    border: none;
+    background-size: auto; // Required polyfill for Safari if background image used
+    display: block;
+    width: 100%;
+    height: $progressbar-height;
+    overflow: hidden;
+    padding: 0;
+    border-radius: $progressbar-border-radius;
+
+    &::-webkit-progress-bar {
+      background-color: v(progress-bar-bg-color);
+    }
+    &::-webkit-progress-value {
+      background-color: v(progress-bar-color);
+      border-radius: $progressbar-value-border-radius;
+    }
+    &::-moz-progress-bar {
+      background-color: v(progress-bar-color);
+      border-radius: $progressbar-value-border-radius;
+    }
+    &::-ms-fill {
+      background-color: v(progress-bar-color);
+      border-radius: $progressbar-value-border-radius;
+    }
+
+    &:indeterminate {
+      background-color: v(progress-bar-bg-color);
+      background-image: linear-gradient(
+        to right,
+        v(progress-bar-color-unknown) 20%,
+        v(progress-bar-bg-color) 20%
+      );
+      background-position: top left;
+      background-repeat: no-repeat;
+      background-size: 150% 150%;
+      animation: animateIndeterminate
+        $progressbar-indeterminate-duration
+        linear
+        0s
+        infinite;
+
+      &::-webkit-progress-bar {
+        background-color: transparent;
+      }
+      &::-moz-progress-bar {
+        background-color: transparent;
+      }
+      &::-ms-fill {
+        animation-name: none;
+      }
+    }
+
+    @each $key, $map in $colors {
+      &.#{$key} {
+        @include createProgressBar($key);
+      }
+    }
+    &.white {
+      --progress-bar-color: #{v(color-white)};
+      --progress-bar-color-unknown: #{v(color-white)};
+    }
+  }
+
+  // FIXME
+  @keyframes animateIndeterminate {
+    from {
+      background-position: 200% 0;
+      //transform: scaleX(0);
+    }
+    to {
+      background-position: -200% 0;
+      //transform: scaleX(1);
+    }
+  }
+}

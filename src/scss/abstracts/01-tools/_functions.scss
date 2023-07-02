@@ -1,0 +1,167 @@
+@use "sass:math";
+@use "sass-apca" as apca;
+@use "to-number" as str;
+
+@function em($pixels) {
+  @return #{math.div($pixels, 16px)}em;
+}
+
+// Get a value from deep inside a map. Arguments:
+// $map - name of map
+// $keys - name of keys to retrieve. This can work with an infinitely nested map
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+    @if not $map {
+      //@warn "`#{$key}` does not exist in the queried key."; // Redacted as this is not super useful, because we only have one key value and not the parent key
+    }
+  }
+  @return $map;
+}
+
+// Test if map has all `$keys` nested with each others
+// @author Hugo Giraudel
+// @link https://www.sitepoint.com/extra-map-functions-sass/
+// @param {Map} $map - Map
+// @param {Arglist} $keys - Keys to test
+// @return {Bool}
+@function map-has-nested-keys($map, $keys...) {
+  @each $key in $keys {
+    @if not map-has-key($map, $key) {
+      @return false;
+    }
+    $map: map-get($map, $key);
+  }
+  @return true;
+}
+
+@function get-color($base, $shade: 500) {
+  @if map-has-nested-keys($colors, $base, $shade) {
+    @return var(--color-#{$base + "-" + $shade});
+  } @else {
+    @error "Key: '#{$base}', Value: '#{$shade}' not found in $colors map. Cancelling compile.";
+  }
+}
+
+@function get-color-raw($base, $shade: 500) {
+  @if map-has-nested-keys($colors, $base, $shade) {
+    $color: map-get(map-get($colors, $base), $shade);
+    @return $color;
+  } @else {
+    @error "Key: '#{$base}', Value: '#{$shade}' not found in $colors map. Cancelling compile.";
+  }
+}
+
+@function font-size($size) {
+  @if map-has-key($type-scale, $size) {
+    $font-size: map-get($type-scale, $size);
+    @return $font-size;
+  } @else {
+    @error "Key: '#{$size}' not found in $type-scale map. Cancelling compile.";
+  }
+}
+
+@function get-size($size) {
+  @if map-has-key($sizing-system, $size) {
+    $return-size: map-get($sizing-system, $size);
+    @return $return-size;
+  } @else {
+    @error "Key: '#{$size}' not found in $sizing-system map. Cancelling compile.";
+  }
+}
+
+// Returns a given number divided by 2
+@function h($num) {
+  @return $num * 0.5;
+}
+
+// Returns the negative value of a given number
+@function n($num) {
+  @return -$num;
+}
+
+// Returns the negative and halved value of a given number
+@function nh($num) {
+  @return n(h($num));
+}
+@function hn($num) {
+  @return n(h($num));
+}
+
+// Allows us to use #{headings(1,6)} to apply css to all headings
+@function headings($from: 1, $to: 6) {
+  @if $from == $to {
+    @return "h#{$from}";
+  } @else {
+    @return "h#{$from}," + headings($from + 1, $to);
+  }
+}
+
+/**
+ * Determine whether to use dark or light text on top of given color.
+ */
+@function choose-contrast-color($color, $color-dark: $color-text) {
+  $best-contrast: apca.recommend-text-color(
+    $color,
+    $color-white,
+    $color-dark,
+    $force-color-contrast-ratio
+  );
+  @return $best-contrast;
+}
+
+@function resolve-contrast-color($color, $color-dark: $color-text) {
+  $contrast: choose-contrast-color($color, $color-dark);
+  @if $contrast == $color-white {
+    @return var(--color-white);
+  } @else if $contrast == $color-text {
+    @return var(--color-text);
+  } @else if $contrast == #000000 {
+    @return var(--color-black);
+  } @else if ($contrast == $color-headings-preferred) {
+    @return var(--color-headings-preferred);
+  } @else {
+    @return $contrast;
+  }
+
+  @return $contrast;
+}
+
+// Shorthand to output a CSS property
+@function v($value) {
+  @return var(--#{$value});
+}
+
+// String replace function
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+  @return $string;
+}
+
+// Walk back to convert a CSS property to a CSS value
+@function css-prop-to-value($prop) {
+  $prop: str-replace($prop, "var(--color-", "");
+  $prop: str-replace($prop, ")", "");
+
+  // Work out where the hyphen is
+  $hyphen: str-index($prop, "-");
+
+  // Get the parts of the string
+  $base: str-slice($prop, 1, $hyphen - 1);
+  $end: str-slice($prop, $hyphen + 1);
+
+  // Convert the end to a number
+  $end: str.to-number($end);
+
+  $color: get-color-raw($base, $end);
+
+  @return $color;
+}

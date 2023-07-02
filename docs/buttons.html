@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Buttons ~ 🎐 Jellyfish UI</title>
+    <meta name="description" content="Dynamically generated buttons with a variety of styles and sizes.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+    <link href="./prism.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+  </head>
+
+  <body>
+<div class="docs-container">
+  <div class="row">
+    <aside class="col xs-12 md-3">
+      <div class="sidebar">
+        <a href="../index.html" class="navbar-brand">
+          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+        </a>
+        <ul>
+          <li class="li-title mt-0">
+            HTML
+          </li>
+          <li>
+            <a href="./getting-started.html">Getting Started</a>
+          </li>
+          <li>
+            <a href="./grid.html">Grid</a>
+          </li>
+          <li>
+            <a href="./navbar.html">Navbar</a>
+          </li>
+          <li>
+            <a href="./typography.html">Typography</a>
+          </li>
+          <li>
+            <a href="./media.html">Images and Media</a>
+          </li>
+          <li>
+            <a href="./tables.html">Tables</a>
+          </li>
+          <li>
+            <a href="./forms.html">Forms</a>
+          </li>
+          <li>
+            <a href="./progress.html">Progress Bars</a>
+          </li>
+          <li>
+            <a href="./buttons.html">Buttons</a>
+          </li>
+          <li>
+            <a href="./chips.html">Chips</a>
+          </li>
+          <li>
+            <a href="./callouts.html">Callouts</a>
+          </li>
+          <li>
+            <a href="./cards.html">Cards</a>
+          </li>
+          <li class="li-title">
+            SCSS
+          </li>
+          <li>
+            <a href="./breakpoints.html">Breakpoints</a>
+          </li>
+          <li>
+            <a href="./mixins.html">Mixins</a>
+          </li>
+          <li>
+            <a href="./variables.html">Variables</a>
+          </li>
+          <li class="li-title">
+            Javascript
+          </li>
+          <li>
+            <a href="./javascript.html">Javascript Functions</a>
+          </li>
+          <li class="li-title">
+            Utilities
+          </li>
+          <li>
+            <a href="./theme-colors.html">Theme Colors</a>
+          </li>
+          <li>
+            <a href="./accessibility.html">Accessibility</a>
+          </li>
+          <li>
+            <a href="./printing.html">Printing</a>
+          </li>
+          <li>
+            <a href="./utilities.html">Utility Classes</a>
+          </li>
+          <li>
+            <a href="./debug.html">Debugging</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="col xs-12 md-9 content">
+      <section class="docs-section">
+<h1 class="section-heading h2">Buttons<a href="./variables.html#buttons">[ Variable Reference ]</a></h1>
+<div>
+  <p class="standfirst">Button elements, anchor elements with a <span class="css-ref">.button</span> class, and input buttons will all render exactly the same.</p>
+  <p><strong>NOTE:</strong> To reduce code bloat, button modifiers only apply to elements with a <span class="css-ref">.button</span> class so be sure to add this class to any button or input elements which you wish to modify.</p>
+  <pre class="language-markup">
+      <code><!--
+      <button>Button</button>
+      <input type="submit" value="Submit">
+      <input type="button" value="Input">
+      <a class="button">Link</a>
+    --></code>
+    </pre>
+  <button>Button</button>
+  <input type="submit" value="Submit">
+  <input type="button" value="Input">
+  <a class="button">Link</a>
+</div>
+<div>
+  <h2 class="h3">Colors</h2>
+  <p>Use the modifiers <span class="css-ref">.primary</span>, <span class="css-ref">.secondary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span> or <span class="css-ref">.error</span> to change the button color.</p>
+  <pre class="language-markup">
+    <code><!--
+    <button class="button primary">Primary</button>
+    <button class="button secondary">Secondary</button>
+    <button class="button success">Success</button>
+    <button class="button warning">Warning</button>
+    <button class="button error">Error</button>
+  --></code>
+  </pre>
+  <button class="button primary">Primary</button>
+  <button class="button secondary">Secondary</button>
+  <button class="button success">Success</button>
+  <button class="button warning">Warning</button>
+  <button class="button error">Error</button>
+</div>
+<div>
+  <h2 class="h3">Outline buttons</h2>
+  <p>Add the modifier <span class="css-ref">.outline</span> to show buttons without a background fill.</p>
+
+  <pre class="language-markup">
+    <code><!--
+    <button class="button primary outline">Primary</button>
+    <button class="button outline secondary">Secondary</button>
+    <button class="button outline success">Success</button>
+    <button class="button outline warning">Warning</button>
+    <button class="button outline error">Error</button>
+  --></code>
+  </pre>
+  <button class="button primary outline">Primary</button>
+  <button class="button outline secondary">Secondary</button>
+  <button class="button outline success">Success</button>
+  <button class="button outline warning">Warning</button>
+  <button class="button outline error">Error</button>
+</div>
+<div>
+  <h2 class="h3">Ghost buttons</h2>
+  <p>Add the modifier <span class="css-ref">.ghost</span> to make buttons appear as links, whilst retaining the height and properties of a button. This can be used to display ghost buttons on the same row as buttons with background color.</p>
+  <pre class="language-markup">
+    <code><!--
+    <button class="button ghost primary">Primary</button>
+    <button class="button ghost secondary">Secondary</button>
+    <button class="button ghost success">Success</button>
+    <button class="button ghost warning">Warning</button>
+    <button class="button ghost error">Error</button>
+  --></code>
+  </pre>
+  <button class="button ghost primary">Primary</button>
+  <button class="button ghost secondary">Secondary</button>
+  <button class="button ghost success">Success</button>
+  <button class="button ghost warning">Warning</button>
+  <button class="button ghost error">Error</button>
+</div>
+<div>
+  <h2 class="h3">Disabled buttons</h2>
+  <p>To disable a button set the <code class="code-ref">disabled</code> property on a <code class="code-ref">&lt;button></code> element. It is not possible to disable links without additional javascript, so Jellyfish does not allow you to simulate a disabled state on anchor elements.</p>
+  <pre class="language-markup">
+      <code><!--
+      <button class="button primary" disabled></button>Primary</button>
+      <button class="button secondary" disabled>Secondary</button>
+      <button class="button success" disabled>Success</button>
+      <button class="button warning" disabled>Warning</button>
+      <button class="button error" disabled>Error</button>
+    --></code>
+    </pre>
+  <button class="button primary" disabled>Primary</button>
+  <button class="button secondary" disabled>Secondary</button>
+  <button class="button success" disabled>Success</button>
+  <button class="button warning" disabled>Warning</button>
+  <button class="button error" disabled>Error</button>
+</div>
+<div>
+  <h2 class="h3">Button sizes</h2>
+  <p>Add the modifier <span class="css-ref">.xsmall</span>, <span class="css-ref">.small</span> or <span class="css-ref">.large</span> to change the size of a button.</p>
+  <pre class="language-markup">
+    <code><!--
+      <button class="button xsmall">X Small</button>
+    <button class="button small">Small</button>
+    <button class="button">Regular</button>
+    <button class="button large">Large</button>
+  --></code>
+  </pre>
+  <button class="button xsmall">X Small</button>
+  <button class="button small">Small</button>
+  <button class="button">Regular</button>
+  <button class="button large">Large</button>
+  <h4>Expanded buttons</h4>
+  <p>Add the modifier <span class="css-ref">.expanded</span> to make the button 100% width.</p>
+  <pre class="language-markup">
+    <code><!--
+    <button class="button expanded">Expanded Button</button>
+    <button class="button expanded secondary">Expanded Button</button>
+  --></code>
+  </pre>
+  <button class="button expanded">Expanded Button</button>
+  <button class="button expanded secondary">Expanded Button</button>
+</div>
+<div>
+  <h2 class="h3">Combining modifiers</h2>
+  <p>Modifiers can be combined.</p>
+  <pre class="language-markup">
+    <code><!--
+    <button class="button xsmall secondary">XSmall</button>
+    <button class="button small outline">Regular</button>
+    <button class="button secondary outline">Secondary Outline</button>
+    <button class="button warning outline large">Warning Outline Large</button>
+    <button class="button large ghost">Large Ghost</button>
+    <button class="button expanded secondary">Expanded Secondary</button>
+    <button class="button expanded error outline large">Expanded Error Outline Large</button>
+  --></code>
+  </pre>
+  <button class="button xsmall secondary">XSmall</button>
+  <button class="button small outline">Regular</button>
+  <button class="button secondary outline">Secondary Outline</button>
+  <button class="button warning outline large">Warning Outline Large</button>
+  <button class="button large ghost">Large Ghost</button>
+  <button class="button expanded secondary">Expanded Secondary</button>
+  <button class="button expanded error outline large">Expanded Error Outline Large</button>
+</div>
+<div>
+  <h2 class="h3">Button Lists and groups</h2>
+  <h3 class="h4">Button List</h3>
+  <p>Wrap buttons in an element with class <span class="css-ref">.button-list</span> to group them into a list. Buttons in a button list have consistent spacing and will wrap over multiple lines.</p>
+  <pre class="language-markup">
+      <code><!--
+        <div class="button-list">
+          <button class="button outline">One</button>
+          <button class="button outline">Two</button>
+          <button class="button outline">Three</button>
+          <button class="button outline">Four</button>
+          <button class="button outline">Five</button>
+          <button class="button outline">Six</button>
+        </div>
+    --></code>
+    </pre>
+  <div class="button-list" style="max-width: 750px">
+    <button class="button outline">One</button>
+    <button class="button outline">Two</button>
+    <button class="button outline">Three</button>
+    <button class="button outline">Four</button>
+    <button class="button outline">Five</button>
+    <button class="button outline">Six</button>
+  </div>
+  <h4>Button Group</h4>
+  <p>Wrap two or more buttons in a <span class="css-ref">.button-group</span> class to group them together. Buttons in a group will have their inner margins collapsed along with any border-radius.</p>
+  <pre class="language-markup">
+      <code><!--
+        <div class="button-group">
+          <button class="button primary">Button One</button>
+          <button class="button primary outline">Button Two</button>
+          <button class="button primary outline">Button Three</button>
+        </div>
+    --></code>
+    </pre>
+  <div class="button-group">
+    <button class="button primary">Button One</button>
+    <button class="button primary outline">Button Two</button>
+    <button class="button primary outline">Button Three</button>
+  </div>
+  <h4>Combine Button Lists and Groups</h4>
+  <pre class="language-markup">
+      <code><!--
+        <div class="button-list">
+          <div class="button-group">
+            <button class="button primary">Button One</button>
+            <button class="button primary outline">Button Two</button>
+          </div>
+          <div class="button-group">
+            <button class="button secondary outline">Button One</button>
+            <button class="button secondary outline">Button Two</button>
+          </div>
+        </div>
+    --></code>
+    </pre>
+  <div class="button-list">
+    <div class="button-group">
+      <button class="button primary">Button One</button>
+      <button class="button primary outline">Button Two</button>
+    </div>
+    <div class="button-group">
+      <button class="button secondary outline">Button One</button>
+      <button class="button secondary outline">Button Two</button>
+    </div>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Create-your-own</h2>
+  <p>Buttons make use of custom CSS properties to change the background/border color and text color - both in active and passive states. This allows the output CSS to be highly performant and DRY.</p>
+  <p>It's easy to create buttons with additional color schemes; simply add a new color to the <span class="variable-ref">$colors</span> SCSS map. Jellyfish will automatically create the CSS properties for your theme color, as well as the button modifiers. Jellyfish will also ensure the button text is white, <span class="css-ref">$color-text</span> or black depending on which has the best contrast against the base color, for optimal accessibility.</p>
+</div>
+</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stickybits/3.7.11/stickybits.min.js" integrity="sha512-ji6fCLZlHjqkE7xw3WorjIXDalqEPsRE5NRAbjl8WHB4AMhU3zk/t5Zt6O/buVEWHQ+2SVfTxqPXU3P6bmxL1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./prism.js"></script>
+<script type="text/javascript">
+  let navbarHeight = 0;
+  $(document).ready(function ($) {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+
+    let sidebarLinks = $('.sidebar a');
+    if (sidebarLinks.length > 0) {
+      sidebarLinks.each(function () {
+        let link = $(this).attr('href');
+        link = link.replace('./', '');
+        let currentPage = window.location.pathname.split('/').pop();
+        if (link == currentPage) {
+          $(this).addClass('is-active');
+        }
+
+      });
+    }
+  });
+  window.addEventListener('resize', () => {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+  });
+</script>
+</body>
+
+</html>

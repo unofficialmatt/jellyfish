@@ -1,0 +1,136 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Chips",
+"description": "Provide context to text, or display information in a small space.",
+})
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Chips<a href="./variables.html#chips">[ Variable Reference ]</a></h1>
+<div>
+  <p class="standfirst">Jellyfish contains simple styles for chips; elements which can be used to display relevant information to the side of a parent or independently. They are sized with em units, to scale based on the parent.</p>
+  <h1>Heading 1 <span class="chip">Chip</span></h1>
+  <h2>Heading 2 <span class="chip">Chip</span></h2>
+  <h3>Heading 3 <span class="chip">Chip</span></h3>
+  <h4>Heading 4 <span class="chip">Chip</span></h4>
+  <h5>Heading 5 <span class="chip">Chip</span></h5>
+  <h6>Heading 6 <span class="chip">Chip</span></h6>
+  <p>Paragraph <span class="chip">Chip</span></p>
+  <span class="chip">A stand-alone chip</span>
+</div>
+<div>
+  <h2 class="h3">Chip List</h2>
+  <p>Wrap chips in an element with class <span class="css-ref">.chip-list</span> to group them into a list. Chips in a chip list have consistent spacing and will wrap over multiple lines.</p>
+  <pre class="language-markup">
+      <code><!--
+        <div class="chip-list">
+          <span class="chip">One</span>
+          ...
+        </div>
+      --></code>
+    </pre>
+  <div class="chip-list">
+    <span class="chip">One</span>
+    <span class="chip">Two</span>
+    <span class="chip">Three</span>
+    <span class="chip">Four</span>
+    <span class="chip">Five</span>
+    <span class="chip">Six</span>
+    <span class="chip">Seven</span>
+    <span class="chip">Eight</span>
+    <span class="chip">Nine</span>
+    <span class="chip">Ten</span>
+    <span class="chip">Eleven</span>
+    <span class="chip">Twelve</span>
+    <span class="chip">Thirteen</span>
+    <span class="chip">Fourteen</span>
+    <span class="chip">Fifteen</span>
+    <span class="chip">Sixteen</span>
+    <span class="chip">Seventeen</span>
+    <span class="chip">Eighteen</span>
+    <span class="chip">Nineteen</span>
+    <span class="chip">Twenty</span>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Chip Group</h2>
+  <p>Wrap two or more chips in a <span class="css-ref">.chip-group</span> class to group them together.</p>
+  <pre class="language-markup">
+      <code><!--
+      <div class="chip-list">
+        <div class="chip-group">
+          <span class="chip">Species of Jellyfish found in the UK</span>
+          <span class="chip error bold">6</span>
+        </div>
+        <div class="chip-group">
+          <span class="chip">Species of Jellyfish found worldwide</span>
+          <span class="chip warning bold">2,000</span>
+          <span class="chip italic">(~ 300,000 undiscovered)</span>
+        </div>
+      </div>
+    --></code>
+    </pre>
+  <div class="chip-list">
+    <div class="chip-group">
+      <span class="chip">Species of Jellyfish found in the UK</span>
+      <span class="chip error bold">6</span>
+    </div>
+    <div class="chip-group">
+      <span class="chip">Species of Jellyfish found worldwide</span>
+      <span class="chip warning bold">2,000</span>
+      <span class="chip italic">(~ 300,000 undiscovered)</span>
+    </div>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Colors and Outlines</h2>
+  <p>Use modifier classes to change the coloring / semantics of the chip, or to display the chip as an outlined chip.</p>
+  <pre class="language-markup">
+    <code><!--
+    <div class="chip-list">
+      <span class="chip">Normal</span>
+      <span class="chip outline">Outline</span>
+      <span class="chip primary">Primary</span>
+      <span class="chip primary outline">Primary Outline</span>
+      <span class="chip secondary">Secondary</span>
+      <span class="chip secondary outline">Secondary Outline</span>
+      <span class="chip success">Success</span>
+      <span class="chip success outline">Success Outline</span>
+      <span class="chip warning">Warning</span>
+      <span class="chip warning outline">Warning Outline</span>
+      <span class="chip error">Error</span>
+      <span class="chip error outline">Error Outline</span>
+    </div>
+  --></code>
+  </pre>
+  <div class="chip-list">
+    <span class="chip">Normal</span>
+    <span class="chip outline">Outline</span>
+    <span class="chip primary">Primary</span>
+    <span class="chip primary outline">Primary Outline</span>
+    <span class="chip secondary">Secondary</span>
+    <span class="chip secondary outline">Secondary Outline</span>
+    <span class="chip success">Success</span>
+    <span class="chip success outline">Success Outline</span>
+    <span class="chip warning">Warning</span>
+    <span class="chip warning outline">Warning Outline</span>
+    <span class="chip error">Error</span>
+    <span class="chip error outline">Error Outline</span>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Nesting Chips</h2>
+  <p>Chips can be nested...</p>
+  <pre class="language-markup">
+    <code><!--
+    <h2>Heading 2 <span class="chip">Notifications <span class="chip white bold">5</span></span></h2>
+    <h2>Heading 2 <span class="chip error">Errors <span class="chip white bold">14</span></span></h2>
+    <h2>Heading 2 <span class="chip warning">OK <span class="chip white">That's<span class="chip success bold">enough!</span></span></span></h2>
+  --></code>
+  </pre>
+  <h2>Heading 2 <span class="chip">Notifications <span class="chip white bold">5</span></span></h2>
+  <h2>Heading 2 <span class="chip error">Errors <span class="chip white bold">14</span></span></h2>
+  <h2>Heading 2 <span class="chip warning">OK <span class="chip white">That's<span class="chip success bold">enough!</span></span></span></h2>
+</div>
+<div>
+  <h2 class="h3">Create-your-own</h2>
+  <p>It's easy to create chips with additional color schemes; simply add a new color to the <span class="variable-ref">$colors</span> SCSS map. As with buttons, Jellyfish will automatically determine the best text color for the chip based on the contrast ratio against the chip background color.</p>
+</div>
+@@include('./src/docs/partials/html-footer.html')

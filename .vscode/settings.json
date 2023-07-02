@@ -1,0 +1,7 @@
+{
+  "files.exclude": {
+    ".vscode/": true,
+    "deprecated/": true,
+    "docs/": true
+  }
+}

@@ -1,0 +1,266 @@
+.docs-container {
+  width: 96%;
+  margin: 0 auto;
+  max-width: 1600px;
+  padding-bottom: get-size(2);
+}
+
+.navbar-logo {
+  width: 120px;
+  margin-bottom: $element-margin;
+  margin-left: 1.5ch;
+}
+.sidebar {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    margin-left: 1.5ch;
+    a {
+      font-size: font-size(-1);
+    }
+  }
+  margin-top: get-size(2);
+  padding: get-size(1) get-size(1.5);
+  font-weight: $weight-bold;
+  line-height: 1.4;
+  z-index: 1;
+  li + li {
+    margin-top: get-size(0.25);
+  }
+  li a {
+    text-decoration: none;
+    &:before {
+      content: "#";
+      margin-left: n(1.5ch);
+      margin-right: get-size(0.5);
+      color: get-color(neutral, 50);
+      @include smooth(all);
+    }
+    &:hover,
+    &:focus {
+      &:before {
+        color: get-color(neutral, 200);
+      }
+    }
+    &.is-active {
+      &:before {
+        color: get-color(neutral, 200);
+      }
+      pointer-events: none;
+      cursor: default;
+      color: $link-active;
+    }
+  }
+  background: $body-background-color;
+}
+
+.section-heading {
+  a {
+    margin-left: auto;
+    font-size: 0.35em;
+    text-decoration: none;
+  }
+
+  padding: get-size(2) 0 get-size(0.75) 0;
+  border-bottom: 1px solid get-color(primary, 100);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  z-index: 9;
+  background-color: rgba($color-white, 0.9);
+  backdrop-filter: blur(3px);
+  //  font-weight: $weight-light;
+  .chip-group:first-of-type {
+    margin-left: auto;
+  }
+  .chip-group {
+    font-size: font-size(-2);
+    margin-left: get-size(0.75);
+  }
+}
+
+.docs-section {
+  > div {
+    margin-bottom: get-size(3);
+  }
+}
+// Standfirst
+.standfirst {
+  font-size: font-size(2);
+  font-weight: $weight-medium;
+}
+
+// Inline references
+%reference {
+  @extend %inline-code;
+  display: inline-block;
+  font-weight: $weight-semibold;
+  background-color: get-color(neutral, 50);
+  font-size: font-size(-1);
+}
+
+.code-ref {
+  @extend %reference;
+}
+
+.css-ref {
+  @extend %reference;
+  color: get-color(primary);
+}
+
+.variable-ref {
+  @extend %reference;
+  color: get-color(success, 700);
+}
+
+// Code Block
+pre {
+  position: relative;
+  margin: $element-margin 0 !important;
+  font-size: font-size(-2) !important;
+
+  label {
+    font-size: font-size(-1);
+    top: 0;
+    right: 0;
+    position: absolute;
+    float: right;
+    display: block;
+    background-color: get-color(neutral, 400);
+    color: $color-white;
+    padding: 0.4em 0.6em;
+    text-shadow: none;
+  }
+}
+pre[class*="language-"] {
+  background: get-color(neutral, 25) !important;
+  border: $borders;
+}
+
+[class*="language-"] {
+  line-height: 1.6;
+}
+
+div.code-toolbar {
+  & > .toolbar {
+    top: auto !important;
+    bottom: 0.5em !important;
+    right: 0.5em !important;
+    button {
+      margin: 0 !important;
+      box-shadow: none !important;
+      padding: 0.5em !important;
+      text-transform: uppercase !important;
+      font-weight: $weight-bold !important;
+      background-color: get-color(neutral, 100) !important;
+      color: get-color(neutral, 800) !important;
+      &:hover,
+      &:focus {
+        background-color: get-color(primary) !important;
+        color: get-color(neutral, 25) !important;
+      }
+      //@extend .button.tertiary;
+    }
+  }
+}
+
+// Unstyle Tags inside code blocks
+.language-markup .tag {
+  padding: 0;
+  background: none;
+  border: none;
+  display: initial;
+  font-size: 1em;
+  font-weight: initial;
+  line-height: initial;
+  margin: 0;
+  top: 0;
+  border-radius: 0;
+}
+
+// Boxed Out Example
+.boxed {
+  background: get-color(neutral, 25);
+  border: 1px solid get-color(neutral, 100);
+  padding: get-size(0.75) get-size(1);
+  line-height: 1.2;
+  margin: 0 0 $element-margin 0;
+  display: inherit;
+  font-size: font-size(-1);
+  flex: 1 1 auto;
+}
+
+.row-boxed {
+  background-color: get-color(neutral, 25);
+  min-height: 160px;
+  margin-bottom: $element-margin;
+  padding: $element-padding 0;
+  .boxed {
+    margin: 0;
+    background-color: $color-white;
+    border: 1px solid get-color(neutral, 300);
+  }
+}
+
+.navbar .container {
+  max-width: 100% !important;
+}
+
+.li-title {
+  //border-top: 1px solid get-color(neutral, 100);
+  margin-top: get-size(0.75) !important;
+  padding-top: get-size(0.5);
+  color: get-color(neutral, 400);
+  font-size: font-size(-2);
+  margin-left: -1.5ch;
+  font-weight: $weight-medium;
+}
+
+// smooth() mixin examples
+.smooth- {
+  &transform {
+    cursor: pointer;
+    @include smooth(transform);
+
+    &:hover,
+    &:focus {
+      transform: scale(1.03);
+    }
+  }
+
+  &background {
+    cursor: pointer;
+    @include smooth(background);
+
+    &:hover,
+    &:focus {
+      background-color: get-color(primary, 200);
+    }
+  }
+
+  &wild {
+    cursor: pointer;
+    @include smooth(color, transform, background);
+
+    &:hover,
+    &:focus {
+      background-color: get-color(primary, 200);
+      color: $color-white;
+      transform: scale(1.02);
+    }
+  }
+}
+
+.variables-reference {
+  table td {
+    font-size: font-size(-1);
+  }
+  @include above($table-responsive-breakpoint) {
+    table tr td:first-of-type {
+      width: 180px;
+    }
+    table tr td:nth-of-type(2) {
+      width: 240px;
+    }
+  }
+}

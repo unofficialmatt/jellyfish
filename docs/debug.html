@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Debugging ~ 🎐 Jellyfish UI</title>
+    <meta name="description" content="Preview the grid in your project by enabling debug mode.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+    <link href="./prism.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+  </head>
+
+  <body>
+
+<div class="docs-container">
+  <div class="row">
+    <aside class="col xs-12 md-3">
+      <div class="sidebar">
+        <a href="../index.html" class="navbar-brand">
+          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+        </a>
+        <ul>
+          <li class="li-title mt-0">
+            HTML
+          </li>
+          <li>
+            <a href="./getting-started.html">Getting Started</a>
+          </li>
+          <li>
+            <a href="./grid.html">Grid</a>
+          </li>
+          <li>
+            <a href="./navbar.html">Navbar</a>
+          </li>
+          <li>
+            <a href="./typography.html">Typography</a>
+          </li>
+          <li>
+            <a href="./media.html">Images and Media</a>
+          </li>
+          <li>
+            <a href="./tables.html">Tables</a>
+          </li>
+          <li>
+            <a href="./forms.html">Forms</a>
+          </li>
+          <li>
+            <a href="./progress.html">Progress Bars</a>
+          </li>
+          <li>
+            <a href="./buttons.html">Buttons</a>
+          </li>
+          <li>
+            <a href="./chips.html">Chips</a>
+          </li>
+          <li>
+            <a href="./callouts.html">Callouts</a>
+          </li>
+          <li>
+            <a href="./cards.html">Cards</a>
+          </li>
+          <li class="li-title">
+            SCSS
+          </li>
+          <li>
+            <a href="./breakpoints.html">Breakpoints</a>
+          </li>
+          <li>
+            <a href="./mixins.html">Mixins</a>
+          </li>
+          <li>
+            <a href="./variables.html">Variables</a>
+          </li>
+          <li class="li-title">
+            Javascript
+          </li>
+          <li>
+            <a href="./javascript.html">Javascript Functions</a>
+          </li>
+          <li class="li-title">
+            Utilities
+          </li>
+          <li>
+            <a href="./theme-colors.html">Theme Colors</a>
+          </li>
+          <li>
+            <a href="./accessibility.html">Accessibility</a>
+          </li>
+          <li>
+            <a href="./printing.html">Printing</a>
+          </li>
+          <li>
+            <a href="./utilities.html">Utility Classes</a>
+          </li>
+          <li>
+            <a href="./debug.html">Debugging</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="col xs-12 md-9 content">
+      <section class="docs-section">
+<h1 class="section-heading h2">Debug mode</h1>
+<p class="standfirst">Quickly see the layout of your grid and components.</p>
+<p>Jellyfish comes with a handy debug mode which allows you to quickly see the structure of the grid, and diagnose any layout issues. Debug mode can be enabled in three ways:</p>
+<ol>
+  <li>by setting <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong></li>
+  <li>by adding the class <span class="css-ref">.jf-debug</span> to the body or html element</li>
+  <li>by running <code class="code-ref">jfdebug()</code> in the console</li>
+</ol>
+<p>When debug mode is active:</p>
+<ul>
+  <li>The highest level <span class="css-ref">.row</span> element will have a striped background showing the base column layout.</li>
+  <li><span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(245, 211, 0, .8);">glow in yellow</span></li>
+  <li><span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(8, 247, 254, .7);">glow in turquoise</span></li>
+  <li>If <span class="variable-ref">$grid-has-offset</span> or <span class="variable-ref">$grid-has-order</span> are set to true, elements with a class <span class="css-ref">.offset-*</span> and <span class="css-ref">.order-*</span> will be <span style="outline: 2px solid #fe53BB">highlighted in pink</span></li>
+  <li>The current breakpoint name is shown in the top left corner of the window.</li>
+</ul>
+<p>Try it out - <a onclick="jfdebug()" style="cursor:pointer;">click here</a> to toggle debug mode on and off onto this page.</p>
+<div class="row">
+  <div class="col md-4 offset-md-4">
+    <div class="boxed">Offset .col</div>
+  </div>
+  <div class="col md-4">
+    <div class="boxed">.col coming along for the ride</div>
+  </div>
+  <div class="col md-4 order-md-2">
+    <div class="boxed">Order md-2</div>
+  </div>
+  <div class="col md-4 order-md-3">
+    <div class="boxed">Order md-3</div>
+  </div>
+  <div class="col md-4 order-md-1 order-lg-0">
+    <div class="boxed">Order md-1 Order-lg-0</div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stickybits/3.7.11/stickybits.min.js" integrity="sha512-ji6fCLZlHjqkE7xw3WorjIXDalqEPsRE5NRAbjl8WHB4AMhU3zk/t5Zt6O/buVEWHQ+2SVfTxqPXU3P6bmxL1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./prism.js"></script>
+<script type="text/javascript">
+  let navbarHeight = 0;
+  $(document).ready(function ($) {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+
+    let sidebarLinks = $('.sidebar a');
+    if (sidebarLinks.length > 0) {
+      sidebarLinks.each(function () {
+        let link = $(this).attr('href');
+        link = link.replace('./', '');
+        let currentPage = window.location.pathname.split('/').pop();
+        if (link == currentPage) {
+          $(this).addClass('is-active');
+        }
+
+      });
+    }
+  });
+  window.addEventListener('resize', () => {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+  });
+</script>
+</body>
+
+</html>

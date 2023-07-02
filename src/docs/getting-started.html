@@ -1,0 +1,56 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Getting Started",
+"description": "How to set up a new project and get started with Jellyfish UI",
+})
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">
+  Getting Started
+</h1>
+
+<div>
+  <p class="standfirst">Jellyfish is a lightweight SCSS and JS framework to add to the <a href="https://github.com/search?q=css+frameworks" rel="external">ever-growing list</a>.</p>
+  <p>Jellyfish is mobile-first, flexible and scalable - providing browser-consistent styles for default HTML elements, along with some useful components and modifiers. Jellyfish uses <a href="./variables.html">SASS variables</a> throughout, with a handful of variables being converted and exposed as CSS custom properties to allow for in-browser modification.
+    Jellyfish also <del>ships</del> swims with a small handful of helpful <a href="./javascript.html">Javascript functions and utilities</a>.</p>
+</div>
+
+<!-- TODO: COME BACK TO THIS AND TEST IF CAN JUST IMPORT JP -->
+<div>
+  <h2 class="h3">Using Jellyfish in your project</h2>
+  <p>Jellyfish is intended to be used as a dependency, via npm. The HTML/php <a href="https://github.com/unofficialmatt/Jellyfish-HTML5" target="_blank">starter repo</a> provides a good example of use.</p>
+  <pre class="language-markup"><code class="code-ref">$ npm install jellyfish-ui</code></pre>
+  <h3 class="h4">SASS 7-1 Pattern</h3>
+  <p>Jellyfish is built with the <a href="https://sass-guidelin.es/#the-7-1-pattern" target="_blank">SASS 7-1 pattern</a> at it's core. In order to preserve this in your project's output CSS, you should import the SCSS files in the appropriate order:</p>
+  <pre class="language-scss">
+      <code>
+        @charset "UTF-8";
+
+        @import "jellyfish-ui/src/scss/abstracts/__all";
+        @import "PROJECT_SCSS_DIR/abstracts/__all";
+
+        @import "jellyfish-ui/src/scss/base/__all";
+        @import "PROJECT_SCSS_DIR/base/__all";
+
+        @import "jellyfish-ui/vendors/hamburgers/hamburgers";
+        @import "PROJECT_SCSS_DIR/vendors/__all";
+
+        @import "jellyfish-ui/src/scss/layout/__all";
+        @import "PROJECT_SCSS_DIR/layout/__all";
+
+        @import "jellyfish-ui/src/scss/components/__all";
+        @import "PROJECT_SCSS_DIR/components/__all";
+
+        @import "PROJECT_SCSS_DIR/pages/__all";
+
+        @import "jellyfish-ui/src/scss/themes/__all";
+        @import "PROJECT_SCSS_DIR/themes/__all";
+
+        @import "jellyfish-ui/src/scss/utilities/__all";
+        @import "PROJECT_SCSS_DIR/utilities/__all";
+
+      </code>
+    </pre>
+  <h3 class="h4">Javascript</h3>
+  <p>You should also include the Javascript files - either by importing the src files into your build process or by including the dist file <span class="code-ref">/dist/js/jellyfish.min.js</span> in your project's markup.</p>
+</div>
+
+@@include('./src/docs/partials/html-footer.html')

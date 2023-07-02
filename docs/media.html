@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Images and Media ~ 🎐 Jellyfish UI</title>
+    <meta name="description" content="Displaying images and responsively embedding media in your project.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+    <link href="./prism.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+  </head>
+
+  <body>
+
+<div class="docs-container">
+  <div class="row">
+    <aside class="col xs-12 md-3">
+      <div class="sidebar">
+        <a href="../index.html" class="navbar-brand">
+          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+        </a>
+        <ul>
+          <li class="li-title mt-0">
+            HTML
+          </li>
+          <li>
+            <a href="./getting-started.html">Getting Started</a>
+          </li>
+          <li>
+            <a href="./grid.html">Grid</a>
+          </li>
+          <li>
+            <a href="./navbar.html">Navbar</a>
+          </li>
+          <li>
+            <a href="./typography.html">Typography</a>
+          </li>
+          <li>
+            <a href="./media.html">Images and Media</a>
+          </li>
+          <li>
+            <a href="./tables.html">Tables</a>
+          </li>
+          <li>
+            <a href="./forms.html">Forms</a>
+          </li>
+          <li>
+            <a href="./progress.html">Progress Bars</a>
+          </li>
+          <li>
+            <a href="./buttons.html">Buttons</a>
+          </li>
+          <li>
+            <a href="./chips.html">Chips</a>
+          </li>
+          <li>
+            <a href="./callouts.html">Callouts</a>
+          </li>
+          <li>
+            <a href="./cards.html">Cards</a>
+          </li>
+          <li class="li-title">
+            SCSS
+          </li>
+          <li>
+            <a href="./breakpoints.html">Breakpoints</a>
+          </li>
+          <li>
+            <a href="./mixins.html">Mixins</a>
+          </li>
+          <li>
+            <a href="./variables.html">Variables</a>
+          </li>
+          <li class="li-title">
+            Javascript
+          </li>
+          <li>
+            <a href="./javascript.html">Javascript Functions</a>
+          </li>
+          <li class="li-title">
+            Utilities
+          </li>
+          <li>
+            <a href="./theme-colors.html">Theme Colors</a>
+          </li>
+          <li>
+            <a href="./accessibility.html">Accessibility</a>
+          </li>
+          <li>
+            <a href="./printing.html">Printing</a>
+          </li>
+          <li>
+            <a href="./utilities.html">Utility Classes</a>
+          </li>
+          <li>
+            <a href="./debug.html">Debugging</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="col xs-12 md-9 content">
+      <section class="docs-section">
+<h1 class="section-heading h2">Images and Media</h1>
+<div>
+  <h2 class="h3">Images <span class="chip">&lt;img></span></h2>
+  <p>All img elements have height and width set to auto, and max-width set to 100%. This prevents images from breaking out of their containers, and also allows width/height to scale as appropriate when a more specific dimension is defined.</p>
+  <div style="width:900px;max-width:60%;" class="boxed">
+    <p class="bold">This image can't break out of it's container even if it wanted to!</p>
+    <img src="https://unsplash.it/700/300">
+  </div>
+  <h3 class="h4">Floating images</h3>
+  <p>Images can be floated by applying utility classes. Additional styling automatically applies margins to create white space when images are floated alongside text.</p>
+  <pre class="language-markup line-numbers"><code><!--
+    <p><img src="https://unsplash.it/200/100" class="align-none">...text...</p>
+    <p><img src="https://unsplash.it/200/100" class="align-left">...text...</p>
+    <p><img src="https://unsplash.it/200/100" class="align-right">...text...</p>
+    <p><img src="https://unsplash.it/200/100" class="align-center">...text...</p>
+      --></code>
+    </pre>
+  <p><img src="https://unsplash.it/200/100" class="align-none"><span class="bold">align-none</span><br>Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+  <p><img src="https://unsplash.it/200/100" class="align-left"><span class="bold">align-left</span><br>Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+  <p><img src="https://unsplash.it/200/100" class="align-right"><span class="bold">align-right</span><br>Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+  <p><img src="https://unsplash.it/200/100" class="align-center"><span class="bold">align-center</span><br>Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
+</div>
+
+<div>
+  <h2 class="h3">Responsive Embeds</h2>
+  <p>Wrap an iFrame in a container with class <span class="css-ref">.embed-container</span> to ensure the iFrame is responsively resized.</p>
+  <p>Use modifiers to account for different aspect ratios. <span class="strong">Note: these modifiers can be used on any element - not just embed-containers.</span></p>
+  <pre class="language-markup">
+    <code><!--
+    <div class="embed-container">
+      <iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow"></iframe>
+    </div>
+    <div class="embed-container ratio-16x9">
+      ...
+    </div>
+    <div class="embed-container ratio-21x9">
+      ...
+    </div>
+    <div class="embed-container ratio-1x1">
+      ...
+    </div>
+    <div class="ratio-4x3">
+      Hello world!
+    </div>
+  --></code>
+  </pre>
+  <div class="embed-container">
+    <iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="row">
+    <div class="col sm-10 md-9 lg-7">
+      <div class="embed-container ratio-16x9">
+        <iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="col sm-10 md-9 lg-7">
+      <div class="embed-container ratio-21x9">
+        <iframe src="https://www.youtube.com/embed/1jdknVf5mxw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="col sm-10 md-9 lg-7">
+      <div class="embed-container ratio-1x1">
+        <iframe src="https://player.vimeo.com/video/170780266?h=2912c26a2d" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="col sm-10 md-9 lg-7">
+      <div class="boxed ratio-4x3">
+        Hello world!
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stickybits/3.7.11/stickybits.min.js" integrity="sha512-ji6fCLZlHjqkE7xw3WorjIXDalqEPsRE5NRAbjl8WHB4AMhU3zk/t5Zt6O/buVEWHQ+2SVfTxqPXU3P6bmxL1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./prism.js"></script>
+<script type="text/javascript">
+  let navbarHeight = 0;
+  $(document).ready(function ($) {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+
+    let sidebarLinks = $('.sidebar a');
+    if (sidebarLinks.length > 0) {
+      sidebarLinks.each(function () {
+        let link = $(this).attr('href');
+        link = link.replace('./', '');
+        let currentPage = window.location.pathname.split('/').pop();
+        if (link == currentPage) {
+          $(this).addClass('is-active');
+        }
+
+      });
+    }
+  });
+  window.addEventListener('resize', () => {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+  });
+</script>
+</body>
+
+</html>

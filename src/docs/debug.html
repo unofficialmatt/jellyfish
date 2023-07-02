@@ -1,0 +1,41 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Debugging",
+"description": "Preview the grid in your project by enabling debug mode.",
+})
+
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Debug mode</h1>
+<p class="standfirst">Quickly see the layout of your grid and components.</p>
+<p>Jellyfish comes with a handy debug mode which allows you to quickly see the structure of the grid, and diagnose any layout issues. Debug mode can be enabled in three ways:</p>
+<ol>
+  <li>by setting <span class="variable-ref">$debug-mode-on</span> to <strong>true</strong></li>
+  <li>by adding the class <span class="css-ref">.jf-debug</span> to the body or html element</li>
+  <li>by running <code class="code-ref">jfdebug()</code> in the console</li>
+</ol>
+<p>When debug mode is active:</p>
+<ul>
+  <li>The highest level <span class="css-ref">.row</span> element will have a striped background showing the base column layout.</li>
+  <li><span class="css-ref">.row</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(245, 211, 0, .8);">glow in yellow</span></li>
+  <li><span class="css-ref">.col</span> elements will <span style="box-shadow:0 1px 3px 3px rgba(8, 247, 254, .7);">glow in turquoise</span></li>
+  <li>If <span class="variable-ref">$grid-has-offset</span> or <span class="variable-ref">$grid-has-order</span> are set to true, elements with a class <span class="css-ref">.offset-*</span> and <span class="css-ref">.order-*</span> will be <span style="outline: 2px solid #fe53BB">highlighted in pink</span></li>
+  <li>The current breakpoint name is shown in the top left corner of the window.</li>
+</ul>
+<p>Try it out - <a onclick="jfdebug()" style="cursor:pointer;">click here</a> to toggle debug mode on and off onto this page.</p>
+<div class="row">
+  <div class="col md-4 offset-md-4">
+    <div class="boxed">Offset .col</div>
+  </div>
+  <div class="col md-4">
+    <div class="boxed">.col coming along for the ride</div>
+  </div>
+  <div class="col md-4 order-md-2">
+    <div class="boxed">Order md-2</div>
+  </div>
+  <div class="col md-4 order-md-3">
+    <div class="boxed">Order md-3</div>
+  </div>
+  <div class="col md-4 order-md-1 order-lg-0">
+    <div class="boxed">Order md-1 Order-lg-0</div>
+  </div>
+</div>
+@@include('./src/docs/partials/html-footer.html')
