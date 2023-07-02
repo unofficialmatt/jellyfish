@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Tables ~ 🎐 Jellyfish UI</title>
+    <meta name="description" content="Jellyfish tables are responsive and easy to read on any device.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+    <link href="./prism.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+  </head>
+
+  <body>
+<div class="docs-container">
+  <div class="row">
+    <aside class="col xs-12 md-3">
+      <div class="sidebar">
+        <a href="../index.html" class="navbar-brand">
+          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+        </a>
+        <ul>
+          <li class="li-title mt-0">
+            HTML
+          </li>
+          <li>
+            <a href="./getting-started.html">Getting Started</a>
+          </li>
+          <li>
+            <a href="./grid.html">Grid</a>
+          </li>
+          <li>
+            <a href="./navbar.html">Navbar</a>
+          </li>
+          <li>
+            <a href="./typography.html">Typography</a>
+          </li>
+          <li>
+            <a href="./media.html">Images and Media</a>
+          </li>
+          <li>
+            <a href="./tables.html">Tables</a>
+          </li>
+          <li>
+            <a href="./forms.html">Forms</a>
+          </li>
+          <li>
+            <a href="./progress.html">Progress Bars</a>
+          </li>
+          <li>
+            <a href="./buttons.html">Buttons</a>
+          </li>
+          <li>
+            <a href="./chips.html">Chips</a>
+          </li>
+          <li>
+            <a href="./callouts.html">Callouts</a>
+          </li>
+          <li>
+            <a href="./cards.html">Cards</a>
+          </li>
+          <li class="li-title">
+            SCSS
+          </li>
+          <li>
+            <a href="./breakpoints.html">Breakpoints</a>
+          </li>
+          <li>
+            <a href="./mixins.html">Mixins</a>
+          </li>
+          <li>
+            <a href="./variables.html">Variables</a>
+          </li>
+          <li class="li-title">
+            Javascript
+          </li>
+          <li>
+            <a href="./javascript.html">Javascript Functions</a>
+          </li>
+          <li class="li-title">
+            Utilities
+          </li>
+          <li>
+            <a href="./theme-colors.html">Theme Colors</a>
+          </li>
+          <li>
+            <a href="./accessibility.html">Accessibility</a>
+          </li>
+          <li>
+            <a href="./printing.html">Printing</a>
+          </li>
+          <li>
+            <a href="./utilities.html">Utility Classes</a>
+          </li>
+          <li>
+            <a href="./debug.html">Debugging</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="col xs-12 md-9 content">
+      <section class="docs-section">
+<h1 class="section-heading h2">Tables</h1>
+<div>
+  <p class="standfirst">Tables are set to a width of 100% and have some basic formatting applied.</p>
+  <pre class="language-markup">
+    <code><!--
+    <table>
+    <thead><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></thead>
+    <tbody>
+        <tr><td>Cotylorhiza tuberculata</td><td>Mild</td><td>Mediterranean Sea</td></tr>
+        <tr><td>Pelagia noctiluca</td><td>Severe</td><td>Mediterranean Sea</td></tr>
+        <tr><td>Rhopilema nomadica</td><td>Severe</td><td>Indo-Pacific ocean</td></tr>
+    </tbody>
+    <tfoot><tr><th>Jellyfish Species</th><th>Danger Level</th><th>Habitat</th></tr></tfoot>
+  </table>
+  --></code>
+  </pre>
+  <table>
+    <thead>
+      <tr>
+        <th>Jellyfish Species</th>
+        <th>Danger Level</th>
+        <th>Habitat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cotylorhiza tuberculata</td>
+        <td>Mild</td>
+        <td>Mediterranean Sea</td>
+      </tr>
+      <tr>
+        <td>Pelagia noctiluca</td>
+        <td>Severe</td>
+        <td>Mediterranean Sea</td>
+      </tr>
+      <tr>
+        <td>Rhopilema nomadica</td>
+        <td>Severe</td>
+        <td>Indo-Pacific ocean</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Jellyfish Species</th>
+        <th>Danger Level</th>
+        <th>Habitat</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<div>
+  <h2 class="h3">Striped Tables</h2>
+  <p>Use the class <span class="css-ref">.is-striped</span> to add stripes to alternating rows.</p>
+  <pre class="language-markup">
+    <code><!--
+    <table class="is-striped">
+    ...
+  </table>
+  --></code>
+  </pre>
+  <table class="is-striped">
+    <thead>
+      <tr>
+        <th>Jellyfish Species</th>
+        <th>Danger Level</th>
+        <th>Habitat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cotylorhiza tuberculata</td>
+        <td>Mild</td>
+        <td>Mediterranean Sea</td>
+      </tr>
+      <tr>
+        <td>Pelagia noctiluca</td>
+        <td>Severe</td>
+        <td>Mediterranean Sea</td>
+      </tr>
+      <tr>
+        <td>Rhopilema nomadica</td>
+        <td>Severe</td>
+        <td>Indo-Pacific ocean</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Jellyfish Species</th>
+        <th>Danger Level</th>
+        <th>Habitat</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<div>
+  <h2 class="h3">Bordered Tables</h2>
+  <p>Use the class <span class="css-ref">.has-border</span> to add borders to the table.</p>
+  <pre class="language-markup">
+    <code><!--
+    <table class="has-border">
+    ...
+  </table>
+  --></code>
+  </pre>
+  <table class="has-border">
+    <thead>
+      <tr>
+        <th>Jellyfish Species</th>
+        <th>Danger Level</th>
+        <th>Habitat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cotylorhiza tuberculata</td>
+        <td>Mild</td>
+        <td>Mediterranean Sea</td>
+      </tr>
+      <tr>
+        <td>Pelagia noctiluca</td>
+        <td>Severe</td>
+        <td>Mediterranean Sea</td>
+      </tr>
+      <tr>
+        <td>Rhopilema nomadica</td>
+        <td>Severe</td>
+        <td>Indo-Pacific ocean</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Jellyfish Species</th>
+        <th>Danger Level</th>
+        <th>Habitat</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<div>
+  <h2 class="h3">Hoverable Rows</h2>
+  <p>Use the class <span class="css-ref">.is-hoverable</span> to enable a hover state on rows.</p>
+  <pre class="language-markup">
+    <code><!--
+    <table class="is-hoverable">
+    ...
+  </table>
+  --></code>
+  </pre>
+  <table class="is-hoverable">
+    <thead>
+      <tr>
+        <th>Jellyfish Species</th>
+        <th>Danger Level</th>
+        <th>Habitat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cotylorhiza tuberculata</td>
+        <td>Mild</td>
+        <td>Mediterranean Sea</td>
+      </tr>
+      <tr>
+        <td>Pelagia noctiluca</td>
+        <td>Severe</td>
+        <td>Mediterranean Sea</td>
+      </tr>
+      <tr>
+        <td>Rhopilema nomadica</td>
+        <td>Severe</td>
+        <td>Indo-Pacific ocean</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Jellyfish Species</th>
+        <th>Danger Level</th>
+        <th>Habitat</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<div>
+  <h2 class="h3">Responsive Tables</h3>
+    <p>Jellyfish provides two methods of making tables more responsive. The first adds a scroll bar on smaller devices; the second uses data-attributes on the <code class="code-ref">&lt;td></code> elements to display headings inline with the content.</p>
+    <p><span class="italic">Method One</span>: (preferred) Apply a class of <span class="css-ref">.is-responsive</span> to the table, and replicate the <code class="code-ref">&lt;th></code> labels as <code class="code-ref">data-label</code> properties on each <code class="code-ref">&lt;td></code>.</p>
+    <p><span class="bold">Note:</span> if you leave the <code class="code-ref">data-labels</code> out of your markup, Jellyfish's javascript will add the <code class="code-ref">data-labels</code> in automatically on document ready.</p>
+    <pre class="language-markup">
+    <code><!--
+      <table class="is-responsive">
+        <thead>
+          <tr>
+            <th>Jellyfish Species</th>
+            ...
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Jellyfish Species">....</td>
+            ...
+          </tr>
+        </tbody>
+      </table>
+  --></code>
+  </pre>
+    <table class="has-border is-responsive">
+      <thead>
+        <tr>
+          <th>Jellyfish Species</th>
+          <th>Stinger</th>
+          <th>Habitat</th>
+          <th>How to identify it</th>
+        </tr>
+      </thead>
+      <tbody class="small">
+        <tr>
+          <td data-label="Jellyfish Species">Cotylorhiza tuberculata</td>
+          <td data-label="Stinger">Harmless to humans, but it is better not to touch it. It is probably harmless also for most fishes. Just as for Rhizostoma, it is often associated to young fish that use it as a shelter</td>
+          <td data-label="Habitat">Very abundant in the Mediterranean Sea, expecially in bays. In 2009 it was more frequent in the southern part of Italy, showing a preference for warmer waters, but this was not confirmed in 2010 and 2011, since this species was very frequent throughout the whole Italian coast, especially in the second half of the summer.</td>
+          <td data-label="How to identify it">One of the most beautiful jellyfish of the Mediterranean Sea. The umbrella can measure 30 cm in diameter, it is very rigid and roundish in its centre, where it has a reddish or yellow color. The external part of the manubrium is motile and pulsates vigorously. Under the umbrella, the manubrium resembles a bouquet of flowers, with blue-purple buttons, inserted into stout arms. Some tentacles, also terminating with blue buttons, are inserted on the manubrium.Cotylorhiza can have symbiotic microalgae that live in its tissues, just as those of tropical corals. Functionally it is a “plant”, even if it can feed on zooplankton.</td>
+        </tr>
+        <tr>
+          <td data-label="Jellyfish Species">Rhopilema nomadica</td>
+          <td data-label="Stinger">A bad stinger, it can be confused with the almost harmless Rhizostoma from which it can be distinguished due to the characteristic blue rim of Rhizostoma</td>
+          <td data-label="Habitat">The genus Rhopilema is typical of the Indo-Pacific ocean and has no Atlantic or Mediterranean representatives. It never reached the Italian seas, possibly because the temperatures are not high enough for this tropical species. In the Eighties this species became suddenly abundant along the Israeli coasts of the Mediterranean Sea: it probably reached the Mediterranean from the Red Sea, through the Suez Canal, hence the specific name “nomadica”. In the eastern Mediterranean it causes great harm to tourism, fisheries, and industry.</td>
+          <td data-label="How to identify it">It does not pass unnoticed, since it can reach 80 cm in diameter and can form extensive swarms. The current global warming might pave its way towards the expansion of this species in the Western Mediterranean.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><span class="italic">Method Two</span>: wrap a table in a <span class="css-ref">.table-container</span> to add a scroll bar on smaller devices. There is far less control with this method, so it's not generally recommended.</p>
+    <pre class="language-markup">
+    <code><!--
+    <div class="table-container">
+      <table class="has-border">
+        ...
+      </table>
+    </div>
+  --></code>
+  </pre>
+    <div class="table-container">
+      <table class="has-border">
+        <thead>
+          <tr>
+            <th>Jellyfish Species</th>
+            <th>Stinger</th>
+            <th>Habitat</th>
+            <th>How to identify it</th>
+          </tr>
+        </thead>
+        <tbody class="small">
+          <tr>
+            <td>Cotylorhiza tuberculata</td>
+            <td>Harmless to humans, but it is better not to touch it. It is probably harmless also for most fishes. Just as for Rhizostoma, it is often associated to young fish that use it as a shelter</td>
+            <td>Very abundant in the Mediterranean Sea, expecially in bays. In 2009 it was more frequent in the southern part of Italy, showing a preference for warmer waters, but this was not confirmed in 2010 and 2011, since this species was very frequent throughout the whole Italian coast, especially in the second half of the summer.</td>
+            <td>One of the most beautiful jellyfish of the Mediterranean Sea. The umbrella can measure 30 cm in diameter, it is very rigid and roundish in its centre, where it has a reddish or yellow color. The external part of the manubrium is motile and pulsates vigorously. Under the umbrella, the manubrium resembles a bouquet of flowers, with blue-purple buttons, inserted into stout arms. Some tentacles, also terminating with blue buttons, are inserted on the manubrium.Cotylorhiza can have symbiotic microalgae that live in its tissues, just as those of tropical corals. Functionally it is a “plant”, even if it can feed on zooplankton.</td>
+          </tr>
+          <tr>
+            <td>Rhopilema nomadica</td>
+            <td>A bad stinger, it can be confused with the almost harmless Rhizostoma from which it can be distinguished due to the characteristic blue rim of Rhizostoma</td>
+            <td>The genus Rhopilema is typical of the Indo-Pacific ocean and has no Atlantic or Mediterranean representatives. It never reached the Italian seas, possibly because the temperatures are not high enough for this tropical species. In the Eighties this species became suddenly abundant along the Israeli coasts of the Mediterranean Sea: it probably reached the Mediterranean from the Red Sea, through the Suez Canal, hence the specific name “nomadica”. In the eastern Mediterranean it causes great harm to tourism, fisheries, and industry.</td>
+            <td>It does not pass unnoticed, since it can reach 80 cm in diameter and can form extensive swarms. The current global warming might pave its way towards the expansion of this species in the Western Mediterranean.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stickybits/3.7.11/stickybits.min.js" integrity="sha512-ji6fCLZlHjqkE7xw3WorjIXDalqEPsRE5NRAbjl8WHB4AMhU3zk/t5Zt6O/buVEWHQ+2SVfTxqPXU3P6bmxL1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./prism.js"></script>
+<script type="text/javascript">
+  let navbarHeight = 0;
+  $(document).ready(function ($) {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+
+    let sidebarLinks = $('.sidebar a');
+    if (sidebarLinks.length > 0) {
+      sidebarLinks.each(function () {
+        let link = $(this).attr('href');
+        link = link.replace('./', '');
+        let currentPage = window.location.pathname.split('/').pop();
+        if (link == currentPage) {
+          $(this).addClass('is-active');
+        }
+
+      });
+    }
+  });
+  window.addEventListener('resize', () => {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+  });
+</script>
+</body>
+
+</html>

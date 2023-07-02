@@ -1,6 +1,4 @@
-# 🎐 Jellyfish SCSS Framework
-
-## TODO: The docs need rewriting now that we are on npm
+# 🎐 Jellyfish UI Framework
 
 <p>
 <img src="https://img.shields.io/github/stars/unofficialmatt/jellyfish.svg?style=flat-square&logo=github"/>
@@ -10,46 +8,25 @@
 <img src="https://img.shields.io/badge/license-MIT-yellow.svg?style=flat-square"/>
 </p>
 
-Jellyfish is yet another front-end design framework for developing responsive, browser-consistent web projects.
+Jellyfish is a front-end design framework for developing responsive, browser-consistent web projects.
+
 Jellyfish has a few stings in it's tail:
+
 - [NPM](https://www.npmjs.com/) is used to manage packages
 - [Gulp.js](https://gulpjs.com/) is used to run tasks to make compile easier
-- [Sass (SCSS)](https://sass-lang.com/) is used to compartmentalise components and organise css into digestible parts
+- [Sass (SCSS)](https://sass-lang.com/) is used to compartmentalise components and organise css into digestible parts using the [7-1 pattern](https://sass-guidelin.es/#the-7-1-pattern)
 - [BrowserSync](https://www.browsersync.io/) opens up a new window in your default browser and live reloads whenever changes are detected to your project's javascript, css or HTML
-- Jellyfish is hugely customisable with a large settings file to quickly theme the base styles to your project. Jellyfish differs from most grid systems in that you can change the amount of columns in your grid and the breakpoint names - the logic built into sass will automatically compile the appropriate code
+- Jellyfish is highly customisable with a settings to quickly theme the base styles to your project.
 
-### [View documentation](https://unofficialmatt.github.io/jellyfish/)
+### [View documentation](https://jellyfish-ui.com/)
 
 ## Installation
 
-Make sure that you have npm, browsersync and gulp installed on your system following the guides on their respective websites. Then, clone the project into your required folder with git:
+Jellyfish UI is best used as a dependency, [see the documentation](https://jellyfish-ui.com/) for information.
 
 ```bash
-git clone https://github.com/unofficialmatt/jellyfish.git
-cd jellyfish
+npm install jellyfish-ui@latest
 ```
-
-Install the dev dependencies:
-
-```bash
-npm install
-```
-
-And start:
-
-```bash
-gulp
-```
-
-Your project is now up and running, and you can begin extending the code to suit your project - and editing the variables in `/src/scss/_settings.scss`.
-
-## Do we really need another SCSS framework?
-
-Good question! No, we probably don't. Jellyfish has been built over the course of many years by [Matt Weet](https://www.mattweet.com) to gain a better understanding of, and adapt to, modern front-end development techniques and to understand how a responsive CSS framework works from scratch. It has also helped Matt to learn more about git.
-
-Matt uses the framework as a basis for all of his web projects, and as you can see from the commit history there have been many trials and tribulations along the way!
-
-Feel free to take Jellyfish for a spin on any of your web projects and let me know if you have any feedback or use it on a live site.
 
 ## Acknowledgements
 

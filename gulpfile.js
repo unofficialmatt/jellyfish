@@ -11,6 +11,7 @@ const fs = require("fs");
 const path = require("path");
 const glob = require("glob");
 
+const fileinclude = require("gulp-file-include");
 
 var eslint = require("gulp-eslint");
 var uglify = require("gulp-uglify");
@@ -41,8 +42,6 @@ const opts = {
 // Task to initialize browserSync client
 function browsersyncInit(done) {
   browsersync.init({
-    tunnel: "jellyfish-ui",
-    open: "tunnel",
     server: {
       baseDir: "./",
     },
@@ -58,7 +57,10 @@ function browsersyncReload(done) {
 
 // Tasks which watch for changes in specified files/dirs and run tasks based on filetypes edited
 function watchTask() {
-  watch("*.html", browsersyncReload);
+  watch(
+    opts.src_dir + "/docs/**/*.html",
+    series(fileIncludePages, browsersyncReload)
+  );
 
   watch(
     opts.src_dir + "/scss/**/!(__all).scss",
@@ -91,10 +93,7 @@ function copyLibs(done) {
 
 // Tasks which process the core javascript files
 function javascriptProcess() {
-  return src([
-    opts.src_dir + "/js/**/*.js",
-    "!" + opts.src_dir + "/js/breakpoints.js",
-  ])
+  return src([opts.src_dir + "/js/**/*.js"])
     .pipe(sourcemaps.init())
     .pipe(eslint())
     .pipe(eslint.format())
@@ -190,7 +189,7 @@ function sassProcess() {
 
   return src(opts.src_dir + "/scss/main.scss")
     .pipe(sourcemaps.init())
-    .pipe(sass().on("error", sass.logError))
+    .pipe(sass({ includePaths: ["node_modules"] }).on("error", sass.logError))
     .pipe(postcss(processors))
     .pipe(rename("jellyfish.min.css"))
     .pipe(
@@ -203,8 +202,20 @@ function sassProcess() {
     .pipe(browsersync.reload({ stream: true }));
 }
 
+function fileIncludePages() {
+  return src(["src/docs/*.html"])
+    .pipe(
+      fileinclude({
+        prefix: "@@",
+        basepath: "./",
+        indent: true,
+      })
+    )
+    .pipe(dest("./docs/"));
+}
 // Tasks which run on $ gulp build
 const buildScripts = parallel(
+  fileIncludePages,
   series(
     copyLibs,
     parallel(series(sassAutomaticImports, sassProcess), javascriptProcess)
@@ -214,6 +225,7 @@ const buildScripts = parallel(
 // Tasks which run on $ gulp
 const serverScripts = series(browsersyncInit, watchTask);
 
+exports.buildDocumentation = fileIncludePages;
 exports.reload = browsersyncReload;
 exports.build = buildScripts;
 exports.default = serverScripts;

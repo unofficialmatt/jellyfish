@@ -1,0 +1,48 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Accessibility",
+"description": "Tools and techniques to make your website accessible to all users.",
+})
+
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Accessibility</h1>
+<div>
+  <h2 class="h3">Screen reader text</h2>
+  <p>Add a class of <span class="css-ref">.screen-reader-text</span> to an element to remove it from the DOM whilst keeping it readable to screen-readers and search engines.</p>
+  <pre class="language-markup">
+    <code><!--
+      <a href="#">Find out more <span class="screen-reader-text">about Jellyfish, the CSS framework</span></a>
+    --></code>
+  </pre>
+  <a href="#">Find out more <span class="screen-reader-text">about Jellyfish, the CSS framework</span></a>
+</div>
+<div>
+  <h2 class="h3">:focus-visible outlines</h2>
+  <p>Jellyfish includes clear focus highlighting of buttons, anchors, and inputs to aid users navigating a website via keyboard. To preserve design aesthetics these styles will not be applied when a user is navigating with a mouse - with the exception of input fields which, by specification, should inherit :focus-visible when active. <a href="https://www.w3.org/TR/selectors-4/#the-focus-visible-pseudo">See this directive</a> for clarification.</p>
+  <p>Go ahead and tab...</p>
+  <p><a href="#">Basic link</a></p>
+  <div class="button-list">
+    <a href="#" class="button">Button Link</a>
+    <button class="button">Button Element</button>
+  </div>
+  <label for="tabbed-input">Text Input</label>
+  <input type="text" name="tabbed-input">
+</div>
+<div>
+  <h2 class="h3">Increase font size globally</h2>
+  <p>Add a class <span class="css-ref">.font-size-sm</span>, <span class="css-ref">.font-size-md</span> or <span class="css-ref">.font-size-lg</span> to the body element to change the base font size. This will allow visitors with limited eye sight to increase the size of type throughout the site.</p>
+  <p>For a quick and easy way to implement this feature, you can add the code snippet below to your project.</p>
+  <p><strong>Note:</strong> this approach uses javascript to set a Cookie 'fontsize' to ensure that the setting is persistent across the site.</p>
+  <pre class="language-markup">
+    <code><!--
+      <span class="screen-reader-text">Adjust font size:</span>
+      <button class="font-size font-size-sm" title="Small Font Size">A</button>
+      <button class="font-size font-size-md" title="Medium Font Size">A</button>
+      <button class="font-size font-size-lg" title="Large Font Size">A</button>
+    --></code>
+  </pre>
+  <span class="screen-reader-text">Adjust font size:</span>
+  <button class="font-size font-size-sm" title="Small Font Size">A</button>
+  <button class="font-size font-size-md" title="Medium Font Size">A</button>
+  <button class="font-size font-size-lg" title="Large Font Size">A</button>
+</div>
+@@include('./src/docs/partials/html-footer.html')

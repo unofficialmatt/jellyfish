@@ -1,0 +1,59 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Javascript",
+"description": "A handful of helpful JavaScript functions.",
+})
+
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Javascript</h1>
+<div>
+  <p class="standfirst">Jellyfish UI is fundamentally a CSS framework, however it does come with a few helpful Javascript functions.</p>
+  <p>As mentioned in <a href="./getting-started.html">Getting Started</a>, you should include the dist/jellyfish.min.js script in your project; this is because some core functionality such as navigation and accessibility is dependent on Javascript.</p>
+  <p>Jellyfish's Javascript depends on jQuery being included in your project. In the longer term, the dependency on jQuery will be removed.</p>
+  <h2 class="h3">Cookies</h2>
+  <p>Jellyfish provides a simple way to set, get and delete cookies.</p>
+  <pre>
+    <code class="language-javascript">
+      /**
+        * Set a Cookie
+        * @param {string} name - The name of the cookie
+        * @param {string} value - The value of the cookie
+        * @param {number} days - The number of days until the cookie expires
+        */
+      jfSetCookie(name, value, days);
+
+      /**
+        * Get a Cookie
+        * @param {string} name - The name of the cookie
+        * @returns {string} The value of the cookie
+        */
+      jfGetCookie(name);
+
+      /**
+        * Delete a Cookie
+        * @param {string} name - The name of the cookie
+        */
+      jfDestroyCookie(name);
+    </code>
+  </pre>
+
+  <h2 class="h3">Lazy Load Background Images</h2>
+  <p>Jellyfish will lazy-load background images; you need to add a class <span class="css-ref">.has-bg-img</span> and a <span class="code-ref">data-bg-img</span> attribute to the element.</p>
+  <pre>
+    <code class="language-html">
+      &lt;div class="has-bg-img" style="background-image:url('https://unsplash.it/450/150');" data-bg-img="https://unsplash.it/1800/600"&gt;&lt;/div&gt;
+    </code>
+  </pre>
+  <div class="has-bg-img mb" style="background-image:url('https://unsplash.it/450/150');height:600px;width:100%;background-size: cover;background-position: center;" data-bg-img="https://unsplash.it/1800/600"></div>
+
+
+  <h2 class="h3">Google Analytics</h2>
+  <p>If Jellyfish detects an active gtag, it will send the following events into Google Analytics automatically:</p>
+  <ul>
+    <li>All clicks on mailto: anchors will appear as event_category: "Email Enquiry" and event_action: "Mailto Click".</li>
+    <li>All clicks on tel: anchors will appear as event_category: "Telephone Enquiry" and event_action: "Tel Link Click".</li>
+    <li>All clicks on pdf downloads will appear as event_category: "PDF Download" and event_action: "Download".</li>
+    <li>All clicks on external links will appear as event_category: "External Link" and event_action: "Link Click".</li>
+  </ul>
+  <!-- TODO: Can this be removed now that GA4 tracks these better? -->
+</div>
+@@include('./src/docs/partials/html-footer.html')

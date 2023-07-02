@@ -1,0 +1,127 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Breakpoints",
+"description": "Useful breakpoints to cover the most common device sizes.",
+})
+
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Breakpoints</h1>
+<div>
+  <p class="standfirst">Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints.</p>
+  <p>These are declared through the <span class="variable-ref">$breakpoints</span> SCSS map. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
+  <h2 class="h3">Example breakpoint definition</h2>
+  <pre>
+    <code class="language-scss line-numbers">
+      md: (
+      breakpoint: 900px,
+      container-width: 90%,
+      container-max-width: 1140px,
+      container-gutter: 0px,
+      root-font-size: 18px,
+      root-line-height: 1.6,
+      col-gutter: get-size(2),
+    ),
+    </code>
+  </pre>
+  <p>Jellyfish is mobile-first, so breakpoint settings will inherit upwards if not defined. Rather than targetting specific devices, the default breakpoints are set to <a href="https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/" target="_blank">sensible agnostic sizes</a>.</p>
+  <p><span class="bold">Note:</span> The <span class="variable-ref">$breakpoints</span> map is merged with map-merge() into defaults, so if you need to remove an item for your project, you will need to use <a href="https://sass-lang.com/documentation/modules/map/" target="_blank">map.remove()</a>.</p>
+  <p><span class="bold">Note:</span> Javascript also requires breakpoints to be defined. These are defined through the Javascript variable <span class="variable-ref">breakPoints</span> and must be manually kept in sync with the SCSS breakpoints.</p>
+</div>
+<div>
+  <h2 class="h3">Terminology</h2>
+  <table class="has-border">
+    <thead>
+      <tr>
+        <th>Term</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>breakpoint</td>
+        <td>The width at which the breakpoint will take effect. This must be provided in px and will be converted to an em value through the breakpoint mixin. <strong>This variable is required.</strong></td>
+      </tr>
+      <tr>
+        <td>container-width</td>
+        <td>The width of the <span class="css-ref">.container</span> element at this breakpoint - should be provided as %, px or rem.</td>
+      </tr>
+      <tr>
+        <td>container-max-width</td>
+        <td>The maximum width of the <span class="css-ref">.container</span> element at this breakpoint - should be provided as px or rem.</td>
+      </tr>
+      <tr>
+        <td>container-gutter</td>
+        <td>Padding applied to the left and right of the <span class="css-ref">.container</span> element - this should be provided as px value.</td>
+      </tr>
+      <tr>
+        <td>col-gutter</td>
+        <td>Padding applied to the left and right of <span class="css-ref">.col</span> elements - this should be provided as a px value. <strong>This variable is required.</strong></td>
+      </tr>
+      <tr>
+        <td>root-font-size</td>
+        <td>Global base font size (applied to <span class="css-ref">body</span>) which will affect all elements sized with em. Useful for improving legibility at different breakpoints. This should be provided as a px value.</td>
+      </tr>
+      <tr>
+        <td>root-line-height</td>
+        <td>Global base line-height (applied to <span class="css-ref">body</span>) which will affect all elements that do not have a line-height applied. Can be provided as a number, em or px.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Note:</strong> You can also configure settings for the smallest devices (i.e. before any media queries are activated) by setting the following variables: <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$root-font-size</span>, <span class="variable-ref">$root-line-height</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></p>
+</div>
+<div>
+  <h2 class="h3">Media queries</h2>
+  <p>Jellyfish comes with three media query mixins. These mixins are flexible, allowing you to specify either a <span class="variable-ref">$breakpoint</span> name from your breakpoint map or a px value. The below examples are all valid uses of the media query mixins.</p>
+  <pre class="language-scss">
+    <code>
+      // 1. Use the mixin within an element declaration
+      body {
+        @include above(sm) {
+            background-color: #ff3c74;
+        }
+      }
+      // 2. Add element declarations within the mixin
+      @include between(sm,md) {
+        .element {
+            background: linear-gradient(to right, #ff3c74 0%, #ffa0cd 100%);
+        }
+      }
+      .element {
+        // Pass a pixel value
+        @include below(600px) {
+          transform: rotate(100deg);
+        }
+        // Mix pixel values with breakpoint names
+        @include between(600px,lg) {
+          transition-duration: 10s;
+        }
+        // Pass a breakpoint name
+        @include above(lg) {
+          transition-timing-function: cubic-bezier(0.9, 0.1, .2, .4);
+        }
+      }
+    </code>
+  </pre>
+  <table class="has-border">
+    <thead>
+      <tr>
+        <th>Mixin</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="code-ref">@include above($min) {...}</span></td>
+        <td>CSS contained within the brackets will apply above the given breakpoint, until overwritten by specificity or a higher breakpoint.</td>
+      </tr>
+      <tr>
+        <td><span class="code-ref">@include between($min, $max) {...}</span></td>
+        <td>CSS will apply between the two specified breakpoints only.</td>
+      </tr>
+      <tr>
+        <td><span class="code-ref">@include below($max) {...}</span></td>
+        <td>CSS applies below the given breakpoint, unless overridden by specificity. As a general rule, it's best to use <code class="code-ref">above()</code> rather than <code class="code-ref">below()</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+@@include('./src/docs/partials/html-footer.html')

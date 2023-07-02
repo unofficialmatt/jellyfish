@@ -1,0 +1,93 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Callouts",
+"description": "Provide information in a themed box, using color to indicate importance or context.",
+})
+
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Callouts</h1>
+<div>
+  <p class="standfirst">A callout provides a simple way to draw attention to information. It is an element with the class <span class="css-ref">.callout</span> applied.</p>
+</div>
+<div>
+  <h2 class="h3">Basic Callout</h2>
+  <pre class="language-markup">
+    <code><!--
+    <aside class="callout" role="alert">
+      <h2 class="callout-heading">Important information!</h2>
+      <p>Jellyfish have no brain, heart, bones or eyes. They are made up of a smooth, bag-like body and tentacles armed with tiny, stinging cells.</p>
+      <a href="#">Cool - tell me more!</a>
+    </aside>
+  --></code>
+  </pre>
+  <aside class="callout" role="alert">
+    <h2 class="callout-heading">Important information!</h2>
+    <p>Jellyfish have no brain, heart, bones or eyes. They are made up of a smooth, bag-like body and tentacles armed with tiny, stinging cells. </p>
+    <a href="#">Cool - tell me more!</a>
+  </aside>
+</div>
+<div>
+  <h2 class="h3">Colors</h2>
+  <p>Provide more context to callouts by using the modifiers <span class="css-ref">.primary</span>, <span class="css-ref">.secondary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span> or <span class="css-ref">.error</span>.</p>
+  <pre class="language-markup">
+    <code><!--
+    <div class="callout primary"><h6 class="callout-heading">This is a primary call out</h6>...</div>
+    <div class="callout secondary"><h6 class="callout-heading">This is a secondary call out</h6>...</div>
+    <div class="callout success"><h6 class="callout-heading">This is a success call out</h6>...</div>
+    <div class="callout warning"><h6 class="callout-heading">This is a warning call out</h6>...</div>
+    <div class="callout error"><h6 class="callout-heading">This is an error call out</h6>...</div>
+  --></code>
+  </pre>
+  <div class="callout primary">
+    <h6 class="callout-heading">This is a primary call out</h6>
+    <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
+  </div>
+  <div class="callout secondary">
+    <h6 class="callout-heading">This is a secondary call out</h6>
+    <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
+  </div>
+  <div class="callout success">
+    <h6 class="callout-heading">This is a success call out</h6>
+    <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
+  </div>
+  <div class="callout warning">
+    <h6 class="callout-heading">This is a warning call out</h6>
+    <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
+  </div>
+  <div class="callout error">
+    <h6 class="callout-heading">This is an error call out</h6>
+    <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Callout links</h2>
+  <p>Use the class <span class="css-ref">.callout-link</span> to apply matching colouring to a link in a callout.</p>
+  <pre class="language-markup">
+    <code><!--
+    <div class="callout primary"><h6 class="callout-heading">This is a primary call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+    <div class="callout secondary"><h6 class="callout-heading">This is a secondary call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+    <div class="callout success"><h6 class="callout-heading">This is a success call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+    <div class="callout warning"><h6 class="callout-heading">This is a warning call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+    <div class="callout error"><h6 class="callout-heading">This is an error call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
+  --></code>
+  </pre>
+  <div class="callout primary">
+    <h6 class="callout-heading">This is a primary call out</h6>This is a <a href="#" class="callout-link">very important link</a>
+  </div>
+  <div class="callout secondary">
+    <h6 class="callout-heading">This is a secondary call out</h6>This is a <a href="#" class="callout-link">very important link</a>
+  </div>
+  <div class="callout success">
+    <h6 class="callout-heading">This is a success call out</h6>This is a <a href="#" class="callout-link">very important link</a>
+  </div>
+  <div class="callout warning">
+    <h6 class="callout-heading">This is a warning call out</h6>This is a <a href="#" class="callout-link">very important link</a>
+  </div>
+  <div class="callout error">
+    <h6 class="callout-heading">This is an error call out</h6>This is a <a href="#" class="callout-link">very important link</a>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Create-your-own</h2>
+  <p>It's easy to create callouts with additional color schemes; simply add a new color to the <span class="variable-ref">$colors</span> SCSS map.</p>
+</div>
+@@include('./src/docs/partials/html-footer.html')

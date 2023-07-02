@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Getting Started ~ 🎐 Jellyfish UI</title>
+    <meta name="description" content="How to set up a new project and get started with Jellyfish UI">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+    <link href="./prism.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+  </head>
+
+  <body>
+<div class="docs-container">
+  <div class="row">
+    <aside class="col xs-12 md-3">
+      <div class="sidebar">
+        <a href="../index.html" class="navbar-brand">
+          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+        </a>
+        <ul>
+          <li class="li-title mt-0">
+            HTML
+          </li>
+          <li>
+            <a href="./getting-started.html">Getting Started</a>
+          </li>
+          <li>
+            <a href="./grid.html">Grid</a>
+          </li>
+          <li>
+            <a href="./navbar.html">Navbar</a>
+          </li>
+          <li>
+            <a href="./typography.html">Typography</a>
+          </li>
+          <li>
+            <a href="./media.html">Images and Media</a>
+          </li>
+          <li>
+            <a href="./tables.html">Tables</a>
+          </li>
+          <li>
+            <a href="./forms.html">Forms</a>
+          </li>
+          <li>
+            <a href="./progress.html">Progress Bars</a>
+          </li>
+          <li>
+            <a href="./buttons.html">Buttons</a>
+          </li>
+          <li>
+            <a href="./chips.html">Chips</a>
+          </li>
+          <li>
+            <a href="./callouts.html">Callouts</a>
+          </li>
+          <li>
+            <a href="./cards.html">Cards</a>
+          </li>
+          <li class="li-title">
+            SCSS
+          </li>
+          <li>
+            <a href="./breakpoints.html">Breakpoints</a>
+          </li>
+          <li>
+            <a href="./mixins.html">Mixins</a>
+          </li>
+          <li>
+            <a href="./variables.html">Variables</a>
+          </li>
+          <li class="li-title">
+            Javascript
+          </li>
+          <li>
+            <a href="./javascript.html">Javascript Functions</a>
+          </li>
+          <li class="li-title">
+            Utilities
+          </li>
+          <li>
+            <a href="./theme-colors.html">Theme Colors</a>
+          </li>
+          <li>
+            <a href="./accessibility.html">Accessibility</a>
+          </li>
+          <li>
+            <a href="./printing.html">Printing</a>
+          </li>
+          <li>
+            <a href="./utilities.html">Utility Classes</a>
+          </li>
+          <li>
+            <a href="./debug.html">Debugging</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="col xs-12 md-9 content">
+      <section class="docs-section">
+<h1 class="section-heading h2">
+  Getting Started
+</h1>
+
+<div>
+  <p class="standfirst">Jellyfish is a lightweight SCSS and JS framework to add to the <a href="https://github.com/search?q=css+frameworks" rel="external">ever-growing list</a>.</p>
+  <p>Jellyfish is mobile-first, flexible and scalable - providing browser-consistent styles for default HTML elements, along with some useful components and modifiers. Jellyfish uses <a href="./variables.html">SASS variables</a> throughout, with a handful of variables being converted and exposed as CSS custom properties to allow for in-browser modification.
+    Jellyfish also <del>ships</del> swims with a small handful of helpful <a href="./javascript.html">Javascript functions and utilities</a>.</p>
+</div>
+
+<!-- TODO: COME BACK TO THIS AND TEST IF CAN JUST IMPORT JP -->
+<div>
+  <h2 class="h3">Using Jellyfish in your project</h2>
+  <p>Jellyfish is intended to be used as a dependency, via npm. The HTML/php <a href="https://github.com/unofficialmatt/Jellyfish-HTML5" target="_blank">starter repo</a> provides a good example of use.</p>
+  <pre class="language-markup"><code class="code-ref">$ npm install jellyfish-ui</code></pre>
+  <h3 class="h4">SASS 7-1 Pattern</h3>
+  <p>Jellyfish is built with the <a href="https://sass-guidelin.es/#the-7-1-pattern" target="_blank">SASS 7-1 pattern</a> at it's core. In order to preserve this in your project's output CSS, you should import the SCSS files in the appropriate order:</p>
+  <pre class="language-scss">
+      <code>
+        @charset "UTF-8";
+        @import "jellyfish-ui/src/scss/jellyfish/01-tools/__all";
+        @import "01-tools/__all";
+        @import "02-settings/__all";
+        @import "jellyfish-ui/src/scss/jellyfish/03-generic/__all";
+        @import "03-generic/__all";
+        @import "jellyfish-ui/src/scss/jellyfish/04-elements/__all";
+        @import "04-elements/__all";
+        @import "jellyfish-ui/src/scss/jellyfish/05-vendor/hamburgers/hamburgers";
+        @import "05-vendor/__all";
+        @import "jellyfish-ui/src/scss/jellyfish/06-objects/__all";
+        @import "06-objects/__all";
+        @import "jellyfish-ui/src/scss/jellyfish/07-components/__all";
+        @import "07-components/__all";
+        @import "jellyfish-ui/src/scss/jellyfish/08-utilities/__all";
+        @import "08-utilities/__all";
+      </code>
+    </pre>
+  <h3 class="h4">Javascript</h3>
+  <p>You should also include the Javascript files - either by importing the src files into your build process or by including the dist file <span class="code-ref">/dist/js/jellyfish.min.js</span> in your project's markup.</p>
+</div>
+
+</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stickybits/3.7.11/stickybits.min.js" integrity="sha512-ji6fCLZlHjqkE7xw3WorjIXDalqEPsRE5NRAbjl8WHB4AMhU3zk/t5Zt6O/buVEWHQ+2SVfTxqPXU3P6bmxL1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./prism.js"></script>
+<script type="text/javascript">
+  let navbarHeight = 0;
+  $(document).ready(function ($) {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+
+    let sidebarLinks = $('.sidebar a');
+    if (sidebarLinks.length > 0) {
+      sidebarLinks.each(function () {
+        let link = $(this).attr('href');
+        link = link.replace('./', '');
+        let currentPage = window.location.pathname.split('/').pop();
+        if (link == currentPage) {
+          $(this).addClass('is-active');
+        }
+
+      });
+    }
+  });
+  window.addEventListener('resize', () => {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+  });
+</script>
+</body>
+
+</html>

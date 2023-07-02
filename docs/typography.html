@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Typography ~ 🎐 Jellyfish UI</title>
+    <meta name="description" content="Typography with vertical rhythm and modular scale.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+    <link href="./prism.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+  </head>
+
+  <body>
+
+<div class="docs-container">
+  <div class="row">
+    <aside class="col xs-12 md-3">
+      <div class="sidebar">
+        <a href="../index.html" class="navbar-brand">
+          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+        </a>
+        <ul>
+          <li class="li-title mt-0">
+            HTML
+          </li>
+          <li>
+            <a href="./getting-started.html">Getting Started</a>
+          </li>
+          <li>
+            <a href="./grid.html">Grid</a>
+          </li>
+          <li>
+            <a href="./navbar.html">Navbar</a>
+          </li>
+          <li>
+            <a href="./typography.html">Typography</a>
+          </li>
+          <li>
+            <a href="./media.html">Images and Media</a>
+          </li>
+          <li>
+            <a href="./tables.html">Tables</a>
+          </li>
+          <li>
+            <a href="./forms.html">Forms</a>
+          </li>
+          <li>
+            <a href="./progress.html">Progress Bars</a>
+          </li>
+          <li>
+            <a href="./buttons.html">Buttons</a>
+          </li>
+          <li>
+            <a href="./chips.html">Chips</a>
+          </li>
+          <li>
+            <a href="./callouts.html">Callouts</a>
+          </li>
+          <li>
+            <a href="./cards.html">Cards</a>
+          </li>
+          <li class="li-title">
+            SCSS
+          </li>
+          <li>
+            <a href="./breakpoints.html">Breakpoints</a>
+          </li>
+          <li>
+            <a href="./mixins.html">Mixins</a>
+          </li>
+          <li>
+            <a href="./variables.html">Variables</a>
+          </li>
+          <li class="li-title">
+            Javascript
+          </li>
+          <li>
+            <a href="./javascript.html">Javascript Functions</a>
+          </li>
+          <li class="li-title">
+            Utilities
+          </li>
+          <li>
+            <a href="./theme-colors.html">Theme Colors</a>
+          </li>
+          <li>
+            <a href="./accessibility.html">Accessibility</a>
+          </li>
+          <li>
+            <a href="./printing.html">Printing</a>
+          </li>
+          <li>
+            <a href="./utilities.html">Utility Classes</a>
+          </li>
+          <li>
+            <a href="./debug.html">Debugging</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="col xs-12 md-9 content">
+      <section class="docs-section">
+<h1 class="section-heading h2">Typography</h1>
+<div>
+  <p class="standfirst">Jellyfish provides default styling for all standard typography tags.</p>
+  <p>For easy spacing, Jellyfish removes the top margin and applies a bottom margin to block elements which can be defined with the <span class="variable-ref">$element-margin</span> variable. Text sizing is set with em, cascading from the root. You can use the <a href="./breakpoints.html">grid breakpoint settings</a> to alter the root font size and line-height at different breakpoints.</p>
+</div>
+<div>
+  <h2 class="h3">Headings <span class="chip">&lt;h1-h6></span></h2>
+  <h1>Heading 1</h1>
+  <h2>Heading 2</h2>
+  <h3>Heading 3</h3>
+  <h4>Heading 4</h4>
+  <h5>Heading 5</h5>
+  <h6>Heading 6</h6>
+</div>
+<div>
+  <h2 class="h3">Lists</h2>
+  <div class="row">
+    <div class="col sm-12 lg-4">
+      <p class="h4">Ordered List <span class="chip">&lt;ol></span></p>
+      <ol>
+        <li>Sed quanta sit alias, nunc tantum possitne esse tanta</li>
+        <li>Nam si propter voluptatem
+          <ol>
+            <li>quae est ista laus</li>
+            <li>quae possit e macello peti</li>
+          </ol>
+        </li>
+        <li>Nam, ut sint illa vendibiliora</li>
+        <li>haec uberiora certe sunt</li>
+      </ol>
+    </div>
+    <div class="col sm-12 lg-4">
+      <p class="h4">Unordered List <span class="chip">&lt;ul></span></p>
+      <ul>
+        <li>Sed quanta sit alias, nunc tantum possitne esse tanta</li>
+        <li>Nam si propter voluptatem
+          <ul>
+            <li>quae est ista laus</li>
+            <li>quae possit e macello peti</li>
+          </ul>
+        </li>
+        <li>Nam, ut sint illa vendibiliora</li>
+        <li>haec uberiora certe sunt</li>
+      </ul>
+    </div>
+    <div class="col sm-12 lg-4">
+      <p class="h4">Definition List <span class="chip">&lt;dl></span></p>
+      <dl>
+        <dt>Term 1</dt>
+        <dd>Sed quanta sit alias, nunc tantum possitne esse tanta.</dd>
+        <dt>Term 2</dt>
+        <dd>Nam si propter voluptatem, quae est ista laus, quae possit e macello peti?</dd>
+        <dt>Term 3</dt>
+        <dd>Nam, ut sint illa vendibiliora, haec uberiora certe sunt.</dd>
+      </dl>
+    </div>
+  </div>
+</div>
+<div>
+  <h2 class="h3">Anchors <span class="chip">&lt;a></span></h2>
+  <p>Text hyperlinks are styled with a <a href="#">simple hover animation</a> for accessibility. The animation uses the <span class="variable-ref">smooth(color)</span> mixin for a consistent transition to the text color. See <a href="./mixins.html">mixins</a> for more information.</p>
+</div>
+<div>
+  <h2 class="h3">Blockquote <span class="chip">&lt;blockquote></span></h2>
+  <blockquote>
+    <p>A journey of a thousand miles begins with a single step.</p>
+    <cite>Lao Tzu</cite>
+  </blockquote>
+</div>
+<div>
+  <h2 class="h3">Pre-formatted Text <span class="chip">&lt;pre></span></h2>
+  <pre>
+console.log("JellyFish is Awesome!");
+  </pre>
+</div>
+<div>
+  <h2 class="h3">Text Formatting</h2>
+  <table class="has-border is-responsive">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code-ref">&lt;strong&gt;</code> or <span class="css-ref">.bold</span></td>
+        <td><strong>This text is important</strong> however the <span class="css-ref">.bold</span> class can be applied for the <span class="bold">same effect without the implied semantics.</span></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;em&gt;</code> or <span class="css-ref">.italic</span></td>
+        <td><em>This text has emphasis</em> however the <span class="css-ref">.italic</span> class can be applied for the <span class="italic">same effect without the implied semantics.</span></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;u&gt;</code></td>
+        <td><u>This is underlined text</u></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;s&gt;</code></td>
+        <td><s>This is strikethrough text</s></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;a&gt;</code></td>
+        <td><a href="#">This is an anchor</a></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;small&gt;</code> or <span class="css-ref">.small</span></td>
+        <td>
+          <p class="small">This text has been defined via <span class="css-ref">.small</span> but you can also use the <code class="code-ref">small</code> tag where semantically appropriate.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;sup&gt;</code></td>
+        <td>This is<sup>superscript text</sup></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;sub&gt;</code></td>
+        <td>This is<sub>subscript text</sub></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;code&gt;</code></td>
+        <td><code class="code-ref">This is code text</code></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;samp&gt;</code></td>
+        <td><samp>This is sample text</samp></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;var&gt;</code></td>
+        <td><var>This is variable text</var></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;kbd&gt;</code></td>
+        <td><kbd>This is keyboard text</kbd></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;abbr&gt;</code></td>
+        <td><abbr title="Abbreviation">This is abbreviation text</abbr></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;del&gt;</code></td>
+        <td><del>This is deleted text</del></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;ins&gt;</code></td>
+        <td><ins>This is inserted text</ins></td>
+      </tr>
+      <tr>
+        <td><code class="code-ref">&lt;mark&gt;</code></td>
+        <td><mark>This is marked text</mark></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h2 class="h3">Utilities</h2>
+  <h3 class="h4">Simulating headings</h3>
+  <p>You can use modifier classes to simulate heading hierarchy on a non-heading level element.</p>
+  <table class="has-border">
+    <thead>
+      <tr>
+        <th>CSS Tag</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="css-ref">.h1</span></td>
+        <td><span class="h1">I'm the same font-size and line-height as a h1 tag</span></td>
+      </tr>
+      <tr>
+        <td><span class="css-ref">.h2</span></td>
+        <td><span class="h2">I'm the same font-size and line-height as a h2 tag</span></td>
+      </tr>
+      <tr>
+        <td><span class="css-ref">.h3</span></td>
+        <td><span class="h3">I'm the same font-size and line-height as a h3 tag</span></td>
+      </tr>
+      <tr>
+        <td><span class="css-ref">.h4</span></td>
+        <td><span class="h4">I'm the same font-size and line-height as a h4 tag</span></td>
+      </tr>
+      <tr>
+        <td><span class="css-ref">.h5</span></td>
+        <td><span class="h5">I'm the same font-size and line-height as a h5 tag</span></td>
+      </tr>
+      <tr>
+        <td><span class="css-ref">.h6</span></td>
+        <td>
+          <h3 class="h6 mb-0">I'm the same font-size and line-height as a h6 tag - even though I'm semantically a h3!</h3>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 class="h4">Font Weight</h3>
+  <p>Providing your typeface supports these weights, you can use <span class="css-ref">weight-*</span> modifiers to change text weight.</p>
+  <ul>
+    <li><span class="weight-hairline">.weight-hairline</span></li>
+    <li><span class="weight-thin">.weight-thin</span></li>
+    <li><span class="weight-light">.weight-light</span></li>
+    <li><span class="weight-normal">.weight-normal</span></li>
+    <li><span class="weight-medium">.weight-medium</span></li>
+    <li><span class="weight-semibold">.weight-semibold</span></li>
+    <li><span class="weight-bold">.weight-bold or .bold</span></li>
+    <li><span class="weight-xbold">.weight-xbold</span></li>
+    <li><span class="weight-black">.weight-black</span></li>
+  </ul>
+  <h3 class="h4">Keep words together</h3>
+  <p>If you need to keep certain words together (e.g. brand names), wrap them in a span with the utility class <span class="css-ref">.nowrap</span>.</p>
+  <p><strong>Note:</strong> This may cause elements to break out of their container and for paragraphs to be ragged - you have been warned!</p>
+  <pre class="language-markup">
+    <code><!--
+    <p>Since the early 1980's, <span class="nowrap bold">Jellyfish stingers inc.</span>...</p>
+  --></code>
+  </pre>
+  <p class="h2">Since the early 1980's, <span class="nowrap bold">Jellyfish stingers inc.</span> have been producing high-quality replacement stingers for injured jellyfish.</p>
+</div>
+</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stickybits/3.7.11/stickybits.min.js" integrity="sha512-ji6fCLZlHjqkE7xw3WorjIXDalqEPsRE5NRAbjl8WHB4AMhU3zk/t5Zt6O/buVEWHQ+2SVfTxqPXU3P6bmxL1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./prism.js"></script>
+<script type="text/javascript">
+  let navbarHeight = 0;
+  $(document).ready(function ($) {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+
+    let sidebarLinks = $('.sidebar a');
+    if (sidebarLinks.length > 0) {
+      sidebarLinks.each(function () {
+        let link = $(this).attr('href');
+        link = link.replace('./', '');
+        let currentPage = window.location.pathname.split('/').pop();
+        if (link == currentPage) {
+          $(this).addClass('is-active');
+        }
+
+      });
+    }
+  });
+  window.addEventListener('resize', () => {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+  });
+</script>
+</body>
+
+</html>
