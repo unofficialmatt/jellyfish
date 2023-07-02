@@ -1,4 +1,4 @@
-@if $generate-progress-bar == true {
+@if $generate-progressbar == true {
   .progress {
     --progress-bar-bg-color: #{v(color-neutral-50)};
     --progress-bar-color: #{v(color-neutral-200)};

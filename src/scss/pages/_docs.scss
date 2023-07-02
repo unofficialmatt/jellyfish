@@ -55,6 +55,12 @@
 }
 
 .section-heading {
+  a {
+    margin-left: auto;
+    font-size: 0.35em;
+    text-decoration: none;
+  }
+
   padding: get-size(2) 0 get-size(0.75) 0;
   border-bottom: 1px solid get-color(primary, 100);
   display: flex;
@@ -241,6 +247,20 @@ div.code-toolbar {
       background-color: get-color(primary, 200);
       color: $color-white;
       transform: scale(1.02);
+    }
+  }
+}
+
+.variables-reference {
+  table td {
+    font-size: font-size(-1);
+  }
+  @include above($table-responsive-breakpoint) {
+    table tr td:first-of-type {
+      width: 180px;
+    }
+    table tr td:nth-of-type(2) {
+      width: 240px;
     }
   }
 }

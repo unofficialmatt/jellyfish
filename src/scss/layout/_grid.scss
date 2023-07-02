@@ -80,13 +80,13 @@ $loop_count: 1;
 
 // Iterate for our smallest defined column class ($base-col-name)
 @for $i from 1 through ($cols) {
-  @if $has_ordering {
+  @if $grid-has-order {
     .order-#{$base-col-name}-#{$i} {
       order: $i;
     }
   }
 
-  @if $has_offset {
+  @if $grid-has-offset {
     $offset: 100% - ($one_col * $i);
 
     .offset-#{$base-col-name}-#{$cols - $i} {
@@ -140,7 +140,7 @@ $loop_count: 1;
           ); // Define flex properties to fix the width of this col
       }
 
-      @if $has_ordering {
+      @if $grid-has-order {
         .order-#{$point}-#{$i} {
           order: $i;
         }
@@ -150,7 +150,7 @@ $loop_count: 1;
         }
       }
 
-      @if $has_offset {
+      @if $grid-has-offset {
         $offset: 100% - ($one_col * $i);
 
         .offset-#{$point}-#{$cols - $i} {
@@ -161,7 +161,7 @@ $loop_count: 1;
   }
 
   .jf-debug {
-    @if $has_ordering {
+    @if $grid-has-order {
       [class*="order-#{$point}"] {
         outline: 2px solid #fe53bb;
       }
@@ -171,7 +171,7 @@ $loop_count: 1;
       }
     }
 
-    @if $has_offset {
+    @if $grid-has-offset {
       [class*="offset-#{$point}"] {
         outline: 2px solid #fe53bb;
       }

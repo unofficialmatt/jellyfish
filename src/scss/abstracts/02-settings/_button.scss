@@ -1,4 +1,3 @@
-// BUTTONS
 $buttons: (
   ".button, a.button, button, [type=submit], [type=reset], [type=button]"
 ) !default; // Stack of elements to target
@@ -15,7 +14,7 @@ $button-font-size-xsmall: font-size(-2) !default;
 $button-font-size-small: font-size(-1) !default;
 $button-font-size: font-size(0) !default;
 $button-font-size-large: font-size(1) !default;
-$button-hover-value: 700 !default; // Note: setting this variable to 500 does not create default hover states for buttons
+$button-hover-value: 700 !default;
 $button-disabled-opacity: 0.65 !default;
 $button-list-button-margin: get-size(0.5) !default;
 $button-base-color: primary !default;

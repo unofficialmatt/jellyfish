@@ -1,6 +1,7 @@
 // Compiles all scss files into dist/css/jellyfish.css
 @charset "UTF-8";
-@import "abstracts/__all";
+@import "abstracts/01-tools/__all";
+@import "abstracts/02-settings/__all";
 @import "base/__all";
 @import "vendors/hamburgers/hamburgers";
 @import "layout/__all";

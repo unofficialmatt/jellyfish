@@ -23,21 +23,30 @@
   <pre class="language-scss">
       <code>
         @charset "UTF-8";
-        @import "jellyfish-ui/src/scss/jellyfish/01-tools/__all";
-        @import "01-tools/__all";
-        @import "02-settings/__all";
-        @import "jellyfish-ui/src/scss/jellyfish/03-generic/__all";
-        @import "03-generic/__all";
-        @import "jellyfish-ui/src/scss/jellyfish/04-elements/__all";
-        @import "04-elements/__all";
-        @import "jellyfish-ui/src/scss/jellyfish/05-vendor/hamburgers/hamburgers";
-        @import "05-vendor/__all";
-        @import "jellyfish-ui/src/scss/jellyfish/06-objects/__all";
-        @import "06-objects/__all";
-        @import "jellyfish-ui/src/scss/jellyfish/07-components/__all";
-        @import "07-components/__all";
-        @import "jellyfish-ui/src/scss/jellyfish/08-utilities/__all";
-        @import "08-utilities/__all";
+
+        @import "jellyfish-ui/src/scss/abstracts/__all";
+        @import "PROJECT_SCSS_DIR/abstracts/__all";
+
+        @import "jellyfish-ui/src/scss/base/__all";
+        @import "PROJECT_SCSS_DIR/base/__all";
+
+        @import "jellyfish-ui/vendors/hamburgers/hamburgers";
+        @import "PROJECT_SCSS_DIR/vendors/__all";
+
+        @import "jellyfish-ui/src/scss/layout/__all";
+        @import "PROJECT_SCSS_DIR/layout/__all";
+
+        @import "jellyfish-ui/src/scss/components/__all";
+        @import "PROJECT_SCSS_DIR/components/__all";
+
+        @import "PROJECT_SCSS_DIR/pages/__all";
+
+        @import "jellyfish-ui/src/scss/themes/__all";
+        @import "PROJECT_SCSS_DIR/themes/__all";
+
+        @import "jellyfish-ui/src/scss/utilities/__all";
+        @import "PROJECT_SCSS_DIR/utilities/__all";
+
       </code>
     </pre>
   <h3 class="h4">Javascript</h3>

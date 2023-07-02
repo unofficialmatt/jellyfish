@@ -1,9 +1,8 @@
-// GRID
 @use "sass:math";
 
 $cols: 12 !default;
-$has_ordering: true !default;
-$has_offset: true !default;
+$grid-has-order: true !default;
+$grid-has-offset: true !default;
 $debug-mode-on: false !default;
 
 // Calculate width of one column based on amount defined in settings

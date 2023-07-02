@@ -12,7 +12,7 @@
     white-space: nowrap;
     user-select: none;
     font: {
-      size: $chip-base-font-size;
+      size: $chip-font-size;
       weight: $chip-font-weight;
     }
     color: v(chip-color-text);
@@ -36,7 +36,7 @@
     &.outline {
       --chip-color-text: inherit;
       background: transparent;
-      border-style: $chip-outline-border-style;
+      border-style: $chip-border-style;
     }
 
     h1 &,
