@@ -8,7 +8,7 @@
   padding: 10px;
   outline: none;
   margin: get-size(0.25) 0 get-size(0.75) 0;
-  width: 100%;
+  //width: 100%;
   max-width: 100%;
   line-height: 1;
   font-size: 16px !important;
@@ -38,6 +38,7 @@
 textarea {
   overflow: auto;
   height: auto;
+  width: 100%;
 }
 
 // Labels
@@ -45,14 +46,18 @@ label {
   max-width: 100%;
   display: block;
   margin: 0;
+  font-size: $form-label-size;
+  font-weight: $form-label-weight;
 }
 
 input[type="checkbox"],
 input[type="radio"] {
   margin-right: get-size(0.25);
   font-size: 1em;
-  width: 0.75em;
-  height: 0.75em;
+  width: 0.9em;
+  height: 0.9em;
+  top: 0.1em;
+  position: relative;
 }
 
 // Field Sets
@@ -75,7 +80,9 @@ legend {
 
 // Fix issues with select
 select {
-  color: $color-text;
+  width: 300px;
+  max-width: 60%;
+  color: v(color-text);
   -webkit-appearance: none;
   -moz-appearance: none;
   background: $input-background
@@ -111,9 +118,42 @@ form {
   [type="button"] {
     margin-top: get-size(0.25);
   }
+  .col {
+    #{$form-items} {
+      width: 100%;
+    }
+  }
 }
 
 // TODO: add a field-group container
 // TODO: Add input groups and input addons https://www.shoelace.style/docs/forms.html
 // TODO: Add validation?
 // TODO: Add Input Group https://getbootstrap.com/docs/4.0/components/input-group/
+
+// Wrapper to apply better margins to radioboxes and checkboxes
+.form-group {
+  margin: get-size(0.25) 0 get-size(0.75) 0;
+}
+
+// Make checkboxes/radioboxes inline-block
+.form-group-inline {
+  @extend .form-group;
+  * {
+    display: inline-block;
+  }
+  label {
+    margin-right: get-size(0.5);
+  }
+}
+
+// Tighter gutters on form rows
+.form-row {
+  margin-left: nh(get-size(0.5));
+  margin-right: nh(get-size(0.5));
+  display: flex;
+  flex-wrap: wrap;
+  .col {
+    padding-left: h(get-size(0.5));
+    padding-right: h(get-size(0.5));
+  }
+}

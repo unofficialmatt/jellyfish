@@ -1,17 +1,17 @@
 // Use on a .row to make all immediate child columns the same height
 .equal-height {
   > .col {
-  display: flex;
+    display: flex !important;
   }
 }
 // Converts anything into a flex container {
 .flex {
-  display: flex;
+  display: flex !important;
 }
 // Converts to flex and displays as a column
 .flex-column {
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
 }
 // Flex Alignment Classes
 .align-top {
@@ -25,7 +25,7 @@
 }
 .align-baseline {
   align-items: baseline !important;
-  }
+}
 .align-stretch {
   align-items: stretch !important;
 }

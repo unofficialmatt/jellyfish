@@ -4,16 +4,13 @@
   font-family: $font-headings;
   margin: 0 0 $element-margin 0;
   line-height: $heading-line-height;
-  color: $color-headings-preferred;
-  &:not(:first-child) {
-    margin-top: $element-margin;
-    // TODO: Change this to instead add top margin by default and remove if .col + $heading
-  }
+  color: v(color-headings-preferred);
+  font-weight: $heading-weight;
 }
 
 h1 {
   @each $point, $size in $font-sizes-h1 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size;
     } @else {
@@ -27,7 +24,7 @@ h1 {
 
 h2 {
   @each $point, $size in $font-sizes-h2 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size;
     } @else {
@@ -41,7 +38,7 @@ h2 {
 
 h3 {
   @each $point, $size in $font-sizes-h3 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size;
     } @else {
@@ -55,7 +52,7 @@ h3 {
 
 h4 {
   @each $point, $size in $font-sizes-h4 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size;
     } @else {
@@ -69,7 +66,7 @@ h4 {
 
 h5 {
   @each $point, $size in $font-sizes-h5 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size;
     } @else {
@@ -83,7 +80,7 @@ h5 {
 
 h6 {
   @each $point, $size in $font-sizes-h6 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size;
     } @else {
@@ -103,17 +100,19 @@ h3,
 h4,
 h5,
 h6 {
-  word-break: break-word;
+  // FIXME
+  //word-break: break-word;
   //hyphens: auto;
 }
 /* TEXT TRANSFORM */
-
-small {
-  display: block;
-}
-small {
+%small {
   font-size: font-size(-1);
 }
+small {
+  display: block;
+  @extend %small;
+}
+
 strong,
 b {
   font-weight: $weight-bold;
@@ -125,7 +124,7 @@ i {
 
 // Highlighted
 mark {
-  background: yellow;
+  background: rgb(255, 255, 157);
   padding: 0.15em 0.3em;
   display: inline-block;
 }
@@ -147,7 +146,6 @@ samp {
 
 // Abbreviation
 abbr {
-  border-bottom: $border-width dotted $color-text;
   cursor: help;
 }
 
@@ -181,7 +179,7 @@ q {
 // Keyboard Input
 kbd {
   @extend %inline-code;
-  background-color: $color-text;
+  background-color: v(color-text);
   color: $color-white;
 }
 
@@ -189,7 +187,7 @@ kbd {
 :not(pre) > code {
   @extend %inline-code;
   background-color: get-color(neutral, 50);
-  color: $color-text;
+  color: v(color-text);
 }
 
 // Variable

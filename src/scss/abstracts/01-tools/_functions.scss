@@ -1,5 +1,6 @@
-// Convert px to em
 @use "sass:math";
+@use "sass-apca" as apca;
+@use "to-number" as str;
 
 @function em($pixels) {
   @return #{math.div($pixels, 16px)}em;
@@ -35,6 +36,14 @@
 }
 
 @function get-color($base, $shade: 500) {
+  @if map-has-nested-keys($colors, $base, $shade) {
+    @return var(--color-#{$base + "-" + $shade});
+  } @else {
+    @error "Key: '#{$base}', Value: '#{$shade}' not found in $colors map. Cancelling compile.";
+  }
+}
+
+@function get-color-raw($base, $shade: 500) {
   @if map-has-nested-keys($colors, $base, $shade) {
     $color: map-get(map-get($colors, $base), $shade);
     @return $color;
@@ -79,84 +88,80 @@
   @return n(h($num));
 }
 
-// Lighten a colour progressively, much better than lighten()
-@function tint($color, $percentage) {
-  @return mix($color, white, $percentage);
-}
-
-// Darken a colour progressively, much better than darken()
-@function shade($color, $percentage) {
-  @return mix($color, black, $percentage);
-}
-
 // Allows us to use #{headings(1,6)} to apply css to all headings
 @function headings($from: 1, $to: 6) {
   @if $from == $to {
-    @return 'h#{$from}';
+    @return "h#{$from}";
   } @else {
-    @return 'h#{$from},' + headings($from + 1, $to);
+    @return "h#{$from}," + headings($from + 1, $to);
   }
-}
-
-/**
- * Calculate the luminance for a color.
- * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
- * @link https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
- */
-@function luminance($color) {
-  $red: nth($linear-channel-values, red($color) + 1);
-  $green: nth($linear-channel-values, green($color) + 1);
-  $blue: nth($linear-channel-values, blue($color) + 1);
-
-  @return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
-}
-
-/**
- * Calculate the contrast ratio between two colors.
- * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
- * @link https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
- */
-@function calculate-contrast($back, $front) {
-  $backLum: luminance($back) + 0.05;
-  $foreLum: luminance($front) + 0.05;
-
-  @return math.div(max($backLum, $foreLum), min($backLum, $foreLum));
 }
 
 /**
  * Determine whether to use dark or light text on top of given color.
  */
-@function choose-contrast-color($color, $light-color: $color-white, $dark-color: $color-text) {
-  $lightContrast: calculate-contrast($color, $light-color);
-  $darkContrast: calculate-contrast($color, $dark-color);
-  @if ($force-color-contrast-ratio == false) {
-    @if ($lightContrast < 4.5 and $darkContrast < 4.5) {
-     // @warn "Neither #{$light-color} (#{$lightContrast}) nor #{$dark-color} (#{$darkContrast}) has a significant contrast to #{$color} to reach WCAG 2.1 AA compliance (4.5:1). Consider using a different colour. Alternatively set $force-color-contrast-ratio to true to have SASS take care of things.";
-    }
-  }
-  @if ($force-color-contrast-ratio == true) {
-    @if ($lightContrast < 4.5 and $darkContrast < 4.5) {
-      // Let's try again, but this time we'll set the colors to black and white to try to force the accessibility.
+@function choose-contrast-color($color, $color-dark: $color-text) {
+  $best-contrast: apca.recommend-text-color(
+    $color,
+    $color-white,
+    $color-dark,
+    $force-color-contrast-ratio
+  );
+  @return $best-contrast;
+}
 
-      $light-color-was: $light-color;
-      $lightContrast-was: $lightContrast;
-
-      $dark-color-was: $dark-color;
-      $darkContrast-was: $darkContrast;
-
-      $light-color: #fff;
-      $dark-color: #000;
-      $lightContrast: calculate-contrast($color, $light-color);
-      $darkContrast: calculate-contrast($color, $dark-color);
-      //@warn "To meet WCAG 2.1 AA guidelines, Sass has calculated new contrast ratios for background color #{$color}. #{$light-color-was} (#{$lightContrast-was}) is now #{$light-color} (#{$lightContrast}) and #{$dark-color-was} (#{$darkContrast-was}) is now #{$dark-color} (#{$darkContrast}).";
-    }
-  }
-
-  @if ($lightContrast > $darkContrast) {
-    //@warn "The best contrast against #{$color} is light, which is #{$light-color}.";
-    @return $light-color;
+@function resolve-contrast-color($color, $color-dark: $color-text) {
+  $contrast: choose-contrast-color($color, $color-dark);
+  @if $contrast == $color-white {
+    @return var(--color-white);
+  } @else if $contrast == $color-text {
+    @return var(--color-text);
+  } @else if $contrast == #000000 {
+    @return var(--color-black);
+  } @else if ($contrast == $color-headings-preferred) {
+    @return var(--color-headings-preferred);
   } @else {
-    // @warn "The best contrast against #{$color} is dark, which is #{$dark-color}.";
-    @return $dark-color;
+    @return $contrast;
   }
+
+  @return $contrast;
+}
+
+// Shorthand to output a CSS property
+@function v($value) {
+  @return var(--#{$value});
+}
+
+// String replace function
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+  @return $string;
+}
+
+// Walk back to convert a CSS property to a CSS value
+@function css-prop-to-value($prop) {
+  $prop: str-replace($prop, "var(--color-", "");
+  $prop: str-replace($prop, ")", "");
+
+  // Work out where the hyphen is
+  $hyphen: str-index($prop, "-");
+
+  // Get the parts of the string
+  $base: str-slice($prop, 1, $hyphen - 1);
+  $end: str-slice($prop, $hyphen + 1);
+
+  // Convert the end to a number
+  $end: str.to-number($end);
+
+  $color: get-color-raw($base, $end);
+
+  @return $color;
 }

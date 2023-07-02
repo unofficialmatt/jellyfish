@@ -1,196 +1,81 @@
-// Apply consistent styling to buttons. In most cases, you only need to pass the $button-color value for your buttons to look great
-@mixin create_button($button-color, $hover-color: $button-color) {
-  // Set all variables to null
-  $button-base-color: null;
-  $button-hover-color: null;
-  $button-color-key: null;
+@mixin createButton($color) {
+  @if map-has-key($colors, $color) {
+    // We don't need to run this if the color is the same as the base color
+    @if $button-base-color != $color {
+      $resolved-color: resolve-contrast-color(get-color-raw($color));
+      $button-color-unmod: resolve-contrast-color(
+        get-color-raw($button-base-color)
+      );
 
-  // Determine base background/border color of button
-  // If passed string exists in the $colors map, use this for the button-base-color
-  @if map-has-key($colors, $button-color) {
-    /* // Button uses base color from SASS $colors map */
-    $button-color-key: $button-color;
-    $button-base-color: get-color($button-color);
-  }
-  // Otherwise, the assumption is that the passed value is a valid color value
-  @else {
-    /* Button uses a specific color value as it's base color */
-    $button-base-color: $button-color;
-  }
-  // If the provided value is not a color, SASS compilation will fail
-  // Output the base CSS and disabled:hover state (prevents other hover states taking effect)
-
-  &,
-  &:visited,
-  &:disabled:hover {
-    background-color: $button-base-color;
-    border-color: $button-base-color;
-    color: choose-contrast-color($button-base-color, $button-text-color-light, $button-text-color-dark);
-  }
-
-  // Only run if $button-hover-value != 500
-  @if $button-hover-value != 500 {
-
-
-    // Determine the hover color of the button
-    // $hover-color defaults to $button-color if no $hover-color arg is passed (default for most buttons)
-    @if $button-color == $hover-color {
-      // If value $button-hover-value exists in $colors map, use this for button hover color
-      @if map-has-nested-keys($colors, $button-color-key, $button-hover-value) {
-        /* // Button uses value `#{$button-hover-value}` in key `#{$button-color-key}`, in the $colors map for it's :hover color */
-        $button-hover-color: get-color($button-color-key, $button-hover-value);
+      --button-color-theme: #{v(color-#{$color}-500)};
+      // Save some output CSS by only setting the color variable if it's different from the base color
+      @if ($resolved-color != $button-color-unmod) {
+        --button-color-text: #{$resolved-color};
       }
-      // $hover-color may be a string (eg. if the $button-color is 'primary')
-      // If so, get the color value and attempt to emulate a tint/shade being defined in the $colors map
-      @else if map-has-key($colors, $hover-color) {
-        /* // Button uses #{$button-hover-function}(#{get-color($hover-color)}, #{$button-hover-fallback-percent}) for it's :hover color */
-        $button-hover-color: call(
-          get-function($button-hover-function),
-          get-color($hover-color),
-          $button-hover-fallback-percent
+
+      @if $button-hover-value != 500 {
+        $hover-color: resolve-contrast-color(
+          get-color-raw($color, $button-hover-value)
         );
-      }
-      // $hover-color is an actual color, so tint/shade accordingly
-      // Attempts to emulate a tint/shade being defined in the $colors map
-      @else {
-     // @warn "#{$button-color} is not a color from the $colors map and you have not passed a $hover-color argument. A .button modifier will still be generated, however the hover color will be simulated with shade().";
-      $button-hover-color: shade($hover-color,60%);
-      }
-    }
-    // If $hover-color is not the same as $button-color, use this argument as passed (must be a valid CSS color)
-    @else {
-      /* Button uses a specific color value as it's hover color */
-      $button-hover-color: $hover-color;
-    }
+        $hover-color-unmod: resolve-contrast-color(
+          get-color-raw($button-base-color, $button-hover-value)
+        );
+        --button-hover-color-theme: #{v(
+            color-#{$color}-#{$button-hover-value}
+          )};
 
-    // Finally, output the code
-    &:hover,
-    &:focus {
-      background-color: $button-hover-color;
-      border-color: $button-hover-color;
-      color: choose-contrast-color($button-hover-color, $button-text-color-light, $button-text-color-dark);
-    }
-  }
+        // Save some output CSS by only setting the color variable if it's different from the base color
+        @if ($hover-color != $hover-color-unmod) {
+          --button-hover-color-text: #{$hover-color};
+        }
+      }
 
-  &.outline,
-  &.ghost {
-    background-color: transparent;
-    color: $button-base-color;
-  }
-  &.outline {
-    &:hover,
-    &:focus {
-      background-color: $button-hover-color;
-      color: choose-contrast-color($button-hover-color, $button-text-color-light, $button-text-color-dark);
+      &.ghost {
+        @if $button-hover-value != 500 {
+          --button-hover-color-text: #{v(
+              color-#{$color}-#{$button-hover-value}
+            )};
+        }
+      }
     }
+  } @else {
+    @warn "#{$color} was not found in the $colors map. Cannot create a button. Aborting.";
   }
 }
 
-// Apply consistent styling to .tag
-@mixin create_tag($tag-color) {
+@mixin createChip($color) {
   // If passed string exists in the $colors map, get the value for the tag-color
-  @if map-has-key($colors, $tag-color) {
-    $tag-color: get-color($tag-color);
-  }
+  @if map-has-key($colors, $color) {
+    $chip-color-unmod: resolve-contrast-color(get-color-raw(neutral, 100));
+    $resolved-color: resolve-contrast-color(get-color-raw($color));
 
-  border-color: $tag-color;
-  background-color: $tag-color;
-  color: choose-contrast-color($tag-color, $tag-text-color-light, $tag-text-color-dark);
-
-}
-
-// Apply consistent styling to .progress
-@mixin create_progressbar($bar-color) {
-  // If passed string exists in the $colors map, get the value for the bar-color
-  @if map-has-key($colors, $bar-color) {
-    $bar-color: get-color($bar-color);
-  }
-  &::-webkit-progress-value {
-    background-color: $bar-color;
-  }
-  &::-moz-progress-bar {
-    background-color: $bar-color;
-  }
-  &::-ms-fill {
-    background-color: $bar-color;
-  }
-  &:indeterminate {
-    background-image: linear-gradient(to right, rgba($bar-color, 0.35) 20%, $progressbar-color 20%);
-  }
-}
-
-// Apply consistent styling to callouts
-@mixin create_callout($callout-color) {
-  // Set all variables to null
-  $callout-border-color: null;
-  $callout-bg-color: null;
-  $callout-heading-color: null;
-  $callout-link-color: null;
-  $callout-link-color-hover: null;
-  $callout-color-key: null;
-
-  // If passed string exists in the $colors map, use this for the border-color
-  @if map-has-key($colors, $callout-color) {
-    $callout-border-color: get-color($callout-color);
-    $callout-color-key: $callout-color;
-    $callout-color: get-color($callout-color);
-  }
-  // Otherwise, the assumption is that the passed value is a valid color value
-  @else {
-    //@warn "#{$callout-color} is not a color from the $colors map. A .callout modifier will still be generated, however the colors will be simulated with tint() and shade().";
-    $callout-border-color: $callout-color;
-  }
-
-  // If value 50 exists in $colors map, use this for background color
-  @if map-has-nested-keys($colors, $callout-color-key, 50) {
-    $callout-bg-color: get-color($callout-color-key, 50);
-  }
-  // Otherwise revert to a 10% tint
-  @else {
-    $callout-bg-color: tint($callout-color, 10%);
-  }
-
-  // If value 900 exists in $colors map, use this for heading color
-  @if map-has-nested-keys($colors, $callout-color-key, 900) {
-    $callout-heading-color: get-color($callout-color-key, 900);
-  }
-  // Otherwise revert to a 50% shade
-  @else {
-    $callout-heading-color: shade($callout-color, 50%);
-  }
-
-  // If value 700 exists in $colors map, use this for link color
-  @if map-has-nested-keys($colors, $callout-color-key, 700) {
-    $callout-link-color: get-color($callout-color-key, 700);
-  }
-  // Otherwise revert to a 80% shade
-  @else {
-    $callout-link-color: shade($callout-color, 80%);
-  }
-
-  // If value 800 exists in $colors map, use this for link hover color
-  @if map-has-nested-keys($colors, $callout-color-key, 800) {
-    $callout-link-color-hover: get-color($callout-color-key, 800);
-  }
-  // Otherwise revert to a 62.5% shade
-  @else {
-    $callout-link-color-hover: shade($callout-color, 62.5%);
-  }
-
-  // Output the computed styles...
-  border-color: $callout-border-color;
-  background-color: $callout-bg-color;
-  color: choose-contrast-color($callout-bg-color);
-  // Adds a nice contrast to callout headings
-  #{headings()} {
-    color: $callout-heading-color;
-  }
-  // Styles links
-  a.callout-link {
-    color: $callout-link-color;
-    &:hover,
-    &:focus {
-      color: $callout-link-color-hover;
+    --chip-color-theme: #{v(color-#{$color}-500)};
+    @if ($resolved-color != $chip-color-unmod) {
+      --chip-color-text: #{$resolved-color};
     }
+  } @else {
+    @warn "#{$color} was not found in the $colors map. Cannot create a chip. Aborting.";
+  }
+}
+
+@mixin createProgressBar($color) {
+  // If passed string exists in the $colors map, get the value for the bar-color
+  @if map-has-key($colors, $color) {
+    --progress-bar-color: #{v(color-#{$color}-500)};
+    --progress-bar-color-unknown: #{v(color-#{$color}-100)};
+  } @else {
+    @warn "#{$color} was not found in the $colors map. Cannot create a progress bar. Aborting.";
+  }
+}
+
+@mixin createCallout($color) {
+  @if map-has-key($colors, $color) {
+    --callout-bg-color: #{v(color-#{$color}-25)};
+    --callout-border-color: #{v(color-#{$color}-200)};
+    --callout-link-color: #{v(color-#{$color}-700)};
+    --callout-link-color-hover: #{v(color-#{$color}-900)};
+    --callout-heading-color: #{v(color-#{$color}-800)};
+  } @else {
+    @warn "#{$color} was not found in the $colors map. Cannot create a callout. Aborting.";
   }
 }

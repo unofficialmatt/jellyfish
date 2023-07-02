@@ -13,20 +13,21 @@
     hsl($hue + 270 % 360, $saturation, $lightness), ];
   @return $tetrad;
 }
-@function multiply ($fore, $back) {
+@function multiply($fore, $back) {
   $red: math.div(red($back) * red($fore), 255);
   $green: math.div(green($back) * green($fore), 255);
   $blue: math.div(blue($back) * blue($fore), 255);
   @return rgb($red, $green, $blue);
 }
-@function makeColorPalette($color, $gen-bg:'false') {
+@function makeColorPalette($color, $gen-bg: "false") {
   $light: #fff;
   $dark: multiply($color, $color);
   $dark: darken(multiply($color, $color), 30%);
   //$dark: shade(multiply($color, $color),10%);
   $tetrad: tetrad($color);
   $palette: (
-    50: mix($light, $color, 88%),
+    25: mix($light, $color, 90%),
+    50: mix($light, $color, 80%),
     100: mix($light, $color, 70%),
     200: mix($light, $color, 50%),
     300: mix($light, $color, 30%),
@@ -37,7 +38,7 @@
     800: mix($dark, $color, 42%),
     900: mix($dark, $color, 56%),
     1000: mix($dark, $color, 65%),
-    'bg': $gen-bg
+    "bg": $gen-bg,
   );
   @return $palette;
 }

@@ -14,17 +14,10 @@ html {
 body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
-  font-size: $root-font-size;
-  color: $color-text;
-  background-color: $color-white;
-  line-height: $root-line-height;
-  @each $point, $i in $breakpoints {
-    // set base font size and line height for each specified media query
-    @include above($point) {
-      font-size: map-deep-get($breakpoints, $point, "root-font-size");
-      line-height: map-deep-get($breakpoints, $point, "root-line-height");
-    }
-  }
+  font-size: v(root-font-size);
+  line-height: v(root-line-height);
+  color: v(color-text);
+  background-color: v(color-background);
   accent-color: $form-accent-color;
 }
 
@@ -90,7 +83,7 @@ dl {
 
 // Code Typeface
 %code {
-  font-family: $font-code;
+  font-family: v(font-monospace);
 }
 
 // Line break
@@ -116,19 +109,21 @@ pre {
 // Blockquote
 blockquote {
   margin: 0 0 $element-margin 0;
-  padding: 0 0 0 $element-margin;
-  border-left: get-size(0.5) solid get-color(neutral, 200);
-  font-size: font-size(3);
-  font-style: italic;
-  line-height: 1.4;
-}
-cite {
-  display: block;
-  margin-top: h($element-margin);
-  font-size: font-size(-2);
-  font-style: normal;
-  font-weight: $weight-bold;
-  text-align: right;
+  p {
+    font-style: italic;
+    font-size: font-size(1);
+    line-height: 1.4;
+    margin-bottom: get-size(0.5);
+  }
+  > cite {
+    &::before {
+      content: "\2014\00a0";
+    }
+    font-style: normal;
+    display: block;
+    font-size: font-size(-1);
+    font-weight: $weight-bold;
+  }
 }
 
 img {
@@ -139,5 +134,5 @@ img {
 
 // Highlighted text
 ::selection {
-  background: get-color(primary, 200);
+  background: get-color(primary, 100);
 }

@@ -16,7 +16,11 @@
 }
 
 @mixin input-range-thumb {
-  @include input-range-shadow($range-thumb-shadow-size, $range-thumb-shadow-blur, $range-thumb-shadow-color);
+  @include input-range-shadow(
+    $range-thumb-shadow-size,
+    $range-thumb-shadow-blur,
+    $range-thumb-shadow-color
+  );
   background: $range-thumb-color;
   border: $range-thumb-border-width solid $range-thumb-border-color;
   border-radius: $range-thumb-radius;
@@ -26,7 +30,7 @@
   width: $range-thumb-width;
 }
 
-[type='range'] {
+[type="range"] {
   -webkit-appearance: none;
   background: transparent;
   margin: $range-thumb-height * 0.5 0;
@@ -52,21 +56,25 @@
     }
 
     &::-webkit-slider-thumb {
-      background-color: $range-thumb-color-focus;
+      background-color: $form-accent-color;
     }
 
     &::-moz-range-thumb {
-      background-color: $range-thumb-color-focus;
+      background-color: $form-accent-color;
     }
 
     &::-ms-thumb {
-      background-color: $range-thumb-color-focus;
+      background-color: $form-accent-color;
     }
   }
 
   &::-webkit-slider-runnable-track {
     @include input-range-track;
-    @include input-range-shadow($range-track-shadow-size, $range-track-shadow-blur, $range-track-shadow-color);
+    @include input-range-shadow(
+      $range-track-shadow-size,
+      $range-track-shadow-blur,
+      $range-track-shadow-color
+    );
     background: $range-track-color;
     border: $range-track-border-width solid $range-track-border-color;
     border-radius: $range-track-radius;
@@ -75,11 +83,18 @@
   &::-webkit-slider-thumb {
     @include input-range-thumb;
     -webkit-appearance: none;
-    margin-top: ((-$range-track-border-width * 2 + $range-track-height) * 0.5 - $range-thumb-height * 0.5);
+    margin-top: (
+      (-$range-track-border-width * 2 + $range-track-height) * 0.5 -
+        $range-thumb-height * 0.5
+    );
   }
 
   &::-moz-range-track {
-    @include input-range-shadow($range-track-shadow-size, $range-track-shadow-blur, $range-track-shadow-color);
+    @include input-range-shadow(
+      $range-track-shadow-size,
+      $range-track-shadow-blur,
+      $range-track-shadow-color
+    );
     @include input-range-track;
     background: $range-track-color;
     border: $range-track-border-width solid $range-track-border-color;
@@ -100,14 +115,22 @@
   }
 
   &::-ms-fill-lower {
-    @include input-range-shadow($range-track-shadow-size, $range-track-shadow-blur, $range-track-shadow-color);
+    @include input-range-shadow(
+      $range-track-shadow-size,
+      $range-track-shadow-blur,
+      $range-track-shadow-color
+    );
     background: $range-track-color-bottom-ie;
     border: $range-track-border-width solid $range-track-border-color;
     border-radius: ($range-track-radius * 2);
   }
 
   &::-ms-fill-upper {
-    @include input-range-shadow($range-track-shadow-size, $range-track-shadow-blur, $range-track-shadow-color);
+    @include input-range-shadow(
+      $range-track-shadow-size,
+      $range-track-shadow-blur,
+      $range-track-shadow-color
+    );
     background: $range-track-color;
     border: $range-track-border-width solid $range-track-border-color;
     border-radius: ($range-track-radius * 2);

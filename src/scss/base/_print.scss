@@ -1,0 +1,52 @@
+.do-not-print {
+  @include do-not-print();
+}
+
+iframe,
+.navbar {
+  @extend .do-not-print;
+}
+@media print {
+  a {
+    color: black !important;
+    font-weight: $weight-bold !important;
+    text-decoration: underline !important;
+    ::after {
+      // Display URL after links on print
+      content: "(" attr(href) ")";
+      display: inline-block;
+      text-decoration: none;
+      margin-left: 0.25em;
+    }
+  }
+  // Make websites more printer-friendly
+  html,
+  body {
+    font-size: 9pt !important;
+    line-height: 1.2 !important;
+    font-family: Aria sans-serif !important;
+  }
+  #{headings()} {
+    font-weight: $weight-bold !important;
+    margin-bottom: 0.2em !important;
+  }
+  h1 {
+    font-size: 1.6em !important;
+  }
+  h2 {
+    font-size: 1.4em !important;
+  }
+  #{headings(3,6)} {
+    font-size: 1.2em !important;
+  }
+  #{$buttons} {
+    border: 1px solid black !important;
+    background-color: white !important;
+    color: black !important;
+    display: inline-block !important;
+    width: auto !important;
+  }
+  .container {
+    width: 100% !important;
+  }
+}

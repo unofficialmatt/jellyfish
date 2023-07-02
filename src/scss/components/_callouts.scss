@@ -1,16 +1,51 @@
-.callout {
-  border-width: $callout-border-width;
-  border-style: solid;
-  margin-bottom: $element-margin;
-  padding: $element-padding;
-  border-radius: $callout-border-radius;
-  display: block;
-  width: 100%;
-  @include create_callout('neutral');
-  a.callout-link {
-    font-weight: $weight-bold;
-  }
-  & > :last-child {
-    margin-bottom: 0;
+@if $generate-callouts == true {
+  .callout {
+    --callout-bg-color: #{v(color-neutral-25)};
+    --callout-border-color: #{v(color-neutral-100)};
+    --callout-link-color: #{v(color-neutral-700)};
+    --callout-link-color-hover: #{v(color-neutral-900)};
+    --callout-heading-color: #{v(color-neutral-800)};
+    border: {
+      width: $callout-border-width;
+      style: $callout-border-style;
+      color: v(callout-border-color);
+      radius: $callout-border-radius;
+    }
+    background-color: v(callout-bg-color);
+    margin-bottom: $element-margin;
+    padding: $callout-padding;
+    display: block;
+    width: 100%;
+
+    #{headings()} {
+      color: v(callout-heading-color);
+    }
+    .callout-heading {
+      @extend .h6;
+      margin-bottom: 0.5em;
+      text-transform: uppercase;
+      font-weight: $weight-semibold;
+      letter-spacing: 0.02em;
+    }
+    a.callout-link {
+      font-weight: $weight-bold;
+      color: v(callout-link-color);
+      &:hover,
+      &:focus {
+        color: v(callout-link-color-hover);
+      }
+    }
+    & > :last-child {
+      margin-bottom: 0;
+    }
+
+    @each $key, $map in $colors {
+      &.#{$key} {
+        @include createCallout($key);
+      }
+    }
+    &.white {
+      --callout-bg-color: var(--color-white);
+    }
   }
 }

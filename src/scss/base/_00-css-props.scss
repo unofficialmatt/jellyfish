@@ -1,0 +1,37 @@
+:root {
+  @include map-to-css-properties($colors, "color-");
+  --color-background: #{$body-background-color};
+  --color-white: #{$color-white};
+  --color-black: #{$color-black};
+  --color-text: #{$color-text};
+  --color-headings-preferred: #{$color-headings-preferred};
+  --font-primary: #{$font-primary};
+  --font-secondary: #{$font-secondary};
+  --font-monospace: #{$font-monospace};
+  --grid-gutter: #{$base-col-gutter};
+  --root-font-size: #{$root-font-size};
+  --root-line-height: #{$root-line-height};
+
+  @each $point, $i in $breakpoints {
+    // for each breakpoint defined...
+    @include above($point) {
+      @if (map-deep-get($breakpoints, $point, "col-gutter") != null) {
+        --grid-gutter: #{map-deep-get($breakpoints, $point, "col-gutter")};
+      }
+      @if (map-deep-get($breakpoints, $point, "root-font-size") != null) {
+        --root-font-size: #{map-deep-get(
+            $breakpoints,
+            $point,
+            "root-font-size"
+          )};
+      }
+      @if (map-deep-get($breakpoints, $point, "root-line-height") != null) {
+        --root-line-height: #{map-deep-get(
+            $breakpoints,
+            $point,
+            "root-line-height"
+          )};
+      }
+    }
+  }
+}

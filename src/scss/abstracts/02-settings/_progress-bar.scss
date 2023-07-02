@@ -1,0 +1,6 @@
+// PROGRESS BAR
+$generate-progress-bar: true !default;
+$progressbar-height: get-size(1) !default;
+$progressbar-border-radius: get-size(0.5) !default;
+$progressbar-value-border-radius: 0px !default;
+$progressbar-indeterminate-duration: 5s !default;

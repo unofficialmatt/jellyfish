@@ -1,0 +1,8 @@
+// BADGES
+$generate-chips: true !default;
+$chip-padding: 0.25em 0.3em !default;
+$chip-border-radius: get-size(0.25) !default;
+$chip-border-width: 1px !default;
+$chip-outline-border-style: solid !default;
+$chip-font-weight: $weight-normal !default;
+$chip-base-font-size: font-size(-1) !default;

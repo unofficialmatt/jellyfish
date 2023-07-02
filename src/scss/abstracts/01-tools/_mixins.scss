@@ -1,3 +1,15 @@
+// Converts a sass map into CSS properties
+@mixin map-to-css-properties($map, $prefix: "") {
+  @each $key, $value in $map {
+    @if type-of($value) == "map" {
+      @include map-to-css-properties($value, $prefix + $key + "-");
+    } @else {
+      @if type-of($value) != "string" {
+        --#{$prefix + $key}: #{$value};
+      }
+    }
+  }
+}
 @mixin smooth($properties...) {
   // Global transition
   $result: (); // Create empty variable
@@ -6,14 +18,6 @@
     $result: append($result, #{$property} $global-transition, comma);
   }
   transition: $result;
-}
-
-// Center a block level element without worrying about top and bottom margins
-@mixin center-block {
-  margin: {
-    left: auto;
-    right: auto;
-  }
 }
 
 // DRY mixin for Pseudo elements. Pass optional args or leave as default

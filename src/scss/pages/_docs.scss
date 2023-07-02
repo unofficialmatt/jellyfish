@@ -1,413 +1,246 @@
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-  DOCS
-  Contains additional styles used in documentation.
-  Can be removed on live projects.
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.docs-container {
+  width: 96%;
+  margin: 0 auto;
+  max-width: 1600px;
+  padding-bottom: get-size(2);
+}
 
-.docs {
-  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-    STYLE OVERRIDES
-  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-  // H2 Section Headings
-  .section-heading {
-    padding: get-size(0.75) 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    z-index: 9;
-    background-color: rgba($color-white,0.9);
-    backdrop-filter: blur(3px);
-    color: get-color(primary,700);
-    font-weight: $weight-light;
-    .tag-group:first-of-type {
-      margin-left: auto;
-    }
-    .tag-group {
-      font-size: font-size(-2);
-      margin-left: get-size(0.75);
-    }
-    &:before {
-      content:"# ";
-      color: get-color(neutral,100);
-      margin-right: get-size(.5);
-    }
-  }
-
-  // Standfirst
-  .standfirst {
-    font-size: font-size(2);
-    font-weight: $weight-medium;
-    line-height: 1.3;
-  }
-  .docs-section .standfirst {
-    color: get-color(primary);
-  }
-
-  // Sub Section
-  .docs-section > article {
-    margin-bottom: get-size(1.5);
-  }
-
-  // Inline references
-  %reference {
-    @extend %inline-code;
-    display: inline-block;
-    background-color: get-color(neutral, 50);
-    border: 1px solid get-color(neutral,100);
-  }
-
-  .css-ref {
-    @extend %reference;
-    color: get-color(primary,700);
-  }
-
-  .file-ref {
-    @extend %reference;
-    color: get-color(success, 700);
-  }
-
-  .variable-ref {
-    @extend %reference;
-    color: get-color(secondary, 900);
-  }
-
-  .padded {
-    padding: $element-padding;
-    margin-bottom: $element-margin;
-  }
-
-  // Boxed Out Example
-  .boxed {
-    background: get-color(neutral, 50);
-    padding: $element-padding;
-    line-height: 1.2;
-    margin: 0 0 $element-margin 0;
-    display: inherit;
-    font-size: font-size(-1);
-    flex: 1 1 auto;
-    font-family: $font-code;
-  }
-  .row-boxed {
-    background-color: get-color(neutral, 50);
-    min-height: 160px;
-    margin-bottom: $element-margin;
-    padding: $element-padding 0;
-    .boxed {
-      margin: 0;
-      background-color: $color-white;
-      border: 1px solid get-color(neutral, 300);
-    }
-  }
-
-  // Code Block
-  pre {
-    position: relative;
-    margin: $element-margin 0 !important;
-    font-size: font-size(-1) !important;
-
-    label {
-      font-size: font-size(-1);
-      top: 0;
-      right: 0;
-      position: absolute;
-      float: right;
-      display: block;
-      background-color: get-color(neutral,400);
-      color: $color-white;
-      padding: 0.4em 0.6em;
-      text-shadow: none;
-    }
-  }
-  code[class*='language-'],
-  pre[class*='language-'] {
-    background: get-color(neutral, 50);
-  }
-
-  .language-markup {
-    line-height: 1.6;
-  }
-
-  // Unstyle Tags inside code blocks
-  .language-markup .tag {
-    padding: 0;
-    background: none;
-    border: none;
-    display: initial;
-    font-size: 1em;
-    font-weight: initial;
-    line-height: initial;
+.navbar-logo {
+  width: 120px;
+  margin-bottom: $element-margin;
+  margin-left: 1.5ch;
+}
+.sidebar {
+  ul {
+    list-style-type: none;
     margin: 0;
-    top: 0;
-    border-radius: 0;
-  }
-
-  // Hero
-  .hero {
-    padding: get-size(4) 0;
-    text-align: center;
-    color: $color-white;
-    background-image: linear-gradient(
-      -45deg,
-      get-color(primary,900) 0%,
-      get-color(primary,1000) 100%
-    );
-    background-size: 300% 300%;
-    animation: hero 9s infinite linear;
-
+    margin-left: 1.5ch;
     a {
-      color: get-color(primary, 100);
-    }
-    h1 {
-      color: $color-white;
+      font-size: font-size(-1);
     }
   }
+  margin-top: get-size(2);
+  padding: get-size(1) get-size(1.5);
+  font-weight: $weight-bold;
+  line-height: 1.4;
+  z-index: 1;
+  li + li {
+    margin-top: get-size(0.25);
+  }
+  li a {
+    text-decoration: none;
+    &:before {
+      content: "#";
+      margin-left: n(1.5ch);
+      margin-right: get-size(0.5);
+      color: get-color(neutral, 50);
+      @include smooth(all);
+    }
+    &:hover,
+    &:focus {
+      &:before {
+        color: get-color(neutral, 200);
+      }
+    }
+    &.is-active {
+      &:before {
+        color: get-color(neutral, 200);
+      }
+      pointer-events: none;
+      cursor: default;
+      color: $link-active;
+    }
+  }
+  background: $body-background-color;
+}
 
-  // Navbar
-  #navbar-sticky {
-    position: sticky;
+.section-heading {
+  padding: get-size(2) 0 get-size(0.75) 0;
+  border-bottom: 1px solid get-color(primary, 100);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  z-index: 9;
+  background-color: rgba($color-white, 0.9);
+  backdrop-filter: blur(3px);
+  //  font-weight: $weight-light;
+  .chip-group:first-of-type {
+    margin-left: auto;
+  }
+  .chip-group {
+    font-size: font-size(-2);
+    margin-left: get-size(0.75);
+  }
+}
+
+.docs-section {
+  > div {
+    margin-bottom: get-size(3);
+  }
+}
+// Standfirst
+.standfirst {
+  font-size: font-size(2);
+  font-weight: $weight-medium;
+}
+
+// Inline references
+%reference {
+  @extend %inline-code;
+  display: inline-block;
+  font-weight: $weight-semibold;
+  background-color: get-color(neutral, 50);
+  font-size: font-size(-1);
+}
+
+.code-ref {
+  @extend %reference;
+}
+
+.css-ref {
+  @extend %reference;
+  color: get-color(primary);
+}
+
+.variable-ref {
+  @extend %reference;
+  color: get-color(success, 700);
+}
+
+// Code Block
+pre {
+  position: relative;
+  margin: $element-margin 0 !important;
+  font-size: font-size(-2) !important;
+
+  label {
+    font-size: font-size(-1);
     top: 0;
-    left: 0;
     right: 0;
-    z-index: 10000000;
-    display: flex;
-    align-items: center;
-    backdrop-filter: blur(3px);
-    margin-bottom: get-size(2);
+    position: absolute;
+    float: right;
+    display: block;
+    background-color: get-color(neutral, 400);
+    color: $color-white;
+    padding: 0.4em 0.6em;
+    text-shadow: none;
+  }
+}
+pre[class*="language-"] {
+  background: get-color(neutral, 25) !important;
+  border: $borders;
+}
 
-    a.active {
-      background-color: get-color(primary, 700);
+[class*="language-"] {
+  line-height: 1.6;
+}
+
+div.code-toolbar {
+  & > .toolbar {
+    top: auto !important;
+    bottom: 0.5em !important;
+    right: 0.5em !important;
+    button {
+      margin: 0 !important;
+      box-shadow: none !important;
+      padding: 0.5em !important;
+      text-transform: uppercase !important;
+      font-weight: $weight-bold !important;
+      background-color: get-color(neutral, 100) !important;
+      color: get-color(neutral, 800) !important;
+      &:hover,
+      &:focus {
+        background-color: get-color(primary) !important;
+        color: get-color(neutral, 25) !important;
+      }
+      //@extend .button.tertiary;
+    }
+  }
+}
+
+// Unstyle Tags inside code blocks
+.language-markup .tag {
+  padding: 0;
+  background: none;
+  border: none;
+  display: initial;
+  font-size: 1em;
+  font-weight: initial;
+  line-height: initial;
+  margin: 0;
+  top: 0;
+  border-radius: 0;
+}
+
+// Boxed Out Example
+.boxed {
+  background: get-color(neutral, 25);
+  border: 1px solid get-color(neutral, 100);
+  padding: get-size(0.75) get-size(1);
+  line-height: 1.2;
+  margin: 0 0 $element-margin 0;
+  display: inherit;
+  font-size: font-size(-1);
+  flex: 1 1 auto;
+}
+
+.row-boxed {
+  background-color: get-color(neutral, 25);
+  min-height: 160px;
+  margin-bottom: $element-margin;
+  padding: $element-padding 0;
+  .boxed {
+    margin: 0;
+    background-color: $color-white;
+    border: 1px solid get-color(neutral, 300);
+  }
+}
+
+.navbar .container {
+  max-width: 100% !important;
+}
+
+.li-title {
+  //border-top: 1px solid get-color(neutral, 100);
+  margin-top: get-size(0.75) !important;
+  padding-top: get-size(0.5);
+  color: get-color(neutral, 400);
+  font-size: font-size(-2);
+  margin-left: -1.5ch;
+  font-weight: $weight-medium;
+}
+
+// smooth() mixin examples
+.smooth- {
+  &transform {
+    cursor: pointer;
+    @include smooth(transform);
+
+    &:hover,
+    &:focus {
+      transform: scale(1.03);
+    }
+  }
+
+  &background {
+    cursor: pointer;
+    @include smooth(background);
+
+    &:hover,
+    &:focus {
+      background-color: get-color(primary, 200);
+    }
+  }
+
+  &wild {
+    cursor: pointer;
+    @include smooth(color, transform, background);
+
+    &:hover,
+    &:focus {
+      background-color: get-color(primary, 200);
       color: $color-white;
+      transform: scale(1.02);
     }
   }
-
-  #navbar-menu {
-    ul {
-      justify-content: center;
-    }
-  }
-
-  .navbar-start {
-    margin-right: 0; // centers element
-  }
-
-
-  // Used for tags
-  .tag.light {
-    @include create_tag(get-color(neutral, 100));
-    font-weight: normal;
-  }
-
-  // Copy to Clipboard
-  div.code-toolbar {
-    & > .toolbar {
-      top: auto;
-      bottom: 0.5em;
-      right: 0.5em;
-      button {
-        margin: 0;
-        box-shadow: none;
-        padding: 0.5em;
-        text-transform: uppercase;
-        font-weight: $weight-bold;
-        //@extend .button.tertiary;
-      }
-    }
-  }
-
-  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-  EXAMPLES
-*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-  // smooth() mixin
-  .smooth- {
-    &transform {
-      cursor: pointer;
-      @include smooth(transform);
-
-      &:hover,
-      &:focus {
-        transform: scale(1.1);
-      }
-    }
-
-    &background {
-      cursor: pointer;
-      @include smooth(background);
-
-      &:hover,
-      &:focus {
-        background-color: get-color(primary, 200);
-      }
-    }
-
-    &wild {
-      cursor: pointer;
-      @include smooth(color, transform, background);
-
-      &:hover,
-      &:focus {
-        transform: scale(1.1);
-        background-color: get-color(secondary);
-        color: $color-white;
-        transform: matrix(1.08, 0.05, 0.01, 1.1, 1, 4);
-      }
-    }
-  }
-
-
-  .button.mediumaquamarinepurple {
-    @include create_button(mediumaquamarine, rebeccapurple);
-  }
-
-
-  // Text
-
-  .text-silver {
-    color: #a0a0a0 !important;
-  }
-  .text-purple {
-    color: rebeccapurple !important;
-  }
-
-  // Tints and Shades
-  $tintshade: #aa0000;
-  .tintshade {
-    height: 100px;
-    width: calc(100% / 6);
-    font-size: 0.9em;
-    border-bottom: 0;
-    vertical-align: middle;
-    text-align: center;
-    background-color: $tintshade;
-    &.tint-100 {
-      background-color: tint($tintshade, 100%);
-    }
-    &.tint-80 {
-      background-color: tint($tintshade, 80%);
-    }
-    &.tint-60 {
-      background-color: tint($tintshade, 60%);
-    }
-    &.tint-40 {
-      background-color: tint($tintshade, 40%);
-    }
-    &.tint-20 {
-      background-color: tint($tintshade, 20%);
-    }
-    &.tint-0 {
-      background-color: tint($tintshade, 0%);
-    }
-    &.lighten-100 {
-      background-color: lighten($tintshade, 100%);
-    }
-    &.lighten-80 {
-      background-color: lighten($tintshade, 80%);
-    }
-    &.lighten-60 {
-      background-color: lighten($tintshade, 60%);
-    }
-    &.lighten-40 {
-      background-color: lighten($tintshade, 40%);
-    }
-    &.lighten-20 {
-      background-color: lighten($tintshade, 20%);
-    }
-    &.lighten-0 {
-      background-color: lighten($tintshade, 0%);
-    }
-    &[class*=' shade'],
-    &[class*=' darken'] {
-      color: #fff;
-    }
-    &.shade-100 {
-      background-color: shade($tintshade, 100%);
-    }
-    &.shade-80 {
-      background-color: shade($tintshade, 80%);
-    }
-    &.shade-60 {
-      background-color: shade($tintshade, 60%);
-    }
-    &.shade-40 {
-      background-color: shade($tintshade, 40%);
-    }
-    &.shade-20 {
-      background-color: shade($tintshade, 20%);
-    }
-    &.shade-0 {
-      background-color: shade($tintshade, 0%);
-    }
-    &.darken-100 {
-      background-color: darken($tintshade, 100%);
-    }
-    &.darken-80 {
-      background-color: darken($tintshade, 80%);
-    }
-    &.darken-60 {
-      background-color: darken($tintshade, 60%);
-    }
-    &.darken-40 {
-      background-color: darken($tintshade, 40%);
-    }
-    &.darken-20 {
-      background-color: darken($tintshade, 20%);
-    }
-    &.darken-0 {
-      background-color: darken($tintshade, 0%);
-    }
-  }
-
-  // Simulated Heading Styling
-  .h-em-2 {
-    font-size: 2em;
-  }
-  .h-tomato {
-    color: tomato;
-  }
-  .h-ul {
-    text-decoration: underline;
-  }
-}
-
-.docs {
-display: flex;
-flex-direction: column;
-@include below($nav-expands) {
-  .navbar {
-    order: 1;
-    margin-bottom: 0 !important;
-  }
-  .hero {
-    order: 2;
-    margin-bottom: get-size(1.5) !important;
-  }
-  #main {
-    order: 3;
-  }
-}
-}
-
-.palette {
-  .col {
-    padding: get-size(0.75);
-    @include above(sm){
-      height: 100px;
-    }
-    display: flex;
-    align-items:center;
-    justify-content: center;
-  }
-  @include above(sm){
-    span {
-      transform: rotate(-90deg);
-      display: block;
-    }
-  }
-}
-
-@keyframes hero {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
 }

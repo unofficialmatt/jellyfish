@@ -1,0 +1,90 @@
+[class*="bg-"] {
+  color: v(color-text);
+  background-color: v(color-background);
+  .bg-white {
+    // Ensure that a white background nested in another is reset
+    color: var(--color-text);
+    & :is(h1, h2, h3, h4, h5, h6) {
+      color: var(--color-headings-preferred);
+    }
+  }
+}
+
+.bg-transparent {
+  --color-background: transparent !important;
+}
+
+.bg-white {
+  --color-background: #{v(color-white)};
+  @if ($body-background-color != var(--color-white)) {
+    $color: resolve-contrast-color($color-white);
+    $heading-color: resolve-contrast-color(
+      $color-white,
+      $color-headings-preferred
+    );
+    @if ($color != var(--color-text)) {
+      --color-text: #{$color};
+    }
+    @if ($heading-color != var(--color-headings-preferred)) {
+      --color-headings-preferred: #{$heading-color};
+    }
+  }
+}
+
+%bg-dark {
+  --color-text: #{v(color-white)};
+}
+%heading-dark {
+  --color-headings-preferred: #{v(color-white)};
+}
+
+// We only need to work about these if the body background color is not white
+// NOTE: This may not be the best way to do this in practice
+%bg-light {
+  @if ($body-background-color != var(--color-white)) {
+    color: v(color-text);
+  }
+}
+%heading-light {
+  @if ($body-background-color != var(--color-white)) {
+    & :is(h1, h2, h3, h4, h5, h6) {
+      color: v(color-headings-preferred);
+    }
+  }
+}
+
+/**
+  * Loop through the background colors and create the classes for .bg-*
+  */
+@each $key, $val in $background-colors {
+  .bg-#{$key} {
+    --color-background: #{$val};
+
+    $bg-color: $val;
+
+    // Check if typeof is string
+    @if (type-of($bg-color) == "string") {
+      // It's a CSS property passed with get-color() walk back to get the raw CSS value
+      @if (str-index($bg-color, "var(--color-")) {
+        $bg-color: css-prop-to-value($bg-color);
+      }
+    }
+
+    // Work out the header and text colors
+    $color: resolve-contrast-color($bg-color);
+    $color-headings: resolve-contrast-color(
+      $bg-color,
+      $color-headings-preferred
+    );
+    @if ($color == var(--color-white)) {
+      @extend %bg-dark;
+    } @else {
+      @extend %bg-light;
+    }
+    @if ($color-headings == var(--color-white)) {
+      @extend %heading-dark;
+    } @else {
+      @extend %heading-light;
+    }
+  }
+}

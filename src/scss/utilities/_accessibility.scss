@@ -38,13 +38,13 @@ a {
 }
 
 // Additional Form Inputs
-input[type='checkbox'],
-input[type='radio'] {
+input[type="checkbox"],
+input[type="radio"] {
   @extend %accessible-focus;
 }
 
 // Styling for nicer radio buttons and checkboxes
-.radio input[type='radio'] {
+.radio input[type="radio"] {
   &:focus + .radio-control {
     @include accessible-focus-state;
   }
@@ -57,7 +57,7 @@ input[type='radio'] {
     @include accessible-focus-state;
   }
 }
-.checkbox input[type='checkbox'] {
+.checkbox input[type="checkbox"] {
   &:focus + .checkbox-control {
     @include accessible-focus-state;
   }
@@ -71,7 +71,7 @@ input[type='radio'] {
   }
 }
 // Range slider - outline the thumb not the track
-input[type='range'] {
+input[type="range"] {
   // Range slider vendor prefixes don't combine - the browser will ignore the whole statement, so they need to be defined individually...
   &:focus {
     &::-webkit-slider-thumb {
@@ -109,13 +109,24 @@ input[type='range'] {
 }
 
 body.font-size {
-  &-sm {
-    font-size: $accessibility-font-size-sm;
-  }
   &-md {
-    font-size: $accessibility-font-size-md;
+    --root-font-size: calc(#{$root-font-size} * 1.1);
   }
   &-lg {
-    font-size: $accessibility-font-size-lg;
+    --root-font-size: calc(#{$root-font-size} * 1.2);
+  }
+
+  @each $point, $i in $breakpoints {
+    @include above($point) {
+      @if (map-deep-get($breakpoints, $point, "root-font-size") != null) {
+        $font-size: #{map-deep-get($breakpoints, $point, "root-font-size")};
+        &-md {
+          --root-font-size: calc(#{$font-size} * 1.1);
+        }
+        &-lg {
+          --root-font-size: calc(#{$font-size} * 1.2);
+        }
+      }
+    }
   }
 }

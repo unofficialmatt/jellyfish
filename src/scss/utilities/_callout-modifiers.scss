@@ -1,8 +1,0 @@
-.callout {
-  @each $name, $color in $theme-colors {
-    // Loop through $theme-colors map and create callouts for each key
-    &.#{$name} {
-      @include create_callout($color);
-    }
-  }
-}

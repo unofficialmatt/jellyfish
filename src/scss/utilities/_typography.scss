@@ -30,13 +30,18 @@
   font-weight: $weight-black !important;
 }
 
-.h1, .h2, .h3, .h4, .h5, .h6 {
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   line-height: $heading-line-height !important;
 }
 
 .h1 {
   @each $point, $size in $font-sizes-h1 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size !important;
     } @else {
@@ -50,7 +55,7 @@
 
 .h2 {
   @each $point, $size in $font-sizes-h2 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size !important;
     } @else {
@@ -64,7 +69,7 @@
 
 .h3 {
   @each $point, $size in $font-sizes-h3 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size !important;
     } @else {
@@ -78,7 +83,7 @@
 
 .h4 {
   @each $point, $size in $font-sizes-h4 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size !important;
     } @else {
@@ -92,7 +97,7 @@
 
 .h5 {
   @each $point, $size in $font-sizes-h5 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size !important;
     } @else {
@@ -106,7 +111,7 @@
 
 .h6 {
   @each $point, $size in $font-sizes-h6 {
-    @if $point == 'root' {
+    @if $point == "root" {
       // Root font size at smallest device width
       font-size: $size !important;
     } @else {
@@ -116,4 +121,12 @@
       }
     }
   }
+}
+
+.small {
+  @extend %small;
+}
+
+.nowrap {
+  white-space: nowrap !important;
 }
