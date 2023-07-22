@@ -1,56 +1,40 @@
+// TODO: Be nicer to pass through a light heading color here, for the choose contrast
+
 [class*="bg-"] {
-  color: v(color-text);
-  background-color: v(color-background);
-  .bg-white {
-    // Ensure that a white background nested in another is reset
-    color: var(--color-text);
-    & :is(h1, h2, h3, h4, h5, h6) {
-      color: var(--color-headings-preferred);
-    }
+  color: v(color-section-text);
+  background-color: v(color-section-background);
+  & :is(h1, h2, h3, h4, h5, h6) {
+    color: v(color-section-headings);
   }
 }
 
 .bg-transparent {
-  --color-background: transparent !important;
+  --color-section-background: transparent !important;
 }
 
 .bg-white {
-  --color-background: #{v(color-white)};
-  @if ($body-background-color != var(--color-white)) {
-    $color: resolve-contrast-color($color-white);
-    $heading-color: resolve-contrast-color(
-      $color-white,
-      $color-headings-preferred
-    );
-    @if ($color != var(--color-text)) {
-      --color-text: #{$color};
-    }
-    @if ($heading-color != var(--color-headings-preferred)) {
-      --color-headings-preferred: #{$heading-color};
-    }
-  }
+  --color-section-background: #{v(color-white)};
+  $color: resolve-contrast-color($color-white);
+  $heading-color: resolve-contrast-color(
+    $color-white,
+    $color-headings-preferred
+  );
+  --color-section-text: #{$color};
+  --color-section-headings: #{$heading-color};
 }
 
 %bg-dark {
-  --color-text: #{v(color-white)};
+  --color-section-text: #{v(color-white)};
 }
 %heading-dark {
-  --color-headings-preferred: #{v(color-white)};
+  --color-section-headings: #{v(color-white)};
 }
 
-// We only need to work about these if the body background color is not white
-// NOTE: This may not be the best way to do this in practice
 %bg-light {
-  @if ($body-background-color != var(--color-white)) {
-    color: v(color-text);
-  }
+  --color-section-text: #{v(color-text)};
 }
 %heading-light {
-  @if ($body-background-color != var(--color-white)) {
-    & :is(h1, h2, h3, h4, h5, h6) {
-      color: v(color-headings-preferred);
-    }
-  }
+  --color-section-headings: #{v(color-headings-preferred)};
 }
 
 /**
@@ -58,7 +42,7 @@
   */
 @each $key, $val in $background-colors {
   .bg-#{$key} {
-    --color-background: #{$val};
+    --color-section-background: #{$val};
 
     $bg-color: $val;
 
