@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Modals ~ 🎐 Jellyfish UI</title>
+    <meta name="description" content="Support for modals via the native HTML5 dialog element.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+    <link href="./prism.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+  </head>
+
+  <body>
+
+<div class="docs-container">
+  <div class="row">
+    <aside class="col xs-12 md-3">
+      <div class="sidebar">
+        <a href="../index.html" class="navbar-brand">
+          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+        </a>
+        <ul>
+          <li class="li-title mt-0">
+            HTML
+          </li>
+          <li>
+            <a href="./getting-started.html">Getting Started</a>
+          </li>
+          <li>
+            <a href="./grid.html">Grid</a>
+          </li>
+          <li>
+            <a href="./navbar.html">Navbar</a>
+          </li>
+          <li>
+            <a href="./typography.html">Typography</a>
+          </li>
+          <li>
+            <a href="./media.html">Images and Media</a>
+          </li>
+          <li>
+            <a href="./tables.html">Tables</a>
+          </li>
+          <li>
+            <a href="./forms.html">Forms</a>
+          </li>
+          <li>
+            <a href="./progress.html">Progress Bars</a>
+          </li>
+          <li>
+            <a href="./buttons.html">Buttons</a>
+          </li>
+          <li>
+            <a href="./chips.html">Chips</a>
+          </li>
+          <li>
+            <a href="./callouts.html">Callouts</a>
+          </li>
+          <li>
+            <a href="./cards.html">Cards</a>
+          </li>
+          <li>
+            <a href="./modals.html">Modals</a>
+          </li>
+          <li class="li-title">
+            SCSS
+          </li>
+          <li>
+            <a href="./breakpoints.html">Breakpoints</a>
+          </li>
+          <li>
+            <a href="./mixins.html">Mixins</a>
+          </li>
+          <li>
+            <a href="./variables.html">Variables</a>
+          </li>
+          <li class="li-title">
+            Javascript
+          </li>
+          <li>
+            <a href="./javascript.html">Javascript Functions</a>
+          </li>
+          <li class="li-title">
+            Utilities
+          </li>
+          <li>
+            <a href="./theme-colors.html">Theme Colors</a>
+          </li>
+          <li>
+            <a href="./accessibility.html">Accessibility</a>
+          </li>
+          <li>
+            <a href="./printing.html">Printing</a>
+          </li>
+          <li>
+            <a href="./utilities.html">Utility Classes</a>
+          </li>
+          <li>
+            <a href="./debug.html">Debugging</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="col xs-12 md-9 content">
+      <section class="docs-section">
+<h1 class="section-heading h2">Modals<a href="./variables.html#modals">[ Variable Reference ]</a></h1>
+<div>
+  <p class="standfirst">Since v4.1.0, Jellyfish has included support for native <span class="code-ref">&lt;dialog></span> elements for the display of modals. This removes dependencies on external Javascript libraries and ensures that modal elements are accessible as standard.</p>
+  <p>To avoid being opinionated on the <span class="code-ref">&lt;dialog></span> element, the <span class="css-ref">.modal</span> class is required on the element. The modal is targetted with a button or anchor calling <span class="code-ref">toggleModal('id')</span> where the argument is the ID of the dialog element. Close buttons are automatically appended to modals via Javascript, on initialization.</p>
+  <p>To preserve padding and layout, a <span class="css-ref">.modal</span> should contain a <span class="css-ref">.modal-content</span> element, used to contain the modal's content. The <span class="css-ref">.modal</span> element is a flex element; consequently adding <span class="css-ref">.modal-header</span> or <span class="css-ref">.modal-footer</span> will ensure they are always visible. This allows for key information or call-to-actions to always be in sight.</p>
+</div>
+<div>
+  <h2 class="h3">A basic modal</h2>
+  <pre class="language-markup">
+    <code><!--
+      <button onclick="toggleModal('dialog');">Open modal</button>
+      <dialog id="dialog" class="modal bg-white">
+        <div class="modal-header">
+          <h2>This is a modal</h2>
+        </div>
+        <div class="modal-content">
+          <img src="https://placehold.it/870x2000" alt="Placeholder image" class="mb">
+          <p>Sed a sollicitudin dolor. Nulla vel lacus a mauris rutrum pellentesque eget cursus arcu. Sed finibus gravida dui, in tempor velit suscipit eu. Fusce molestie purus pretium tellus suscipit, non rutrum libero mattis. Morbi consequat est ac diam efficitur, quis consectetur sapien finibus. In varius lacus turpis, et tincidunt metus malesuada et. Curabitur venenatis commodo ante ac sollicitudin. Aliquam quis condimentum ipsum, eget dignissim dolor. Praesent feugiat laoreet odio, eget suscipit metus pretium eget. Nunc tincidunt nulla sapien, a eleifend eros posuere commodo. Duis volutpat elit sed risus semper gravida. Morbi ultricies pharetra ante ac condimentum. Donec euismod erat felis, non viverra nunc tincidunt eu. Nam hendrerit rhoncus libero sit amet fermentum. Curabitur quis gravida orci.</p>
+        </div>
+      </dialog>
+  --></code>
+  </pre>
+  <button onclick="toggleModal('dialog');">Open modal</button>
+  <dialog id="dialog" class="modal bg-white">
+    <div class="modal-header">
+      <h2>This is a modal</h2>
+    </div>
+    <div class="modal-content">
+      <img src="https://placehold.it/870x2000" alt="Placeholder image" class="mb">
+      <p>Sed a sollicitudin dolor. Nulla vel lacus a mauris rutrum pellentesque eget cursus arcu. Sed finibus gravida dui, in tempor velit suscipit eu. Fusce molestie purus pretium tellus suscipit, non rutrum libero mattis. Morbi consequat est ac diam efficitur, quis consectetur sapien finibus. In varius lacus turpis, et tincidunt metus malesuada et. Curabitur venenatis commodo ante ac sollicitudin. Aliquam quis condimentum ipsum, eget dignissim dolor. Praesent feugiat laoreet odio, eget suscipit metus pretium eget. Nunc tincidunt nulla sapien, a eleifend eros posuere commodo. Duis volutpat elit sed risus semper gravida. Morbi ultricies pharetra ante ac condimentum. Donec euismod erat felis, non viverra nunc tincidunt eu. Nam hendrerit rhoncus libero sit amet fermentum. Curabitur quis gravida orci.</p>
+    </div>
+  </dialog>
+</div>
+
+<div>
+  <h2 class="h3">Modal groups</h2>
+  <p>You can combine modals into a group, which will automatically append navigation arrows to the modals within the group. The user can also navigate via keyboard (left and right arrows). Just add a <span class="code-ref">data-modalgroup</span> attribute to the modals within the group.</p>
+
+  <pre class="language-markup">
+    <code><!--
+      <button onclick="toggleModal('modal-group-1');">Open modal 1</button>
+      <button onclick="toggleModal('modal-group-2');">Open modal 2</button>
+      <button onclick="toggleModal('modal-group-3');">Open modal 3</button>
+      <button onclick="toggleModal('modal-group-4');">Open modal 4</button>
+      <button onclick="toggleModal('modal-group-5');">Open modal 5</button>
+
+      <dialog id="modal-group-1" data-modalgroup="modalGroup">
+          ...
+      </dialog>
+      <dialog id="modal-group-2" data-modalgroup="modalGroup">
+          ...
+      </dialog>
+      <dialog id="modal-group-3" data-modalgroup="modalGroup">
+          ...
+      </dialog>
+      <dialog id="modal-group-4" data-modalgroup="modalGroupAlt">
+          ...
+      </dialog>
+      <dialog id="modal-group-5" data-modalgroup="modalGroupAlt">
+          ...
+      </dialog>
+
+  --></code>
+  </pre>
+
+  <h3 class="h4">Modal Group One</h3>
+  <div class="button-list">
+    <button class="button small" onclick="toggleModal('modal-group-1');">Open modal 1</button>
+    <button class="button small" onclick="toggleModal('modal-group-2');">Open modal 2</button>
+    <button class="button small" onclick="toggleModal('modal-group-3');">Open modal 3</button>
+  </div>
+
+  <h3 class="h4">Modal Group Two</h3>
+  <div class="button-list">
+    <button class="button small" onclick="toggleModal('modal-group-4');">Open modal 4</button>
+    <button class="button small" onclick="toggleModal('modal-group-5');">Open modal 5</button>
+  </div>
+
+  <dialog id="modal-group-1" class="modal bg-white" data-modalgroup="modalGroup">
+    <div class="modal-content">
+      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <p class="h4">This content is in the first modal of the group</p>
+    </div>
+  </dialog>
+  <dialog id="modal-group-2" class="modal bg-white" data-modalgroup="modalGroup">
+    <div class="modal-content">
+      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <p class="h4">This content is in the second modal of the group</p>
+    </div>
+  </dialog>
+  <dialog id="modal-group-3" class="modal bg-white" data-modalgroup="modalGroup">
+    <div class="modal-content">
+      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <p class="h4">This content is in the third modal of the group</p>
+    </div>
+  </dialog>
+  <dialog id="modal-group-4" class="modal bg-white" data-modalgroup="modalGroupAlt">
+    <div class="modal-content">
+      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <p class="h4">This content is in the first modal of the second group</p>
+    </div>
+  </dialog>
+  <dialog id="modal-group-5" class="modal bg-white" data-modalgroup="modalGroupAlt">
+    <div class="modal-content">
+      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <p class="h4">This content is in the second modal of the second group</p>
+    </div>
+  </dialog>
+</div>
+
+<div>
+  <h2 class="h3">Javascript API</h2>
+  <p>When a modal is opened, a <span class="code-ref">jfModalOpened</span> event is fired. This event can be hooked into, for example to autoplay a video that is embedded in the modal. The <span class="code-ref">event.detail</span> property contains the ID of the modal element.</p>
+  <pre>
+    <code class="language-javascript">
+      document.addEventListener("jfModalOpened", function (event) {
+        console.log(event.detail);
+        // Object { newModalId: "modal-group-1" }
+      });
+    </code>
+  </pre>
+  <p>Likewise, when a modal is closed, a <span class="code-ref">jfModalClosed</span> event is fired. This event is triggered when the user presses Escape, clicks on the close button, clicks outside of the dialog (on the overlay) or uses the navigation keys to move through a modalGroup.</p>
+  <pre>
+    <code class="language-javascript">
+      document.addEventListener("jfModalClosed", function (event) {
+        console.log(event.detail);
+        // Object { closedModalId: "modal-group-1" }
+      });
+    </code>
+  </pre>
+</div>
+
+
+
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stickybits/3.7.11/stickybits.min.js" integrity="sha512-ji6fCLZlHjqkE7xw3WorjIXDalqEPsRE5NRAbjl8WHB4AMhU3zk/t5Zt6O/buVEWHQ+2SVfTxqPXU3P6bmxL1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./prism.js"></script>
+<script type="text/javascript">
+  let navbarHeight = 0;
+  document.addEventListener("DOMContentLoaded", function () {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+
+    var sidebarLinks = document.querySelectorAll('.sidebar a');
+    if (sidebarLinks.length > 0) {
+      sidebarLinks.forEach(function (linkElement) {
+        var link = linkElement.getAttribute('href');
+        link = link.replace('./', '');
+        var currentPage = window.location.pathname.split('/').pop();
+        if (link == currentPage) {
+          linkElement.classList.add('is-active');
+        }
+      });
+    }
+  });
+  window.addEventListener('resize', () => {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+  });
+</script>
+</body>
+
+</html>

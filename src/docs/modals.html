@@ -1,0 +1,141 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Modals",
+"description": "Support for modals via the native HTML5 dialog element.",
+})
+
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Modals<a href="./variables.html#modals">[ Variable Reference ]</a></h1>
+<div>
+  <p class="standfirst">Since v4.1.0, Jellyfish has included support for native <span class="code-ref">&lt;dialog></span> elements for the display of modals. This removes dependencies on external Javascript libraries and ensures that modal elements are accessible as standard.</p>
+  <p>To avoid being opinionated on the <span class="code-ref">&lt;dialog></span> element, the <span class="css-ref">.modal</span> class is required on the element. The modal is targetted with a button or anchor calling <span class="code-ref">toggleModal('id')</span> where the argument is the ID of the dialog element. Close buttons are automatically appended to modals via Javascript, on initialization.</p>
+  <p>To preserve padding and layout, a <span class="css-ref">.modal</span> should contain a <span class="css-ref">.modal-content</span> element, used to contain the modal's content. The <span class="css-ref">.modal</span> element is a flex element; consequently adding <span class="css-ref">.modal-header</span> or <span class="css-ref">.modal-footer</span> will ensure they are always visible. This allows for key information or call-to-actions to always be in sight.</p>
+</div>
+<div>
+  <h2 class="h3">A basic modal</h2>
+  <pre class="language-markup">
+    <code><!--
+      <button onclick="toggleModal('dialog');">Open modal</button>
+      <dialog id="dialog" class="modal bg-white">
+        <div class="modal-header">
+          <h2>This is a modal</h2>
+        </div>
+        <div class="modal-content">
+          <img src="https://placehold.it/870x2000" alt="Placeholder image" class="mb">
+          <p>Sed a sollicitudin dolor. Nulla vel lacus a mauris rutrum pellentesque eget cursus arcu. Sed finibus gravida dui, in tempor velit suscipit eu. Fusce molestie purus pretium tellus suscipit, non rutrum libero mattis. Morbi consequat est ac diam efficitur, quis consectetur sapien finibus. In varius lacus turpis, et tincidunt metus malesuada et. Curabitur venenatis commodo ante ac sollicitudin. Aliquam quis condimentum ipsum, eget dignissim dolor. Praesent feugiat laoreet odio, eget suscipit metus pretium eget. Nunc tincidunt nulla sapien, a eleifend eros posuere commodo. Duis volutpat elit sed risus semper gravida. Morbi ultricies pharetra ante ac condimentum. Donec euismod erat felis, non viverra nunc tincidunt eu. Nam hendrerit rhoncus libero sit amet fermentum. Curabitur quis gravida orci.</p>
+        </div>
+      </dialog>
+  --></code>
+  </pre>
+  <button onclick="toggleModal('dialog');">Open modal</button>
+  <dialog id="dialog" class="modal bg-white">
+    <div class="modal-header">
+      <h2>This is a modal</h2>
+    </div>
+    <div class="modal-content">
+      <img src="https://placehold.it/870x2000" alt="Placeholder image" class="mb">
+      <p>Sed a sollicitudin dolor. Nulla vel lacus a mauris rutrum pellentesque eget cursus arcu. Sed finibus gravida dui, in tempor velit suscipit eu. Fusce molestie purus pretium tellus suscipit, non rutrum libero mattis. Morbi consequat est ac diam efficitur, quis consectetur sapien finibus. In varius lacus turpis, et tincidunt metus malesuada et. Curabitur venenatis commodo ante ac sollicitudin. Aliquam quis condimentum ipsum, eget dignissim dolor. Praesent feugiat laoreet odio, eget suscipit metus pretium eget. Nunc tincidunt nulla sapien, a eleifend eros posuere commodo. Duis volutpat elit sed risus semper gravida. Morbi ultricies pharetra ante ac condimentum. Donec euismod erat felis, non viverra nunc tincidunt eu. Nam hendrerit rhoncus libero sit amet fermentum. Curabitur quis gravida orci.</p>
+    </div>
+  </dialog>
+</div>
+
+<div>
+  <h2 class="h3">Modal groups</h2>
+  <p>You can combine modals into a group, which will automatically append navigation arrows to the modals within the group. The user can also navigate via keyboard (left and right arrows). Just add a <span class="code-ref">data-modalgroup</span> attribute to the modals within the group.</p>
+
+  <pre class="language-markup">
+    <code><!--
+      <button onclick="toggleModal('modal-group-1');">Open modal 1</button>
+      <button onclick="toggleModal('modal-group-2');">Open modal 2</button>
+      <button onclick="toggleModal('modal-group-3');">Open modal 3</button>
+      <button onclick="toggleModal('modal-group-4');">Open modal 4</button>
+      <button onclick="toggleModal('modal-group-5');">Open modal 5</button>
+
+      <dialog id="modal-group-1" data-modalgroup="modalGroup">
+          ...
+      </dialog>
+      <dialog id="modal-group-2" data-modalgroup="modalGroup">
+          ...
+      </dialog>
+      <dialog id="modal-group-3" data-modalgroup="modalGroup">
+          ...
+      </dialog>
+      <dialog id="modal-group-4" data-modalgroup="modalGroupAlt">
+          ...
+      </dialog>
+      <dialog id="modal-group-5" data-modalgroup="modalGroupAlt">
+          ...
+      </dialog>
+
+  --></code>
+  </pre>
+
+  <h3 class="h4">Modal Group One</h3>
+  <div class="button-list">
+    <button class="button small" onclick="toggleModal('modal-group-1');">Open modal 1</button>
+    <button class="button small" onclick="toggleModal('modal-group-2');">Open modal 2</button>
+    <button class="button small" onclick="toggleModal('modal-group-3');">Open modal 3</button>
+  </div>
+
+  <h3 class="h4">Modal Group Two</h3>
+  <div class="button-list">
+    <button class="button small" onclick="toggleModal('modal-group-4');">Open modal 4</button>
+    <button class="button small" onclick="toggleModal('modal-group-5');">Open modal 5</button>
+  </div>
+
+  <dialog id="modal-group-1" class="modal bg-white" data-modalgroup="modalGroup">
+    <div class="modal-content">
+      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <p class="h4">This content is in the first modal of the group</p>
+    </div>
+  </dialog>
+  <dialog id="modal-group-2" class="modal bg-white" data-modalgroup="modalGroup">
+    <div class="modal-content">
+      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <p class="h4">This content is in the second modal of the group</p>
+    </div>
+  </dialog>
+  <dialog id="modal-group-3" class="modal bg-white" data-modalgroup="modalGroup">
+    <div class="modal-content">
+      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <p class="h4">This content is in the third modal of the group</p>
+    </div>
+  </dialog>
+  <dialog id="modal-group-4" class="modal bg-white" data-modalgroup="modalGroupAlt">
+    <div class="modal-content">
+      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <p class="h4">This content is in the first modal of the second group</p>
+    </div>
+  </dialog>
+  <dialog id="modal-group-5" class="modal bg-white" data-modalgroup="modalGroupAlt">
+    <div class="modal-content">
+      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <p class="h4">This content is in the second modal of the second group</p>
+    </div>
+  </dialog>
+</div>
+
+<div>
+  <h2 class="h3">Javascript API</h2>
+  <p>When a modal is opened, a <span class="code-ref">jfModalOpened</span> event is fired. This event can be hooked into, for example to autoplay a video that is embedded in the modal. The <span class="code-ref">event.detail</span> property contains the ID of the modal element.</p>
+  <pre>
+    <code class="language-javascript">
+      document.addEventListener("jfModalOpened", function (event) {
+        console.log(event.detail);
+        // Object { newModalId: "modal-group-1" }
+      });
+    </code>
+  </pre>
+  <p>Likewise, when a modal is closed, a <span class="code-ref">jfModalClosed</span> event is fired. This event is triggered when the user presses Escape, clicks on the close button, clicks outside of the dialog (on the overlay) or uses the navigation keys to move through a modalGroup.</p>
+  <pre>
+    <code class="language-javascript">
+      document.addEventListener("jfModalClosed", function (event) {
+        console.log(event.detail);
+        // Object { closedModalId: "modal-group-1" }
+      });
+    </code>
+  </pre>
+</div>
+
+
+
+@@include('./src/docs/partials/html-footer.html')

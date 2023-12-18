@@ -1,0 +1,88 @@
+$nav-button-gap: 8px;
+
+// If $modal-navigation-arrow-size is larger than $modal-outer-margin then reset it to $modal-outer-margin / 2
+@if ($modal-navigation-arrow-size + $nav-button-gap > $modal-outer-margin) {
+  $modal-navigation-arrow-size: $modal-outer-margin * 0.5;
+}
+
+dialog.modal {
+  --modal-max-width: #{$modal-max-width};
+  &::backdrop {
+    background-color: $modal-backdrop-color;
+    opacity: $modal-backdrop-opacity;
+  }
+  max-height: calc(100% - $modal-outer-margin * 2);
+  width: 100%;
+  max-width: min(
+    var(--modal-max-width),
+    calc(100vw - #{$modal-outer-margin * 2})
+  );
+  border: $modal-border;
+  border-radius: $modal-border-radius;
+  overflow: hidden;
+  padding: $modal-padding;
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+}
+
+.modal-content {
+  overflow-y: auto;
+  // Remove margin from last child
+  *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+body.has-open-modal {
+  overflow: hidden;
+}
+
+// TODO: Need to make sure this doesnt overlap
+.modal-close {
+  --button-color-theme: #{get-color(neutral, 200)};
+  --button-hover-color-theme: #{get-color(neutral)};
+  position: absolute;
+  top: get-size(0.5);
+  right: get-size(0.5);
+  padding: 0;
+  width: get-size(1.5);
+  height: get-size(1.5);
+  border-radius: 0;
+  mask: url($modal-close-icon-svg);
+  mask-size: cover;
+  border: 0;
+  margin: 0;
+}
+
+.modal-navigation {
+  position: absolute;
+  top: 0;
+  left: calc(n($modal-navigation-arrow-size) - $nav-button-gap);
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% + $modal-navigation-arrow-size * 2 + $nav-button-gap * 2);
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-navigation-button {
+  --button-color-theme: #{get-color(neutral, 200)};
+  --button-hover-color-theme: var(--color-white);
+  padding: 0;
+  width: $modal-navigation-arrow-size;
+  height: $modal-navigation-arrow-size * 3; // Increase the hit area
+  border-radius: 0;
+  mask: url($modal-arrow-icon-svg);
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+  border: 0;
+  margin: 0;
+}
+
+.modal-navigation--prev {
+  transform: rotate(180deg);
+}

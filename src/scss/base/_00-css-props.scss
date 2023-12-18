@@ -11,6 +11,7 @@
   --grid-gutter: #{$base-col-gutter};
   --root-font-size: #{$root-font-size};
   --root-line-height: #{$root-line-height};
+  @include map-to-css-properties($type-scale, "font-size-");
 
   @each $point, $i in $breakpoints {
     // for each breakpoint defined...

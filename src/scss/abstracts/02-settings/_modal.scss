@@ -1,0 +1,10 @@
+$modal-backdrop-color: #000 !default; // NOTE: AS OF WRITING THIS CANNOT BE A CSS PROP https://stackoverflow.com/questions/58818299/css-variables-not-working-in-dialogbackdrop
+$modal-backdrop-opacity: 0.9 !default;
+$modal-max-width: 900px !default;
+$modal-border: none !default;
+$modal-border-radius: get-size(0.5) !default;
+$modal-outer-margin: get-size(4) !default;
+$modal-padding: get-size(1.5) !default;
+$modal-close-icon-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M10.3,10.3l19.3,19.3 M10.3,29.7l19.3-19.3' stroke='currentColor' stroke-width='6' stroke-linecap='square' /%3E%3C/svg%3E" !default;
+$modal-arrow-icon-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M15.5,4.9L30.6,20 M15.5,35.1L30.6,20' stroke='currentColor' stroke-width='6' stroke-linecap='square' /%3E%3C/svg%3E" !default;
+$modal-navigation-arrow-size: get-size(1.5) !default;
