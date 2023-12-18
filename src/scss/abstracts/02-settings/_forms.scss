@@ -17,7 +17,7 @@ $form-focus-shadow-inner: inset 1px 2px 1px 0px get-color(neutral, 300) !default
 $form-focus-shadow-outer: inset -1px -2px 1px 0px get-color(neutral, 200) !default;
 $form-fieldset-border: $border-width $border-style get-color(neutral, 200) !default;
 
-$form-label-size: font-size(-1) !default;
+$form-label-size: v(font-size--1) !default;
 $form-label-weight: $weight-semibold !default;
 
 // INPUT[type="range"]

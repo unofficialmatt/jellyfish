@@ -39,42 +39,42 @@ $font-headings: v(font-secondary) !default;
 
 $font-sizes-h1: map-merge(
   (
-    "root": font-size(5),
-    "md": font-size(6),
+    "root": v(font-size-5),
+    "md": v(font-size-6),
   ),
   $font-sizes-h1
 );
 $font-sizes-h2: map-merge(
   (
-    "root": font-size(3),
-    "sm": font-size(4),
-    "md": font-size(5),
+    "root": v(font-size-3),
+    "sm": v(font-size-4),
+    "md": v(font-size-5),
   ),
   $font-sizes-h2
 );
 $font-sizes-h3: map-merge(
   (
-    "root": font-size(3),
-    "md": font-size(4),
+    "root": v(font-size-3),
+    "md": v(font-size-4),
   ),
   $font-sizes-h3
 );
 $font-sizes-h4: map-merge(
   (
-    "root": font-size(2),
-    "sm": font-size(3),
+    "root": v(font-size-2),
+    "sm": v(font-size-3),
   ),
   $font-sizes-h4
 );
 $font-sizes-h5: map-merge(
   (
-    "root": font-size(2),
+    "root": v(font-size-2),
   ),
   $font-sizes-h5
 );
 $font-sizes-h6: map-merge(
   (
-    "root": font-size(1),
+    "root": v(font-size-1),
   ),
   $font-sizes-h6
 );

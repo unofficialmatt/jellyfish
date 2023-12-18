@@ -4,4 +4,4 @@ $chip-border-radius: get-size(0.25) !default;
 $chip-border-width: 1px !default;
 $chip-border-style: solid !default;
 $chip-font-weight: $weight-normal !default;
-$chip-font-size: font-size(-1) !default;
+$chip-font-size: v(font-size--1) !default;

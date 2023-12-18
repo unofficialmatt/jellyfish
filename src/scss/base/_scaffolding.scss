@@ -111,7 +111,7 @@ blockquote {
   margin: 0 0 $element-margin 0;
   p {
     font-style: italic;
-    font-size: font-size(1);
+    font-size: v(font-size-1);
     line-height: 1.4;
     margin-bottom: get-size(0.5);
   }
@@ -121,7 +121,7 @@ blockquote {
     }
     font-style: normal;
     display: block;
-    font-size: font-size(-1);
+    font-size: v(font-size--1);
     font-weight: $weight-bold;
   }
 }

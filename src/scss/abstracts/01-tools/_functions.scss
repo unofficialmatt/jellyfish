@@ -53,9 +53,9 @@
 }
 
 @function font-size($size) {
+  @warn "font-size() function is deprecated and will be removed in a future release. Please refer to font sizes by CSS custom property instead eg. var(--font-size-1).";
   @if map-has-key($type-scale, $size) {
-    $font-size: map-get($type-scale, $size);
-    @return $font-size;
+    @return var(--font-size-#{$size});
   } @else {
     @error "Key: '#{$size}' not found in $type-scale map. Cancelling compile.";
   }

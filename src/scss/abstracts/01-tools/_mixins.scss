@@ -4,7 +4,7 @@
     @if type-of($value) == "map" {
       @include map-to-css-properties($value, $prefix + $key + "-");
     } @else {
-      @if type-of($value) != "string" {
+      @if $value != "false" {
         --#{$prefix + $key}: #{$value};
       }
     }

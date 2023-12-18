@@ -16,7 +16,7 @@
     margin: 0;
     margin-left: 1.5ch;
     a {
-      font-size: font-size(-1);
+      font-size: v(font-size--1);
     }
   }
   margin-top: get-size(2);
@@ -74,7 +74,7 @@
     margin-left: auto;
   }
   .chip-group {
-    font-size: font-size(-2);
+    font-size: v(font-size--2);
     margin-left: get-size(0.75);
   }
 }
@@ -86,7 +86,7 @@
 }
 // Standfirst
 .standfirst {
-  font-size: font-size(2);
+  font-size: v(font-size-2);
   font-weight: $weight-medium;
 }
 
@@ -96,7 +96,7 @@
   display: inline-block;
   font-weight: $weight-semibold;
   background-color: get-color(neutral, 50);
-  font-size: font-size(-1);
+  font-size: v(font-size--1);
 }
 
 .code-ref {
@@ -117,10 +117,10 @@
 pre {
   position: relative;
   margin: $element-margin 0 !important;
-  font-size: font-size(-2) !important;
+  font-size: v(font-size--2) !important;
 
   label {
-    font-size: font-size(-1);
+    font-size: v(font-size--1);
     top: 0;
     right: 0;
     position: absolute;
@@ -186,7 +186,7 @@ div.code-toolbar {
   line-height: 1.2;
   margin: 0 0 $element-margin 0;
   display: inherit;
-  font-size: font-size(-1);
+  font-size: v(font-size--1);
   flex: 1 1 auto;
 }
 
@@ -211,7 +211,7 @@ div.code-toolbar {
   margin-top: get-size(0.75) !important;
   padding-top: get-size(0.5);
   color: get-color(neutral, 400);
-  font-size: font-size(-2);
+  font-size: v(font-size--2);
   margin-left: -1.5ch;
   font-weight: $weight-medium;
 }
@@ -253,7 +253,7 @@ div.code-toolbar {
 
 .variables-reference {
   table td {
-    font-size: font-size(-1);
+    font-size: v(font-size--1);
   }
   @include above($table-responsive-breakpoint) {
     table tr td:first-of-type {

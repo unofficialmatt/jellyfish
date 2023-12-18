@@ -106,7 +106,7 @@ h6 {
 }
 /* TEXT TRANSFORM */
 %small {
-  font-size: font-size(-1);
+  font-size: v(font-size--1);
 }
 small {
   display: block;
@@ -170,7 +170,7 @@ q {
 
 %inline-code {
   @extend %code;
-  font-size: font-size(-1);
+  font-size: v(font-size--1);
   line-height: 1;
   border-radius: $border-radius;
   padding: 0.3em 0.35em;
@@ -201,7 +201,7 @@ var {
 // Subscript and Superscript
 sub,
 sup {
-  font-size: font-size(-2);
+  font-size: v(font-size--2);
   line-height: 0;
   position: relative;
   vertical-align: baseline;
