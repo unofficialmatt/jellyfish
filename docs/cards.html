@@ -304,27 +304,25 @@
 </div>
 </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
 <script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stickybits/3.7.11/stickybits.min.js" integrity="sha512-ji6fCLZlHjqkE7xw3WorjIXDalqEPsRE5NRAbjl8WHB4AMhU3zk/t5Zt6O/buVEWHQ+2SVfTxqPXU3P6bmxL1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="./prism.js"></script>
 <script type="text/javascript">
   let navbarHeight = 0;
-  $(document).ready(function ($) {
+  document.addEventListener("DOMContentLoaded", function () {
     stickybits('.section-heading', {});
     stickybits('.sidebar', { stickyBitStickyOffset: 32 });
 
-    let sidebarLinks = $('.sidebar a');
+    var sidebarLinks = document.querySelectorAll('.sidebar a');
     if (sidebarLinks.length > 0) {
-      sidebarLinks.each(function () {
-        let link = $(this).attr('href');
+      sidebarLinks.forEach(function (linkElement) {
+        var link = linkElement.getAttribute('href');
         link = link.replace('./', '');
-        let currentPage = window.location.pathname.split('/').pop();
+        var currentPage = window.location.pathname.split('/').pop();
         if (link == currentPage) {
-          $(this).addClass('is-active');
+          linkElement.classList.add('is-active');
         }
-
       });
     }
   });
