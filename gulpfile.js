@@ -135,6 +135,8 @@ const getSassDirPartials = function (dirPath, arrayOfFiles, relativeDir = "") {
   return arrayOfFiles;
 };
 
+// TODO: REPLACE THIS WITH SASS GLOB
+
 /**
  * Dynamically import SASS files into partials. Modified with the two refs below
  * @see https://nateeagle.com/2014/05/22/sass-directory-imports-with-gulp/

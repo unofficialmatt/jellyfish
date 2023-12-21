@@ -40,7 +40,6 @@ body.has-open-modal {
   overflow: hidden;
 }
 
-// TODO: Need to make sure this doesnt overlap
 .modal-close {
   --button-color-theme: #{get-color(neutral, 200)};
   --button-hover-color-theme: #{get-color(neutral)};

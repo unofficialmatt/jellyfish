@@ -108,8 +108,9 @@ class jellyfishModals {
       });
       document.dispatchEvent(event);
 
-      // Scroll to the top of the .modal-content element
-      dialog.querySelector(".modal-content").scrollTo(0, 0);
+      // Scroll to the top of the .modal-content element if it exists
+      if (dialog.querySelector(".modal-content"))
+        dialog.querySelector(".modal-content").scrollTo(0, 0);
 
       // Close Modal if user clicks on the overlay
       dialog.addEventListener("click", (e) => {
@@ -129,9 +130,11 @@ class jellyfishModals {
         }
       });
 
-      // Append navigation arrows and close button
-      this.initializeModalGroup(dialog);
-      this.appendCloseButton(dialog);
+      // Append navigation arrows and close button if it's a .modal element
+      if (dialog.classList.contains("modal")) {
+        this.initializeModalGroup(dialog);
+        this.appendCloseButton(dialog);
+      }
 
       // Dispatch an Event to the DataLayer
       window.dataLayer = window.dataLayer || [];
