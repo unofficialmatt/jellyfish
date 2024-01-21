@@ -137,14 +137,75 @@
     </code>
   </pre>
 
-  <h2 class="h3">Lazy Load Background Images</h2>
-  <p>Jellyfish will lazy-load background images; you need to add a class <span class="css-ref">.has-bg-img</span> and a <span class="code-ref">data-bg-img</span> attribute to the element.</p>
-  <pre>
-    <code class="language-html">
-      &lt;div class="has-bg-img" style="background-image:url('https://unsplash.it/450/150');" data-bg-img="https://unsplash.it/1800/600"&gt;&lt;/div&gt;
+  <h2 class="h3" id="debounce-example">Debouncing functionality</h2>
+  <p>Jellyfish provides a simple way to debounce functionality in the browser, eg on scroll or resize. This should be used whenever possible to avoid excessive execution of JS.</p>
+  <p>You need to :</p>
+  <ul>
+    <li>Declare the function you wish to run on debounce</li>
+    <li>Hook the function into <span class="code-ref">jfDebounce()</span> which takes four args:</li>
+    <ul>
+      <li><span class="code-ref">eventListener</span> - the window EventListener you wish to listen to (eg. resize or scroll)</li>
+      <li><span class="code-ref">function</span> - the function to run on debounce</li>
+      <li><span class="code-ref">timeout</span> - optional timeout (defaults to 300)</li>
+      <li><span class="code-ref">args</span> - any arguments you wish to pass to the function. If timeout is not set, args can be the third argument of <span class="code-ref">jfDebounce()</span></li>
+    </ul>
+    <p>This page uses the example below, on resize the letters in the heading above will change font size. On scroll, the letters will randomly change color.</p>
+    <pre>
+    <code class="language-javascript">
+      // On document ready, set up the letters inside the element to be split into spans
+      document.addEventListener("DOMContentLoaded", function () {
+        let itemToChange = document.querySelector("#debounce-example");
+        if (!itemToChange) return;
+
+        if (!itemToChange.classList.contains("is-split")) {
+          // Add the is-split class to the element
+          itemToChange.classList.add("is-split");
+
+          let letters = itemToChange.innerHTML.split("");
+
+          // Wrap each letter inside the element with a span
+          itemToChange.innerHTML = letters
+            .map(
+              (letter) =>
+                `&lt;span class="debounce-letter" style="transition-delay: ${
+                  Math.random() * 1
+                }s">${letter}&lt;/span>`
+            )
+            .join("");
+        }
+      });
+
+      function debounceExample(eventType) {
+        let itemToChange = document.querySelector("#debounce-example");
+        if (!itemToChange) return;
+
+        if (eventType === "changeCase") {
+          // Get all the letters inside the element and randomly set size between 0.8em and 1.2em
+          let lettersToChange = document.querySelectorAll(".debounce-letter");
+          lettersToChange.forEach((letter) => {
+            letter.style.fontSize = `${Math.random() * 0.4 + 0.8}em`;
+          });
+        } else if (eventType === "changeColor") {
+          let lettersToChange = document.querySelectorAll(".debounce-letter");
+          lettersToChange.forEach((letter) => {
+            let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            letter.style.color = `#${randomColor}`;
+          });
+        }
+      }
+      jfDebounce("resize", debounceExample, 100, ["changeCase"]);
+      jfDebounce("scroll", debounceExample, ["changeColor"]);
     </code>
   </pre>
-  <div class="has-bg-img mb" style="background-image:url('https://unsplash.it/450/150');height:600px;width:100%;background-size: cover;background-position: center;" data-bg-img="https://unsplash.it/1800/600"></div>
+
+    <h2 class="h3">Lazy Load Background Images</h2>
+    <p>Jellyfish will lazy-load background images; you need to add a class <span class="css-ref">.has-bg-img</span> and a <span class="code-ref">data-bg-img</span> attribute to the element.</p>
+    <pre>
+    <code class="language-html">
+      &lt;div class="has-bg-img" style="background-image:url('https://placekitten.com/450/150');" data-bg-img="https://placekitten.com/1800/600"&gt;&lt;/div&gt;
+    </code>
+  </pre>
+    <div class="has-bg-img mb" style="background-image:url('https://placekitten.com/450/150');height:600px;width:100%;background-size: cover;background-position: center;" data-bg-img="https://placekitten.com/1800/600"></div>
 
 </div>
 </div>
@@ -176,6 +237,49 @@
     stickybits('.section-heading', {});
     stickybits('.sidebar', { stickyBitStickyOffset: 32 });
   });
+
+  // On document ready, set up the letters inside the element to be split into spans
+  document.addEventListener("DOMContentLoaded", function () {
+    let itemToChange = document.querySelector("#debounce-example");
+    if (!itemToChange) return;
+
+    if (!itemToChange.classList.contains("is-split")) {
+      // Add the is-split class to the element
+      itemToChange.classList.add("is-split");
+
+      let letters = itemToChange.innerHTML.split("");
+
+      // Wrap each letter inside the element with a span
+      itemToChange.innerHTML = letters
+        .map(
+          (letter) =>
+            `<span class="debounce-letter" style="transition-delay: ${Math.random() * 1
+            }s">${letter}</span>`
+        )
+        .join("");
+    }
+  });
+
+  function debounceExample(eventType) {
+    let itemToChange = document.querySelector("#debounce-example");
+    if (!itemToChange) return;
+
+    if (eventType === "changeCase") {
+      // Get all the letters inside the element and randomly set size between 0.8em and 1.2em
+      let lettersToChange = document.querySelectorAll(".debounce-letter");
+      lettersToChange.forEach((letter) => {
+        letter.style.fontSize = `${Math.random() * 0.4 + 0.8}em`;
+      });
+    } else if (eventType === "changeColor") {
+      let lettersToChange = document.querySelectorAll(".debounce-letter");
+      lettersToChange.forEach((letter) => {
+        let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        letter.style.color = `#${randomColor}`;
+      });
+    }
+  }
+  jfDebounce("resize", debounceExample, 100, ["changeCase"]);
+  jfDebounce("scroll", debounceExample, ["changeColor"]);
 </script>
 </body>
 

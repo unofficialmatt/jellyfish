@@ -580,6 +580,49 @@
     stickybits('.section-heading', {});
     stickybits('.sidebar', { stickyBitStickyOffset: 32 });
   });
+
+  // On document ready, set up the letters inside the element to be split into spans
+  document.addEventListener("DOMContentLoaded", function () {
+    let itemToChange = document.querySelector("#debounce-example");
+    if (!itemToChange) return;
+
+    if (!itemToChange.classList.contains("is-split")) {
+      // Add the is-split class to the element
+      itemToChange.classList.add("is-split");
+
+      let letters = itemToChange.innerHTML.split("");
+
+      // Wrap each letter inside the element with a span
+      itemToChange.innerHTML = letters
+        .map(
+          (letter) =>
+            `<span class="debounce-letter" style="transition-delay: ${Math.random() * 1
+            }s">${letter}</span>`
+        )
+        .join("");
+    }
+  });
+
+  function debounceExample(eventType) {
+    let itemToChange = document.querySelector("#debounce-example");
+    if (!itemToChange) return;
+
+    if (eventType === "changeCase") {
+      // Get all the letters inside the element and randomly set size between 0.8em and 1.2em
+      let lettersToChange = document.querySelectorAll(".debounce-letter");
+      lettersToChange.forEach((letter) => {
+        letter.style.fontSize = `${Math.random() * 0.4 + 0.8}em`;
+      });
+    } else if (eventType === "changeColor") {
+      let lettersToChange = document.querySelectorAll(".debounce-letter");
+      lettersToChange.forEach((letter) => {
+        let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        letter.style.color = `#${randomColor}`;
+      });
+    }
+  }
+  jfDebounce("resize", debounceExample, 100, ["changeCase"]);
+  jfDebounce("scroll", debounceExample, ["changeColor"]);
 </script>
 </body>
 
