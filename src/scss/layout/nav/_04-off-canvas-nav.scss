@@ -36,6 +36,7 @@
     .navbar-start + .navbar-end {
       margin-top: auto;
       overflow: hidden;
+      flex: 1 0 auto;
     }
   }
   .navbar-top {
@@ -53,7 +54,7 @@
   @include below($nav-expands) {
     body.has-active-nav {
       overflow: hidden;
-      &::before {
+      .navbar::before {
         @include pseudo("", block, fixed);
         background: $navbar-offcanvas-body-overlay;
         z-index: 49999;

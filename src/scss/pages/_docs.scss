@@ -27,6 +27,14 @@
   li + li {
     margin-top: get-size(0.25);
   }
+
+  li:not(.li-title) {
+    @include below(md) {
+      display: inline-block;
+      margin-right: get-size(1);
+    }
+  }
+
   li a {
     text-decoration: none;
     &:before {
