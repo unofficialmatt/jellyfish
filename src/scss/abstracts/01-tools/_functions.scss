@@ -151,14 +151,13 @@
   $prop: str-replace($prop, "var(--color-", "");
   $prop: str-replace($prop, ")", "");
 
-  // Work out where the hyphen is
-  $hyphen: str-index($prop, "-");
+  // Work out where the last hyphen is
+  $last-hyphen: str-index(str-reverse($prop), "-");
 
   // Get the parts of the string
-  $base: str-slice($prop, 1, $hyphen - 1);
-  $end: str-slice($prop, $hyphen + 1);
+  $base: str-slice($prop, 1, -($last-hyphen + 1));
+  $end: str-slice($prop, -($last-hyphen - 1));
 
-  // Convert the end to a number
   $end: str.to-number($end);
 
   $color: get-color-raw($base, $end);
