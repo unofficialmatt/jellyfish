@@ -61,6 +61,8 @@
         height: 100vh;
         height: -webkit-fill-available;
         width: 100vw;
+        top: 0;
+        left: 0;
       }
       .navbar-brand {
         padding-right: $navbar-link-padding-x;

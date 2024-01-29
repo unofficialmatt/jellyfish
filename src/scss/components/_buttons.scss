@@ -13,6 +13,9 @@
         get-color-raw($button-base-color, $button-hover-value)
       )};
   }
+  --button-padding-x: #{$button-padding-x};
+  --button-padding-y: #{$button-padding-y};
+  --button-scale-modifier: 1;
   -webkit-appearance: none;
   user-select: none;
   display: inline-flex;
@@ -38,7 +41,8 @@
     radius: $button-border-radius;
   }
   line-height: 1.3;
-  padding: $button-padding;
+  padding: calc(v(button-padding-y) * v(button-scale-modifier))
+    calc(v(button-padding-x) * v(button-scale-modifier));
   margin: 0 0 $element-margin 0;
   @include smooth(all);
   &::-moz-focus-inner {
@@ -117,15 +121,15 @@ a.button {
   }
   &.xsmall {
     font-size: $button-font-size-xsmall;
-    padding: $button-padding-xsmall;
+    --button-scale-modifier: 0.66;
   }
   &.small {
     font-size: $button-font-size-small;
-    padding: $button-padding-small;
+    --button-scale-modifier: 0.8;
   }
   &.large {
     font-size: $button-font-size-large;
-    padding: $button-padding-large;
+    --button-scale-modifier: 1.2;
   }
 
   &.outline,

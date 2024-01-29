@@ -61,32 +61,32 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+});
 
-  // If a menu item with children is clicked...
-  document.addEventListener("click", function (e) {
-    var target = e.target;
-    if (
-      target.matches(
-        "li.has-children > a:not(.clicked), li.menu-item-has-children > a:not(.clicked)"
-      )
-    ) {
-      // ...and the window width is smaller than the breakPoints.navBar
-      if (window.innerWidth < breakPoints.navBar) {
-        // add .clicked class to the anchor element
-        target.classList.add("clicked");
-        // prevent the link from firing
-        e.preventDefault();
-        // add .drop-active class and aria-expanded to parent li
-        target.parentElement.classList.toggle("drop-active");
-        target.parentElement.setAttribute(
-          "aria-expanded",
-          target.parentElement.classList.contains("drop-active")
-            ? "true"
-            : "false"
-        );
-      }
+// If a menu item with children is clicked...
+document.addEventListener("click", function (e) {
+  var target = e.target;
+  if (
+    target.matches(
+      "li.has-children > a:not(.clicked), li.menu-item-has-children > a:not(.clicked)"
+    )
+  ) {
+    // ...and the window width is smaller than the breakPoints.navBar
+    if (window.innerWidth < breakPoints.navBar) {
+      // add .clicked class to the anchor element
+      target.classList.add("clicked");
+      // prevent the link from firing
+      e.preventDefault();
+      // add .drop-active class and aria-expanded to parent li
+      target.parentElement.classList.toggle("drop-active");
+      target.parentElement.setAttribute(
+        "aria-expanded",
+        target.parentElement.classList.contains("drop-active")
+          ? "true"
+          : "false"
+      );
     }
-  });
+  }
 });
 
 // Listen for escape key press

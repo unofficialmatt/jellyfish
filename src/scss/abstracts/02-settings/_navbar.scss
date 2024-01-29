@@ -37,7 +37,7 @@ $navbar-end-flex-align: center !default;
 $navbar-dropdown-anchors-right-after: 3 !default;
 
 // Off canvas navbar. Only applies if you add a class of .is-off-canvas to the .navbar-menu element
-$navbar-offcanvas-body-overlay: rgba(0, 0, 0, 0.9) !default;
+$navbar-offcanvas-body-overlay: rgba(0, 0, 0, 0.5) !default;
 $navbar-offcanvas-transition-speed: 0.35s !default;
 $navbar-offcanvas-bg-color: $navbar-bg-color !default;
 $navbar-offcanvas-width: 80% !default;
