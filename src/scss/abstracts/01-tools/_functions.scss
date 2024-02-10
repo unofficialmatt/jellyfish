@@ -53,7 +53,7 @@
 }
 
 @function font-size($size) {
-  @warn "font-size() function is deprecated and will be removed in a future release. Please refer to font sizes by CSS custom property instead eg. var(--font-size-1).";
+  // @warn "font-size() function is deprecated and will be removed in a future release. Please refer to font sizes by CSS custom property instead eg. var(--font-size-1).";
   @if map-has-key($type-scale, $size) {
     @return var(--font-size-#{$size});
   } @else {
@@ -132,6 +132,15 @@
   @return var(--#{$value});
 }
 
+@function str-reverse($string) {
+  $reverse-string: "";
+  @for $i from 1 through str-length($string) {
+    $c: str-slice($string, $i, $i);
+    $reverse-string: "#{$c}#{$reverse-string}";
+  }
+  @return $reverse-string;
+}
+
 // String replace function
 @function str-replace($string, $search, $replace: "") {
   $index: str-index($string, $search);
@@ -154,13 +163,14 @@
   // Work out where the last hyphen is
   $last-hyphen: str-index(str-reverse($prop), "-");
 
+  // Calculate the position of the last hyphen in the original string
+  $last-hyphen: str-length($prop) - $last-hyphen;
+
   // Get the parts of the string
-  $base: str-slice($prop, 1, -($last-hyphen + 1));
-  $end: str-slice($prop, -($last-hyphen - 1));
+  $base: str-slice($prop, 0, $last-hyphen);
+  $end: str-slice($prop, $last-hyphen + 2);
 
   $end: str.to-number($end);
-
   $color: get-color-raw($base, $end);
-
   @return $color;
 }
