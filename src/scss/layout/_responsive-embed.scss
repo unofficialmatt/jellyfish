@@ -21,6 +21,12 @@
     height: 100%;
   }
 }
+
+// Fix for MS Edge and Firefox
+[class*="ratio-"] {
+  overflow: hidden;
+}
+
 .ratio-16x9 {
   @supports (aspect-ratio: 16/9) {
     aspect-ratio: 16/9;

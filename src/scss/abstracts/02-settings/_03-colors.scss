@@ -5,7 +5,7 @@ $background-colors: () !default;
 
 $colors: map-merge(
   (
-    "primary": makeColorPalette(#ff3c74),
+    "primary": makeColorPalette(rgb(19, 141, 255)),
     "secondary": makeColorPalette(#ffa0cd),
     "neutral": makeColorPalette(#64748b),
     "success": makeColorPalette(#00c851),
