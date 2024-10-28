@@ -37,7 +37,8 @@
 
         a {
           font-size: $navbar-font-size-expanded;
-          padding: $navbar-link-padding-expanded-y $navbar-link-padding-expanded-x;
+          padding: $navbar-link-padding-expanded-y
+            $navbar-link-padding-expanded-x;
           display: flex;
           align-items: center;
           flex: 1 0 auto; // Grow to fill container
@@ -104,7 +105,7 @@
           opacity: 1;
           transform: translateY(0px);
           top: 100%;
-
+          z-index: 5;
           & > li {
             display: block;
           }
