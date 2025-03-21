@@ -72,10 +72,8 @@ button,
   align-items: center;
   @extend %button-groups;
   margin-bottom: calc(#{$element-margin} - #{$button-list-button-margin});
-  @include above(sm) {
-    margin-right: n($button-list-button-margin);
-    margin-left: n($button-list-button-margin);
-  }
+  margin-right: n($button-list-button-margin);
+  margin-left: n($button-list-button-margin);
   .button,
   a.button {
     margin: 0 $button-list-button-margin $button-list-button-margin * 2
