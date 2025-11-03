@@ -2,8 +2,8 @@
   .navbar {
     position: relative;
     // Outer 100% width wrapper usually used with a <nav> element
-    background: $navbar-bg-color;
-    color: $navbar-link-color; // To ensure all non-link text is styled
+    background: var(--navbar-bg-color);
+    color: var(--navbar-link-color); // To ensure all non-link text is styled
     .container {
       @include below($nav-expands) {
         width: 100%;
@@ -15,25 +15,25 @@
   // Break out so it can be extended
   %navbar-links {
     text-decoration: none;
-    text-transform: $navbar-text-transform;
+    text-transform: var(--navbar-text-transform);
     @include smooth(background, color, font-weight);
     &,
     &:visited {
-      color: $navbar-link-color;
-      background-color: $navbar-link-bg-color;
+      color: var(--navbar-link-color);
+      background-color: var(--navbar-link-bg-color);
     }
     &:hover,
     &:focus {
-      color: $navbar-link-hover-color;
-      background-color: $navbar-link-hover-bg-color;
-      font-weight: $navbar-link-hover-weight;
+      color: var(--navbar-link-hover-color);
+      background-color: var(--navbar-link-hover-bg-color);
+      font-weight: var(--navbar-link-hover-weight);
     }
   }
 
   .navbar-menu {
     // Wrapper for the main website navigation
     display: none; // Hide until toggled
-    border-top: $navbar-link-border;
+    border-top: var(--navbar-link-border);
     ul {
       // Navigation List
       list-style-type: none;
@@ -48,37 +48,29 @@
       a {
         @extend %navbar-links;
         font: {
-          family: $navbar-font-family;
-          size: $navbar-font-size;
-          weight: $navbar-font-weight;
+          family: var(--navbar-font-family);
+          size: var(--navbar-font-size);
+          weight: var(--navbar-font-weight);
         }
         display: block;
         position: relative;
-        border-bottom: $navbar-link-border;
-        padding: $navbar-link-padding-y $navbar-link-padding-x;
+        border-bottom: var(--navbar-link-border);
+        padding: var(--navbar-link-padding-y) var(--navbar-link-padding-x);
       }
       & > ul {
-        // Secondary Level Navigation Menu
         display: none; // Hide until required
-        // Links
-        a {
-          font: {
-            family: $navbar-sublink-font-family;
-            size: $navbar-sublink-font-size;
-            weight: $navbar-sublink-font-weight;
-          }
-          text-transform: $navbar-sublink-text-transform;
-          &:hover,
-          &:focus {
-            font-weight: $navbar-sublink-font-weight-hover;
-          }
-        }
+        --navbar-font-size: #{$navbar-sublink-font-size};
+        --navbar-font-family: #{$navbar-sublink-font-family};
+        --navbar-font-weight: #{$navbar-sublink-font-weight};
+        --navbar-text-transform: #{$navbar-sublink-text-transform};
+        --navbar-link-hover-weight: #{$navbar-sublink-font-weight-hover};
       }
     }
     li.has-children > a {
       // Menu Items with Children
-      padding-right: $navbar-link-padding-x +
+      padding-right: var(--navbar-link-padding-x) +
         30px; // 20px is approx the width of the rotated pseudo element and 10px is the padding
+      // TODO: Make these not magic numbers
       &::after {
         @include pseudo;
         pointer-events: none;
@@ -113,7 +105,7 @@
     input,
     .button,
     a.button {
-      margin: $navbar-link-padding-y $navbar-link-padding-x;
+      margin: var(--navbar-link-padding-y) var(--navbar-link-padding-x);
       position: relative;
     }
     input {
@@ -133,8 +125,8 @@
   // Elements outside of the primary nav menu that we want to appear in a consistent style to menu links
   .navbar-item {
     font: {
-      size: $navbar-font-size;
-      weight: $navbar-font-weight;
+      size: var(--navbar-font-size);
+      weight: var(--navbar-font-weight);
     }
     display: flex;
     align-items: center;
@@ -143,20 +135,20 @@
     * {
       margin: 0;
     }
-    padding: $navbar-link-padding-y $navbar-link-padding-x;
+    padding: var(--navbar-link-padding-y) var(--navbar-link-padding-x);
     flex: 0
       1
       auto; // Allows items to grow horizontally if there is room, if there is not enough room they will grow vertically
-    color: $navbar-link-color;
+    color: var(--navbar-link-color);
     a,
     a:visited {
-      color: $navbar-link-color;
+      color: var(--navbar-link-color);
       text-decoration: none;
     }
     a:hover,
     a:focus {
-      color: $navbar-link-hover-color;
-      font-weight: $navbar-link-hover-weight;
+      color: var(--navbar-link-hover-color);
+      font-weight: var(--navbar-link-hover-weight);
     }
   }
 }

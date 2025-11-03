@@ -294,6 +294,72 @@
   </table>
 </div>
 <div>
+  <h2 class="h3">Colors</h2>
+  <p>Use a color modifier from the <span class="variable-ref">$colors</span> map to apply formatting to a table or individual rows / cells.</p>
+  <pre class="language-markup">
+    <code><!--
+    <table class="primary">...</table>
+    <table>
+      <tr class="primary">...</tr>
+      <tr>
+        <td class="success">...</td>
+      </tr>
+      ... etc ...
+    </table>
+  --></code>
+  </pre>
+  <table class="primary is-striped has-border is-hoverable">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Heading</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cell</td>
+        <td>Cell</td>
+      </tr>
+      <tr>
+        <td>Cell</td>
+        <td>Cell</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Cell</th>
+        <th>Cell</th>
+      </tr>
+    </tfoot>
+  </table>
+  <table class="is-striped has-border is-hoverable">
+    <thead>
+      <tr class="error">
+        <th>tr.error</th>
+        <th>tr.error</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="primary">
+        <td>tr.primary</td>
+        <td>tr.primary</td>
+      </tr>
+      <tr>
+        <td class="success">td.success</td>
+        <td class="error">td.error</td>
+      </tr>
+      <tr>
+        <td class="warning">td.warning</td>
+        <td class="success">td.success</td>
+      </tr>
+      <tr class="warning">
+        <td>tr.warning</td>
+        <td>tr.warning</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
   <h2 class="h3">Responsive Tables</h3>
     <p>Jellyfish provides two methods of making tables more responsive. The first adds a scroll bar on smaller devices; the second uses data-attributes on the <code class="code-ref">&lt;td></code> elements to display headings inline with the content.</p>
     <p><span class="italic">Method One</span>: (preferred) Apply a class of <span class="css-ref">.is-responsive</span> to the table, and replicate the <code class="code-ref">&lt;th></code> labels as <code class="code-ref">data-label</code> properties on each <code class="code-ref">&lt;td></code>.</p>
@@ -358,6 +424,8 @@
             <th>Stinger</th>
             <th>Habitat</th>
             <th>How to identify it</th>
+            <th>Average Weight</th>
+            <th>Average IQ</th>
           </tr>
         </thead>
         <tbody class="small">
@@ -366,12 +434,16 @@
             <td>Harmless to humans, but it is better not to touch it. It is probably harmless also for most fishes. Just as for Rhizostoma, it is often associated to young fish that use it as a shelter</td>
             <td>Very abundant in the Mediterranean Sea, expecially in bays. In 2009 it was more frequent in the southern part of Italy, showing a preference for warmer waters, but this was not confirmed in 2010 and 2011, since this species was very frequent throughout the whole Italian coast, especially in the second half of the summer.</td>
             <td>One of the most beautiful jellyfish of the Mediterranean Sea. The umbrella can measure 30 cm in diameter, it is very rigid and roundish in its centre, where it has a reddish or yellow color. The external part of the manubrium is motile and pulsates vigorously. Under the umbrella, the manubrium resembles a bouquet of flowers, with blue-purple buttons, inserted into stout arms. Some tentacles, also terminating with blue buttons, are inserted on the manubrium.Cotylorhiza can have symbiotic microalgae that live in its tissues, just as those of tropical corals. Functionally it is a “plant”, even if it can feed on zooplankton.</td>
+            <td>Up to 3 kg</td>
+            <td>Very low</td>
           </tr>
           <tr>
             <td>Rhopilema nomadica</td>
             <td>A bad stinger, it can be confused with the almost harmless Rhizostoma from which it can be distinguished due to the characteristic blue rim of Rhizostoma</td>
             <td>The genus Rhopilema is typical of the Indo-Pacific ocean and has no Atlantic or Mediterranean representatives. It never reached the Italian seas, possibly because the temperatures are not high enough for this tropical species. In the Eighties this species became suddenly abundant along the Israeli coasts of the Mediterranean Sea: it probably reached the Mediterranean from the Red Sea, through the Suez Canal, hence the specific name “nomadica”. In the eastern Mediterranean it causes great harm to tourism, fisheries, and industry.</td>
             <td>It does not pass unnoticed, since it can reach 80 cm in diameter and can form extensive swarms. The current global warming might pave its way towards the expansion of this species in the Western Mediterranean.</td>
+            <td>Up to 7 kg</td>
+            <td>Low</td>
           </tr>
         </tbody>
       </table>

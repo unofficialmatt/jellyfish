@@ -2,9 +2,16 @@
 @mixin map-to-css-properties($map, $prefix: "") {
   @each $key, $value in $map {
     @if type-of($value) == "map" {
+      @if $prefix == "color-" {
+        --#{$prefix + $key}: var(--color-#{$key}-500);
+      }
       @include map-to-css-properties($value, $prefix + $key + "-");
     } @else {
       @if $value != "false" {
+        // Convert $key to string and replace any '.' with 'x' for valid CSS property names
+        $key: #{$key};
+        $key: str-replace($key, ".", "x");
+
         --#{$prefix + $key}: #{$value};
       }
     }

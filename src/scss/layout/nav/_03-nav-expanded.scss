@@ -3,15 +3,16 @@
   $nav-fade-offset: 10px;
 
   @include above($nav-expands) {
+    :root {
+      --navbar-link-padding-x: #{$navbar-link-padding-expanded-x};
+      --navbar-link-padding-y: #{$navbar-link-padding-expanded-y};
+      --navbar-font-size: #{$navbar-font-size-expanded};
+    }
     .navbar {
       .container {
         display: flex;
         flex-wrap: wrap;
       }
-    }
-
-    .navbar-item {
-      padding: $navbar-link-padding-expanded-y $navbar-link-padding-expanded-x;
     }
 
     .navbar-menu {
@@ -36,9 +37,6 @@
         width: auto;
 
         a {
-          font-size: $navbar-font-size-expanded;
-          padding: $navbar-link-padding-expanded-y
-            $navbar-link-padding-expanded-x;
           display: flex;
           align-items: center;
           flex: 1 0 auto; // Grow to fill container
@@ -52,28 +50,17 @@
           position: absolute;
           top: -999999em;
           transform: translateY(-$nav-fade-offset);
-          width: $navbar-dropdown-width;
+          width: var(--navbar-dropdown-width);
           opacity: 0.2;
           transition: transform 0.1s linear, opacity 0.05s linear;
-
+          --navbar-font-size: #{$navbar-sublink-font-size-expanded};
+          --navbar-link-color: #{$navbar-sublink-color};
+          --navbar-link-bg-color: #{$navbar-sublink-bg-color};
+          --navbar-link-hover-color: #{$navbar-sublink-hover-color};
+          --navbar-link-hover-bg-color: #{$navbar-sublink-hover-bg-color};
           a {
             // Drop down link
-            border-top: $navbar-link-border;
-            font: {
-              size: $navbar-sublink-font-size-expanded;
-            }
-
-            &,
-            &:visited {
-              color: $navbar-sublink-color;
-              background-color: $navbar-sublink-bg-color;
-            }
-
-            &:hover,
-            &:focus {
-              color: $navbar-sublink-hover-color;
-              background-color: $navbar-sublink-hover-bg-color;
-            }
+            border-top: var(--navbar-link-border);
           }
 
           li.has-children a::after {
@@ -92,7 +79,9 @@
 
       li.has-children > a {
         // Menu Items with Children
-        padding-right: $navbar-link-padding-expanded-x + 30px; // 20px is approx the width of the rotated pseudo element and 10px is the padding
+        padding-right: calc(
+          var(--navbar-link-padding-x) + 30px
+        ); // 20px is approx the width of the rotated pseudo element and 10px is the padding
 
         &::after {
           transform: translate(-10px, -50%) rotate(45deg);
@@ -141,7 +130,7 @@
         top: 0;
       }
 
-      li:nth-of-type(n + #{$navbar-dropdown-anchors-right-after}) {
+      li:nth-of-type(n + #{var(--navbar-dropdown-anchor)}) {
         // Makes all drop downs move left instead of right
         ul {
           right: 0;
@@ -161,7 +150,7 @@
       input,
       .button,
       a.button {
-        margin: $navbar-link-padding-expanded-y $navbar-link-padding-expanded-x;
+        margin: var(--navbar-link-padding-y) var(--navbar-link-padding-x);
       }
     }
 
@@ -177,12 +166,6 @@
       margin-left: auto;
       display: flex;
       align-items: $navbar-end-flex-align;
-    }
-
-    .navbar-item {
-      font: {
-        size: $navbar-font-size-expanded;
-      }
     }
   }
 }

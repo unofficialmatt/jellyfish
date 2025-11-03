@@ -1,4 +1,4 @@
-$modal-backdrop-color: #000 !default; // NOTE: AS OF WRITING THIS CANNOT BE A CSS PROP https://stackoverflow.com/questions/58818299/css-variables-not-working-in-dialogbackdrop
+$modal-backdrop-color: var(--color-black) !default;
 $modal-backdrop-opacity: 0.9 !default;
 $modal-max-width: 900px !default;
 $modal-border: none !default;

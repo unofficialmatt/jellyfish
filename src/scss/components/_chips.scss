@@ -1,7 +1,5 @@
 @if $generate-chips == true {
   .chip {
-    --chip-color-theme: #{v(color-neutral-50)};
-    --chip-color-text: #{resolve-contrast-color(get-color-raw(neutral, 50))};
     padding: $chip-padding;
     display: inline-flex;
     vertical-align: baseline;

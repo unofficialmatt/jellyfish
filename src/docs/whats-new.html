@@ -7,7 +7,143 @@
   What's New
 </h1>
 
-<h2 class="h3 bold">@container support</h2>
+<h2 class="h3">More CSS Properties</h2>
+<p>The following variables are now exposed as CSS custom properties to the <span class="code-ref">:root</span> for easier manipulation of elements. Initial values are still set with SASS variables for backwards-compatibility.</p>
+<pre class="language-scss line-numbers">
+    <code>
+
+      // Element margin and padding - use these where possible instead of $element-margin and $element-padding
+      --element-margin: #{$element-margin};
+      --element-padding: #{$element-padding};
+
+      // Default styling for anchor links
+      --link-color: #{$link-color};
+      --link-color-active: #{$link-color-active};
+      --link-color-visited: #{$link-color-visited};
+
+      // Shortcuts for 500 color shades - iterates for all colors in the $colors map
+      --color-primary: var(--color-primary-500);
+      --color-secondary: var(--color-secondary-500);
+
+      --card-border-radius: #{$card-border-radius};
+      --card-border-style: #{$card-border-style};
+      --card-border-color: #{$card-border-color};
+      --card-border-width: #{$card-border-width};
+      --card-padding: #{$card-padding};
+
+      --modal-max-width: #{$modal-max-width};
+      --modal-padding: #{$modal-padding};
+
+      --form-input-background: #{$input-background};
+      --form-input-border-width: #{$border-width};
+      --form-input-border-style: #{$border-style};
+      --form-input-border-color: #{$border-color};
+      --form-input-border-radius: #{$border-radius};
+      --form-input-placeholder-color: #{$placeholder-color};
+
+      --table-border-color: #{$table-border-color};
+      --table-font-size: #{$table-font-size};
+      --table-stripe-color: #{$table-stripe-color};
+      --table-hover-background: #{$table-hover-background};
+      --table-cell-background: transparent;
+
+      --navbar-bg-color: #{$navbar-bg-color};
+      --navbar-link-color: #{$navbar-link-color};
+      --navbar-link-bg-color: #{$navbar-link-bg-color};
+      --navbar-link-hover-color: #{$navbar-link-hover-color};
+      --navbar-link-hover-bg-color: #{$navbar-link-hover-bg-color};
+      --navbar-link-hover-weight: #{$navbar-link-hover-weight};
+      --navbar-link-border: #{$navbar-link-border};
+
+      --navbar-text-transform: #{$navbar-text-transform};
+      --navbar-font-size: #{$navbar-font-size};
+      --navbar-font-family: #{$navbar-font-family};
+      --navbar-font-weight: #{$navbar-font-weight};
+
+      --navbar-link-padding-x: #{$navbar-link-padding-x};
+      --navbar-link-padding-y: #{$navbar-link-padding-y};
+      --navbar-dropdown-width: #{$navbar-dropdown-width};
+
+      --navbar-dropdown-anchor: #{$navbar-dropdown-anchors-right-after};
+    </code>
+  </pre>
+
+<h2 class="h3">Tables</h2>
+<p><span class="code-ref">table</span> elements now have smaller font sizes by default with a new SASS / CSS property: <span class="css-ref">$table-font-size</span> / <span class="css-ref">--table-font-size</span> .</p>
+<p>Tables can now be <a href="./tables.html">modified with colors</a> from the <span class="variable-ref">$colors</span> map.</p>
+
+<table>
+  <thead>
+    <tr></tr>
+    <th>Color</th>
+    <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Primary</td>
+      <td>
+        <table class="primary">
+          <thead>
+            <tr>
+              <th>Header 1</th>
+              <th>Header 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Data 1</td>
+              <td>Data 2</td>
+            </tr>
+            <tr>
+              <td>Data 3</td>
+              <td>Data 4</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>Mixed</td>
+      <td>
+        <table class="is-striped is-hoverable">
+          <thead>
+            <tr class="secondary">
+              <th>Header 1</th>
+              <th>Header 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="secondary">Data 1</td>
+              <td class="success">Data 2</td>
+            </tr>
+            <tr>
+              <td class="warning">Data 3</td>
+              <td class="error">Data 4</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+</table>
+
+<h2 class="h3">Text Balancing</h2>
+<p>Headings, paragraphs and list items will now have balanced text by default, negating orphans.</p>
+<div class="boxed">
+  <h3>
+    This is an example of a heading that will be balanced automatically to prevent awkward line breaks in most situations.
+  </h3>
+  <p>This is an example of a paragraph that will also be balanced automatically reducing the chance for orphans to appear in most situations. This should improve the overall aesthetics of text-heavy layouts. Browser support is not currently universal (looking at you, Firefox).</p>
+</div>
+
+<h2 class="h3">Hyphenate long email addresses</h2>
+<p>Long email addresses in <code>&lt;a href="mailto:"&gt;</code> links will now hyphenate automatically to prevent overflow issues in small containers.</p>
+<div class="boxed" style="width:150px">
+  <a href="mailto:long.email.address@example.com">long.email.address@example.com</a>
+</div>
+
+<h2 class="h3">@container support</h2>
 <p>All <span class="css-ref">.col</span> elements are now CSS Container elements. This allows for more advanced responsive layouts using container queries, as most components are direct children of <span class="css-ref">.col</span>.</p>
 <p>In addition, there are new shorthand SASS mixins for container queries:</p>
 <pre class="language-scss line-numbers">
@@ -106,7 +242,7 @@
     <div class="col sm-6">
       <div class="card container-query-1">
         <div class="card-section">
-          <p class="h3 bold">#1</p>
+          <p class="h3">#1</p>
         </div>
         <div class="card-section">
           <p>Flex:Row when Column Width >= 400px</p>
@@ -116,7 +252,7 @@
     <div class="col sm-6">
       <div class="card container-query-2">
         <div class="card-section">
-          <p class="h3 bold">#2</p>
+          <p class="h3">#2</p>
         </div>
         <div class="card-section">
           <p>Red border when Column Width < 400px</p>
@@ -126,7 +262,7 @@
     <div class="col sm-6">
       <div class="card container-query-3">
         <div class="card-section">
-          <p class="h3 bold">#3</p>
+          <p class="h3">#3</p>
         </div>
         <div class="card-section">
           <p>Blue Background when Column Width Between 400px and 420px</p>
@@ -136,7 +272,7 @@
     <div class="col sm-6">
       <div class="card container-query-4">
         <div class="card-section">
-          <p class="h3 bold">#4</p>
+          <p class="h3">#4</p>
         </div>
         <div class="card-section">
           <p>Box shadow when Parent Container Width Between 400px and 800px</p>
@@ -146,7 +282,7 @@
     <div class="col sm-6">
       <div class="card container-query-5">
         <div class="card-section">
-          <p class="h3 bold">#5</p>
+          <p class="h3">#5</p>
         </div>
         <div class="card-section">
           <p>Change typeface when Parent Container Width >= 800px</p>
@@ -156,7 +292,7 @@
     <div class="col sm-6">
       <div class="card container-query-6">
         <div class="card-section">
-          <p class="h3 bold">#6</p>
+          <p class="h3">#6</p>
         </div>
         <div class="card-section">
           <p>Red border when Column Width >=400px, only below <span class="variable-ref">breakPoints.lg</span></p>

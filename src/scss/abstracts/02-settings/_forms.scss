@@ -2,7 +2,8 @@ $border-width: 1px !default;
 $border-style: solid !default;
 $border-color: get-color(neutral, 300) !default;
 $border-radius: 4px !default;
-$borders: $border-width $border-style $border-color !default;
+$borders: var(--form-input-border-width) var(--form-input-border-style)
+  var(--form-input-border-color);
 
 $form-items: (
   "[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]"
@@ -15,7 +16,6 @@ $form-font: v(font-primary) !default;
 $form-focus-border-color: get-color(neutral, 500) !default;
 $form-focus-shadow-inner: inset 1px 2px 1px 0px get-color(neutral, 300) !default;
 $form-focus-shadow-outer: inset -1px -2px 1px 0px get-color(neutral, 200) !default;
-$form-fieldset-border: $border-width $border-style get-color(neutral, 200) !default;
 
 $form-label-size: v(font-size--1) !default;
 $form-label-weight: $weight-semibold !default;
@@ -30,14 +30,14 @@ $range-track-color-focus: get-color(neutral, 50) !default;
 
 $range-thumb-height: get-size(1.5) !default;
 $range-thumb-width: $range-thumb-height !default;
-$range-thumb-radius: $range-thumb-height * 0.5 !default;
+$range-thumb-radius: calc($range-thumb-height * 0.5) !default;
 $range-thumb-shadow-size: 0px 1px !default;
 $range-thumb-shadow-blur: 6px !default;
 $range-thumb-shadow-color: rgba(200, 200, 200, 0.8) !default;
 $range-thumb-border-width: 2px !default;
 $range-thumb-border-color: var(--color-white) !default;
 
-$range-track-height: $range-thumb-height * 0.5 !default;
+$range-track-height: calc($range-thumb-height * 0.5) !default;
 $range-track-shadow-size: 0px 0px !default;
 $range-track-shadow-blur: 0px !default;
 $range-track-shadow-color: transparent !default;

@@ -59,7 +59,7 @@
       color: $link-active;
     }
   }
-  background: $body-background-color;
+  background: var(--color-background);
 }
 
 .section-heading {

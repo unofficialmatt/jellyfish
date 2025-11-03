@@ -6,6 +6,9 @@
   line-height: $heading-line-height;
   color: v(color-headings-preferred);
   font-weight: $heading-weight;
+  @supports (text-wrap: pretty) {
+    text-wrap: pretty;
+  }
 }
 
 h1 {
@@ -104,6 +107,14 @@ h6 {
   //word-break: break-word;
   //hyphens: auto;
 }
+
+p,
+li {
+  @supports (text-wrap: pretty) {
+    text-wrap: pretty;
+  }
+}
+
 /* TEXT TRANSFORM */
 %small {
   font-size: v(font-size--1);

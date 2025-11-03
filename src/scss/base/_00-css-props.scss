@@ -35,4 +35,51 @@
       }
     }
   }
+
+  --link-color: #{$link-color};
+  --link-color-active: #{$link-active};
+  --link-color-visited: #{$link-visited};
+
+  --card-border-radius: #{$card-border-radius};
+  --card-border-style: #{$card-border-style};
+  --card-border-color: #{$card-border-color};
+  --card-border-width: #{$card-border-width};
+  --card-padding: #{$card-padding};
+
+  --chip-color-theme: #{v(color-neutral-50)};
+  --chip-color-text: #{resolve-contrast-color(get-color-raw(neutral, 50))};
+
+  --modal-max-width: #{$modal-max-width};
+  --modal-padding: #{$modal-padding};
+
+  --form-input-background: #{$input-background};
+  --form-input-border-width: #{$border-width};
+  --form-input-border-style: #{$border-style};
+  --form-input-border-color: #{$border-color};
+  --form-input-border-radius: #{$border-radius};
+  --form-input-placeholder-color: #{$placeholder-color};
+
+  --table-border-color: #{$table-border-color};
+  --table-font-size: #{$table-font-size};
+  --table-stripe-color: #{$table-stripe-color};
+  --table-hover-background: #{$table-hover-background};
+  --table-cell-background: transparent;
+
+  --navbar-bg-color: #{$navbar-bg-color};
+  --navbar-link-color: #{$navbar-link-color};
+  --navbar-link-bg-color: #{$navbar-link-bg-color};
+  --navbar-link-hover-color: #{$navbar-link-hover-color};
+  --navbar-link-hover-bg-color: #{$navbar-link-hover-bg-color};
+  --navbar-link-hover-weight: #{$navbar-link-hover-weight};
+  --navbar-link-border: #{$navbar-link-border};
+
+  --navbar-text-transform: #{$navbar-text-transform};
+  --navbar-font-size: #{$navbar-font-size};
+  --navbar-font-family: #{$navbar-font-family};
+  --navbar-font-weight: #{$navbar-font-weight};
+
+  --navbar-link-padding-x: #{$navbar-link-padding-x};
+  --navbar-link-padding-y: #{$navbar-link-padding-y};
+  --navbar-dropdown-width: #{$navbar-dropdown-width};
+  --navbar-dropdown-anchor: #{$navbar-dropdown-anchors-right-after};
 }

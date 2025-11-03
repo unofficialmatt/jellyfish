@@ -1,6 +1,6 @@
 @function to-rem($value) {
   @if type-of($value) == "number" and unit($value) == "px" {
-    @return calc($value / 16px) * 1rem;
+    @return calc($value / $root-size) * 1rem;
   }
   @return $value;
 }

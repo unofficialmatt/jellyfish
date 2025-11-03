@@ -4,3 +4,5 @@ $table-hover-background: get-color(neutral, 50) !default;
 $table-hover-color: var(--color-text) !default;
 $table-cell-padding: 0.5em 0.8em !default;
 $table-responsive-breakpoint: 900px !default;
+$table-font-size: v(font-size--1) !default;
+$generate-table-modifiers: true !default;

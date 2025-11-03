@@ -6,7 +6,6 @@ $nav-button-gap: 8px;
 }
 
 dialog.modal {
-  --modal-max-width: #{$modal-max-width};
   &::backdrop {
     background-color: $modal-backdrop-color;
     opacity: $modal-backdrop-opacity;
@@ -20,7 +19,7 @@ dialog.modal {
   border: $modal-border;
   border-radius: $modal-border-radius;
   overflow: hidden;
-  padding: $modal-padding;
+  padding: var(--modal-padding);
   &[open] {
     display: flex;
     flex-direction: column;

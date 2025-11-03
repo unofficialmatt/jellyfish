@@ -58,7 +58,9 @@
         background: $navbar-offcanvas-body-overlay;
         z-index: 49999;
         height: 100vh;
+        height: 100dvh;
         width: 100vw;
+
         top: 0;
         left: 0;
       }

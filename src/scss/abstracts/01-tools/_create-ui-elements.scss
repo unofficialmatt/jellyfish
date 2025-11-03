@@ -79,3 +79,44 @@
     @warn "#{$color} was not found in the $colors map. Cannot create a callout. Aborting.";
   }
 }
+
+@mixin createTableModifiers($color) {
+  @if map-has-key($colors, $color) {
+    table.#{$color} {
+      --table-border-color: #{v(color-#{$color}-300)};
+      --table-stripe-color: #{v(color-#{$color}-100)};
+      --table-hover-background: #{v(color-#{$color}-200)};
+      --table-cell-background: #{v(color-#{$color}-50)};
+      --table-text-color: #{resolve-contrast-color(
+          get-color-raw(#{$color}, 50)
+        )};
+      --table-text-hover-color: #{resolve-contrast-color(
+          get-color-raw(#{$color}, 200)
+        )};
+    }
+    table.#{$color} th,
+    th.#{$color},
+    tr.#{$color} th {
+      --table-cell-background: #{v(color-#{$color}-500)};
+      --table-border-color: var(--table-cell-background);
+      --table-text-color: #{resolve-contrast-color(
+          get-color-raw(#{$color}, 500)
+        )};
+    }
+    td.#{$color},
+    tr.#{$color} {
+      --table-cell-background: #{v(color-#{$color}-50)};
+      --table-border-color: #{v(color-#{$color}-300)};
+      --table-stripe-color: #{v(color-#{$color}-100)};
+      --table-hover-background: #{v(color-#{$color}-200)};
+      --table-text-color: #{resolve-contrast-color(
+          get-color-raw(#{$color}, 50)
+        )};
+      --table-text-hover-color: #{resolve-contrast-color(
+          get-color-raw(#{$color}, 200)
+        )};
+    }
+  } @else {
+    @warn "#{$color} was not found in the $colors map. Cannot create table modifiers. Aborting.";
+  }
+}

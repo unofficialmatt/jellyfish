@@ -2,8 +2,8 @@
 %forms {
   display: block;
   border: $borders;
-  border-radius: $border-radius;
-  background: $input-background;
+  border-radius: var(--form-input-border-radius);
+  background: var(--form-input-background);
   font-family: $form-font;
   padding: 10px;
   outline: none;
@@ -15,15 +15,11 @@
   opacity: 1;
 }
 
-%forms-hover {
-  border-color: $form-border-hover;
-}
-
 // Forms stack defined in _settings.scss
 #{$form-items} {
   @extend %forms;
   &:hover {
-    @extend %forms-hover;
+    --form-input-border-color: #{$form-border-hover};
   }
   &:disabled {
     // Grey out disabled form elements
@@ -62,8 +58,8 @@ input[type="radio"] {
 
 // Field Sets
 fieldset {
-  border: $form-fieldset-border;
-  border-radius: $border-radius;
+  border: $borders;
+  border-radius: var(--form-input-border-radius);
   padding: $element-padding;
   margin: $element-margin 0;
 }
@@ -85,8 +81,8 @@ select {
   color: v(color-text);
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: $input-background
-    url("data:image/svg+xml;charset=utf-8,<svg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'><path fill='#{$placeholder-color}' d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/></svg>")
+  background: var(--form-input-background)
+    url("data:image/svg+xml;charset=utf-8,<svg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'><path fill='var(--form-input-placeholder-color)' d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/></svg>")
     right 10px center no-repeat;
   background-size: 0.75em;
   background-size: 0.75em;
@@ -110,7 +106,7 @@ select::-ms-expand {
 ::-moz-placeholder,
 :-moz-placeholder,
 :-ms-input-placeholder {
-  color: $placeholder-color;
+  color: var(--form-input-placeholder-color);
 }
 
 form {
