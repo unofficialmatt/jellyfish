@@ -23,6 +23,8 @@
   // give our cols l-r margin equal to half col gutter
   padding-left: calc(v(grid-gutter) * 0.5);
   padding-right: calc(v(grid-gutter) * 0.5);
+  container-type: inline-size;
+  container-name: col;
 }
 
 // Iterate for our smallest defined column class ($base-col-name)

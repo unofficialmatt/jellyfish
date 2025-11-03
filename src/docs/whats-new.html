@@ -1,0 +1,168 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "What's New",
+"description": "New additions to the Jellyfish framework.",
+})
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">
+  What's New
+</h1>
+
+<h2 class="h3 bold">@container support</h2>
+<p>All <span class="css-ref">.col</span> elements are now CSS Container elements. This allows for more advanced responsive layouts using container queries, as most components are direct children of <span class="css-ref">.col</span>.</p>
+<p>In addition, there are new shorthand SASS mixins for container queries:</p>
+<pre class="language-scss line-numbers">
+    <code>
+      .parent-container {
+        container-type: inline-size;
+        container-name: parent-container;
+      }
+
+      // 1. Applies when the nearest container is >= 400px
+      .card.container-query-1 {
+        @include container-above(400px) {
+          flex-direction: row;
+        }
+      }
+      // 2. Applies when the nearest container is < 400px
+      .card.container-query-2 {
+        @include container-below(400px) {
+          border-color: red;
+          border-width: 4px;
+        }
+      }
+      // 3. Applies when the nearest container is < 420px and >= 400px
+      .card.container-query-3 {
+        @include container-between(400px, 420px) {
+          background: rgb(116, 190, 255);
+        }
+      }
+      // 4. Applies when the nearest named container is < 400px and >= 800px
+      .card.container-query-4 {
+        @include container-between(400px, 800px, "parent-container") {
+          box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.6);
+        }
+      }
+      // 5. Applies when a named container is >= 800px
+      .card.container-query-5 {
+        @include container-above(800px, "parent-container") {
+          font-family: $font-monospace;
+        }
+      }
+      // 6. Applies when the nearest container is >= 400px, only below lg breakpoint
+      .card.container-query-6 {
+        @include below(lg) {
+          @include container-above(400px) {
+            border-color: red;
+            border-width: 4px;
+          }
+        }
+      }
+    </code>
+  </pre>
+<!-- <p>You can combine with <a href="./breakpoints.html">breakpoint mixins</a> for even more flexibility.</p> -->
+
+<pre class="language-markup">
+    <code><!--
+      <div class="parent-container">
+        <div class="row">
+          <div class="col sm-6">
+            <div class="card container-query-1">
+              ...
+            </div>
+          </div>
+          <div class="col sm-6">
+            <div class="card container-query-2">
+              ...
+            </div>
+          </div>
+          <div class="col sm-6">
+            <div class="card container-query-3">
+              ...
+            </div>
+          </div>
+          <div class="col sm-6">
+            <div class="card container-query-4">
+              ...
+            </div>
+          </div>
+          <div class="col sm-6">
+            <div class="card container-query-5">
+              ...
+            </div>
+          </div>
+          <div class="col sm-6">
+            <div class="card container-query-6">
+              ...
+            </div>
+          </div>
+        </div>
+      </div>
+  --></code>
+  </pre>
+
+
+<div class="parent-container">
+  <div class="row">
+    <div class="col sm-6">
+      <div class="card container-query-1">
+        <div class="card-section">
+          <p class="h3 bold">#1</p>
+        </div>
+        <div class="card-section">
+          <p>Flex:Row when Column Width >= 400px</p>
+        </div>
+      </div>
+    </div>
+    <div class="col sm-6">
+      <div class="card container-query-2">
+        <div class="card-section">
+          <p class="h3 bold">#2</p>
+        </div>
+        <div class="card-section">
+          <p>Red border when Column Width < 400px</p>
+        </div>
+      </div>
+    </div>
+    <div class="col sm-6">
+      <div class="card container-query-3">
+        <div class="card-section">
+          <p class="h3 bold">#3</p>
+        </div>
+        <div class="card-section">
+          <p>Blue Background when Column Width Between 400px and 420px</p>
+        </div>
+      </div>
+    </div>
+    <div class="col sm-6">
+      <div class="card container-query-4">
+        <div class="card-section">
+          <p class="h3 bold">#4</p>
+        </div>
+        <div class="card-section">
+          <p>Box shadow when Parent Container Width Between 400px and 800px</p>
+        </div>
+      </div>
+    </div>
+    <div class="col sm-6">
+      <div class="card container-query-5">
+        <div class="card-section">
+          <p class="h3 bold">#5</p>
+        </div>
+        <div class="card-section">
+          <p>Change typeface when Parent Container Width >= 800px</p>
+        </div>
+      </div>
+    </div>
+    <div class="col sm-6">
+      <div class="card container-query-6">
+        <div class="card-section">
+          <p class="h3 bold">#6</p>
+        </div>
+        <div class="card-section">
+          <p>Red border when Column Width >=400px, only below <span class="variable-ref">breakPoints.lg</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@@include('./src/docs/partials/html-footer.html')

@@ -15,7 +15,8 @@
     margin-bottom: 0;
   }
 
-  .card-image, .card-image img {
+  .card-image,
+  .card-image img {
     width: 100%;
     margin-bottom: 0;
   }
@@ -29,7 +30,7 @@
       margin-bottom: $element-margin;
     }
 
-    &+.card-section {
+    & + .card-section {
       padding-top: 0;
     }
   }

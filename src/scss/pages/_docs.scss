@@ -277,3 +277,47 @@ div.code-toolbar {
   background: var(--color-background) !important;
   color: var(--color-text) !important;
 }
+
+// Examples for @container queries
+.parent-container {
+  container-type: inline-size;
+  container-name: parent-container;
+
+  .card-section {
+    padding-top: $card-padding;
+  }
+}
+.card.container-query-1 {
+  @include container-above(400px) {
+    flex-direction: row;
+  }
+}
+.card.container-query-2 {
+  @include container-below(400px) {
+    border-color: red;
+    border-width: 4px;
+  }
+}
+.card.container-query-3 {
+  @include container-between(400px, 420px) {
+    background: rgb(116, 190, 255);
+  }
+}
+.card.container-query-6 {
+  @include below(lg) {
+    @include container-above(400px) {
+      border-color: red;
+      border-width: 4px;
+    }
+  }
+}
+.card.container-query-4 {
+  @include container-between(400px, 800px, "parent-container") {
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.6);
+  }
+}
+.card.container-query-5 {
+  @include container-above(800px, "parent-container") {
+    font-family: $font-monospace;
+  }
+}
