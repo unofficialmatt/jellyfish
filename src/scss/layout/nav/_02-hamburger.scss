@@ -3,7 +3,7 @@
     @include smooth(background-color, border, color);
     @extend .hamburger--#{$primary-hamburger-type}; // extends class from hamburgers.scss to select specified animation
     @include above($nav-expands) {
-      display: none; // Hide on larger screens
+      display: none !important; // Hide on larger screens
     }
     margin-left: auto; // Maybe needs to be on the left instead
     background-color: $hamburger-bg-color;
