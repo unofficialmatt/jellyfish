@@ -30,97 +30,23 @@
   font-weight: $weight-black !important;
 }
 
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  line-height: $heading-line-height !important;
-}
-
 .h1 {
-  @each $point, $size in $font-sizes-h1 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size !important;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size !important;
-      }
-    }
-  }
+  @include h1();
 }
-
 .h2 {
-  @each $point, $size in $font-sizes-h2 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size !important;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size !important;
-      }
-    }
-  }
+  @include h2();
 }
-
 .h3 {
-  @each $point, $size in $font-sizes-h3 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size !important;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size !important;
-      }
-    }
-  }
+  @include h3();
 }
-
 .h4 {
-  @each $point, $size in $font-sizes-h4 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size !important;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size !important;
-      }
-    }
-  }
+  @include h4();
 }
-
 .h5 {
-  @each $point, $size in $font-sizes-h5 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size !important;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size !important;
-      }
-    }
-  }
+  @include h5();
 }
-
 .h6 {
-  @each $point, $size in $font-sizes-h6 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size !important;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size !important;
-      }
-    }
-  }
+  @include h6();
 }
 
 .small {

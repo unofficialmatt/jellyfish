@@ -50,3 +50,91 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+@mixin h1 {
+  line-height: $heading-line-height !important;
+  @each $point, $size in $font-sizes-h1 {
+    @if $point == "root" {
+      // Root font size at smallest device width
+      font-size: $size !important;
+    } @else {
+      // Otherwise use the breakpoint map to set the font size
+      @include above($point) {
+        font-size: $size !important;
+      }
+    }
+  }
+}
+
+@mixin h2 {
+  line-height: $heading-line-height !important;
+  @each $point, $size in $font-sizes-h2 {
+    @if $point == "root" {
+      // Root font size at smallest device width
+      font-size: $size !important;
+    } @else {
+      // Otherwise use the breakpoint map to set the font size
+      @include above($point) {
+        font-size: $size !important;
+      }
+    }
+  }
+}
+
+@mixin h3 {
+  line-height: $heading-line-height !important;
+  @each $point, $size in $font-sizes-h3 {
+    @if $point == "root" {
+      // Root font size at smallest device width
+      font-size: $size !important;
+    } @else {
+      // Otherwise use the breakpoint map to set the font size
+      @include above($point) {
+        font-size: $size !important;
+      }
+    }
+  }
+}
+
+@mixin h4 {
+  line-height: $heading-line-height !important;
+  @each $point, $size in $font-sizes-h4 {
+    @if $point == "root" {
+      // Root font size at smallest device width
+      font-size: $size !important;
+    } @else {
+      // Otherwise use the breakpoint map to set the font size
+      @include above($point) {
+        font-size: $size !important;
+      }
+    }
+  }
+}
+@mixin h5 {
+  line-height: $heading-line-height !important;
+  @each $point, $size in $font-sizes-h5 {
+    @if $point == "root" {
+      // Root font size at smallest device width
+      font-size: $size !important;
+    } @else {
+      // Otherwise use the breakpoint map to set the font size
+      @include above($point) {
+        font-size: $size !important;
+      }
+    }
+  }
+}
+@mixin h6 {
+  line-height: $heading-line-height !important;
+  @each $point, $size in $font-sizes-h6 {
+    @if $point == "root" {
+      // Root font size at smallest device width
+      font-size: $size !important;
+    } @else {
+      // Otherwise use the breakpoint map to set the font size
+      @include above($point) {
+        font-size: $size !important;
+      }
+    }
+  }
+}

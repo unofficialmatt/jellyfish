@@ -270,6 +270,17 @@ console.log("JellyFish is Awesome!");
   <h2 class="h3">Utilities</h2>
   <h3 class="h4">Simulating headings</h3>
   <p>You can use modifier classes to simulate heading hierarchy on a non-heading level element.</p>
+  <p>Additionally, sometimes you might need to apply the font sizes equivalent to a heading level element but can't use, or don't want to use the .h* modifier classes. In these instances you can <span class="code-ref">@include(h*);</span> to apply the styles directly.</p>
+  <pre class="language-scss">
+      <code>
+        .is-h3-size {
+          @include h3(); // Applies h3 font-size and line-height
+        }
+      </code>
+    </pre>
+
+  <p class="is-h3-size">This will have the same font-size and line-height as a h3 tag</p>
+
   <table class="has-border">
     <thead>
       <tr>
@@ -306,6 +317,7 @@ console.log("JellyFish is Awesome!");
       </tr>
     </tbody>
   </table>
+
   <h3 class="h4">Font Weight</h3>
   <p>Providing your typeface supports these weights, you can use <span class="css-ref">weight-*</span> modifiers to change text weight.</p>
   <ul>

@@ -321,3 +321,7 @@ div.code-toolbar {
     font-family: $font-monospace;
   }
 }
+
+.is-h3-size {
+  @include h3(); // Applies h3 font-size and line-height
+}

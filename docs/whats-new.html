@@ -115,14 +115,24 @@
   What's New
 </h1>
 
+<h2 class="h3">New heading mixin</h2>
+<p>Sometimes you want to add the font sizes of a heading level element (eg. h2) but don't want to - or can't - add a .h2 class (e.g. when modifying vendor markup).</p>
+<p>Previously you might have used <span class="code-ref">@extend .h2;</span> to do this, but this is problematic as css could get unwieldly due to any reference to the .h2 class being included in the generated css.</p>
+<p>Now you can simply <span class="code-ref">@include h2();</span> to apply line height and responsive font-size without the need for a specific class.</p>
+<p class="is-h3-size">This will have the same font-size and line-height as a h3 tag</p>
+<pre class="language-scss">
+      <code>
+        .is-h3-size {
+          @include h3(); // Applies h3 font-size and line-height
+        }
+      </code>
+    </pre>
+
+
 <h2 class="h3">More CSS Properties</h2>
 <p>The following variables are now exposed as CSS custom properties to the <span class="code-ref">:root</span> for easier manipulation of elements. Initial values are still set with SASS variables for backwards-compatibility.</p>
 <pre class="language-scss line-numbers">
     <code>
-
-      // Element margin and padding - use these where possible instead of $element-margin and $element-padding
-      --element-margin: #{$element-margin};
-      --element-padding: #{$element-padding};
 
       // Default styling for anchor links
       --link-color: #{$link-color};
