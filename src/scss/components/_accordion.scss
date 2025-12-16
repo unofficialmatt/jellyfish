@@ -109,8 +109,26 @@ h6 {
 }
 
 .accordion-panel {
+  display: grid;
+  grid-template-rows: 1fr;
   overflow: hidden;
-  padding: $accordion-padding-y $accordion-padding-x;
+  padding: 0 $accordion-padding-x;
+  transition: grid-template-rows 0.25s ease-in-out, padding 0.25s ease-in-out;
+
+  > * {
+    min-height: 0;
+  }
+
+  &[hidden] {
+    grid-template-rows: 0fr;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  &:not([hidden]) {
+    padding-top: $accordion-padding-y;
+    padding-bottom: $accordion-padding-y;
+  }
 
   > *:last-child {
     margin-bottom: 0;
