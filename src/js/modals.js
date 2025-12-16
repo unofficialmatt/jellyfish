@@ -100,6 +100,8 @@ class jellyfishModals {
       }
       this.modalInterval = setInterval(this.incrementTimer, 1000);
 
+      // TODO: Add in the ID of the next and previous if in a group?
+
       // Fire an event jfModalOpened
       const event = new CustomEvent("jfModalOpened", {
         detail: {

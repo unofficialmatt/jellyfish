@@ -1,0 +1,119 @@
+// TODO: Set up sass props
+.accordion {
+  margin-bottom: $element-margin;
+  --accordion-heading-background: #{$accordion-heading-bg-color};
+  --accordion-heading-color: #{$accordion-heading-text-color};
+  --accordion-heading-hover-background: #{$accordion-heading-hover-bg-color};
+  --accordion-heading-hover-color: #{$accordion-heading-hover-text-color};
+  --accordion-border-color: #{$accordion-border-color};
+}
+
+// Reset heading sizes inside accordions
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  &.accordion-heading,
+  .accordion-heading {
+    font-size: 1rem;
+  }
+}
+
+// Round off the border rads
+.accordion-item:first-child {
+  border-top-left-radius: $accordion-border-radius;
+  border-top-right-radius: $accordion-border-radius;
+  .accordion-heading button {
+    border-top-left-radius: $accordion-border-radius;
+    border-top-right-radius: $accordion-border-radius;
+  }
+}
+.accordion-item:last-child {
+  border-bottom-left-radius: $accordion-border-radius;
+  border-bottom-right-radius: $accordion-border-radius;
+  .accordion-heading button:not([aria-expanded="true"]) {
+    border-bottom-left-radius: $accordion-border-radius;
+    border-bottom-right-radius: $accordion-border-radius;
+  }
+}
+
+.accordion-heading {
+  margin: 0;
+  button {
+    position: relative;
+    padding: $accordion-padding-y $accordion-padding-x;
+    padding-right: calc(#{$accordion-padding-x} * 2.5);
+    font: inherit;
+    font-size: $accordion-heading-font-size;
+    font-weight: $accordion-heading-weight;
+    border-radius: 0;
+    border: none;
+    background: var(--accordion-heading-background);
+    color: var(--accordion-heading-color);
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    justify-content: flex-start;
+    @include smooth(all);
+    &:hover,
+    &:focus {
+      background: var(--accordion-heading-hover-background);
+      color: var(--accordion-heading-hover-color);
+    }
+    &[aria-expanded="true"] {
+      background: var(--accordion-heading-hover-background);
+      color: var(--accordion-heading-hover-color);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      &::after {
+        transform: rotate(-180deg);
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      mask-image: url("data:image/svg+xml;charset=utf-8,<svg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'><path d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/></svg>");
+      mask-size: contain;
+      mask-repeat: no-repeat;
+      mask-position: center;
+      right: $accordion-padding-x;
+      background-color: currentColor;
+      width: 0.8em;
+      height: 0.8em;
+      transition: transform 0.25s ease-in;
+    }
+  }
+}
+
+.accordion-item {
+  border: 1px solid var(--accordion-border-color);
+  border-radius: 0;
+  @include smooth(border-color);
+
+  & + .accordion-item {
+    border-top: 0;
+  }
+}
+
+@if ($generate-accordion-modifiers) == true {
+  .accordion,
+  .accordion-item {
+    @each $key, $map in $colors {
+      &.#{$key} {
+        @include createAccordionTheme($key);
+      }
+    }
+  }
+}
+
+.accordion-panel {
+  overflow: hidden;
+  padding: $accordion-padding-y $accordion-padding-x;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+// TODO: For browsers that support interpolate-size, let CSS handle it in the future

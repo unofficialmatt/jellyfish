@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Accordions ~ 🎐 Jellyfish UI</title>
+    <meta name="description" content="ARIA accessible accordions.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+    <link href="./prism.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+  </head>
+
+  <body>
+<div class="docs-container">
+  <div class="row">
+    <aside class="col xs-12 md-3">
+      <div class="sidebar">
+        <a href="../index.html" class="navbar-brand">
+          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+        </a>
+        <ul>
+          <li class="li-title mt-0">
+            Latest
+          </li>
+          <li>
+            <a href="./whats-new.html">What's New in 4.3.0</a>
+          </li>
+          <li class="li-title mt-0">
+            HTML
+          </li>
+          <li>
+            <a href="./getting-started.html">Getting Started</a>
+          </li>
+          <li>
+            <a href="./grid.html">Grid</a>
+          </li>
+          <li>
+            <a href="./navbar.html">Navbar</a>
+          </li>
+          <li>
+            <a href="./typography.html">Typography</a>
+          </li>
+          <li>
+            <a href="./media.html">Images and Media</a>
+          </li>
+          <li>
+            <a href="./tables.html">Tables</a>
+          </li>
+          <li>
+            <a href="./forms.html">Forms</a>
+          </li>
+          <li>
+            <a href="./progress.html">Progress Bars</a>
+          </li>
+          <li>
+            <a href="./buttons.html">Buttons</a>
+          </li>
+          <li>
+            <a href="./chips.html">Chips</a>
+          </li>
+          <li>
+            <a href="./callouts.html">Callouts</a>
+          </li>
+          <li>
+            <a href="./cards.html">Cards</a>
+          </li>
+          <li>
+            <a href="./accordions.html">Accordions</a>
+          </li>
+          <li>
+            <a href="./modals.html">Modals</a>
+          </li>
+          <li class="li-title">
+            SCSS
+          </li>
+          <li>
+            <a href="./breakpoints.html">Breakpoints</a>
+          </li>
+          <li>
+            <a href="./mixins.html">Mixins</a>
+          </li>
+          <li>
+            <a href="./variables.html">Variables</a>
+          </li>
+          <li class="li-title">
+            Javascript
+          </li>
+          <li>
+            <a href="./javascript.html">Javascript Functions</a>
+          </li>
+          <li class="li-title">
+            Utilities
+          </li>
+          <li>
+            <a href="./theme-colors.html">Theme Colors</a>
+          </li>
+          <li>
+            <a href="./accessibility.html">Accessibility</a>
+          </li>
+          <li>
+            <a href="./printing.html">Printing</a>
+          </li>
+          <li>
+            <a href="./utilities.html">Utility Classes</a>
+          </li>
+          <li>
+            <a href="./debug.html">Debugging</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="col xs-12 md-9 content">
+      <section class="docs-section">
+<h1 class="section-heading h2">Accordions<a href="./variables.html#accordions">[ Variable Reference ]</a></h1>
+<div>
+  <p class="standfirst">Since v4.4.0, Jellyfish has included support for ARIA accessible accordions. Accordions are a great way to present content in a limited space, allowing users to expand and collapse sections as needed.</p>
+  <p>Including an accordion pattern within Jellyfish UI reduces the reliance on external Javascript libraries, ensuring a consistent experience across your project.</p>
+</div>
+
+<div>
+  <h2 class="h3">A Basic Accordion</h2>
+  <p>Accordions require the following markup to function properly. When the document loads, accordions will automatically be detected by Javascript and made ARIA-accessible with automatic IDs, aria-attributes and the Accordion Heading converted into a button.</p>
+  <p>You can inspect the rendered example to see what the markup looks like after the Javascript has processed it.</p>
+  <pre class="language-markup">
+    <code><!--
+     <div class="accordion">
+      <div class="accordion-item">
+        <h3 class="accordion-heading">
+          <span>Ancient Survivors</span>
+        </h3>
+        <div class="accordion-panel">
+          <p>Jellyfish have existed for over 500 million years, predating dinosaurs and even trees. Fossil evidence shows they've survived multiple mass extinction events that wiped out countless other species, making them one of Earth's most resilient life forms.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-heading">
+          <span>Fishy Imposters</span>
+        </h3>
+        <div class="accordion-panel">
+          <p>Despite the name, jellyfish aren't fish at all. They're invertebrates called medusae, belonging to the phylum Cnidaria. Scientists prefer the term "jellies" or "sea jellies" to avoid the confusion with actual fish.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-heading">
+          <span>Watery Beasts</span>
+        </h3>
+        <div class="accordion-panel">
+          <p>Jellyfish bodies are composed almost entirely of water, with no brain, heart, or bones. Their simple body structure consists mainly of a gelatinous umbrella-shaped bell and trailing tentacles. Despite lacking a brain, they have a basic nervous system that helps them detect light, odors, and other stimuli.</p>
+        </div>
+      </div>
+    </div>
+  --></code>
+  </pre>
+
+  <div class="accordion">
+    <div class="accordion-item">
+      <h3 class="accordion-heading">
+        <span>Ancient Survivors</span>
+      </h3>
+      <div class="accordion-panel">
+        <p>Jellyfish have existed for over 500 million years, predating dinosaurs and even trees. Fossil evidence shows they've survived multiple mass extinction events that wiped out countless other species, making them one of Earth's most resilient life forms.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h3 class="accordion-heading">
+        <span>Fishy Imposters</span>
+      </h3>
+      <div class="accordion-panel">
+        <p>Despite the name, jellyfish aren't fish at all. They're invertebrates called medusae, belonging to the phylum Cnidaria. Scientists prefer the term "jellies" or "sea jellies" to avoid the confusion with actual fish.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h3 class="accordion-heading">
+        <span>Watery Beasts</span>
+      </h3>
+      <div class="accordion-panel">
+        <p>Jellyfish bodies are composed almost entirely of water, with no brain, heart, or bones. Their simple body structure consists mainly of a gelatinous umbrella-shaped bell and trailing tentacles. Despite lacking a brain, they have a basic nervous system that helps them detect light, odors, and other stimuli.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="h3">Accordion Options</h2>
+  <p>Add <span class="code-ref">data-allow-multiple</span> to allow multiple accordion items to be open simultaneously. Add <span class="code-ref">data-start-collapsed</span> to have all accordion items start in a collapsed state.</p>
+  <pre class="language-markup">
+    <code><!--
+     <div class="accordion" data-allow-multiple data-start-collapsed>
+      ...
+    </div>
+  --></code>
+  </pre>
+
+  <div class="accordion" data-allow-multiple data-start-collapsed>
+    <div class="accordion-item">
+      <h5 class="accordion-heading">
+        Immortality? Completed it, Mate.
+      </h5>
+      <div class="accordion-panel">
+        <p>The Turritopsis dohrnii can reverse its aging process and potentially live forever by reverting to its juvenile stage. When faced with injury, starvation, or old age, it transforms back into a polyp and starts its life cycle over again, essentially achieving biological immortality?</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h3 class="accordion-heading">
+        That stings!
+      </h3>
+      <div class="accordion-panel">
+        <p>The box jellyfish has venom potent enough to kill a human in minutes, making it one of the ocean's most dangerous creatures. Their tentacles contain thousands of microscopic stinging cells called nematocysts that inject toxins affecting the heart, nervous system, and skin cells simultaneously.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="h3">Colors</h2>
+  <p>If <span class="variable-ref">$generate-accordion-modifiers</span> is set to true you can use a color modifier from the <span class="variable-ref">$colors</span> map to apply formatting to an accordion or an accordion-item.</p>
+  <pre class="language-markup">
+    <code><!--
+     <div class="accordion primary">
+      ...
+    </div>
+    <div class="accordion">
+      <div class="accordion-item success">
+        ...
+      </div>
+      <div class="accordion-item error">
+        ...
+      </div>
+    </div>
+  --></code>
+  </pre>
+
+  <div class="accordion primary" data-start-collapsed>
+    <div class="accordion-item">
+      <h5 class="accordion-heading">
+        Giant Tentacles
+      </h5>
+      <div class="accordion-panel">
+        <p>The lion's mane jellyfish can grow tentacles over 100 feet long, making it longer than a blue whale. Found in cold Arctic waters, the largest recorded specimen had a bell diameter of over 7 feet and tentacles reaching an astounding 120 feet in length.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h3 class="accordion-heading">
+        Glow Up
+      </h3>
+      <div class="accordion-panel">
+        <p>Many jellyfish species produce their own light through chemical reactions, creating stunning displays in dark waters. This bioluminescence can serve multiple purposes including attracting prey, deterring predators, and even communicating with other jellyfish in the murky depths.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion" data-start-collapsed>
+    <div class="accordion-item success">
+      <h5 class="accordion-heading">
+        Breathe Easy
+      </h5>
+      <div class="accordion-panel">
+        <p>They absorb oxygen directly through their skin and have no need for lungs or circulatory systems. Their thin membrane allows gases to diffuse in and out efficiently, while nutrients from digested food spread throughout their body via a simple gastrovascular cavity.</p>
+      </div>
+    </div>
+    <div class="accordion-item error">
+      <h3 class="accordion-heading">
+        Smack My Fish Up
+      </h3>
+      <div class="accordion-panel">
+        <p>Groups of jellyfish, called blooms or smacks, can contain hundreds of thousands of individuals and clog fishing nets. These population explosions are becoming more frequent due to warming oceans and overfishing, sometimes shutting down power plants when they block cooling water intake pipes.</p>
+      </div>
+    </div>
+  </div>
+
+  <p>The color variants are opinionated, but it's easy to override them with custom CSS properties:</p>
+  <pre class="language-scss">
+    <code><!--
+     .accordion-item.primary,
+     .accordion.primary {
+        --accordion-heading-background: var(--color-primary-25);
+        --accordion-heading-color: var(--color-primary-900);
+        --accordion-heading-hover-background: var(--color-primary-50);
+        --accordion-heading-hover-color: var(--color-primary-900);
+        --accordion-border-color: var(--color-primary-500);
+      }
+  --></code>
+  </pre>
+  <p>The base styling with be set with <a href="./variables.html#accordions">SASS variables</a> for ease.</p>
+</div>
+
+<!-- TODO: Should the details element work out the box? -->
+
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stickybits/3.7.11/stickybits.min.js" integrity="sha512-ji6fCLZlHjqkE7xw3WorjIXDalqEPsRE5NRAbjl8WHB4AMhU3zk/t5Zt6O/buVEWHQ+2SVfTxqPXU3P6bmxL1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./prism.js"></script>
+<script type="text/javascript">
+  let navbarHeight = 0;
+  document.addEventListener("DOMContentLoaded", function () {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+
+    var sidebarLinks = document.querySelectorAll('.sidebar a');
+    if (sidebarLinks.length > 0) {
+      sidebarLinks.forEach(function (linkElement) {
+        var link = linkElement.getAttribute('href');
+        link = link.replace('./', '');
+        var currentPage = window.location.pathname.split('/').pop();
+        if (link == currentPage) {
+          linkElement.classList.add('is-active');
+        }
+      });
+    }
+  });
+  window.addEventListener('resize', () => {
+    stickybits('.section-heading', {});
+    stickybits('.sidebar', { stickyBitStickyOffset: 32 });
+  });
+
+  // On document ready, set up the letters inside the element to be split into spans
+  document.addEventListener("DOMContentLoaded", function () {
+    let itemToChange = document.querySelector("#debounce-example");
+    if (!itemToChange) return;
+
+    if (!itemToChange.classList.contains("is-split")) {
+      // Add the is-split class to the element
+      itemToChange.classList.add("is-split");
+
+      let letters = itemToChange.innerHTML.split("");
+
+      // Wrap each letter inside the element with a span
+      itemToChange.innerHTML = letters
+        .map(
+          (letter) =>
+            `<span class="debounce-letter" style="transition-delay: ${Math.random() * 1
+            }s">${letter}</span>`
+        )
+        .join("");
+    }
+  });
+
+  function debounceExample(eventType) {
+    let itemToChange = document.querySelector("#debounce-example");
+    if (!itemToChange) return;
+
+    if (eventType === "changeCase") {
+      // Get all the letters inside the element and randomly set size between 0.8em and 1.2em
+      let lettersToChange = document.querySelectorAll(".debounce-letter");
+      lettersToChange.forEach((letter) => {
+        letter.style.fontSize = `${Math.random() * 0.4 + 0.8}em`;
+      });
+    } else if (eventType === "changeColor") {
+      let lettersToChange = document.querySelectorAll(".debounce-letter");
+      lettersToChange.forEach((letter) => {
+        let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        letter.style.color = `#${randomColor}`;
+      });
+    }
+  }
+  jfDebounce("resize", debounceExample, 100, ["changeCase"]);
+  jfDebounce("scroll", debounceExample, ["changeColor"]);
+</script>
+</body>
+
+</html>

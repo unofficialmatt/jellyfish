@@ -120,3 +120,15 @@
     @warn "#{$color} was not found in the $colors map. Cannot create table modifiers. Aborting.";
   }
 }
+
+@mixin createAccordionTheme($color) {
+  @if map-has-key($colors, $color) {
+    --accordion-heading-background: #{v(color-#{$color}-25)};
+    --accordion-heading-color: #{v(color-#{$color}-900)};
+    --accordion-heading-hover-background: #{v(color-#{$color}-50)};
+    --accordion-heading-hover-color: #{v(color-#{$color}-900)};
+    --accordion-border-color: #{v(color-#{$color}-500)};
+  } @else {
+    @warn "#{$color} was not found in the $colors map. Cannot create a button. Aborting.";
+  }
+}
