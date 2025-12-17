@@ -1,4 +1,3 @@
-// TODO: Set up sass props
 .accordion {
   margin-bottom: $element-margin;
   --accordion-heading-background: #{$accordion-heading-bg-color};
@@ -6,6 +5,7 @@
   --accordion-heading-hover-background: #{$accordion-heading-hover-bg-color};
   --accordion-heading-hover-color: #{$accordion-heading-hover-text-color};
   --accordion-border-color: #{$accordion-border-color};
+  --accordion-max-height: 2000px;
 }
 
 // Reset heading sizes inside accordions
@@ -97,6 +97,23 @@ h6 {
   }
 }
 
+.accordion-panel {
+  overflow: hidden;
+  padding: $accordion-padding-y $accordion-padding-x;
+  max-height: var(--accordion-max-height);
+  transition: all $accordion-transition-duration ease-in-out;
+
+  &.is-collapsed {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
 @if ($generate-accordion-modifiers) == true {
   .accordion,
   .accordion-item {
@@ -107,31 +124,3 @@ h6 {
     }
   }
 }
-
-.accordion-panel {
-  display: grid;
-  grid-template-rows: 1fr;
-  overflow: hidden;
-  padding: 0 $accordion-padding-x;
-  transition: grid-template-rows 0.25s ease-in-out, padding 0.25s ease-in-out;
-
-  > * {
-    min-height: 0;
-  }
-
-  &[hidden] {
-    grid-template-rows: 0fr;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  &:not([hidden]) {
-    padding-top: $accordion-padding-y;
-    padding-bottom: $accordion-padding-y;
-  }
-
-  > *:last-child {
-    margin-bottom: 0;
-  }
-}
-// TODO: For browsers that support interpolate-size, let CSS handle it in the future

@@ -15,17 +15,39 @@ class jellyfishAccordion {
     this.accordion.removeAttribute("data-start-collapsed");
     this.loopItems();
     this.setupEventListeners();
+    this.setupResizeHandler();
   }
 
-  // Loop through each accordion item and set it up
+  setupResizeHandler() {
+    jfDebounce("resize", () => this.updateOpenPanelHeights(), 150);
+  }
+
+  updateOpenPanelHeights() {
+    const openPanels = this.accordion.querySelectorAll(
+      ".accordion-panel:not(.is-collapsed)"
+    );
+
+    if (openPanels.length === 0) return;
+
+    openPanels.forEach((panel) => {
+      panel.style.transition = "none";
+      panel.style.setProperty("--accordion-max-height", "none");
+
+      const fullHeight = panel.offsetHeight;
+      panel.style.setProperty("--accordion-max-height", `${fullHeight}px`);
+
+      // Force reflow and re-enable transitions to ensure smoothness
+      panel.offsetHeight;
+      panel.style.transition = "";
+    });
+  }
+
   loopItems() {
     let sections = this.accordion.querySelectorAll(".accordion-item");
-    // Bail if no sections found
     if (sections.length === 0) return;
 
     let count = 0;
     sections.forEach((section) => {
-      // If isCollapsedAtStart != false, we need to make sure the first item is open
       let panelIsCollapsed = true;
       if (!this.startCollapsed && count === 0) {
         panelIsCollapsed = false;
@@ -41,7 +63,6 @@ class jellyfishAccordion {
     let panelHeading = section.querySelector(".accordion-heading");
     let panelContent = section.querySelector(".accordion-panel");
 
-    // Bail if missing heading or content
     if (!panelHeading || !panelContent) return;
 
     // Set the panel ID, this will forcibly override any existing ID on the content to ensure uniqueness based on the accordion index and panel index
@@ -54,12 +75,9 @@ class jellyfishAccordion {
 
   // Setup the accordion heading
   setupHeading(heading, contentId, isCollapsedAtStart) {
-    // Check if this heading already has a button?
     let button = heading.querySelector("button");
     if (!button) {
-      // Create a button to wrap the heading content
       button = document.createElement("button");
-      // Move existing heading content into button
       while (heading.firstChild) {
         button.appendChild(heading.firstChild);
       }
@@ -75,14 +93,13 @@ class jellyfishAccordion {
   }
 
   // Setup the accordion content
-  // Setup the accordion content
   setupContent(content, contentId, isCollapsedAtStart) {
     content.id = contentId;
 
     if (!isCollapsedAtStart) {
-      content.removeAttribute("hidden");
+      content.classList.remove("is-collapsed");
     } else {
-      content.setAttribute("hidden", "until-found");
+      content.classList.add("is-collapsed");
     }
 
     content.setAttribute("role", "region");
@@ -107,12 +124,10 @@ class jellyfishAccordion {
     const panel = document.getElementById(panelId);
     const isCurrentlyOpen = button.getAttribute("aria-expanded") === "true";
 
-    // If allowMultiple is false, close all other panels first
     if (!this.allowMultiple) {
-      this.closeAllPanels(panelId); // Pass the current panel ID to exclude it
+      this.closeAllPanels(panelId);
     }
 
-    // Toggle the clicked panel
     if (isCurrentlyOpen) {
       this.closePanel(button, panel);
     } else {
@@ -120,33 +135,39 @@ class jellyfishAccordion {
     }
   }
 
-  // Close all panels in this accordion except the specified one
   closeAllPanels(exceptPanelId = null) {
     const buttons = this.accordion.querySelectorAll(".accordion-button");
     buttons.forEach((button) => {
       const panelId = button.getAttribute("aria-controls");
       if (panelId !== exceptPanelId) {
-        // Skip the panel we're opening
         const panel = document.getElementById(panelId);
         this.closePanel(button, panel);
       }
     });
   }
 
-  // Close a specific panel
   closePanel(button, panel) {
     button.setAttribute("aria-expanded", "false");
-    panel.setAttribute("hidden", "until-found");
+    panel.classList.add("is-collapsed");
   }
 
-  // Open a specific panel
   openPanel(button, panel) {
     button.setAttribute("aria-expanded", "true");
-    panel.removeAttribute("hidden");
+
+    panel.style.transition = "none";
+    panel.classList.remove("is-collapsed");
+
+    const fullHeight = panel.offsetHeight;
+    panel.classList.add("is-collapsed");
+    panel.offsetHeight;
+    panel.style.transition = "";
+    panel.style.setProperty("--accordion-max-height", `${fullHeight}px`);
+    requestAnimationFrame(() => {
+      panel.classList.remove("is-collapsed");
+    });
   }
 }
 
-// Initialize all accordions on the page
 document.addEventListener("DOMContentLoaded", function () {
   const accordionElements = document.querySelectorAll(".accordion");
 
