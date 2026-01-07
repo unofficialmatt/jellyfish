@@ -16,6 +16,8 @@ class jellyfishAccordion {
     this.loopItems();
     this.setupEventListeners();
     this.setupResizeHandler();
+
+    this.accordion.classList.add("is-initialised");
   }
 
   setupResizeHandler() {
@@ -176,4 +178,12 @@ document.addEventListener("DOMContentLoaded", function () {
     new jellyfishAccordion(element, count);
     count++;
   });
+
+  const event = new CustomEvent("jfAccordionsInitialised", {
+    detail: {
+      count: count,
+      timestamp: Date.now(),
+    },
+  });
+  document.dispatchEvent(event);
 });

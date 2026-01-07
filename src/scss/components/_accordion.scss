@@ -1,3 +1,18 @@
+// Hide accordion panels by default until JavaScript initialises them
+.accordion:not(.is-initialised) {
+  .accordion-panel {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+
+  // Prevent the buttons from showing the expanded state
+  .accordion-button[aria-expanded="true"]::after {
+    transform: rotate(0deg);
+  }
+}
+
 .accordion {
   margin-bottom: $element-margin;
   --accordion-heading-background: #{$accordion-heading-bg-color};
@@ -5,7 +20,7 @@
   --accordion-heading-hover-background: #{$accordion-heading-hover-bg-color};
   --accordion-heading-hover-color: #{$accordion-heading-hover-text-color};
   --accordion-border-color: #{$accordion-border-color};
-  --accordion-max-height: 2000px;
+  --accordion-max-height: 25000000px;
 }
 
 // Reset heading sizes inside accordions
