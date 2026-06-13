@@ -10,7 +10,7 @@ _.git/
 # ignore these dev folders
 tests/
 deprecated/
-TODO.md
+*.md
 
 ### macOS ###
 # General
