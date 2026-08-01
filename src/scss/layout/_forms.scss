@@ -102,11 +102,9 @@ select::-ms-expand {
 }
 
 // Placeholder Text
-::-webkit-input-placeholder,
-::-moz-placeholder,
-:-moz-placeholder,
-:-ms-input-placeholder {
+::placeholder {
   color: var(--form-input-placeholder-color);
+  opacity: 1;
 }
 
 form {
