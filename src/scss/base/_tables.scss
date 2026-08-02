@@ -30,9 +30,8 @@ tfoot th {
 // Wrap around a table to prevent it breaking outside the grid
 .table-container {
   max-width: 100%;
-  overflow: auto;
-  overflow-y: auto;
-  overflow-y: hidden;
+  overflow-x: auto;
+  overflow-y: clip;
   table {
     margin-bottom: 0;
   }
@@ -85,10 +84,6 @@ table.is-responsive {
     td,
     th {
       border: 1px solid var(--table-border-color);
-    }
-
-    tbody tr {
-      border-top: get-size(1);
     }
 
     tr {

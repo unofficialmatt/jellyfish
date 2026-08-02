@@ -3,12 +3,19 @@ class jellyfishModals {
     this.currentModalId = null;
     this.modalTimer = 0;
     this.modalInterval = null;
+    // Snapshot of timeOpen per dialog, taken at the moment we call
+    // dialog.close() - the native "close" event fires as a queued task, not
+    // synchronously, so by the time it fires, a group-navigation openModal()
+    // may already have reset this.modalTimer for the *next* modal.
+    this.modalTimeOpenByDialog = new WeakMap();
 
     // Bind the method to the class as it wasn't working otherwise
     this.incrementTimer = this.incrementTimer.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleDialogClose = this.handleDialogClose.bind(this);
+    this.handleBackdropClick = this.handleBackdropClick.bind(this);
   }
 
   /**
@@ -26,6 +33,13 @@ class jellyfishModals {
    * @returns {void}
    */
   toggleModal(id, closeCurrent = false) {
+    // Captured before closeModal() runs below: closeModal() no longer resets
+    // this.currentModalId synchronously (the dialog's native "close" event is
+    // a queued task, not synchronous), so checking it *after* would see stale
+    // state when id is the modal currently open (eg. a single-item
+    // data-modalgroup, whose own prev/next arrow targets itself).
+    const wasAlreadyOpen = this.currentModalId === id;
+
     if (closeCurrent) {
       this.closeModal();
     }
@@ -33,46 +47,109 @@ class jellyfishModals {
     const dialog = document.getElementById(id);
 
     if (dialog) {
-      if (this.currentModalId === id) {
+      if (wasAlreadyOpen && !closeCurrent) {
         this.closeModal();
       } else {
+        // Either it wasn't already open, or closeCurrent already closed it
+        // above (eg. navigating a single-item group back to itself) - (re)open it.
         this.openModal(id);
       }
     }
   }
 
   /**
-   * Closes the currently open modal.
+   * Closes the currently open modal via the native dialog.close(), which
+   * fires the dialog's "close" event where the actual cleanup happens - this
+   * keeps state in sync even when the dialog is closed natively (Esc, or a
+   * form method="dialog" submit) rather than through this method.
    * @returns {void}
    */
   closeModal() {
     const dialog = document.getElementById(this.currentModalId);
 
-    if (dialog) {
+    if (dialog && dialog.open) {
+      this.modalTimeOpenByDialog.set(dialog, this.modalTimer);
       dialog.close();
+    }
+  }
 
-      // Fire an event jfModalClosed
-      const event = new CustomEvent("jfModalClosed", {
-        detail: {
-          closedModalId: this.currentModalId,
-        },
-      });
-      document.dispatchEvent(event);
+  /**
+   * Cleans up state and fires analytics/events whenever a dialog closes,
+   * regardless of how it closed (this.closeModal(), native Esc, or a
+   * form method="dialog" submit).
+   * @param {Event} event - The dialog's native "close" event.
+   * @returns {void}
+   */
+  handleDialogClose(event) {
+    const dialog = event.target;
+    const closedModalId = dialog.id;
 
-      // Dispatch an Event to the DataLayer
-      window.dataLayer = window.dataLayer || [];
+    // Fall back to this.modalTimer for closes that didn't go through
+    // this.closeModal() (eg. a form method="dialog" submit)
+    const timeOpen = this.modalTimeOpenByDialog.has(dialog)
+      ? this.modalTimeOpenByDialog.get(dialog)
+      : this.modalTimer;
+    this.modalTimeOpenByDialog.delete(dialog);
 
-      dataLayer.push({
-        event: "modalClosed",
-        modalId: "#" + this.currentModalId,
-        timeOpen: this.modalTimer,
-      });
+    // Fire an event jfModalClosed
+    const closeEvent = new CustomEvent("jfModalClosed", {
+      detail: {
+        closedModalId,
+      },
+    });
+    document.dispatchEvent(closeEvent);
 
+    // Dispatch an Event to the DataLayer
+    window.dataLayer = window.dataLayer || [];
+
+    dataLayer.push({
+      event: "modalClosed",
+      modalId: "#" + closedModalId,
+      timeOpen,
+    });
+
+    // Guard this against group navigation: openModal() for the next modal
+    // runs synchronously before this queued "close" event fires, so by the
+    // time we get here this.currentModalId/this.modalInterval may already
+    // belong to the *next* modal - clearing them unconditionally would kill
+    // its freshly-started timer instead of this (already-closed) one's.
+    if (this.currentModalId === closedModalId) {
       this.currentModalId = null;
 
-      if (document.body.classList.contains("has-open-modal")) {
-        document.body.classList.remove("has-open-modal");
+      if (this.modalInterval) {
+        clearInterval(this.modalInterval);
+        this.modalInterval = null;
       }
+
+      // Same guard: don't strip this off <body> if a newer modal (opened
+      // synchronously before this event fired) is the reason it's still set
+      document.body.classList.remove("has-open-modal");
+    }
+  }
+
+  /**
+   * Closes the modal if the user clicks on the backdrop (outside the
+   * dialog's content box).
+   * @param {MouseEvent} event - The dialog's click event.
+   * @returns {void}
+   */
+  handleBackdropClick(event) {
+    const dialog = event.currentTarget;
+    const dialogDimensions = dialog.getBoundingClientRect();
+
+    const isOutsideDialogBox =
+      event.clientX < dialogDimensions.left ||
+      event.clientX > dialogDimensions.right ||
+      event.clientY < dialogDimensions.top ||
+      event.clientY > dialogDimensions.bottom;
+
+    // event.target === dialog confirms this is really a backdrop click, not
+    // a native form control (eg. a <select> dropdown in Firefox) reporting
+    // click coordinates outside the dialog's box for its own internal
+    // reasons - a real backdrop click always has the dialog itself as the
+    // target, since ::backdrop isn't a hit-testable DOM node.
+    if (isOutsideDialogBox && event.target === dialog) {
+      this.closeModal();
     }
   }
 
@@ -100,12 +177,14 @@ class jellyfishModals {
       }
       this.modalInterval = setInterval(this.incrementTimer, 1000);
 
-      // TODO: Add in the ID of the next and previous if in a group?
+      const { prevModalId, nextModalId } = this.getModalGroupNeighbours(dialog);
 
       // Fire an event jfModalOpened
       const event = new CustomEvent("jfModalOpened", {
         detail: {
           newModalId: id,
+          prevModalId,
+          nextModalId,
         },
       });
       document.dispatchEvent(event);
@@ -114,23 +193,13 @@ class jellyfishModals {
       if (dialog.querySelector(".modal-content"))
         dialog.querySelector(".modal-content").scrollTo(0, 0);
 
-      // Close Modal if user clicks on the overlay
-      dialog.addEventListener("click", (e) => {
-        const dialogDimensions = dialog.getBoundingClientRect();
-        if (
-          e.clientX < dialogDimensions.left ||
-          e.clientX > dialogDimensions.right ||
-          e.clientY < dialogDimensions.top ||
-          e.clientY > dialogDimensions.bottom
-        ) {
-          // Get e.target
-          const target = e.target;
-          // If e.target is not a button, close the modal
-          if (target.tagName !== "BUTTON") {
-            this.closeModal();
-          }
-        }
-      });
+      // Attach the backdrop-click and native close listeners once per dialog,
+      // not on every open
+      if (!dialog.dataset.jfModalInitialized) {
+        dialog.addEventListener("click", this.handleBackdropClick);
+        dialog.addEventListener("close", this.handleDialogClose);
+        dialog.dataset.jfModalInitialized = "true";
+      }
 
       // Append navigation arrows and close button if it's a .modal element
       if (dialog.classList.contains("modal")) {
@@ -154,6 +223,36 @@ class jellyfishModals {
   }
 
   /**
+   * Finds the previous/next sibling modal IDs for a modal in a data-modalgroup,
+   * using the same wrap-around logic as appendArrows.
+   * @param {HTMLElement} dialog - The modal element.
+   * @returns {{prevModalId: string|null, nextModalId: string|null}}
+   */
+  getModalGroupNeighbours(dialog) {
+    const modalGroup = dialog.dataset.modalgroup;
+
+    if (!modalGroup) {
+      return { prevModalId: null, nextModalId: null };
+    }
+
+    const groupElements = Array.from(
+      document.querySelectorAll(`[data-modalgroup="${modalGroup}"]`),
+    );
+    const index = groupElements.indexOf(dialog);
+
+    if (index === -1) {
+      return { prevModalId: null, nextModalId: null };
+    }
+
+    const prevModalId =
+      groupElements[index === 0 ? groupElements.length - 1 : index - 1].id;
+    const nextModalId =
+      groupElements[index === groupElements.length - 1 ? 0 : index + 1].id;
+
+    return { prevModalId, nextModalId };
+  }
+
+  /**
    * Appends navigation arrows to all modals in the same group as the given element.
    * @param {HTMLElement} element - The modal element.
    * @returns {void}
@@ -167,7 +266,7 @@ class jellyfishModals {
     }
 
     const groupElements = document.querySelectorAll(
-      `[data-modalgroup="${modalGroup}"]`
+      `[data-modalgroup="${modalGroup}"]`,
     );
 
     // Append navigation arrows to each element in the group
@@ -185,8 +284,10 @@ class jellyfishModals {
     if (!element.querySelector(".modal-close")) {
       const closeButton = document.createElement("button");
       closeButton.classList.add("modal-close");
-      closeButton.addEventListener("click", this.closeModal);
+      closeButton.setAttribute("type", "button"); // Prevent submitting a form method="dialog" the modal may contain
+      closeButton.setAttribute("aria-label", "Close");
       closeButton.setAttribute("title", "Close this modal");
+      closeButton.addEventListener("click", this.closeModal);
       element.append(closeButton);
     }
   }
@@ -206,8 +307,9 @@ class jellyfishModals {
     const prevLink =
       modalGroup[index === 0 ? modalGroup.length - 1 : index - 1];
     const prevButton = this.createArrow(
+      "Previous",
       "Previous (Left arrow key)",
-      `toggleModal('${prevLink.id}', true);`
+      prevLink.id,
     );
     prevButton.classList.add("modal-navigation--prev");
     wrapper.appendChild(prevButton);
@@ -216,8 +318,9 @@ class jellyfishModals {
     const nextLink =
       modalGroup[index === modalGroup.length - 1 ? 0 : index + 1];
     const nextButton = this.createArrow(
+      "Next",
       "Next (Right arrow key)",
-      `toggleModal('${nextLink.id}', true);`
+      nextLink.id,
     );
     nextButton.classList.add("modal-navigation--next");
     wrapper.appendChild(nextButton);
@@ -227,16 +330,19 @@ class jellyfishModals {
   }
 
   /**
-   * Creates a navigation button with the specified label and onclick attribute.
-   * @param {string} label - The label of the button.
-   * @param {string} onclick - The onclick attribute value.
+   * Creates a navigation button that toggles to the given target modal.
+   * @param {string} ariaLabel - The accessible name of the button.
+   * @param {string} title - The title/tooltip text of the button.
+   * @param {string} targetId - The ID of the modal to toggle to on click.
    * @returns {HTMLButtonElement} - The created button element.
    */
-  createArrow(label, onclick) {
+  createArrow(ariaLabel, title, targetId) {
     const button = document.createElement("button");
     button.classList.add("modal-navigation-button");
-    button.setAttribute("onclick", onclick);
-    button.setAttribute("title", label);
+    button.setAttribute("type", "button"); // Prevent submitting a form method="dialog" the modal may contain
+    button.setAttribute("aria-label", ariaLabel);
+    button.setAttribute("title", title);
+    button.addEventListener("click", () => this.toggleModal(targetId, true));
     return button;
   }
 
@@ -250,6 +356,14 @@ class jellyfishModals {
     if (!this.currentModalId) return;
 
     if (event.repeat) return; // Prevents the event from firing multiple times if the user holds down the key
+
+    // Don't hijack arrow keys while the user is interacting with a form control
+    if (
+      (event.key === "ArrowLeft" || event.key === "ArrowRight") &&
+      event.target.closest("input, textarea, select, [contenteditable]")
+    ) {
+      return;
+    }
 
     if (event.key === "Escape" && this.currentModalId) {
       this.closeModal();
@@ -284,7 +398,5 @@ const toggleModal = (id, closeCurrent) =>
 
 // Add eventListener for keydown
 document.addEventListener("keydown", (event) =>
-  modalManager.handleKeyDown(event)
+  modalManager.handleKeyDown(event),
 );
-
-// TODO: Test that GTag events are firing correctly when modals are opened and closed

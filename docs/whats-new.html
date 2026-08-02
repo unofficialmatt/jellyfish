@@ -161,6 +161,7 @@
       --form-input-border-color: #{$border-color};
       --form-input-border-radius: #{$border-radius};
       --form-input-placeholder-color: #{$placeholder-color};
+      --form-select-bg-img: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23010101' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
 
       --table-border-color: #{$table-border-color};
       --table-font-size: #{$table-font-size};
@@ -184,8 +185,6 @@
       --navbar-link-padding-x: #{$navbar-link-padding-x};
       --navbar-link-padding-y: #{$navbar-link-padding-y};
       --navbar-dropdown-width: #{$navbar-dropdown-width};
-
-      --navbar-dropdown-anchor: #{$navbar-dropdown-anchors-right-after};
     </code>
   </pre>
 
@@ -265,14 +264,18 @@
 </div>
 
 <h2 class="h3">@container support</h2>
-<p>All <span class="css-ref">.col</span> elements are now CSS Container elements. This allows for more advanced responsive layouts using container queries, as most components are direct children of <span class="css-ref">.col</span>.</p>
-<p>In addition, there are new shorthand SASS mixins for container queries:</p>
+<p>There are new shorthand SASS mixins for container queries:</p>
 <pre class="language-scss line-numbers">
     <code>
       .parent-container {
         container-type: inline-size;
         container-name: parent-container;
       }
+      .col-container {
+        container-type: inline-size;
+        container-name: column-container;
+      }
+
 
       // 1. Applies when the nearest container is >= 400px
       .card.container-query-1 {
@@ -322,32 +325,32 @@
     <code><!--
       <div class="parent-container">
         <div class="row">
-          <div class="col sm-6">
+          <div class="col col-container sm-6">
             <div class="card container-query-1">
               ...
             </div>
           </div>
-          <div class="col sm-6">
+          <div class="col col-container sm-6">
             <div class="card container-query-2">
               ...
             </div>
           </div>
-          <div class="col sm-6">
+          <div class="col col-container sm-6">
             <div class="card container-query-3">
               ...
             </div>
           </div>
-          <div class="col sm-6">
+          <div class="col col-container sm-6">
             <div class="card container-query-4">
               ...
             </div>
           </div>
-          <div class="col sm-6">
+          <div class="col col-container sm-6">
             <div class="card container-query-5">
               ...
             </div>
           </div>
-          <div class="col sm-6">
+          <div class="col col-container sm-6">
             <div class="card container-query-6">
               ...
             </div>
@@ -360,7 +363,7 @@
 
 <div class="parent-container">
   <div class="row">
-    <div class="col sm-6">
+    <div class="col col-container sm-6">
       <div class="card container-query-1">
         <div class="card-section">
           <p class="h3">#1</p>
@@ -370,7 +373,7 @@
         </div>
       </div>
     </div>
-    <div class="col sm-6">
+    <div class="col col-container sm-6">
       <div class="card container-query-2">
         <div class="card-section">
           <p class="h3">#2</p>
@@ -380,7 +383,7 @@
         </div>
       </div>
     </div>
-    <div class="col sm-6">
+    <div class="col col-container sm-6">
       <div class="card container-query-3">
         <div class="card-section">
           <p class="h3">#3</p>
@@ -390,7 +393,7 @@
         </div>
       </div>
     </div>
-    <div class="col sm-6">
+    <div class="col col-container sm-6">
       <div class="card container-query-4">
         <div class="card-section">
           <p class="h3">#4</p>
@@ -400,7 +403,7 @@
         </div>
       </div>
     </div>
-    <div class="col sm-6">
+    <div class="col col-container sm-6">
       <div class="card container-query-5">
         <div class="card-section">
           <p class="h3">#5</p>
@@ -410,7 +413,7 @@
         </div>
       </div>
     </div>
-    <div class="col sm-6">
+    <div class="col col-container sm-6">
       <div class="card container-query-6">
         <div class="card-section">
           <p class="h3">#6</p>

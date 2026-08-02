@@ -58,6 +58,7 @@
   --form-input-border-color: #{$border-color};
   --form-input-border-radius: #{$border-radius};
   --form-input-placeholder-color: #{$placeholder-color};
+  @include select-bg();
 
   --table-border-color: #{$table-border-color};
   --table-font-size: #{$table-font-size};
@@ -81,5 +82,4 @@
   --navbar-link-padding-x: #{$navbar-link-padding-x};
   --navbar-link-padding-y: #{$navbar-link-padding-y};
   --navbar-dropdown-width: #{$navbar-dropdown-width};
-  --navbar-dropdown-anchor: #{$navbar-dropdown-anchors-right-after};
 }

@@ -130,7 +130,7 @@
         top: 0;
       }
 
-      li:nth-of-type(n + #{var(--navbar-dropdown-anchor)}) {
+      li:nth-of-type(n + #{$navbar-dropdown-anchors-right-after}) {
         // Makes all drop downs move left instead of right
         ul {
           right: 0;

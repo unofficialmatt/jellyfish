@@ -27,6 +27,16 @@
   transition: $result;
 }
 
+// Sets --form-select-bg-img for a given colour, eg. @include select-bg(#fff)
+// to recolour the select chevron against a dark background. Defaults to the
+// standard $select-chevron-color. Colour is baked in literally (not a CSS
+// var) because custom properties don't resolve inside an embedded SVG data-URI.
+@mixin select-bg($color: $select-chevron-color) {
+  $encoded-color: str-replace("#{$color}", "#", "%23");
+  $svg: str-replace($select-chevron-icon-svg, "{{color}}", $encoded-color);
+  --form-select-bg-img: url("#{$svg}");
+}
+
 // DRY mixin for Pseudo elements. Pass optional args or leave as default
 @mixin pseudo($content: "", $display: block, $pos: absolute) {
   content: $content;

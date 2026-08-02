@@ -1,13 +1,24 @@
-@@include('./src/docs/partials/html-head.html', {
-"title": "Forms",
-"description": "Forms don't have to be ugly.",
-})
-
+@@include('./src/docs/partials/html-head.html', { "title": "Forms",
+"description": "Forms don't have to be ugly.", })
 @@include('./src/docs/partials/navigation.html')
-<h1 class="section-heading h2">Forms<a href="./variables.html#forms">[ Variable Reference ]</a></h1>
+<h1 class="section-heading h2">
+  Forms<a href="./variables.html#forms">[ Variable Reference ]</a>
+</h1>
 <div>
-  <p class="standfirst">Jellyfish applies styling to all standard form elements to make them look great without hassle or additional classes.</p>
-  <p>Use the <span class="variable-ref">$form-accent-color</span> variable to apply <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color" target="_blank">accent color</a> to form elements.</p>
+  <p class="standfirst">
+    Jellyfish applies styling to all standard form elements to make them look
+    great without hassle or additional classes.
+  </p>
+  <p>
+    Use the <span class="variable-ref">$form-accent-color</span> variable to
+    apply
+    <a
+      href="https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color"
+      target="_blank"
+      >accent color</a
+    >
+    to form elements.
+  </p>
 
   <pre class="language-markup line-numbers">
     <code><!--
@@ -36,9 +47,9 @@
   </pre>
   <form>
     <label for="text">Name</label>
-    <input id="text" type="text" placeholder="First Name">
+    <input id="text" type="text" placeholder="First Name" />
     <label for="email">Email Address</label>
-    <input id="email" type="email" placeholder="email@jellyfishrule.com">
+    <input id="email" type="email" placeholder="email@jellyfishrule.com" />
     <label for="select">My message is about</label>
     <select id="select">
       <option disabled selected>Please select</option>
@@ -50,10 +61,13 @@
     <label for="textarea">Any other comments?</label>
     <textarea id="textarea" rows="5" cols="30" placeholder="Message"></textarea>
     <div class="form-group">
-      <label for="rememberme"><input id="rememberme" name="checkbox" type="checkbox"> Remember Me</label>
+      <label for="rememberme"
+        ><input id="rememberme" name="checkbox" type="checkbox" /> Remember
+        Me</label
+      >
     </div>
-    <input type="submit" value="Submit">
-    <input type="reset" value="Reset">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Reset" />
   </form>
 </div>
 <div>
@@ -70,59 +84,61 @@
         <td>checkbox</td>
         <td>
           <div class="form-group">
-            <label><input type="checkbox" checked=""> Checkbox 1</label>
-            <label><input type="checkbox"> Checkbox 2</label>
+            <label><input type="checkbox" checked="" /> Checkbox 1</label>
+            <label><input type="checkbox" /> Checkbox 2</label>
           </div>
         </td>
       </tr>
       <tr>
         <td>color</td>
-        <td><input type="color" value="#b22d4f"></td>
+        <td><input type="color" value="#b22d4f" /></td>
       </tr>
       <tr>
         <td>date</td>
-        <td><input type="date"></td>
+        <td><input type="date" /></td>
       </tr>
       <tr>
         <td>datetime-local</td>
-        <td><input type="datetime-local"></td>
+        <td><input type="datetime-local" /></td>
       </tr>
       <tr>
         <td>time</td>
-        <td><input type="time"></td>
+        <td><input type="time" /></td>
       </tr>
       <tr>
         <td>email</td>
-        <td><input type="email"></td>
+        <td><input type="email" /></td>
       </tr>
       <tr>
         <td>number</td>
-        <td><input type="number"></td>
+        <td><input type="number" /></td>
       </tr>
       <tr>
         <td>password</td>
-        <td><input type="password" autocomplete="off"></td>
+        <td><input type="password" autocomplete="off" /></td>
       </tr>
       <tr>
         <td>radio</td>
         <td>
           <div class="form-group">
-            <label><input type="radio" name="radio" checked=""> Radio 1</label>
-            <label><input type="radio" name="radio"> Radio 2</label>
+            <label
+              ><input type="radio" name="radio" checked="" /> Radio 1</label
+            >
+            <label><input type="radio" name="radio" /> Radio 2</label>
           </div>
         </td>
       </tr>
       <tr>
         <td>range</td>
-        <td><input type="range"></td>
+        <td><input type="range" /></td>
       </tr>
       <tr>
         <td>search</td>
-        <td><input type="search"></td>
+        <td><input type="search" /></td>
       </tr>
       <tr>
         <td>text</td>
-        <td><input type="text"></td>
+        <td><input type="text" /></td>
       </tr>
       <tr>
         <td>select</td>
@@ -143,7 +159,10 @@
 </div>
 <div>
   <h2 class="h3">Working with checkboxes and radio buttons</h2>
-  <p>Wrap checkboxes and radio buttons in a <span class="css-ref">.form-group</span> to preserve spacing.</p>
+  <p>
+    Wrap checkboxes and radio buttons in a
+    <span class="css-ref">.form-group</span> to preserve spacing.
+  </p>
   <pre class="language-markup">
     <code><!--
     <input type="text">
@@ -154,13 +173,16 @@
     <textarea></textarea>
   --></code>
   </pre>
-  <input type="text">
+  <input type="text" />
   <div class="form-group">
-    <label><input type="radio" name="radio" checked=""> Radio 1</label>
-    <label><input type="radio" name="radio"> Radio 2</label>
+    <label><input type="radio" name="radio" checked="" /> Radio 1</label>
+    <label><input type="radio" name="radio" /> Radio 2</label>
   </div>
   <textarea></textarea>
-  <p>Add the class <span class="css-ref">.form-group-inline</span> to make checkboxes and radio buttons inline-block elements rather than block.</p>
+  <p>
+    Add the class <span class="css-ref">.form-group-inline</span> to make
+    checkboxes and radio buttons inline-block elements rather than block.
+  </p>
   <pre class="language-markup">
     <code><!--
     <div class="form-group-inline">
@@ -169,11 +191,14 @@
   --></code>
   </pre>
   <div class="form-group-inline">
-    <label><input type="radio" name="radio" checked=""> Radio 1</label>
-    <label><input type="radio" name="radio"> Radio 2</label>
-    <label><input type="radio" name="radio"> Radio 3</label>
+    <label><input type="radio" name="radio" checked="" /> Radio 1</label>
+    <label><input type="radio" name="radio" /> Radio 2</label>
+    <label><input type="radio" name="radio" /> Radio 3</label>
   </div>
-  <p>Checkboxes and radio buttons will scale to remain in proportion to their label.</p>
+  <p>
+    Checkboxes and radio buttons will scale to remain in proportion to their
+    label.
+  </p>
   <pre class="language-markup">
         <code><!--
         <label style="font-size:2em"><input type="radio" name="radio" checked=""> Radio 1</label>
@@ -182,14 +207,23 @@
       --></code>
       </pre>
   <div class="form-group">
-    <label style="font-size:1.8em"><input type="radio" name="radio" checked=""> Radio 1</label>
-    <label style="font-size:1.4em"><input type="radio" name="radio"> Radio 2</label>
-    <label><input type="radio" name="radio"> Radio 3</label>
+    <label style="font-size: 1.8em"
+      ><input type="radio" name="radio" checked="" /> Radio 1</label
+    >
+    <label style="font-size: 1.4em"
+      ><input type="radio" name="radio" /> Radio 2</label
+    >
+    <label><input type="radio" name="radio" /> Radio 3</label>
   </div>
 </div>
 <div>
   <h2 class="h3">Fieldsets</h2>
-  <p>Related form controls can be grouped in a <code class="code-ref">&lt;fieldset></code>. An optional <code class="code-ref">&lt;legend></code> can be used to display a name for the group.</p>
+  <p>
+    Related form controls can be grouped in a
+    <code class="code-ref">&lt;fieldset></code>. An optional
+    <code class="code-ref">&lt;legend></code> can be used to display a name for
+    the group.
+  </p>
   <pre class="language-markup">
     <code><!--
     <fieldset>
@@ -201,20 +235,22 @@
   <fieldset>
     <legend>Login</legend>
     <label>Username</label>
-    <input type="text">
+    <input type="text" />
     <label>Password</label>
-    <input type="password" autocomplete="off">
+    <input type="password" autocomplete="off" />
     <div class="form-group">
-      <label>
-        <input type="checkbox"> Remember me
-      </label>
+      <label> <input type="checkbox" /> Remember me </label>
     </div>
     <button type="button">Login</button>
   </fieldset>
 </div>
 <div>
   <h2 class="h3">Form Layout</h2>
-  <p>You can layout forms with the same classes as the grid - with <span class="css-ref">.row</span> and <span class="css-ref">.col</span> elements.</p>
+  <p>
+    You can layout forms with the same classes as the grid - with
+    <span class="css-ref">.row</span> and
+    <span class="css-ref">.col</span> elements.
+  </p>
   <pre class="language-markup">
     <code><!--
     <form>
@@ -237,10 +273,10 @@
   <form>
     <div class="row">
       <div class="col">
-        <input type="text" class="form-control" placeholder="First name">
+        <input type="text" class="form-control" placeholder="First name" />
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Last name">
+        <input type="text" class="form-control" placeholder="Last name" />
       </div>
     </div>
     <div class="row">
@@ -249,7 +285,10 @@
       </div>
     </div>
   </form>
-  <p>For a tighter column gutter, you can use the class <span class="css-ref">.form-row</span>.</p>
+  <p>
+    For a tighter column gutter, you can use the class
+    <span class="css-ref">.form-row</span>.
+  </p>
   <pre class="language-markup">
     <code><!--
     <form>
@@ -272,10 +311,10 @@
   <form>
     <div class="form-row">
       <div class="col">
-        <input type="text" class="form-control" placeholder="First name">
+        <input type="text" class="form-control" placeholder="First name" />
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Last name">
+        <input type="text" class="form-control" placeholder="Last name" />
       </div>
     </div>
     <div class="form-row">
@@ -287,8 +326,51 @@
 </div>
 <div>
   <h2 class="h3">Disabled forms</h2>
-  <p>Add the <code class="code-ref">disabled</code> attribute to an input to disable it.</p>
-  <input type="text" disabled placeholder="Disabled text input">
+  <p>
+    Add the <code class="code-ref">disabled</code> attribute to an input to
+    disable it.
+  </p>
+  <input type="text" disabled placeholder="Disabled text input" />
   <textarea rows="5" placeholder="Disabled textarea" disabled></textarea>
+</div>
+<div>
+  <h2 id="recolouring-the-select-chevron" class="h3">
+    Recolouring the select chevron
+  </h2>
+  <p>
+    The select chevron is drawn from
+    <span class="variable-ref">$select-chevron-icon-svg</span>, coloured by
+    <span class="variable-ref">$select-chevron-color</span>. Custom properties
+    can't be used inside an embedded SVG data-URI, so to recolour the chevron
+    for a given context (eg. a dark background), use the
+    <span class="code-ref">select-bg()</span> mixin rather than overriding a CSS
+    variable directly.
+  </p>
+  <pre class="language-scss">
+    <code>
+      .my-dark-section select {
+        @include select-bg(#fff);
+      }
+    </code>
+  </pre>
+  <select>
+    <option>Item 1</option>
+    <option>Item 2</option>
+    <option>Item 3</option>
+  </select>
+  <div class="select-bg-demo">
+    <select>
+      <option>Item 1</option>
+      <option>Item 2</option>
+      <option>Item 3</option>
+    </select>
+  </div>
+  <p>
+    To change the chevron's shape entirely, override
+    <span class="variable-ref">$select-chevron-icon-svg</span> before Jellyfish
+    is imported &mdash; keep the <code class="code-ref">{{color}}</code> token
+    in your replacement SVG so <span class="code-ref">select-bg()</span> can
+    still substitute the colour.
+  </p>
 </div>
 @@include('./src/docs/partials/html-footer.html')

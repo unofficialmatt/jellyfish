@@ -713,7 +713,28 @@
   </table>
 
   <h2 id="forms" class="h5">Forms</h2>
-  <p>Coming Soon!</p>
+  <p>Full reference coming soon &mdash; documented so far:</p>
+  <table class="is-responsive has-border">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default value</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="variable-ref">$select-chevron-color</span></td>
+        <td><span class="code-ref">get-color-raw(neutral, 500)</span></td>
+        <td>The colour of the <span class="css-ref">select</span> chevron. See <a href="./forms.html#recolouring-the-select-chevron">recolouring the select chevron</a>.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$select-chevron-icon-svg</span></td>
+        <td>A data-URI SVG chevron, with a <code class="code-ref">{{color}}</code> token in place of the colour</td>
+        <td>Override to change the chevron's shape entirely. Keep the <code class="code-ref">{{color}}</code> token so <span class="code-ref">select-bg()</span> can still substitute the colour.</td>
+      </tr>
+    </tbody>
+  </table>
 
   <!-- TODO: forms.scss -->
 

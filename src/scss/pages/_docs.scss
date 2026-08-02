@@ -279,6 +279,10 @@ div.code-toolbar {
 }
 
 // Examples for @container queries
+.col-container {
+  container-type: inline-size;
+  container-name: column-container;
+}
 .parent-container {
   container-type: inline-size;
   container-name: parent-container;
@@ -324,4 +328,16 @@ div.code-toolbar {
 
 .is-h3-size {
   @include h3(); // Applies h3 font-size and line-height
+}
+
+// select-bg() mixin example: recolour the select chevron against a dark background
+.select-bg-demo {
+  --color-section-background: #{get-color(neutral, 800)};
+  --form-input-background: #{get-color(neutral, 800)};
+  --color-text: var(--color-white);
+  padding: get-size(1);
+
+  select {
+    @include select-bg(#fff);
+  }
 }

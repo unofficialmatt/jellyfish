@@ -81,11 +81,13 @@ select {
   color: v(color-text);
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: var(--form-input-background)
-    url("data:image/svg+xml;charset=utf-8,<svg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'><path fill='var(--form-input-placeholder-color)' d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/></svg>")
-    right 10px center no-repeat;
-  background-size: 0.75em;
-  background-size: 0.75em;
+  appearance: none;
+  background-color: var(--form-input-background);
+  background-image: var(--form-select-bg-img);
+  background-repeat: no-repeat;
+  background-position: right get-size(0.75) center;
+  background-size: get-size(1) get-size(0.75);
+  padding-inline-end: get-size(2);
   line-height: 1.4; // ensures text doesn't get cut off
 }
 

@@ -11,6 +11,9 @@ $form-items: (
 $form-accent-color: get-color(primary) !default;
 $input-background: var(--color-white) !default;
 $placeholder-color: get-color(neutral, 500) !default;
+
+$select-chevron-color: get-color-raw(neutral, 500) !default;
+$select-chevron-icon-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='{{color}}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E" !default;
 $form-border-hover: get-color(neutral) !default;
 $form-font: v(font-primary) !default;
 $form-focus-border-color: get-color(neutral, 500) !default;
