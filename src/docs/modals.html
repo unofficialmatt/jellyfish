@@ -41,6 +41,7 @@
 <div>
   <h2 class="h3">Modal groups</h2>
   <p>You can combine modals into a group, which will automatically append navigation arrows to the modals within the group. The user can also navigate via keyboard (left and right arrows). Just add a <span class="code-ref">data-modalgroup</span> attribute to the modals within the group.</p>
+  <p>None of these modals have a heading, so their <span class="code-ref">modalTitle</span> (see <a href="#javascript-api">Javascript API</a> below) falls back to their first paragraph's text - eg. "This content is in the first modal of the group" for Modal 1. <span class="css-ref">modal-group-4</span> instead has a <span class="css-ref">data-title</span> attribute, which takes priority over its paragraph text.</p>
 
   <pre class="language-markup">
     <code><!--
@@ -59,7 +60,7 @@
       <dialog id="modal-group-3" data-modalgroup="modalGroup">
           ...
       </dialog>
-      <dialog id="modal-group-4" data-modalgroup="modalGroupAlt">
+      <dialog id="modal-group-4" data-modalgroup="modalGroupAlt" data-title="Modal Four">
           ...
       </dialog>
       <dialog id="modal-group-5" data-modalgroup="modalGroupAlt">
@@ -100,7 +101,7 @@
       <p class="h4">This content is in the third modal of the group</p>
     </div>
   </dialog>
-  <dialog id="modal-group-4" class="modal bg-white" data-modalgroup="modalGroupAlt">
+  <dialog id="modal-group-4" class="modal bg-white" data-modalgroup="modalGroupAlt" data-title="Modal Four">
     <div class="modal-content">
       <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
       <p class="h4">This content is in the first modal of the second group</p>
@@ -115,7 +116,7 @@
 </div>
 
 <div>
-  <h2 class="h3">Javascript API</h2>
+  <h2 class="h3" id="javascript-api">Javascript API</h2>
   <p>When a modal is opened, a <span class="code-ref">jfModalOpened</span> event is fired. This event can be hooked into, for example to autoplay a video that is embedded in the modal. The <span class="code-ref">event.detail</span> property contains the ID of the modal element.</p>
   <pre>
     <code class="language-javascript">
@@ -131,6 +132,39 @@
       document.addEventListener("jfModalClosed", function (event) {
         console.log(event.detail);
         // Object { closedModalId: "modal-group-1" }
+      });
+    </code>
+  </pre>
+  <p><strong>Note:</strong> alongside these events, Jellyfish automatically pushes <span class="code-ref">modalOpened</span> and <span class="code-ref">modalClosed</span> events to <span class="code-ref">window.dataLayer</span> if it exists, for Google Tag Manager. Nothing is sent if <span class="code-ref">dataLayer</span> isn't present on the page. <span class="code-ref">modalTitle</span> is resolved in priority order: a <span class="css-ref">data-title</span> attribute on the modal, then the first heading (<span class="code-ref">h1</span>-<span class="code-ref">h6</span>) found in the modal, then the first non-empty text content found in the modal - an empty string if none of these are present.</p>
+  <pre>
+    <code class="language-javascript">
+      // On open (modal has a heading):
+      dataLayer.push({
+        event: "modalOpened",
+        modalId: "#dialog",
+        modalTitle: "This is a modal",
+      });
+
+      // On open (modal has a data-title attribute - takes priority over its content):
+      dataLayer.push({
+        event: "modalOpened",
+        modalId: "#modal-group-4",
+        modalTitle: "Modal Four",
+      });
+
+      // On open (modal has no data-title or heading - falls back to its first text content):
+      dataLayer.push({
+        event: "modalOpened",
+        modalId: "#modal-group-1",
+        modalTitle: "This content is in the first modal of the group",
+      });
+
+      // On close:
+      dataLayer.push({
+        event: "modalClosed",
+        modalId: "#dialog",
+        modalTitle: "This is a modal",
+        timeOpen: 4, // seconds the modal was open for
       });
     </code>
   </pre>

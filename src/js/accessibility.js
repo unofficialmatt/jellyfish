@@ -17,7 +17,7 @@ function changeRootFontSize(fontSize) {
     activeButton.classList.add("active");
   }
 
-  jfSetCookie("fontsize", fontSize);
+  localStorage.setItem("fontsize", fontSize);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -43,10 +43,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /**
-   * Check for Accessibility cookies 'fontsize' and 'ui-mode' on document ready.
-   * Append appropriate classes to body element.
+   * Check for a stored 'fontsize' preference on document ready.
+   * Append appropriate class to body element.
    */
-  var docFontSize = jfGetCookie("fontsize");
+  var docFontSize = localStorage.getItem("fontsize");
   switch (docFontSize) {
     case "sm":
       changeRootFontSize("sm");

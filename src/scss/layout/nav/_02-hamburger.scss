@@ -15,10 +15,6 @@
     &.is-active {
       color: $hamburger-active-layer-color;
     }
-    &:focus {
-      outline: 0;
-      box-shadow: none !important;
-    }
     &:hover,
     &:focus {
       background-color: $hamburger-hover-bg-color;

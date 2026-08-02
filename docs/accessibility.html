@@ -142,7 +142,7 @@
   <h2 class="h3">Increase font size globally</h2>
   <p>Add a class <span class="css-ref">.font-size-sm</span>, <span class="css-ref">.font-size-md</span> or <span class="css-ref">.font-size-lg</span> to the body element to change the base font size. This will allow visitors with limited eye sight to increase the size of type throughout the site.</p>
   <p>For a quick and easy way to implement this feature, you can add the code snippet below to your project.</p>
-  <p><strong>Note:</strong> this approach uses javascript to set a Cookie 'fontsize' to ensure that the setting is persistent across the site.</p>
+  <p><strong>Note:</strong> this approach uses javascript to store the preference in <span class="code-ref">localStorage</span> under the key <span class="code-ref">fontsize</span>, so the setting persists across the site.</p>
   <pre class="language-markup">
     <code><!--
       <span class="screen-reader-text">Adjust font size:</span>

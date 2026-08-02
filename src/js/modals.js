@@ -27,6 +27,31 @@ class jellyfishModals {
   }
 
   /**
+   * Resolves a modal's title, in priority order:
+   * 1. A `data-title` attribute on the modal
+   * 2. The first heading (h1-h6) found in the modal
+   * 3. The first non-empty text content found in the modal
+   * @param {HTMLElement} dialog - The modal element.
+   * @returns {string} - The modal's title, or an empty string if none of the above is available.
+   */
+  getModalTitle(dialog) {
+    if (dialog.dataset.title) return dialog.dataset.title.trim();
+
+    const heading = dialog.querySelector("h1, h2, h3, h4, h5, h6");
+    if (heading && heading.textContent.trim()) return heading.textContent.trim();
+
+    const textElements = dialog.querySelectorAll(
+      "p, li, span, blockquote, dd, dt, td, th",
+    );
+    for (const textElement of textElements) {
+      const text = textElement.textContent.trim();
+      if (text) return text;
+    }
+
+    return "";
+  }
+
+  /**
    * Toggles the visibility of a modal.
    * @param {string} id - The ID of the modal to toggle.
    * @param {boolean} closeCurrent - Whether to close the current modal before opening the new one.
@@ -91,6 +116,8 @@ class jellyfishModals {
       : this.modalTimer;
     this.modalTimeOpenByDialog.delete(dialog);
 
+    const modalTitle = this.getModalTitle(dialog);
+
     // Fire an event jfModalClosed
     const closeEvent = new CustomEvent("jfModalClosed", {
       detail: {
@@ -105,6 +132,7 @@ class jellyfishModals {
     dataLayer.push({
       event: "modalClosed",
       modalId: "#" + closedModalId,
+      modalTitle,
       timeOpen,
     });
 
@@ -213,6 +241,7 @@ class jellyfishModals {
       dataLayer.push({
         event: "modalOpened",
         modalId: "#" + id,
+        modalTitle: this.getModalTitle(dialog),
       });
 
       // Add has-open-modal class to body

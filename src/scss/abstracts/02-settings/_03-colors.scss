@@ -20,9 +20,9 @@ $color-black: #000000 !default;
 $body-background-color: v(color-white) !default;
 
 // Merge colors from $colors map into $background-colors if 'bg' is set to 'true'
-@each $color-name, $color-pallette in $colors {
-  @if map-get($color-pallette, "bg") == "true" {
-    @each $key, $val in $color-pallette {
+@each $color-name, $color-palette in $colors {
+  @if map-get($color-palette, "bg") == "true" {
+    @each $key, $val in $color-palette {
       @if $key == "bg" {
         // DO NOTHING
       } @else {

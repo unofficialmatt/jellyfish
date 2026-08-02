@@ -77,9 +77,9 @@ document.addEventListener("click", function (e) {
       target.classList.add("clicked");
       // prevent the link from firing
       e.preventDefault();
-      // add .drop-active class and aria-expanded to parent li
+      // add .drop-active class to parent li, aria-expanded to the interactive element itself
       target.parentElement.classList.toggle("drop-active");
-      target.parentElement.setAttribute(
+      target.setAttribute(
         "aria-expanded",
         target.parentElement.classList.contains("drop-active")
           ? "true"
