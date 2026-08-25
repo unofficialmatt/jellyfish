@@ -1,10 +1,12 @@
 // Hide accordion panels by default until JavaScript initialises them
 .accordion:not(.is-initialised) {
   .accordion-panel {
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+    height: 0;
+    padding-block: 0;
     overflow: hidden;
+    // No transition before JS has run, so the initially-open panel appears
+    // open rather than animating itself open on page load.
+    transition: none;
   }
 
   // Prevent the buttons from showing the expanded state
@@ -20,7 +22,15 @@
   --accordion-heading-hover-background: #{$accordion-heading-hover-bg-color};
   --accordion-heading-hover-color: #{$accordion-heading-hover-text-color};
   --accordion-border-color: #{$accordion-border-color};
-  --accordion-max-height: 25000000px;
+
+  // Lets the panel's height: 0 <-> auto transition actually interpolate, so the
+  // open/close animation needs no measured pixel height and no JavaScript.
+  //
+  // Progressive enhancement, and deliberately scoped to .accordion rather than
+  // :root: where it isn't supported the panel snaps open and closed, which is
+  // correct, just not animated. Setting it globally would silently change every
+  // auto-sized transition in a consuming project.
+  interpolate-size: allow-keywords;
 }
 
 // Reset heading sizes inside accordions
@@ -115,13 +125,19 @@ h6 {
 .accordion-panel {
   overflow: hidden;
   padding: $accordion-padding-y $accordion-padding-x;
-  max-height: var(--accordion-max-height);
-  transition: all $accordion-transition-duration ease-in-out;
+  height: auto;
+  // Named properties rather than `all`, which also animated colour and border
+  // changes inherited from the theme modifiers.
+  transition: height $accordion-transition-duration ease-in-out,
+    padding $accordion-transition-duration ease-in-out;
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 
   &.is-collapsed {
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+    height: 0;
+    padding-block: 0;
   }
 
   > *:last-child {

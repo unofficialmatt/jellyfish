@@ -15,33 +15,8 @@ class jellyfishAccordion {
     this.accordion.removeAttribute("data-start-collapsed");
     this.loopItems();
     this.setupEventListeners();
-    this.setupResizeHandler();
 
     this.accordion.classList.add("is-initialised");
-  }
-
-  setupResizeHandler() {
-    jfDebounce("resize", () => this.updateOpenPanelHeights(), 150);
-  }
-
-  updateOpenPanelHeights() {
-    const openPanels = this.accordion.querySelectorAll(
-      ".accordion-panel:not(.is-collapsed)"
-    );
-
-    if (openPanels.length === 0) return;
-
-    openPanels.forEach((panel) => {
-      panel.style.transition = "none";
-      panel.style.setProperty("--accordion-max-height", "none");
-
-      const fullHeight = panel.offsetHeight;
-      panel.style.setProperty("--accordion-max-height", `${fullHeight}px`);
-
-      // Force reflow and re-enable transitions to ensure smoothness
-      panel.offsetHeight;
-      panel.style.transition = "";
-    });
   }
 
   loopItems() {
@@ -155,18 +130,7 @@ class jellyfishAccordion {
 
   openPanel(button, panel) {
     button.setAttribute("aria-expanded", "true");
-
-    panel.style.transition = "none";
     panel.classList.remove("is-collapsed");
-
-    const fullHeight = panel.offsetHeight;
-    panel.classList.add("is-collapsed");
-    panel.offsetHeight;
-    panel.style.transition = "";
-    panel.style.setProperty("--accordion-max-height", `${fullHeight}px`);
-    requestAnimationFrame(() => {
-      panel.classList.remove("is-collapsed");
-    });
   }
 }
 

@@ -114,16 +114,34 @@
     </aside>
     <div class="col xs-12 md-9 content">
       <section class="docs-section">
-<h1 class="section-heading h2">Accordions<a href="./variables.html#accordions">[ Variable Reference ]</a></h1>
+<h1 class="section-heading h2">
+  Accordions<a href="./variables.html#accordions">[ Variable Reference ]</a>
+</h1>
 <div>
-  <p class="standfirst">Since v4.4.0, Jellyfish has included support for ARIA accessible accordions. Accordions are a great way to present content in a limited space, allowing users to expand and collapse sections as needed.</p>
-  <p>Including an accordion pattern within Jellyfish UI reduces the reliance on external Javascript libraries, ensuring a consistent experience across your project.</p>
+  <p class="standfirst">
+    Since v4.4.0, Jellyfish has included support for ARIA accessible accordions.
+    Accordions are a great way to present content in a limited space, allowing
+    users to expand and collapse sections as needed.
+  </p>
+  <p>
+    Including an accordion pattern within Jellyfish UI reduces the reliance on
+    external Javascript libraries, ensuring a consistent experience across your
+    project.
+  </p>
 </div>
 
 <div>
   <h2 class="h3">A Basic Accordion</h2>
-  <p>Accordions require the following markup to function properly. When the document loads, accordions will automatically be detected by Javascript and made ARIA-accessible with automatic IDs, aria-attributes and the Accordion Heading converted into a button.</p>
-  <p>You can inspect the rendered example to see what the markup looks like after the Javascript has processed it.</p>
+  <p>
+    Accordions require the following markup to function properly. When the
+    document loads, accordions will automatically be detected by Javascript and
+    made ARIA-accessible with automatic IDs, aria-attributes and the Accordion
+    Heading converted into a button.
+  </p>
+  <p>
+    You can inspect the rendered example to see what the markup looks like after
+    the Javascript has processed it.
+  </p>
   <pre class="language-markup">
     <code><!--
      <div class="accordion">
@@ -161,7 +179,12 @@
         <span>Ancient Survivors</span>
       </h3>
       <div class="accordion-panel">
-        <p>Jellyfish have existed for over 500 million years, predating dinosaurs and even trees. Fossil evidence shows they've survived multiple mass extinction events that wiped out countless other species, making them one of Earth's most resilient life forms.</p>
+        <p>
+          Jellyfish have existed for over 500 million years, predating dinosaurs
+          and even trees. Fossil evidence shows they've survived multiple mass
+          extinction events that wiped out countless other species, making them
+          one of Earth's most resilient life forms.
+        </p>
       </div>
     </div>
     <div class="accordion-item">
@@ -169,7 +192,12 @@
         <span>Fishy Imposters</span>
       </h3>
       <div class="accordion-panel">
-        <p>Despite the name, jellyfish aren't fish at all. They're invertebrates called medusae, belonging to the phylum Cnidaria. Scientists prefer the term "jellies" or "sea jellies" to avoid the confusion with actual fish.</p>
+        <p>
+          Despite the name, jellyfish aren't fish at all. They're invertebrates
+          called medusae, belonging to the phylum Cnidaria. Scientists prefer
+          the term "jellies" or "sea jellies" to avoid the confusion with actual
+          fish.
+        </p>
       </div>
     </div>
     <div class="accordion-item">
@@ -177,13 +205,24 @@
         <span>Watery Beasts</span>
       </h3>
       <div class="accordion-panel">
-        <p>Jellyfish bodies are composed almost entirely of water, with no brain, heart, or bones. Their simple body structure consists mainly of a gelatinous umbrella-shaped bell and trailing tentacles. Despite lacking a brain, they have a basic nervous system that helps them detect light, odors, and other stimuli.</p>
+        <p>
+          Jellyfish bodies are composed almost entirely of water, with no brain,
+          heart, or bones. Their simple body structure consists mainly of a
+          gelatinous umbrella-shaped bell and trailing tentacles. Despite
+          lacking a brain, they have a basic nervous system that helps them
+          detect light, odors, and other stimuli.
+        </p>
       </div>
     </div>
   </div>
 
   <h2 class="h3">Accordion Options</h2>
-  <p>Add <span class="code-ref">data-allow-multiple</span> to allow multiple accordion items to be open simultaneously. Add <span class="code-ref">data-start-collapsed</span> to have all accordion items start in a collapsed state.</p>
+  <p>
+    Add <span class="code-ref">data-allow-multiple</span> to allow multiple
+    accordion items to be open simultaneously. Add
+    <span class="code-ref">data-start-collapsed</span> to have all accordion
+    items start in a collapsed state.
+  </p>
   <pre class="language-markup">
     <code><!--
      <div class="accordion" data-allow-multiple data-start-collapsed>
@@ -194,25 +233,61 @@
 
   <div class="accordion" data-allow-multiple data-start-collapsed>
     <div class="accordion-item">
-      <h5 class="accordion-heading">
-        Immortality? Completed it, Mate.
-      </h5>
+      <h5 class="accordion-heading">Immortality? Completed it, Mate.</h5>
       <div class="accordion-panel">
-        <p>The Turritopsis dohrnii can reverse its aging process and potentially live forever by reverting to its juvenile stage. When faced with injury, starvation, or old age, it transforms back into a polyp and starts its life cycle over again, essentially achieving biological immortality?</p>
+        <p>
+          The Turritopsis dohrnii can reverse its aging process and potentially
+          live forever by reverting to its juvenile stage. When faced with
+          injury, starvation, or old age, it transforms back into a polyp and
+          starts its life cycle over again, essentially achieving biological
+          immortality?
+        </p>
       </div>
     </div>
     <div class="accordion-item">
-      <h3 class="accordion-heading">
-        That stings!
-      </h3>
+      <h3 class="accordion-heading">That stings!</h3>
       <div class="accordion-panel">
-        <p>The box jellyfish has venom potent enough to kill a human in minutes, making it one of the ocean's most dangerous creatures. Their tentacles contain thousands of microscopic stinging cells called nematocysts that inject toxins affecting the heart, nervous system, and skin cells simultaneously.</p>
+        <p>
+          The box jellyfish has venom potent enough to kill a human in minutes,
+          making it one of the ocean's most dangerous creatures. Their tentacles
+          contain thousands of microscopic stinging cells called nematocysts
+          that inject toxins affecting the heart, nervous system, and skin cells
+          simultaneously.
+        </p>
       </div>
     </div>
   </div>
 
+  <h2 class="h3">Animation</h2>
+  <p>
+    Panels open and close with a pure CSS transition &mdash; no JavaScript
+    measures or sets a height. The panel transitions between
+    <span class="code-ref">height: 0</span> and
+    <span class="code-ref">height: auto</span>, which is made interpolatable by
+    <span class="code-ref">interpolate-size: allow-keywords</span> scoped to
+    <span class="code-ref">.accordion</span>.
+  </p>
+  <p>
+    This is a progressive enhancement. In browsers that don't yet support
+    <span class="code-ref">interpolate-size</span> the panel opens and closes
+    instantly instead of animating &mdash; the accordion is fully functional
+    either way, and no content is ever hidden or clipped. Panels also open
+    instantly when
+    <span class="code-ref">prefers-reduced-motion: reduce</span> is set.
+  </p>
+  <p>
+    Duration is controlled by
+    <span class="variable-ref">$accordion-transition-duration</span>. To turn
+    the animation off everywhere, set it to <span class="code-ref">0s</span>.
+  </p>
+
   <h2 class="h3">Colors</h2>
-  <p>If <span class="variable-ref">$generate-accordion-modifiers</span> is set to true you can use a color modifier from the <span class="variable-ref">$colors</span> map to apply formatting to an accordion or an accordion-item.</p>
+  <p>
+    If <span class="variable-ref">$generate-accordion-modifiers</span> is set to
+    true you can use a color modifier from the
+    <span class="variable-ref">$colors</span> map to apply formatting to an
+    accordion or an accordion-item.
+  </p>
   <pre class="language-markup">
     <code><!--
      <div class="accordion primary">
@@ -231,43 +306,60 @@
 
   <div class="accordion primary" data-start-collapsed>
     <div class="accordion-item">
-      <h5 class="accordion-heading">
-        Giant Tentacles
-      </h5>
+      <h5 class="accordion-heading">Giant Tentacles</h5>
       <div class="accordion-panel">
-        <p>The lion's mane jellyfish can grow tentacles over 100 feet long, making it longer than a blue whale. Found in cold Arctic waters, the largest recorded specimen had a bell diameter of over 7 feet and tentacles reaching an astounding 120 feet in length.</p>
+        <p>
+          The lion's mane jellyfish can grow tentacles over 100 feet long,
+          making it longer than a blue whale. Found in cold Arctic waters, the
+          largest recorded specimen had a bell diameter of over 7 feet and
+          tentacles reaching an astounding 120 feet in length.
+        </p>
       </div>
     </div>
     <div class="accordion-item">
-      <h3 class="accordion-heading">
-        Glow Up
-      </h3>
+      <h3 class="accordion-heading">Glow Up</h3>
       <div class="accordion-panel">
-        <p>Many jellyfish species produce their own light through chemical reactions, creating stunning displays in dark waters. This bioluminescence can serve multiple purposes including attracting prey, deterring predators, and even communicating with other jellyfish in the murky depths.</p>
+        <p>
+          Many jellyfish species produce their own light through chemical
+          reactions, creating stunning displays in dark waters. This
+          bioluminescence can serve multiple purposes including attracting prey,
+          deterring predators, and even communicating with other jellyfish in
+          the murky depths.
+        </p>
       </div>
     </div>
   </div>
 
   <div class="accordion" data-start-collapsed>
     <div class="accordion-item success">
-      <h5 class="accordion-heading">
-        Breathe Easy
-      </h5>
+      <h5 class="accordion-heading">Breathe Easy</h5>
       <div class="accordion-panel">
-        <p>They absorb oxygen directly through their skin and have no need for lungs or circulatory systems. Their thin membrane allows gases to diffuse in and out efficiently, while nutrients from digested food spread throughout their body via a simple gastrovascular cavity.</p>
+        <p>
+          They absorb oxygen directly through their skin and have no need for
+          lungs or circulatory systems. Their thin membrane allows gases to
+          diffuse in and out efficiently, while nutrients from digested food
+          spread throughout their body via a simple gastrovascular cavity.
+        </p>
       </div>
     </div>
     <div class="accordion-item error">
-      <h3 class="accordion-heading">
-        Smack My Fish Up
-      </h3>
+      <h3 class="accordion-heading">Smack My Fish Up</h3>
       <div class="accordion-panel">
-        <p>Groups of jellyfish, called blooms or smacks, can contain hundreds of thousands of individuals and clog fishing nets. These population explosions are becoming more frequent due to warming oceans and overfishing, sometimes shutting down power plants when they block cooling water intake pipes.</p>
+        <p>
+          Groups of jellyfish, called blooms or smacks, can contain hundreds of
+          thousands of individuals and clog fishing nets. These population
+          explosions are becoming more frequent due to warming oceans and
+          overfishing, sometimes shutting down power plants when they block
+          cooling water intake pipes.
+        </p>
       </div>
     </div>
   </div>
 
-  <p>The color variants are opinionated, but it's easy to override them with custom CSS properties:</p>
+  <p>
+    The color variants are opinionated, but it's easy to override them with
+    custom CSS properties:
+  </p>
   <pre class="language-scss">
     <code><!--
      .accordion-item.primary,
@@ -280,7 +372,10 @@
       }
   --></code>
   </pre>
-  <p>The base styling with be set with <a href="./variables.html#accordions">SASS variables</a> for ease.</p>
+  <p>
+    The base styling with be set with
+    <a href="./variables.html#accordions">SASS variables</a> for ease.
+  </p>
 </div>
 
 <!-- TODO: Should the details element work out the box? -->
