@@ -1,0 +1,71 @@
+@use "sass:list";
+@use "sass:math";
+@use "sass:meta";
+@use "sass-apca" as apca;
+
+// -------------------
+//
+// APCA contrast linter
+//
+// Build-time check on the colour pairs Jellyfish actually emits. Every pair the
+// framework generates (button theme/text, chip, table cell, callout heading,
+// accordion heading, .bg-* section text, and each palette step against its
+// -contrast companion) is scored with APCA and anything below the threshold is
+// reported via @warn. Treat that output as a failing test — see CLAUDE.md.
+//
+// Configured by $apca-lint / $apca-lint-threshold in
+// abstracts/02-settings/_wcag_accessibility.scss.
+//
+// -------------------
+
+// Absolute APCA lightness contrast (Lc) between two colours, or null when
+// either side isn't a resolvable Sass colour — a var() reference can't be
+// scored at build time, and "can't check" is not the same as "failed".
+@function apca-score($text, $background) {
+  @if meta.type-of($text) != "color" or meta.type-of($background) != "color" {
+    @return null;
+  }
+  @return math.abs(apca.contrast($text, $background));
+}
+
+// Scores a comma-separated list of `$label $text $background` triples (each
+// triple space-separated, so nesting stays unambiguous) and emits one @warn
+// naming every pair that falls below the threshold. One warning per context
+// rather than one per pair, so a failing palette reads as a single report.
+//
+// Returns null so it can be called from inside a function:
+//   $_: apca-lint($pairs, "context");
+// or via the matching mixin from inside a mixin/rule:
+//   @include apca-lint($pairs, "context");
+@function apca-lint($pairs, $context, $threshold: null) {
+  @if $apca-lint != true {
+    @return null;
+  }
+
+  $threshold: if($threshold == null, $apca-lint-threshold, $threshold);
+  $failures: "";
+
+  @each $pair in $pairs {
+    $label: list.nth($pair, 1);
+    $text: list.nth($pair, 2);
+    $background: list.nth($pair, 3);
+    $score: apca-score($text, $background);
+
+    @if $score != null and $score < $threshold {
+      // One decimal place — rounding to whole numbers prints a pair that
+      // failed at 59.6 as "Lc 60", which reads like a false positive.
+      $rounded: math.div(math.round($score * 10), 10);
+      $failures: "#{$failures}\a      #{$label}: #{$text} on #{$background} scores Lc #{$rounded}";
+    }
+  }
+
+  @if $failures != "" {
+    @warn "APCA: #{$context} has pairs below Lc #{$threshold}:#{$failures}";
+  }
+
+  @return null;
+}
+
+@mixin apca-lint($pairs, $context, $threshold: null) {
+  $_: apca-lint($pairs, $context, $threshold);
+}
