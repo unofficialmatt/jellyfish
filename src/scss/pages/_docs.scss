@@ -75,7 +75,7 @@
   flex-wrap: wrap;
   align-items: baseline;
   z-index: 9;
-  background-color: rgba($color-white, 0.9);
+  background-color: color-mix(in srgb, var(--color-background) 90%, transparent);
   backdrop-filter: blur(3px);
   //  font-weight: $weight-light;
   .chip-group:first-of-type {
@@ -135,7 +135,7 @@ pre {
     float: right;
     display: block;
     background-color: get-color(neutral, 400);
-    color: $color-white;
+    color: var(--color-white);
     padding: 0.4em 0.6em;
     text-shadow: none;
   }
@@ -205,7 +205,7 @@ div.code-toolbar {
   padding: $element-padding 0;
   .boxed {
     margin: 0;
-    background-color: $color-white;
+    background-color: var(--color-white);
     border: 1px solid get-color(neutral, 300);
   }
 }
@@ -253,7 +253,7 @@ div.code-toolbar {
     &:hover,
     &:focus {
       background-color: get-color(primary, 200);
-      color: $color-white;
+      color: var(--color-white);
       transform: scale(1.02);
     }
   }
@@ -298,19 +298,19 @@ div.code-toolbar {
 }
 .card.container-query-2 {
   @include container-below(400px) {
-    border-color: red;
+    border-color: var(--color-primary-500);
     border-width: 4px;
   }
 }
 .card.container-query-3 {
   @include container-between(400px, 420px) {
-    background: rgb(116, 190, 255);
+    background: var(--color-secondary-200);
   }
 }
 .card.container-query-6 {
   @include below(lg) {
     @include container-above(400px) {
-      border-color: red;
+      border-color: var(--color-primary-500);
       border-width: 4px;
     }
   }

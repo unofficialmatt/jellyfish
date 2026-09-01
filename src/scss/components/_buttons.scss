@@ -1,16 +1,15 @@
 // Button stack defined in settings.scss
 #{$buttons} {
   --button-color-theme: #{v(color-#{$button-base-color}-500)};
-  --button-color-text: #{resolve-contrast-color(
-      get-color-raw($button-base-color)
-    )};
+  --button-color-text: #{get-fg-color($button-base-color)};
 
   @if $button-hover-value != 500 {
     --button-hover-color-theme: #{v(
         color-#{$button-base-color}-#{$button-hover-value}
       )};
-    --button-hover-color-text: #{resolve-contrast-color(
-        get-color-raw($button-base-color, $button-hover-value)
+    --button-hover-color-text: #{get-fg-color(
+        $button-base-color,
+        $button-hover-value
       )};
   }
   --button-padding-x: #{$button-padding-x};

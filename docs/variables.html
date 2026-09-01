@@ -106,9 +106,6 @@
           <li>
             <a href="./utilities.html">Utility Classes</a>
           </li>
-          <li>
-            <a href="./debug.html">Debugging</a>
-          </li>
         </ul>
       </div>
     </aside>
@@ -294,13 +291,13 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$color-text</span></td>
-        <td><span class="code-ref">get-color-raw(neutral, 1000)</span></td>
-        <td>The default color for body copy. This needs to resolve to a valid CSS color value, hence the use of <span class="code-ref">get-color-raw()</span> <br><br><span class="bold">This is output as a custom CSS property --color-text; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(color-text)</span></span></td>
+        <td><span class="code-ref">get-color(neutral, 1000)</span></td>
+        <td>The default color for body copy. Holds a live <span class="code-ref">var(--color-neutral-1000)</span> reference by default, so it follows a runtime override of the neutral palette rather than baking a fixed value at compile time. Anywhere it needs to feed Sass colour maths instead (e.g. <span class="code-ref">resolve-contrast-color()</span>'s <span class="code-ref">$color-dark</span> argument), it's normalised back to a real color via <span class="code-ref">raw-color()</span>. You can still override it with a raw literal directly if you want a color outside the palette. <br><br><span class="bold">This is output as a custom CSS property --color-text; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(color-text)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$color-headings-preferred</span></td>
-        <td><span class="code-ref">get-color-raw(neutral, 700)</span></td>
-        <td>The default color for headings. This needs to resolve to a valid CSS color value, hence the use of <span class="code-ref">get-color-raw()</span> <br><br><span class="bold">This is output as a custom CSS property --color-headings-preferred; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(color-headings-preferred)</span></span></td>
+        <td><span class="code-ref">get-color(neutral, 700)</span></td>
+        <td>The default color for headings. Same live-reference behavior as <span class="variable-ref">$color-text</span> above. <br><br><span class="bold">This is output as a custom CSS property --color-headings-preferred; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(color-headings-preferred)</span></span></td>
       </tr>
     </tbody>
   </table>
@@ -764,11 +761,6 @@
         <td>Whether or not to generate <span class="css-ref">.offset-*</span> <a href="./grid.html">modifier classes</a></td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$debug-mode-on</span></td>
-        <td>false</td>
-        <td>Enable <a href="./debug.html">debug mode</a></td>
-      </tr>
-      <tr>
         <td><span class="variable-ref">$base-col-name</span></td>
         <td>xs</td>
         <td>The base name for <span class="variable-ref">$breakpoint</span>-style modifiers at the smallest screen widths.</td>
@@ -912,7 +904,7 @@
       <tr>
         <td><span class="variable-ref">$accessibility-focus-color</span></td>
         <td>rgb(0, 140, 255)</td>
-        <td>The color used for the outline when an element receives keyboard-focus.</td>
+        <td>The color used for the outline when an element receives keyboard-focus.<br><br><span class="bold">This is output as a custom CSS property --accessibility-focus-color; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(accessibility-focus-color)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$accessibility-focus-outline-width</span></td>
@@ -928,6 +920,21 @@
         <td><span class="variable-ref">$force-color-contrast-ratio</span></td>
         <td>true</td>
         <td>Whether to force color to black when using <span class="code-ref">choose-contrast-color()</span> if the <span class="variable-ref">$color-text</span> does not have sufficient contrast.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$apca-lint</span></td>
+        <td>true</td>
+        <td>Whether the build-time APCA contrast linter scores the colour pairs Jellyfish generates (buttons, chips, tables, <span class="css-ref">.bg-*</span> sections, and each palette shade against its <span class="css-ref">-fg</span> companion). Set to <span class="code-ref">false</span> to skip the check entirely.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$apca-lint-warn</span></td>
+        <td>false</td>
+        <td>Whether a failing pair actually prints a Sass <span class="code-ref">@warn</span>. Off by default; set to <span class="code-ref">true</span> to surface failures while tuning your own palette.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$apca-lint-threshold</span></td>
+        <td>60</td>
+        <td>The minimum APCA Lc score a pair must reach before <span class="variable-ref">$apca-lint-warn</span> will report it as a failure.</td>
       </tr>
 
       <tr>

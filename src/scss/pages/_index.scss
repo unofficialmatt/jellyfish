@@ -7,7 +7,7 @@ body.home {
     z-index: 100;
   }
   h1 {
-    background-color: rgba(248, 217, 226);
+    background-color: get-color(secondary, 50);
     color: get-color(primary, 500);
     font-weight: $weight-xbold;
     letter-spacing: 0.04em;
@@ -21,7 +21,9 @@ body.home {
     text-transform: uppercase;
     transform: translate(-50%, n(get-size(1))) rotate(-2deg);
     border-radius: get-size(0.75);
-    box-shadow: 0 0 0 6px get-color(secondary), 0 0 0 8px rgb(255, 240, 180),
+    box-shadow:
+      0 0 0 6px get-color(secondary),
+      0 0 0 8px get-color(secondary, 25),
       0 0 0 10px get-color(primary);
   }
 }

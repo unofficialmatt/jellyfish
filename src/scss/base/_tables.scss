@@ -96,7 +96,7 @@ table.is-responsive {
         content: attr(data-label) ":";
         font-weight: $weight-semibold;
         display: block;
-        color: $color-headings-preferred;
+        color: v(color-headings-preferred);
         //border-bottom: 1px solid var(--table-border-color)
         //padding-bottom: 0.25em;
         margin-bottom: 0.5em;

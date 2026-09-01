@@ -175,14 +175,14 @@
       // 2. Applies when the nearest container is < 400px
       .card.container-query-2 {
         @include container-below(400px) {
-          border-color: red;
+          border-color: var(--color-primary-500);
           border-width: 4px;
         }
       }
       // 3. Applies when the nearest container is < 420px and >= 400px
       .card.container-query-3 {
         @include container-between(400px, 420px) {
-          background: rgb(116, 190, 255);
+          background: var(--color-secondary-200);
         }
       }
       // 4. Applies when the nearest named container is < 400px and >= 800px
@@ -201,7 +201,7 @@
       .card.container-query-6 {
         @include below(lg) {
           @include container-above(400px) {
-            border-color: red;
+            border-color: var(--color-primary-500);
             border-width: 4px;
           }
         }
@@ -268,7 +268,7 @@
           <p class="h3">#2</p>
         </div>
         <div class="card-section">
-          <p>Red border when Column Width < 400px</p>
+          <p>Border when Column Width < 400px</p>
         </div>
       </div>
     </div>
@@ -278,7 +278,7 @@
           <p class="h3">#3</p>
         </div>
         <div class="card-section">
-          <p>Blue Background when Column Width Between 400px and 420px</p>
+          <p>Background when Column Width Between 400px and 420px</p>
         </div>
       </div>
     </div>
@@ -308,7 +308,7 @@
           <p class="h3">#6</p>
         </div>
         <div class="card-section">
-          <p>Red border when Column Width >=400px, only below <span class="variable-ref">breakPoints.lg</span></p>
+          <p>Border when Column Width >=400px, only below <span class="variable-ref">breakPoints.lg</span></p>
         </div>
       </div>
     </div>

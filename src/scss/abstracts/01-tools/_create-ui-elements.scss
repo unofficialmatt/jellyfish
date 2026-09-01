@@ -2,32 +2,14 @@
   @if map-has-key($colors, $color) {
     // We don't need to run this if the color is the same as the base color
     @if $button-base-color != $color {
-      $resolved-color: resolve-contrast-color(get-color-raw($color));
-      $button-color-unmod: resolve-contrast-color(
-        get-color-raw($button-base-color)
-      );
-
       --button-color-theme: #{v(color-#{$color}-500)};
-      // Save some output CSS by only setting the color variable if it's different from the base color
-      @if ($resolved-color != $button-color-unmod) {
-        --button-color-text: #{$resolved-color};
-      }
+      --button-color-text: #{get-fg-color($color)};
 
       @if $button-hover-value != 500 {
-        $hover-color: resolve-contrast-color(
-          get-color-raw($color, $button-hover-value)
-        );
-        $hover-color-unmod: resolve-contrast-color(
-          get-color-raw($button-base-color, $button-hover-value)
-        );
         --button-hover-color-theme: #{v(
             color-#{$color}-#{$button-hover-value}
           )};
-
-        // Save some output CSS by only setting the color variable if it's different from the base color
-        @if ($hover-color != $hover-color-unmod) {
-          --button-hover-color-text: #{$hover-color};
-        }
+        --button-hover-color-text: #{get-fg-color($color, $button-hover-value)};
       }
 
       &.ghost {
@@ -46,13 +28,8 @@
 @mixin createChip($color) {
   // If passed string exists in the $colors map, get the value for the tag-color
   @if map-has-key($colors, $color) {
-    $chip-color-unmod: resolve-contrast-color(get-color-raw(neutral, 100));
-    $resolved-color: resolve-contrast-color(get-color-raw($color));
-
     --chip-color-theme: #{v(color-#{$color}-500)};
-    @if ($resolved-color != $chip-color-unmod) {
-      --chip-color-text: #{$resolved-color};
-    }
+    --chip-color-text: #{get-fg-color($color)};
   } @else {
     @warn "#{$color} was not found in the $colors map. Cannot create a chip. Aborting.";
   }
@@ -87,21 +64,15 @@
       --table-stripe-color: #{v(color-#{$color}-100)};
       --table-hover-background: #{v(color-#{$color}-200)};
       --table-cell-background: #{v(color-#{$color}-50)};
-      --table-text-color: #{resolve-contrast-color(
-          get-color-raw(#{$color}, 50)
-        )};
-      --table-text-hover-color: #{resolve-contrast-color(
-          get-color-raw(#{$color}, 200)
-        )};
+      --table-text-color: #{get-fg-color($color, 50)};
+      --table-text-hover-color: #{get-fg-color($color, 200)};
     }
     table.#{$color} th,
     th.#{$color},
     tr.#{$color} th {
       --table-cell-background: #{v(color-#{$color}-500)};
       --table-border-color: var(--table-cell-background);
-      --table-text-color: #{resolve-contrast-color(
-          get-color-raw(#{$color}, 500)
-        )};
+      --table-text-color: #{get-fg-color($color, 500)};
     }
     td.#{$color},
     tr.#{$color} {
@@ -109,12 +80,8 @@
       --table-border-color: #{v(color-#{$color}-300)};
       --table-stripe-color: #{v(color-#{$color}-100)};
       --table-hover-background: #{v(color-#{$color}-200)};
-      --table-text-color: #{resolve-contrast-color(
-          get-color-raw(#{$color}, 50)
-        )};
-      --table-text-hover-color: #{resolve-contrast-color(
-          get-color-raw(#{$color}, 200)
-        )};
+      --table-text-color: #{get-fg-color($color, 50)};
+      --table-text-hover-color: #{get-fg-color($color, 200)};
     }
   } @else {
     @warn "#{$color} was not found in the $colors map. Cannot create table modifiers. Aborting.";

@@ -135,7 +135,8 @@ i {
 
 // Highlighted
 mark {
-  background: rgb(255, 255, 157);
+  background: v(mark-background);
+  color: v(mark-color);
   padding: 0.15em 0.3em;
   display: inline-block;
 }
@@ -191,7 +192,7 @@ q {
 kbd {
   @extend %inline-code;
   background-color: v(color-text);
-  color: $color-white;
+  color: var(--color-white);
 }
 
 // Code

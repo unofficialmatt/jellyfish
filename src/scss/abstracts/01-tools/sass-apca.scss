@@ -99,6 +99,8 @@ $_blueMultiplier: 0.072175;
  * @param   {color}  $backgroundColor  Background color
  * @param   {color}  $lightColor       [optional] Preferred light color, default is white
  * @param   {color}  $darkColor        [optional] Preferred dark color, default is black
+ * @param   {bool}   $force            [optional] Force a fallback to $forceColor if neither candidate reaches Lc 75
+ * @param   {color}  $forceColor       [optional] Fallback color used when $force retries, default is black
  *
  * @return  {color}                    Light or dark text color, whichever provides the better contrast against the chosen background
  */
@@ -106,7 +108,8 @@ $_blueMultiplier: 0.072175;
   $backgroundColor,
   $lightColor: white,
   $darkColor: black,
-  $force: false
+  $force: false,
+  $forceColor: black
 ) {
   @if (meta.type-of($backgroundColor) != "color") {
     @error "Type Error: apca.recommend-text-color expects a color as first argument but received #{meta.type-of($backgroundColor)}. Please provide a valid color.";
@@ -137,9 +140,9 @@ $_blueMultiplier: 0.072175;
   @if ($bestContrast < 75) {
     @if ($force == true) {
       //@warn "Forcing contrast ratio to be greater for accessibility compliance because the best was #{$bestContrast}. New contrast ratio is #{$darkContrast} for background color #{$backgroundColor}.";
-      $darkContrast: math.abs(contrast(#000000, $backgroundColor));
+      $darkContrast: math.abs(contrast($forceColor, $backgroundColor));
       @if ($darkContrast > $lightContrast) {
-        $contrastColor: #000000;
+        $contrastColor: $forceColor;
         $bestContrast: $darkContrast;
       } @else {
         $contrastColor: $lightColor;

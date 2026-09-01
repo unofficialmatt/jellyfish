@@ -7,7 +7,7 @@ $colors: map-merge(
   (
     "primary": makeColorPalette(#eb567d),
     "secondary": makeColorPalette(#ffa0cd),
-    "neutral": makeColorPalette(#010101),
+    "neutral": makeColorPalette(#64748b),
     "success": makeColorPalette(#00c851),
     "warning": makeColorPalette(#ffbb33),
     "error": makeColorPalette(#ff4444),
@@ -38,6 +38,6 @@ $body-background-color: v(color-white) !default;
 // Merge default colours into the map
 $background-colors: map-merge((), $background-colors);
 
-// These both need to be css color values rather than CSS props as they are used to check for contrast
-$color-text: get-color-raw(neutral, 1000) !default;
-$color-headings-preferred: get-color-raw(neutral, 700) !default;
+$color-text: get-color(neutral, 1000) !default;
+$color-headings-preferred: get-color(neutral, 700) !default;
+$mark-background-color: #ffff9d !default;

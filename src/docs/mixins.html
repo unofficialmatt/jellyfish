@@ -107,8 +107,37 @@
     </code>
   </pre>
 
+  <h3 class="h4">raw-color() function</h3>
+  <p>The <code class="code-ref">raw-color($value)</code> function normalises a value that might already be a CSS color, or might be a <span class="code-ref">var(--color-{name}-{shade})</span> reference &mdash; returning a real color either way. Some settings, like <span class="variable-ref">$color-text</span> and <span class="variable-ref">$color-headings-preferred</span>, hold a live reference by default (so their custom property follows a runtime palette override) but still need to work as a real color anywhere Sass colour maths is involved, such as <span class="code-ref">resolve-contrast-color()</span>'s <span class="code-ref">$color-dark</span> argument. If the value is already a color, <span class="code-ref">raw-color()</span> returns it unchanged.</p>
+  <pre class="language-scss">
+    <code>
+      // Input:
+      // $color-text: get-color(neutral, 1000), i.e. var(--color-neutral-1000)
+      $c: raw-color($color-text);
+
+      // Output:
+      // $c: #232931 (the real neutral-1000 value)
+    </code>
+  </pre>
+
+  <h3 class="h4">get-fg-color() function</h3>
+  <p>The <code class="code-ref">get-fg-color($base, $shade: 500)</code> function allows you to reference the best-contrast foreground (text) color for a <span class="variable-ref">$colors</span> palette shade, returning the custom CSS property for it. Every shade's foreground pair is resolved once, in the <span class="css-ref">:root</span> token definitions, rather than recalculated by each component &mdash; this is what buttons, chips and tables use to set their text color.</p>
+  <pre class="language-scss">
+    <code>
+      // Input:
+      .element {
+        color: get-fg-color(primary, 700);
+      }
+
+      // Output:
+      .element {
+        color: var(--color-primary-700-fg);
+      }
+    </code>
+  </pre>
+
   <h3 class="h4">resolve-contrast-color() function</h3>
-  <p>The <code class="code-ref">resolve-contrast-color($color)</code> function takes one argument; the background color of an element, and returns the best color for text, based on the new <a href="https://git.apcacontrast.com" target="_blank">APCA contrast algorithm</a>. This function is used when generating all UI elements (buttons, backgrounds, chips)</p>
+  <p>The <code class="code-ref">resolve-contrast-color($color, $color-dark: $color-text)</code> function takes the background color of an element and returns the best color for text on top of it, based on the <a href="https://git.apcacontrast.com" target="_blank">APCA contrast algorithm</a> &mdash; a choice between <span class="variable-ref">$color-white</span> and <span class="variable-ref">$color-dark</span> (the softer <span class="variable-ref">$color-text</span> by default), falling back to <span class="variable-ref">$color-black</span> only if neither reaches the contrast threshold. This is the lower-level function used to build the <span class="css-ref">--color-{name}-{shade}-fg</span> custom properties once per palette shade; reach for <code class="code-ref">get-fg-color()</code> instead when styling a component against a <span class="variable-ref">$colors</span> shade.</p>
   <p>Where possible, the function will return a custom CSS property rather than a CSS color value.</p>
 
 </div>

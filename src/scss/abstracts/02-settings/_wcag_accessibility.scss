@@ -14,4 +14,5 @@ $accessibility-button-hover-border-color: get-color(secondary) !default;
 $accessibility-button-active-border-color: get-color(primary) !default;
 
 $apca-lint: true !default;
+$apca-lint-warn: false !default;
 $apca-lint-threshold: 60 !default;

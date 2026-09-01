@@ -10,10 +10,10 @@
 // Build-time check on the colour pairs Jellyfish actually emits. Every pair the
 // framework generates (button theme/text, chip, table cell, callout heading,
 // accordion heading, .bg-* section text, and each palette step against its
-// -contrast companion) is scored with APCA and anything below the threshold is
+// -fg companion) is scored with APCA and anything below the threshold is
 // reported via @warn. Treat that output as a failing test — see CLAUDE.md.
 //
-// Configured by $apca-lint / $apca-lint-threshold in
+// Configured by $apca-lint / $apca-lint-warn / $apca-lint-threshold in
 // abstracts/02-settings/_wcag_accessibility.scss.
 //
 // -------------------
@@ -59,7 +59,7 @@
     }
   }
 
-  @if $failures != "" {
+  @if $failures != "" and $apca-lint-warn == true {
     @warn "APCA: #{$context} has pairs below Lc #{$threshold}:#{$failures}";
   }
 

@@ -52,6 +52,16 @@
   }
 }
 
+// Reference the foreground (best-contrast text) custom property for a
+// $colors palette shade, generated once per shade in base/_00-css-props.scss.
+@function get-fg-color($base, $shade: 500) {
+  @if map-has-nested-keys($colors, $base, $shade) {
+    @return var(--color-#{$base}-#{$shade}-fg);
+  } @else {
+    @error "Key: '#{$base}', Value: '#{$shade}' not found in $colors map. Cancelling compile.";
+  }
+}
+
 @function font-size($size) {
   // @warn "font-size() function is deprecated and will be removed in a future release. Please refer to font sizes by CSS custom property instead eg. var(--font-size-1).";
   @if map-has-key($type-scale, $size) {
@@ -98,33 +108,44 @@
 }
 
 /**
- * Determine whether to use dark or light text on top of given color.
+ * Determine whether to use light or dark text on top of a given color.
+ * $color-dark defaults to $color-text (softer reading-text tone), only
+ * forced to pure/off-black ($color-black) if $color-text doesn't clear the
+ * contrast threshold — see $force-color-contrast-ratio. $color-dark is
+ * normalised through raw-color() first, so a live var(--color-x-y) reference
+ * (e.g. $color-text, $color-headings-preferred) works here too.
  */
 @function choose-contrast-color($color, $color-dark: $color-text) {
   $best-contrast: apca.recommend-text-color(
     $color,
     $color-white,
-    $color-dark,
-    $force-color-contrast-ratio
+    raw-color($color-dark),
+    $force-color-contrast-ratio,
+    $color-black
   );
   @return $best-contrast;
 }
 
+// Resolves to whichever candidate provided the winning contrast, preferring
+// the framework's own known aliases (white/black/text/headings-preferred)
+// over a raw value or an arbitrary passed-in $color-dark — so e.g. a bg-*
+// section whose text resolves to $color-text gets var(--color-text), not a
+// copy of whatever palette shade $color-text currently happens to point at.
 @function resolve-contrast-color($color, $color-dark: $color-text) {
   $contrast: choose-contrast-color($color, $color-dark);
   @if $contrast == $color-white {
     @return var(--color-white);
-  } @else if $contrast == $color-text {
-    @return var(--color-text);
-  } @else if $contrast == #000000 {
+  } @else if $contrast == $color-black {
     @return var(--color-black);
-  } @else if ($contrast == $color-headings-preferred) {
+  } @else if $contrast == raw-color($color-text) {
+    @return var(--color-text);
+  } @else if $contrast == raw-color($color-headings-preferred) {
     @return var(--color-headings-preferred);
+  } @else if $contrast == raw-color($color-dark) {
+    @return $color-dark;
   } @else {
     @return $contrast;
   }
-
-  @return $contrast;
 }
 
 // Shorthand to output a CSS property
@@ -173,4 +194,16 @@
   $end: str.to-number($end);
   $color: get-color-raw($base, $end);
   @return $color;
+}
+
+// Returns a real Sass color for $value: itself if already one, or the raw
+// palette shade a var(--color-{name}-{shade}) reference points at. Lets a
+// setting hold a live reference by default (so its CSS custom property
+// follows a runtime palette override) while still working anywhere Sass
+// colour maths needs a real color — e.g. $color-text, $color-headings-preferred.
+@function raw-color($value) {
+  @if type-of($value) == "string" and str-index($value, "var(--color-") {
+    @return css-prop-to-value($value);
+  }
+  @return $value;
 }

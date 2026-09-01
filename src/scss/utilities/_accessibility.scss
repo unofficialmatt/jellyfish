@@ -1,5 +1,5 @@
 @mixin accessible-focus-state {
-  outline: $accessibility-focus-outline-width solid $accessibility-focus-color;
+  outline: $accessibility-focus-outline-width solid v(accessibility-focus-color);
   outline-offset: $accessibility-focus-outline-offset;
   // z-index: 1;
   //position: relative;

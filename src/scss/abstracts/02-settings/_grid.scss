@@ -3,7 +3,6 @@
 $cols: 12 !default;
 $grid-has-order: true !default;
 $grid-has-offset: true !default;
-$debug-mode-on: false !default;
 
 // Calculate width of one column based on amount defined in settings
 $one_col: math.div(100%, $cols);

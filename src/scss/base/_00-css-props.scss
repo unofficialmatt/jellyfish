@@ -1,10 +1,29 @@
 :root {
   @include map-to-css-properties($colors, "color-");
+
+  // Foreground (best-contrast text) pairs — computed once per palette shade,
+  // not once per component. Each pair is also fed to the APCA linter.
+  $palette-fg-pairs: ();
+  @each $name, $palette in $colors {
+    @each $shade, $color in $palette {
+      @if $shade != "bg" {
+        --color-#{$name}-#{$shade}-fg: #{resolve-contrast-color($color)};
+        $palette-fg-pairs: append(
+          $palette-fg-pairs,
+          ("#{$name}-#{$shade}" choose-contrast-color($color) $color),
+          comma
+        );
+      }
+    }
+  }
+  @include apca-lint($palette-fg-pairs, "palette -fg contrast");
+
   --color-background: #{$body-background-color};
   --color-white: #{$color-white};
   --color-black: #{$color-black};
   --color-text: #{$color-text};
   --color-headings-preferred: #{$color-headings-preferred};
+  --accessibility-focus-color: #{$accessibility-focus-color};
   --font-primary: #{$font-primary};
   --font-secondary: #{$font-secondary};
   --font-monospace: #{$font-monospace};
@@ -40,6 +59,14 @@
   --link-color-active: #{$link-active};
   --link-color-visited: #{$link-visited};
 
+  --mark-background: #{$mark-background-color};
+  $mark-fg: choose-contrast-color($mark-background-color);
+  --mark-color: #{$mark-fg};
+  @include apca-lint(
+    append((), ("mark" $mark-fg $mark-background-color), comma),
+    "mark"
+  );
+
   --card-border-radius: #{$card-border-radius};
   --card-border-style: #{$card-border-style};
   --card-border-color: #{$card-border-color};
@@ -47,7 +74,7 @@
   --card-padding: #{$card-padding};
 
   --chip-color-theme: #{v(color-neutral-50)};
-  --chip-color-text: #{resolve-contrast-color(get-color-raw(neutral, 50))};
+  --chip-color-text: #{get-fg-color(neutral, 50)};
 
   --modal-max-width: #{$modal-max-width};
   --modal-padding: #{$modal-padding};

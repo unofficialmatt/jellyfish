@@ -164,28 +164,6 @@ $loop_count: 1;
       }
     }
   }
-
-  .jf-debug {
-    @if $grid-has-order {
-      [class*="order-#{$point}"] {
-        outline: 2px solid #fe53bb;
-      }
-
-      [class*="order-#{$point}-0"] {
-        outline: 0;
-      }
-    }
-
-    @if $grid-has-offset {
-      [class*="offset-#{$point}"] {
-        outline: 2px solid #fe53bb;
-      }
-
-      [class*="offset-#{$point}-0"] {
-        outline: 0;
-      }
-    }
-  }
 }
 .container.is-wide {
   @include above(sm) {
