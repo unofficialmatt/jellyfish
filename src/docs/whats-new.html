@@ -43,9 +43,16 @@
       --jf-color-primary-emphasis: var(--jf-color-primary-700);
       --jf-color-primary-strong: var(--jf-color-primary-900);
 
+      // Shared hairline. Card / table / accordion borders fall back to this when
+      // their own --jf-{component}-border-color isn't set (those aren't emitted).
+      --jf-border-color: var(--jf-color-neutral-muted);
+
+      // Shared code surface: inline code, pre and var (not kbd).
+      --jf-code-background: var(--jf-color-neutral-subtle);
+      --jf-code-color: var(--jf-color-text);
+
       --jf-card-border-radius: #{$card-border-radius};
       --jf-card-border-style: #{$card-border-style};
-      --jf-card-border-color: #{$card-border-color};
       --jf-card-border-width: #{$card-border-width};
       --jf-card-padding: #{$card-padding};
 
@@ -60,10 +67,9 @@
       --jf-form-input-placeholder-color: #{$placeholder-color};
       --jf-form-select-bg-img: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23010101' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
 
-      --jf-table-border-color: #{$table-border-color};
       --jf-table-font-size: #{$table-font-size};
-      --jf-table-stripe-color: #{$table-stripe-color};
-      --jf-table-hover-background: #{$table-hover-background};
+      --jf-table-stripe-bg-color: var(--jf-color-neutral-50);
+      --jf-table-hover-background: var(--jf-color-neutral-muted);
       --jf-table-cell-background: transparent;
 
       --jf-navbar-bg-color: #{$navbar-bg-color};

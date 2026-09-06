@@ -17,11 +17,20 @@
 
 .accordion {
   margin-bottom: $element-margin;
-  #{token-name("accordion-heading-background")}: #{$accordion-heading-bg-color};
-  #{token-name("accordion-heading-color")}: #{$accordion-heading-text-color};
-  #{token-name("accordion-heading-hover-background")}: #{$accordion-heading-hover-bg-color};
-  #{token-name("accordion-heading-hover-color")}: #{$accordion-heading-hover-text-color};
-  #{token-name("accordion-border-color")}: #{$accordion-border-color};
+  #{token-name("accordion-heading-background")}: #{token(
+      color-neutral-#{$accordion-heading-shade}
+    )};
+  #{token-name("accordion-heading-color")}: #{get-on-color(
+      neutral,
+      $accordion-heading-shade
+    )};
+  #{token-name("accordion-heading-hover-background")}: #{token(
+      color-neutral-#{$accordion-heading-hover-shade}
+    )};
+  #{token-name("accordion-heading-hover-color")}: #{get-on-color(
+      neutral,
+      $accordion-heading-hover-shade
+    )};
 
   // Lets the panel's height: 0 <-> auto transition actually interpolate, so the
   // open/close animation needs no measured pixel height and no JavaScript.
@@ -113,7 +122,7 @@ h6 {
 }
 
 .accordion-item {
-  border: 1px solid token(accordion-border-color);
+  border: 1px solid token-or(accordion-border-color, border-color);
   border-radius: 0;
   @include smooth(border-color);
 
@@ -128,7 +137,8 @@ h6 {
   height: auto;
   // Named properties rather than `all`, which also animated colour and border
   // changes inherited from the theme modifiers.
-  transition: height $accordion-transition-duration ease-in-out,
+  transition:
+    height $accordion-transition-duration ease-in-out,
     padding $accordion-transition-duration ease-in-out;
 
   @media screen and (prefers-reduced-motion: reduce) {

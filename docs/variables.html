@@ -327,6 +327,29 @@
         <td><span class="variable-ref">$color-strong-shade</span></td>
         <td>900</td>
       </tr>
+      <tr>
+        <td><span class="variable-ref">$border-color</span></td>
+        <td><span class="code-ref">get-color-role(neutral, muted)</span></td>
+        <td>The shared hairline colour. Card, table and accordion borders fall back to it &mdash; <span class="code-ref">--jf-card-border-color</span> / <span class="code-ref">--jf-table-border-color</span> / <span class="code-ref">--jf-accordion-border-color</span> aren't emitted; set one to override a single component, or change this to move all three. <span class="italic">Themed</span> table / accordion modifiers still use their own family colour.<br><br><span class="bold">Output as <span class="code-ref">--jf-border-color</span>; reference with <span class="code-ref">token(border-color)</span>, or <span class="code-ref">token-or(card-border-color, border-color)</span> for the component-with-fallback form. Because it holds a <span class="code-ref">var()</span> reference it can't be passed to Sass colour maths &mdash; use <span class="code-ref">get-color-role()</span> / <span class="code-ref">get-color-raw()</span> for that.</span></td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$code-background-color</span></td>
+        <td><span class="code-ref">get-color-role(neutral, subtle)</span></td>
+        <td rowspan="2">The shared code surface &mdash; inline <span class="code-ref">code</span>, <span class="code-ref">pre</span> and <span class="code-ref">var</span> all read these (<span class="code-ref">kbd</span> does not; it's an inverted keycap). <span class="variable-ref">$code-color</span> defaults to the body text colour. <br><br><span class="bold">Output as <span class="code-ref">--jf-code-background</span> / <span class="code-ref">--jf-code-color</span>; reference with <span class="code-ref">token(code-background)</span> / <span class="code-ref">token(code-color)</span>.</span></td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$code-color</span></td>
+        <td><span class="code-ref">token(color-text)</span></td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$selection-background-mix</span></td>
+        <td>22%</td>
+        <td rowspan="2"><span class="code-ref">::selection</span> background is <span class="code-ref">color-mix(in srgb, var(--jf-color-text) &lt;mix&gt;, var(--jf-color-surface))</span> &mdash; the text colour blended toward the current surface, so it re-tints inside <span class="css-ref">.bg-*</span> sections and stays visible on every surface (an accent tint disappears where the surface is near the accent hue). <span class="variable-ref">$selection-color</span> sets the selected-text colour (previously unset). Not a custom property &mdash; the mix lives in the rule so it resolves per selected element. Override the <span class="code-ref">::selection</span> rule for a fixed colour.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$selection-color</span></td>
+        <td><span class="code-ref">token(color-text)</span></td>
+      </tr>
     </tbody>
   </table>
 
@@ -565,24 +588,14 @@
         <td>The horizontal padding for accordion heading buttons.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$accordion-heading-bg-color</span></td>
-        <td><span class="code-ref">get-color(neutral, 25)</span></td>
-        <td>The background color for accordion heading buttons in their default state.</td>
+        <td><span class="variable-ref">$accordion-heading-shade</span></td>
+        <td><span class="code-ref">$color-subtle-shade</span></td>
+        <td>Palette shade for the accordion heading in its rest state. The heading background is the family at this shade; the heading text is that shade's <span class="code-ref">--jf-color-on-*</span> companion (APCA-picked), so the pair can't drift. Override <span class="code-ref">--jf-accordion-heading-background</span> / <span class="code-ref">--jf-accordion-heading-color</span> at runtime for a specific colour.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$accordion-heading-hover-bg-color</span></td>
-        <td><span class="code-ref">get-color(neutral, 50)</span></td>
-        <td>The background color for accordion heading buttons when hovered or expanded.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$accordion-heading-text-color</span></td>
-        <td><span class="code-ref">get-color(neutral, 900)</span></td>
-        <td>The text color for accordion heading buttons in their default state.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$accordion-heading-hover-text-color</span></td>
-        <td><span class="code-ref">get-color(neutral, 900)</span></td>
-        <td>The text color for accordion heading buttons when hovered or expanded.</td>
+        <td><span class="variable-ref">$accordion-heading-hover-shade</span></td>
+        <td><span class="code-ref">$color-muted-shade</span></td>
+        <td>Palette shade for the accordion heading when hovered or expanded — background and text derived the same way as <span class="code-ref">$accordion-heading-shade</span>. The default <span class="code-ref">muted</span> (300) gives a light tinted background one step up from the rest state, keeping the heading quiet.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$accordion-heading-weight</span></td>
@@ -593,11 +606,6 @@
         <td><span class="variable-ref">$accordion-heading-font-size</span></td>
         <td><span class="code-ref">token(font-size-1)</span></td>
         <td>The font size for accordion heading button text.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$accordion-border-color</span></td>
-        <td><span class="code-ref">get-color-role(neutral, muted)</span></td>
-        <td>The color of borders between accordion items.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$accordion-border-radius</span></td>
@@ -844,24 +852,14 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="variable-ref">$table-border-color</span></td>
-        <td><span class="code-ref">get-color-role(neutral, muted)</span></td>
-        <td>The color of table borders (the <span class="italic">muted</span> role &mdash; 300 by default).</td>
+        <td><span class="variable-ref">$table-stripe-shade</span></td>
+        <td><span class="code-ref">$color-subtle-shade</span></td>
+        <td>Palette shade for alternate rows on the neutral table (<span class="css-ref">.is-striped</span>). Themed <span class="css-ref">.{family}</span> tables wash their cells at <span class="italic">subtle</span> and stripe one step up at <span class="code-ref">{family}-100</span> &mdash; they don't read this. Override <span class="code-ref">--jf-table-stripe-bg-color</span> at runtime for a specific colour.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$table-stripe-color</span></td>
-        <td><span class="code-ref">get-color(neutral, 25)</span></td>
-        <td>The color to use for alternate rows when a table has a modifier class of <span class="css-ref">.is-striped</span>.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$table-hover-background</span></td>
-        <td><span class="code-ref">get-color(neutral, 50)</span></td>
-        <td>The color to use for hovered rows when a table has a modifier class of <span class="css-ref">.is-hoverable</span>.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$table-hover-color</span></td>
-        <td><span class="variable-ref">var(--jf-color-text)</span></td>
-        <td>The color to use for text in a hovered row when a table has a modifier class of <span class="css-ref">.is-hoverable</span>.</td>
+        <td><span class="variable-ref">$table-hover-shade</span></td>
+        <td><span class="code-ref">$color-muted-shade</span></td>
+        <td>Palette shade for a hovered row (<span class="css-ref">.is-hoverable</span>). The row background is the family at this shade; the text is that shade's <span class="code-ref">--jf-color-on-*</span> companion (APCA-picked), so the pair stays legible. Override <span class="code-ref">--jf-table-hover-background</span> / <span class="code-ref">--jf-table-text-hover-color</span> at runtime for a specific colour.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$table-cell-padding</span></td>

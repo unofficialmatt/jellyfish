@@ -1,12 +1,9 @@
 $generate-accordion-modifiers: true !default;
 $accordion-padding-y: get-size(0.75) !default;
 $accordion-padding-x: get-size(1) !default;
-$accordion-heading-bg-color: get-color(neutral, 25) !default;
-$accordion-heading-hover-bg-color: get-color(neutral, 50) !default;
-$accordion-heading-text-color: get-color(neutral, 900) !default;
-$accordion-heading-hover-text-color: get-color(neutral, 900) !default;
+$accordion-heading-shade: $color-subtle-shade !default;
+$accordion-heading-hover-shade: $color-muted-shade !default;
 $accordion-heading-weight: $weight-bold !default;
 $accordion-heading-font-size: token(font-size-1) !default;
-$accordion-border-color: get-color-role(neutral, muted) !default; // CHANGED 200 -> 300 (snapped to the shared border/muted step — card, table and form borders are all 300)
 $accordion-border-radius: get-size(0.25) !default;
 $accordion-transition-duration: 0.25s !default;

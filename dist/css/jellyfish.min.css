@@ -197,6 +197,7 @@
   --jf-color-headings: var(--jf-color-neutral-700);
   --jf-color-text-muted: color-mix(in srgb, var(--jf-color-text) 70%, var(--jf-color-surface));
   --jf-color-text-subtle: color-mix(in srgb, var(--jf-color-text) 60%, var(--jf-color-surface));
+  --jf-border-color: var(--jf-color-neutral-muted);
   --jf-accessibility-focus-color: rgb(0, 140, 255);
   --jf-font-primary: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   --jf-font-secondary: var(--jf-font-primary);
@@ -220,12 +221,13 @@
   --jf-link-color-visited: var(--jf-color-primary-muted);
   --jf-mark-background: #ffff9d;
   --jf-mark-color: #232931;
+  --jf-code-background: var(--jf-color-neutral-subtle);
+  --jf-code-color: var(--jf-color-text);
   --jf-card-border-radius: 0.75rem;
   --jf-card-border-style: solid;
-  --jf-card-border-color: var(--jf-color-neutral-muted);
   --jf-card-border-width: 0.06rem;
   --jf-card-padding: 1.5rem;
-  --jf-chip-color-theme: var(--jf-color-neutral-50);
+  --jf-chip-color-theme: var(--jf-color-neutral-subtle);
   --jf-chip-color-text: var(--jf-color-on-neutral-50);
   --jf-modal-max-width: 56.25rem;
   --jf-modal-padding: 2rem;
@@ -236,16 +238,15 @@
   --jf-form-input-border-radius: 0.25rem;
   --jf-form-input-placeholder-color: var(--jf-color-text-subtle);
   --jf-form-select-bg-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
-  --jf-table-border-color: var(--jf-color-neutral-muted);
   --jf-table-font-size: var(--jf-font-size--1);
-  --jf-table-stripe-color: var(--jf-color-neutral-25);
-  --jf-table-hover-background: var(--jf-color-neutral-50);
+  --jf-table-stripe-bg-color: var(--jf-color-neutral-50);
+  --jf-table-hover-background: var(--jf-color-neutral-300);
   --jf-table-cell-background: transparent;
   --jf-navbar-bg-color: var(--jf-color-secondary-500);
   --jf-navbar-link-color: var(--jf-color-white);
   --jf-navbar-link-bg-color: var(--jf-color-secondary-500);
   --jf-navbar-link-hover-color: var(--jf-color-white);
-  --jf-navbar-link-hover-bg-color: var(--jf-color-secondary-700);
+  --jf-navbar-link-hover-bg-color: var(--jf-color-secondary-emphasis);
   --jf-navbar-link-hover-weight: 700;
   --jf-navbar-link-border: 0.06rem solid rgba(255, 255, 255, 0.1);
   --jf-navbar-text-transform: none;
@@ -522,7 +523,8 @@ pre {
        tab-size: 2;
   padding: 1.5rem;
   margin: 0 0 1.5rem 0;
-  background-color: var(--jf-color-neutral-100);
+  background-color: var(--jf-code-background);
+  color: var(--jf-code-color);
   border: var(--jf-form-input-border-width) var(--jf-form-input-border-style) var(--jf-form-input-border-color);
   line-height: 1.2;
 }
@@ -553,11 +555,13 @@ img {
 }
 
 ::-moz-selection {
-  background: var(--jf-color-primary-100);
+  background: color-mix(in srgb, var(--jf-color-text) 15%, var(--jf-color-surface));
+  color: var(--jf-color-text);
 }
 
 ::selection {
-  background: var(--jf-color-primary-100);
+  background: color-mix(in srgb, var(--jf-color-text) 15%, var(--jf-color-surface));
+  color: var(--jf-color-text);
 }
 
 table {
@@ -569,7 +573,7 @@ table {
 }
 
 td {
-  border-bottom: 0.06rem solid var(--jf-table-border-color);
+  border-bottom: 0.06rem solid var(--jf-table-border-color, var(--jf-border-color));
 }
 
 th {
@@ -586,11 +590,11 @@ td {
 }
 
 thead th {
-  border-bottom: 0.13rem solid var(--jf-table-border-color);
+  border-bottom: 0.13rem solid var(--jf-table-border-color, var(--jf-border-color));
 }
 
 tfoot th {
-  border-top: 0.13rem solid var(--jf-table-border-color);
+  border-top: 0.13rem solid var(--jf-table-border-color, var(--jf-border-color));
 }
 
 .table-container {
@@ -604,13 +608,13 @@ tfoot th {
 }
 
 table.is-striped tr:nth-child(odd) td {
-  background: var(--jf-table-stripe-color);
+  background: var(--jf-table-stripe-bg-color);
 }
 
 table.has-border,
 table.has-border td,
 table.has-border th {
-  border: 0.06rem solid var(--jf-table-border-color);
+  border: 0.06rem solid var(--jf-table-border-color, var(--jf-border-color));
 }
 table.has-border thead th {
   border-bottom-width: 0.13rem;
@@ -620,7 +624,7 @@ table.has-border tfoot th {
 }
 
 table.is-hoverable tr:hover td {
-  --jf-table-text-color: var(--jf-table-text-hover-color, var(--jf-color-text));
+  --jf-table-text-color: var(--jf-table-text-hover-color, var(--jf-color-on-neutral-300));
   background: var(--jf-table-hover-background) !important;
 }
 
@@ -640,7 +644,7 @@ table.is-hoverable tr:hover td {
   }
   table.is-responsive td,
   table.is-responsive th {
-    border: 0.06rem solid var(--jf-table-border-color);
+    border: 0.06rem solid var(--jf-table-border-color, var(--jf-border-color));
   }
   table.is-responsive tr {
     display: block;
@@ -658,165 +662,165 @@ table.is-hoverable tr:hover td {
 }
 
 table.primary {
-  --jf-table-border-color: var(--jf-color-primary-300);
-  --jf-table-stripe-color: var(--jf-color-primary-100);
-  --jf-table-hover-background: var(--jf-color-primary-200);
-  --jf-table-cell-background: var(--jf-color-primary-50);
+  --jf-table-border-color: var(--jf-color-primary-muted);
+  --jf-table-stripe-bg-color: var(--jf-color-primary-100);
+  --jf-table-hover-background: var(--jf-color-primary-300);
+  --jf-table-cell-background: var(--jf-color-primary-subtle);
   --jf-table-text-color: var(--jf-color-on-primary-50);
-  --jf-table-text-hover-color: var(--jf-color-on-primary-200);
+  --jf-table-text-hover-color: var(--jf-color-on-primary-300);
 }
 
 table.primary th,
 th.primary,
 tr.primary th {
-  --jf-table-cell-background: var(--jf-color-primary-500);
+  --jf-table-cell-background: var(--jf-color-primary);
   --jf-table-border-color: var(--jf-table-cell-background);
   --jf-table-text-color: var(--jf-color-on-primary-500);
 }
 
 td.primary,
 tr.primary {
-  --jf-table-cell-background: var(--jf-color-primary-50);
-  --jf-table-border-color: var(--jf-color-primary-300);
-  --jf-table-stripe-color: var(--jf-color-primary-100);
-  --jf-table-hover-background: var(--jf-color-primary-200);
+  --jf-table-cell-background: var(--jf-color-primary-subtle);
+  --jf-table-border-color: var(--jf-color-primary-muted);
+  --jf-table-stripe-bg-color: var(--jf-color-primary-100);
+  --jf-table-hover-background: var(--jf-color-primary-300);
   --jf-table-text-color: var(--jf-color-on-primary-50);
-  --jf-table-text-hover-color: var(--jf-color-on-primary-200);
+  --jf-table-text-hover-color: var(--jf-color-on-primary-300);
 }
 
 table.secondary {
-  --jf-table-border-color: var(--jf-color-secondary-300);
-  --jf-table-stripe-color: var(--jf-color-secondary-100);
-  --jf-table-hover-background: var(--jf-color-secondary-200);
-  --jf-table-cell-background: var(--jf-color-secondary-50);
+  --jf-table-border-color: var(--jf-color-secondary-muted);
+  --jf-table-stripe-bg-color: var(--jf-color-secondary-100);
+  --jf-table-hover-background: var(--jf-color-secondary-300);
+  --jf-table-cell-background: var(--jf-color-secondary-subtle);
   --jf-table-text-color: var(--jf-color-on-secondary-50);
-  --jf-table-text-hover-color: var(--jf-color-on-secondary-200);
+  --jf-table-text-hover-color: var(--jf-color-on-secondary-300);
 }
 
 table.secondary th,
 th.secondary,
 tr.secondary th {
-  --jf-table-cell-background: var(--jf-color-secondary-500);
+  --jf-table-cell-background: var(--jf-color-secondary);
   --jf-table-border-color: var(--jf-table-cell-background);
   --jf-table-text-color: var(--jf-color-on-secondary-500);
 }
 
 td.secondary,
 tr.secondary {
-  --jf-table-cell-background: var(--jf-color-secondary-50);
-  --jf-table-border-color: var(--jf-color-secondary-300);
-  --jf-table-stripe-color: var(--jf-color-secondary-100);
-  --jf-table-hover-background: var(--jf-color-secondary-200);
+  --jf-table-cell-background: var(--jf-color-secondary-subtle);
+  --jf-table-border-color: var(--jf-color-secondary-muted);
+  --jf-table-stripe-bg-color: var(--jf-color-secondary-100);
+  --jf-table-hover-background: var(--jf-color-secondary-300);
   --jf-table-text-color: var(--jf-color-on-secondary-50);
-  --jf-table-text-hover-color: var(--jf-color-on-secondary-200);
+  --jf-table-text-hover-color: var(--jf-color-on-secondary-300);
 }
 
 table.neutral {
-  --jf-table-border-color: var(--jf-color-neutral-300);
-  --jf-table-stripe-color: var(--jf-color-neutral-100);
-  --jf-table-hover-background: var(--jf-color-neutral-200);
-  --jf-table-cell-background: var(--jf-color-neutral-50);
+  --jf-table-border-color: var(--jf-color-neutral-muted);
+  --jf-table-stripe-bg-color: var(--jf-color-neutral-100);
+  --jf-table-hover-background: var(--jf-color-neutral-300);
+  --jf-table-cell-background: var(--jf-color-neutral-subtle);
   --jf-table-text-color: var(--jf-color-on-neutral-50);
-  --jf-table-text-hover-color: var(--jf-color-on-neutral-200);
+  --jf-table-text-hover-color: var(--jf-color-on-neutral-300);
 }
 
 table.neutral th,
 th.neutral,
 tr.neutral th {
-  --jf-table-cell-background: var(--jf-color-neutral-500);
+  --jf-table-cell-background: var(--jf-color-neutral);
   --jf-table-border-color: var(--jf-table-cell-background);
   --jf-table-text-color: var(--jf-color-on-neutral-500);
 }
 
 td.neutral,
 tr.neutral {
-  --jf-table-cell-background: var(--jf-color-neutral-50);
-  --jf-table-border-color: var(--jf-color-neutral-300);
-  --jf-table-stripe-color: var(--jf-color-neutral-100);
-  --jf-table-hover-background: var(--jf-color-neutral-200);
+  --jf-table-cell-background: var(--jf-color-neutral-subtle);
+  --jf-table-border-color: var(--jf-color-neutral-muted);
+  --jf-table-stripe-bg-color: var(--jf-color-neutral-100);
+  --jf-table-hover-background: var(--jf-color-neutral-300);
   --jf-table-text-color: var(--jf-color-on-neutral-50);
-  --jf-table-text-hover-color: var(--jf-color-on-neutral-200);
+  --jf-table-text-hover-color: var(--jf-color-on-neutral-300);
 }
 
 table.success {
-  --jf-table-border-color: var(--jf-color-success-300);
-  --jf-table-stripe-color: var(--jf-color-success-100);
-  --jf-table-hover-background: var(--jf-color-success-200);
-  --jf-table-cell-background: var(--jf-color-success-50);
+  --jf-table-border-color: var(--jf-color-success-muted);
+  --jf-table-stripe-bg-color: var(--jf-color-success-100);
+  --jf-table-hover-background: var(--jf-color-success-300);
+  --jf-table-cell-background: var(--jf-color-success-subtle);
   --jf-table-text-color: var(--jf-color-on-success-50);
-  --jf-table-text-hover-color: var(--jf-color-on-success-200);
+  --jf-table-text-hover-color: var(--jf-color-on-success-300);
 }
 
 table.success th,
 th.success,
 tr.success th {
-  --jf-table-cell-background: var(--jf-color-success-500);
+  --jf-table-cell-background: var(--jf-color-success);
   --jf-table-border-color: var(--jf-table-cell-background);
   --jf-table-text-color: var(--jf-color-on-success-500);
 }
 
 td.success,
 tr.success {
-  --jf-table-cell-background: var(--jf-color-success-50);
-  --jf-table-border-color: var(--jf-color-success-300);
-  --jf-table-stripe-color: var(--jf-color-success-100);
-  --jf-table-hover-background: var(--jf-color-success-200);
+  --jf-table-cell-background: var(--jf-color-success-subtle);
+  --jf-table-border-color: var(--jf-color-success-muted);
+  --jf-table-stripe-bg-color: var(--jf-color-success-100);
+  --jf-table-hover-background: var(--jf-color-success-300);
   --jf-table-text-color: var(--jf-color-on-success-50);
-  --jf-table-text-hover-color: var(--jf-color-on-success-200);
+  --jf-table-text-hover-color: var(--jf-color-on-success-300);
 }
 
 table.warning {
-  --jf-table-border-color: var(--jf-color-warning-300);
-  --jf-table-stripe-color: var(--jf-color-warning-100);
-  --jf-table-hover-background: var(--jf-color-warning-200);
-  --jf-table-cell-background: var(--jf-color-warning-50);
+  --jf-table-border-color: var(--jf-color-warning-muted);
+  --jf-table-stripe-bg-color: var(--jf-color-warning-100);
+  --jf-table-hover-background: var(--jf-color-warning-300);
+  --jf-table-cell-background: var(--jf-color-warning-subtle);
   --jf-table-text-color: var(--jf-color-on-warning-50);
-  --jf-table-text-hover-color: var(--jf-color-on-warning-200);
+  --jf-table-text-hover-color: var(--jf-color-on-warning-300);
 }
 
 table.warning th,
 th.warning,
 tr.warning th {
-  --jf-table-cell-background: var(--jf-color-warning-500);
+  --jf-table-cell-background: var(--jf-color-warning);
   --jf-table-border-color: var(--jf-table-cell-background);
   --jf-table-text-color: var(--jf-color-on-warning-500);
 }
 
 td.warning,
 tr.warning {
-  --jf-table-cell-background: var(--jf-color-warning-50);
-  --jf-table-border-color: var(--jf-color-warning-300);
-  --jf-table-stripe-color: var(--jf-color-warning-100);
-  --jf-table-hover-background: var(--jf-color-warning-200);
+  --jf-table-cell-background: var(--jf-color-warning-subtle);
+  --jf-table-border-color: var(--jf-color-warning-muted);
+  --jf-table-stripe-bg-color: var(--jf-color-warning-100);
+  --jf-table-hover-background: var(--jf-color-warning-300);
   --jf-table-text-color: var(--jf-color-on-warning-50);
-  --jf-table-text-hover-color: var(--jf-color-on-warning-200);
+  --jf-table-text-hover-color: var(--jf-color-on-warning-300);
 }
 
 table.error {
-  --jf-table-border-color: var(--jf-color-error-300);
-  --jf-table-stripe-color: var(--jf-color-error-100);
-  --jf-table-hover-background: var(--jf-color-error-200);
-  --jf-table-cell-background: var(--jf-color-error-50);
+  --jf-table-border-color: var(--jf-color-error-muted);
+  --jf-table-stripe-bg-color: var(--jf-color-error-100);
+  --jf-table-hover-background: var(--jf-color-error-300);
+  --jf-table-cell-background: var(--jf-color-error-subtle);
   --jf-table-text-color: var(--jf-color-on-error-50);
-  --jf-table-text-hover-color: var(--jf-color-on-error-200);
+  --jf-table-text-hover-color: var(--jf-color-on-error-300);
 }
 
 table.error th,
 th.error,
 tr.error th {
-  --jf-table-cell-background: var(--jf-color-error-500);
+  --jf-table-cell-background: var(--jf-color-error);
   --jf-table-border-color: var(--jf-table-cell-background);
   --jf-table-text-color: var(--jf-color-on-error-500);
 }
 
 td.error,
 tr.error {
-  --jf-table-cell-background: var(--jf-color-error-50);
-  --jf-table-border-color: var(--jf-color-error-300);
-  --jf-table-stripe-color: var(--jf-color-error-100);
-  --jf-table-hover-background: var(--jf-color-error-200);
+  --jf-table-cell-background: var(--jf-color-error-subtle);
+  --jf-table-border-color: var(--jf-color-error-muted);
+  --jf-table-stripe-bg-color: var(--jf-color-error-100);
+  --jf-table-hover-background: var(--jf-color-error-300);
   --jf-table-text-color: var(--jf-color-on-error-50);
-  --jf-table-text-hover-color: var(--jf-color-on-error-200);
+  --jf-table-text-hover-color: var(--jf-color-on-error-300);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -964,14 +968,14 @@ kbd {
 }
 
 :not(pre) > code {
-  background-color: var(--jf-color-neutral-50);
-  color: var(--jf-color-text);
+  background-color: var(--jf-code-background);
+  color: var(--jf-code-color);
 }
 
 var {
-  background-color: var(--jf-color-neutral-50);
+  background-color: var(--jf-code-background);
   font-style: italic;
-  color: var(--jf-color-neutral-800);
+  color: var(--jf-code-color);
 }
 
 sub,
@@ -2248,13 +2252,13 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
   outline: 0;
 }
 [type=range]:focus::-webkit-slider-runnable-track {
-  background: var(--jf-color-neutral-50);
+  background: var(--jf-color-neutral-subtle);
 }
 [type=range]:focus::-ms-fill-lower {
-  background: var(--jf-color-neutral-50);
+  background: var(--jf-color-neutral-subtle);
 }
 [type=range]:focus::-ms-fill-upper {
-  background: var(--jf-color-neutral-50);
+  background: var(--jf-color-neutral-subtle);
 }
 [type=range]:focus::-webkit-slider-thumb {
   background-color: var(--jf-color-primary-500);
@@ -2272,13 +2276,13 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
   transition: all 0.2s ease;
   width: 100%;
   box-shadow: 0 0 0 transparent;
-  background: var(--jf-color-neutral-50);
+  background: var(--jf-color-neutral-subtle);
   border: 0.06rem solid var(--jf-color-neutral-muted);
   border-radius: 0.25rem;
 }
 [type=range]::-webkit-slider-thumb {
   box-shadow: 0 0.06rem 0.38rem rgba(200, 200, 200, 0.8);
-  background: var(--jf-color-neutral-300);
+  background: var(--jf-color-neutral-muted);
   border: 0.13rem solid var(--jf-color-white);
   border-radius: 0.75rem;
   box-sizing: border-box;
@@ -2295,14 +2299,14 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
   -moz-transition: all 0.2s ease;
   transition: all 0.2s ease;
   width: 100%;
-  background: var(--jf-color-neutral-50);
+  background: var(--jf-color-neutral-subtle);
   border: 0.06rem solid var(--jf-color-neutral-muted);
   border-radius: 0.25rem;
   height: 0.38rem;
 }
 [type=range]::-moz-range-thumb {
   box-shadow: 0 0.06rem 0.38rem rgba(200, 200, 200, 0.8);
-  background: var(--jf-color-neutral-300);
+  background: var(--jf-color-neutral-muted);
   border: 0.13rem solid var(--jf-color-white);
   border-radius: 0.75rem;
   box-sizing: border-box;
@@ -2323,19 +2327,19 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
 }
 [type=range]::-ms-fill-lower {
   box-shadow: 0 0 0 transparent;
-  background: var(--jf-color-neutral-100);
+  background: var(--jf-color-neutral-subtle);
   border: 0.06rem solid var(--jf-color-neutral-muted);
   border-radius: 0.5rem;
 }
 [type=range]::-ms-fill-upper {
   box-shadow: 0 0 0 transparent;
-  background: var(--jf-color-neutral-50);
+  background: var(--jf-color-neutral-subtle);
   border: 0.06rem solid var(--jf-color-neutral-muted);
   border-radius: 0.5rem;
 }
 [type=range]::-ms-thumb {
   box-shadow: 0 0.06rem 0.38rem rgba(200, 200, 200, 0.8);
-  background: var(--jf-color-neutral-300);
+  background: var(--jf-color-neutral-muted);
   border: 0.13rem solid var(--jf-color-white);
   border-radius: 0.75rem;
   box-sizing: border-box;
@@ -2571,8 +2575,8 @@ button.hamburger.is-active {
   color: var(--jf-color-white);
 }
 button.hamburger:hover, button.hamburger:focus {
-  background-color: var(--jf-color-secondary-700);
-  border: 0.06rem solid var(--jf-color-secondary-700);
+  background-color: var(--jf-color-secondary-emphasis);
+  border: 0.06rem solid var(--jf-color-secondary-emphasis);
   color: var(--jf-color-white);
 }
 
@@ -2642,7 +2646,7 @@ button.hamburger:hover, button.hamburger:focus {
     --jf-navbar-link-color: var(--jf-color-white);
     --jf-navbar-link-bg-color: var(--jf-color-secondary-500);
     --jf-navbar-link-hover-color: var(--jf-color-white);
-    --jf-navbar-link-hover-bg-color: var(--jf-color-secondary-700);
+    --jf-navbar-link-hover-bg-color: var(--jf-color-secondary-emphasis);
   }
   .navbar-menu li > ul a {
     border-top: var(--jf-navbar-link-border);
@@ -2796,11 +2800,10 @@ button.hamburger:hover, button.hamburger:focus {
 
 .accordion {
   margin-bottom: 1.5rem;
-  --jf-accordion-heading-background: var(--jf-color-neutral-25);
-  --jf-accordion-heading-color: var(--jf-color-neutral-900);
-  --jf-accordion-heading-hover-background: var(--jf-color-neutral-50);
-  --jf-accordion-heading-hover-color: var(--jf-color-neutral-900);
-  --jf-accordion-border-color: var(--jf-color-neutral-muted);
+  --jf-accordion-heading-background: var(--jf-color-neutral-50);
+  --jf-accordion-heading-color: var(--jf-color-on-neutral-50);
+  --jf-accordion-heading-hover-background: var(--jf-color-neutral-300);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-neutral-300);
   interpolate-size: allow-keywords;
 }
 
@@ -2889,7 +2892,7 @@ h6 .accordion-heading {
 }
 
 .accordion-item {
-  border: 0.06rem solid var(--jf-accordion-border-color);
+  border: 0.06rem solid var(--jf-accordion-border-color, var(--jf-border-color));
   border-radius: 0;
   transition: border-color 0.2s ease;
 }
@@ -2918,55 +2921,55 @@ h6 .accordion-heading {
 
 .accordion.primary,
 .accordion-item.primary {
-  --jf-accordion-heading-background: var(--jf-color-primary-25);
-  --jf-accordion-heading-color: var(--jf-color-primary-900);
-  --jf-accordion-heading-hover-background: var(--jf-color-primary-50);
-  --jf-accordion-heading-hover-color: var(--jf-color-primary-900);
-  --jf-accordion-border-color: var(--jf-color-primary-500);
+  --jf-accordion-heading-background: var(--jf-color-primary-50);
+  --jf-accordion-heading-color: var(--jf-color-on-primary-50);
+  --jf-accordion-heading-hover-background: var(--jf-color-primary-300);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-primary-300);
+  --jf-accordion-border-color: var(--jf-color-primary-muted);
 }
 .accordion.secondary,
 .accordion-item.secondary {
-  --jf-accordion-heading-background: var(--jf-color-secondary-25);
-  --jf-accordion-heading-color: var(--jf-color-secondary-900);
-  --jf-accordion-heading-hover-background: var(--jf-color-secondary-50);
-  --jf-accordion-heading-hover-color: var(--jf-color-secondary-900);
-  --jf-accordion-border-color: var(--jf-color-secondary-500);
+  --jf-accordion-heading-background: var(--jf-color-secondary-50);
+  --jf-accordion-heading-color: var(--jf-color-on-secondary-50);
+  --jf-accordion-heading-hover-background: var(--jf-color-secondary-300);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-secondary-300);
+  --jf-accordion-border-color: var(--jf-color-secondary-muted);
 }
 .accordion.neutral,
 .accordion-item.neutral {
-  --jf-accordion-heading-background: var(--jf-color-neutral-25);
-  --jf-accordion-heading-color: var(--jf-color-neutral-900);
-  --jf-accordion-heading-hover-background: var(--jf-color-neutral-50);
-  --jf-accordion-heading-hover-color: var(--jf-color-neutral-900);
-  --jf-accordion-border-color: var(--jf-color-neutral-500);
+  --jf-accordion-heading-background: var(--jf-color-neutral-50);
+  --jf-accordion-heading-color: var(--jf-color-on-neutral-50);
+  --jf-accordion-heading-hover-background: var(--jf-color-neutral-300);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-neutral-300);
+  --jf-accordion-border-color: var(--jf-color-neutral-muted);
 }
 .accordion.success,
 .accordion-item.success {
-  --jf-accordion-heading-background: var(--jf-color-success-25);
-  --jf-accordion-heading-color: var(--jf-color-success-900);
-  --jf-accordion-heading-hover-background: var(--jf-color-success-50);
-  --jf-accordion-heading-hover-color: var(--jf-color-success-900);
-  --jf-accordion-border-color: var(--jf-color-success-500);
+  --jf-accordion-heading-background: var(--jf-color-success-50);
+  --jf-accordion-heading-color: var(--jf-color-on-success-50);
+  --jf-accordion-heading-hover-background: var(--jf-color-success-300);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-success-300);
+  --jf-accordion-border-color: var(--jf-color-success-muted);
 }
 .accordion.warning,
 .accordion-item.warning {
-  --jf-accordion-heading-background: var(--jf-color-warning-25);
-  --jf-accordion-heading-color: var(--jf-color-warning-900);
-  --jf-accordion-heading-hover-background: var(--jf-color-warning-50);
-  --jf-accordion-heading-hover-color: var(--jf-color-warning-900);
-  --jf-accordion-border-color: var(--jf-color-warning-500);
+  --jf-accordion-heading-background: var(--jf-color-warning-50);
+  --jf-accordion-heading-color: var(--jf-color-on-warning-50);
+  --jf-accordion-heading-hover-background: var(--jf-color-warning-300);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-warning-300);
+  --jf-accordion-border-color: var(--jf-color-warning-muted);
 }
 .accordion.error,
 .accordion-item.error {
-  --jf-accordion-heading-background: var(--jf-color-error-25);
-  --jf-accordion-heading-color: var(--jf-color-error-900);
-  --jf-accordion-heading-hover-background: var(--jf-color-error-50);
-  --jf-accordion-heading-hover-color: var(--jf-color-error-900);
-  --jf-accordion-border-color: var(--jf-color-error-500);
+  --jf-accordion-heading-background: var(--jf-color-error-50);
+  --jf-accordion-heading-color: var(--jf-color-on-error-50);
+  --jf-accordion-heading-hover-background: var(--jf-color-error-300);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-error-300);
+  --jf-accordion-border-color: var(--jf-color-error-muted);
 }
 
 .button, a.button, button, [type=submit], [type=reset], [type=button] {
-  --jf-button-color-theme: var(--jf-color-primary-500);
+  --jf-button-color-theme: var(--jf-color-primary);
   --jf-button-color-text: var(--jf-color-on-primary-500);
   --jf-button-hover-color-theme: var(--jf-color-primary-700);
   --jf-button-hover-color-text: var(--jf-color-on-primary-700);
@@ -3107,7 +3110,7 @@ a.button.ghost:focus {
 
 .button.secondary,
 a.button.secondary {
-  --jf-button-color-theme: var(--jf-color-secondary-500);
+  --jf-button-color-theme: var(--jf-color-secondary);
   --jf-button-color-text: var(--jf-color-on-secondary-500);
   --jf-button-hover-color-theme: var(--jf-color-secondary-700);
   --jf-button-hover-color-text: var(--jf-color-on-secondary-700);
@@ -3118,7 +3121,7 @@ a.button.secondary.ghost {
 }
 .button.neutral,
 a.button.neutral {
-  --jf-button-color-theme: var(--jf-color-neutral-500);
+  --jf-button-color-theme: var(--jf-color-neutral);
   --jf-button-color-text: var(--jf-color-on-neutral-500);
   --jf-button-hover-color-theme: var(--jf-color-neutral-700);
   --jf-button-hover-color-text: var(--jf-color-on-neutral-700);
@@ -3129,7 +3132,7 @@ a.button.neutral.ghost {
 }
 .button.success,
 a.button.success {
-  --jf-button-color-theme: var(--jf-color-success-500);
+  --jf-button-color-theme: var(--jf-color-success);
   --jf-button-color-text: var(--jf-color-on-success-500);
   --jf-button-hover-color-theme: var(--jf-color-success-700);
   --jf-button-hover-color-text: var(--jf-color-on-success-700);
@@ -3140,7 +3143,7 @@ a.button.success.ghost {
 }
 .button.warning,
 a.button.warning {
-  --jf-button-color-theme: var(--jf-color-warning-500);
+  --jf-button-color-theme: var(--jf-color-warning);
   --jf-button-color-text: var(--jf-color-on-warning-500);
   --jf-button-hover-color-theme: var(--jf-color-warning-700);
   --jf-button-hover-color-text: var(--jf-color-on-warning-700);
@@ -3151,7 +3154,7 @@ a.button.warning.ghost {
 }
 .button.error,
 a.button.error {
-  --jf-button-color-theme: var(--jf-color-error-500);
+  --jf-button-color-theme: var(--jf-color-error);
   --jf-button-color-text: var(--jf-color-on-error-500);
   --jf-button-hover-color-theme: var(--jf-color-error-700);
   --jf-button-hover-color-text: var(--jf-color-on-error-700);
@@ -3164,16 +3167,16 @@ a.button.error.ghost {
 a.button.white {
   --jf-button-color-theme: var(--jf-color-white);
   --jf-button-color-text: var(--jf-color-text);
-  --jf-button-hover-color-theme: var(--jf-color-neutral-50);
+  --jf-button-hover-color-theme: var(--jf-color-neutral-subtle);
   color: var(--jf-button-color-text);
 }
 
 .callout {
-  --jf-callout-bg-color: var(--jf-color-neutral-25);
-  --jf-callout-border-color: var(--jf-color-neutral-100);
-  --jf-callout-link-color: var(--jf-color-neutral-700);
-  --jf-callout-link-color-hover: var(--jf-color-neutral-900);
-  --jf-callout-heading-color: var(--jf-color-neutral-800);
+  --jf-callout-bg-color: var(--jf-color-neutral-subtle);
+  --jf-callout-border-color: var(--jf-color-neutral-muted);
+  --jf-callout-link-color: var(--jf-color-neutral-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-neutral-strong);
+  --jf-callout-heading-color: var(--jf-color-neutral-strong);
   border-width: 0.06rem 0.06rem 0.06rem 0.5rem;
   border-style: solid;
   border-color: var(--jf-callout-border-color);
@@ -3204,46 +3207,46 @@ a.button.white {
   margin-bottom: 0;
 }
 .callout.primary {
-  --jf-callout-bg-color: var(--jf-color-primary-25);
-  --jf-callout-border-color: var(--jf-color-primary-200);
-  --jf-callout-link-color: var(--jf-color-primary-700);
-  --jf-callout-link-color-hover: var(--jf-color-primary-900);
-  --jf-callout-heading-color: var(--jf-color-primary-800);
+  --jf-callout-bg-color: var(--jf-color-primary-subtle);
+  --jf-callout-border-color: var(--jf-color-primary-muted);
+  --jf-callout-link-color: var(--jf-color-primary-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-primary-strong);
+  --jf-callout-heading-color: var(--jf-color-primary-strong);
 }
 .callout.secondary {
-  --jf-callout-bg-color: var(--jf-color-secondary-25);
-  --jf-callout-border-color: var(--jf-color-secondary-200);
-  --jf-callout-link-color: var(--jf-color-secondary-700);
-  --jf-callout-link-color-hover: var(--jf-color-secondary-900);
-  --jf-callout-heading-color: var(--jf-color-secondary-800);
+  --jf-callout-bg-color: var(--jf-color-secondary-subtle);
+  --jf-callout-border-color: var(--jf-color-secondary-muted);
+  --jf-callout-link-color: var(--jf-color-secondary-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-secondary-strong);
+  --jf-callout-heading-color: var(--jf-color-secondary-strong);
 }
 .callout.neutral {
-  --jf-callout-bg-color: var(--jf-color-neutral-25);
-  --jf-callout-border-color: var(--jf-color-neutral-200);
-  --jf-callout-link-color: var(--jf-color-neutral-700);
-  --jf-callout-link-color-hover: var(--jf-color-neutral-900);
-  --jf-callout-heading-color: var(--jf-color-neutral-800);
+  --jf-callout-bg-color: var(--jf-color-neutral-subtle);
+  --jf-callout-border-color: var(--jf-color-neutral-muted);
+  --jf-callout-link-color: var(--jf-color-neutral-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-neutral-strong);
+  --jf-callout-heading-color: var(--jf-color-neutral-strong);
 }
 .callout.success {
-  --jf-callout-bg-color: var(--jf-color-success-25);
-  --jf-callout-border-color: var(--jf-color-success-200);
-  --jf-callout-link-color: var(--jf-color-success-700);
-  --jf-callout-link-color-hover: var(--jf-color-success-900);
-  --jf-callout-heading-color: var(--jf-color-success-800);
+  --jf-callout-bg-color: var(--jf-color-success-subtle);
+  --jf-callout-border-color: var(--jf-color-success-muted);
+  --jf-callout-link-color: var(--jf-color-success-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-success-strong);
+  --jf-callout-heading-color: var(--jf-color-success-strong);
 }
 .callout.warning {
-  --jf-callout-bg-color: var(--jf-color-warning-25);
-  --jf-callout-border-color: var(--jf-color-warning-200);
-  --jf-callout-link-color: var(--jf-color-warning-700);
-  --jf-callout-link-color-hover: var(--jf-color-warning-900);
-  --jf-callout-heading-color: var(--jf-color-warning-800);
+  --jf-callout-bg-color: var(--jf-color-warning-subtle);
+  --jf-callout-border-color: var(--jf-color-warning-muted);
+  --jf-callout-link-color: var(--jf-color-warning-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-warning-strong);
+  --jf-callout-heading-color: var(--jf-color-warning-strong);
 }
 .callout.error {
-  --jf-callout-bg-color: var(--jf-color-error-25);
-  --jf-callout-border-color: var(--jf-color-error-200);
-  --jf-callout-link-color: var(--jf-color-error-700);
-  --jf-callout-link-color-hover: var(--jf-color-error-900);
-  --jf-callout-heading-color: var(--jf-color-error-800);
+  --jf-callout-bg-color: var(--jf-color-error-subtle);
+  --jf-callout-border-color: var(--jf-color-error-muted);
+  --jf-callout-link-color: var(--jf-color-error-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-error-strong);
+  --jf-callout-heading-color: var(--jf-color-error-strong);
 }
 .callout.white {
   --jf-callout-bg-color: var(--jf-color-white);
@@ -3255,7 +3258,7 @@ a.button.white {
   flex-grow: 1;
   overflow: hidden;
   border-radius: var(--jf-card-border-radius);
-  border: var(--jf-card-border-width) var(--jf-card-border-style) var(--jf-card-border-color);
+  border: var(--jf-card-border-width) var(--jf-card-border-style) var(--jf-card-border-color, var(--jf-border-color));
   margin-bottom: 1.5rem;
 }
 .card > :last-child {
@@ -3304,27 +3307,27 @@ a.button.white {
   border-style: solid;
 }
 .chip.primary {
-  --jf-chip-color-theme: var(--jf-color-primary-500);
+  --jf-chip-color-theme: var(--jf-color-primary);
   --jf-chip-color-text: var(--jf-color-on-primary-500);
 }
 .chip.secondary {
-  --jf-chip-color-theme: var(--jf-color-secondary-500);
+  --jf-chip-color-theme: var(--jf-color-secondary);
   --jf-chip-color-text: var(--jf-color-on-secondary-500);
 }
 .chip.neutral {
-  --jf-chip-color-theme: var(--jf-color-neutral-500);
+  --jf-chip-color-theme: var(--jf-color-neutral);
   --jf-chip-color-text: var(--jf-color-on-neutral-500);
 }
 .chip.success {
-  --jf-chip-color-theme: var(--jf-color-success-500);
+  --jf-chip-color-theme: var(--jf-color-success);
   --jf-chip-color-text: var(--jf-color-on-success-500);
 }
 .chip.warning {
-  --jf-chip-color-theme: var(--jf-color-warning-500);
+  --jf-chip-color-theme: var(--jf-color-warning);
   --jf-chip-color-text: var(--jf-color-on-warning-500);
 }
 .chip.error {
-  --jf-chip-color-theme: var(--jf-color-error-500);
+  --jf-chip-color-theme: var(--jf-color-error);
   --jf-chip-color-text: var(--jf-color-on-error-500);
 }
 .chip.white {
@@ -3428,7 +3431,7 @@ body.has-open-modal {
 }
 
 .modal-close {
-  --jf-button-color-theme: var(--jf-color-neutral-200);
+  --jf-button-color-theme: var(--jf-color-neutral-muted);
   --jf-button-hover-color-theme: var(--jf-color-neutral-500);
   position: absolute;
   top: 0.5rem;
@@ -3457,7 +3460,7 @@ body.has-open-modal {
 }
 
 .modal-navigation-button {
-  --jf-button-color-theme: var(--jf-color-neutral-200);
+  --jf-button-color-theme: var(--jf-color-neutral-muted);
   --jf-button-hover-color-theme: var(--jf-color-white);
   padding: 0;
   width: 2rem;
@@ -3480,13 +3483,14 @@ body.has-open-modal {
 }
 
 .progress {
-  --jf-progress-bar-bg-color: var(--jf-color-neutral-50);
-  --jf-progress-bar-color: var(--jf-color-neutral-200);
-  --jf-progress-bar-color-unknown: var(--jf-color-neutral-100);
+  --jf-progress-bar-bg-color: var(--jf-color-neutral-subtle);
+  --jf-progress-bar-color: var(--jf-color-neutral-muted);
+  --jf-progress-bar-color-unknown: var(--jf-color-neutral-muted);
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
   border: none;
+  background-color: var(--jf-progress-bar-bg-color);
   background-size: auto;
   display: block;
   width: 100%;
@@ -3528,28 +3532,34 @@ body.has-open-modal {
   animation-name: none;
 }
 .progress.primary {
-  --jf-progress-bar-color: var(--jf-color-primary-500);
-  --jf-progress-bar-color-unknown: var(--jf-color-primary-100);
+  --jf-progress-bar-bg-color: var(--jf-color-primary-subtle);
+  --jf-progress-bar-color: var(--jf-color-primary);
+  --jf-progress-bar-color-unknown: var(--jf-color-primary-muted);
 }
 .progress.secondary {
-  --jf-progress-bar-color: var(--jf-color-secondary-500);
-  --jf-progress-bar-color-unknown: var(--jf-color-secondary-100);
+  --jf-progress-bar-bg-color: var(--jf-color-secondary-subtle);
+  --jf-progress-bar-color: var(--jf-color-secondary);
+  --jf-progress-bar-color-unknown: var(--jf-color-secondary-muted);
 }
 .progress.neutral {
-  --jf-progress-bar-color: var(--jf-color-neutral-500);
-  --jf-progress-bar-color-unknown: var(--jf-color-neutral-100);
+  --jf-progress-bar-bg-color: var(--jf-color-neutral-subtle);
+  --jf-progress-bar-color: var(--jf-color-neutral);
+  --jf-progress-bar-color-unknown: var(--jf-color-neutral-muted);
 }
 .progress.success {
-  --jf-progress-bar-color: var(--jf-color-success-500);
-  --jf-progress-bar-color-unknown: var(--jf-color-success-100);
+  --jf-progress-bar-bg-color: var(--jf-color-success-subtle);
+  --jf-progress-bar-color: var(--jf-color-success);
+  --jf-progress-bar-color-unknown: var(--jf-color-success-muted);
 }
 .progress.warning {
-  --jf-progress-bar-color: var(--jf-color-warning-500);
-  --jf-progress-bar-color-unknown: var(--jf-color-warning-100);
+  --jf-progress-bar-bg-color: var(--jf-color-warning-subtle);
+  --jf-progress-bar-color: var(--jf-color-warning);
+  --jf-progress-bar-color-unknown: var(--jf-color-warning-muted);
 }
 .progress.error {
-  --jf-progress-bar-color: var(--jf-color-error-500);
-  --jf-progress-bar-color-unknown: var(--jf-color-error-100);
+  --jf-progress-bar-bg-color: var(--jf-color-error-subtle);
+  --jf-progress-bar-color: var(--jf-color-error);
+  --jf-progress-bar-color-unknown: var(--jf-color-error-muted);
 }
 .progress.white {
   --jf-progress-bar-color: var(--jf-color-white);
@@ -4177,7 +4187,7 @@ a:focus-visible {
 
 [type=color]:focus, [type=date]:focus, [type=datetime]:focus, [type=datetime-local]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=url]:focus, [type=week]:focus, [type=time]:focus, select:focus, textarea:focus, [type=month]:focus {
   border-color: var(--jf-color-neutral-500);
-  box-shadow: inset 0.06rem 0.13rem 0.06rem 0 var(--jf-color-neutral-300), inset -0.06rem -0.13rem 0.06rem 0 var(--jf-color-neutral-200);
+  box-shadow: inset 0.06rem 0.13rem 0.06rem 0 var(--jf-color-neutral-subtle), inset -0.06rem -0.13rem 0.06rem 0 var(--jf-color-neutral-subtle);
 }
 
 .radio input[type=radio]:focus + .radio-control {

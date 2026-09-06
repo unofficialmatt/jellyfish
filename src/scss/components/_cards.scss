@@ -5,7 +5,7 @@
   overflow: hidden;
   border-radius: token(card-border-radius);
   border: token(card-border-width) token(card-border-style)
-    token(card-border-color);
+    token-or(card-border-color, border-color);
   margin-bottom: $element-margin;
 
   & > :last-child {

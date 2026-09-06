@@ -243,6 +243,16 @@ $token-prefix: jf !default;
   @return token($value, $fallback);
 }
 
+// Reference a component-scoped token, falling back to a shared token when the
+// component one isn't set. Neither needs declaring on :root — the component
+// token is a pure opt-in override seam, the shared token carries the default.
+// @param {String} $stem - component token stem, e.g. "card-border-color"
+// @param {String} $fallback-stem - shared token stem, e.g. "border-color"
+// @return {String} e.g. var(--jf-card-border-color, var(--jf-border-color))
+@function token-or($stem, $fallback-stem) {
+  @return var(#{token-name($stem)}, var(#{token-name($fallback-stem)}));
+}
+
 @function str-reverse($string) {
   $reverse-string: "";
   @for $i from 1 through str-length($string) {

@@ -1,9 +1,6 @@
 $border-width: 1px !default;
 $border-style: solid !default;
-$border-color: get-color-role(
-  neutral,
-  muted
-) !default; // TODO: This needs actually outputing somewjhere?
+$border-color: get-color-role(neutral, muted) !default;
 $border-radius: 4px !default;
 $borders: token(form-input-border-width) token(form-input-border-style)
   token(form-input-border-color);
@@ -19,20 +16,21 @@ $select-chevron-color: get-color-raw(neutral, 500) !default;
 $select-chevron-icon-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='{{color}}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E" !default;
 $form-border-hover: get-color(neutral) !default;
 $form-font: token(font-primary) !default;
-$form-focus-border-color: get-color(neutral, 500) !default;
-$form-focus-shadow-inner: inset 1px 2px 1px 0px get-color(neutral, 300) !default;
-$form-focus-shadow-outer: inset -1px -2px 1px 0px get-color(neutral, 200) !default;
+$form-focus-border-color: get-color(neutral) !default;
+$form-focus-shadow-inner: inset 1px 2px 1px 0px get-color-role(neutral, subtle) !default;
+$form-focus-shadow-outer: inset -1px -2px 1px 0px
+  get-color-role(neutral, subtle) !default;
 
 $form-label-size: token(font-size--1) !default;
 $form-label-weight: $weight-semibold !default;
 
 // INPUT[type="range"]
 
-$range-thumb-color: get-color(neutral, 300) !default;
-$range-track-color: get-color(neutral, 50) !default;
-$range-track-color-bottom-ie: get-color(neutral, 100) !default;
+$range-thumb-color: get-color-role(neutral, muted) !default;
+$range-track-color: get-color-role(neutral, subtle) !default;
+$range-track-color-bottom-ie: get-color-role(neutral, subtle) !default; // IE/EdgeHTML-only (::-ms-fill-lower) — dead code, delete with the ::-ms-* blocks
 
-$range-track-color-focus: get-color(neutral, 50) !default;
+$range-track-color-focus: get-color-role(neutral, subtle) !default;
 
 $range-thumb-height: get-size(1.5) !default;
 $range-thumb-width: $range-thumb-height !default;

@@ -1,8 +1,6 @@
 $generate-table-modifiers: true !default;
-$table-border-color: get-color-role(neutral, muted) !default;
-$table-stripe-color: get-color(neutral, 25) !default;
-$table-hover-background: get-color(neutral, 50) !default;
-$table-hover-color: token(color-text) !default;
+$table-stripe-shade: $color-subtle-shade !default;
+$table-hover-shade: $color-muted-shade !default;
 $table-cell-padding: 0.5em 0.8em !default;
 $table-responsive-breakpoint: 900px !default;
 $table-font-size: token(font-size--1) !default;

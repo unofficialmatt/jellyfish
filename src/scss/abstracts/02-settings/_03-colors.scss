@@ -32,3 +32,9 @@ $color-text-subtle-mix: 60% !default; // hint text: ::placeholder, .text-subtle
 $color-headings-preferred: get-color(neutral, $color-emphasis-shade) !default;
 
 $mark-background-color: #ffff9d !default;
+
+$code-background-color: get-color-role(neutral, subtle) !default;
+$code-color: token(color-text) !default;
+
+$selection-background-mix: 15% !default;
+$selection-color: token(color-text) !default;

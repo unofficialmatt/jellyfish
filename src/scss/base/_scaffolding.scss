@@ -103,7 +103,8 @@ pre {
   @extend %code;
   padding: $element-padding;
   margin: 0 0 $element-margin 0;
-  background-color: get-color(neutral, 100);
+  background-color: token(code-background);
+  color: token(code-color);
   border: $borders;
   line-height: 1.2;
 }
@@ -134,7 +135,12 @@ img {
   vertical-align: top; // Removes the white space under images
 }
 
-// Highlighted text
+// Highlighted text — the text colour mixed toward the current surface.
 ::selection {
-  background: get-color(primary, 100);
+  background: color-mix(
+    in srgb,
+    token(color-text) $selection-background-mix,
+    token(color-surface)
+  );
+  color: $selection-color;
 }

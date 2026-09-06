@@ -208,16 +208,16 @@ kbd {
 // Code
 :not(pre) > code {
   @extend %inline-code;
-  background-color: get-color(neutral, 50);
-  color: token(color-text);
+  background-color: token(code-background);
+  color: token(code-color);
 }
 
 // Variable
 var {
   @extend %inline-code;
-  background-color: get-color(neutral, 50);
+  background-color: token(code-background);
   font-style: italic;
-  color: get-color(neutral, 800);
+  color: token(code-color);
 }
 
 // Subscript and Superscript

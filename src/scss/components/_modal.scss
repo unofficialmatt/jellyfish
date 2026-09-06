@@ -40,7 +40,7 @@ body.has-open-modal {
 }
 
 .modal-close {
-  #{token-name("button-color-theme")}: #{get-color(neutral, 200)};
+  #{token-name("button-color-theme")}: #{get-color-role(neutral, muted)};
   #{token-name("button-hover-color-theme")}: #{get-color(neutral)};
   position: absolute;
   top: get-size(0.5);
@@ -67,7 +67,7 @@ body.has-open-modal {
 }
 
 .modal-navigation-button {
-  #{token-name("button-color-theme")}: #{get-color(neutral, 200)};
+  #{token-name("button-color-theme")}: #{get-color-role(neutral, muted)};
   #{token-name("button-hover-color-theme")}: token(color-white);
   padding: 0;
   width: $modal-navigation-arrow-size;

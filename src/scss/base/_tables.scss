@@ -7,7 +7,7 @@ table {
   font-size: token(table-font-size);
 }
 td {
-  border-bottom: 1px solid token(table-border-color);
+  border-bottom: 1px solid token-or(table-border-color, border-color);
 }
 th {
   font-weight: $weight-bold;
@@ -21,10 +21,10 @@ td {
   color: token(table-text-color, inherit);
 }
 thead th {
-  border-bottom: 2px solid token(table-border-color);
+  border-bottom: 2px solid token-or(table-border-color, border-color);
 }
 tfoot th {
-  border-top: 2px solid token(table-border-color);
+  border-top: 2px solid token-or(table-border-color, border-color);
 }
 
 // Wrap around a table to prevent it breaking outside the grid
@@ -40,7 +40,7 @@ tfoot th {
 
 table.is-striped {
   tr:nth-child(odd) td {
-    background: token(table-stripe-color);
+    background: token(table-stripe-bg-color);
   }
 }
 
@@ -48,7 +48,7 @@ table.has-border {
   &,
   td,
   th {
-    border: 1px solid token(table-border-color);
+    border: 1px solid token-or(table-border-color, border-color);
   }
   thead th {
     border-bottom-width: 2px;
@@ -60,7 +60,10 @@ table.has-border {
 
 table.is-hoverable {
   tr:hover td {
-    #{token-name("table-text-color")}: token(table-text-hover-color, #{$table-hover-color});
+    #{token-name("table-text-color")}: token(
+      table-text-hover-color,
+      #{get-on-color(neutral, $table-hover-shade)}
+    );
     background: token(table-hover-background) !important;
   }
 }
@@ -83,7 +86,7 @@ table.is-responsive {
     }
     td,
     th {
-      border: 1px solid token(table-border-color);
+      border: 1px solid token-or(table-border-color, border-color);
     }
 
     tr {
@@ -97,7 +100,7 @@ table.is-responsive {
         font-weight: $weight-semibold;
         display: block;
         color: token(color-headings);
-        //border-bottom: 1px solid token(table-border-color)
+        //border-bottom: 1px solid token-or(table-border-color, border-color)
         //padding-bottom: 0.25em;
         margin-bottom: 0.5em;
       }

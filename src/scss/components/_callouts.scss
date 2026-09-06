@@ -1,10 +1,10 @@
 @if $generate-callouts == true {
   .callout {
-    #{token-name("callout-bg-color")}: #{token(color-neutral-25)};
-    #{token-name("callout-border-color")}: #{token(color-neutral-100)};
-    #{token-name("callout-link-color")}: #{token(color-neutral-700)};
-    #{token-name("callout-link-color-hover")}: #{token(color-neutral-900)};
-    #{token-name("callout-heading-color")}: #{token(color-neutral-800)};
+    #{token-name("callout-bg-color")}: #{get-color-role(neutral, subtle)};
+    #{token-name("callout-border-color")}: #{get-color-role(neutral, muted)};
+    #{token-name("callout-link-color")}: #{get-color-role(neutral, emphasis)};
+    #{token-name("callout-link-color-hover")}: #{get-color-role(neutral, strong)};
+    #{token-name("callout-heading-color")}: #{get-color-role(neutral, strong)};
     border: {
       width: $callout-border-width;
       style: $callout-border-style;

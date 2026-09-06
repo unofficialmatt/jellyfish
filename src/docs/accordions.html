@@ -244,24 +244,30 @@
   </div>
 
   <p>
-    The color variants are opinionated, but it's easy to override them with
-    custom CSS properties:
+    Each themed heading takes its background from the family at a role shade and
+    its text from that shade's <span class="code-ref">--jf-color-on-*</span>
+    companion (the APCA-picked contrast colour), so the pair stays readable
+    without you choosing a text colour. Override the custom properties to
+    retune — pair a background with the matching <span class="code-ref">on-</span>
+    companion so contrast is preserved:
   </p>
   <pre class="language-scss">
     <code><!--
      .accordion-item.primary,
      .accordion.primary {
-        --jf-accordion-heading-background: var(--jf-color-primary-25);
-        --jf-accordion-heading-color: var(--jf-color-primary-900);
-        --jf-accordion-heading-hover-background: var(--jf-color-primary-50);
-        --jf-accordion-heading-hover-color: var(--jf-color-primary-900);
-        --jf-accordion-border-color: var(--jf-color-primary-500);
+        --jf-accordion-heading-background: var(--jf-color-primary-subtle);
+        --jf-accordion-heading-color: var(--jf-color-on-primary-50);
+        --jf-accordion-heading-hover-background: var(--jf-color-primary-muted);
+        --jf-accordion-heading-hover-color: var(--jf-color-on-primary-300);
+        --jf-accordion-border-color: var(--jf-color-primary-muted);
       }
   --></code>
   </pre>
   <p>
-    The base styling with be set with
-    <a href="./variables.html#accordions">SASS variables</a> for ease.
+    The rest/hover shades are set globally with the
+    <a href="./variables.html#accordions">SASS variables</a>
+    <span class="code-ref">$accordion-heading-shade</span> and
+    <span class="code-ref">$accordion-heading-hover-shade</span>.
   </p>
 </div>
 

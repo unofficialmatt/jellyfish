@@ -1,10 +1,11 @@
 @if $generate-progressbar == true {
   .progress {
-    #{token-name("progress-bar-bg-color")}: #{token(color-neutral-50)};
-    #{token-name("progress-bar-color")}: #{token(color-neutral-200)};
-    #{token-name("progress-bar-color-unknown")}: #{token(color-neutral-100)};
+    #{token-name("progress-bar-bg-color")}: #{get-color-role(neutral, subtle)};
+    #{token-name("progress-bar-color")}: #{get-color-role(neutral, muted)};
+    #{token-name("progress-bar-color-unknown")}: #{get-color-role(neutral, muted)};
     appearance: none;
     border: none;
+    background-color: token(progress-bar-bg-color);
     background-size: auto; // Required polyfill for Safari if background image used
     display: block;
     width: 100%;

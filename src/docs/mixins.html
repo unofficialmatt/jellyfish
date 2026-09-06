@@ -24,6 +24,8 @@
       }
     </code>
   </pre>
+  <h3 class="h4">token-or() function</h3>
+  <p><span class="code-ref">token-or($stem, $fallback-stem)</span> references a component-scoped token that falls back to a shared one &mdash; <span class="code-ref">token-or(card-border-color, border-color)</span> expands to <span class="code-ref">var(--jf-card-border-color, var(--jf-border-color))</span>. Use it where the component token is a pure opt-in override seam that isn't declared on <span class="css-ref">:root</span> (the shared token carries the default), so nothing is emitted until a consumer sets it. Card, table and accordion borders use this against <span class="code-ref">--jf-border-color</span>.</p>
 </div>
 <div>
   <h2 class="h3">Working with Colors</h2>
