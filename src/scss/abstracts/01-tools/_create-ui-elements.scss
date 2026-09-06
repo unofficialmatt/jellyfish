@@ -3,13 +3,13 @@
     // We don't need to run this if the color is the same as the base color
     @if $button-base-color != $color {
       #{token-name("button-color-theme")}: #{token(color-#{$color}-500)};
-      #{token-name("button-color-text")}: #{get-fg-color($color)};
+      #{token-name("button-color-text")}: #{get-on-color($color)};
 
       @if $button-hover-value != 500 {
         #{token-name("button-hover-color-theme")}: #{token(
             color-#{$color}-#{$button-hover-value}
           )};
-        #{token-name("button-hover-color-text")}: #{get-fg-color(
+        #{token-name("button-hover-color-text")}: #{get-on-color(
             $color,
             $button-hover-value
           )};
@@ -32,7 +32,7 @@
   // If passed string exists in the $colors map, get the value for the tag-color
   @if map-has-key($colors, $color) {
     #{token-name("chip-color-theme")}: #{token(color-#{$color}-500)};
-    #{token-name("chip-color-text")}: #{get-fg-color($color)};
+    #{token-name("chip-color-text")}: #{get-on-color($color)};
   } @else {
     @warn "#{$color} was not found in the $colors map. Cannot create a chip. Aborting.";
   }
@@ -67,15 +67,15 @@
       #{token-name("table-stripe-color")}: #{token(color-#{$color}-100)};
       #{token-name("table-hover-background")}: #{token(color-#{$color}-200)};
       #{token-name("table-cell-background")}: #{token(color-#{$color}-50)};
-      #{token-name("table-text-color")}: #{get-fg-color($color, 50)};
-      #{token-name("table-text-hover-color")}: #{get-fg-color($color, 200)};
+      #{token-name("table-text-color")}: #{get-on-color($color, 50)};
+      #{token-name("table-text-hover-color")}: #{get-on-color($color, 200)};
     }
     table.#{$color} th,
     th.#{$color},
     tr.#{$color} th {
       #{token-name("table-cell-background")}: #{token(color-#{$color}-500)};
       #{token-name("table-border-color")}: #{token(table-cell-background)};
-      #{token-name("table-text-color")}: #{get-fg-color($color, 500)};
+      #{token-name("table-text-color")}: #{get-on-color($color, 500)};
     }
     td.#{$color},
     tr.#{$color} {
@@ -83,8 +83,8 @@
       #{token-name("table-border-color")}: #{token(color-#{$color}-300)};
       #{token-name("table-stripe-color")}: #{token(color-#{$color}-100)};
       #{token-name("table-hover-background")}: #{token(color-#{$color}-200)};
-      #{token-name("table-text-color")}: #{get-fg-color($color, 50)};
-      #{token-name("table-text-hover-color")}: #{get-fg-color($color, 200)};
+      #{token-name("table-text-color")}: #{get-on-color($color, 50)};
+      #{token-name("table-text-hover-color")}: #{get-on-color($color, 200)};
     }
   } @else {
     @warn "#{$color} was not found in the $colors map. Cannot create table modifiers. Aborting.";

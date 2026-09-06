@@ -1,0 +1,12 @@
+# gulp-file-include source templates. Prettier treats the `@@include(..., { … })`
+# directive as plain text: it collapses the multi-line head onto one line, then
+# hard-wraps at printWidth — and the wrap can land inside the JSON5 "title" /
+# "description" strings, which gulp-file-include then fails to parse
+# (`JSON5: invalid character '\n'`). Leave these hand-formatted.
+src/docs/
+src/docs/*.html
+src/docs/**/*.html
+
+# Generated output — never hand-edited, never formatted.
+docs/
+dist/

@@ -19,25 +19,16 @@ $color-white: #ffffff !default;
 $color-black: #000000 !default;
 $body-background-color: token(color-white) !default;
 
-// Merge colors from $colors map into $background-colors if 'bg' is set to 'true'
-@each $color-name, $color-palette in $colors {
-  @if map-get($color-palette, "bg") == "true" {
-    @each $key, $val in $color-palette {
-      @if $key == "bg" {
-        // DO NOTHING
-      } @else {
-        $background-colors: map-merge(
-          (#{$color-name}-#{$key}: get-color($color-name, $key)),
-          $background-colors
-        );
-      }
-    }
-  }
-}
+$color-subtle-shade: 50 !default; // faint tinted backgrounds
+$color-muted-shade: 300 !default; // borders, low-emphasis fills, visited links
+$color-emphasis-shade: 700 !default; // hover / active, heading tone
+$color-strong-shade: 900 !default; // text on a tint, strongest headings
 
-// Merge default colours into the map
-$background-colors: map-merge((), $background-colors);
+$link-color: primary !default; // Default family for links, output as css props --link-color-*
 
 $color-text: get-color(neutral, 1000) !default;
-$color-headings-preferred: get-color(neutral, 700) !default;
+$color-text-muted-mix: 70% !default; // secondary content: captions, .text-muted
+$color-text-subtle-mix: 60% !default; // hint text: ::placeholder, .text-subtle
+$color-headings-preferred: get-color(neutral, $color-emphasis-shade) !default;
+
 $mark-background-color: #ffff9d !default;

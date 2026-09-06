@@ -53,6 +53,14 @@
   @extend %small;
 }
 
+.text-muted {
+  color: token(color-text-muted) !important;
+}
+
+.text-subtle {
+  color: token(color-text-subtle) !important;
+}
+
 .nowrap {
   white-space: nowrap !important;
 }

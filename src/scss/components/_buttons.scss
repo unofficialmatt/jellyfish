@@ -1,13 +1,13 @@
 // Button stack defined in settings.scss
 #{$buttons} {
   #{token-name("button-color-theme")}: #{token(color-#{$button-base-color}-500)};
-  #{token-name("button-color-text")}: #{get-fg-color($button-base-color)};
+  #{token-name("button-color-text")}: #{get-on-color($button-base-color)};
 
   @if $button-hover-value != 500 {
     #{token-name("button-hover-color-theme")}: #{token(
         color-#{$button-base-color}-#{$button-hover-value}
       )};
-    #{token-name("button-hover-color-text")}: #{get-fg-color(
+    #{token-name("button-hover-color-text")}: #{get-on-color(
         $button-base-color,
         $button-hover-value
       )};

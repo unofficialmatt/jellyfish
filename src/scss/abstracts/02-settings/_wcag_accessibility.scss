@@ -6,7 +6,7 @@ $force-color-contrast-ratio: true !default;
 
 $accessibility-button-font-weight: $weight-bold !default;
 $accessibility-button-color: get-color(neutral, 500) !default;
-$accessibility-button-hover-color: $link-active !default;
+$accessibility-button-hover-color: token(link-color-active) !default;
 $accessibility-button-active-color: inherit !default;
 
 $accessibility-button-border-bottom: 2px !default;

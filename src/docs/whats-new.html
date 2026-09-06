@@ -7,6 +7,9 @@
   What's New
 </h1>
 
+<h2 class="h3">Surface (<span class="code-ref">.bg-*</span>) modifiers</h2>
+<p>A <span class="code-ref">.bg-{family}</span> class is now generated for every colour in <span class="code-ref">$colors</span> (<span class="code-ref">.bg-primary</span>, <span class="code-ref">.bg-neutral</span>, &hellip;), plus <span class="code-ref">.bg-white</span>. Put one on any element &mdash; a <span class="code-ref">section</span>, a <span class="code-ref">.card</span>, a <span class="code-ref">div</span> &mdash; and it becomes a themed surface: <span class="code-ref">--jf-color-surface</span> and its contrast-picked <span class="code-ref">--jf-color-text</span> / <span class="code-ref">--jf-color-headings</span> are set for you, the muted / subtle text tiers re-tint toward it, and everything nested (headings, <span class="code-ref">.text-muted</span>, callouts, cards) follows by inheritance &mdash; no descendant selectors. Add specific shades or one-off colours via the <span class="code-ref">$background-colors</span> map. <a href="./theme-colors.html">See Theme Colors.</a></p>
+
 <h2 class="h3">New heading mixin</h2>
 <p>Sometimes you want to add the font sizes of a heading level element (eg. h2) but don't want to - or can't - add a .h2 class (e.g. when modifying vendor markup).</p>
 <p>Previously you might have used <span class="code-ref">@extend .h2;</span> to do this, but this is problematic as css could get unwieldly due to any reference to the .h2 class being included in the generated css.</p>
@@ -26,14 +29,19 @@
 <pre class="language-scss line-numbers">
     <code>
 
-      // Default styling for anchor links
-      --jf-link-color: #{$link-color};
-      --jf-link-color-active: #{$link-color-active};
-      --jf-link-color-visited: #{$link-color-visited};
+      // Anchor links. $link-color is now a palette *family*; the active and
+      // visited colours derive from it via the semantic role layer.
+      --jf-link-color: var(--jf-color-primary);
+      --jf-link-color-active: var(--jf-color-primary-emphasis);
+      --jf-link-color-visited: var(--jf-color-primary-muted);
 
-      // Shortcuts for 500 color shades - iterates for all colors in the $colors map
+      // Semantic aliases - emitted for every family in the $colors map.
+      // Bare = 500; the four roles map to $color-{role}-shade (retune once).
       --jf-color-primary: var(--jf-color-primary-500);
-      --jf-color-secondary: var(--jf-color-secondary-500);
+      --jf-color-primary-subtle: var(--jf-color-primary-50);
+      --jf-color-primary-muted: var(--jf-color-primary-300);
+      --jf-color-primary-emphasis: var(--jf-color-primary-700);
+      --jf-color-primary-strong: var(--jf-color-primary-900);
 
       --jf-card-border-radius: #{$card-border-radius};
       --jf-card-border-style: #{$card-border-style};

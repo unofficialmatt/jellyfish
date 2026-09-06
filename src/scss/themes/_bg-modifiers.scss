@@ -1,66 +1,52 @@
-// TODO: Be nicer to pass through a light heading color here, for the choose contrast
+// Background / "surface" modifiers.
+// Generates a .bg-{family} class for every colour in the palette, plus any
+// extras listed in $background-colors. Putting one on an element turns it into
+// a themed surface: it sets the background, picks text and heading colours that
+// stay readable on it, and refreshes the muted / subtle text tiers so they
+// tint toward the new background.
 
 [class*="bg-"] {
-  color: token(color-section-text);
-  background-color: token(color-section-background);
-  & :is(h1, h2, h3, h4, h5, h6) {
-    color: token(color-section-headings);
-  }
-}
-
-.bg-transparent {
-  #{token-name("color-section-background")}: transparent !important;
+  color: token(color-text);
+  background-color: token(color-surface);
 }
 
 .bg-white {
-  #{token-name("color-section-background")}: #{token(color-white)};
-  $color: resolve-contrast-color($color-white);
-  $heading-color: resolve-contrast-color(
-    $color-white,
-    $color-headings-preferred
-  );
-  #{token-name("color-section-text")}: #{$color};
-  #{token-name("color-section-headings")}: #{$heading-color};
+  #{token-name("color-surface")}: #{token(color-white)};
+  #{token-name("color-text")}: #{surface-contrast-color($color-white)};
+  #{token-name("color-headings")}: #{surface-heading-color($color-white)};
+  @include surface-text-tiers;
 }
 
-%bg-dark {
-  #{token-name("color-section-text")}: #{token(color-white)};
+// Build the full list of surface classes: one per palette family (using that
+// family's 500 shade), then merge in anything the project added to $background-colors.
+$_bg-classes: ();
+@each $family, $palette in $colors {
+  $_bg-classes: map-merge($_bg-classes, (#{$family}: get-color($family, 500)));
 }
-%heading-dark {
-  #{token-name("color-section-headings")}: #{token(color-white)};
-}
+$_bg-classes: map-merge($_bg-classes, $background-colors);
 
-%bg-light {
-  #{token-name("color-section-text")}: #{token(color-text)};
-}
-%heading-light {
-  #{token-name("color-section-headings")}: #{token(color-headings-preferred)};
-}
-
-/**
-  * Loop through the background colors and create the classes for .bg-*
-  */
-@each $key, $val in $background-colors {
+@each $key, $val in $_bg-classes {
   .bg-#{$key} {
-    #{token-name("color-section-background")}: #{$val};
-
     $bg-color: raw-color($val);
 
-    // Work out the header and text colors
-    $color: resolve-contrast-color($bg-color);
-    $color-headings: resolve-contrast-color(
-      $bg-color,
-      $color-headings-preferred
-    );
-    @if ($color == token(color-white)) {
-      @extend %bg-dark;
+    // If the value came from get-color() we can tell which palette shade it is
+    // and reuse that shade's ready-made pairings. A plain colour can't be
+    // traced back, so $parts is null and we work its contrast out from scratch.
+    $parts: palette-ref-parts($val);
+
+    #{token-name("color-surface")}: #{$val};
+
+    @if $parts {
+      // Palette shade: point the text at the shade's paired "on" colour - the heading can fallback to this too
+      $on: get-on-color(nth($parts, 1), nth($parts, 2));
+      #{token-name("color-text")}: #{$on};
+      #{token-name("color-headings")}: #{surface-heading-color($bg-color, $on)};
     } @else {
-      @extend %bg-light;
+      // Plain colour: work the text and heading colours out at build time.
+      #{token-name("color-text")}: #{surface-contrast-color($bg-color)};
+      #{token-name("color-headings")}: #{surface-heading-color($bg-color)};
     }
-    @if ($color-headings == token(color-white)) {
-      @extend %heading-dark;
-    } @else {
-      @extend %heading-light;
-    }
+
+    @include surface-text-tiers;
   }
 }

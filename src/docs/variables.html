@@ -176,22 +176,48 @@
       <tr>
         <td><span class="variable-ref">$body-background-color</span></td>
         <td><span class="variable-ref">var(--jf-color-white)</span></td>
-        <td>The background color for the <span class="code-ref">body</span> tag.<br><br><span class="bold">This is output as a custom CSS property --jf-color-background; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-background)</span></span></td>
+        <td>The background color for the <span class="code-ref">body</span> tag &mdash; the <span class="bold">canvas</span>. <span class="code-ref">html</span>/<span class="code-ref">body</span> paint it; components never override it. <span class="code-ref">--jf-color-surface</span> ("the background of the current context") defaults to it and <span class="italic">is</span> overridden &mdash; by cards, modals, menus and <span class="css-ref">.bg-*</span> sections.<br><br><span class="bold">This is output as a custom CSS property --jf-color-bg; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-bg)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$background-colors</span></td>
-        <td><span class="italic">(SCSS map)</span></td>
-        <td>A map of key: value pairs used to generate <a href="./theme-colors.html">background colors</a>. <br><br><span class="bold">These are output as a custom CSS property --jf-color-background on the corresponding <span class="css-ref">.bg-*</span> modifier</span> class.</td>
+        <td><span class="code-ref">()</span></td>
+        <td><span class="css-ref">.bg-{family}</span> is generated for every <span class="variable-ref">$colors</span> family automatically (that family at 500). This map adds <a href="./theme-colors.html">extra <span class="css-ref">.bg-*</span> modifiers</a> &mdash; key is the class suffix, value is a <code class="code-ref">get-color()</code> reference or a raw CSS colour; reusing a family name as a key overrides its auto class. <br><br><span class="bold">Every <span class="css-ref">.bg-*</span> modifier re-declares <span class="code-ref">--jf-color-surface</span> plus its contrast-picked <span class="code-ref">--jf-color-text</span> / <span class="code-ref">--jf-color-headings</span>, and re-emits the muted/subtle text tiers; nested cards and headings follow through inheritance.</span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$color-text</span></td>
         <td><span class="code-ref">get-color(neutral, 1000)</span></td>
-        <td>The default color for body copy. Holds a live <span class="code-ref">var(--jf-color-neutral-1000)</span> reference by default, so it follows a runtime override of the neutral palette rather than baking a fixed value at compile time. Anywhere it needs to feed Sass colour maths instead (e.g. <span class="code-ref">resolve-contrast-color()</span>'s <span class="code-ref">$color-dark</span> argument), it's normalised back to a real color via <span class="code-ref">raw-color()</span>. You can still override it with a raw literal directly if you want a color outside the palette. <br><br><span class="bold">This is output as a custom CSS property --jf-color-text; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-text)</span></span></td>
+        <td>The default color for body copy. Holds a live <span class="code-ref">var(--jf-color-neutral-1000)</span> reference by default, so it follows a runtime override of the neutral palette rather than baking a fixed value at compile time. Anywhere it needs to feed Sass colour maths instead (e.g. <span class="code-ref">resolve-contrast-color()</span>'s <span class="code-ref">$color-dark</span> argument), it's normalised back to a real color via <span class="code-ref">raw-color()</span>. You can still override it with a raw literal directly if you want a color outside the palette. <br><br><span class="bold">Output as --jf-color-text (reference with <span class="code-ref">token(color-text)</span>). Two derived tiers come with it: <span class="code-ref">--jf-color-text-muted</span> (captions, <span class="css-ref">.text-muted</span>) and <span class="code-ref">--jf-color-text-subtle</span> (<span class="code-ref">::placeholder</span>), each a <span class="code-ref">color-mix()</span> of this toward <span class="code-ref">--jf-color-surface</span> &mdash; so they re-tint on a coloured surface.</span></td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$color-text-muted-mix</span></td>
+        <td>70%</td>
+        <td rowspan="2"><span class="code-ref">color-mix()</span> ratio (in <span class="code-ref">srgb</span>) of <span class="variable-ref">$color-text</span> toward <span class="code-ref">--jf-color-surface</span>. Higher = closer to full text colour = less faded. <span class="variable-ref">$color-text-muted-mix</span> backs <span class="code-ref">--jf-color-text-muted</span>; <span class="variable-ref">$color-text-subtle-mix</span> (60%) backs the fainter <span class="code-ref">--jf-color-text-subtle</span>. Baked at build; not a token.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$color-text-subtle-mix</span></td>
+        <td>60%</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$color-headings-preferred</span></td>
-        <td><span class="code-ref">get-color(neutral, 700)</span></td>
-        <td>The default color for headings. Same live-reference behavior as <span class="variable-ref">$color-text</span> above. <br><br><span class="bold">This is output as a custom CSS property --jf-color-headings-preferred; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-headings-preferred)</span></span></td>
+        <td><span class="code-ref">get-color(neutral, $color-emphasis-shade)</span></td>
+        <td>The default color for headings &mdash; the neutral <span class="italic">emphasis</span> role (700 by default). Same live-reference behavior as <span class="variable-ref">$color-text</span> above; kept as a numbered <span class="code-ref">get-color()</span> rather than <span class="code-ref">get-color-role()</span> so <span class="code-ref">raw-color()</span> can still resolve it for Sass colour maths. <br><br><span class="bold">Output as <span class="code-ref">--jf-color-headings</span> (renamed from <span class="code-ref">--jf-color-headings-preferred</span> in v5); reference with <span class="code-ref">token(color-headings)</span>. This is the contextual heading token &mdash; <span class="code-ref">h1</span>&ndash;<span class="code-ref">h6</span> read it, and a <span class="css-ref">.bg-*</span> section re-declares it.</span></td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$color-subtle-shade</span></td>
+        <td>50</td>
+        <td rowspan="4">The semantic step-role ladder. Every palette family emits four named aliases &mdash; <span class="code-ref">--jf-color-{family}-subtle</span>, <span class="code-ref">-muted</span>, <span class="code-ref">-emphasis</span>, <span class="code-ref">-strong</span> &mdash; each pointing at the numbered shade set here, plus a bare <span class="code-ref">--jf-color-{family}</span> for the 500. Retune a role framework-wide by changing its shade; reference in SCSS with <span class="code-ref">get-color-role($family, $role)</span>. Roles: <span class="italic">subtle</span> = faint tinted backgrounds, <span class="italic">muted</span> = borders / low-emphasis fills / visited links, <span class="italic">emphasis</span> = hover &amp; active / heading tone, <span class="italic">strong</span> = text on a tint / strongest headings.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$color-muted-shade</span></td>
+        <td>300</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$color-emphasis-shade</span></td>
+        <td>700</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$color-strong-shade</span></td>
+        <td>900</td>
       </tr>
     </tbody>
   </table>
@@ -208,18 +234,8 @@
     <tbody>
       <tr>
         <td><span class="variable-ref">$link-color</span></td>
-        <td><span class="code-ref">get-color(primary)</span></td>
-        <td>The color for all unvisited links.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$link-active</span></td>
-        <td><span class="code-ref">get-color(primary, 700)</span></td>
-        <td>The color for all hovered links.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$link-visited</span></td>
-        <td><span class="code-ref">get-color(primary, 300)</span></td>
-        <td>The color for all visited links.</td>
+        <td><span class="code-ref">primary</span></td>
+        <td>The palette <span class="bold">family</span> for links (not a colour). Unvisited links use its base (500); the hovered and visited colours are derived from it &mdash; the <span class="italic">emphasis</span> and <span class="italic">muted</span> roles &mdash; and emitted as <span class="code-ref">--jf-link-color</span>, <span class="code-ref">--jf-link-color-active</span> and <span class="code-ref">--jf-link-color-visited</span>. Change the derived treatments globally with <span class="variable-ref">$color-emphasis-shade</span> / <span class="variable-ref">$color-muted-shade</span>, or per site by overriding those custom properties. <br><br><span class="bold">Breaking change in v5:</span> <span class="variable-ref">$link-active</span> and <span class="variable-ref">$link-visited</span> have been removed &mdash; set the custom properties, or <span class="variable-ref">$link-color</span> to a different family.</td>
       </tr>
     </tbody>
   </table>
@@ -324,8 +340,8 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$button-hover-value</span></td>
-        <td>700</td>
-        <td>The shade to use from <code class="code-ref">makeColorPalette()</code> for button hover states. Note: setting this variable to 500 will prevent hover states being created</td>
+        <td><span class="code-ref">$color-emphasis-shade</span></td>
+        <td>The shade to use from <code class="code-ref">makeColorPalette()</code> for button hover states &mdash; the <span class="italic">emphasis</span> role (700 by default), so it tracks links and headings. Still a plain shade number: set it to any step, or to 500 to prevent hover states being created.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$button-disabled-opacity</span></td>
@@ -409,11 +425,6 @@
         <td>The border style for <span class="css-ref">.card</span> elements.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$callout-border-color</span></td>
-        <td><span class="code-ref"> get-color(neutral, 300)</span></td>
-        <td>The border color for <span class="css-ref">.card</span> elements.</td>
-      </tr>
-      <tr>
         <td><span class="variable-ref">$card-padding</span></td>
         <td><span class="variable-ref">$element-padding</span></td>
         <td>The padding for <span class="css-ref">.card-section</span> elements.</td>
@@ -477,7 +488,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$accordion-border-color</span></td>
-        <td><span class="code-ref">get-color(neutral, 200)</span></td>
+        <td><span class="code-ref">get-color-role(neutral, muted)</span></td>
         <td>The color of borders between accordion items.</td>
       </tr>
       <tr>
@@ -726,8 +737,8 @@
     <tbody>
       <tr>
         <td><span class="variable-ref">$table-border-color</span></td>
-        <td><span class="code-ref">get-color(neutral, 300)</span></td>
-        <td>The color of table borders.</td>
+        <td><span class="code-ref">get-color-role(neutral, muted)</span></td>
+        <td>The color of table borders (the <span class="italic">muted</span> role &mdash; 300 by default).</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$table-stripe-color</span></td>
@@ -823,7 +834,7 @@
       <tr>
         <td><span class="variable-ref">$apca-lint</span></td>
         <td>true</td>
-        <td>Whether the build-time APCA contrast linter scores the colour pairs Jellyfish generates (buttons, chips, tables, <span class="css-ref">.bg-*</span> sections, and each palette shade against its <span class="css-ref">-fg</span> companion). Set to <span class="code-ref">false</span> to skip the check entirely.</td>
+        <td>Whether the build-time APCA contrast linter scores the colour pairs Jellyfish generates (buttons, chips, tables, <span class="css-ref">.bg-*</span> sections, and each palette shade against its <span class="css-ref">--jf-color-on-*</span> companion). Set to <span class="code-ref">false</span> to skip the check entirely.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$apca-lint-warn</span></td>
@@ -848,8 +859,8 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$accessibility-button-hover-color</span></td>
-        <td><span class="variable-ref">$link-active</span></td>
-        <td>The color to use for <a href="./accessibility.html">font size control buttons</a> when they are hovered</td>
+        <td><span class="code-ref">token(link-color-active)</span></td>
+        <td>The color to use for <a href="./accessibility.html">font size control buttons</a> when they are hovered &mdash; reuses the emitted link hover token (<span class="code-ref">--jf-link-color-active</span>, itself the link family's <span class="italic">emphasis</span> role).</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$accessibility-button-active-color</span></td>

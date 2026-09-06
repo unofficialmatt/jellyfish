@@ -63,15 +63,11 @@ $_blueMultiplier: 0.072175;
   }
 }
 
-/**
- * Determine the lightness contrast of a given text and background color using the
- * APC algorithm
- *
- * @param   {color}  $textColor        Text color
- * @param   {color}  $backgroundColor  Background color
- *
- * @return  {number}                    A number between -108 and 107 representing the lightness contrast
- */
+// Determine the lightness contrast of a given text and background color using the
+// APC algorithm
+// @param   {color}  $textColor        Text color
+// @param   {color}  $backgroundColor  Background color
+// @return  {number}                    A number between -108 and 107 representing the lightness contrast
 @function contrast($textColor, $backgroundColor) {
   @if (meta.type-of($textColor) != "color") {
     @error "Type Error: apca.contrast expects a color as first argument but received #{meta.type-of($textColor)}. Please provide a valid color.";
@@ -92,18 +88,16 @@ $_blueMultiplier: 0.072175;
   }
 }
 
-/**
- * Compares contrasts of light or dark text against a given background and recommends
- * usage of the text color with the best contrast.
- *
- * @param   {color}  $backgroundColor  Background color
- * @param   {color}  $lightColor       [optional] Preferred light color, default is white
- * @param   {color}  $darkColor        [optional] Preferred dark color, default is black
- * @param   {bool}   $force            [optional] Force a fallback to $forceColor if neither candidate reaches Lc 75
- * @param   {color}  $forceColor       [optional] Fallback color used when $force retries, default is black
- *
- * @return  {color}                    Light or dark text color, whichever provides the better contrast against the chosen background
- */
+// Compares contrasts of light or dark text against a given background and recommends
+// usage of the text color with the best contrast.
+//
+// @param   {color}  $backgroundColor  Background color
+// @param   {color}  $lightColor       [optional] Preferred light color, default is white
+// @param   {color}  $darkColor        [optional] Preferred dark color, default is black
+// @param   {bool}   $force            [optional] Force a fallback to $forceColor if neither candidate reaches Lc 75
+// @param   {color}  $forceColor       [optional] Fallback color used when $force retries, default is black
+//
+// @return  {color}                    Light or dark text color, whichever provides the better contrast against the chosen background
 @function recommend-text-color(
   $backgroundColor,
   $lightColor: white,

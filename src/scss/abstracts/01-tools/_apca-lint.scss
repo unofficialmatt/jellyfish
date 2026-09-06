@@ -10,7 +10,7 @@
 // Build-time check on the colour pairs Jellyfish actually emits. Every pair the
 // framework generates (button theme/text, chip, table cell, callout heading,
 // accordion heading, .bg-* section text, and each palette step against its
-// -fg companion) is scored with APCA and anything below the threshold is
+// --jf-color-on-* companion) is scored with APCA and anything below the threshold is
 // reported via @warn. Treat that output as a failing test — see CLAUDE.md.
 //
 // Configured by $apca-lint / $apca-lint-warn / $apca-lint-threshold in

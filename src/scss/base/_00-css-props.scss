@@ -1,38 +1,37 @@
 :root {
-  @include map-to-css-properties($colors, "color-");
-
-  // Foreground (best-contrast text) pairs — computed once per palette shade,
-  // not once per component. Each pair is also fed to the APCA linter.
-  $palette-fg-pairs: ();
-  @each $name, $palette in $colors {
-    @each $shade, $color in $palette {
-      @if $shade != "bg" {
-        #{token-name("color-#{$name}-#{$shade}-fg")}: #{resolve-contrast-color(
-            $color
-          )};
-        $palette-fg-pairs: append(
-          $palette-fg-pairs,
-          ("#{$name}-#{$shade}" choose-contrast-color($color) $color),
-          comma
-        );
-      }
-    }
-  }
-  @include apca-lint($palette-fg-pairs, "palette -fg contrast");
-
-  #{token-name("color-background")}: #{$body-background-color};
   #{token-name("color-white")}: #{$color-white};
   #{token-name("color-black")}: #{$color-black};
+  @include map-to-css-properties($colors, "color-");
+
+  // --jf-color-bg is the canvas (html/body paint it, components never override).
+  // --jf-color-surface is "the background of the current context": a card,
+  // modal, menu or .bg-* section re-declares it, and it defaults to the canvas
+  // so a bare page still resolves.
+  #{token-name("color-bg")}: #{$body-background-color};
+  #{token-name("color-surface")}: #{token("color-bg")};
+
   #{token-name("color-text")}: #{$color-text};
-  #{token-name("color-headings-preferred")}: #{$color-headings-preferred};
+  #{token-name("color-headings")}: #{$color-headings-preferred};
+  @include surface-text-tiers;
+
   #{token-name("accessibility-focus-color")}: #{$accessibility-focus-color};
+
   #{token-name("font-primary")}: #{$font-primary};
   #{token-name("font-secondary")}: #{$font-secondary};
   #{token-name("font-monospace")}: #{$font-monospace};
+
   #{token-name("grid-gutter")}: #{$base-col-gutter};
+
   #{token-name("root-font-size")}: #{$root-font-size};
   #{token-name("root-line-height")}: #{$root-line-height};
+
+  // TODO: move to font-size-xs, font-size-sm, font-size-base, not --1, --2.
   @include map-to-css-properties($type-scale, "font-size-");
+
+  // TODO: Add i nsome leadings (1, 1.1, 1.2, etc)
+  // TODO add border-radius-xs, border-radius-sm, border-radius-md, border-radius-lg, border-radius-xl, etc. border-radius-none
+  // TODO: shadow-xs, shadow-sm, shadow-md, shadow-lg, shadow-xl, etc. shadow-inner?
+  // TODO: duration-instant, duration-fast, duration-normal, duration-slow, duration-slower
 
   @each $point, $i in $breakpoints {
     // for each breakpoint defined...
@@ -61,15 +60,15 @@
     }
   }
 
-  #{token-name("link-color")}: #{$link-color};
-  #{token-name("link-color-active")}: #{$link-active};
-  #{token-name("link-color-visited")}: #{$link-visited};
+  #{token-name("link-color")}: #{token("color-#{$link-color}")};
+  #{token-name("link-color-active")}: #{get-color-role($link-color, emphasis)};
+  #{token-name("link-color-visited")}: #{get-color-role($link-color, muted)};
 
   #{token-name("mark-background")}: #{$mark-background-color};
-  $mark-fg: choose-contrast-color($mark-background-color);
-  #{token-name("mark-color")}: #{$mark-fg};
+  $mark-on-color: choose-contrast-color($mark-background-color);
+  #{token-name("mark-color")}: #{$mark-on-color};
   @include apca-lint(
-    append((), ("mark" $mark-fg $mark-background-color), comma),
+    append((), ("mark" $mark-on-color $mark-background-color), comma),
     "mark"
   );
 
@@ -80,7 +79,7 @@
   #{token-name("card-padding")}: #{$card-padding};
 
   #{token-name("chip-color-theme")}: #{token(color-neutral-50)};
-  #{token-name("chip-color-text")}: #{get-fg-color(neutral, 50)};
+  #{token-name("chip-color-text")}: #{get-on-color(neutral, 50)};
 
   #{token-name("modal-max-width")}: #{$modal-max-width};
   #{token-name("modal-padding")}: #{$modal-padding};

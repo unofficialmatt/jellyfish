@@ -1,8 +1,6 @@
-/**
-  * Breakpoints inherit upwards from the previous breakpoint.
-  * The keys are used in column and modifier classes.
-  * breakpoint and container-width are the only required values.
-  **/
+// Breakpoints inherit upwards from the previous breakpoint.
+// The keys are used in column and modifier classes.
+// breakpoint and container-width are the only required values.
 
 $breakpoints: () !default;
 $breakpoints: map-merge(

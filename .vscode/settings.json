@@ -3,5 +3,14 @@
     ".vscode/": true,
     "deprecated/": true,
     "docs/": true
-  }
+  },
+
+  // src/docs/*.html are gulp-file-include templates: the `@@include(..., {…})`
+  // directive is not valid HTML, and a formatter reflowing that line breaks the
+  // JSON5 data object (build fails: `JSON5: invalid character '\n'`).
+  // Don't format HTML on save here, and don't let Prettier touch it.
+  "[html]": {
+    "editor.formatOnSave": false
+  },
+  "prettier.ignorePath": ".prettierignore"
 }

@@ -7,6 +7,6 @@ $accordion-heading-text-color: get-color(neutral, 900) !default;
 $accordion-heading-hover-text-color: get-color(neutral, 900) !default;
 $accordion-heading-weight: $weight-bold !default;
 $accordion-heading-font-size: token(font-size-1) !default;
-$accordion-border-color: get-color(neutral, 200) !default;
+$accordion-border-color: get-color-role(neutral, muted) !default; // CHANGED 200 -> 300 (snapped to the shared border/muted step — card, table and form borders are all 300)
 $accordion-border-radius: get-size(0.25) !default;
 $accordion-transition-duration: 0.25s !default;

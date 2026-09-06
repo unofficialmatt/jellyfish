@@ -2,22 +2,18 @@
 @use "sass-apca" as apca;
 @use "to-number" as str;
 
-/**
- * Namespace prefix for every CSS custom property Jellyfish emits.
- *   jf  ->  --jf-color-primary-500, --jf-card-padding, ...
- *   ""  (or null)  ->  --color-primary-500, --card-padding  (v4 behaviour)
- */
+// Namespace prefix for every CSS custom property Jellyfish emits.
+//   jf  ->  --jf-color-primary-500, --jf-card-padding, ...
+//   ""  (or null)  ->  --color-primary-500, --card-padding  (v4 behaviour)
 $token-prefix: jf !default;
 
-/**
- * Build the CSS custom-property *name* for a token, honouring $token-prefix.
- * @param {String} $name - The name of the token.
- * @return {String} The full CSS custom property name, including the prefix if applicable.
- * @example scss
- *   token-name("color-primary-500")   -> --jf-color-primary-500
- *   token-name("card-padding")        -> --jf-card-padding
- *   ($token-prefix: "")               -> --card-padding
- */
+// Build the CSS custom-property *name* for a token, honouring $token-prefix.
+// @param {String} $name - The name of the token.
+// @return {String} The full CSS custom property name, including the prefix if applicable.
+// @example scss
+//   token-name("color-primary-500")   -> --jf-color-primary-500
+//   token-name("card-padding")        -> --jf-card-padding
+//   ($token-prefix: "")               -> --card-padding
 @function token-name($name) {
   @if $token-prefix == "" or $token-prefix == null {
     @return #{"--" + $name};
@@ -29,12 +25,10 @@ $token-prefix: jf !default;
   @return #{math.div($pixels, 16px)}em;
 }
 
-/**
- * Get a value from deep inside a map. Arguments:
- * @param {Map} $map - name of map
- * @param {Arglist} $keys - name of keys to retrieve. This can work with an infinitely nested map
- * @return {*} The value found at the nested keys, or null if any key is missing.
- */
+// Get a value from deep inside a map. Arguments:
+// @param {Map} $map - name of map
+// @param {Arglist} $keys - name of keys to retrieve. This can work with an infinitely nested map
+// @return {*} The value found at the nested keys, or null if any key is missing.
 @function map-deep-get($map, $keys...) {
   @each $key in $keys {
     $map: map-get($map, $key);
@@ -45,13 +39,10 @@ $token-prefix: jf !default;
   @return $map;
 }
 
-/**
- * Test if a map has all `$keys` nested within each other.
- * @param {Map} $map - Map
- * @param {Arglist} $keys - Keys to test
- * @return {Bool} True if all nested keys exist, false otherwise.
- */
-
+// Test if a map has all `$keys` nested within each other.
+// @param {Map} $map - Map
+// @param {Arglist} $keys - Keys to test
+// @return {Bool} True if all nested keys exist, false otherwise.
 @function map-has-nested-keys($map, $keys...) {
   @each $key in $keys {
     @if not map-has-key($map, $key) {
@@ -79,15 +70,31 @@ $token-prefix: jf !default;
   }
 }
 
-/**
- * Get the foreground (best-contrast text) color for a given color in the $colors palette.
- * @param {String} $base - Base color name
- * @param {Number} $shade - Shade of the base color
- * @return {String} CSS custom property for the foreground color
- */
-@function get-fg-color($base, $shade: 500) {
+// Reference a palette family by semantic role rather than shade number.
+// Returns the role alias custom property (var(--jf-color-{base}-{role})),
+// which :root resolves to whatever numbered shade $color-{role}-shade points
+// at (see 02-settings/_03-colors). Bare get-color($base) is still the 500.
+// @param {String} $base - palette family: primary, secondary, neutral, …
+// @param {String} $role - subtle | muted | emphasis | strong
+// @return {String} e.g. var(--jf-color-primary-emphasis)
+@function get-color-role($base, $role) {
+  @if not index((subtle, muted, emphasis, strong), $role) {
+    @error "Role '#{$role}' not recognised. Expected: subtle | muted | emphasis | strong.";
+  }
+  @if not map-has-key($colors, $base) {
+    @error "Family '#{$base}' not found in $colors map. Cancelling compile.";
+  }
+  @return var(#{token-name("color-#{$base}-#{$role}")});
+}
+
+// The "on colour" for a $colors palette shade: the best-contrast text colour to
+// place on top of it.
+// @param {String} $base - palette family
+// @param {Number} $shade - shade of that family
+// @return {String} e.g. var(--jf-color-on-primary-700)
+@function get-on-color($base, $shade: 500) {
   @if map-has-nested-keys($colors, $base, $shade) {
-    @return var(#{token-name("color-#{$base}-#{$shade}-fg")});
+    @return var(#{token-name("color-on-#{$base}-#{$shade}")});
   } @else {
     @error "Key: '#{$base}', Value: '#{$shade}' not found in $colors map. Cancelling compile.";
   }
@@ -113,7 +120,7 @@ $token-prefix: jf !default;
 
 // Returns a given number divided by 2
 @function h($num) {
-  @return $num * 0.5;
+  @return $num// 0.5;
 }
 
 // Returns the negative value of a given number
@@ -138,14 +145,12 @@ $token-prefix: jf !default;
   }
 }
 
-/**
- * Determine whether to use light or dark text on top of a given color.
- * $color-dark defaults to $color-text (softer reading-text tone), only
- * forced to pure/off-black ($color-black) if $color-text doesn't clear the
- * contrast threshold — see $force-color-contrast-ratio. $color-dark is
- * normalised through raw-color() first, so a live get-color() reference
- * (e.g. $color-text, $color-headings-preferred) works here too.
- */
+// Determine whether to use light or dark text on top of a given color.
+// $color-dark defaults to $color-text (softer reading-text tone), only
+// forced to pure/off-black ($color-black) if $color-text doesn't clear the
+// contrast threshold — see $force-color-contrast-ratio. $color-dark is
+// normalised through raw-color() first, so a live get-color() reference
+// (e.g. $color-text, $color-headings-preferred) works here too.
 @function choose-contrast-color($color, $color-dark: $color-text) {
   $best-contrast: apca.recommend-text-color(
     $color,
@@ -157,14 +162,12 @@ $token-prefix: jf !default;
   @return $best-contrast;
 }
 
-/**
- * Resolves to the appropriate contrast color for a given background color.
- * Prefers the framework's known aliases (white/black/text/headings-preferred)
- * over raw values or arbitrary passed-in $color-dark.
- * @param {Color} $color - Background color
- * @param {Color} $color-dark - Dark color option, defaults to $color-text
- * @return {Color} The resolved contrast color
- */
+// Resolves to the appropriate contrast color for a given background color.
+// Prefers the framework's known aliases (white/black/text/headings-preferred)
+// over raw values or arbitrary passed-in $color-dark.
+// @param {Color} $color - Background color
+// @param {Color} $color-dark - Dark color option, defaults to $color-text
+// @return {Color} The resolved contrast color
 @function resolve-contrast-color($color, $color-dark: $color-text) {
   $contrast: choose-contrast-color($color, $color-dark);
   @if $contrast == $color-white {
@@ -174,7 +177,7 @@ $token-prefix: jf !default;
   } @else if $contrast == raw-color($color-text) {
     @return token(color-text);
   } @else if $contrast == raw-color($color-headings-preferred) {
-    @return token(color-headings-preferred);
+    @return token(color-headings);
   } @else if $contrast == raw-color($color-dark) {
     @return $color-dark;
   } @else {
@@ -182,12 +185,54 @@ $token-prefix: jf !default;
   }
 }
 
-/**
- * Returns the CSS custom property for a given token, optionally with a fallback.
- * @param {String} $value - Token name
- * @param {String|null} $fallback - Optional fallback value
- * @return {String} CSS custom property reference
- */
+// Picks the text colour for a coloured background, ready to drop straight into
+// a `--jf-color-text` declaration.
+//
+// resolve-contrast-color() does the actual choosing, but when its answer is
+// "just use the normal page text colour" it hands back `var(--jf-color-text)`.
+// Assigning that to `--jf-color-text` itself would be circular, so here we
+// swap in the real colour sitting behind it instead.
+// @param {Color} $bg - the background the text will sit on
+// @param {Color} $dark - the dark option to consider, defaults to $color-text
+// @return {String} a value safe to assign to --jf-color-text / --jf-color-headings
+@function surface-contrast-color($bg, $dark: $color-text) {
+  $picked: resolve-contrast-color($bg, $dark);
+  @if $picked == token(color-text) {
+    @return $color-text;
+  } @else if $picked == token(color-headings) {
+    @return $color-headings-preferred;
+  }
+  @return $picked;
+}
+
+// Picks the heading colour for a coloured background.
+//
+// First choice is the site's normal heading colour ($color-headings-preferred),
+// as long as it's still readable here; on dark backgrounds it goes white. If
+// neither works it uses $on-fallback — the background shade's own paired text
+// colour — which reads more gently than dropping all the way to pure black.
+// Only pass $on-fallback when there's a paired colour to fall back to (the
+// background is a palette shade); leave it null for one-off colours and it
+// lands on black.
+// @param {Color} $bg - the background the heading will sit on
+// @param {String|null} $on-fallback - the shade's paired "on" colour, if any
+// @return {String} a value safe to assign to --jf-color-headings
+@function surface-heading-color($bg, $on-fallback: null) {
+  $picked: choose-contrast-color($bg, $color-headings-preferred);
+  @if $picked == $color-white {
+    @return token(color-white);
+  } @else if $picked == raw-color($color-headings-preferred) {
+    @return $color-headings-preferred;
+  } @else if $on-fallback != null {
+    @return $on-fallback;
+  }
+  @return token(color-black);
+}
+
+// Returns the CSS custom property for a given token, optionally with a fallback.
+// @param {String} $value - Token name
+// @param {String|null} $fallback - Optional fallback value
+// @return {String} CSS custom property reference
 @function token($value, $fallback: null) {
   @if $fallback != null {
     @return var(#{token-name($value)}, #{$fallback});
@@ -221,35 +266,68 @@ $token-prefix: jf !default;
   @return $string;
 }
 
-// Walk back to convert a CSS property to a CSS value
-@function css-prop-to-value($prop) {
-  $prop: str-replace($prop, "var(" + token-name("color-"), "");
-  $prop: str-replace($prop, ")", "");
-
-  // Work out where the last hyphen is
-  $last-hyphen: str-index(str-reverse($prop), "-");
-
-  // Calculate the position of the last hyphen in the original string
-  $last-hyphen: str-length($prop) - $last-hyphen;
-
-  // Get the parts of the string
-  $base: str-slice($prop, 0, $last-hyphen);
-  $end: str-slice($prop, $last-hyphen + 2);
-
-  $end: str.to-number($end);
-  $color: get-color-raw($base, $end);
-  @return $color;
+// Works out which palette colour a value points at.
+//
+// get-color(primary, 300) hands back the string "var(--jf-color-primary-300)".
+// This digs the family and shade back out of that string — ("primary", 300) —
+// but only if they're a real entry in $colors. Anything else (a plain colour
+// like #333, an unknown name, a role alias like "-emphasis") returns null.
+// The shade is whatever follows the final hyphen, so family names that contain
+// hyphens still work.
+// @param {*} $value - the value to inspect
+// @return {List|Null} (family shade), or null if it isn't a palette reference
+@function palette-ref-parts($value) {
+  @if type-of($value) != "string" {
+    @return null;
+  }
+  $needle: "var(" + token-name("color-");
+  @if not str-index($value, $needle) {
+    @return null;
+  }
+  $body: str-replace($value, $needle, "");
+  $body: str-replace($body, ")", "");
+  $rev-hyphen: str-index(str-reverse($body), "-");
+  @if not $rev-hyphen {
+    @return null;
+  }
+  $cut: str-length($body) - $rev-hyphen;
+  $family: str-slice($body, 1, $cut);
+  $shade-str: str-slice($body, $cut + 2);
+  // The part after the last hyphen has to be all digits to count as a shade —
+  // this weeds out role aliases like "primary-emphasis".
+  @for $i from 1 through str-length($shade-str) {
+    @if not
+      index(
+        "0" "1" "2" "3" "4" "5" "6" "7" "8" "9",
+        str-slice($shade-str, $i, $i)
+      )
+    {
+      @return null;
+    }
+  }
+  $shade: str.to-number($shade-str);
+  @if map-has-nested-keys($colors, $family, $shade) {
+    @return ($family $shade);
+  }
+  @return null;
 }
 
-/**
- * Returns a real Sass color for $value: itself if already one, or the raw
- * palette shade a get-color() (var(--…-color-{name}-{shade})) reference points at.
- * Lets a setting hold a live reference by default (so its CSS custom property
- * follows a runtime palette override) while still working anywhere Sass
- * colour maths needs a real color — e.g. $color-text, $color-headings-preferred.
- * @param {Color|String} $value - The color value or CSS custom property reference
- * @return {Color} The resolved Sass color
- */
+// Walk back to convert a CSS property to a CSS value
+@function css-prop-to-value($prop) {
+  $parts: palette-ref-parts($prop);
+  @if $parts {
+    @return get-color-raw(nth($parts, 1), nth($parts, 2));
+  }
+  @return $prop;
+}
+
+// Returns a real Sass color for $value: itself if already one, or the raw
+// palette shade a get-color() (var(--…-color-{name}-{shade})) reference points at.
+// Lets a setting hold a live reference by default (so its CSS custom property
+// follows a runtime palette override) while still working anywhere Sass
+// colour maths needs a real color — e.g. $color-text, $color-headings-preferred.
+// @param {Color|String} $value - The color value or CSS custom property reference
+// @return {Color} The resolved Sass color
 @function raw-color($value) {
   @if type-of($value) ==
     "string" and

@@ -9,7 +9,7 @@
   $blue: math.div(blue($back) * blue($fore), 255);
   @return rgb($red, $green, $blue);
 }
-@function makeColorPalette($color, $gen-bg: "false") {
+@function makeColorPalette($color) {
   $light: #fff;
   $dark: multiply($color, $color);
   $dark: darken(multiply($color, $color), 30%);
@@ -27,7 +27,6 @@
     800: mix($dark, $color, 42%),
     900: mix($dark, $color, 56%),
     1000: mix($dark, $color, 65%),
-    "bg": $gen-bg,
   );
   @return $palette;
 }

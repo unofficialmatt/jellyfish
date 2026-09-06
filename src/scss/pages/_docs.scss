@@ -56,10 +56,10 @@
       }
       pointer-events: none;
       cursor: default;
-      color: $link-active;
+      color: token(link-color-active);
     }
   }
-  background: token(color-background);
+  background: token(color-bg);
 }
 
 .section-heading {
@@ -75,7 +75,7 @@
   flex-wrap: wrap;
   align-items: baseline;
   z-index: 9;
-  background-color: color-mix(in srgb, token(color-background) 90%, transparent);
+  background-color: color-mix(in srgb, token(color-bg) 90%, transparent);
   backdrop-filter: blur(3px);
   //  font-weight: $weight-light;
   .chip-group:first-of-type {
@@ -274,7 +274,7 @@ div.code-toolbar {
 }
 
 .bg-demo {
-  background: token(color-background) !important;
+  background: token(color-bg) !important;
   color: token(color-text) !important;
 }
 
@@ -332,7 +332,7 @@ div.code-toolbar {
 
 // select-bg() mixin example: recolour the select chevron against a dark background
 .select-bg-demo {
-  #{token-name("color-section-background")}: #{get-color(neutral, 800)};
+  #{token-name("color-surface")}: #{get-color(neutral, 800)};
   #{token-name("form-input-background")}: #{get-color(neutral, 800)};
   #{token-name("color-text")}: token(color-white);
   padding: get-size(1);

@@ -2,12 +2,50 @@
 // segment (e.g. "color-", "font-size-"); the $token-prefix namespace is applied
 // on top by token-name().
 @mixin map-to-css-properties($map, $map-prefix: "") {
+  // Accumulate every palette shade's [label text bg] triple across all families
+  // so the APCA linter can check them in a single pass after the loop. Only the
+  // top-level "color-" call touches this list — recursive calls ("color-{name}-")
+  // and non-colour calls ("font-size-") skip both the reset and the lint.
+  @if $map-prefix == "color-" {
+    $palette-on-pairs: () !global;
+  }
   @each $key, $value in $map {
     @if type-of($value) == "map" {
-      @if $map-prefix == "color-" {
-        #{token-name($map-prefix + $key)}: token(color-#{$key}-500);
-      }
+      /** #{$map-prefix}#{$key} */
       @include map-to-css-properties($value, $map-prefix + $key + "-");
+      @if $map-prefix == "color-" {
+        #{token-name($map-prefix + $key + '-subtle')}: token(
+          color-#{$key}-#{$color-subtle-shade}
+        );
+        #{token-name($map-prefix + $key + '-muted')}: token(
+          color-#{$key}-#{$color-muted-shade}
+        );
+        #{token-name($map-prefix + $key)}: token(color-#{$key}-500);
+        #{token-name($map-prefix + $key + '-emphasis')}: token(
+          color-#{$key}-#{$color-emphasis-shade}
+        );
+        #{token-name($map-prefix + $key + '-strong')}: token(
+          color-#{$key}-#{$color-strong-shade}
+        );
+
+        @each $sub-key, $sub-value in $value {
+          // Skip any non-shade entry a consumer palette might carry.
+          @if type-of($sub-value) == "color" {
+            #{token-name('color-on-' + $key + '-' + $sub-key)}: #{resolve-contrast-color(
+                $sub-value
+              )};
+            $palette-on-pairs: append(
+              $palette-on-pairs,
+              (
+                "on-#{$key}-#{$sub-key}"
+                  choose-contrast-color($sub-value)
+                  $sub-value
+              ),
+              comma
+            ) !global;
+          }
+        }
+      }
     } @else {
       @if $value != "false" {
         // Convert $key to string and replace any '.' with 'x' for valid CSS property names
@@ -18,7 +56,32 @@
       }
     }
   }
+  // One lint pass over every palette on-colour pair the loop just emitted.
+  @if $map-prefix == "color-" {
+    @include apca-lint($palette-on-pairs, "palette on-colour contrast");
+  }
 }
+// The two softer text shades — muted and subtle — mixed from the current text
+// colour toward the current background.
+//
+// This has to be repeated on :root AND on every surface (each .bg-* rule). A
+// custom property's var()s are resolved where the property is written, not
+// where it's read, so defining the mix once on :root would lock it to the
+// page's text and background and it would come out grey on every coloured
+// section. Re-declaring it on each surface lets it re-mix for that surface.
+@mixin surface-text-tiers {
+  #{token-name("color-text-muted")}: color-mix(
+    in srgb,
+    #{token(color-text)} #{$color-text-muted-mix},
+    #{token(color-surface)}
+  );
+  #{token-name("color-text-subtle")}: color-mix(
+    in srgb,
+    #{token(color-text)} #{$color-text-subtle-mix},
+    #{token(color-surface)}
+  );
+}
+
 @mixin smooth($properties...) {
   // Global transition
   $result: (); // Create empty variable
