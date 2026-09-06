@@ -2,19 +2,22 @@
   @if map-has-key($colors, $color) {
     // We don't need to run this if the color is the same as the base color
     @if $button-base-color != $color {
-      --button-color-theme: #{v(color-#{$color}-500)};
-      --button-color-text: #{get-fg-color($color)};
+      #{token-name("button-color-theme")}: #{token(color-#{$color}-500)};
+      #{token-name("button-color-text")}: #{get-fg-color($color)};
 
       @if $button-hover-value != 500 {
-        --button-hover-color-theme: #{v(
+        #{token-name("button-hover-color-theme")}: #{token(
             color-#{$color}-#{$button-hover-value}
           )};
-        --button-hover-color-text: #{get-fg-color($color, $button-hover-value)};
+        #{token-name("button-hover-color-text")}: #{get-fg-color(
+            $color,
+            $button-hover-value
+          )};
       }
 
       &.ghost {
         @if $button-hover-value != 500 {
-          --button-hover-color-text: #{v(
+          #{token-name("button-hover-color-text")}: #{token(
               color-#{$color}-#{$button-hover-value}
             )};
         }
@@ -28,8 +31,8 @@
 @mixin createChip($color) {
   // If passed string exists in the $colors map, get the value for the tag-color
   @if map-has-key($colors, $color) {
-    --chip-color-theme: #{v(color-#{$color}-500)};
-    --chip-color-text: #{get-fg-color($color)};
+    #{token-name("chip-color-theme")}: #{token(color-#{$color}-500)};
+    #{token-name("chip-color-text")}: #{get-fg-color($color)};
   } @else {
     @warn "#{$color} was not found in the $colors map. Cannot create a chip. Aborting.";
   }
@@ -38,8 +41,8 @@
 @mixin createProgressBar($color) {
   // If passed string exists in the $colors map, get the value for the bar-color
   @if map-has-key($colors, $color) {
-    --progress-bar-color: #{v(color-#{$color}-500)};
-    --progress-bar-color-unknown: #{v(color-#{$color}-100)};
+    #{token-name("progress-bar-color")}: #{token(color-#{$color}-500)};
+    #{token-name("progress-bar-color-unknown")}: #{token(color-#{$color}-100)};
   } @else {
     @warn "#{$color} was not found in the $colors map. Cannot create a progress bar. Aborting.";
   }
@@ -47,11 +50,11 @@
 
 @mixin createCallout($color) {
   @if map-has-key($colors, $color) {
-    --callout-bg-color: #{v(color-#{$color}-25)};
-    --callout-border-color: #{v(color-#{$color}-200)};
-    --callout-link-color: #{v(color-#{$color}-700)};
-    --callout-link-color-hover: #{v(color-#{$color}-900)};
-    --callout-heading-color: #{v(color-#{$color}-800)};
+    #{token-name("callout-bg-color")}: #{token(color-#{$color}-25)};
+    #{token-name("callout-border-color")}: #{token(color-#{$color}-200)};
+    #{token-name("callout-link-color")}: #{token(color-#{$color}-700)};
+    #{token-name("callout-link-color-hover")}: #{token(color-#{$color}-900)};
+    #{token-name("callout-heading-color")}: #{token(color-#{$color}-800)};
   } @else {
     @warn "#{$color} was not found in the $colors map. Cannot create a callout. Aborting.";
   }
@@ -60,28 +63,28 @@
 @mixin createTableModifiers($color) {
   @if map-has-key($colors, $color) {
     table.#{$color} {
-      --table-border-color: #{v(color-#{$color}-300)};
-      --table-stripe-color: #{v(color-#{$color}-100)};
-      --table-hover-background: #{v(color-#{$color}-200)};
-      --table-cell-background: #{v(color-#{$color}-50)};
-      --table-text-color: #{get-fg-color($color, 50)};
-      --table-text-hover-color: #{get-fg-color($color, 200)};
+      #{token-name("table-border-color")}: #{token(color-#{$color}-300)};
+      #{token-name("table-stripe-color")}: #{token(color-#{$color}-100)};
+      #{token-name("table-hover-background")}: #{token(color-#{$color}-200)};
+      #{token-name("table-cell-background")}: #{token(color-#{$color}-50)};
+      #{token-name("table-text-color")}: #{get-fg-color($color, 50)};
+      #{token-name("table-text-hover-color")}: #{get-fg-color($color, 200)};
     }
     table.#{$color} th,
     th.#{$color},
     tr.#{$color} th {
-      --table-cell-background: #{v(color-#{$color}-500)};
-      --table-border-color: var(--table-cell-background);
-      --table-text-color: #{get-fg-color($color, 500)};
+      #{token-name("table-cell-background")}: #{token(color-#{$color}-500)};
+      #{token-name("table-border-color")}: #{token(table-cell-background)};
+      #{token-name("table-text-color")}: #{get-fg-color($color, 500)};
     }
     td.#{$color},
     tr.#{$color} {
-      --table-cell-background: #{v(color-#{$color}-50)};
-      --table-border-color: #{v(color-#{$color}-300)};
-      --table-stripe-color: #{v(color-#{$color}-100)};
-      --table-hover-background: #{v(color-#{$color}-200)};
-      --table-text-color: #{get-fg-color($color, 50)};
-      --table-text-hover-color: #{get-fg-color($color, 200)};
+      #{token-name("table-cell-background")}: #{token(color-#{$color}-50)};
+      #{token-name("table-border-color")}: #{token(color-#{$color}-300)};
+      #{token-name("table-stripe-color")}: #{token(color-#{$color}-100)};
+      #{token-name("table-hover-background")}: #{token(color-#{$color}-200)};
+      #{token-name("table-text-color")}: #{get-fg-color($color, 50)};
+      #{token-name("table-text-hover-color")}: #{get-fg-color($color, 200)};
     }
   } @else {
     @warn "#{$color} was not found in the $colors map. Cannot create table modifiers. Aborting.";
@@ -90,11 +93,11 @@
 
 @mixin createAccordionTheme($color) {
   @if map-has-key($colors, $color) {
-    --accordion-heading-background: #{v(color-#{$color}-25)};
-    --accordion-heading-color: #{v(color-#{$color}-900)};
-    --accordion-heading-hover-background: #{v(color-#{$color}-50)};
-    --accordion-heading-hover-color: #{v(color-#{$color}-900)};
-    --accordion-border-color: #{v(color-#{$color}-500)};
+    #{token-name("accordion-heading-background")}: #{token(color-#{$color}-25)};
+    #{token-name("accordion-heading-color")}: #{token(color-#{$color}-900)};
+    #{token-name("accordion-heading-hover-background")}: #{token(color-#{$color}-50)};
+    #{token-name("accordion-heading-hover-color")}: #{token(color-#{$color}-900)};
+    #{token-name("accordion-border-color")}: #{token(color-#{$color}-500)};
   } @else {
     @warn "#{$color} was not found in the $colors map. Cannot create a button. Aborting.";
   }

@@ -16,10 +16,10 @@ html {
 body {
   min-height: 100vh;
   min-height: 100dvh;
-  font-size: v(root-font-size);
-  line-height: v(root-line-height);
-  color: v(color-text);
-  background-color: v(color-background);
+  font-size: token(root-font-size);
+  line-height: token(root-line-height);
+  color: token(color-text);
+  background-color: token(color-background);
   accent-color: $form-accent-color;
 }
 
@@ -29,15 +29,15 @@ a {
   text-decoration: underline;
   &,
   &:link {
-    color: var(--link-color);
+    color: token(link-color);
   }
   &:visited {
-    color: var(--link-color-visited);
+    color: token(link-color-visited);
     text-decoration: none;
   }
   &:hover,
   &:focus {
-    color: var(--link-color-active);
+    color: token(link-color-active);
   }
 }
 
@@ -85,7 +85,7 @@ dl {
 
 // Code Typeface
 %code {
-  font-family: v(font-monospace);
+  font-family: token(font-monospace);
 }
 
 // Line break
@@ -113,7 +113,7 @@ blockquote {
   margin: 0 0 $element-margin 0;
   p {
     font-style: italic;
-    font-size: v(font-size-1);
+    font-size: token(font-size-1);
     line-height: 1.4;
     margin-bottom: get-size(0.5);
   }
@@ -123,7 +123,7 @@ blockquote {
     }
     font-style: normal;
     display: block;
-    font-size: v(font-size--1);
+    font-size: token(font-size--1);
     font-weight: $weight-bold;
   }
 }

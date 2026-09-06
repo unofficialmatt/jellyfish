@@ -26,8 +26,8 @@
   }
 
   .hamburger-label {
-    font-weight: var(--navbar-font-weight);
-    font-size: var(--navbar-font-size);
+    font-weight: token(navbar-font-weight);
+    font-size: token(navbar-font-size);
     text-transform: uppercase;
     margin: 0 get-size(0.75) 0 0;
   }

@@ -135,53 +135,53 @@
     <code>
 
       // Default styling for anchor links
-      --link-color: #{$link-color};
-      --link-color-active: #{$link-color-active};
-      --link-color-visited: #{$link-color-visited};
+      --jf-link-color: #{$link-color};
+      --jf-link-color-active: #{$link-color-active};
+      --jf-link-color-visited: #{$link-color-visited};
 
       // Shortcuts for 500 color shades - iterates for all colors in the $colors map
-      --color-primary: var(--color-primary-500);
-      --color-secondary: var(--color-secondary-500);
+      --jf-color-primary: var(--jf-color-primary-500);
+      --jf-color-secondary: var(--jf-color-secondary-500);
 
-      --card-border-radius: #{$card-border-radius};
-      --card-border-style: #{$card-border-style};
-      --card-border-color: #{$card-border-color};
-      --card-border-width: #{$card-border-width};
-      --card-padding: #{$card-padding};
+      --jf-card-border-radius: #{$card-border-radius};
+      --jf-card-border-style: #{$card-border-style};
+      --jf-card-border-color: #{$card-border-color};
+      --jf-card-border-width: #{$card-border-width};
+      --jf-card-padding: #{$card-padding};
 
-      --modal-max-width: #{$modal-max-width};
-      --modal-padding: #{$modal-padding};
+      --jf-modal-max-width: #{$modal-max-width};
+      --jf-modal-padding: #{$modal-padding};
 
-      --form-input-background: #{$input-background};
-      --form-input-border-width: #{$border-width};
-      --form-input-border-style: #{$border-style};
-      --form-input-border-color: #{$border-color};
-      --form-input-border-radius: #{$border-radius};
-      --form-input-placeholder-color: #{$placeholder-color};
-      --form-select-bg-img: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23010101' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
+      --jf-form-input-background: #{$input-background};
+      --jf-form-input-border-width: #{$border-width};
+      --jf-form-input-border-style: #{$border-style};
+      --jf-form-input-border-color: #{$border-color};
+      --jf-form-input-border-radius: #{$border-radius};
+      --jf-form-input-placeholder-color: #{$placeholder-color};
+      --jf-form-select-bg-img: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23010101' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
 
-      --table-border-color: #{$table-border-color};
-      --table-font-size: #{$table-font-size};
-      --table-stripe-color: #{$table-stripe-color};
-      --table-hover-background: #{$table-hover-background};
-      --table-cell-background: transparent;
+      --jf-table-border-color: #{$table-border-color};
+      --jf-table-font-size: #{$table-font-size};
+      --jf-table-stripe-color: #{$table-stripe-color};
+      --jf-table-hover-background: #{$table-hover-background};
+      --jf-table-cell-background: transparent;
 
-      --navbar-bg-color: #{$navbar-bg-color};
-      --navbar-link-color: #{$navbar-link-color};
-      --navbar-link-bg-color: #{$navbar-link-bg-color};
-      --navbar-link-hover-color: #{$navbar-link-hover-color};
-      --navbar-link-hover-bg-color: #{$navbar-link-hover-bg-color};
-      --navbar-link-hover-weight: #{$navbar-link-hover-weight};
-      --navbar-link-border: #{$navbar-link-border};
+      --jf-navbar-bg-color: #{$navbar-bg-color};
+      --jf-navbar-link-color: #{$navbar-link-color};
+      --jf-navbar-link-bg-color: #{$navbar-link-bg-color};
+      --jf-navbar-link-hover-color: #{$navbar-link-hover-color};
+      --jf-navbar-link-hover-bg-color: #{$navbar-link-hover-bg-color};
+      --jf-navbar-link-hover-weight: #{$navbar-link-hover-weight};
+      --jf-navbar-link-border: #{$navbar-link-border};
 
-      --navbar-text-transform: #{$navbar-text-transform};
-      --navbar-font-size: #{$navbar-font-size};
-      --navbar-font-family: #{$navbar-font-family};
-      --navbar-font-weight: #{$navbar-font-weight};
+      --jf-navbar-text-transform: #{$navbar-text-transform};
+      --jf-navbar-font-size: #{$navbar-font-size};
+      --jf-navbar-font-family: #{$navbar-font-family};
+      --jf-navbar-font-weight: #{$navbar-font-weight};
 
-      --navbar-link-padding-x: #{$navbar-link-padding-x};
-      --navbar-link-padding-y: #{$navbar-link-padding-y};
-      --navbar-dropdown-width: #{$navbar-dropdown-width};
+      --jf-navbar-link-padding-x: #{$navbar-link-padding-x};
+      --jf-navbar-link-padding-y: #{$navbar-link-padding-y};
+      --jf-navbar-dropdown-width: #{$navbar-dropdown-width};
     </code>
   </pre>
 
@@ -283,14 +283,14 @@
       // 2. Applies when the nearest container is < 400px
       .card.container-query-2 {
         @include container-below(400px) {
-          border-color: var(--color-primary-500);
+          border-color: var(--jf-color-primary-500);
           border-width: 4px;
         }
       }
       // 3. Applies when the nearest container is < 420px and >= 400px
       .card.container-query-3 {
         @include container-between(400px, 420px) {
-          background: var(--color-secondary-200);
+          background: var(--jf-color-secondary-200);
         }
       }
       // 4. Applies when the nearest named container is < 400px and >= 800px
@@ -309,7 +309,7 @@
       .card.container-query-6 {
         @include below(lg) {
           @include container-above(400px) {
-            border-color: var(--color-primary-500);
+            border-color: var(--jf-color-primary-500);
             border-width: 4px;
           }
         }

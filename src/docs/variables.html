@@ -9,6 +9,8 @@
 <div class="variables-reference">
   <p class="standfirst">Providing that you <a href="./getting-started.html">import the SCSS files into your project</a> in the correct order, you can override any of the default variables below in your own project's SCSS files.</p>
 
+  <p>Many of these settings are also emitted as CSS custom properties for runtime theming. Every one is <span class="bold">namespaced</span> with the <span class="variable-ref">$token-prefix</span> setting (default <span class="code-ref">jf</span>) &mdash; so <span class="variable-ref">$card-padding</span> becomes <span class="code-ref">--jf-card-padding</span>, the palette becomes <span class="code-ref">--jf-color-primary-500</span> and so on. Reference them from your own SCSS with <span class="code-ref">token(card-padding)</span> (which expands to <span class="code-ref">var(--jf-card-padding)</span>), or from plain CSS / a <span class="code-ref">[data-theme]</span> block with the full <span class="code-ref">--jf-*</span> name. Set <span class="code-ref">$token-prefix: ""</span> before importing Jellyfish to emit un-prefixed <span class="code-ref">--card-padding</span> names instead.</p>
+
   <h2 id="sizing-system" class="h5">Sizing System</h2>
   <table class="is-responsive has-border">
     <thead>
@@ -64,40 +66,40 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$root-font-size</span></td>
-        <td><span class="code-ref">var(--font-size-0)</span></td>
-        <td>The root font size at the smallest device size. <br><br><span class="bold">This is output as a custom CSS property --root-font-size; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(root-font-size)</span>. The CSS property is automatically overwritten at each breakpoint defined in the <span class="variable-ref">$breakpoints</span> map.</span></td>
+        <td><span class="code-ref">var(--jf-font-size-0)</span></td>
+        <td>The root font size at the smallest device size. <br><br><span class="bold">This is output as a custom CSS property --jf-root-font-size; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(root-font-size)</span>. The CSS property is automatically overwritten at each breakpoint defined in the <span class="variable-ref">$breakpoints</span> map.</span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$root-line-height</span></td>
         <td>1.5</td>
-        <td>The root line-height at the smallest device size. <br><br><span class="bold">This is output as a custom CSS property --root-line-height; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(root-line-height)</span>. The CSS property is automatically overwritten at each breakpoint defined in the <span class="variable-ref">$breakpoints</span> map.</span></td>
+        <td>The root line-height at the smallest device size. <br><br><span class="bold">This is output as a custom CSS property --jf-root-line-height; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(root-line-height)</span>. The CSS property is automatically overwritten at each breakpoint defined in the <span class="variable-ref">$breakpoints</span> map.</span></td>
       </tr>
 
       <tr>
         <td><span class="variable-ref">$font-primary</span></td>
         <td>-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
           Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"</td>
-        <td>Primary font stack. <br><br><span class="bold">This is output as a custom CSS property --font-primary; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(font-primary)</span></span></td>
+        <td>Primary font stack. <br><br><span class="bold">This is output as a custom CSS property --jf-font-primary; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(font-primary)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$root-secondary</span></td>
-        <td><span class="variable-ref">var(--font-primary)</span></td>
-        <td>Secondary font stack. <br><br><span class="bold">This is output as a custom CSS property --font-secondary; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(font-secondary)</span></span></td>
+        <td><span class="variable-ref">var(--jf-font-primary)</span></td>
+        <td>Secondary font stack. <br><br><span class="bold">This is output as a custom CSS property --jf-font-secondary; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(font-secondary)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$font-monospace</span></td>
         <td>"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
           monospace</td>
-        <td>Monospace font stack used for code tags. <br><br><span class="bold">This is output as a custom CSS property --font-monospace; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(font-monospace)</span></span></td>
+        <td>Monospace font stack used for code tags. <br><br><span class="bold">This is output as a custom CSS property --jf-font-monospace; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(font-monospace)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$font-body</span></td>
-        <td><span class="variable-ref">var(--font-primary)</span></td>
+        <td><span class="variable-ref">var(--jf-font-primary)</span></td>
         <td>The font stack used for body copy.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$font-headings</span></td>
-        <td><span class="variable-ref">var(--font-secondary)</span></td>
+        <td><span class="variable-ref">var(--jf-font-secondary)</span></td>
         <td>The font stack used for headings.</td>
       </tr>
       <tr>
@@ -164,32 +166,32 @@
       <tr>
         <td><span class="variable-ref">$color-white</span></td>
         <td>#ffffff</td>
-        <td>Pure white, used for various SCSS functions. Shouldn't be changed.<br><br><span class="bold">This is output as a custom CSS property --color-white; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(color-white)</span></span></td>
+        <td>Pure white, used for various SCSS functions. Shouldn't be changed.<br><br><span class="bold">This is output as a custom CSS property --jf-color-white; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-white)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$color-black</span></td>
         <td>#000000</td>
-        <td>Pure black, used for various SCSS functions. Shouldn't be changed.<br><br><span class="bold">This is output as a custom CSS property --color-black; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(color-black)</span></span></td>
+        <td>Pure black, used for various SCSS functions. Shouldn't be changed.<br><br><span class="bold">This is output as a custom CSS property --jf-color-black; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-black)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$body-background-color</span></td>
-        <td><span class="variable-ref">var(--color-white)</span></td>
-        <td>The background color for the <span class="code-ref">body</span> tag.<br><br><span class="bold">This is output as a custom CSS property --color-background; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(color-background)</span></span></td>
+        <td><span class="variable-ref">var(--jf-color-white)</span></td>
+        <td>The background color for the <span class="code-ref">body</span> tag.<br><br><span class="bold">This is output as a custom CSS property --jf-color-background; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-background)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$background-colors</span></td>
         <td><span class="italic">(SCSS map)</span></td>
-        <td>A map of key: value pairs used to generate <a href="./theme-colors.html">background colors</a>. <br><br><span class="bold">These are output as a custom CSS property --color-background on the corresponding <span class="css-ref">.bg-*</span> modifier</span> class.</td>
+        <td>A map of key: value pairs used to generate <a href="./theme-colors.html">background colors</a>. <br><br><span class="bold">These are output as a custom CSS property --jf-color-background on the corresponding <span class="css-ref">.bg-*</span> modifier</span> class.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$color-text</span></td>
         <td><span class="code-ref">get-color(neutral, 1000)</span></td>
-        <td>The default color for body copy. Holds a live <span class="code-ref">var(--color-neutral-1000)</span> reference by default, so it follows a runtime override of the neutral palette rather than baking a fixed value at compile time. Anywhere it needs to feed Sass colour maths instead (e.g. <span class="code-ref">resolve-contrast-color()</span>'s <span class="code-ref">$color-dark</span> argument), it's normalised back to a real color via <span class="code-ref">raw-color()</span>. You can still override it with a raw literal directly if you want a color outside the palette. <br><br><span class="bold">This is output as a custom CSS property --color-text; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(color-text)</span></span></td>
+        <td>The default color for body copy. Holds a live <span class="code-ref">var(--jf-color-neutral-1000)</span> reference by default, so it follows a runtime override of the neutral palette rather than baking a fixed value at compile time. Anywhere it needs to feed Sass colour maths instead (e.g. <span class="code-ref">resolve-contrast-color()</span>'s <span class="code-ref">$color-dark</span> argument), it's normalised back to a real color via <span class="code-ref">raw-color()</span>. You can still override it with a raw literal directly if you want a color outside the palette. <br><br><span class="bold">This is output as a custom CSS property --jf-color-text; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-text)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$color-headings-preferred</span></td>
         <td><span class="code-ref">get-color(neutral, 700)</span></td>
-        <td>The default color for headings. Same live-reference behavior as <span class="variable-ref">$color-text</span> above. <br><br><span class="bold">This is output as a custom CSS property --color-headings-preferred; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(color-headings-preferred)</span></span></td>
+        <td>The default color for headings. Same live-reference behavior as <span class="variable-ref">$color-text</span> above. <br><br><span class="bold">This is output as a custom CSS property --jf-color-headings-preferred; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-headings-preferred)</span></span></td>
       </tr>
     </tbody>
   </table>
@@ -267,7 +269,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$button-font-family</span></td>
-        <td><span class="code-ref">var(--font-secondary)</span></td>
+        <td><span class="code-ref">var(--jf-font-secondary)</span></td>
         <td>Button font family</td>
       </tr>
       <tr>
@@ -302,22 +304,22 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$button-font-size-xsmall</span></td>
-        <td><span class="code-ref">var(--font-size--2)</span></td>
+        <td><span class="code-ref">var(--jf-font-size--2)</span></td>
         <td>Button font size when utility class <span class="css-ref">.xsmall</span> is added</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$button-font-size-small</span></td>
-        <td><span class="code-ref">var(--font-size--1)</span></td>
+        <td><span class="code-ref">var(--jf-font-size--1)</span></td>
         <td>Button font size when utility class <span class="css-ref">.small</span> is added</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$button-font-size</span></td>
-        <td><span class="code-ref">var(--font-size-0)</span></td>
+        <td><span class="code-ref">var(--jf-font-size-0)</span></td>
         <td>Default button font size</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$button-font-size-large</span></td>
-        <td><span class="code-ref">var(--font-size-1)</span></td>
+        <td><span class="code-ref">var(--jf-font-size-1)</span></td>
         <td>Button font size when utility class <span class="css-ref">.large</span> is added</td>
       </tr>
       <tr>
@@ -470,7 +472,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$accordion-heading-font-size</span></td>
-        <td><span class="code-ref">v(font-size-1)</span></td>
+        <td><span class="code-ref">token(font-size-1)</span></td>
         <td>The font size for accordion heading button text.</td>
       </tr>
       <tr>
@@ -595,7 +597,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$chip-font-size</span></td>
-        <td><span class="code-ref">var(--font-size--1)</span></td>
+        <td><span class="code-ref">var(--jf-font-size--1)</span></td>
         <td>The font size for <span class="css-ref">.chip</span> elements.</td>
       </tr>
     </tbody>
@@ -665,7 +667,7 @@
       <tr>
         <td><span class="variable-ref">$base-col-gutter</span></td>
         <td><span class="code-ref">get-size(1)</span></td>
-        <td>The base gutter around <span class="css-ref">.col</span> elements, used on the smallest screen widths. The CSS property --grid-gutter is automatically overwritten at each breakpoint defined in the <span class="variable-ref">$breakpoints</span> map.</span></td>
+        <td>The base gutter around <span class="css-ref">.col</span> elements, used on the smallest screen widths. The CSS property --jf-grid-gutter is automatically overwritten at each breakpoint defined in the <span class="variable-ref">$breakpoints</span> map.</span></td>
       </tr>
     </tbody>
   </table>
@@ -739,7 +741,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$table-hover-color</span></td>
-        <td><span class="variable-ref">var(--color-text)</span></td>
+        <td><span class="variable-ref">var(--jf-color-text)</span></td>
         <td>The color to use for text in a hovered row when a table has a modifier class of <span class="css-ref">.is-hoverable</span>.</td>
       </tr>
       <tr>
@@ -754,7 +756,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$table-font-size</span></td>
-        <td><span class="code-ref">var(--font-size--1)</span></td>
+        <td><span class="code-ref">var(--jf-font-size--1)</span></td>
         <td>The font size for table cells.</td>
       </tr>
       <tr>
@@ -776,6 +778,11 @@
     </thead>
     <tbody>
       <tr>
+        <td><span class="variable-ref">$token-prefix</span></td>
+        <td>jf</td>
+        <td>Namespace applied to every CSS custom property Jellyfish emits, via the <span class="code-ref">token-name()</span> helper &mdash; so <span class="variable-ref">$card-padding</span> is output as <span class="code-ref">--jf-card-padding</span>, the palette as <span class="code-ref">--jf-color-primary-500</span>, and so on. Reference tokens from SCSS with <span class="code-ref">token(card-padding)</span> (expands to <span class="code-ref">var(--jf-card-padding)</span>); from plain CSS use the full <span class="code-ref">--jf-*</span> name. Set to <span class="code-ref">""</span> (or <span class="code-ref">null</span>) for un-prefixed <span class="code-ref">--card-padding</span> names.<br><br><span class="bold">This one must be overridden <span class="italic">before</span> your first <span class="code-ref">@import "jellyfish-ui/&hellip;"</span>, not in your own <span class="code-ref">abstracts/__all</span>.</span> It's defined in <span class="code-ref">abstracts/01-tools/_functions.scss</span> and consumed as the settings layer loads (the same as the <span class="variable-ref">$colors</span> palette map), so a later override lands too late.</td>
+      </tr>
+      <tr>
         <td><span class="variable-ref">$global-transition</span></td>
         <td>0.2s ease</td>
         <td>The global transition used in the <span class="code-ref">smooth()</span> function</td>
@@ -796,7 +803,7 @@
       <tr>
         <td><span class="variable-ref">$accessibility-focus-color</span></td>
         <td>rgb(0, 140, 255)</td>
-        <td>The color used for the outline when an element receives keyboard-focus.<br><br><span class="bold">This is output as a custom CSS property --accessibility-focus-color; the recommended way to reference within your SCSS files is by calling <span class="code-ref">v(accessibility-focus-color)</span></span></td>
+        <td>The color used for the outline when an element receives keyboard-focus.<br><br><span class="bold">This is output as a custom CSS property --jf-accessibility-focus-color; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(accessibility-focus-color)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$accessibility-focus-outline-width</span></td>

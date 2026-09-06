@@ -17,7 +17,7 @@ $colors: map-merge(
 
 $color-white: #ffffff !default;
 $color-black: #000000 !default;
-$body-background-color: v(color-white) !default;
+$body-background-color: token(color-white) !default;
 
 // Merge colors from $colors map into $background-colors if 'bg' is set to 'true'
 @each $color-name, $color-palette in $colors {

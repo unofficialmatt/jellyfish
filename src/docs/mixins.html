@@ -7,20 +7,20 @@
 <h1 class="section-heading h2">Mixins and Functions</h1>
 
 <div>
-  <h2 class="h3">Shorthand CSS properties</h2>
-  <p>Use the shorthand function <span class="code-ref">v($value)</span> to output a custom CSS property. You'll need to interpolate the function if using inside another CSS prop:</p>
+  <h2 class="h3">Referencing tokens &mdash; <span class="code-ref">token()</span></h2>
+  <p><span class="code-ref">token($value, $fallback: null)</span> is the canonical way to reference a Jellyfish CSS custom property from your SCSS. It applies the <span class="variable-ref">$token-prefix</span> namespace for you &mdash; <span class="code-ref">token(font-primary)</span> expands to <span class="code-ref">var(--jf-font-primary)</span> &mdash; so always pass the un-prefixed name. Pass a second argument for a <span class="code-ref">var()</span> fallback: <span class="code-ref">token(table-text-color, inherit)</span>. You'll need to interpolate the function if using inside another CSS prop. <span class="italic">(This was called <span class="code-ref">v()</span> before v5.)</span></p>
   <pre class="language-scss">
     <code>
       // Input:
       .element {
-        --font-family: #{v(font-primary)};
-        font-family: v(font-primary);
+        --jf-font-family: #{token(font-primary)};
+        font-family: token(font-primary);
       }
 
       // Output:
       .element {
-        --font-family: var(--font-primary);
-        font-family: var(--font-primary);
+        --jf-font-family: var(--jf-font-primary);
+        font-family: var(--jf-font-primary);
       }
     </code>
   </pre>
@@ -31,40 +31,40 @@
   <p>The <code class="code-ref">makeColorPalette($color, $gen-bg: "false")</code> function is used within the <span class="variable-ref">$colors</span> SCSS map to generate a harmonious color palette for each of your project's core colors. This function generates 12 colors of various tints and shades, around the provided base color. </p>
   <p>The function takes two arguments; the first is a CSS color value (any valid format: hex, hsl, rgb) and the second is a boolean string "true" or "false" (default "false") which defines whether Jellyfish should automatically create <span class="css-ref">.bg-*</span> modifiers for each of the colors <a href="./theme-colors.html">(see Theme Colors)</a>.</p>
   <div class="row collapse text-center mb">
-    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-1000);">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--jf-color-text:var(--jf-color-primary-1000-fg);--jf-color-background:var(--jf-color-primary-1000);">
       <span>1000</span>
     </div>
-    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-900);">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--jf-color-text:var(--jf-color-primary-900-fg);--jf-color-background:var(--jf-color-primary-900);">
       <span>900</span>
     </div>
-    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-800);">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--jf-color-text:var(--jf-color-primary-800-fg);--jf-color-background:var(--jf-color-primary-800);">
       <span>800</span>
     </div>
-    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-700);">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--jf-color-text:var(--jf-color-primary-700-fg);--jf-color-background:var(--jf-color-primary-700);">
       <span>700</span>
     </div>
-    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-600);">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--jf-color-text:var(--jf-color-primary-600-fg);--jf-color-background:var(--jf-color-primary-600);">
       <span>600</span>
     </div>
-    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-500);">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--jf-color-text:var(--jf-color-primary-500-fg);--jf-color-background:var(--jf-color-primary-500);">
       <span style="line-height:1.2 !important;display:block;">500<br>(base)</span>
     </div>
-    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-text:var(--color-white);--color-background:var(--color-primary-400);">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--jf-color-text:var(--jf-color-primary-400-fg);--jf-color-background:var(--jf-color-primary-400);">
       <span>400</span>
     </div>
-    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-background:var(--color-primary-300);">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--jf-color-text:var(--jf-color-primary-300-fg);--jf-color-background:var(--jf-color-primary-300);">
       <span>300</span>
     </div>
-    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-background:var(--color-primary-200);">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--jf-color-text:var(--jf-color-primary-200-fg);--jf-color-background:var(--jf-color-primary-200);">
       <span>200</span>
     </div>
-    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-background:var(--color-primary-100);">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--jf-color-text:var(--jf-color-primary-100-fg);--jf-color-background:var(--jf-color-primary-100);">
       <span>100</span>
     </div>
-    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-background:var(--color-primary-50);">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--jf-color-text:var(--jf-color-primary-50-fg);--jf-color-background:var(--jf-color-primary-50);">
       <span>50</span>
     </div>
-    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--color-background:var(--color-primary-25);">
+    <div class="col xs-3 sm-1 bg-demo" style="padding-top:0.5rem;padding-bottom:.5rem;--jf-color-text:var(--jf-color-primary-25-fg);--jf-color-background:var(--jf-color-primary-25);">
       <span>25</span>
     </div>
   </div>
@@ -81,9 +81,9 @@
 
       // Output:
       .element {
-        color: --var(--color-primary-200);
-        background-color: --var(--color-neutral-1000);
-        border-color: --var(--color-secondary-500);
+        color: var(--jf-color-primary-200);
+        background-color: var(--jf-color-neutral-1000);
+        border-color: var(--jf-color-secondary-500);
       }
     </code>
   </pre>
@@ -108,11 +108,11 @@
   </pre>
 
   <h3 class="h4">raw-color() function</h3>
-  <p>The <code class="code-ref">raw-color($value)</code> function normalises a value that might already be a CSS color, or might be a <span class="code-ref">var(--color-{name}-{shade})</span> reference &mdash; returning a real color either way. Some settings, like <span class="variable-ref">$color-text</span> and <span class="variable-ref">$color-headings-preferred</span>, hold a live reference by default (so their custom property follows a runtime palette override) but still need to work as a real color anywhere Sass colour maths is involved, such as <span class="code-ref">resolve-contrast-color()</span>'s <span class="code-ref">$color-dark</span> argument. If the value is already a color, <span class="code-ref">raw-color()</span> returns it unchanged.</p>
+  <p>The <code class="code-ref">raw-color($value)</code> function normalises a value that might already be a CSS color, or might be a <span class="code-ref">var(--jf-color-{name}-{shade})</span> reference &mdash; returning a real color either way. Some settings, like <span class="variable-ref">$color-text</span> and <span class="variable-ref">$color-headings-preferred</span>, hold a live reference by default (so their custom property follows a runtime palette override) but still need to work as a real color anywhere Sass colour maths is involved, such as <span class="code-ref">resolve-contrast-color()</span>'s <span class="code-ref">$color-dark</span> argument. If the value is already a color, <span class="code-ref">raw-color()</span> returns it unchanged.</p>
   <pre class="language-scss">
     <code>
       // Input:
-      // $color-text: get-color(neutral, 1000), i.e. var(--color-neutral-1000)
+      // $color-text: get-color(neutral, 1000), i.e. var(--jf-color-neutral-1000)
       $c: raw-color($color-text);
 
       // Output:
@@ -131,13 +131,13 @@
 
       // Output:
       .element {
-        color: var(--color-primary-700-fg);
+        color: var(--jf-color-primary-700-fg);
       }
     </code>
   </pre>
 
   <h3 class="h4">resolve-contrast-color() function</h3>
-  <p>The <code class="code-ref">resolve-contrast-color($color, $color-dark: $color-text)</code> function takes the background color of an element and returns the best color for text on top of it, based on the <a href="https://git.apcacontrast.com" target="_blank">APCA contrast algorithm</a> &mdash; a choice between <span class="variable-ref">$color-white</span> and <span class="variable-ref">$color-dark</span> (the softer <span class="variable-ref">$color-text</span> by default), falling back to <span class="variable-ref">$color-black</span> only if neither reaches the contrast threshold. This is the lower-level function used to build the <span class="css-ref">--color-{name}-{shade}-fg</span> custom properties once per palette shade; reach for <code class="code-ref">get-fg-color()</code> instead when styling a component against a <span class="variable-ref">$colors</span> shade.</p>
+  <p>The <code class="code-ref">resolve-contrast-color($color, $color-dark: $color-text)</code> function takes the background color of an element and returns the best color for text on top of it, based on the <a href="https://git.apcacontrast.com" target="_blank">APCA contrast algorithm</a> &mdash; a choice between <span class="variable-ref">$color-white</span> and <span class="variable-ref">$color-dark</span> (the softer <span class="variable-ref">$color-text</span> by default), falling back to <span class="variable-ref">$color-black</span> only if neither reaches the contrast threshold. This is the lower-level function used to build the <span class="css-ref">--jf-color-{name}-{shade}-fg</span> custom properties once per palette shade; reach for <code class="code-ref">get-fg-color()</code> instead when styling a component against a <span class="variable-ref">$colors</span> shade.</p>
   <p>Where possible, the function will return a custom CSS property rather than a CSS color value.</p>
 
 </div>

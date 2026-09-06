@@ -1,40 +1,40 @@
 // TODO: Be nicer to pass through a light heading color here, for the choose contrast
 
 [class*="bg-"] {
-  color: v(color-section-text);
-  background-color: v(color-section-background);
+  color: token(color-section-text);
+  background-color: token(color-section-background);
   & :is(h1, h2, h3, h4, h5, h6) {
-    color: v(color-section-headings);
+    color: token(color-section-headings);
   }
 }
 
 .bg-transparent {
-  --color-section-background: transparent !important;
+  #{token-name("color-section-background")}: transparent !important;
 }
 
 .bg-white {
-  --color-section-background: #{v(color-white)};
+  #{token-name("color-section-background")}: #{token(color-white)};
   $color: resolve-contrast-color($color-white);
   $heading-color: resolve-contrast-color(
     $color-white,
     $color-headings-preferred
   );
-  --color-section-text: #{$color};
-  --color-section-headings: #{$heading-color};
+  #{token-name("color-section-text")}: #{$color};
+  #{token-name("color-section-headings")}: #{$heading-color};
 }
 
 %bg-dark {
-  --color-section-text: #{v(color-white)};
+  #{token-name("color-section-text")}: #{token(color-white)};
 }
 %heading-dark {
-  --color-section-headings: #{v(color-white)};
+  #{token-name("color-section-headings")}: #{token(color-white)};
 }
 
 %bg-light {
-  --color-section-text: #{v(color-text)};
+  #{token-name("color-section-text")}: #{token(color-text)};
 }
 %heading-light {
-  --color-section-headings: #{v(color-headings-preferred)};
+  #{token-name("color-section-headings")}: #{token(color-headings-preferred)};
 }
 
 /**
@@ -42,7 +42,7 @@
   */
 @each $key, $val in $background-colors {
   .bg-#{$key} {
-    --color-section-background: #{$val};
+    #{token-name("color-section-background")}: #{$val};
 
     $bg-color: raw-color($val);
 
@@ -52,12 +52,12 @@
       $bg-color,
       $color-headings-preferred
     );
-    @if ($color == var(--color-white)) {
+    @if ($color == token(color-white)) {
       @extend %bg-dark;
     } @else {
       @extend %bg-light;
     }
-    @if ($color-headings == var(--color-white)) {
+    @if ($color-headings == token(color-white)) {
       @extend %heading-dark;
     } @else {
       @extend %heading-light;

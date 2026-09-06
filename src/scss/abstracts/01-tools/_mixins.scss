@@ -1,18 +1,20 @@
-// Converts a sass map into CSS properties
-@mixin map-to-css-properties($map, $prefix: "") {
+// Converts a sass map into CSS custom properties. $map-prefix is the map-path
+// segment (e.g. "color-", "font-size-"); the $token-prefix namespace is applied
+// on top by token-name().
+@mixin map-to-css-properties($map, $map-prefix: "") {
   @each $key, $value in $map {
     @if type-of($value) == "map" {
-      @if $prefix == "color-" {
-        --#{$prefix + $key}: var(--color-#{$key}-500);
+      @if $map-prefix == "color-" {
+        #{token-name($map-prefix + $key)}: token(color-#{$key}-500);
       }
-      @include map-to-css-properties($value, $prefix + $key + "-");
+      @include map-to-css-properties($value, $map-prefix + $key + "-");
     } @else {
       @if $value != "false" {
         // Convert $key to string and replace any '.' with 'x' for valid CSS property names
         $key: #{$key};
         $key: str-replace($key, ".", "x");
 
-        --#{$prefix + $key}: #{$value};
+        #{token-name($map-prefix + $key)}: #{$value};
       }
     }
   }
@@ -34,7 +36,7 @@
 @mixin select-bg($color: $select-chevron-color) {
   $encoded-color: str-replace("#{$color}", "#", "%23");
   $svg: str-replace($select-chevron-icon-svg, "{{color}}", $encoded-color);
-  --form-select-bg-img: url("#{$svg}");
+  #{token-name("form-select-bg-img")}: url("#{$svg}");
 }
 
 // DRY mixin for Pseudo elements. Pass optional args or leave as default

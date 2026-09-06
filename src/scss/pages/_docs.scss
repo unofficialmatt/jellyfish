@@ -16,7 +16,7 @@
     margin: 0;
     margin-left: 1.5ch;
     a {
-      font-size: v(font-size--1);
+      font-size: token(font-size--1);
     }
   }
   margin-top: get-size(2);
@@ -59,7 +59,7 @@
       color: $link-active;
     }
   }
-  background: var(--color-background);
+  background: token(color-background);
 }
 
 .section-heading {
@@ -75,14 +75,14 @@
   flex-wrap: wrap;
   align-items: baseline;
   z-index: 9;
-  background-color: color-mix(in srgb, var(--color-background) 90%, transparent);
+  background-color: color-mix(in srgb, token(color-background) 90%, transparent);
   backdrop-filter: blur(3px);
   //  font-weight: $weight-light;
   .chip-group:first-of-type {
     margin-left: auto;
   }
   .chip-group {
-    font-size: v(font-size--2);
+    font-size: token(font-size--2);
     margin-left: get-size(0.75);
   }
 }
@@ -94,7 +94,7 @@
 }
 // Standfirst
 .standfirst {
-  font-size: v(font-size-2);
+  font-size: token(font-size-2);
   font-weight: $weight-medium;
 }
 
@@ -104,7 +104,7 @@
   display: inline-block;
   font-weight: $weight-semibold;
   background-color: get-color(neutral, 50);
-  font-size: v(font-size--1);
+  font-size: token(font-size--1);
 }
 
 .code-ref {
@@ -125,17 +125,17 @@
 pre {
   position: relative;
   margin: $element-margin 0 !important;
-  font-size: v(font-size--2) !important;
+  font-size: token(font-size--2) !important;
 
   label {
-    font-size: v(font-size--1);
+    font-size: token(font-size--1);
     top: 0;
     right: 0;
     position: absolute;
     float: right;
     display: block;
     background-color: get-color(neutral, 400);
-    color: var(--color-white);
+    color: token(color-white);
     padding: 0.4em 0.6em;
     text-shadow: none;
   }
@@ -194,7 +194,7 @@ div.code-toolbar {
   line-height: 1.2;
   margin: 0 0 $element-margin 0;
   display: inherit;
-  font-size: v(font-size--1);
+  font-size: token(font-size--1);
   flex: 1 1 auto;
 }
 
@@ -205,7 +205,7 @@ div.code-toolbar {
   padding: $element-padding 0;
   .boxed {
     margin: 0;
-    background-color: var(--color-white);
+    background-color: token(color-white);
     border: 1px solid get-color(neutral, 300);
   }
 }
@@ -219,7 +219,7 @@ div.code-toolbar {
   margin-top: get-size(0.75) !important;
   padding-top: get-size(0.5);
   color: get-color(neutral, 400);
-  font-size: v(font-size--2);
+  font-size: token(font-size--2);
   margin-left: -1.5ch;
   font-weight: $weight-medium;
 }
@@ -253,7 +253,7 @@ div.code-toolbar {
     &:hover,
     &:focus {
       background-color: get-color(primary, 200);
-      color: var(--color-white);
+      color: token(color-white);
       transform: scale(1.02);
     }
   }
@@ -261,7 +261,7 @@ div.code-toolbar {
 
 .variables-reference {
   table td {
-    font-size: v(font-size--1);
+    font-size: token(font-size--1);
   }
   @include above($table-responsive-breakpoint) {
     table tr td:first-of-type {
@@ -274,8 +274,8 @@ div.code-toolbar {
 }
 
 .bg-demo {
-  background: var(--color-background) !important;
-  color: var(--color-text) !important;
+  background: token(color-background) !important;
+  color: token(color-text) !important;
 }
 
 // Examples for @container queries
@@ -298,19 +298,19 @@ div.code-toolbar {
 }
 .card.container-query-2 {
   @include container-below(400px) {
-    border-color: var(--color-primary-500);
+    border-color: token(color-primary-500);
     border-width: 4px;
   }
 }
 .card.container-query-3 {
   @include container-between(400px, 420px) {
-    background: var(--color-secondary-200);
+    background: token(color-secondary-200);
   }
 }
 .card.container-query-6 {
   @include below(lg) {
     @include container-above(400px) {
-      border-color: var(--color-primary-500);
+      border-color: token(color-primary-500);
       border-width: 4px;
     }
   }
@@ -332,9 +332,9 @@ div.code-toolbar {
 
 // select-bg() mixin example: recolour the select chevron against a dark background
 .select-bg-demo {
-  --color-section-background: #{get-color(neutral, 800)};
-  --form-input-background: #{get-color(neutral, 800)};
-  --color-text: var(--color-white);
+  #{token-name("color-section-background")}: #{get-color(neutral, 800)};
+  #{token-name("form-input-background")}: #{get-color(neutral, 800)};
+  #{token-name("color-text")}: token(color-white);
   padding: get-size(1);
 
   select {

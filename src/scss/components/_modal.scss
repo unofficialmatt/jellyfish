@@ -13,13 +13,13 @@ dialog.modal {
   max-height: calc(100% - $modal-outer-margin * 2);
   width: 100%;
   max-width: min(
-    var(--modal-max-width),
+    token(modal-max-width),
     calc(100vw - #{$modal-outer-margin * 2})
   );
   border: $modal-border;
   border-radius: $modal-border-radius;
   overflow: hidden;
-  padding: var(--modal-padding);
+  padding: token(modal-padding);
   &[open] {
     display: flex;
     flex-direction: column;
@@ -40,8 +40,8 @@ body.has-open-modal {
 }
 
 .modal-close {
-  --button-color-theme: #{get-color(neutral, 200)};
-  --button-hover-color-theme: #{get-color(neutral)};
+  #{token-name("button-color-theme")}: #{get-color(neutral, 200)};
+  #{token-name("button-hover-color-theme")}: #{get-color(neutral)};
   position: absolute;
   top: get-size(0.5);
   right: get-size(0.5);
@@ -67,8 +67,8 @@ body.has-open-modal {
 }
 
 .modal-navigation-button {
-  --button-color-theme: #{get-color(neutral, 200)};
-  --button-hover-color-theme: var(--color-white);
+  #{token-name("button-color-theme")}: #{get-color(neutral, 200)};
+  #{token-name("button-hover-color-theme")}: token(color-white);
   padding: 0;
   width: $modal-navigation-arrow-size;
   height: $modal-navigation-arrow-size * 3; // Increase the hit area

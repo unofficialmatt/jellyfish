@@ -1,8 +1,8 @@
 @if $generate-progressbar == true {
   .progress {
-    --progress-bar-bg-color: #{v(color-neutral-50)};
-    --progress-bar-color: #{v(color-neutral-200)};
-    --progress-bar-color-unknown: #{v(color-neutral-100)};
+    #{token-name("progress-bar-bg-color")}: #{token(color-neutral-50)};
+    #{token-name("progress-bar-color")}: #{token(color-neutral-200)};
+    #{token-name("progress-bar-color-unknown")}: #{token(color-neutral-100)};
     appearance: none;
     border: none;
     background-size: auto; // Required polyfill for Safari if background image used
@@ -14,27 +14,27 @@
     border-radius: $progressbar-border-radius;
 
     &::-webkit-progress-bar {
-      background-color: v(progress-bar-bg-color);
+      background-color: token(progress-bar-bg-color);
     }
     &::-webkit-progress-value {
-      background-color: v(progress-bar-color);
+      background-color: token(progress-bar-color);
       border-radius: $progressbar-value-border-radius;
     }
     &::-moz-progress-bar {
-      background-color: v(progress-bar-color);
+      background-color: token(progress-bar-color);
       border-radius: $progressbar-value-border-radius;
     }
     &::-ms-fill {
-      background-color: v(progress-bar-color);
+      background-color: token(progress-bar-color);
       border-radius: $progressbar-value-border-radius;
     }
 
     &:indeterminate {
-      background-color: v(progress-bar-bg-color);
+      background-color: token(progress-bar-bg-color);
       background-image: linear-gradient(
         to right,
-        v(progress-bar-color-unknown) 20%,
-        v(progress-bar-bg-color) 20%
+        token(progress-bar-color-unknown) 20%,
+        token(progress-bar-bg-color) 20%
       );
       background-position: top left;
       background-repeat: no-repeat;
@@ -62,8 +62,8 @@
       }
     }
     &.white {
-      --progress-bar-color: #{v(color-white)};
-      --progress-bar-color-unknown: #{v(color-white)};
+      #{token-name("progress-bar-color")}: #{token(color-white)};
+      #{token-name("progress-bar-color-unknown")}: #{token(color-white)};
     }
   }
 

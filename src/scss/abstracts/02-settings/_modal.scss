@@ -1,4 +1,4 @@
-$modal-backdrop-color: var(--color-black) !default;
+$modal-backdrop-color: token(color-black) !default;
 $modal-backdrop-opacity: 0.9 !default;
 $modal-max-width: 900px !default;
 $modal-border: none !default;

@@ -2,8 +2,8 @@
 %forms {
   display: block;
   border: $borders;
-  border-radius: var(--form-input-border-radius);
-  background: var(--form-input-background);
+  border-radius: token(form-input-border-radius);
+  background: token(form-input-background);
   font-family: $form-font;
   padding: 10px;
   outline: none;
@@ -19,7 +19,7 @@
 #{$form-items} {
   @extend %forms;
   &:hover {
-    --form-input-border-color: #{$form-border-hover};
+    #{token-name("form-input-border-color")}: #{$form-border-hover};
   }
   &:disabled {
     // Grey out disabled form elements
@@ -59,7 +59,7 @@ input[type="radio"] {
 // Field Sets
 fieldset {
   border: $borders;
-  border-radius: var(--form-input-border-radius);
+  border-radius: token(form-input-border-radius);
   padding: $element-padding;
   margin: $element-margin 0;
 }
@@ -78,12 +78,12 @@ legend {
 select {
   width: 300px;
   max-width: 60%;
-  color: v(color-text);
+  color: token(color-text);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: var(--form-input-background);
-  background-image: var(--form-select-bg-img);
+  background-color: token(form-input-background);
+  background-image: token(form-select-bg-img);
   background-repeat: no-repeat;
   background-position: right get-size(0.75) center;
   background-size: get-size(1) get-size(0.75);
@@ -105,7 +105,7 @@ select::-ms-expand {
 
 // Placeholder Text
 ::placeholder {
-  color: var(--form-input-placeholder-color);
+  color: token(form-input-placeholder-color);
   opacity: 1;
 }
 

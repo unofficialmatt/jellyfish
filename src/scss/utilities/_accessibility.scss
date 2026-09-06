@@ -1,5 +1,5 @@
 @mixin accessible-focus-state {
-  outline: $accessibility-focus-outline-width solid v(accessibility-focus-color);
+  outline: $accessibility-focus-outline-width solid token(accessibility-focus-color);
   outline-offset: $accessibility-focus-outline-offset;
   // z-index: 1;
   //position: relative;
@@ -110,10 +110,10 @@ input[type="range"] {
 
 body.font-size {
   &-md {
-    --root-font-size: calc(#{$root-font-size} * 1.1);
+    #{token-name("root-font-size")}: calc(#{$root-font-size} * 1.1);
   }
   &-lg {
-    --root-font-size: calc(#{$root-font-size} * 1.2);
+    #{token-name("root-font-size")}: calc(#{$root-font-size} * 1.2);
   }
 
   @each $point, $i in $breakpoints {
@@ -121,10 +121,10 @@ body.font-size {
       @if (map-deep-get($breakpoints, $point, "root-font-size") != null) {
         $font-size: #{map-deep-get($breakpoints, $point, "root-font-size")};
         &-md {
-          --root-font-size: calc(#{$font-size} * 1.1);
+          #{token-name("root-font-size")}: calc(#{$font-size} * 1.1);
         }
         &-lg {
-          --root-font-size: calc(#{$font-size} * 1.2);
+          #{token-name("root-font-size")}: calc(#{$font-size} * 1.2);
         }
       }
     }

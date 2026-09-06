@@ -13,10 +13,10 @@
       size: $chip-font-size;
       weight: $chip-font-weight;
     }
-    color: v(chip-color-text);
-    background-color: v(chip-color-theme);
+    color: token(chip-color-text);
+    background-color: token(chip-color-theme);
     border: {
-      color: v(chip-color-theme);
+      color: token(chip-color-theme);
       radius: $chip-border-radius;
       width: $chip-border-width;
       style: solid;
@@ -28,11 +28,11 @@
       }
     }
     &.white {
-      --chip-color-theme: #{v(color-white)};
-      --chip-color-text: #{v(color-text)};
+      #{token-name("chip-color-theme")}: #{token(color-white)};
+      #{token-name("chip-color-text")}: #{token(color-text)};
     }
     &.outline {
-      --chip-color-text: inherit;
+      #{token-name("chip-color-text")}: inherit;
       background: transparent;
       border-style: $chip-border-style;
     }

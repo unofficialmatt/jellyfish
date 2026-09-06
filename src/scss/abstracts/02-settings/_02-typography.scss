@@ -26,56 +26,56 @@ $type-scale: map-merge(
 );
 
 // DOCUMENT ROOT FONT SIZE AND LINE HEIGHT AT SMALLEST DEVICE WIDTH
-$root-font-size: v(font-size-0) !default;
+$root-font-size: token(font-size-0) !default;
 $root-line-height: 1.5 !default;
 
 $font-primary:
   -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
   sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
-$font-secondary: v(font-primary) !default;
+$font-secondary: token(font-primary) !default;
 $font-monospace:
   "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace !default;
-$font-body: v(font-primary) !default;
-$font-headings: v(font-secondary) !default;
+$font-body: token(font-primary) !default;
+$font-headings: token(font-secondary) !default;
 
 $font-sizes-h1: map-merge(
   (
-    "root": v(font-size-5),
-    "md": v(font-size-6),
+    "root": token(font-size-5),
+    "md": token(font-size-6),
   ),
   $font-sizes-h1
 );
 $font-sizes-h2: map-merge(
   (
-    "root": v(font-size-3),
-    "sm": v(font-size-4),
-    "md": v(font-size-5),
+    "root": token(font-size-3),
+    "sm": token(font-size-4),
+    "md": token(font-size-5),
   ),
   $font-sizes-h2
 );
 $font-sizes-h3: map-merge(
   (
-    "root": v(font-size-3),
-    "md": v(font-size-4),
+    "root": token(font-size-3),
+    "md": token(font-size-4),
   ),
   $font-sizes-h3
 );
 $font-sizes-h4: map-merge(
   (
-    "root": v(font-size-2),
-    "sm": v(font-size-3),
+    "root": token(font-size-2),
+    "sm": token(font-size-3),
   ),
   $font-sizes-h4
 );
 $font-sizes-h5: map-merge(
   (
-    "root": v(font-size-2),
+    "root": token(font-size-2),
   ),
   $font-sizes-h5
 );
 $font-sizes-h6: map-merge(
   (
-    "root": v(font-size-1),
+    "root": token(font-size-1),
   ),
   $font-sizes-h6
 );

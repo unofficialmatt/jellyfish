@@ -7,7 +7,9 @@
   @each $name, $palette in $colors {
     @each $shade, $color in $palette {
       @if $shade != "bg" {
-        --color-#{$name}-#{$shade}-fg: #{resolve-contrast-color($color)};
+        #{token-name("color-#{$name}-#{$shade}-fg")}: #{resolve-contrast-color(
+            $color
+          )};
         $palette-fg-pairs: append(
           $palette-fg-pairs,
           ("#{$name}-#{$shade}" choose-contrast-color($color) $color),
@@ -18,35 +20,39 @@
   }
   @include apca-lint($palette-fg-pairs, "palette -fg contrast");
 
-  --color-background: #{$body-background-color};
-  --color-white: #{$color-white};
-  --color-black: #{$color-black};
-  --color-text: #{$color-text};
-  --color-headings-preferred: #{$color-headings-preferred};
-  --accessibility-focus-color: #{$accessibility-focus-color};
-  --font-primary: #{$font-primary};
-  --font-secondary: #{$font-secondary};
-  --font-monospace: #{$font-monospace};
-  --grid-gutter: #{$base-col-gutter};
-  --root-font-size: #{$root-font-size};
-  --root-line-height: #{$root-line-height};
+  #{token-name("color-background")}: #{$body-background-color};
+  #{token-name("color-white")}: #{$color-white};
+  #{token-name("color-black")}: #{$color-black};
+  #{token-name("color-text")}: #{$color-text};
+  #{token-name("color-headings-preferred")}: #{$color-headings-preferred};
+  #{token-name("accessibility-focus-color")}: #{$accessibility-focus-color};
+  #{token-name("font-primary")}: #{$font-primary};
+  #{token-name("font-secondary")}: #{$font-secondary};
+  #{token-name("font-monospace")}: #{$font-monospace};
+  #{token-name("grid-gutter")}: #{$base-col-gutter};
+  #{token-name("root-font-size")}: #{$root-font-size};
+  #{token-name("root-line-height")}: #{$root-line-height};
   @include map-to-css-properties($type-scale, "font-size-");
 
   @each $point, $i in $breakpoints {
     // for each breakpoint defined...
     @include above($point) {
       @if (map-deep-get($breakpoints, $point, "col-gutter") != null) {
-        --grid-gutter: #{map-deep-get($breakpoints, $point, "col-gutter")};
+        #{token-name("grid-gutter")}: #{map-deep-get(
+            $breakpoints,
+            $point,
+            "col-gutter"
+          )};
       }
       @if (map-deep-get($breakpoints, $point, "root-font-size") != null) {
-        --root-font-size: #{map-deep-get(
+        #{token-name("root-font-size")}: #{map-deep-get(
             $breakpoints,
             $point,
             "root-font-size"
           )};
       }
       @if (map-deep-get($breakpoints, $point, "root-line-height") != null) {
-        --root-line-height: #{map-deep-get(
+        #{token-name("root-line-height")}: #{map-deep-get(
             $breakpoints,
             $point,
             "root-line-height"
@@ -55,58 +61,58 @@
     }
   }
 
-  --link-color: #{$link-color};
-  --link-color-active: #{$link-active};
-  --link-color-visited: #{$link-visited};
+  #{token-name("link-color")}: #{$link-color};
+  #{token-name("link-color-active")}: #{$link-active};
+  #{token-name("link-color-visited")}: #{$link-visited};
 
-  --mark-background: #{$mark-background-color};
+  #{token-name("mark-background")}: #{$mark-background-color};
   $mark-fg: choose-contrast-color($mark-background-color);
-  --mark-color: #{$mark-fg};
+  #{token-name("mark-color")}: #{$mark-fg};
   @include apca-lint(
     append((), ("mark" $mark-fg $mark-background-color), comma),
     "mark"
   );
 
-  --card-border-radius: #{$card-border-radius};
-  --card-border-style: #{$card-border-style};
-  --card-border-color: #{$card-border-color};
-  --card-border-width: #{$card-border-width};
-  --card-padding: #{$card-padding};
+  #{token-name("card-border-radius")}: #{$card-border-radius};
+  #{token-name("card-border-style")}: #{$card-border-style};
+  #{token-name("card-border-color")}: #{$card-border-color};
+  #{token-name("card-border-width")}: #{$card-border-width};
+  #{token-name("card-padding")}: #{$card-padding};
 
-  --chip-color-theme: #{v(color-neutral-50)};
-  --chip-color-text: #{get-fg-color(neutral, 50)};
+  #{token-name("chip-color-theme")}: #{token(color-neutral-50)};
+  #{token-name("chip-color-text")}: #{get-fg-color(neutral, 50)};
 
-  --modal-max-width: #{$modal-max-width};
-  --modal-padding: #{$modal-padding};
+  #{token-name("modal-max-width")}: #{$modal-max-width};
+  #{token-name("modal-padding")}: #{$modal-padding};
 
-  --form-input-background: #{$input-background};
-  --form-input-border-width: #{$border-width};
-  --form-input-border-style: #{$border-style};
-  --form-input-border-color: #{$border-color};
-  --form-input-border-radius: #{$border-radius};
-  --form-input-placeholder-color: #{$placeholder-color};
+  #{token-name("form-input-background")}: #{$input-background};
+  #{token-name("form-input-border-width")}: #{$border-width};
+  #{token-name("form-input-border-style")}: #{$border-style};
+  #{token-name("form-input-border-color")}: #{$border-color};
+  #{token-name("form-input-border-radius")}: #{$border-radius};
+  #{token-name("form-input-placeholder-color")}: #{$placeholder-color};
   @include select-bg();
 
-  --table-border-color: #{$table-border-color};
-  --table-font-size: #{$table-font-size};
-  --table-stripe-color: #{$table-stripe-color};
-  --table-hover-background: #{$table-hover-background};
-  --table-cell-background: transparent;
+  #{token-name("table-border-color")}: #{$table-border-color};
+  #{token-name("table-font-size")}: #{$table-font-size};
+  #{token-name("table-stripe-color")}: #{$table-stripe-color};
+  #{token-name("table-hover-background")}: #{$table-hover-background};
+  #{token-name("table-cell-background")}: transparent;
 
-  --navbar-bg-color: #{$navbar-bg-color};
-  --navbar-link-color: #{$navbar-link-color};
-  --navbar-link-bg-color: #{$navbar-link-bg-color};
-  --navbar-link-hover-color: #{$navbar-link-hover-color};
-  --navbar-link-hover-bg-color: #{$navbar-link-hover-bg-color};
-  --navbar-link-hover-weight: #{$navbar-link-hover-weight};
-  --navbar-link-border: #{$navbar-link-border};
+  #{token-name("navbar-bg-color")}: #{$navbar-bg-color};
+  #{token-name("navbar-link-color")}: #{$navbar-link-color};
+  #{token-name("navbar-link-bg-color")}: #{$navbar-link-bg-color};
+  #{token-name("navbar-link-hover-color")}: #{$navbar-link-hover-color};
+  #{token-name("navbar-link-hover-bg-color")}: #{$navbar-link-hover-bg-color};
+  #{token-name("navbar-link-hover-weight")}: #{$navbar-link-hover-weight};
+  #{token-name("navbar-link-border")}: #{$navbar-link-border};
 
-  --navbar-text-transform: #{$navbar-text-transform};
-  --navbar-font-size: #{$navbar-font-size};
-  --navbar-font-family: #{$navbar-font-family};
-  --navbar-font-weight: #{$navbar-font-weight};
+  #{token-name("navbar-text-transform")}: #{$navbar-text-transform};
+  #{token-name("navbar-font-size")}: #{$navbar-font-size};
+  #{token-name("navbar-font-family")}: #{$navbar-font-family};
+  #{token-name("navbar-font-weight")}: #{$navbar-font-weight};
 
-  --navbar-link-padding-x: #{$navbar-link-padding-x};
-  --navbar-link-padding-y: #{$navbar-link-padding-y};
-  --navbar-dropdown-width: #{$navbar-dropdown-width};
+  #{token-name("navbar-link-padding-x")}: #{$navbar-link-padding-x};
+  #{token-name("navbar-link-padding-y")}: #{$navbar-link-padding-y};
+  #{token-name("navbar-dropdown-width")}: #{$navbar-dropdown-width};
 }

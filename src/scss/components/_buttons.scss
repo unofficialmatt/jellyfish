@@ -1,20 +1,20 @@
 // Button stack defined in settings.scss
 #{$buttons} {
-  --button-color-theme: #{v(color-#{$button-base-color}-500)};
-  --button-color-text: #{get-fg-color($button-base-color)};
+  #{token-name("button-color-theme")}: #{token(color-#{$button-base-color}-500)};
+  #{token-name("button-color-text")}: #{get-fg-color($button-base-color)};
 
   @if $button-hover-value != 500 {
-    --button-hover-color-theme: #{v(
+    #{token-name("button-hover-color-theme")}: #{token(
         color-#{$button-base-color}-#{$button-hover-value}
       )};
-    --button-hover-color-text: #{get-fg-color(
+    #{token-name("button-hover-color-text")}: #{get-fg-color(
         $button-base-color,
         $button-hover-value
       )};
   }
-  --button-padding-x: #{$button-padding-x};
-  --button-padding-y: #{$button-padding-y};
-  --button-scale-modifier: 1;
+  #{token-name("button-padding-x")}: #{$button-padding-x};
+  #{token-name("button-padding-y")}: #{$button-padding-y};
+  #{token-name("button-scale-modifier")}: 1;
   -webkit-appearance: none;
   user-select: none;
   display: inline-flex;
@@ -31,17 +31,17 @@
     weight: $button-font-weight;
     family: $button-font-family;
   }
-  color: v(button-color-text);
-  background-color: v(button-color-theme);
+  color: token(button-color-text);
+  background-color: token(button-color-theme);
   border: {
-    color: v(button-color-theme);
+    color: token(button-color-theme);
     width: $button-border-width;
     style: solid;
     radius: $button-border-radius;
   }
   line-height: 1.3;
-  padding: calc(v(button-padding-y) * v(button-scale-modifier))
-    calc(v(button-padding-x) * v(button-scale-modifier));
+  padding: calc(token(button-padding-y) * token(button-scale-modifier))
+    calc(token(button-padding-x) * token(button-scale-modifier));
   margin: 0 0 $element-margin 0;
   @include smooth(all);
   &::-moz-focus-inner {
@@ -54,9 +54,9 @@ button,
 [type="reset"],
 [type="button"] {
   &:disabled {
-    color: v(button-color-text) !important;
-    background-color: v(button-color-theme) !important;
-    border-color: v(button-color-theme) !important;
+    color: token(button-color-text) !important;
+    background-color: token(button-color-theme) !important;
+    border-color: token(button-color-theme) !important;
     opacity: $button-disabled-opacity;
     cursor: not-allowed;
   }
@@ -118,25 +118,25 @@ a.button {
   }
   &.xsmall {
     font-size: $button-font-size-xsmall;
-    --button-scale-modifier: 0.66;
+    #{token-name("button-scale-modifier")}: 0.66;
   }
   &.small {
     font-size: $button-font-size-small;
-    --button-scale-modifier: 0.8;
+    #{token-name("button-scale-modifier")}: 0.8;
   }
   &.large {
     font-size: $button-font-size-large;
-    --button-scale-modifier: 1.2;
+    #{token-name("button-scale-modifier")}: 1.2;
   }
 
   &.outline,
   &.ghost {
-    color: v(button-color-theme);
+    color: token(button-color-theme);
     background-color: transparent;
   }
   &.ghost {
     @if $button-hover-value != 500 {
-      --button-hover-color-text: #{v(
+      #{token-name("button-hover-color-text")}: #{token(
           color-#{$button-base-color}-#{$button-hover-value}
         )};
 
@@ -155,9 +155,9 @@ a.button {
   @if $button-hover-value != 500 {
     &:hover,
     &:focus {
-      color: v(button-hover-color-text);
-      background-color: v(button-hover-color-theme);
-      border-color: v(button-hover-color-theme);
+      color: token(button-hover-color-text);
+      background-color: token(button-hover-color-theme);
+      border-color: token(button-hover-color-theme);
     }
   }
 }
@@ -170,11 +170,11 @@ a.button {
     }
   }
   &.white {
-    --button-color-theme: #{v(color-white)};
-    --button-color-text: #{v(color-text)};
+    #{token-name("button-color-theme")}: #{token(color-white)};
+    #{token-name("button-color-text")}: #{token(color-text)};
     @if $button-hover-value != 500 {
-      --button-hover-color-theme: #{v(color-neutral-50)};
+      #{token-name("button-hover-color-theme")}: #{token(color-neutral-50)};
     }
-    color: v(button-color-text);
+    color: token(button-color-text);
   }
 }

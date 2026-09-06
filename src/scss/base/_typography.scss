@@ -4,7 +4,7 @@
   font-family: $font-headings;
   margin: 0 0 $element-margin 0;
   line-height: $heading-line-height;
-  color: v(color-headings-preferred);
+  color: token(color-headings-preferred);
   font-weight: $heading-weight;
   @supports (text-wrap: pretty) {
     text-wrap: pretty;
@@ -117,7 +117,7 @@ li {
 
 /* TEXT TRANSFORM */
 %small {
-  font-size: v(font-size--1);
+  font-size: token(font-size--1);
 }
 small {
   display: block;
@@ -135,8 +135,8 @@ i {
 
 // Highlighted
 mark {
-  background: v(mark-background);
-  color: v(mark-color);
+  background: token(mark-background);
+  color: token(mark-color);
   padding: 0.15em 0.3em;
   display: inline-block;
 }
@@ -182,7 +182,7 @@ q {
 
 %inline-code {
   @extend %code;
-  font-size: v(font-size--1);
+  font-size: token(font-size--1);
   line-height: 1;
   border-radius: $border-radius;
   padding: 0.3em 0.35em;
@@ -191,15 +191,15 @@ q {
 // Keyboard Input
 kbd {
   @extend %inline-code;
-  background-color: v(color-text);
-  color: var(--color-white);
+  background-color: token(color-text);
+  color: token(color-white);
 }
 
 // Code
 :not(pre) > code {
   @extend %inline-code;
   background-color: get-color(neutral, 50);
-  color: v(color-text);
+  color: token(color-text);
 }
 
 // Variable
@@ -213,7 +213,7 @@ var {
 // Subscript and Superscript
 sub,
 sup {
-  font-size: v(font-size--2);
+  font-size: token(font-size--2);
   line-height: 0;
   position: relative;
   vertical-align: baseline;

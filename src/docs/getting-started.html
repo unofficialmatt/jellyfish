@@ -49,6 +49,17 @@
 
       </code>
     </pre>
+  <p>Most settings can be overridden in your own <span class="code-ref">PROJECT_SCSS_DIR/abstracts/__all</span> above, since they're consumed later in the cascade. A few are read <span class="italic">while the framework's own settings load</span> &mdash; notably <span class="variable-ref">$token-prefix</span> (the <a href="./variables.html#abstracts">custom-property namespace</a>, default <span class="code-ref">jf</span>) and the <span class="variable-ref">$colors</span> palette map (its <span class="code-ref">makeColorPalette()</span> calls run inline, and other settings call <span class="code-ref">get-color()</span> straight away). Those must be set <span class="bold">before</span> the first <span class="code-ref">@import "jellyfish-ui/&hellip;"</span> line, at the top of your entry stylesheet:</p>
+  <pre class="language-scss">
+      <code>
+        @charset "UTF-8";
+
+        $token-prefix: "myproject";   // or "" to keep un-prefixed --card-padding names
+
+        @import "jellyfish-ui/src/scss/abstracts/__all";
+        // ...rest of the imports as above
+      </code>
+    </pre>
   <h3 class="h4">Javascript</h3>
   <p>You should also include the Javascript files - either by importing the src files into your build process or by including the dist file <span class="code-ref">/dist/js/jellyfish.min.js</span> in your project's markup.</p>
 </div>

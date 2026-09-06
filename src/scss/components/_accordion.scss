@@ -17,11 +17,11 @@
 
 .accordion {
   margin-bottom: $element-margin;
-  --accordion-heading-background: #{$accordion-heading-bg-color};
-  --accordion-heading-color: #{$accordion-heading-text-color};
-  --accordion-heading-hover-background: #{$accordion-heading-hover-bg-color};
-  --accordion-heading-hover-color: #{$accordion-heading-hover-text-color};
-  --accordion-border-color: #{$accordion-border-color};
+  #{token-name("accordion-heading-background")}: #{$accordion-heading-bg-color};
+  #{token-name("accordion-heading-color")}: #{$accordion-heading-text-color};
+  #{token-name("accordion-heading-hover-background")}: #{$accordion-heading-hover-bg-color};
+  #{token-name("accordion-heading-hover-color")}: #{$accordion-heading-hover-text-color};
+  #{token-name("accordion-border-color")}: #{$accordion-border-color};
 
   // Lets the panel's height: 0 <-> auto transition actually interpolate, so the
   // open/close animation needs no measured pixel height and no JavaScript.
@@ -75,8 +75,8 @@ h6 {
     font-weight: $accordion-heading-weight;
     border-radius: 0;
     border: none;
-    background: var(--accordion-heading-background);
-    color: var(--accordion-heading-color);
+    background: token(accordion-heading-background);
+    color: token(accordion-heading-color);
     text-align: left;
     width: 100%;
     margin: 0;
@@ -84,12 +84,12 @@ h6 {
     @include smooth(all);
     &:hover,
     &:focus {
-      background: var(--accordion-heading-hover-background);
-      color: var(--accordion-heading-hover-color);
+      background: token(accordion-heading-hover-background);
+      color: token(accordion-heading-hover-color);
     }
     &[aria-expanded="true"] {
-      background: var(--accordion-heading-hover-background);
-      color: var(--accordion-heading-hover-color);
+      background: token(accordion-heading-hover-background);
+      color: token(accordion-heading-hover-color);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
       &::after {
@@ -113,7 +113,7 @@ h6 {
 }
 
 .accordion-item {
-  border: 1px solid var(--accordion-border-color);
+  border: 1px solid token(accordion-border-color);
   border-radius: 0;
   @include smooth(border-color);
 

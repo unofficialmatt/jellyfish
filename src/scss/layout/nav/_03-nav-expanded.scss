@@ -4,9 +4,9 @@
 
   @include above($nav-expands) {
     :root {
-      --navbar-link-padding-x: #{$navbar-link-padding-expanded-x};
-      --navbar-link-padding-y: #{$navbar-link-padding-expanded-y};
-      --navbar-font-size: #{$navbar-font-size-expanded};
+      #{token-name("navbar-link-padding-x")}: #{$navbar-link-padding-expanded-x};
+      #{token-name("navbar-link-padding-y")}: #{$navbar-link-padding-expanded-y};
+      #{token-name("navbar-font-size")}: #{$navbar-font-size-expanded};
     }
     .navbar {
       .container {
@@ -50,17 +50,17 @@
           position: absolute;
           top: -999999em;
           transform: translateY(-$nav-fade-offset);
-          width: var(--navbar-dropdown-width);
+          width: token(navbar-dropdown-width);
           opacity: 0.2;
           transition: transform 0.1s linear, opacity 0.05s linear;
-          --navbar-font-size: #{$navbar-sublink-font-size-expanded};
-          --navbar-link-color: #{$navbar-sublink-color};
-          --navbar-link-bg-color: #{$navbar-sublink-bg-color};
-          --navbar-link-hover-color: #{$navbar-sublink-hover-color};
-          --navbar-link-hover-bg-color: #{$navbar-sublink-hover-bg-color};
+          #{token-name("navbar-font-size")}: #{$navbar-sublink-font-size-expanded};
+          #{token-name("navbar-link-color")}: #{$navbar-sublink-color};
+          #{token-name("navbar-link-bg-color")}: #{$navbar-sublink-bg-color};
+          #{token-name("navbar-link-hover-color")}: #{$navbar-sublink-hover-color};
+          #{token-name("navbar-link-hover-bg-color")}: #{$navbar-sublink-hover-bg-color};
           a {
             // Drop down link
-            border-top: var(--navbar-link-border);
+            border-top: token(navbar-link-border);
           }
 
           li.has-children a::after {
@@ -80,7 +80,7 @@
       li.has-children > a {
         // Menu Items with Children
         padding-right: calc(
-          var(--navbar-link-padding-x) + 30px
+          token(navbar-link-padding-x) + 30px
         ); // 20px is approx the width of the rotated pseudo element and 10px is the padding
 
         &::after {
@@ -150,7 +150,7 @@
       input,
       .button,
       a.button {
-        margin: var(--navbar-link-padding-y) var(--navbar-link-padding-x);
+        margin: token(navbar-link-padding-y) token(navbar-link-padding-x);
       }
     }
 

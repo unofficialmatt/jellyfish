@@ -2,25 +2,25 @@ $border-width: 1px !default;
 $border-style: solid !default;
 $border-color: get-color(neutral, 300) !default;
 $border-radius: 4px !default;
-$borders: var(--form-input-border-width) var(--form-input-border-style)
-  var(--form-input-border-color);
+$borders: token(form-input-border-width) token(form-input-border-style)
+  token(form-input-border-color);
 
 $form-items: (
   "[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]"
 ); // Stack of elements to target
 $form-accent-color: get-color(primary) !default;
-$input-background: var(--color-white) !default;
+$input-background: token(color-white) !default;
 $placeholder-color: get-color(neutral, 500) !default;
 
 $select-chevron-color: get-color-raw(neutral, 500) !default;
 $select-chevron-icon-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='{{color}}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E" !default;
 $form-border-hover: get-color(neutral) !default;
-$form-font: v(font-primary) !default;
+$form-font: token(font-primary) !default;
 $form-focus-border-color: get-color(neutral, 500) !default;
 $form-focus-shadow-inner: inset 1px 2px 1px 0px get-color(neutral, 300) !default;
 $form-focus-shadow-outer: inset -1px -2px 1px 0px get-color(neutral, 200) !default;
 
-$form-label-size: v(font-size--1) !default;
+$form-label-size: token(font-size--1) !default;
 $form-label-weight: $weight-semibold !default;
 
 // INPUT[type="range"]
@@ -38,7 +38,7 @@ $range-thumb-shadow-size: 0px 1px !default;
 $range-thumb-shadow-blur: 6px !default;
 $range-thumb-shadow-color: rgba(200, 200, 200, 0.8) !default;
 $range-thumb-border-width: 2px !default;
-$range-thumb-border-color: var(--color-white) !default;
+$range-thumb-border-color: token(color-white) !default;
 
 $range-track-height: calc($range-thumb-height * 0.5) !default;
 $range-track-shadow-size: 0px 0px !default;
