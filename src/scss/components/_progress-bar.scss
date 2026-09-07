@@ -2,7 +2,10 @@
   .progress {
     #{token-name("progress-bar-bg-color")}: #{get-color-role(neutral, subtle)};
     #{token-name("progress-bar-color")}: #{get-color-role(neutral, muted)};
-    #{token-name("progress-bar-color-unknown")}: #{get-color-role(neutral, muted)};
+    #{token-name("progress-bar-color-unknown")}: #{get-color-role(
+        neutral,
+        muted
+      )};
     appearance: none;
     border: none;
     background-color: token(progress-bar-bg-color);
@@ -45,6 +48,12 @@
         linear
         0s
         infinite;
+
+      // Slowed, not stopped — an indeterminate bar still has to signal activity.
+      // Floor of 10s (max() picks the largest, so a slower setting still wins).
+      @media screen and (prefers-reduced-motion: reduce) {
+        animation-duration: max(10s, #{$progressbar-indeterminate-duration});
+      }
 
       &::-webkit-progress-bar {
         background-color: transparent;

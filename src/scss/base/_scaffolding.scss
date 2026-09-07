@@ -1,14 +1,17 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
   font-family: $font-body;
   min-height: 100vh;
   min-height: 100dvh;
   scrollbar-gutter: stable;
 }
+// :focus-within so only keyboard / anchor navigation scrolls smoothly.
+html:focus-within {
+  scroll-behavior: smooth;
+}
 @media screen and (prefers-reduced-motion: reduce) {
-  html {
+  html:focus-within {
     scroll-behavior: auto;
   }
 }

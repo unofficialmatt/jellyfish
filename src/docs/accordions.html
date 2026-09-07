@@ -163,9 +163,15 @@
     <span class="code-ref">prefers-reduced-motion: reduce</span> is set.
   </p>
   <p>
-    Duration is controlled by
-    <span class="variable-ref">$accordion-transition-duration</span>. To turn
-    the animation off everywhere, set it to <span class="code-ref">0s</span>.
+    The panel and chevron animate on the framework motion token
+    <span class="code-ref">--jf-transition</span>
+    (<span class="code-ref">var(--jf-duration-base) var(--jf-ease-in-out)</span>).
+    Retune just the accordion by redeclaring it on a scope &mdash;
+    <span class="code-ref">.accordion { --jf-transition: 0.4s var(--jf-ease-out); }</span>
+    &mdash; or move it framework-wide through
+    <a href="./variables.html#motion"><span class="variable-ref">$duration-scale</span></a>.
+    <span class="code-ref">prefers-reduced-motion: reduce</span> zeroes the durations,
+    so there is no per-component setting to turn the animation off.
   </p>
 
   <h2 class="h3">Colors</h2>

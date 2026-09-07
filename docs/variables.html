@@ -712,10 +712,6 @@
         <td><span class="code-ref">get-size(0.25)</span></td>
         <td>The border radius applied to accordion items.</td>
       </tr>
-      <tr>
-        <td><span class="variable-ref">$accordion-transition-duration</span></td>
-        <td><span class="code-ref">0.25s</span></td>
-        <td>The duration of the transition effect for accordion content.</td>
     </tbody>
   </table>
 
@@ -935,8 +931,8 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$progressbar-indeterminate-duration</span></td>
-        <td>5s</td>
-        <td>The speed for <span class="code-ref">progress</span> element indeterminate states.</td>
+        <td>10s</td>
+        <td>The speed for <span class="code-ref">progress</span> element indeterminate states. Under <span class="code-ref">prefers-reduced-motion: reduce</span> the loop is clamped to a minimum of 10s rather than stopping &mdash; an indeterminate bar has to keep signalling activity.</td>
       </tr>
     </tbody>
   </table>

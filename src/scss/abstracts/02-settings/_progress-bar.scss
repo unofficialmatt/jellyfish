@@ -2,4 +2,4 @@ $generate-progressbar: true !default;
 $progressbar-height: get-size(1) !default;
 $progressbar-border-radius: token(radius-md) !default;
 $progressbar-value-border-radius: token(radius-none) !default;
-$progressbar-indeterminate-duration: 5s !default;
+$progressbar-indeterminate-duration: 10s !default;

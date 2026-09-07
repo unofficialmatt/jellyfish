@@ -64,3 +64,12 @@ body.home {
     transform: translateY(0);
   }
 }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .logo {
+    animation: none;
+    img {
+      transition: none;
+    }
+  }
+}

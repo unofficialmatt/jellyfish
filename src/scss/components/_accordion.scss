@@ -116,7 +116,7 @@ h6 {
       background-color: currentColor;
       width: 0.8em;
       height: 0.8em;
-      transition: transform 0.25s ease-in;
+      @include motion(transform);
     }
   }
 }
@@ -137,13 +137,7 @@ h6 {
   height: auto;
   // Named properties rather than `all`, which also animated colour and border
   // changes inherited from the theme modifiers.
-  transition:
-    height $accordion-transition-duration ease-in-out,
-    padding $accordion-transition-duration ease-in-out;
-
-  @media screen and (prefers-reduced-motion: reduce) {
-    transition: none;
-  }
+  @include motion(height, padding);
 
   &.is-collapsed {
     height: 0;
