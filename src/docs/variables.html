@@ -161,7 +161,7 @@
       <tr>
         <td><span class="variable-ref">$type-scale</span></td>
         <td><span class="italic">(SCSS map)</span></td>
-        <td>A map of key: value pairs used to generate font sizes. <span class="bold">These are output as custom CSS properties eg --font-size-2. The map is designed to scale progressively and usually doesn't need modifying.</td>
+        <td>A map of key: value pairs used to generate font sizes. <span class="bold">These are output as custom CSS properties eg --font-size-lg. The map is designed to scale progressively and usually doesn't need modifying.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$font-sizes-h1</span>, <span class="variable-ref">$font-sizes-h2</span>,<span class="variable-ref">$font-sizes-h3</span>,<span class="variable-ref">$font-sizes-h4</span>,<span class="variable-ref">$font-sizes-h5</span>,<span class="variable-ref">$font-sizes-h6</span>,</td>
@@ -170,7 +170,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$root-font-size</span></td>
-        <td><span class="code-ref">var(--jf-font-size-0)</span></td>
+        <td><span class="code-ref">var(--jf-font-size-base)</span></td>
         <td>The root font size at the smallest device size. <br><br><span class="bold">This is output as a custom CSS property --jf-root-font-size; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(root-font-size)</span>. The CSS property is automatically overwritten at each breakpoint defined in the <span class="variable-ref">$breakpoints</span> map.</span></td>
       </tr>
       <tr>
@@ -447,22 +447,22 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$button-font-size-xsmall</span></td>
-        <td><span class="code-ref">var(--jf-font-size--2)</span></td>
+        <td><span class="code-ref">var(--jf-font-size-xs)</span></td>
         <td>Button font size when utility class <span class="css-ref">.xsmall</span> is added</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$button-font-size-small</span></td>
-        <td><span class="code-ref">var(--jf-font-size--1)</span></td>
+        <td><span class="code-ref">var(--jf-font-size-sm)</span></td>
         <td>Button font size when utility class <span class="css-ref">.small</span> is added</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$button-font-size</span></td>
-        <td><span class="code-ref">var(--jf-font-size-0)</span></td>
+        <td><span class="code-ref">var(--jf-font-size-base)</span></td>
         <td>Default button font size</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$button-font-size-large</span></td>
-        <td><span class="code-ref">var(--jf-font-size-1)</span></td>
+        <td><span class="code-ref">var(--jf-font-size-md)</span></td>
         <td>Button font size when utility class <span class="css-ref">.large</span> is added</td>
       </tr>
       <tr>
@@ -600,7 +600,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$accordion-heading-font-size</span></td>
-        <td><span class="code-ref">token(font-size-1)</span></td>
+        <td><span class="code-ref">token(font-size-md)</span></td>
         <td>The font size for accordion heading button text.</td>
       </tr>
       <tr>
@@ -720,7 +720,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$chip-font-size</span></td>
-        <td><span class="code-ref">var(--jf-font-size--1)</span></td>
+        <td><span class="code-ref">var(--jf-font-size-sm)</span></td>
         <td>The font size for <span class="css-ref">.chip</span> elements.</td>
       </tr>
     </tbody>
@@ -869,7 +869,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$table-font-size</span></td>
-        <td><span class="code-ref">var(--jf-font-size--1)</span></td>
+        <td><span class="code-ref">var(--jf-font-size-sm)</span></td>
         <td>The font size for table cells.</td>
       </tr>
       <tr>

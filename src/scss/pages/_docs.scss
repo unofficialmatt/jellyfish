@@ -16,7 +16,7 @@
     margin: 0;
     margin-left: 1.5ch;
     a {
-      font-size: token(font-size--1);
+      font-size: token(font-size-sm);
     }
   }
   margin-top: get-size(2);
@@ -82,7 +82,7 @@
     margin-left: auto;
   }
   .chip-group {
-    font-size: token(font-size--2);
+    font-size: token(font-size-xs);
     margin-left: get-size(0.75);
   }
 }
@@ -94,7 +94,7 @@
 }
 // Standfirst
 .standfirst {
-  font-size: token(font-size-2);
+  font-size: token(font-size-lg);
   font-weight: $weight-medium;
 }
 
@@ -104,7 +104,7 @@
   display: inline-block;
   font-weight: $weight-semibold;
   background-color: get-color(neutral, 50);
-  font-size: token(font-size--1);
+  font-size: token(font-size-sm);
 }
 
 .code-ref {
@@ -125,10 +125,10 @@
 pre {
   position: relative;
   margin: token(flow) 0 !important;
-  font-size: token(font-size--2) !important;
+  font-size: token(font-size-xs) !important;
 
   label {
-    font-size: token(font-size--1);
+    font-size: token(font-size-sm);
     top: 0;
     right: 0;
     position: absolute;
@@ -194,7 +194,7 @@ div.code-toolbar {
   line-height: 1.2;
   margin: 0 0 token(flow) 0;
   display: inherit;
-  font-size: token(font-size--1);
+  font-size: token(font-size-sm);
   flex: 1 1 auto;
 }
 
@@ -219,7 +219,7 @@ div.code-toolbar {
   margin-top: get-size(0.75) !important;
   padding-top: get-size(0.5);
   color: get-color(neutral, 400);
-  font-size: token(font-size--2);
+  font-size: token(font-size-xs);
   margin-left: -1.5ch;
   font-weight: $weight-medium;
 }
@@ -283,7 +283,7 @@ div.code-toolbar {
 
 .variables-reference {
   table td {
-    font-size: token(font-size--1);
+    font-size: token(font-size-sm);
   }
   @include above($table-responsive-breakpoint) {
     table tr td:first-of-type {

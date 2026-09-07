@@ -4,6 +4,6 @@ $accordion-padding-x: get-size(1) !default;
 $accordion-heading-shade: $color-subtle-shade !default;
 $accordion-heading-hover-shade: $color-muted-shade !default;
 $accordion-heading-weight: $weight-bold !default;
-$accordion-heading-font-size: token(font-size-1) !default;
+$accordion-heading-font-size: token(font-size-md) !default;
 $accordion-border-radius: get-size(0.25) !default;
 $accordion-transition-duration: 0.25s !default;

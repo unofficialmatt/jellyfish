@@ -35,7 +35,6 @@
   #{token-name("font-monospace")}: #{$font-monospace};
   #{token-name("root-font-size")}: #{$root-font-size};
   #{token-name("root-line-height")}: #{$root-line-height};
-  // TODO: move to font-size-xs, font-size-sm, font-size-base, not --1, --2.
   @include map-to-css-properties($type-scale, "font-size-");
   @include map-to-css-properties($leading-scale, "leading-");
   /* Spacing */

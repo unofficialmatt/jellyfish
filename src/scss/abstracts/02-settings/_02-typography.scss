@@ -10,23 +10,23 @@ $font-sizes-h6: () !default;
 // Merge default sizes into the map
 $type-scale: map-merge(
   (
-    -2: em($root-size * 0.75),
-    -1: em($root-size * 0.875),
-    0: em($root-size * 1),
-    1: em($root-size * 1.125),
-    2: em($root-size * 1.25),
-    3: em($root-size * 1.5),
-    4: em($root-size * 1.875),
-    5: em($root-size * 2.25),
-    6: em($root-size * 3),
-    7: em($root-size * 3.75),
-    8: em($root-size * 4.5)
+    "xs": em($root-size * 0.75),
+    "sm": em($root-size * 0.875),
+    "base": em($root-size * 1),
+    "md": em($root-size * 1.125),
+    "lg": em($root-size * 1.25),
+    "xl": em($root-size * 1.5),
+    "2xl": em($root-size * 1.875),
+    "3xl": em($root-size * 2.25),
+    "4xl": em($root-size * 3),
+    "5xl": em($root-size * 3.75),
+    "6xl": em($root-size * 4.5),
   ),
   $type-scale
 );
 
 // DOCUMENT ROOT FONT SIZE AND LINE HEIGHT AT SMALLEST DEVICE WIDTH
-$root-font-size: token(font-size-0) !default;
+$root-font-size: token(font-size-base) !default;
 $root-line-height: 1.5 !default; // responsive (retuned per breakpoint) — kept as-is NOTE: MAYBE REMOVE LATER IN REFACTOR
 
 $leading-scale: () !default;
@@ -52,42 +52,42 @@ $font-headings: token(font-secondary) !default;
 
 $font-sizes-h1: map-merge(
   (
-    "root": token(font-size-5),
-    "md": token(font-size-6),
+    "root": token(font-size-3xl),
+    "md": token(font-size-4xl),
   ),
   $font-sizes-h1
 );
 $font-sizes-h2: map-merge(
   (
-    "root": token(font-size-3),
-    "sm": token(font-size-4),
-    "md": token(font-size-5),
+    "root": token(font-size-xl),
+    "sm": token(font-size-2xl),
+    "md": token(font-size-3xl),
   ),
   $font-sizes-h2
 );
 $font-sizes-h3: map-merge(
   (
-    "root": token(font-size-3),
-    "md": token(font-size-4),
+    "root": token(font-size-xl),
+    "md": token(font-size-2xl),
   ),
   $font-sizes-h3
 );
 $font-sizes-h4: map-merge(
   (
-    "root": token(font-size-2),
-    "sm": token(font-size-3),
+    "root": token(font-size-lg),
+    "sm": token(font-size-xl),
   ),
   $font-sizes-h4
 );
 $font-sizes-h5: map-merge(
   (
-    "root": token(font-size-2),
+    "root": token(font-size-lg),
   ),
   $font-sizes-h5
 );
 $font-sizes-h6: map-merge(
   (
-    "root": token(font-size-1),
+    "root": token(font-size-md),
   ),
   $font-sizes-h6
 );

@@ -117,7 +117,7 @@ blockquote {
   margin: 0 0 token(flow) 0;
   p {
     font-style: italic;
-    font-size: token(font-size-1);
+    font-size: token(font-size-md);
     line-height: 1.4;
     margin-bottom: get-size(0.5);
   }
@@ -127,7 +127,7 @@ blockquote {
     }
     font-style: normal;
     display: block;
-    font-size: token(font-size--1);
+    font-size: token(font-size-sm);
     font-weight: $weight-bold;
   }
 }
