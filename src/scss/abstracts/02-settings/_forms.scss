@@ -5,7 +5,7 @@ $border-width: 1px !default;
 $border-width-strong: 2px !default;
 $border-style: solid !default;
 $border-color: get-color-role(neutral, muted) !default;
-$border-radius: 4px !default; // TODO(tranche 2): -> token(radius-sm)
+$border-radius: token(radius-sm) !default;
 $borders: token(form-input-border-width) token(form-input-border-style)
   token(form-input-border-color);
 
@@ -26,7 +26,7 @@ $form-focus-shadow-outer: inset -1px -2px 1px 0px
   get-color-role(neutral, subtle) !default;
 
 $form-label-size: token(font-size-sm) !default;
-$form-label-weight: $weight-semibold !default;
+$form-label-weight: get-weight(semibold) !default;
 
 // INPUT[type="range"]
 

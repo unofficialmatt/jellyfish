@@ -131,6 +131,9 @@ $token-prefix: jf !default;
 @function get-leading($step) {
   @return _map-token($step, $leading-scale, "leading");
 }
+@function get-weight($step) {
+  @return _map-token($step, $font-weight-scale, "font-weight");
+}
 @function get-duration($step) {
   @return _map-token($step, $duration-scale, "duration");
 }

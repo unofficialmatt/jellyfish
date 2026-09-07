@@ -9,5 +9,5 @@ $one_col: math.div(100%, $cols);
 
 // Base Variables (used before breakpoints are applied)
 $base-col-name: xs !default;
-$base-container-gutter: get-size(1.5) !default; // define in px
-$base-col-gutter: get-size(1) !default; // define in px
+$base-container-gutter: get-space(md) !default;
+$base-col-gutter: get-space(sm) !default;

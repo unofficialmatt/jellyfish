@@ -71,12 +71,12 @@ button,
   align-items: center;
   @extend %button-groups;
   margin-bottom: calc(#{token(flow)} - #{$button-list-button-margin});
-  margin-right: n($button-list-button-margin);
-  margin-left: n($button-list-button-margin);
+  margin-right: calc(#{$button-list-button-margin} * -1);
+  margin-left: calc(#{$button-list-button-margin} * -1);
   .button,
   a.button {
-    margin: 0 $button-list-button-margin $button-list-button-margin * 2
-      $button-list-button-margin;
+    margin: 0 #{$button-list-button-margin} calc(#{$button-list-button-margin} * 2)
+      #{$button-list-button-margin};
     //display: inline-flex;
   }
 }
@@ -87,7 +87,7 @@ button,
   margin-bottom: token(flow);
   .button,
   a.button {
-    margin: 0 0 0 n($button-border-width);
+    margin: 0 0 0 calc(#{token(border-width)} * -1);
     &:not(:first-child) {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;

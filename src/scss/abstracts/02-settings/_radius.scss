@@ -2,12 +2,12 @@ $radius-scale: () !default;
 $radius-scale: map-merge(
   (
     "none": 0,
-    "xs": 2px,
-    "sm": 4px,
-    "md": 8px,
-    "lg": 12px,
-    "xl": 16px,
-    "2xl": 24px,
+    "xs": get-size(0.125),
+    "sm": get-size(0.25),
+    "md": get-size(0.5),
+    "lg": get-size(0.75),
+    "xl": get-size(1),
+    "2xl": get-size(1.5),
     "full": 9999999999px,
   ),
   $radius-scale

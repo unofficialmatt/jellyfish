@@ -8,8 +8,8 @@ $breakpoints: map-merge(
     sm: (
       breakpoint: 600px,
       container-width: 100%,
-      container-gutter: get-size(4),
-      col-gutter: get-size(1.5),
+      container-gutter: get-space(lg),
+      col-gutter: get-space(md),
     ),
     md: (
       breakpoint: 900px,
@@ -18,7 +18,7 @@ $breakpoints: map-merge(
       container-gutter: 0px,
       root-font-size: 16px,
       root-line-height: 1.4,
-      col-gutter: get-size(2),
+      col-gutter: get-space(md),
     ),
     lg: (
       breakpoint: 1200px,

@@ -1,5 +1,5 @@
 $generate-callouts: true !default;
-$callout-border-radius: 0px !default;
+$callout-border-radius: token(radius-none) !default;
 $callout-border-width: 1px 1px 1px get-size(0.5) !default;
 $callout-border-style: solid !default;
 $callout-padding: token(space-md) !default;

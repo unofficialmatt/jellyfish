@@ -4,7 +4,7 @@ $accessibility-focus-outline-offset: 2px !default;
 
 $force-color-contrast-ratio: true !default;
 
-$accessibility-button-font-weight: $weight-bold !default;
+$accessibility-button-font-weight: get-weight(bold) !default;
 $accessibility-button-color: get-color(neutral) !default;
 $accessibility-button-hover-color: token(link-color-active) !default;
 $accessibility-button-active-color: inherit !default;

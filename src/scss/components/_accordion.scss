@@ -122,7 +122,7 @@ h6 {
 }
 
 .accordion-item {
-  border: 1px solid token-or(accordion-border-color, border-color);
+  border: token(border-width) token(border-style) token-or(accordion-border-color, border-color);
   border-radius: 0;
   @include motion(border-color);
 

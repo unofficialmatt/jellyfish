@@ -1,9 +1,9 @@
 $generate-accordion-modifiers: true !default;
-$accordion-padding-y: get-size(0.75) !default;
-$accordion-padding-x: get-size(1) !default;
+$accordion-padding-y: get-space(xs) !default;
+$accordion-padding-x: get-space(sm) !default;
 $accordion-heading-shade: $color-subtle-shade !default;
 $accordion-heading-hover-shade: $color-muted-shade !default;
-$accordion-heading-weight: $weight-bold !default;
+$accordion-heading-weight: get-weight(bold) !default;
 $accordion-heading-font-size: token(font-size-md) !default;
-$accordion-border-radius: get-size(0.25) !default;
+$accordion-border-radius: token(radius-sm) !default;
 $accordion-transition-duration: 0.25s !default;

@@ -122,7 +122,7 @@
     );
     background: $range-track-color-bottom-ie;
     border: $range-track-border-width solid $range-track-border-color;
-    border-radius: ($range-track-radius * 2);
+    border-radius: calc(#{$range-track-radius} * 2);
   }
 
   &::-ms-fill-upper {
@@ -133,7 +133,7 @@
     );
     background: $range-track-color;
     border: $range-track-border-width solid $range-track-border-color;
-    border-radius: ($range-track-radius * 2);
+    border-radius: calc(#{$range-track-radius} * 2);
   }
 
   &::-ms-thumb {

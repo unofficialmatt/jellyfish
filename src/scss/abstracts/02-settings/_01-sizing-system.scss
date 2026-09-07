@@ -4,6 +4,7 @@ $sizing-system: () !default;
 
 $sizing-system: map-merge(
   (
+    0.125: $root-size * 0.125,
     0.25: $root-size * 0.25,
     0.5: $root-size * 0.5,
     0.75: $root-size * 0.75,
@@ -27,14 +28,14 @@ $sizing-system: map-merge(
 $space-scale: () !default;
 $space-scale: map-merge(
   (
-    "2xs": get-size(0.25),
-    "xs": get-size(0.5),
+    "3xs": get-size(0.25),
+    "2xs": get-size(0.5),
+    "xs": get-size(0.75),
     "sm": get-size(1),
     "md": get-size(1.5),
     "lg": get-size(3),
     "xl": get-size(6),
     "2xl": get-size(8),
-    "3xl": get-size(12),
   ),
   $space-scale
 );

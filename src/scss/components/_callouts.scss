@@ -24,11 +24,11 @@
       @extend .h6;
       margin-bottom: 0.5em;
       text-transform: uppercase;
-      font-weight: $weight-semibold;
+      font-weight: get-weight(semibold);
       letter-spacing: 0.02em;
     }
     a.callout-link {
-      font-weight: $weight-bold;
+      font-weight: get-weight(bold);
       color: token(callout-link-color);
       &:hover,
       &:focus {

@@ -13,16 +13,16 @@
 
 <div>
   <h2 class="h3">Spacing <span class="chip">--jf-space-*</span></h2>
-  <p>A t-shirt scale pointing at <span class="variable-ref">$sizing-system</span> steps. <code class="code-ref">--jf-flow</code> is the block-flow rhythm (bottom margin between block elements) &mdash; <code class="code-ref">$flow-step</code> picks which step it uses, <code class="code-ref">md</code> by default. The raw <code class="code-ref">$sizing-system</code> map stays Sass-only &mdash; use <code class="code-ref">get-size()</code> for build-time maths, these tokens for anything themeable.</p>
+  <p>A t-shirt scale for flow between elements &mdash; margin, padding, gap &mdash; pointing at <span class="variable-ref">$sizing-system</span> steps. <code class="code-ref">--jf-flow</code> is the block-flow rhythm (bottom margin between block elements) &mdash; <code class="code-ref">$flow-step</code> picks which step it uses, <code class="code-ref">md</code> by default. For the fixed size of a thing (width, height, icon dimensions) use <code class="code-ref">get-size()</code> against the Sass-only <code class="code-ref">$sizing-system</code> map instead.</p>
   <div style="display:flex; flex-direction:column; gap:0.5rem;">
-    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-2xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-2xs);"></span><span>4px</span></div>
-    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-xs);"></span><span>8px</span></div>
+    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-3xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-3xs);"></span><span>4px</span></div>
+    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-2xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-2xs);"></span><span>8px</span></div>
+    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-xs);"></span><span>12px</span></div>
     <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-sm</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-sm);"></span><span>16px</span></div>
     <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-md</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-md);"></span><span>24px &mdash; <code class="code-ref">--jf-flow</code> default</span></div>
     <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-lg</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-lg);"></span><span>48px</span></div>
     <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-xl</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-xl);"></span><span>96px</span></div>
     <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-2xl</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-2xl);"></span><span>128px</span></div>
-    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-3xl</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-3xl);"></span><span>192px</span></div>
   </div>
 </div>
 
@@ -40,7 +40,7 @@
 
 <div>
   <h2 class="h3">Border radius <span class="chip">--jf-radius-*</span></h2>
-  <p>The scale <em>is</em> the semantic layer. Component defaults map onto it &mdash; retune the whole framework's corners from the <span class="variable-ref">$radius-scale</span> map.</p>
+  <p>A t-shirt scale with values drawn from <span class="variable-ref">$sizing-system</span>. Component defaults map onto it; retune the whole framework's corners from <span class="variable-ref">$radius-scale</span>.</p>
   <div style="display:flex; flex-wrap:wrap; gap:1rem;">
     <span class="dt-swatch bg-primary" style="border-radius:var(--jf-radius-none);">none</span>
     <span class="dt-swatch bg-primary" style="border-radius:var(--jf-radius-xs);">xs</span>

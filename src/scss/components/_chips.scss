@@ -50,7 +50,7 @@
 
     .chip {
       // Nested chip
-      margin-left: get-size(0.5);
+      margin-left: get-space(2xs);
       top: 0;
     }
   }
@@ -62,13 +62,13 @@
     justify-content: flex-start;
     .chip,
     .chip-group {
-      margin-bottom: get-size(0.5);
+      margin-bottom: get-space(2xs);
       &:not(:last-child) {
-        margin-right: get-size(0.5);
+        margin-right: get-space(2xs);
       }
     }
     &:last-child {
-      margin-bottom: n(get-size(0.5)); // Reset margin
+      margin-bottom: calc(#{token(space-2xs)} * -1); // Reset margin
     }
     .chip-group {
       .chip {

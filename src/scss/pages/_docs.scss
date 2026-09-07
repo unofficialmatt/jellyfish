@@ -2,7 +2,7 @@
   width: 96%;
   margin: 0 auto;
   max-width: 1600px;
-  padding-bottom: get-size(2);
+  padding-bottom: get-space(md);
 }
 
 .navbar-logo {
@@ -19,19 +19,19 @@
       font-size: token(font-size-sm);
     }
   }
-  margin-top: get-size(2);
-  padding: get-size(1) get-size(1.5);
-  font-weight: $weight-bold;
+  margin-top: get-space(md);
+  padding: get-space(sm) get-space(md);
+  font-weight: get-weight(bold);
   line-height: 1.4;
   z-index: 1;
   li + li {
-    margin-top: get-size(0.25);
+    margin-top: get-space(3xs);
   }
 
   li:not(.li-title) {
     @include below(md) {
       display: inline-block;
-      margin-right: get-size(1);
+      margin-right: get-space(sm);
     }
   }
 
@@ -40,7 +40,7 @@
     &:before {
       content: "#";
       margin-left: n(1.5ch);
-      margin-right: get-size(0.5);
+      margin-right: get-space(2xs);
       color: get-color(neutral, 50);
       @include motion(all);
     }
@@ -69,7 +69,7 @@
     text-decoration: none;
   }
 
-  padding: get-size(2) 0 get-size(0.75) 0;
+  padding: get-space(md) 0 get-space(xs) 0;
   border-bottom: 1px solid get-color(primary, 100);
   display: flex;
   flex-wrap: wrap;
@@ -77,32 +77,32 @@
   z-index: 9;
   background-color: color-mix(in srgb, token(color-bg) 90%, transparent);
   backdrop-filter: blur(3px);
-  //  font-weight: $weight-light;
+  //  font-weight: get-weight(light);
   .chip-group:first-of-type {
     margin-left: auto;
   }
   .chip-group {
     font-size: token(font-size-xs);
-    margin-left: get-size(0.75);
+    margin-left: get-space(xs);
   }
 }
 
 .docs-section {
   > div {
-    margin-bottom: get-size(3);
+    margin-bottom: get-space(lg);
   }
 }
 // Standfirst
 .standfirst {
   font-size: token(font-size-lg);
-  font-weight: $weight-medium;
+  font-weight: get-weight(medium);
 }
 
 // Inline references
 %reference {
   @extend %inline-code;
   display: inline-block;
-  font-weight: $weight-semibold;
+  font-weight: get-weight(semibold);
   background-color: get-color(neutral, 50);
   font-size: token(font-size-sm);
 }
@@ -159,7 +159,7 @@ div.code-toolbar {
       box-shadow: none !important;
       padding: 0.5em !important;
       text-transform: uppercase !important;
-      font-weight: $weight-bold !important;
+      font-weight: get-weight(bold) !important;
       background-color: get-color(neutral, 100) !important;
       color: get-color(neutral, 800) !important;
       &:hover,
@@ -190,7 +190,7 @@ div.code-toolbar {
 .boxed {
   background: get-color(neutral, 25);
   border: 1px solid get-color(neutral, 100);
-  padding: get-size(0.75) get-size(1);
+  padding: get-space(xs) get-space(sm);
   line-height: 1.2;
   margin: 0 0 token(flow) 0;
   display: inherit;
@@ -216,12 +216,12 @@ div.code-toolbar {
 
 .li-title {
   //border-top: 1px solid get-color(neutral, 100);
-  margin-top: get-size(0.75) !important;
-  padding-top: get-size(0.5);
+  margin-top: get-space(xs) !important;
+  padding-top: get-space(2xs);
   color: get-color(neutral, 400);
   font-size: token(font-size-xs);
   margin-left: -1.5ch;
-  font-weight: $weight-medium;
+  font-weight: get-weight(medium);
 }
 
 // motion() mixin examples
@@ -264,7 +264,7 @@ div.code-toolbar {
   place-items: center;
   inline-size: 7rem;
   block-size: 5rem;
-  padding: get-space(2xs);
+  padding: get-space(3xs);
   font-size: 0.8rem;
   text-align: center;
   border-radius: get-radius(md);
@@ -357,7 +357,7 @@ div.code-toolbar {
   #{token-name("color-surface")}: #{get-color(neutral, 800)};
   #{token-name("form-input-background")}: #{get-color(neutral, 800)};
   #{token-name("color-text")}: token(color-white);
-  padding: get-size(1);
+  padding: get-space(sm);
 
   select {
     @include select-bg(#fff);

@@ -126,7 +126,7 @@ small {
 
 strong,
 b {
-  font-weight: $weight-bold;
+  font-weight: get-weight(bold);
 }
 em,
 i {
@@ -178,7 +178,7 @@ caption {
 }
 
 caption {
-  margin-bottom: get-size(0.75);
+  margin-bottom: get-space(xs);
 }
 
 // Inline Quote

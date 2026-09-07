@@ -286,19 +286,26 @@
 </div>
 <div>
   <h2 class="h3">Working with numbers</h2>
-  <h3 class="h4">get-space() function &mdash; preferred for spacing</h3>
-  <p>Use <code class="code-ref">get-space($step)</code> for margins, padding and gaps. It returns a <span class="code-ref">--jf-space-*</span> token reference (see the <a href="./variables.html#spacing-scale">spacing scale</a>), so the value stays runtime-themeable and consistent with the rest of the framework.</p>
+  <p><code class="code-ref">get-space()</code> and <code class="code-ref">get-size()</code> are companions with distinct jobs. Reach for the one that matches what you're setting:</p>
+  <ul>
+    <li><code class="code-ref">get-space($step)</code> &mdash; <span class="bold">flow between elements</span>: <code class="code-ref">margin</code>, <code class="code-ref">padding</code>, <code class="code-ref">gap</code>, gutters, insets. Vertical and horizontal rhythm and balance.</li>
+    <li><code class="code-ref">get-size($size)</code> &mdash; <span class="bold">the fixed size of a thing</span>: <code class="code-ref">width</code>, <code class="code-ref">height</code>, icon and control dimensions, <code class="code-ref">background-size</code>.</li>
+  </ul>
+
+  <h3 class="h4">get-space() function</h3>
+  <p>Use <code class="code-ref">get-space($step)</code> for spacing between elements. It returns a <span class="code-ref">--jf-space-*</span> token reference (see the <a href="./variables.html#spacing-scale">spacing scale</a>), so the value stays runtime-themeable &mdash; a theme can tighten or loosen the whole framework's rhythm by re-declaring the custom properties.</p>
   <pre class="language-scss">
     <code>
       .element {
         padding: get-space(md);          // var(--jf-space-md)
         margin-block-end: get-space(lg); // var(--jf-space-lg)
+        gap: get-space(sm);              // var(--jf-space-sm)
       }
     </code>
   </pre>
 
   <h3 class="h4">get-size() function</h3>
-  <p><code class="code-ref">get-size($size)</code> returns the <span class="italic">raw length</span> from the <span class="variable-ref">$sizing-system</span> map &mdash; a build-time value, not a token. Reach for it only when you need an actual number: Sass maths, <code class="code-ref">calc()</code> operands, or a value that shouldn't be themeable. Otherwise prefer <code class="code-ref">get-space()</code> above.</p>
+  <p><code class="code-ref">get-size($size)</code> returns a <span class="italic">raw length</span> from the <span class="variable-ref">$sizing-system</span> map &mdash; a build-time value, not a token. Use it for fixed dimensions, and wherever you need an actual number rather than a <code class="code-ref">var()</code>: Sass maths, <code class="code-ref">calc()</code> operands, generator loops.</p>
   <pre class="language-scss">
     <code>
       // Input:
@@ -323,9 +330,10 @@
       <tr><th>Function</th><th>Steps</th><th>Returns</th></tr>
     </thead>
     <tbody>
-      <tr><td><code class="code-ref">get-space($step)</code></td><td><span class="code-ref">2xs xs sm md lg xl 2xl 3xl</span></td><td><span class="code-ref">var(--jf-space-md)</span></td></tr>
+      <tr><td><code class="code-ref">get-space($step)</code></td><td><span class="code-ref">3xs 2xs xs sm md lg xl 2xl</span></td><td><span class="code-ref">var(--jf-space-md)</span></td></tr>
       <tr><td><code class="code-ref">get-radius($step)</code></td><td><span class="code-ref">none xs sm md lg xl 2xl full</span></td><td><span class="code-ref">var(--jf-radius-md)</span></td></tr>
       <tr><td><code class="code-ref">get-leading($step)</code></td><td><span class="code-ref">flush tight snug base loose</span></td><td><span class="code-ref">var(--jf-leading-tight)</span></td></tr>
+      <tr><td><code class="code-ref">get-weight($step)</code></td><td><span class="code-ref">hairline thin light normal medium semibold bold xbold black</span></td><td><span class="code-ref">var(--jf-font-weight-bold)</span></td></tr>
       <tr><td><code class="code-ref">get-shadow($step)</code></td><td><span class="code-ref">none xs sm md lg xl</span></td><td><span class="code-ref">var(--jf-shadow-md)</span></td></tr>
       <tr><td><code class="code-ref">get-duration($step)</code></td><td><span class="code-ref">instant fast base slow slower</span></td><td><span class="code-ref">var(--jf-duration-base)</span></td></tr>
       <tr><td><code class="code-ref">get-ease($step)</code></td><td><span class="code-ref">in out in-out spring</span> (default <span class="code-ref">in-out</span>)</td><td><span class="code-ref">var(--jf-ease-out)</span></td></tr>

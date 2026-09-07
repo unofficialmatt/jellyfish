@@ -92,15 +92,21 @@ $font-sizes-h6: map-merge(
   $font-sizes-h6
 );
 
-$weight-hairline: 100 !default;
-$weight-thin: 200 !default;
-$weight-light: 300 !default;
-$weight-normal: 400 !default;
-$weight-medium: 500 !default;
-$weight-semibold: 600 !default;
-$weight-bold: 700 !default;
-$weight-xbold: 800 !default;
-$weight-black: 900 !default;
+$font-weight-scale: () !default;
+$font-weight-scale: map-merge(
+  (
+    "hairline": 100,
+    "thin": 200,
+    "light": 300,
+    "normal": 400,
+    "medium": 500,
+    "semibold": 600,
+    "bold": 700,
+    "xbold": 800,
+    "black": 900,
+  ),
+  $font-weight-scale
+);
 
-$heading-line-height: 1.2 !default;
-$heading-weight: $weight-medium !default;
+$heading-line-height: token(leading-tight) !default;
+$heading-weight: get-weight(medium) !default;

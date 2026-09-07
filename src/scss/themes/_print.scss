@@ -9,7 +9,7 @@ iframe,
 @media print {
   a {
     color: black !important;
-    font-weight: $weight-bold !important;
+    font-weight: get-weight(bold) !important;
     text-decoration: underline !important;
   }
   a[href^="http"]::after {
@@ -27,7 +27,7 @@ iframe,
     font-family: Arial, sans-serif !important;
   }
   #{headings()} {
-    font-weight: $weight-bold !important;
+    font-weight: get-weight(bold) !important;
     margin-bottom: 0.2em !important;
   }
   h1 {

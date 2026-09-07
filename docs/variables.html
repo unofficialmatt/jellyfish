@@ -140,7 +140,7 @@
       <tr>
         <td><span class="variable-ref">$sizing-system</span></td>
         <td><span class="italic">(SCSS map)</span></td>
-        <td>A map of key: value pairs &mdash; key is the size reference, value the actual CSS length. Progressive scale; rarely needs modifying. <span class="bold">Sass-only</span> &mdash; it drives <a href="./mixins.html">get-size()</a> and the spacing utility classes at build time and is <span class="italic">not</span> emitted as custom properties. <span class="bold">Prefer the <span class="code-ref">--jf-space-*</span> scale / <a href="./mixins.html">get-space()</a> below</span> for margins and padding; reach for <span class="code-ref">get-size()</span> only when you need a raw length (Sass maths, <span class="code-ref">calc()</span>).</td>
+        <td>A map of key: value pairs &mdash; key is the size reference (0.125 &ndash; 48, in <span class="variable-ref">$root-size</span> multiples), value the CSS length. Also the source for the <span class="code-ref">--jf-space-*</span> and <span class="code-ref">--jf-radius-*</span> scales. Rarely needs modifying. <span class="bold">Sass-only</span> &mdash; it drives <a href="./mixins.html">get-size()</a> and the spacing utility classes at build time and is <span class="italic">not</span> emitted as custom properties. Use <a href="./mixins.html">get-size()</a> for the <span class="bold">fixed size of a thing</span> (width, height, control and icon dimensions); use the <span class="code-ref">--jf-space-*</span> scale / <a href="./mixins.html">get-space()</a> below for <span class="bold">flow between elements</span> (margin, padding, gap).</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$flow-step</span></td>
@@ -151,20 +151,20 @@
   </table>
 
   <h2 id="spacing-scale" class="h5">Spacing scale</h2>
-  <p>A thin t-shirt scale, each step pointing at a <span class="variable-ref">$sizing-system</span> step. This is the consumer/runtime face of spacing &mdash; components and utilities read these, not the raw map. Reference from SCSS with <a href="./mixins.html">get-space()</a>, from CSS with the full <span class="code-ref">--jf-space-*</span> name. Extend by merging <span class="variable-ref">$space-scale</span> at build or setting a new <span class="code-ref">--jf-space-*</span> at runtime. <span class="bold">See these and the other axes rendered on the <a href="./design-tokens.html">Design Tokens</a> page.</span></p>
+  <p>A thin t-shirt scale for <span class="bold">flow between elements</span> &mdash; margin, padding, gap, gutters. Each step points at a <span class="variable-ref">$sizing-system</span> step. This is the consumer/runtime face of spacing &mdash; components and utilities read these, not the raw map. Reference from SCSS with <a href="./mixins.html">get-space()</a>, from CSS with the full <span class="code-ref">--jf-space-*</span> name. Extend by merging <span class="variable-ref">$space-scale</span> at build or setting a new <span class="code-ref">--jf-space-*</span> at runtime. For the fixed size of a thing, use <a href="./mixins.html">get-size()</a> instead. <span class="bold">See these and the other axes rendered on the <a href="./design-tokens.html">Design Tokens</a> page.</span></p>
   <table class="is-responsive has-border">
     <thead>
       <tr><th>Token</th><th>Sass step</th><th>Value</th></tr>
     </thead>
     <tbody>
-      <tr><td><span class="code-ref">--jf-space-2xs</span></td><td><span class="code-ref">get-size(0.25)</span></td><td>4px</td></tr>
-      <tr><td><span class="code-ref">--jf-space-xs</span></td><td><span class="code-ref">get-size(0.5)</span></td><td>8px</td></tr>
+      <tr><td><span class="code-ref">--jf-space-3xs</span></td><td><span class="code-ref">get-size(0.25)</span></td><td>4px</td></tr>
+      <tr><td><span class="code-ref">--jf-space-2xs</span></td><td><span class="code-ref">get-size(0.5)</span></td><td>8px</td></tr>
+      <tr><td><span class="code-ref">--jf-space-xs</span></td><td><span class="code-ref">get-size(0.75)</span></td><td>12px</td></tr>
       <tr><td><span class="code-ref">--jf-space-sm</span></td><td><span class="code-ref">get-size(1)</span></td><td>16px</td></tr>
       <tr><td><span class="code-ref">--jf-space-md</span></td><td><span class="code-ref">get-size(1.5)</span></td><td>24px</td></tr>
       <tr><td><span class="code-ref">--jf-space-lg</span></td><td><span class="code-ref">get-size(3)</span></td><td>48px</td></tr>
       <tr><td><span class="code-ref">--jf-space-xl</span></td><td><span class="code-ref">get-size(6)</span></td><td>96px</td></tr>
       <tr><td><span class="code-ref">--jf-space-2xl</span></td><td><span class="code-ref">get-size(8)</span></td><td>128px</td></tr>
-      <tr><td><span class="code-ref">--jf-space-3xl</span></td><td><span class="code-ref">get-size(12)</span></td><td>192px</td></tr>
     </tbody>
   </table>
 
@@ -183,41 +183,54 @@
     </tbody>
   </table>
 
-  <h2 id="radius-scale" class="h5">Border radius</h2>
-  <p>The scale <span class="italic">is</span> the semantic layer &mdash; no numbered primitive tier. Component defaults map onto it (forms/chip/accordion &rarr; <span class="code-ref">sm</span>, button/progress/modal &rarr; <span class="code-ref">md</span>, card &rarr; <span class="code-ref">lg</span>, callout &rarr; <span class="code-ref">none</span>). Reference with <a href="./mixins.html">get-radius()</a>. Retune via <span class="variable-ref">$radius-scale</span> &mdash; sharpen or round every corner from one map.</p>
+  <h2 id="font-weight-scale" class="h5">Font weight</h2>
+  <p>The nine named weights, emitted as <span class="code-ref">--jf-font-weight-*</span>. Point <span class="code-ref">--jf-font-weight-semibold</span> (etc.) at another value to shift every use at once. Reference with <a href="./mixins.html">get-weight()</a>. The <span class="css-ref">.weight-*</span> / <span class="css-ref">.bold</span> utilities read these.</p>
   <table class="is-responsive has-border">
     <thead>
       <tr><th>Token</th><th>Value</th></tr>
     </thead>
     <tbody>
-      <tr><td><span class="code-ref">--jf-radius-none</span></td><td>0</td></tr>
-      <tr><td><span class="code-ref">--jf-radius-xs</span></td><td>2px</td></tr>
-      <tr><td><span class="code-ref">--jf-radius-sm</span></td><td>4px</td></tr>
-      <tr><td><span class="code-ref">--jf-radius-md</span></td><td>8px</td></tr>
-      <tr><td><span class="code-ref">--jf-radius-lg</span></td><td>12px</td></tr>
-      <tr><td><span class="code-ref">--jf-radius-xl</span></td><td>16px</td></tr>
-      <tr><td><span class="code-ref">--jf-radius-2xl</span></td><td>24px</td></tr>
-      <tr><td><span class="code-ref">--jf-radius-full</span></td><td>9999999999px</td></tr>
+      <tr><td><span class="code-ref">--jf-font-weight-hairline</span></td><td>100</td></tr>
+      <tr><td><span class="code-ref">--jf-font-weight-thin</span></td><td>200</td></tr>
+      <tr><td><span class="code-ref">--jf-font-weight-light</span></td><td>300</td></tr>
+      <tr><td><span class="code-ref">--jf-font-weight-normal</span></td><td>400</td></tr>
+      <tr><td><span class="code-ref">--jf-font-weight-medium</span></td><td>500</td></tr>
+      <tr><td><span class="code-ref">--jf-font-weight-semibold</span></td><td>600</td></tr>
+      <tr><td><span class="code-ref">--jf-font-weight-bold</span></td><td>700</td></tr>
+      <tr><td><span class="code-ref">--jf-font-weight-xbold</span></td><td>800</td></tr>
+      <tr><td><span class="code-ref">--jf-font-weight-black</span></td><td>900</td></tr>
     </tbody>
   </table>
 
-  <h2 id="border-width" class="h5">Border width</h2>
+  <h2 id="radius-scale" class="h5">Border radius</h2>
+  <p>A t-shirt scale, its values drawn from <span class="variable-ref">$sizing-system</span> steps. Component defaults map onto it (forms/chip/accordion &rarr; <span class="code-ref">sm</span>, button/progress/modal &rarr; <span class="code-ref">md</span>, card &rarr; <span class="code-ref">lg</span>, callout &rarr; <span class="code-ref">none</span>). Reference with <a href="./mixins.html">get-radius()</a>. Retune the whole framework's corners via <span class="variable-ref">$radius-scale</span>.</p>
   <table class="is-responsive has-border">
     <thead>
-      <tr><th>Variable</th><th>Token</th><th>Default</th><th>Description</th></tr>
+      <tr><th>Token</th><th>Sass step</th><th>Value</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td><span class="variable-ref">$border-width</span></td>
-        <td><span class="code-ref">--jf-border-width</span></td>
-        <td>1px</td>
-        <td rowspan="2">Two widths only &mdash; every border in the framework is 1px or 2px. Naming mirrors the colour role ladder (<span class="italic">subtle / muted / emphasis / strong</span>). <span class="variable-ref">$border-style</span> (<span class="code-ref">solid</span>) sits alongside.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$border-width-strong</span></td>
-        <td><span class="code-ref">--jf-border-width-strong</span></td>
-        <td>2px</td>
-      </tr>
+      <tr><td><span class="code-ref">--jf-radius-none</span></td><td>&mdash;</td><td>0</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-xs</span></td><td><span class="code-ref">get-size(0.125)</span></td><td>2px</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-sm</span></td><td><span class="code-ref">get-size(0.25)</span></td><td>4px</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-md</span></td><td><span class="code-ref">get-size(0.5)</span></td><td>8px</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-lg</span></td><td><span class="code-ref">get-size(0.75)</span></td><td>12px</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-xl</span></td><td><span class="code-ref">get-size(1)</span></td><td>16px</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-2xl</span></td><td><span class="code-ref">get-size(1.5)</span></td><td>24px</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-full</span></td><td>&mdash;</td><td>pill</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="border-width" class="h5">Border</h2>
+  <p>The shared border primitives. Component <span class="code-ref">--jf-{c}-border-*</span> tokens fall back to these, so a border shorthand across the framework is <span class="code-ref">var(--jf-border-width) var(--jf-border-style) var(--jf-border-color)</span>.</p>
+  <table class="is-responsive has-border">
+    <thead>
+      <tr><th>Variable</th><th>Token</th><th>Default</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="variable-ref">$border-width</span></td><td><span class="code-ref">--jf-border-width</span></td><td>1px</td></tr>
+      <tr><td><span class="variable-ref">$border-width-strong</span></td><td><span class="code-ref">--jf-border-width-strong</span></td><td>2px</td></tr>
+      <tr><td><span class="variable-ref">$border-style</span></td><td><span class="code-ref">--jf-border-style</span></td><td>solid</td></tr>
+      <tr><td><span class="variable-ref">$border-color</span></td><td><span class="code-ref">--jf-border-color</span></td><td><span class="code-ref">get-color-role(neutral, muted)</span></td></tr>
     </tbody>
   </table>
 
@@ -318,36 +331,16 @@
         <td>The font stack used for headings.</td>
       </tr>
       <tr>
-        <td>
-          <span class="variable-ref">$weight-hairline</span>,<br>
-          <span class="variable-ref">$weight-thin</span>,<br>
-          <span class="variable-ref">$weight-light</span>,<br>
-          <span class="variable-ref">$weight-normal</span>,<br>
-          <span class="variable-ref">$weight-medium</span>,<br>
-          <span class="variable-ref">$weight-semibold</span>,<br>
-          <span class="variable-ref">$weight-bold</span>,<br>
-          <span class="variable-ref">$weight-xbold</span>,<br>
-          <span class="variable-ref">$weight-black</span>
-        </td>
-        <td>
-          100,<br>
-          200,<br>
-          300,<br>
-          400,<br>
-          500,<br>
-          600,<br>
-          700,<br>
-          800,<br>
-          900
-        </td>
-        <td>Helper variables for font weights. You shouldn't usually need to change these.</td>
+        <td><span class="variable-ref">$font-weight-scale</span></td>
+        <td><span class="italic">(SCSS map)</span></td>
+        <td>The nine named weights (100&ndash;900), emitted as <a href="#font-weight-scale"><span class="code-ref">--jf-font-weight-*</span></a>.</td>
       </tr>
       <tr>
         <td>
           <span class="variable-ref">$heading-line-height</span>
         </td>
         <td>
-          1.2
+          <span class="code-ref">token(leading-tight)</span>
         </td>
         <td>Line height for h1-h6 tags.</td>
       </tr>
@@ -356,7 +349,7 @@
           <span class="variable-ref">$heading-weight</span>
         </td>
         <td>
-          <span class="variable-ref">$weight-medium</span>
+          <span class="code-ref">get-weight(medium)</span>
         </td>
         <td>Font weight for h1-h6 tags.</td>
       </tr>
@@ -553,7 +546,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$button-font-weight</span></td>
-        <td><span class="variable-ref">$weight-bold</span></td>
+        <td><span class="code-ref">get-weight(bold)</span></td>
         <td>Button font weight</td>
       </tr>
       <tr>
@@ -706,7 +699,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$accordion-heading-weight</span></td>
-        <td><span class="variable-ref">$weight-bold</span></td>
+        <td><span class="code-ref">get-weight(bold)</span></td>
         <td>The font weight for accordion heading button text.</td>
       </tr>
       <tr>
@@ -763,12 +756,12 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$modal-outer-margin</span></td>
-        <td><span class="code-ref"> get-size(4)</span></td>
+        <td><span class="code-ref">get-size(3)</span></td>
         <td>The outer margin around <span class="css-ref">.modal</span> elements.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$modal-padding</span></td>
-        <td><span class="code-ref"> get-size(1.5)</span></td>
+        <td><span class="code-ref">token(space-md)</span></td>
         <td>The inner padding for <span class="css-ref">.modal</span> elements.</td>
       </tr>
       <tr>
@@ -826,7 +819,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$chip-font-weight</span></td>
-        <td><span class="variable-ref">$weight-normal</span></td>
+        <td><span class="code-ref">get-weight(normal)</span></td>
         <td>The font weight for <span class="css-ref">.chip</span> elements.</td>
       </tr>
       <tr>
@@ -895,12 +888,12 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$base-container-gutter</span></td>
-        <td><span class="code-ref">get-size(1.5)</span></td>
+        <td><span class="code-ref">get-space(md)</span></td>
         <td>The base gutter around the <span class="css-ref">.container</span> element, used on the smallest screen widths.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$base-col-gutter</span></td>
-        <td><span class="code-ref">get-size(1)</span></td>
+        <td><span class="code-ref">get-space(sm)</span></td>
         <td>The base gutter around <span class="css-ref">.col</span> elements, used on the smallest screen widths. The CSS property --jf-grid-gutter is automatically overwritten at each breakpoint defined in the <span class="variable-ref">$breakpoints</span> map.</span></td>
       </tr>
     </tbody>
@@ -1057,7 +1050,7 @@
 
       <tr>
         <td><span class="variable-ref">$accessibility-button-font-weight</span></td>
-        <td><span class="variable-ref">$weight-bold</span></td>
+        <td><span class="code-ref">get-weight(bold)</span></td>
         <td>The font weight to use for <a href="./accessibility.html">font size control buttons</a></td>
       </tr>
       <tr>

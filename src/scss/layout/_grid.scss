@@ -179,8 +179,8 @@ $loop_count: 1;
       // If container is 100% wide set the padding to half of the gutter
       @if $container-width == 100% {
         @if $container-gutter {
-          padding-left: h($container-gutter);
-          padding-right: h($container-gutter);
+          padding-left: calc(#{$container-gutter} * 0.5);
+          padding-right: calc(#{$container-gutter} * 0.5);
         }
       } @else {
         $padding: calc(calc(100vw - #{$container-width}) / 4);

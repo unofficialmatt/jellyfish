@@ -5,7 +5,7 @@ $navbar-bg-color: get-color(secondary) !default;
 $navbar-font-size: token(font-size-lg) !default;
 $navbar-font-size-expanded: token(font-size-base) !default;
 $navbar-font-family: token(font-primary) !default;
-$navbar-font-weight: $weight-bold !default;
+$navbar-font-weight: get-weight(bold) !default;
 $navbar-text-transform: none !default;
 $navbar-link-color: token(color-white) !default;
 $navbar-link-bg-color: $navbar-bg-color !default;
@@ -22,10 +22,10 @@ $navbar-sublink-font-weight: $navbar-font-weight !default;
 $navbar-sublink-text-transform: $navbar-text-transform !default;
 $navbar-sublink-font-weight-hover: $navbar-link-hover-weight !default;
 // Links: Padding
-$navbar-link-padding-x: get-size(0.75) !default;
-$navbar-link-padding-y: get-size(0.5) !default;
-$navbar-link-padding-expanded-x: get-size(0.75) !default;
-$navbar-link-padding-expanded-y: get-size(0.75) !default;
+$navbar-link-padding-x: get-space(xs) !default;
+$navbar-link-padding-y: get-space(2xs) !default;
+$navbar-link-padding-expanded-x: get-space(xs) !default;
+$navbar-link-padding-expanded-y: get-space(xs) !default;
 // THESE SETTINGS APPLY ABOVE $nav-expands ONLY
 $navbar-sublink-color: $navbar-link-color !default;
 $navbar-sublink-bg-color: $navbar-link-bg-color !default;

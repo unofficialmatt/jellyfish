@@ -5,9 +5,9 @@
   border-radius: token(form-input-border-radius);
   background: token(form-input-background);
   font-family: $form-font;
-  padding: 10px;
+  padding: get-space(xs);
   outline: none;
-  margin: get-size(0.25) 0 get-size(0.75) 0;
+  margin: get-space(3xs) 0 get-space(xs) 0;
   //width: 100%;
   max-width: 100%;
   line-height: 1;
@@ -48,7 +48,7 @@ label {
 
 input[type="checkbox"],
 input[type="radio"] {
-  margin-right: get-size(0.25);
+  margin-right: get-space(3xs);
   font-size: 1em;
   width: 0.9em;
   height: 0.9em;
@@ -64,9 +64,9 @@ fieldset {
   margin: token(flow) 0;
 }
 legend {
-  padding: 0 get-size(0.75);
-  margin-left: n(get-size(0.75));
-  font-weight: $weight-bold;
+  padding: 0 get-space(xs);
+  margin-left: calc(#{token(space-xs)} * -1);
+  font-weight: get-weight(bold);
 }
 
 // Make range full width
@@ -85,9 +85,9 @@ select {
   background-color: token(form-input-background);
   background-image: token(form-select-bg-img);
   background-repeat: no-repeat;
-  background-position: right get-size(0.75) center;
+  background-position: right get-space(2xs) center;
   background-size: get-size(1) get-size(0.75);
-  padding-inline-end: get-size(2);
+  padding-inline-end: calc(get-space(2xs) * 2 + get-space(sm));
   line-height: 1.4; // ensures text doesn't get cut off
 }
 
@@ -99,7 +99,7 @@ select::-ms-expand {
 // Make color picker look better
 [type="color"] {
   height: get-size(3);
-  padding: get-size(0.25) get-size(0.5);
+  padding: get-space(3xs) get-space(2xs);
   vertical-align: middle;
 }
 
@@ -113,7 +113,7 @@ form {
   [type="submit"],
   [type="reset"],
   [type="button"] {
-    margin-top: get-size(0.25);
+    margin-top: get-space(3xs);
   }
   .col {
     #{$form-items} {
@@ -129,7 +129,7 @@ form {
 
 // Wrapper to apply better margins to radioboxes and checkboxes
 .form-group {
-  margin: get-size(0.25) 0 get-size(0.75) 0;
+  margin: get-space(3xs) 0 get-space(xs) 0;
 }
 
 // Make checkboxes/radioboxes inline-block
@@ -139,18 +139,18 @@ form {
     display: inline-block;
   }
   label {
-    margin-right: get-size(0.5);
+    margin-right: get-space(2xs);
   }
 }
 
 // Tighter gutters on form rows
 .form-row {
-  margin-left: nh(get-size(0.5));
-  margin-right: nh(get-size(0.5));
+  margin-left: calc(get-space(2xs) * -0.5);
+  margin-right: calc(get-space(2xs) * -0.5);
   display: flex;
   flex-wrap: wrap;
   .col {
-    padding-left: h(get-size(0.5));
-    padding-right: h(get-size(0.5));
+    padding-left: calc(get-space(2xs) * 0.5);
+    padding-right: calc(get-space(2xs) * 0.5);
   }
 }

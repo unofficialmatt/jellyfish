@@ -68,8 +68,9 @@
     }
     li.has-children > a {
       // Menu Items with Children
-      padding-right: token(navbar-link-padding-x) +
-        30px; // 20px is approx the width of the rotated pseudo element and 10px is the padding
+      padding-right: calc(
+        token(navbar-link-padding-x) + 30px
+      ); // 20px is approx the width of the rotated pseudo element and 10px is the padding
       // TODO: Make these not magic numbers
       &::after {
         @include pseudo;

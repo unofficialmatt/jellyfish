@@ -1,4 +1,4 @@
-$card-border-radius: get-size(0.75) !default;
+$card-border-radius: token(radius-lg) !default;
 $card-border-style: solid !default;
-$card-border-width: 1px !default;
+$card-border-width: token(border-width) !default;
 $card-padding: token(space-md) !default;

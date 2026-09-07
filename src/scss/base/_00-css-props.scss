@@ -37,12 +37,14 @@
   #{token-name("root-line-height")}: #{$root-line-height};
   @include map-to-css-properties($type-scale, "font-size-");
   @include map-to-css-properties($leading-scale, "leading-");
+  @include map-to-css-properties($font-weight-scale, "font-weight-");
   /* Spacing */
   @include map-to-css-properties($space-scale, "space-");
   #{token-name("flow")}: #{get-space($flow-step)};
   /* Borders */
   @include map-to-css-properties($radius-scale, "radius-");
   #{token-name("border-color")}: #{$border-color};
+  #{token-name("border-style")}: #{$border-style};
   #{token-name("border-width")}: #{$border-width};
   #{token-name("border-width-strong")}: #{$border-width-strong};
   /* Elevation */

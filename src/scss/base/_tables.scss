@@ -7,10 +7,10 @@ table {
   font-size: token(table-font-size);
 }
 td {
-  border-bottom: 1px solid token-or(table-border-color, border-color);
+  border-bottom: token(border-width) token(border-style) token-or(table-border-color, border-color);
 }
 th {
-  font-weight: $weight-bold;
+  font-weight: get-weight(bold);
 }
 th,
 td {
@@ -21,10 +21,10 @@ td {
   color: token(table-text-color, inherit);
 }
 thead th {
-  border-bottom: 2px solid token-or(table-border-color, border-color);
+  border-bottom: token(border-width-strong) token(border-style) token-or(table-border-color, border-color);
 }
 tfoot th {
-  border-top: 2px solid token-or(table-border-color, border-color);
+  border-top: token(border-width-strong) token(border-style) token-or(table-border-color, border-color);
 }
 
 // Wrap around a table to prevent it breaking outside the grid
@@ -48,13 +48,13 @@ table.has-border {
   &,
   td,
   th {
-    border: 1px solid token-or(table-border-color, border-color);
+    border: token(border-width) token(border-style) token-or(table-border-color, border-color);
   }
   thead th {
-    border-bottom-width: 2px;
+    border-bottom-width: token(border-width-strong);
   }
   tfoot th {
-    border-top-width: 2px;
+    border-top-width: token(border-width-strong);
   }
 }
 
@@ -86,7 +86,7 @@ table.is-responsive {
     }
     td,
     th {
-      border: 1px solid token-or(table-border-color, border-color);
+      border: token(border-width) token(border-style) token-or(table-border-color, border-color);
     }
 
     tr {
@@ -97,7 +97,7 @@ table.is-responsive {
       display: block;
       &::before {
         content: attr(data-label) ":";
-        font-weight: $weight-semibold;
+        font-weight: get-weight(semibold);
         display: block;
         color: token(color-headings);
         //border-bottom: 1px solid token-or(table-border-color, border-color)

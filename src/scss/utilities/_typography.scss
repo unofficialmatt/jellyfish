@@ -2,32 +2,32 @@
   font-style: italic !important;
 }
 .weight-hairline {
-  font-weight: $weight-hairline !important;
+  font-weight: get-weight(hairline) !important;
 }
 .weight-thin {
-  font-weight: $weight-thin !important;
+  font-weight: get-weight(thin) !important;
 }
 .weight-light {
-  font-weight: $weight-light !important;
+  font-weight: get-weight(light) !important;
 }
 .weight-normal {
-  font-weight: $weight-normal !important;
+  font-weight: get-weight(normal) !important;
 }
 .weight-medium {
-  font-weight: $weight-medium !important;
+  font-weight: get-weight(medium) !important;
 }
 .weight-semibold {
-  font-weight: $weight-semibold !important;
+  font-weight: get-weight(semibold) !important;
 }
 .weight-bold,
 .bold {
-  font-weight: $weight-bold !important;
+  font-weight: get-weight(bold) !important;
 }
 .weight-xbold {
-  font-weight: $weight-xbold !important;
+  font-weight: get-weight(xbold) !important;
 }
 .weight-black {
-  font-weight: $weight-black !important;
+  font-weight: get-weight(black) !important;
 }
 
 .h1 {
