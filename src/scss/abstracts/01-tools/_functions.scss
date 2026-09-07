@@ -53,21 +53,33 @@ $token-prefix: jf !default;
   @return true;
 }
 
-@function get-color($base, $shade: 500) {
-  @if map-has-nested-keys($colors, $base, $shade) {
-    @return var(#{token-name("color-" + $base + "-" + $shade)});
-  } @else {
-    @error "Key: '#{$base}', Value: '#{$shade}' not found in $colors map. Cancelling compile.";
+// Look up a scale token by key: _map-token(md, $space-scale, "space") -> var(--jf-space-md).
+// Errors (listing the valid keys) if the key isn't in the map.
+@function _map-token($step, $map, $axis) {
+  // digit-first keys like `2xs` arrive as a number+unit, not a string
+  @if not map-has-key($map, $step) {
+    $step: "#{$step}";
   }
+  @if map-has-key($map, $step) {
+    @return var(#{token-name("#{$axis}-#{$step}")});
+  }
+  @error "'#{$step}' is not a valid #{$axis} step. Valid: #{map-keys($map)}.";
 }
 
-@function get-color-raw($base, $shade: 500) {
-  @if map-has-nested-keys($colors, $base, $shade) {
-    $color: map-get(map-get($colors, $base), $shade);
-    @return $color;
-  } @else {
-    @error "Key: '#{$base}', Value: '#{$shade}' not found in $colors map. Cancelling compile.";
+// Look up a $colors family + shade. _color-token() returns the var() reference
+// (used by get-color / get-on-color); get-color-raw() returns the literal Sass
+// colour, for SVG data-URIs, rgba() and colour maths.
+@function _color-token($stem, $base, $shade) {
+  @if not map-has-nested-keys($colors, $base, $shade) {
+    @error "'#{$base}' / '#{$shade}' not found in $colors map. Cancelling compile.";
   }
+  @return var(#{token-name("#{$stem}-#{$base}-#{$shade}")});
+}
+@function get-color-raw($base, $shade: 500) {
+  @if not map-has-nested-keys($colors, $base, $shade) {
+    @error "'#{$base}' / '#{$shade}' not found in $colors map. Cancelling compile.";
+  }
+  @return map-get(map-get($colors, $base), $shade);
 }
 
 // Reference a palette family by semantic role rather than shade number.
@@ -87,35 +99,65 @@ $token-prefix: jf !default;
   @return var(#{token-name("color-#{$base}-#{$role}")});
 }
 
+// Raw length from $sizing-system, for build-time maths and the utility
+// generator. For runtime-themeable spacing use get-space().
+@function get-size($size) {
+  @if map-has-key($sizing-system, $size) {
+    @return map-get($sizing-system, $size);
+  }
+  @error "'#{$size}' not found in $sizing-system map. Cancelling compile.";
+}
+
 // The "on colour" for a $colors palette shade: the best-contrast text colour to
 // place on top of it.
 // @param {String} $base - palette family
 // @param {Number} $shade - shade of that family
 // @return {String} e.g. var(--jf-color-on-primary-700)
 @function get-on-color($base, $shade: 500) {
-  @if map-has-nested-keys($colors, $base, $shade) {
-    @return var(#{token-name("color-on-#{$base}-#{$shade}")});
-  } @else {
-    @error "Key: '#{$base}', Value: '#{$shade}' not found in $colors map. Cancelling compile.";
-  }
+  @return _color-token("color-on", $base, $shade);
 }
-
+@function get-color($base, $shade: 500) {
+  @return _color-token("color", $base, $shade);
+}
 @function font-size($size) {
-  // @warn "font-size() function is deprecated and will be removed in a future release. Please refer to font sizes by CSS custom property instead eg. var(--font-size-1).";
-  @if map-has-key($type-scale, $size) {
-    @return var(#{token-name("font-size-#{$size}")});
-  } @else {
-    @error "Key: '#{$size}' not found in $type-scale map. Cancelling compile.";
-  }
+  @return _map-token($size, $type-scale, "font-size");
+}
+@function get-space($step) {
+  @return _map-token($step, $space-scale, "space");
+}
+@function get-radius($step) {
+  @return _map-token($step, $radius-scale, "radius");
+}
+@function get-leading($step) {
+  @return _map-token($step, $leading-scale, "leading");
+}
+@function get-duration($step) {
+  @return _map-token($step, $duration-scale, "duration");
+}
+@function get-ease($step: in-out) {
+  @return _map-token($step, $ease-scale, "ease");
+}
+@function get-shadow($step) {
+  @return _map-token($step, $shadow-scale, "shadow");
 }
 
-@function get-size($size) {
-  @if map-has-key($sizing-system, $size) {
-    $return-size: map-get($sizing-system, $size);
-    @return $return-size;
-  } @else {
-    @error "Key: '#{$size}' not found in $sizing-system map. Cancelling compile.";
+// A $shadow-scale entry -> a box-shadow value: geometry + a color-mix of
+// --jf-shadow-color, per layer. `none` passes through.
+@function build-shadow($entry) {
+  @if $entry == none {
+    @return none;
   }
+  // (geometry, alpha) is one layer; ((geo,a),(geo,a)) is several — normalise to a list of layers
+  $layers: $entry;
+  @if type-of(nth($entry, 2)) == "number" {
+    $layers: append((), $entry);
+  }
+  $out: ();
+  @each $layer in $layers {
+    $mix: #{"color-mix(in srgb, #{token(shadow-color)} #{nth($layer, 2)}, transparent)"};
+    $out: append($out, #{nth($layer, 1)} #{$mix}, comma);
+  }
+  @return $out;
 }
 
 // Returns a given number divided by 2

@@ -60,8 +60,8 @@ input[type="radio"] {
 fieldset {
   border: $borders;
   border-radius: token(form-input-border-radius);
-  padding: $element-padding;
-  margin: $element-margin 0;
+  padding: token(flow);
+  margin: token(flow) 0;
 }
 legend {
   padding: 0 get-size(0.75);

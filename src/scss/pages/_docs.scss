@@ -7,7 +7,7 @@
 
 .navbar-logo {
   width: 120px;
-  margin-bottom: $element-margin;
+  margin-bottom: token(flow);
   margin-left: 1.5ch;
 }
 .sidebar {
@@ -42,7 +42,7 @@
       margin-left: n(1.5ch);
       margin-right: get-size(0.5);
       color: get-color(neutral, 50);
-      @include smooth(all);
+      @include motion(all);
     }
     &:hover,
     &:focus {
@@ -124,7 +124,7 @@
 // Code Block
 pre {
   position: relative;
-  margin: $element-margin 0 !important;
+  margin: token(flow) 0 !important;
   font-size: token(font-size--2) !important;
 
   label {
@@ -192,7 +192,7 @@ div.code-toolbar {
   border: 1px solid get-color(neutral, 100);
   padding: get-size(0.75) get-size(1);
   line-height: 1.2;
-  margin: 0 0 $element-margin 0;
+  margin: 0 0 token(flow) 0;
   display: inherit;
   font-size: token(font-size--1);
   flex: 1 1 auto;
@@ -201,8 +201,8 @@ div.code-toolbar {
 .row-boxed {
   background-color: get-color(neutral, 25);
   min-height: 160px;
-  margin-bottom: $element-margin;
-  padding: $element-padding 0;
+  margin-bottom: token(flow);
+  padding: token(flow) 0;
   .boxed {
     margin: 0;
     background-color: token(color-white);
@@ -224,11 +224,11 @@ div.code-toolbar {
   font-weight: $weight-medium;
 }
 
-// smooth() mixin examples
+// motion() mixin examples
 .smooth- {
   &transform {
     cursor: pointer;
-    @include smooth(transform);
+    @include motion(transform);
 
     &:hover,
     &:focus {
@@ -238,7 +238,7 @@ div.code-toolbar {
 
   &background {
     cursor: pointer;
-    @include smooth(background);
+    @include motion(background);
 
     &:hover,
     &:focus {
@@ -248,7 +248,7 @@ div.code-toolbar {
 
   &wild {
     cursor: pointer;
-    @include smooth(color, transform, background);
+    @include motion(color, transform, background);
 
     &:hover,
     &:focus {
@@ -256,6 +256,28 @@ div.code-toolbar {
       color: token(color-white);
       transform: scale(1.02);
     }
+  }
+}
+
+.dt-swatch {
+  display: grid;
+  place-items: center;
+  inline-size: 7rem;
+  block-size: 5rem;
+  padding: get-space(2xs);
+  font-size: 0.8rem;
+  text-align: center;
+  border-radius: get-radius(md);
+}
+.dt-motion {
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-0.375rem) scale(1.04);
+  }
+  &--token {
+    @include motion(transform);
   }
 }
 

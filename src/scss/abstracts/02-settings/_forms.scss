@@ -1,7 +1,11 @@
+// Shared border primitives (this file loads early and several settings below
+// reference them). Two widths only — every border in the framework is 1px or
+// 2px; `-strong` matches the colour role naming (subtle/muted/emphasis/strong).
 $border-width: 1px !default;
+$border-width-strong: 2px !default;
 $border-style: solid !default;
 $border-color: get-color-role(neutral, muted) !default;
-$border-radius: 4px !default;
+$border-radius: 4px !default; // TODO(tranche 2): -> token(radius-sm)
 $borders: token(form-input-border-width) token(form-input-border-style)
   token(form-input-border-color);
 

@@ -35,7 +35,7 @@ tfoot th {
   table {
     margin-bottom: 0;
   }
-  margin-bottom: $element-margin;
+  margin-bottom: token(flow);
 }
 
 table.is-striped {

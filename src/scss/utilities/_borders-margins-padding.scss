@@ -1,14 +1,14 @@
 .mb {
-  margin-bottom: $element-margin !important;
+  margin-bottom: token(flow) !important;
 }
 .mt {
-  margin-top: $element-margin !important;
+  margin-top: token(flow) !important;
 }
 .mr {
-  margin-right: $element-margin !important;
+  margin-right: token(flow) !important;
 }
 .ml {
-  margin-left: $element-margin !important;
+  margin-left: token(flow) !important;
 }
 .m-0 {
   margin: 0px !important;

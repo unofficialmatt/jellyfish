@@ -1,74 +1,67 @@
+// Register the two contextual colour tokens so a nested context can't inherit a
+// stale surface from an ancestor .bg-* section. Surface does NOT inherit — every
+// context (:root, body, each .bg-*) sets its own; the transparent initial is a
+// never-actually-used sentinel (the text-tier color-mix()s are only declared
+// where surface is set explicitly). Text inherits as normal. If a browser
+// rejects either registration it degrades to an ordinary custom property.
+@property #{token-name("color-surface")} {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+@property #{token-name("color-text")} {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: canvastext;
+}
+
 :root {
   #{token-name("color-white")}: #{$color-white};
   #{token-name("color-black")}: #{$color-black};
   @include map-to-css-properties($colors, "color-");
-
-  // --jf-color-bg is the canvas (html/body paint it, components never override).
-  // --jf-color-surface is "the background of the current context": a card,
-  // modal, menu or .bg-* section re-declares it, and it defaults to the canvas
-  // so a bare page still resolves.
+  /* Misc Colors */
   #{token-name("color-bg")}: #{$body-background-color};
   #{token-name("color-surface")}: #{token("color-bg")};
 
   #{token-name("color-text")}: #{$color-text};
   #{token-name("color-headings")}: #{$color-headings-preferred};
   @include surface-text-tiers;
-
-  // The shared hairline colour. Every component's --jf-{component}-border-color
-  // defaults to this; override the component token for a per-component change,
-  // or this one to move them all.
-  #{token-name("border-color")}: #{$border-color};
-
   #{token-name("accessibility-focus-color")}: #{$accessibility-focus-color};
-
+  /* Grid */
+  #{token-name("grid-gutter")}: #{$base-col-gutter};
+  /* Typography */
   #{token-name("font-primary")}: #{$font-primary};
   #{token-name("font-secondary")}: #{$font-secondary};
   #{token-name("font-monospace")}: #{$font-monospace};
-
-  #{token-name("grid-gutter")}: #{$base-col-gutter};
-
   #{token-name("root-font-size")}: #{$root-font-size};
   #{token-name("root-line-height")}: #{$root-line-height};
-
   // TODO: move to font-size-xs, font-size-sm, font-size-base, not --1, --2.
   @include map-to-css-properties($type-scale, "font-size-");
-
-  // TODO: Add i nsome leadings (1, 1.1, 1.2, etc)
-  // TODO add border-radius-xs, border-radius-sm, border-radius-md, border-radius-lg, border-radius-xl, etc. border-radius-none
-  // TODO: shadow-xs, shadow-sm, shadow-md, shadow-lg, shadow-xl, etc. shadow-inner?
-  // TODO: duration-instant, duration-fast, duration-normal, duration-slow, duration-slower
-
-  @each $point, $i in $breakpoints {
-    // for each breakpoint defined...
-    @include above($point) {
-      @if (map-deep-get($breakpoints, $point, "col-gutter") != null) {
-        #{token-name("grid-gutter")}: #{map-deep-get(
-            $breakpoints,
-            $point,
-            "col-gutter"
-          )};
-      }
-      @if (map-deep-get($breakpoints, $point, "root-font-size") != null) {
-        #{token-name("root-font-size")}: #{map-deep-get(
-            $breakpoints,
-            $point,
-            "root-font-size"
-          )};
-      }
-      @if (map-deep-get($breakpoints, $point, "root-line-height") != null) {
-        #{token-name("root-line-height")}: #{map-deep-get(
-            $breakpoints,
-            $point,
-            "root-line-height"
-          )};
-      }
-    }
+  @include map-to-css-properties($leading-scale, "leading-");
+  /* Spacing */
+  @include map-to-css-properties($space-scale, "space-");
+  #{token-name("flow")}: #{get-space($flow-step)};
+  /* Borders */
+  @include map-to-css-properties($radius-scale, "radius-");
+  #{token-name("border-color")}: #{$border-color};
+  #{token-name("border-width")}: #{$border-width};
+  #{token-name("border-width-strong")}: #{$border-width-strong};
+  /* Elevation */
+  #{token-name("shadow-color")}: #{$shadow-color};
+  @each $step, $entry in $shadow-scale {
+    #{token-name("shadow-#{$step}")}: #{build-shadow($entry)};
   }
+  /* Motion */
+  @include map-to-css-properties($duration-scale, "duration-");
+  @include map-to-css-properties($ease-scale, "ease-");
+  #{token-name("transition")}: #{token(duration-base)} #{token(ease-in-out)};
 
+  /* Links */
   #{token-name("link-color")}: #{token("color-#{$link-color}")};
   #{token-name("link-color-active")}: #{get-color-role($link-color, emphasis)};
   #{token-name("link-color-visited")}: #{get-color-role($link-color, muted)};
 
+  /* Components - to do move to elements */
   #{token-name("mark-background")}: #{$mark-background-color};
   $mark-on-color: choose-contrast-color($mark-background-color);
   #{token-name("mark-color")}: #{$mark-on-color};
@@ -100,8 +93,12 @@
   @include select-bg();
 
   #{token-name("table-font-size")}: #{$table-font-size};
-  #{token-name("table-stripe-bg-color")}: #{token(color-neutral-#{$table-stripe-shade})};
-  #{token-name("table-hover-background")}: #{token(color-neutral-#{$table-hover-shade})};
+  #{token-name("table-stripe-bg-color")}: #{token(
+      color-neutral-#{$table-stripe-shade}
+    )};
+  #{token-name("table-hover-background")}: #{token(
+      color-neutral-#{$table-hover-shade}
+    )};
   #{token-name("table-cell-background")}: transparent;
 
   #{token-name("navbar-bg-color")}: #{$navbar-bg-color};
@@ -120,4 +117,45 @@
   #{token-name("navbar-link-padding-x")}: #{$navbar-link-padding-x};
   #{token-name("navbar-link-padding-y")}: #{$navbar-link-padding-y};
   #{token-name("navbar-dropdown-width")}: #{$navbar-dropdown-width};
+
+  @each $point, $i in $breakpoints {
+    // for each breakpoint defined...
+    @include above($point) {
+      @if (map-deep-get($breakpoints, $point, "col-gutter") != null) {
+        #{token-name("grid-gutter")}: #{map-deep-get(
+            $breakpoints,
+            $point,
+            "col-gutter"
+          )};
+      }
+      @if (map-deep-get($breakpoints, $point, "root-font-size") != null) {
+        #{token-name("root-font-size")}: #{map-deep-get(
+            $breakpoints,
+            $point,
+            "root-font-size"
+          )};
+      }
+      @if (map-deep-get($breakpoints, $point, "root-line-height") != null) {
+        #{token-name("root-line-height")}: #{map-deep-get(
+            $breakpoints,
+            $point,
+            "root-line-height"
+          )};
+      }
+    }
+  }
+}
+
+// Reduced motion: zero the duration tokens in one place. Everything animated
+// resolves through --jf-transition or a --jf-duration-* step, so this switches
+// the whole framework's motion off. Not literally 0s — 0.01ms keeps transition
+// end events firing for any JS that waits on them.
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    #{token-name("duration-instant")}: 0.01ms !important;
+    #{token-name("duration-fast")}: 0.01ms !important;
+    #{token-name("duration-base")}: 0.01ms !important;
+    #{token-name("duration-slow")}: 0.01ms !important;
+    #{token-name("duration-slower")}: 0.01ms !important;
+  }
 }

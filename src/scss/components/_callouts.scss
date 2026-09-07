@@ -12,7 +12,7 @@
       radius: $callout-border-radius;
     }
     background-color: token(callout-bg-color);
-    margin-bottom: $element-margin;
+    margin-bottom: token(flow);
     padding: $callout-padding;
     display: block;
     width: 100%;

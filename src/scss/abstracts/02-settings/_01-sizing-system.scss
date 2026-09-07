@@ -1,9 +1,7 @@
 $root-size: 16px;
 
-// Create empty map. This allows the map to be defined in the project settings file to override and add any sizes as required
 $sizing-system: () !default;
 
-// Merge default colours into the map
 $sizing-system: map-merge(
   (
     0.25: $root-size * 0.25,
@@ -26,8 +24,19 @@ $sizing-system: map-merge(
   $sizing-system
 );
 
-// GLOBAL PADDING/MARGINS
-$element-padding: get-size(1.5) !default;
-$element-margin: get-size(1.5) !default;
+$space-scale: () !default;
+$space-scale: map-merge(
+  (
+    "2xs": get-size(0.25),
+    "xs": get-size(0.5),
+    "sm": get-size(1),
+    "md": get-size(1.5),
+    "lg": get-size(3),
+    "xl": get-size(6),
+    "2xl": get-size(8),
+    "3xl": get-size(12),
+  ),
+  $space-scale
+);
 
-// TODO: Add border rads, spacing, shadow elev
+$flow-step: "md" !default;

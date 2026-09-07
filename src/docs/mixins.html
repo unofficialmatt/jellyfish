@@ -175,8 +175,19 @@
 </div>
 <div>
   <h2 class="h3">Working with numbers</h2>
+  <h3 class="h4">get-space() function &mdash; preferred for spacing</h3>
+  <p>Use <code class="code-ref">get-space($step)</code> for margins, padding and gaps. It returns a <span class="code-ref">--jf-space-*</span> token reference (see the <a href="./variables.html#spacing-scale">spacing scale</a>), so the value stays runtime-themeable and consistent with the rest of the framework.</p>
+  <pre class="language-scss">
+    <code>
+      .element {
+        padding: get-space(md);          // var(--jf-space-md)
+        margin-block-end: get-space(lg); // var(--jf-space-lg)
+      }
+    </code>
+  </pre>
+
   <h3 class="h4">get-size() function</h3>
-  <p>The <code class="code-ref">get-size($size)</code> function returns the provided size from the <span class="variable-ref">$sizing-system</span> SCSS map.</p>
+  <p><code class="code-ref">get-size($size)</code> returns the <span class="italic">raw length</span> from the <span class="variable-ref">$sizing-system</span> map &mdash; a build-time value, not a token. Reach for it only when you need an actual number: Sass maths, <code class="code-ref">calc()</code> operands, or a value that shouldn't be themeable. Otherwise prefer <code class="code-ref">get-space()</code> above.</p>
   <pre class="language-scss">
     <code>
       // Input:
@@ -193,6 +204,24 @@
 
     </code>
   </pre>
+
+  <h3 class="h4">Non-colour axis accessors</h3>
+  <p>Analogues of <code class="code-ref">get-color-role()</code> for the other design axes &mdash; each is a one-line <code class="code-ref">_map-token()</code> call that validates the step against its scale map and returns the <span class="code-ref">--jf-*</span> reference (with a build-time error listing the valid keys if you mistype). See the <a href="./variables.html#spacing-scale">token tables</a> for the steps.</p>
+  <table class="is-responsive has-border">
+    <thead>
+      <tr><th>Function</th><th>Steps</th><th>Returns</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code class="code-ref">get-space($step)</code></td><td><span class="code-ref">2xs xs sm md lg xl 2xl 3xl</span></td><td><span class="code-ref">var(--jf-space-md)</span></td></tr>
+      <tr><td><code class="code-ref">get-radius($step)</code></td><td><span class="code-ref">none xs sm md lg xl 2xl full</span></td><td><span class="code-ref">var(--jf-radius-md)</span></td></tr>
+      <tr><td><code class="code-ref">get-leading($step)</code></td><td><span class="code-ref">flush tight snug base loose</span></td><td><span class="code-ref">var(--jf-leading-tight)</span></td></tr>
+      <tr><td><code class="code-ref">get-shadow($step)</code></td><td><span class="code-ref">none xs sm md lg xl</span></td><td><span class="code-ref">var(--jf-shadow-md)</span></td></tr>
+      <tr><td><code class="code-ref">get-duration($step)</code></td><td><span class="code-ref">instant fast base slow slower</span></td><td><span class="code-ref">var(--jf-duration-base)</span></td></tr>
+      <tr><td><code class="code-ref">get-ease($step)</code></td><td><span class="code-ref">in out in-out spring</span> (default <span class="code-ref">in-out</span>)</td><td><span class="code-ref">var(--jf-ease-out)</span></td></tr>
+    </tbody>
+  </table>
+  <p><code class="code-ref">build-shadow($entry)</code> assembles a <span class="code-ref">box-shadow</span> value from a <a href="./variables.html#elevation"><span class="variable-ref">$shadow-scale</span></a> entry &mdash; each <span class="code-ref">(geometry, alpha)</span> tuple becomes <span class="code-ref">&lt;geometry&gt; color-mix(in srgb, var(--jf-shadow-color) &lt;alpha&gt;, transparent)</span>.</p>
+
   <p>Jellyfish comes with a few simple functions for manipulating numbers.</p>
   <pre class="language-scss">
     <code>
@@ -219,19 +248,25 @@
 </div>
 
 <div>
-  <h2 class="h3">Global smooth() transitions</h2>
-  <p>Use the mixin <code class="code-ref">@include smooth($properties...)</code> to apply global transitions for a consistent UI experience. The mixin accepts multiple arguments.</p>
+  <h2 class="h3">Global motion() transitions</h2>
+  <p>Use <code class="code-ref">@include motion($properties...)</code> to apply the framework transition to one or more properties. Each transitions on <code class="code-ref">var(--jf-transition)</code> (<code class="code-ref">var(--jf-duration-base) var(--jf-ease-in-out)</code>), so <code class="code-ref">prefers-reduced-motion</code> &mdash; which zeroes the <a href="./variables.html#motion"><code class="code-ref">--jf-duration-*</code> tokens</a> &mdash; switches these off automatically.</p>
+  <p><span class="bold">Single property?</span> Write <code class="code-ref">transition: var(--jf-transition)</code> directly &mdash; <code class="code-ref">motion()</code> earns its keep on the multi-property case, where it saves repeating the token per clause.</p>
+  <p><span class="bold">Different speed or curve?</span> Redefine <code class="code-ref">--jf-transition</code> (or <code class="code-ref">--jf-duration-base</code> / a <a href="./variables.html#motion"><code class="code-ref">--jf-ease-*</code></a> curve) on the element or a scope &mdash; it cascades, so a whole region can run slower without touching the mixin.</p>
+  <pre class="language-scss"><code>      .drawer {
+        --jf-transition: var(--jf-duration-slow) var(--jf-ease-out);
+        @include motion(transform, opacity); // slow + ease-out, and so is everything under .drawer
+      }</code></pre>
   <div class="boxed">
-    <p>Anchor tags have <code class="code-ref">smooth(color)</code> applied by default - <a href="#">hover here to preview</a>.</p>
+    <p>Anchor tags have <code class="code-ref">motion(color)</code> applied by default - <a href="#">hover here to preview</a>.</p>
   </div>
   <div class="smooth-transform boxed">
-    <p>This element has <code class="code-ref">smooth(transform)</code> applied to it. Hover to preview.</p>
+    <p>This element has <code class="code-ref">motion(transform)</code> applied to it. Hover to preview.</p>
   </div>
   <div class="smooth-background boxed">
-    <p>This element has <code class="code-ref">smooth(background)</code> applied to it. Hover to preview.</p>
+    <p>This element has <code class="code-ref">motion(background)</code> applied to it. Hover to preview.</p>
   </div>
   <div class="smooth-wild boxed">
-    <p>This element has <code class="code-ref">smooth(background, transform, color)</code> applied to it. Hover to preview.</p>
+    <p>This element has <code class="code-ref">motion(background, transform, color)</code> applied to it. Hover to preview.</p>
   </div>
 </div>
 

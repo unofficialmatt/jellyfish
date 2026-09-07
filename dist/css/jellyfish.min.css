@@ -8,6 +8,16 @@
  */
 
 @charset "UTF-8";
+@property --jf-color-surface {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+@property --jf-color-text {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: canvastext;
+}
 :root {
   --jf-color-white: #ffffff;
   --jf-color-black: #000000;
@@ -191,18 +201,20 @@
   --jf-color-on-error-800: var(--jf-color-white);
   --jf-color-on-error-900: var(--jf-color-white);
   --jf-color-on-error-1000: var(--jf-color-white);
+  /* Misc Colors */
   --jf-color-bg: var(--jf-color-white);
   --jf-color-surface: var(--jf-color-bg);
   --jf-color-text: var(--jf-color-neutral-1000);
   --jf-color-headings: var(--jf-color-neutral-700);
   --jf-color-text-muted: color-mix(in srgb, var(--jf-color-text) 70%, var(--jf-color-surface));
   --jf-color-text-subtle: color-mix(in srgb, var(--jf-color-text) 60%, var(--jf-color-surface));
-  --jf-border-color: var(--jf-color-neutral-muted);
   --jf-accessibility-focus-color: rgb(0, 140, 255);
+  /* Grid */
+  --jf-grid-gutter: 1rem;
+  /* Typography */
   --jf-font-primary: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   --jf-font-secondary: var(--jf-font-primary);
   --jf-font-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
-  --jf-grid-gutter: 1rem;
   --jf-root-font-size: var(--jf-font-size-0);
   --jf-root-line-height: 1.5;
   --jf-font-size--2: 0.75em;
@@ -216,9 +228,57 @@
   --jf-font-size-6: 3em;
   --jf-font-size-7: 3.75em;
   --jf-font-size-8: 4.5em;
+  --jf-leading-flush: 1;
+  --jf-leading-tight: 1.2;
+  --jf-leading-snug: 1.35;
+  --jf-leading-base: 1.5;
+  --jf-leading-loose: 1.7;
+  /* Spacing */
+  --jf-space-2xs: 0.25rem;
+  --jf-space-xs: 0.5rem;
+  --jf-space-sm: 1rem;
+  --jf-space-md: 1.5rem;
+  --jf-space-lg: 3rem;
+  --jf-space-xl: 6rem;
+  --jf-space-2xl: 8rem;
+  --jf-space-3xl: 12rem;
+  --jf-flow: var(--jf-space-md);
+  /* Borders */
+  --jf-radius-none: 0;
+  --jf-radius-xs: 0.13rem;
+  --jf-radius-sm: 0.25rem;
+  --jf-radius-md: 0.5rem;
+  --jf-radius-lg: 0.75rem;
+  --jf-radius-xl: 1rem;
+  --jf-radius-2xl: 1.5rem;
+  --jf-radius-full: 624999999.94rem;
+  --jf-border-color: var(--jf-color-neutral-muted);
+  --jf-border-width: 0.06rem;
+  --jf-border-width-strong: 0.13rem;
+  /* Elevation */
+  --jf-shadow-color: #0b1220;
+  --jf-shadow-none: none;
+  --jf-shadow-xs: 0 0.06rem 0.13rem color-mix(in srgb, var(--jf-shadow-color) 8%, transparent);
+  --jf-shadow-sm: 0 0.06rem 0.19rem color-mix(in srgb, var(--jf-shadow-color) 12%, transparent);
+  --jf-shadow-md: 0 0.25rem 0.63rem color-mix(in srgb, var(--jf-shadow-color) 14%, transparent);
+  --jf-shadow-lg: 0 0.63rem 1.5rem color-mix(in srgb, var(--jf-shadow-color) 16%, transparent);
+  --jf-shadow-xl: 0 1.25rem 3rem color-mix(in srgb, var(--jf-shadow-color) 18%, transparent);
+  /* Motion */
+  --jf-duration-instant: 0s;
+  --jf-duration-fast: 0.1s;
+  --jf-duration-base: 0.2s;
+  --jf-duration-slow: 0.35s;
+  --jf-duration-slower: 0.5s;
+  --jf-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --jf-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --jf-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --jf-ease-spring: cubic-bezier(0.35, 1.6, 0.6, 1);
+  --jf-transition: var(--jf-duration-base) var(--jf-ease-in-out);
+  /* Links */
   --jf-link-color: var(--jf-color-primary);
   --jf-link-color-active: var(--jf-color-primary-emphasis);
   --jf-link-color-visited: var(--jf-color-primary-muted);
+  /* Components - to do move to elements */
   --jf-mark-background: #ffff9d;
   --jf-mark-color: #232931;
   --jf-code-background: var(--jf-color-neutral-subtle);
@@ -226,7 +286,7 @@
   --jf-card-border-radius: 0.75rem;
   --jf-card-border-style: solid;
   --jf-card-border-width: 0.06rem;
-  --jf-card-padding: 1.5rem;
+  --jf-card-padding: var(--jf-space-md);
   --jf-chip-color-theme: var(--jf-color-neutral-subtle);
   --jf-chip-color-text: var(--jf-color-on-neutral-50);
   --jf-modal-max-width: 56.25rem;
@@ -267,6 +327,15 @@
     --jf-grid-gutter: 2rem;
     --jf-root-font-size: 1rem;
     --jf-root-line-height: 1.4;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --jf-duration-instant: 0.01ms !important;
+    --jf-duration-fast: 0.01ms !important;
+    --jf-duration-base: 0.01ms !important;
+    --jf-duration-slow: 0.01ms !important;
+    --jf-duration-slower: 0.01ms !important;
   }
 }
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -438,6 +507,7 @@ html {
   }
 }
 body {
+  --jf-color-surface: var(--jf-color-bg);
   min-height: 100vh;
   min-height: 100dvh;
   font-size: var(--jf-root-font-size);
@@ -448,7 +518,7 @@ body {
 }
 
 a {
-  transition: color 0.2s ease;
+  transition: color var(--jf-transition);
   text-decoration: underline;
 }
 a, a:link {
@@ -464,11 +534,11 @@ a:hover, a:focus {
 
 p,
 table {
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 var(--jf-flow) 0;
 }
 
 ol, ul {
-  margin: 0 0 1.5rem 2.5em;
+  margin: 0 0 var(--jf-flow) 2.5em;
   list-style-position: outside;
 }
 ol ul, ul ul,
@@ -496,13 +566,13 @@ li + li {
 }
 
 dl {
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 var(--jf-flow) 0;
 }
 dl dt {
   font-weight: 700;
 }
 dl dd {
-  margin-bottom: 0.75rem;
+  margin-bottom: calc(var(--jf-flow) * 0.5);
 }
 
 .variable-ref, .css-ref, .code-ref, var, :not(pre) > code, kbd, samp, pre {
@@ -513,7 +583,7 @@ hr {
   height: 0;
   border: 0;
   border-top: 0.06rem solid var(--jf-color-neutral-muted);
-  margin: 1.5rem 0;
+  margin: var(--jf-flow) 0;
 }
 
 pre {
@@ -521,8 +591,8 @@ pre {
   -moz-tab-size: 2;
     -o-tab-size: 2;
        tab-size: 2;
-  padding: 1.5rem;
-  margin: 0 0 1.5rem 0;
+  padding: var(--jf-flow);
+  margin: 0 0 var(--jf-flow) 0;
   background-color: var(--jf-code-background);
   color: var(--jf-code-color);
   border: var(--jf-form-input-border-width) var(--jf-form-input-border-style) var(--jf-form-input-border-color);
@@ -530,7 +600,7 @@ pre {
 }
 
 blockquote {
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 var(--jf-flow) 0;
 }
 blockquote p {
   font-style: italic;
@@ -601,7 +671,7 @@ tfoot th {
   max-width: 100%;
   overflow-x: auto;
   overflow-y: clip;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--jf-flow);
 }
 .table-container table {
   margin-bottom: 0;
@@ -825,7 +895,7 @@ tr.error {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--jf-font-secondary);
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 var(--jf-flow) 0;
   line-height: 1.2;
   color: var(--jf-color-headings);
   font-weight: 500;
@@ -1092,24 +1162,24 @@ sup {
 
 img.align-center, img.align-none, img.align-right, img.align-left {
   float: none !important;
-  margin: 1.5rem auto;
+  margin: var(--jf-flow) auto;
   display: block;
 }
 
 @media (min-width: 37.5em) {
   img.align-left {
-    margin: 0 1.5rem 1.5rem 0;
+    margin: 0 var(--jf-flow) var(--jf-flow) 0;
     float: left !important;
   }
   img.align-right {
-    margin: 0 0 1.5rem 1.5rem;
+    margin: 0 0 var(--jf-flow) var(--jf-flow);
     float: right !important;
   }
   img.align-none {
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 var(--jf-flow) 0;
   }
   img.align-center {
-    margin: 0 auto 1.5rem auto;
+    margin: 0 auto var(--jf-flow) auto;
   }
 }
 [type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea {
@@ -1164,8 +1234,8 @@ input[type=radio] {
 fieldset {
   border: var(--jf-form-input-border-width) var(--jf-form-input-border-style) var(--jf-form-input-border-color);
   border-radius: var(--jf-form-input-border-radius);
-  padding: 1.5rem;
-  margin: 1.5rem 0;
+  padding: var(--jf-flow);
+  margin: var(--jf-flow) 0;
 }
 
 legend {
@@ -2272,8 +2342,8 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
 [type=range]::-webkit-slider-runnable-track {
   cursor: default;
   height: 0.75rem;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
+  -webkit-transition: all var(--jf-transition);
+  transition: all var(--jf-transition);
   width: 100%;
   box-shadow: 0 0 0 transparent;
   background: var(--jf-color-neutral-subtle);
@@ -2296,8 +2366,8 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
   box-shadow: 0 0 0 transparent;
   cursor: default;
   height: 0.75rem;
-  -moz-transition: all 0.2s ease;
-  transition: all 0.2s ease;
+  -moz-transition: all var(--jf-transition);
+  transition: all var(--jf-transition);
   width: 100%;
   background: var(--jf-color-neutral-subtle);
   border: 0.06rem solid var(--jf-color-neutral-muted);
@@ -2317,8 +2387,8 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
 [type=range]::-ms-track {
   cursor: default;
   height: 0.75rem;
-  -ms-transition: all 0.2s ease;
-  transition: all 0.2s ease;
+  -ms-transition: all var(--jf-transition);
+  transition: all var(--jf-transition);
   width: 100%;
   background: transparent;
   border-color: transparent;
@@ -2356,7 +2426,7 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
   position: relative;
   overflow: hidden;
   max-width: 100%;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 var(--jf-flow) 0;
 }
 @supports (aspect-ratio: 16/9) {
   .embed-container {
@@ -2442,7 +2512,7 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
 .navbar-menu li a {
   text-decoration: none;
   text-transform: var(--jf-navbar-text-transform);
-  transition: background 0.2s ease, color 0.2s ease, font-weight 0.2s ease;
+  transition: background var(--jf-transition), color var(--jf-transition), font-weight var(--jf-transition);
 }
 .navbar-menu li a {
   color: var(--jf-navbar-link-color);
@@ -2502,7 +2572,7 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
   right: 0;
   transform: translate(-0.63rem, -50%) rotate(45deg);
   transform-origin: top center;
-  transition: opacity 0.2s ease, border-color 0.2s ease;
+  transition: opacity var(--jf-transition), border-color var(--jf-transition);
 }
 .navbar-menu li.has-children > a:hover::after, .navbar-menu li.has-children > a:focus::after {
   border-color: rgba(255, 255, 255, 0.6);
@@ -2555,7 +2625,7 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
 }
 
 button.hamburger {
-  transition: background-color 0.2s ease, border 0.2s ease, color 0.2s ease;
+  transition: background-color var(--jf-transition), border var(--jf-transition), color var(--jf-transition);
   margin-left: auto;
   background-color: var(--jf-color-secondary-500);
   border-radius: 0;
@@ -2799,7 +2869,7 @@ button.hamburger:hover, button.hamburger:focus {
 }
 
 .accordion {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--jf-flow);
   --jf-accordion-heading-background: var(--jf-color-neutral-50);
   --jf-accordion-heading-color: var(--jf-color-on-neutral-50);
   --jf-accordion-heading-hover-background: var(--jf-color-neutral-300);
@@ -2858,7 +2928,7 @@ h6 .accordion-heading {
   width: 100%;
   margin: 0;
   justify-content: flex-start;
-  transition: all 0.2s ease;
+  transition: all var(--jf-transition);
 }
 .accordion-heading button:hover, .accordion-heading button:focus {
   background: var(--jf-accordion-heading-hover-background);
@@ -2894,7 +2964,7 @@ h6 .accordion-heading {
 .accordion-item {
   border: 0.06rem solid var(--jf-accordion-border-color, var(--jf-border-color));
   border-radius: 0;
-  transition: border-color 0.2s ease;
+  transition: border-color var(--jf-transition);
 }
 .accordion-item + .accordion-item {
   border-top: 0;
@@ -2998,8 +3068,8 @@ h6 .accordion-heading {
   border-radius: 0.5rem;
   line-height: 1.3;
   padding: calc(var(--jf-button-padding-y) * var(--jf-button-scale-modifier)) calc(var(--jf-button-padding-x) * var(--jf-button-scale-modifier));
-  margin: 0 0 1.5rem 0;
-  transition: all 0.2s ease;
+  margin: 0 0 var(--jf-flow) 0;
+  transition: all var(--jf-transition);
 }
 .button::-moz-focus-inner, a.button::-moz-focus-inner, button::-moz-focus-inner, [type=submit]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=button]::-moz-focus-inner {
   border: 0;
@@ -3025,7 +3095,7 @@ button:disabled,
 .button-list {
   display: flex;
   align-items: center;
-  margin-bottom: calc(1.5rem - 0.5rem);
+  margin-bottom: calc(var(--jf-flow) - 0.5rem);
   margin-right: -0.5rem;
   margin-left: -0.5rem;
 }
@@ -3036,7 +3106,7 @@ button:disabled,
 
 .button-group {
   display: inline-flex;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--jf-flow);
 }
 .button-group .button,
 .button-group a.button {
@@ -3053,11 +3123,11 @@ button:disabled,
   border-bottom-right-radius: 0;
 }
 .button-group + .button-group {
-  margin-left: 1.5rem;
+  margin-left: var(--jf-flow);
 }
 
 .button-list .button-group {
-  margin-bottom: calc(1.5rem - 0.5rem);
+  margin-bottom: calc(var(--jf-flow) - 0.5rem);
 }
 
 /***************
@@ -3182,8 +3252,8 @@ a.button.white {
   border-color: var(--jf-callout-border-color);
   border-radius: 0;
   background-color: var(--jf-callout-bg-color);
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
+  margin-bottom: var(--jf-flow);
+  padding: var(--jf-space-md);
   display: block;
   width: 100%;
 }
@@ -3259,7 +3329,7 @@ a.button.white {
   overflow: hidden;
   border-radius: var(--jf-card-border-radius);
   border: var(--jf-card-border-width) var(--jf-card-border-style) var(--jf-card-border-color, var(--jf-border-color));
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--jf-flow);
 }
 .card > :last-child {
   margin-bottom: 0;
@@ -3276,7 +3346,7 @@ a.button.white {
   margin-bottom: 0;
 }
 .card-section .card-image {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--jf-flow);
 }
 .card-section + .card-section {
   padding-top: 0;
@@ -3583,7 +3653,7 @@ body.has-open-modal {
 
 .navbar-logo {
   width: 7.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--jf-flow);
   margin-left: 1.5ch;
 }
 
@@ -3620,7 +3690,7 @@ body.has-open-modal {
   margin-left: -1.5ch;
   margin-right: 0.5rem;
   color: var(--jf-color-neutral-50);
-  transition: all 0.2s ease;
+  transition: all var(--jf-transition);
 }
 .sidebar li a:hover:before, .sidebar li a:focus:before {
   color: var(--jf-color-neutral-200);
@@ -3684,7 +3754,7 @@ body.has-open-modal {
 
 pre {
   position: relative;
-  margin: 1.5rem 0 !important;
+  margin: var(--jf-flow) 0 !important;
   font-size: var(--jf-font-size--2) !important;
 }
 pre label {
@@ -3746,7 +3816,7 @@ div.code-toolbar > .toolbar button:hover, div.code-toolbar > .toolbar button:foc
   border: 0.06rem solid var(--jf-color-neutral-100);
   padding: 0.75rem 1rem;
   line-height: 1.2;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 var(--jf-flow) 0;
   display: inherit;
   font-size: var(--jf-font-size--1);
   flex: 1 1 auto;
@@ -3755,8 +3825,8 @@ div.code-toolbar > .toolbar button:hover, div.code-toolbar > .toolbar button:foc
 .row-boxed {
   background-color: var(--jf-color-neutral-25);
   min-height: 10rem;
-  margin-bottom: 1.5rem;
-  padding: 1.5rem 0;
+  margin-bottom: var(--jf-flow);
+  padding: var(--jf-flow) 0;
 }
 .row-boxed .boxed {
   margin: 0;
@@ -3779,26 +3849,47 @@ div.code-toolbar > .toolbar button:hover, div.code-toolbar > .toolbar button:foc
 
 .smooth-transform {
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform var(--jf-transition);
 }
 .smooth-transform:hover, .smooth-transform:focus {
   transform: scale(1.03);
 }
 .smooth-background {
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background var(--jf-transition);
 }
 .smooth-background:hover, .smooth-background:focus {
   background-color: var(--jf-color-primary-200);
 }
 .smooth-wild {
   cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  transition: color var(--jf-transition), transform var(--jf-transition), background var(--jf-transition);
 }
 .smooth-wild:hover, .smooth-wild:focus {
   background-color: var(--jf-color-primary-200);
   color: var(--jf-color-white);
   transform: scale(1.02);
+}
+
+.dt-swatch {
+  display: grid;
+  place-items: center;
+  inline-size: 7rem;
+  block-size: 5rem;
+  padding: var(--jf-space-2xs);
+  font-size: 0.8rem;
+  text-align: center;
+  border-radius: var(--jf-radius-md);
+}
+
+.dt-motion {
+  cursor: pointer;
+}
+.dt-motion:hover, .dt-motion:focus {
+  transform: translateY(-0.375rem) scale(1.04);
+}
+.dt-motion--token {
+  transition: transform var(--jf-transition);
 }
 
 .variables-reference table td {
@@ -3828,7 +3919,7 @@ div.code-toolbar > .toolbar button:hover, div.code-toolbar > .toolbar button:foc
   container-name: parent-container;
 }
 .parent-container .card-section {
-  padding-top: 1.5rem;
+  padding-top: var(--jf-space-md);
 }
 
 @container (width >= 25rem) {
@@ -4268,19 +4359,19 @@ a[href^="mailto:"] {
 }
 
 .mb {
-  margin-bottom: 1.5rem !important;
+  margin-bottom: var(--jf-flow) !important;
 }
 
 .mt {
-  margin-top: 1.5rem !important;
+  margin-top: var(--jf-flow) !important;
 }
 
 .mr {
-  margin-right: 1.5rem !important;
+  margin-right: var(--jf-flow) !important;
 }
 
 .ml {
-  margin-left: 1.5rem !important;
+  margin-left: var(--jf-flow) !important;
 }
 
 .m-0 {

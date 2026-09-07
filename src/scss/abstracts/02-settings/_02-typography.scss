@@ -27,7 +27,19 @@ $type-scale: map-merge(
 
 // DOCUMENT ROOT FONT SIZE AND LINE HEIGHT AT SMALLEST DEVICE WIDTH
 $root-font-size: token(font-size-0) !default;
-$root-line-height: 1.5 !default;
+$root-line-height: 1.5 !default; // responsive (retuned per breakpoint) — kept as-is NOTE: MAYBE REMOVE LATER IN REFACTOR
+
+$leading-scale: () !default;
+$leading-scale: map-merge(
+  (
+    "flush": 1,
+    "tight": 1.2,
+    "snug": 1.35,
+    "base": 1.5,
+    "loose": 1.7,
+  ),
+  $leading-scale
+);
 
 $font-primary:
   -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,

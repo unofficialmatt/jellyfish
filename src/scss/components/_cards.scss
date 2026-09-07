@@ -6,7 +6,7 @@
   border-radius: token(card-border-radius);
   border: token(card-border-width) token(card-border-style)
     token-or(card-border-color, border-color);
-  margin-bottom: $element-margin;
+  margin-bottom: token(flow);
 
   & > :last-child {
     margin-bottom: 0;
@@ -24,7 +24,7 @@
       margin-bottom: 0;
     }
     .card-image {
-      margin-bottom: $element-margin;
+      margin-bottom: token(flow);
     }
 
     & + .card-section {

@@ -14,6 +14,9 @@ html {
 }
 
 body {
+  // --jf-color-surface is registered inherits:false, so re-declare it here —
+  // the page-level context is the canvas until a .bg-* section overrides it.
+  #{token-name("color-surface")}: #{token("color-bg")};
   min-height: 100vh;
   min-height: 100dvh;
   font-size: token(root-font-size);
@@ -25,7 +28,7 @@ body {
 
 // Links
 a {
-  @include smooth(color);
+  @include motion(color);
   text-decoration: underline;
   &,
   &:link {
@@ -44,12 +47,12 @@ a {
 // Consistent Margins
 p,
 table {
-  margin: 0 0 $element-margin 0;
+  margin: 0 0 token(flow) 0;
 }
 
 // Lists
 %lists {
-  margin: 0 0 $element-margin 2.5em;
+  margin: 0 0 token(flow) 2.5em;
   list-style-position: outside;
   ul,
   ol {
@@ -74,12 +77,12 @@ li + li {
   margin-top: get-size(0.25);
 }
 dl {
-  margin: 0 0 $element-margin 0;
+  margin: 0 0 token(flow) 0;
   dt {
     font-weight: $weight-bold;
   }
   dd {
-    margin-bottom: calc($element-margin * 0.5);
+    margin-bottom: calc(#{token(flow)} * 0.5);
   }
 }
 
@@ -93,7 +96,7 @@ hr {
   height: 0;
   border: 0;
   border-top: 1px $border-style $border-color;
-  margin: $element-margin 0;
+  margin: token(flow) 0;
 }
 
 // Code block styling
@@ -101,8 +104,8 @@ pre {
   white-space: pre-wrap;
   tab-size: 2;
   @extend %code;
-  padding: $element-padding;
-  margin: 0 0 $element-margin 0;
+  padding: token(flow);
+  margin: 0 0 token(flow) 0;
   background-color: token(code-background);
   color: token(code-color);
   border: $borders;
@@ -111,7 +114,7 @@ pre {
 
 // Blockquote
 blockquote {
-  margin: 0 0 $element-margin 0;
+  margin: 0 0 token(flow) 0;
   p {
     font-style: italic;
     font-size: token(font-size-1);

@@ -29,18 +29,122 @@
       <tr>
         <td><span class="variable-ref">$sizing-system</span></td>
         <td><span class="italic">(SCSS map)</span></td>
-        <td>A map of key: value pairs used in the <a href="./mixins.html">get-size()</a> function - where key is the size reference, and value is the actual CSS size. The map is designed to scale progressively and usually doesn't need modifying.</td>
+        <td>A map of key: value pairs &mdash; key is the size reference, value the actual CSS length. Progressive scale; rarely needs modifying. <span class="bold">Sass-only</span> &mdash; it drives <a href="./mixins.html">get-size()</a> and the spacing utility classes at build time and is <span class="italic">not</span> emitted as custom properties. <span class="bold">Prefer the <span class="code-ref">--jf-space-*</span> scale / <a href="./mixins.html">get-space()</a> below</span> for margins and padding; reach for <span class="code-ref">get-size()</span> only when you need a raw length (Sass maths, <span class="code-ref">calc()</span>).</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$element-padding</span></td>
-        <td><span class="code-ref">get-size(1.5)</span></td>
-        <td>A global padding variable which can be used for consistent inner padding across elements.</td>
+        <td><span class="variable-ref">$flow-step</span></td>
+        <td><span class="code-ref">"md"</span></td>
+        <td>Which <span class="variable-ref">$space-scale</span> key drives <span class="bold">block-flow rhythm</span> &mdash; the bottom margin between block elements (paragraphs, lists, tables, cards&hellip;). Baked into the <span class="code-ref">--jf-flow</span> token at build; components reference it as <span class="code-ref">token(flow)</span> / <span class="code-ref">var(--jf-flow)</span>. Set to any <span class="variable-ref">$space-scale</span> key before import, or override <span class="code-ref">--jf-flow</span> at runtime &mdash; either leaves other uses of that step (card padding&hellip;) untouched. <span class="bold">Replaces v4's <span class="variable-ref">$element-margin</span> / <span class="variable-ref">$element-padding</span></span> (both removed).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="spacing-scale" class="h5">Spacing scale</h2>
+  <p>A thin t-shirt scale, each step pointing at a <span class="variable-ref">$sizing-system</span> step. This is the consumer/runtime face of spacing &mdash; components and utilities read these, not the raw map. Reference from SCSS with <a href="./mixins.html">get-space()</a>, from CSS with the full <span class="code-ref">--jf-space-*</span> name. Extend by merging <span class="variable-ref">$space-scale</span> at build or setting a new <span class="code-ref">--jf-space-*</span> at runtime. <span class="bold">See these and the other axes rendered on the <a href="./design-tokens.html">Design Tokens</a> page.</span></p>
+  <table class="is-responsive has-border">
+    <thead>
+      <tr><th>Token</th><th>Sass step</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="code-ref">--jf-space-2xs</span></td><td><span class="code-ref">get-size(0.25)</span></td><td>4px</td></tr>
+      <tr><td><span class="code-ref">--jf-space-xs</span></td><td><span class="code-ref">get-size(0.5)</span></td><td>8px</td></tr>
+      <tr><td><span class="code-ref">--jf-space-sm</span></td><td><span class="code-ref">get-size(1)</span></td><td>16px</td></tr>
+      <tr><td><span class="code-ref">--jf-space-md</span></td><td><span class="code-ref">get-size(1.5)</span></td><td>24px</td></tr>
+      <tr><td><span class="code-ref">--jf-space-lg</span></td><td><span class="code-ref">get-size(3)</span></td><td>48px</td></tr>
+      <tr><td><span class="code-ref">--jf-space-xl</span></td><td><span class="code-ref">get-size(6)</span></td><td>96px</td></tr>
+      <tr><td><span class="code-ref">--jf-space-2xl</span></td><td><span class="code-ref">get-size(8)</span></td><td>128px</td></tr>
+      <tr><td><span class="code-ref">--jf-space-3xl</span></td><td><span class="code-ref">get-size(12)</span></td><td>192px</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="line-height-scale" class="h5">Line height</h2>
+  <p>Unitless leading steps for utility and component use. <span class="code-ref">--jf-leading-base</span> matches <span class="variable-ref">$root-line-height</span>; the responsive <span class="variable-ref">$root-line-height</span> (retuned per breakpoint) stays the source for the body itself. Reference with <a href="./mixins.html">get-leading()</a>. Retune via <span class="variable-ref">$leading-scale</span>.</p>
+  <table class="is-responsive has-border">
+    <thead>
+      <tr><th>Token</th><th>Value</th><th>Use</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="code-ref">--jf-leading-flush</span></td><td>1</td><td>lines sit flush (leading = type size) &mdash; chips, single-line inputs, icon buttons</td></tr>
+      <tr><td><span class="code-ref">--jf-leading-tight</span></td><td>1.2</td><td>headings</td></tr>
+      <tr><td><span class="code-ref">--jf-leading-snug</span></td><td>1.35</td><td>large text blocks</td></tr>
+      <tr><td><span class="code-ref">--jf-leading-base</span></td><td>1.5</td><td>body copy</td></tr>
+      <tr><td><span class="code-ref">--jf-leading-loose</span></td><td>1.7</td><td>dense small print</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="radius-scale" class="h5">Border radius</h2>
+  <p>The scale <span class="italic">is</span> the semantic layer &mdash; no numbered primitive tier. Component defaults map onto it (forms/chip/accordion &rarr; <span class="code-ref">sm</span>, button/progress/modal &rarr; <span class="code-ref">md</span>, card &rarr; <span class="code-ref">lg</span>, callout &rarr; <span class="code-ref">none</span>). Reference with <a href="./mixins.html">get-radius()</a>. Retune via <span class="variable-ref">$radius-scale</span> &mdash; sharpen or round every corner from one map.</p>
+  <table class="is-responsive has-border">
+    <thead>
+      <tr><th>Token</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="code-ref">--jf-radius-none</span></td><td>0</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-xs</span></td><td>2px</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-sm</span></td><td>4px</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-md</span></td><td>8px</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-lg</span></td><td>12px</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-xl</span></td><td>16px</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-2xl</span></td><td>24px</td></tr>
+      <tr><td><span class="code-ref">--jf-radius-full</span></td><td>9999999999px</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="border-width" class="h5">Border width</h2>
+  <table class="is-responsive has-border">
+    <thead>
+      <tr><th>Variable</th><th>Token</th><th>Default</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="variable-ref">$border-width</span></td>
+        <td><span class="code-ref">--jf-border-width</span></td>
+        <td>1px</td>
+        <td rowspan="2">Two widths only &mdash; every border in the framework is 1px or 2px. Naming mirrors the colour role ladder (<span class="italic">subtle / muted / emphasis / strong</span>). <span class="variable-ref">$border-style</span> (<span class="code-ref">solid</span>) sits alongside.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$element-margin</span></td>
-        <td><span class="code-ref">get-size(1.5)</span></td>
-        <td>A global margin variable which can be used for consistent bottom margins across elements.</td>
+        <td><span class="variable-ref">$border-width-strong</span></td>
+        <td><span class="code-ref">--jf-border-width-strong</span></td>
+        <td>2px</td>
       </tr>
+    </tbody>
+  </table>
+
+  <h2 id="elevation" class="h5">Elevation</h2>
+  <p>A scale of box-shadows, each mixing <span class="code-ref">--jf-shadow-color</span> toward transparent at the step's alpha. Reference with <a href="./mixins.html">get-shadow()</a> or the token name. Geometry and alphas live in <span class="variable-ref">$shadow-scale</span> as <span class="code-ref">(geometry, alpha)</span> tuples (a list of tuples for a stacked shadow); the hue is <span class="variable-ref">$shadow-color</span> / <span class="code-ref">--jf-shadow-color</span>, set at build or on <span class="code-ref">:root</span> (dark mode).</p>
+  <p><span class="bold">Retint:</span> set <span class="variable-ref">$shadow-color</span> (default <span class="code-ref">#0b1220</span>) before import, override a step (<span class="code-ref">$shadow-scale: ("md": (0 6px 16px, 0.2))</span>), or override the <span class="code-ref">--jf-shadow-*</span> custom property with a full value at runtime.</p>
+  <table class="is-responsive has-border">
+    <thead>
+      <tr><th>Step</th><th><span class="variable-ref">$shadow-scale</span> default</th><th>Use</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="code-ref">--jf-shadow-none</span></td><td><span class="code-ref">none</span></td><td>&mdash;</td></tr>
+      <tr><td><span class="code-ref">--jf-shadow-xs</span></td><td><span class="code-ref">(0 1px 2px, 0.08)</span></td><td>hairline</td></tr>
+      <tr><td><span class="code-ref">--jf-shadow-sm</span></td><td><span class="code-ref">(0 1px 3px, 0.12)</span></td><td>raised</td></tr>
+      <tr><td><span class="code-ref">--jf-shadow-md</span></td><td><span class="code-ref">(0 4px 10px, 0.14)</span></td><td>card</td></tr>
+      <tr><td><span class="code-ref">--jf-shadow-lg</span></td><td><span class="code-ref">(0 10px 24px, 0.16)</span></td><td>popover</td></tr>
+      <tr><td><span class="code-ref">--jf-shadow-xl</span></td><td><span class="code-ref">(0 20px 48px, 0.18)</span></td><td>modal</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="motion" class="h5">Motion</h2>
+  <p>Durations are custom properties <span class="bold">because</span> <span class="code-ref">prefers-reduced-motion</span> has to zero them and that can't be done in Sass. Everything animated resolves through <span class="code-ref">--jf-transition</span> (or a <span class="code-ref">--jf-duration-*</span> step), so the reduced-motion media query switches the whole framework's motion off in one place. The <a href="./mixins.html">motion()</a> mixin emits <span class="code-ref">&lt;prop&gt; var(--jf-transition)</span>. Reference steps with <a href="./mixins.html">get-duration()</a> / <a href="./mixins.html">get-ease()</a>. Durations come from <span class="variable-ref">$duration-scale</span>, curves from <span class="variable-ref">$ease-scale</span> (<span class="code-ref">in-out</span> is the default) &mdash; retune or add steps by <a href="./design-tokens.html">merging those maps</a>. For a one-off, redefine <span class="code-ref">--jf-transition</span> (or its parts) on the element or a scope; it cascades.</p>
+  <table class="is-responsive has-border">
+    <thead>
+      <tr><th>Token</th><th>Default</th><th>Reduced-motion</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="code-ref">--jf-duration-instant</span></td><td>0s</td><td rowspan="5">0.01ms</td></tr>
+      <tr><td><span class="code-ref">--jf-duration-fast</span></td><td>0.1s</td></tr>
+      <tr><td><span class="code-ref">--jf-duration-base</span></td><td>0.2s</td></tr>
+      <tr><td><span class="code-ref">--jf-duration-slow</span></td><td>0.35s</td></tr>
+      <tr><td><span class="code-ref">--jf-duration-slower</span></td><td>0.5s</td></tr>
+      <tr><td><span class="code-ref">--jf-ease-in-out</span> &mdash; the default curve</td><td><span class="code-ref">ease</span></td><td>&mdash;</td></tr>
+      <tr><td><span class="code-ref">--jf-ease-in</span></td><td><span class="code-ref">cubic-bezier(0.4, 0, 1, 1)</span></td><td>&mdash;</td></tr>
+      <tr><td><span class="code-ref">--jf-ease-out</span></td><td><span class="code-ref">cubic-bezier(0, 0, 0.2, 1)</span></td><td>&mdash;</td></tr>
+      <tr><td><span class="code-ref">--jf-ease-in-out</span></td><td><span class="code-ref">cubic-bezier(0.4, 0, 0.2, 1)</span></td><td>&mdash;</td></tr>
+      <tr><td><span class="code-ref">--jf-ease-spring</span></td><td><span class="code-ref">cubic-bezier(0.35, 1.6, 0.6, 1)</span></td><td>&mdash;</td></tr>
+      <tr><td><span class="code-ref">--jf-transition</span></td><td><span class="code-ref">var(--jf-duration-base) var(--jf-ease-in-out)</span></td><td>0.01ms</td></tr>
     </tbody>
   </table>
 
@@ -176,7 +280,7 @@
       <tr>
         <td><span class="variable-ref">$body-background-color</span></td>
         <td><span class="variable-ref">var(--jf-color-white)</span></td>
-        <td>The background color for the <span class="code-ref">body</span> tag &mdash; the <span class="bold">canvas</span>. <span class="code-ref">html</span>/<span class="code-ref">body</span> paint it; components never override it. <span class="code-ref">--jf-color-surface</span> ("the background of the current context") defaults to it and <span class="italic">is</span> overridden &mdash; by cards, modals, menus and <span class="css-ref">.bg-*</span> sections.<br><br><span class="bold">This is output as a custom CSS property --jf-color-bg; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-bg)</span></span></td>
+        <td>The background color for the <span class="code-ref">body</span> tag &mdash; the <span class="bold">canvas</span>. <span class="code-ref">html</span>/<span class="code-ref">body</span> paint it; components never override it. <span class="code-ref">--jf-color-surface</span> ("the background of the current context") defaults to it and <span class="italic">is</span> overridden &mdash; by cards, modals, menus and <span class="css-ref">.bg-*</span> sections. <span class="code-ref">--jf-color-surface</span> is registered with <span class="code-ref">@property</span> as <span class="code-ref">inherits: false</span>, so each context sets its own and a nested element can't pick up an ancestor section's surface by accident; <span class="code-ref">--jf-color-text</span> is registered <span class="code-ref">inherits: true</span>. Browsers without <span class="code-ref">@property</span> treat both as ordinary custom properties.<br><br><span class="bold">This is output as a custom CSS property --jf-color-bg; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-bg)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$background-colors</span></td>
@@ -186,7 +290,7 @@
       <tr>
         <td><span class="variable-ref">$color-text</span></td>
         <td><span class="code-ref">get-color(neutral, 1000)</span></td>
-        <td>The default color for body copy. Holds a live <span class="code-ref">var(--jf-color-neutral-1000)</span> reference by default, so it follows a runtime override of the neutral palette rather than baking a fixed value at compile time. Anywhere it needs to feed Sass colour maths instead (e.g. <span class="code-ref">resolve-contrast-color()</span>'s <span class="code-ref">$color-dark</span> argument), it's normalised back to a real color via <span class="code-ref">raw-color()</span>. You can still override it with a raw literal directly if you want a color outside the palette. <br><br><span class="bold">Output as --jf-color-text (reference with <span class="code-ref">token(color-text)</span>). Two derived tiers come with it: <span class="code-ref">--jf-color-text-muted</span> (captions, <span class="css-ref">.text-muted</span>) and <span class="code-ref">--jf-color-text-subtle</span> (<span class="code-ref">::placeholder</span>), each a <span class="code-ref">color-mix()</span> of this toward <span class="code-ref">--jf-color-surface</span> &mdash; so they re-tint on a coloured surface.</span></td>
+        <td>The default color for body copy. Holds a live <span class="code-ref">var(--jf-color-neutral-1000)</span> reference by default, so it follows a runtime override of the neutral palette rather than baking a fixed value at compile time. Anywhere it needs to feed Sass colour maths instead (e.g. <span class="code-ref">resolve-contrast-color()</span>'s <span class="code-ref">$color-dark</span> argument), it's normalised back to a real color via <span class="code-ref">raw-color()</span>. You can still override it with a raw literal directly if you want a color outside the palette. <br><br><span class="bold">Output as --jf-color-text (reference with <span class="code-ref">token(color-text)</span>). Two derived tiers come with it: <span class="code-ref">--jf-color-text-muted</span> (captions, <span class="css-ref">.text-muted</span>) and <span class="code-ref">--jf-color-text-subtle</span> (<span class="code-ref">::placeholder</span>, <span class="css-ref">.text-subtle</span>), each a <span class="code-ref">color-mix()</span> of this toward <span class="code-ref">--jf-color-surface</span> &mdash; so they re-tint on a coloured surface.</span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$color-text-muted-mix</span></td>
@@ -235,7 +339,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$selection-background-mix</span></td>
-        <td>22%</td>
+        <td>15%</td>
         <td rowspan="2"><span class="code-ref">::selection</span> background is <span class="code-ref">color-mix(in srgb, var(--jf-color-text) &lt;mix&gt;, var(--jf-color-surface))</span> &mdash; the text colour blended toward the current surface, so it re-tints inside <span class="css-ref">.bg-*</span> sections and stays visible on every surface (an accent tint disappears where the surface is near the accent hue). <span class="variable-ref">$selection-color</span> sets the selected-text colour (previously unset). Not a custom property &mdash; the mix lives in the rule so it resolves per selected element. Override the <span class="code-ref">::selection</span> rule for a fixed colour.</td>
       </tr>
       <tr>
@@ -416,7 +520,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$callout-padding</span></td>
-        <td><span class="variable-ref">$element-padding</span></td>
+        <td><span class="code-ref">token(space-md)</span></td>
         <td>The padding for <span class="css-ref">.callout</span> elements.</td>
       </tr>
     </tbody>
@@ -449,7 +553,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$card-padding</span></td>
-        <td><span class="variable-ref">$element-padding</span></td>
+        <td><span class="code-ref">token(space-md)</span></td>
         <td>The padding for <span class="css-ref">.card-section</span> elements.</td>
       </tr>
     </tbody>
@@ -790,11 +894,6 @@
         <td><span class="variable-ref">$token-prefix</span></td>
         <td>jf</td>
         <td>Namespace applied to every CSS custom property Jellyfish emits, via the <span class="code-ref">token-name()</span> helper &mdash; so <span class="variable-ref">$card-padding</span> is output as <span class="code-ref">--jf-card-padding</span>, the palette as <span class="code-ref">--jf-color-primary-500</span>, and so on. Reference tokens from SCSS with <span class="code-ref">token(card-padding)</span> (expands to <span class="code-ref">var(--jf-card-padding)</span>); from plain CSS use the full <span class="code-ref">--jf-*</span> name. Set to <span class="code-ref">""</span> (or <span class="code-ref">null</span>) for un-prefixed <span class="code-ref">--card-padding</span> names.<br><br><span class="bold">This one must be overridden <span class="italic">before</span> your first <span class="code-ref">@import "jellyfish-ui/&hellip;"</span>, not in your own <span class="code-ref">abstracts/__all</span>.</span> It's defined in <span class="code-ref">abstracts/01-tools/_functions.scss</span> and consumed as the settings layer loads (the same as the <span class="variable-ref">$colors</span> palette map), so a later override lands too late.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$global-transition</span></td>
-        <td>0.2s ease</td>
-        <td>The global transition used in the <span class="code-ref">smooth()</span> function</td>
       </tr>
     </tbody>
   </table>

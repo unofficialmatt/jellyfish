@@ -42,8 +42,8 @@
   line-height: 1.3;
   padding: calc(token(button-padding-y) * token(button-scale-modifier))
     calc(token(button-padding-x) * token(button-scale-modifier));
-  margin: 0 0 $element-margin 0;
-  @include smooth(all);
+  margin: 0 0 token(flow) 0;
+  @include motion(all);
   &::-moz-focus-inner {
     border: 0;
     padding: 0;
@@ -70,7 +70,7 @@ button,
   display: flex;
   align-items: center;
   @extend %button-groups;
-  margin-bottom: calc(#{$element-margin} - #{$button-list-button-margin});
+  margin-bottom: calc(#{token(flow)} - #{$button-list-button-margin});
   margin-right: n($button-list-button-margin);
   margin-left: n($button-list-button-margin);
   .button,
@@ -84,7 +84,7 @@ button,
 .button-group {
   @extend %button-groups;
   display: inline-flex;
-  margin-bottom: $element-margin;
+  margin-bottom: token(flow);
   .button,
   a.button {
     margin: 0 0 0 n($button-border-width);
@@ -98,12 +98,12 @@ button,
     }
   }
   & + & {
-    margin-left: $element-margin;
+    margin-left: token(flow);
   }
 }
 
 .button-list .button-group {
-  margin-bottom: calc(#{$element-margin} - #{$button-list-button-margin});
+  margin-bottom: calc(#{token(flow)} - #{$button-list-button-margin});
 }
 
 /***************

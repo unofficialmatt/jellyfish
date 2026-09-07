@@ -11,7 +11,7 @@
 @mixin input-range-track {
   cursor: default;
   height: $range-track-height;
-  @include smooth(all);
+  @include motion(all);
   width: 100%;
 }
 

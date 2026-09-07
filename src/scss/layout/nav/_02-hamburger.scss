@@ -1,6 +1,6 @@
 @if ($generate-navbar) == true {
   button.hamburger {
-    @include smooth(background-color, border, color);
+    @include motion(background-color, border, color);
     @extend .hamburger--#{$primary-hamburger-type}; // extends class from hamburgers.scss to select specified animation
     @include above($nav-expands) {
       display: none !important; // Hide on larger screens

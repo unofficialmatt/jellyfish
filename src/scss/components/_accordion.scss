@@ -16,7 +16,7 @@
 }
 
 .accordion {
-  margin-bottom: $element-margin;
+  margin-bottom: token(flow);
   #{token-name("accordion-heading-background")}: #{token(
       color-neutral-#{$accordion-heading-shade}
     )};
@@ -90,7 +90,7 @@ h6 {
     width: 100%;
     margin: 0;
     justify-content: flex-start;
-    @include smooth(all);
+    @include motion(all);
     &:hover,
     &:focus {
       background: token(accordion-heading-hover-background);
@@ -124,7 +124,7 @@ h6 {
 .accordion-item {
   border: 1px solid token-or(accordion-border-color, border-color);
   border-radius: 0;
-  @include smooth(border-color);
+  @include motion(border-color);
 
   & + .accordion-item {
     border-top: 0;

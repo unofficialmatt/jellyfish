@@ -16,7 +16,7 @@
   %navbar-links {
     text-decoration: none;
     text-transform: token(navbar-text-transform);
-    @include smooth(background, color, font-weight);
+    @include motion(background, color, font-weight);
     &,
     &:visited {
       color: token(navbar-link-color);
@@ -83,7 +83,7 @@
         right: 0;
         transform: translate(-10px, -50%) rotate(45deg);
         transform-origin: top center;
-        @include smooth(opacity, border-color);
+        @include motion(opacity, border-color);
       }
       &:hover,
       &:focus {
