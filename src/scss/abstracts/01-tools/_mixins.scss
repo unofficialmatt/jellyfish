@@ -28,6 +28,21 @@
           color-#{$key}-#{$color-strong-shade}
         );
 
+        // Role-addressable "on" companions - works for dark mode and light mode automatically
+        #{token-name('color-on-' + $key + '-subtle')}: token(
+          color-on-#{$key}-#{$color-subtle-shade}
+        );
+        #{token-name('color-on-' + $key + '-muted')}: token(
+          color-on-#{$key}-#{$color-muted-shade}
+        );
+        #{token-name('color-on-' + $key)}: token(color-on-#{$key}-500);
+        #{token-name('color-on-' + $key + '-emphasis')}: token(
+          color-on-#{$key}-#{$color-emphasis-shade}
+        );
+        #{token-name('color-on-' + $key + '-strong')}: token(
+          color-on-#{$key}-#{$color-strong-shade}
+        );
+
         @each $sub-key, $sub-value in $value {
           // Skip any non-shade entry a consumer palette might carry.
           @if type-of($sub-value) == "color" {
@@ -79,6 +94,71 @@
     in srgb,
     #{token(color-text)} #{$color-text-subtle-mix},
     #{token(color-surface)}
+  );
+}
+
+// jf-dark-tokens repoints the semantic colour tokens and the step-role aliases
+// for a dark canvas.
+@mixin jf-dark-tokens {
+  color-scheme: dark;
+
+  #{token-name("color-bg")}: #{$dark-body-background-color};
+  #{token-name("color-surface")}: #{token(color-bg)};
+  #{token-name("color-text")}: #{token(color-neutral-50)};
+  #{token-name("color-headings")}: #{token(color-neutral-25)};
+  // color-mix() custom properties don't re-resolve per descendant — re-declare
+  // the tiers here so they mix against the dark text/surface (same reason
+  // .bg-* rules re-include this).
+  @include surface-text-tiers;
+
+  // Step-role aliases + their "on" companions, repointed per family.
+  @each $family, $palette in $colors {
+    @if type-of($palette) == "map" {
+      @each $role, $shade in $dark-color-role-shades {
+        #{token-name("color-#{$family}-#{$role}")}: #{token(
+            color-#{$family}-#{$shade}
+          )};
+        #{token-name("color-on-#{$family}-#{$role}")}: #{token(
+            color-on-#{$family}-#{$shade}
+          )};
+      }
+    }
+  }
+
+  #{token-name("shadow-color")}: #{$dark-shadow-color};
+  // Re-emit the elevation scale with a boosted tint — the :root shadows are
+  // near-invisible on the dark canvas.
+  @each $step, $entry in $shadow-scale {
+    #{token-name("shadow-#{$step}")}: #{build-shadow(
+        $entry,
+        $dark-shadow-alpha-boost
+      )};
+  }
+}
+
+// APCA-scores the dark-mode text-on-canvas pairs (body, headings, links). The
+// palette -contrast pairs are unchanged in dark and covered by the light pass.
+@mixin jf-dark-apca-lint {
+  $bg: $dark-body-background-color;
+  @include apca-lint(
+    (
+      ("dark body text" get-color-raw(neutral, 50) $bg),
+      ("dark headings" get-color-raw(neutral, 25) $bg),
+      (
+        "dark link"
+          get-color-raw($link-color, map-get($dark-color-role-shades, emphasis))
+          $bg
+      ),
+      (
+        "dark link active"
+          get-color-raw($link-color, map-get($dark-color-role-shades, strong)) $bg
+      ),
+      (
+        "dark link visited"
+          get-color-raw($link-color, map-get($dark-color-role-shades, muted)) $bg
+      )
+    ),
+    "dark mode core pairs"
   );
 }
 

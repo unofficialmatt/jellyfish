@@ -7,6 +7,19 @@
     <meta name="description" content="A handful of helpful JavaScript functions.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="color-scheme" content="light dark">
+    <script>
+      // Pre-paint theme: apply a stored preference before the first paint so
+      // there's no flash. Jellyfish's theme.js keeps this in sync afterwards.
+      (function () {
+        try {
+          var t = localStorage.getItem("jf-theme");
+          if (t === "dark" || t === "light") {
+            document.documentElement.classList.add("jf-" + t);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
     <link href="./prism.css" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
@@ -19,9 +32,15 @@
   <div class="row">
     <aside class="col xs-12 md-3">
       <div class="sidebar">
-        <a href="../index.html" class="navbar-brand">
-          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
-        </a>
+        <div class="sidebar-top">
+          <a href="../index.html" class="navbar-brand">
+            <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+          </a>
+          <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false"
+            aria-label="Toggle dark mode">
+            <span class="theme-toggle-icon" aria-hidden="true"></span>
+          </button>
+        </div>
         <ul>
           <li class="li-title mt-0">
             Latest
@@ -206,6 +225,37 @@
       jfDebounce("scroll", debounceExample, ["changeColor"]);
     </code>
   </pre>
+
+    <h2 class="h3" id="theme">Theme (dark / light)</h2>
+    <p><span class="code-ref">theme.js</span> manages the dark / light class on <span class="css-ref">&lt;html&gt;</span>. State is stored in <span class="code-ref">localStorage["jf-theme"]</span> (<span class="code-ref">"dark"</span>, <span class="code-ref">"light"</span>, or absent to follow the OS). See <a href="./theme-colors.html#dark-mode">Theme Colors &rarr; Dark mode</a> for the CSS side and the pre-paint snippet.</p>
+    <pre>
+    <code class="language-javascript">
+      /**
+        * Resolved theme currently in effect.
+        * @returns {"dark" | "light"}
+        */
+      JellyfishTheme.get();
+
+      /**
+        * Set and persist the theme. "system" clears the stored choice so the
+        * page follows the OS again.
+        * @param {"dark" | "light" | "system"} pref
+        */
+      JellyfishTheme.set(pref);
+
+      /** Flip between dark and light. */
+      JellyfishTheme.toggle();
+    </code>
+  </pre>
+    <p>Markup controls, wired by delegation (no inline handlers):</p>
+    <pre>
+    <code class="language-html">
+      &lt;button type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle dark mode"&gt;&hellip;&lt;/button&gt;
+      &lt;button type="button" data-theme-set="dark"&gt;Dark&lt;/button&gt;
+      &lt;button type="button" data-theme-set="system"&gt;Match system&lt;/button&gt;
+    </code>
+  </pre>
+    <p>A <span class="code-ref">jfThemeChange</span> event fires on <span class="css-ref">&lt;html&gt;</span> whenever the resolved theme changes &mdash; <span class="code-ref">event.detail.theme</span> is <span class="code-ref">"dark"</span> or <span class="code-ref">"light"</span>. The script also updates <span class="code-ref">aria-pressed</span> on every <span class="css-ref">[data-theme-toggle]</span> and, while no explicit choice is stored, follows live OS changes.</p>
 
     <h2 class="h3">Lazy Load Background Images</h2>
     <p>Jellyfish will lazy-load background images; you need to add a class <span class="css-ref">.has-bg-img</span> and a <span class="code-ref">data-bg-img</span> attribute to the element.</p>

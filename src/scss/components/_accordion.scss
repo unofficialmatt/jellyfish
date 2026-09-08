@@ -17,13 +17,11 @@
 
 .accordion {
   margin-bottom: token(flow);
-  #{token-name("accordion-heading-background")}: #{token(
-      color-neutral-#{$accordion-heading-shade}
-    )};
-  #{token-name("accordion-heading-color")}: #{get-on-color(
+  #{token-name("accordion-heading-background")}: #{get-color-role(
       neutral,
-      $accordion-heading-shade
+      subtle
     )};
+  #{token-name("accordion-heading-color")}: #{token(color-on-neutral-subtle)};
   #{token-name("accordion-heading-hover-background")}: #{token(
       color-neutral-#{$accordion-heading-hover-shade}
     )};

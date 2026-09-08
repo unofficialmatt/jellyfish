@@ -62,6 +62,23 @@
     </pre>
   <h3 class="h4">Javascript</h3>
   <p>You should also include the Javascript files - either by importing the src files into your build process or by including the dist file <span class="code-ref">/dist/js/jellyfish.min.js</span> in your project's markup.</p>
+  <h3 class="h4" id="dark-mode">Dark mode</h3>
+  <p>Dark mode ships on by default (set <span class="variable-ref">$dark-mode-enabled: false</span> to drop it). With no opt-in the page follows the OS <code class="code-ref">prefers-color-scheme</code>. To let visitors choose &mdash; and to persist that choice without a flash on the next load &mdash; add this to your <span class="code-ref">&lt;head&gt;</span>, before the stylesheet:</p>
+  <pre class="language-markup">
+      <code>
+        &lt;meta name="color-scheme" content="light dark"&gt;
+        &lt;script&gt;
+          (function () {
+            try {
+              var t = localStorage.getItem("jf-theme");
+              if (t === "dark" || t === "light")
+                document.documentElement.classList.add("jf-" + t);
+            } catch (e) {}
+          })();
+        &lt;/script&gt;
+      </code>
+    </pre>
+  <p>Then add a control &mdash; any <span class="code-ref">[data-theme-toggle]</span> element toggles, <span class="code-ref">[data-theme-set="dark|light|system"]</span> picks a mode &mdash; or drive it from your own code via <code class="code-ref">window.JellyfishTheme</code>. Full detail on the <a href="./theme-colors.html#dark-mode">Theme Colors</a> and <a href="./javascript.html#theme">Javascript</a> pages.</p>
 </div>
 
 @@include('./src/docs/partials/html-footer.html')

@@ -135,6 +135,8 @@ i {
 
 // Highlighted
 mark {
+  #{token-name("color-surface")}: #{token(mark-background)};
+  #{token-name("color-text")}: #{token(mark-color)};
   background: token(mark-background);
   color: token(mark-color);
   padding: 0.15em 0.3em;
@@ -202,7 +204,7 @@ q {
 kbd {
   @extend %inline-code;
   background-color: token(color-text);
-  color: token(color-white);
+  color: token(color-bg);
 }
 
 // Code

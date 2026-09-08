@@ -11,9 +11,7 @@
 }
 @function makeColorPalette($color) {
   $light: #fff;
-  $dark: multiply($color, $color);
   $dark: darken(multiply($color, $color), 30%);
-  //$dark: shade(multiply($color, $color),10%);
   $palette: (
     25: mix($light, $color, 90%),
     50: mix($light, $color, 80%),

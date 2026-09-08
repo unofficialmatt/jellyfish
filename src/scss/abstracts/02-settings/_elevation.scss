@@ -1,4 +1,7 @@
 $shadow-color: #0b1220 !default;
+$dark-shadow-color: #000000 !default;
+
+$dark-shadow-alpha-boost: 4 !default;
 
 $shadow-scale: () !default;
 $shadow-scale: map-merge(

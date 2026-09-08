@@ -7,6 +7,14 @@
   What's New
 </h1>
 
+<h2 class="h3">Dark mode</h2>
+<p>Jellyfish now ships a dark theme. It's a class on <span class="code-ref">&lt;html&gt;</span> &mdash; so a consumer can override any single dark value at runtime and get a clean three-way control: <span class="code-ref">.jf-dark</span> forces dark, <span class="code-ref">.jf-light</span> forces light (even on a dark OS), and with neither the OS <span class="code-ref">prefers-color-scheme</span> decides.</p>
+<p>Only the <a href="./variables.html#colors">semantic tokens</a> and the step-role aliases are repointed in dark &mdash; the numbered primitives (<span class="code-ref">--jf-color-primary-500</span> &hellip;) and their build-time <span class="code-ref">-contrast</span> / <span class="code-ref">-on-*</span> companions are untouched, so <span class="code-ref">.bg-*</span> sections and themed component fills render identically in both modes while surfaces, text, borders and links flip. New settings: <span class="code-ref">$dark-mode-enabled</span> (default <span class="code-ref">true</span>; set <span class="code-ref">false</span> to drop the block), <span class="code-ref">$dark-body-background-color</span>, <span class="code-ref">$dark-color-role-shades</span>.</p>
+<p>The bundled <span class="code-ref">theme.js</span> exposes <span class="code-ref">window.JellyfishTheme</span> (<span class="code-ref">get</span> / <span class="code-ref">set</span> / <span class="code-ref">toggle</span>), wires any <span class="code-ref">[data-theme-toggle]</span> / <span class="code-ref">[data-theme-set]</span> control by delegation, follows live OS changes while no explicit choice is stored, and fires <span class="code-ref">jfThemeChange</span>. Add <span class="code-ref">&lt;meta name="color-scheme" content="light dark"&gt;</span> and a small pre-paint snippet to your <span class="code-ref">&lt;head&gt;</span> &mdash; see <a href="./getting-started.html#dark-mode">Getting Started</a>, <a href="./theme-colors.html#dark-mode">Theme Colors</a> and <a href="./javascript.html#theme">Javascript</a>.</p>
+
+<h2 class="h3">Role-addressable <span class="code-ref">--jf-color-on-*</span> companions</h2>
+<p>Alongside the numbered <span class="code-ref">--jf-color-on-{family}-{shade}</span> tokens, every step-role now has a matching <span class="code-ref">--jf-color-on-{family}-{role}</span> (<span class="code-ref">-subtle</span> / <span class="code-ref">-muted</span> / <span class="code-ref">-emphasis</span> / <span class="code-ref">-strong</span>, plus bare for the 500). It tracks the same <span class="code-ref">$color-{role}-shade</span> knob as the role alias itself, so a role surface and its paired text can't drift apart when a knob is retuned &mdash; and the dark-mode role remap carries the text with it. Value-neutral in light mode.</p>
+
 <h2 class="h3">Surface (<span class="code-ref">.bg-*</span>) modifiers</h2>
 <p>A <span class="code-ref">.bg-{family}</span> class is now generated for every colour in <span class="code-ref">$colors</span> (<span class="code-ref">.bg-primary</span>, <span class="code-ref">.bg-neutral</span>, &hellip;), plus <span class="code-ref">.bg-white</span>. Put one on any element &mdash; a <span class="code-ref">section</span>, a <span class="code-ref">.card</span>, a <span class="code-ref">div</span> &mdash; and it becomes a themed surface: <span class="code-ref">--jf-color-surface</span> and its contrast-picked <span class="code-ref">--jf-color-text</span> / <span class="code-ref">--jf-color-headings</span> are set for you, the muted / subtle text tiers re-tint toward it, and everything nested (headings, <span class="code-ref">.text-muted</span>, callouts, cards) follows by inheritance &mdash; no descendant selectors. Add specific shades or one-off colours via the <span class="code-ref">$background-colors</span> map. <a href="./theme-colors.html">See Theme Colors.</a></p>
 
@@ -29,10 +37,10 @@
 <pre class="language-scss line-numbers">
     <code>
 
-      // Anchor links. $link-color is now a palette *family*; the active and
-      // visited colours derive from it via the semantic role layer.
-      --jf-link-color: var(--jf-color-primary);
-      --jf-link-color-active: var(--jf-color-primary-emphasis);
+      // Anchor links. $link-color is a palette *family*; all three link tokens
+      // are step-role aliases of it, so they flip in dark mode.
+      --jf-link-color: var(--jf-color-primary-emphasis);
+      --jf-link-color-active: var(--jf-color-primary-strong);
       --jf-link-color-visited: var(--jf-color-primary-muted);
 
       // Semantic aliases - emitted for every family in the $colors map.
@@ -68,8 +76,9 @@
       --jf-form-select-bg-img: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23010101' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
 
       --jf-table-font-size: #{$table-font-size};
-      --jf-table-stripe-bg-color: var(--jf-color-neutral-50);
+      --jf-table-stripe-bg-color: var(--jf-color-neutral-subtle);
       --jf-table-hover-background: var(--jf-color-neutral-muted);
+      --jf-table-head-background: var(--jf-color-neutral-subtle);
       --jf-table-cell-background: transparent;
 
       --jf-navbar-bg-color: #{$navbar-bg-color};

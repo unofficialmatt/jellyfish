@@ -7,7 +7,8 @@ table {
   font-size: token(table-font-size);
 }
 td {
-  border-bottom: token(border-width) token(border-style) token-or(table-border-color, border-color);
+  border-bottom: token(border-width) token(border-style)
+    token-or(table-border-color, border-color);
 }
 th {
   font-weight: get-weight(bold);
@@ -21,10 +22,17 @@ td {
   color: token(table-text-color, inherit);
 }
 thead th {
-  border-bottom: token(border-width-strong) token(border-style) token-or(table-border-color, border-color);
+  border-bottom: token(border-width-strong) token(border-style)
+    token-or(table-border-color, border-color);
+  background: token-or(table-head-background, table-cell-background);
+  color: var(
+    #{token-name("table-head-color")},
+    var(#{token-name("table-text-color")}, inherit)
+  );
 }
 tfoot th {
-  border-top: token(border-width-strong) token(border-style) token-or(table-border-color, border-color);
+  border-top: token(border-width-strong) token(border-style)
+    token-or(table-border-color, border-color);
 }
 
 // Wrap around a table to prevent it breaking outside the grid
@@ -48,7 +56,8 @@ table.has-border {
   &,
   td,
   th {
-    border: token(border-width) token(border-style) token-or(table-border-color, border-color);
+    border: token(border-width) token(border-style)
+      token-or(table-border-color, border-color);
   }
   thead th {
     border-bottom-width: token(border-width-strong);
@@ -86,7 +95,8 @@ table.is-responsive {
     }
     td,
     th {
-      border: token(border-width) token(border-style) token-or(table-border-color, border-color);
+      border: token(border-width) token(border-style)
+        token-or(table-border-color, border-color);
     }
 
     tr {

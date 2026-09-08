@@ -10,6 +10,42 @@
   margin-bottom: token(flow);
   margin-left: 1.5ch;
 }
+
+.sidebar-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: get-space(sm);
+  margin-left: 1.5ch;
+
+  .navbar-logo {
+    margin-left: 0;
+  }
+}
+
+.theme-toggle {
+  #{token-name(button-color-theme)}: transparent;
+  #{token-name(button-color-text)}: #{token(color-text)};
+  #{token-name(button-hover-color-theme)}: #{get-color-role(neutral, subtle)};
+  #{token-name(button-hover-color-text)}: #{token(color-on-neutral-subtle)};
+  border: token(border-width) solid #{get-color(primary)};
+  flex: none;
+  inline-size: 2rem;
+  block-size: 2rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: token(radius-full);
+}
+
+.theme-toggle-icon {
+  inline-size: get-size(1);
+  block-size: get-size(1);
+  border: token(border-width) solid currentColor;
+  border-radius: token(radius-full);
+  background: linear-gradient(90deg, currentColor 0 50%, transparent 50% 100%);
+}
+
 .sidebar {
   ul {
     list-style-type: none;
@@ -22,7 +58,7 @@
   margin-top: get-space(md);
   padding: get-space(sm) get-space(md);
   font-weight: get-weight(bold);
-  line-height: 1.4;
+  line-height: get-leading(tight);
   z-index: 1;
   li + li {
     margin-top: get-space(3xs);
@@ -103,7 +139,8 @@
   @extend %inline-code;
   display: inline-block;
   font-weight: get-weight(semibold);
-  background-color: get-color(neutral, 50);
+  background-color: token(code-background);
+  color: token(code-color);
   font-size: token(font-size-sm);
 }
 
@@ -113,12 +150,12 @@
 
 .css-ref {
   @extend %reference;
-  color: get-color(primary);
+  color: get-color-role(primary, emphasis);
 }
 
 .variable-ref {
   @extend %reference;
-  color: get-color(success, 700);
+  color: get-color-role(success, emphasis);
 }
 
 // Code Block

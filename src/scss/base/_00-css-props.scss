@@ -16,6 +16,7 @@
 }
 
 :root {
+  color-scheme: light dark;
   #{token-name("color-white")}: #{$color-white};
   #{token-name("color-black")}: #{$color-black};
   @include map-to-css-properties($colors, "color-");
@@ -70,9 +71,9 @@
   @include map-to-css-properties($ease-scale, "ease-");
   #{token-name("transition")}: #{token(duration-base)} #{token(ease-in-out)};
 
-  /* Links */
-  #{token-name("link-color")}: #{token("color-#{$link-color}")};
-  #{token-name("link-color-active")}: #{get-color-role($link-color, emphasis)};
+  /* Links — role aliases so they flip with the dark remap */
+  #{token-name("link-color")}: #{get-color-role($link-color, emphasis)};
+  #{token-name("link-color-active")}: #{get-color-role($link-color, strong)};
   #{token-name("link-color-visited")}: #{get-color-role($link-color, muted)};
 
   /* Components - to do move to elements */
@@ -93,7 +94,7 @@
   #{token-name("card-padding")}: #{$card-padding};
 
   #{token-name("chip-color-theme")}: #{get-color-role(neutral, subtle)};
-  #{token-name("chip-color-text")}: #{get-on-color(neutral, 50)};
+  #{token-name("chip-color-text")}: #{token(color-on-neutral-subtle)};
 
   #{token-name("modal-max-width")}: #{$modal-max-width};
   #{token-name("modal-padding")}: #{$modal-padding};
@@ -107,12 +108,10 @@
   @include select-bg();
 
   #{token-name("table-font-size")}: #{$table-font-size};
-  #{token-name("table-stripe-bg-color")}: #{token(
-      color-neutral-#{$table-stripe-shade}
-    )};
-  #{token-name("table-hover-background")}: #{token(
-      color-neutral-#{$table-hover-shade}
-    )};
+  #{token-name("table-stripe-bg-color")}: #{get-color-role(neutral, subtle)};
+  #{token-name("table-hover-background")}: #{get-color-role(neutral, muted)};
+  #{token-name("table-head-background")}: #{get-color-role(neutral, subtle)};
+  #{token-name("table-head-color")}: #{token(color-on-neutral-subtle)};
   #{token-name("table-cell-background")}: transparent;
 
   #{token-name("navbar-bg-color")}: #{$navbar-bg-color};
@@ -144,5 +143,22 @@
     #{token-name("duration-base")}: 0.01ms !important;
     #{token-name("duration-slow")}: 0.01ms !important;
     #{token-name("duration-slower")}: 0.01ms !important;
+  }
+}
+
+// Dark mode. .jf-light forces light even on a dark OS; .jf-dark forces dark;
+// with neither class, prefers-color-scheme decides.
+@if $dark-mode-enabled {
+  @include jf-dark-apca-lint;
+  :root.jf-light {
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not(.jf-light) {
+      @include jf-dark-tokens;
+    }
+  }
+  :root.jf-dark {
+    @include jf-dark-tokens;
   }
 }

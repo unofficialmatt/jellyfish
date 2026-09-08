@@ -126,6 +126,7 @@
   <h2 id="elevation" class="h5">Elevation</h2>
   <p>A scale of box-shadows, each mixing <span class="code-ref">--jf-shadow-color</span> toward transparent at the step's alpha. Reference with <a href="./mixins.html">get-shadow()</a> or the token name. Geometry and alphas live in <span class="variable-ref">$shadow-scale</span> as <span class="code-ref">(geometry, alpha)</span> tuples (a list of tuples for a stacked shadow); the hue is <span class="variable-ref">$shadow-color</span> / <span class="code-ref">--jf-shadow-color</span>, set at build or on <span class="code-ref">:root</span> (dark mode).</p>
   <p><span class="bold">Retint:</span> set <span class="variable-ref">$shadow-color</span> (default <span class="code-ref">#0b1220</span>) before import, override a step (<span class="code-ref">$shadow-scale: ("md": (0 6px 16px, 0.2))</span>), or override the <span class="code-ref">--jf-shadow-*</span> custom property with a full value at runtime.</p>
+  <p><span class="bold">Dark mode</span> re-emits the whole scale with every layer's alpha multiplied by <a href="#dark-mode"><span class="variable-ref">$dark-shadow-alpha-boost</span></a> (default <span class="code-ref">4</span>), since a light-mode drop shadow is near-invisible on the dark canvas.</p>
   <table class="is-responsive has-border">
     <thead>
       <tr><th>Step</th><th><span class="variable-ref">$shadow-scale</span> default</th><th>Use</th></tr>
@@ -271,8 +272,8 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$body-background-color</span></td>
-        <td><span class="variable-ref">var(--jf-color-white)</span></td>
-        <td>The background color for the <span class="code-ref">body</span> tag &mdash; the <span class="bold">canvas</span>. <span class="code-ref">html</span>/<span class="code-ref">body</span> paint it; components never override it. <span class="code-ref">--jf-color-surface</span> ("the background of the current context") defaults to it and <span class="italic">is</span> overridden &mdash; by cards, modals, menus and <span class="css-ref">.bg-*</span> sections. <span class="code-ref">--jf-color-surface</span> is registered with <span class="code-ref">@property</span> as <span class="code-ref">inherits: false</span>, so each context sets its own and a nested element can't pick up an ancestor section's surface by accident; <span class="code-ref">--jf-color-text</span> is registered <span class="code-ref">inherits: true</span>. Browsers without <span class="code-ref">@property</span> treat both as ordinary custom properties.<br><br><span class="bold">This is output as a custom CSS property --jf-color-bg; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-bg)</span></span></td>
+        <td><span class="code-ref">#faf9f6</span></td>
+        <td>The background color for the <span class="code-ref">body</span> tag &mdash; the <span class="bold">canvas</span>. A warm off-white by default, so a literal <span class="css-ref">.bg-white</span> panel (<span class="code-ref">#fff</span>) now reads as a slightly raised surface against it. <span class="code-ref">html</span>/<span class="code-ref">body</span> paint it; components never override it. <span class="code-ref">--jf-color-surface</span> ("the background of the current context") defaults to it and <span class="italic">is</span> overridden &mdash; by cards, modals, menus and <span class="css-ref">.bg-*</span> sections. <span class="code-ref">--jf-color-surface</span> is registered with <span class="code-ref">@property</span> as <span class="code-ref">inherits: false</span>, so each context sets its own and a nested element can't pick up an ancestor section's surface by accident; <span class="code-ref">--jf-color-text</span> is registered <span class="code-ref">inherits: true</span>. Browsers without <span class="code-ref">@property</span> treat both as ordinary custom properties.<br><br><span class="bold">This is output as a custom CSS property --jf-color-bg; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-bg)</span></span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$background-colors</span></td>
@@ -301,7 +302,7 @@
       <tr>
         <td><span class="variable-ref">$color-subtle-shade</span></td>
         <td>50</td>
-        <td rowspan="4">The semantic step-role ladder. Every palette family emits four named aliases &mdash; <span class="code-ref">--jf-color-{family}-subtle</span>, <span class="code-ref">-muted</span>, <span class="code-ref">-emphasis</span>, <span class="code-ref">-strong</span> &mdash; each pointing at the numbered shade set here, plus a bare <span class="code-ref">--jf-color-{family}</span> for the 500. Retune a role framework-wide by changing its shade; reference in SCSS with <span class="code-ref">get-color-role($family, $role)</span>. Roles: <span class="italic">subtle</span> = faint tinted backgrounds, <span class="italic">muted</span> = borders / low-emphasis fills / visited links, <span class="italic">emphasis</span> = hover &amp; active / heading tone, <span class="italic">strong</span> = text on a tint / strongest headings.</td>
+        <td rowspan="4">The semantic step-role ladder. Every palette family emits four named aliases &mdash; <span class="code-ref">--jf-color-{family}-subtle</span>, <span class="code-ref">-muted</span>, <span class="code-ref">-emphasis</span>, <span class="code-ref">-strong</span> &mdash; each pointing at the numbered shade set here, plus a bare <span class="code-ref">--jf-color-{family}</span> for the 500. Retune a role framework-wide by changing its shade; reference in SCSS with <span class="code-ref">get-color-role($family, $role)</span>. Roles: <span class="italic">subtle</span> = faint tinted backgrounds, <span class="italic">muted</span> = borders / low-emphasis fills / visited links, <span class="italic">emphasis</span> = hover &amp; active / heading tone, <span class="italic">strong</span> = text on a tint / strongest headings.<br><br>Each role also gets a matching <span class="code-ref">--jf-color-on-{family}-{role}</span> companion (plus bare <span class="code-ref">--jf-color-on-{family}</span> for the 500) &mdash; the APCA-picked text colour for that role's surface, tracking the same shade knob so the pair can't drift. Prefer these over a numbered <span class="code-ref">--jf-color-on-{family}-50</span> when pairing text with a role surface.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$color-muted-shade</span></td>
@@ -331,12 +332,51 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$selection-background-mix</span></td>
-        <td>15%</td>
-        <td rowspan="2"><span class="code-ref">::selection</span> background is <span class="code-ref">color-mix(in srgb, var(--jf-color-text) &lt;mix&gt;, var(--jf-color-surface))</span> &mdash; the text colour blended toward the current surface, so it re-tints inside <span class="css-ref">.bg-*</span> sections and stays visible on every surface (an accent tint disappears where the surface is near the accent hue). <span class="variable-ref">$selection-color</span> sets the selected-text colour (previously unset). Not a custom property &mdash; the mix lives in the rule so it resolves per selected element. Override the <span class="code-ref">::selection</span> rule for a fixed colour.</td>
+        <td>20%</td>
+        <td rowspan="2"><span class="code-ref">::selection</span> background is <span class="code-ref">color-mix(in srgb, var(--jf-color-text) &lt;mix&gt;, var(--jf-color-surface))</span> &mdash; the text colour blended toward the current surface, so it re-tints inside <span class="css-ref">.bg-*</span> sections and stays visible on every surface (an accent tint disappears where the surface is near the accent hue). <span class="code-ref">&lt;mark&gt;</span> exposes its own surface/text so the selection tints against the highlight there too. <span class="variable-ref">$selection-color</span> sets the selected-text colour (previously unset). Not a custom property &mdash; the mix lives in the rule so it resolves per selected element. Override the <span class="code-ref">::selection</span> rule for a fixed colour.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$selection-color</span></td>
         <td><span class="code-ref">token(color-text)</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="dark-mode" class="h6">Dark mode</h3>
+  <p>Dark mode is a class on <span class="css-ref">&lt;html&gt;</span> (<span class="css-ref">.jf-dark</span> / <span class="css-ref">.jf-light</span>), with <span class="code-ref">prefers-color-scheme</span> as the fallback. In dark, the semantic tokens and the step-role aliases are repointed; the numbered primitives and their <span class="code-ref">-contrast</span> / <span class="code-ref">-on-*</span> companions are left alone. See <a href="./theme-colors.html#dark-mode">Theme Colors &rarr; Dark mode</a>.</p>
+  <table class="is-responsive has-border">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default value</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="variable-ref">$dark-mode-enabled</span></td>
+        <td><span class="code-ref">true</span></td>
+        <td>Master switch. <span class="code-ref">false</span> drops the entire dark-mode block (the <span class="code-ref">@media (prefers-color-scheme: dark)</span> rules and the <span class="css-ref">.jf-dark</span> rules) from the compiled CSS &mdash; output size is a feature. Not a token.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$dark-body-background-color</span></td>
+        <td><span class="code-ref">#14171c</span></td>
+        <td>The canvas colour once dark. Deliberately a hair above pure black (and not <span class="code-ref">neutral-1000</span>, which carries a blue cast). <span class="code-ref">--jf-color-surface</span> follows it; the muted / subtle text tiers re-mix against it.<br><br><span class="bold">Feeds <span class="code-ref">--jf-color-bg</span> inside the dark block; override <span class="code-ref">--jf-color-bg</span> in your own <span class="code-ref">:root.jf-dark { &hellip; }</span> to retune at runtime.</span></td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$dark-color-role-shades</span></td>
+        <td><span class="code-ref">(subtle: 800, muted: 700, emphasis: 300, strong: 200)</span></td>
+        <td>Which numbered shade each step-role alias (and its <span class="code-ref">-on-*</span> companion) points at once dark. Background-ish roles move toward the dark end of the ramp, accent-text roles toward the light end. Applied per family by <span class="code-ref">@mixin jf-dark-tokens</span>. Merge-friendly map &mdash; override any subset.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$dark-shadow-color</span></td>
+        <td><span class="code-ref">#000000</span></td>
+        <td>The shadow tint in dark mode (the light-mode default is <span class="variable-ref">$shadow-color</span>, <span class="code-ref">#0b1220</span>). Emitted as <span class="code-ref">--jf-shadow-color</span> inside the dark block.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$dark-shadow-alpha-boost</span></td>
+        <td><span class="code-ref">4</span></td>
+        <td>Multiplier applied to every <span class="variable-ref">$shadow-scale</span> layer's alpha when the dark block re-emits <span class="code-ref">--jf-shadow-*</span> &mdash; a drop shadow at the light-mode alpha barely registers on the dark canvas. Raise for heavier elevation, lower toward <span class="code-ref">1</span> to match light. Not a token; consumed by <span class="code-ref">@mixin jf-dark-tokens</span> via <span class="code-ref">build-shadow($entry, $boost)</span>.</td>
       </tr>
     </tbody>
   </table>
@@ -354,7 +394,7 @@
       <tr>
         <td><span class="variable-ref">$link-color</span></td>
         <td><span class="code-ref">primary</span></td>
-        <td>The palette <span class="bold">family</span> for links (not a colour). Unvisited links use its base (500); the hovered and visited colours are derived from it &mdash; the <span class="italic">emphasis</span> and <span class="italic">muted</span> roles &mdash; and emitted as <span class="code-ref">--jf-link-color</span>, <span class="code-ref">--jf-link-color-active</span> and <span class="code-ref">--jf-link-color-visited</span>. Change the derived treatments globally with <span class="variable-ref">$color-emphasis-shade</span> / <span class="variable-ref">$color-muted-shade</span>, or per site by overriding those custom properties. <br><br><span class="bold">Breaking change in v5:</span> <span class="variable-ref">$link-active</span> and <span class="variable-ref">$link-visited</span> have been removed &mdash; set the custom properties, or <span class="variable-ref">$link-color</span> to a different family.</td>
+        <td>The palette <span class="bold">family</span> for links (not a colour). All three link tokens are step-role aliases of it so they flip in dark mode: <span class="code-ref">--jf-link-color</span> = <span class="italic">emphasis</span>, <span class="code-ref">--jf-link-color-active</span> = <span class="italic">strong</span>, <span class="code-ref">--jf-link-color-visited</span> = <span class="italic">muted</span>. Change the treatments globally with <span class="variable-ref">$color-emphasis-shade</span> / <span class="variable-ref">$color-strong-shade</span> / <span class="variable-ref">$color-muted-shade</span>, or per site by overriding the custom properties. <br><br><span class="bold">Breaking change in v5:</span> <span class="variable-ref">$link-active</span> and <span class="variable-ref">$link-visited</span> have been removed &mdash; set the custom properties, or <span class="variable-ref">$link-color</span> to a different family.</td>
       </tr>
     </tbody>
   </table>
@@ -514,6 +554,11 @@
         <td><span class="variable-ref">$callout-padding</span></td>
         <td><span class="code-ref">token(space-md)</span></td>
         <td>The padding for <span class="css-ref">.callout</span> elements.</td>
+      </tr>
+      <tr>
+        <td><span class="css-ref">--jf-callout-color</span></td>
+        <td><span class="code-ref">token(color-on-neutral-subtle)</span></td>
+        <td>Body-text colour inside a callout, paired with <span class="code-ref">--jf-callout-bg-color</span>. Was previously inherited from the surrounding context, which went wrong on a themed section or in dark mode. A <span class="css-ref">.callout.{family}</span> repoints it to that family's <span class="code-ref">--jf-color-on-*-subtle</span> companion; <span class="css-ref">.callout.white</span> to the contrast colour for white. Override alongside <span class="code-ref">--jf-callout-bg-color</span> if you hand-set a callout colour. <span class="italic">(Note: the fuller "callout as a full surface" fix &mdash; so nested <span class="css-ref">.text-muted</span> re-tints too &mdash; is the pending surface refactor.)</span></td>
       </tr>
     </tbody>
   </table>
@@ -844,12 +889,17 @@
       <tr>
         <td><span class="variable-ref">$table-stripe-shade</span></td>
         <td><span class="code-ref">$color-subtle-shade</span></td>
-        <td>Palette shade for alternate rows on the neutral table (<span class="css-ref">.is-striped</span>). Themed <span class="css-ref">.{family}</span> tables wash their cells at <span class="italic">subtle</span> and stripe one step up at <span class="code-ref">{family}-100</span> &mdash; they don't read this. Override <span class="code-ref">--jf-table-stripe-bg-color</span> at runtime for a specific colour.</td>
+        <td>Palette shade for alternate rows on the neutral table (<span class="css-ref">.is-striped</span>). Themed <span class="css-ref">.{family}</span> tables wash their cells at the <span class="italic">subtle</span> role and stripe with <span class="code-ref">color-mix(emphasis 10%, subtle)</span> &mdash; role-derived, so both flip in dark; they don't read this. Override <span class="code-ref">--jf-table-stripe-bg-color</span> at runtime for a specific colour.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$table-hover-shade</span></td>
         <td><span class="code-ref">$color-muted-shade</span></td>
-        <td>Palette shade for a hovered row (<span class="css-ref">.is-hoverable</span>). The row background is the family at this shade; the text is that shade's <span class="code-ref">--jf-color-on-*</span> companion (APCA-picked), so the pair stays legible. Override <span class="code-ref">--jf-table-hover-background</span> / <span class="code-ref">--jf-table-text-hover-color</span> at runtime for a specific colour.</td>
+        <td>Palette shade for a hovered row (<span class="css-ref">.is-hoverable</span>) on the neutral table. Themed <span class="css-ref">.{family}</span> tables use the <span class="italic">muted</span> role for the row background and that role's <span class="code-ref">--jf-color-on-*</span> companion for the text, so the pair stays legible and flips in dark. Override <span class="code-ref">--jf-table-hover-background</span> / <span class="code-ref">--jf-table-text-hover-color</span> at runtime for a specific colour.</td>
+      </tr>
+      <tr>
+        <td><span class="css-ref">--jf-table-head-background</span> / <span class="css-ref">--jf-table-head-color</span></td>
+        <td><span class="code-ref">neutral</span> <span class="italic">subtle</span> role / its <span class="code-ref">--jf-color-on-*</span></td>
+        <td>Header band on <span class="code-ref">thead th</span>. The plain table uses the neutral <span class="italic">subtle</span> role &mdash; a faint band in light, a defined one in dark. A <span class="css-ref">.{family}</span> table sets the band to the <span class="italic">muted</span> role (a step darker than the <span class="italic">subtle</span> cell) with the matching <span class="code-ref">--jf-color-on-*</span> text. Override either token to retune or set it to <span class="code-ref">transparent</span> for no band.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$table-cell-padding</span></td>
@@ -951,7 +1001,7 @@
       <tr>
         <td><span class="variable-ref">$accessibility-button-hover-color</span></td>
         <td><span class="code-ref">token(link-color-active)</span></td>
-        <td>The color to use for <a href="./accessibility.html">font size control buttons</a> when they are hovered &mdash; reuses the emitted link hover token (<span class="code-ref">--jf-link-color-active</span>, itself the link family's <span class="italic">emphasis</span> role).</td>
+        <td>The color to use for <a href="./accessibility.html">font size control buttons</a> when they are hovered &mdash; reuses the emitted link hover token (<span class="code-ref">--jf-link-color-active</span>, itself the link family's <span class="italic">strong</span> role).</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$accessibility-button-active-color</span></td>

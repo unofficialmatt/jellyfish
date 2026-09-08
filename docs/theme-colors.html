@@ -7,6 +7,19 @@
     <meta name="description" content="Utility classes automatically generated based on your project's color pallette.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="color-scheme" content="light dark">
+    <script>
+      // Pre-paint theme: apply a stored preference before the first paint so
+      // there's no flash. Jellyfish's theme.js keeps this in sync afterwards.
+      (function () {
+        try {
+          var t = localStorage.getItem("jf-theme");
+          if (t === "dark" || t === "light") {
+            document.documentElement.classList.add("jf-" + t);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
     <link href="./prism.css" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
@@ -19,9 +32,15 @@
   <div class="row">
     <aside class="col xs-12 md-3">
       <div class="sidebar">
-        <a href="../index.html" class="navbar-brand">
-          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
-        </a>
+        <div class="sidebar-top">
+          <a href="../index.html" class="navbar-brand">
+            <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+          </a>
+          <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false"
+            aria-label="Toggle dark mode">
+            <span class="theme-toggle-icon" aria-hidden="true"></span>
+          </button>
+        </div>
         <ul>
           <li class="li-title mt-0">
             Latest
@@ -178,6 +197,43 @@
   </pre>
   <p>Each modifier sets the background and picks text and heading colours that stay readable on it. The lighter <span class="css-ref">.text-muted</span> and <span class="css-ref">.text-subtle</span> shades re-mix to suit the new background too, and anything nested inside &mdash; headings, cards, callouts, muted text &mdash; picks all of this up on its own.</p>
   <p>Headings use your normal heading colour where it stays readable, switch to white on dark backgrounds, and only fall back to a plainer colour when neither works. A modifier built from a palette shade reuses colours the framework has already worked out for that shade, so it follows any later palette override; a one-off colour has its contrast fixed at build time.</p>
+</div>
+<div id="dark-mode">
+  <h2 class="h3">Dark mode</h2>
+  <p>Dark mode is a class on <span class="css-ref">&lt;html&gt;</span>, not <code class="code-ref">light-dark()</code>. With no class set, the OS <code class="code-ref">prefers-color-scheme</code> decides; <span class="css-ref">.jf-dark</span> or <span class="css-ref">.jf-light</span> forces a choice (<span class="css-ref">.jf-light</span> wins even on a dark OS).</p>
+  <p>Only the <a href="./variables.html#colors">semantic tokens</a> and the <span class="bold">role aliases</span> above are repointed in dark &mdash; the numbered primitives (<span class="css-ref">--jf-color-primary-500</span> &hellip;) and their build-time <span class="css-ref">-contrast</span> / <span class="css-ref">-on-*</span> companions are untouched. So a <span class="css-ref">.bg-primary</span> section and a <span class="css-ref">.button.error</span> look the same in both modes, while surfaces, body text, borders and links flip. Which numbered shade each role points at once dark is set by <span class="variable-ref">$dark-color-role-shades</span> (backgrounds move toward the dark end, accent text toward the light end).</p>
+  <h3 class="h5">Wiring it up</h3>
+  <p>Add the colour-scheme hint and a pre-paint script to your <span class="css-ref">&lt;head&gt;</span> so a stored preference applies before the first paint (no flash):</p>
+  <pre class="language-markup">
+    <code>
+      &lt;meta name="color-scheme" content="light dark"&gt;
+      &lt;script&gt;
+        (function () {
+          try {
+            var t = localStorage.getItem("jf-theme");
+            if (t === "dark" || t === "light")
+              document.documentElement.classList.add("jf-" + t);
+          } catch (e) {}
+        })();
+      &lt;/script&gt;
+    </code>
+  </pre>
+  <p>Jellyfish's <a href="./javascript.html#theme">theme.js</a> (bundled) keeps the class in sync after load, follows the OS while no explicit choice is stored, and exposes <code class="code-ref">window.JellyfishTheme</code>:</p>
+  <pre class="language-js">
+    <code>
+      JellyfishTheme.get();            // 'dark' | 'light' (resolved)
+      JellyfishTheme.set('dark');      // force + persist
+      JellyfishTheme.set('system');    // clear the stored choice, follow the OS
+      JellyfishTheme.toggle();         // flip between dark and light
+    </code>
+  </pre>
+  <p>Any <span class="css-ref">[data-theme-toggle]</span> element toggles; <span class="css-ref">[data-theme-set="dark|light|system"]</span> sets a specific mode. A <code class="code-ref">jfThemeChange</code> event fires on <span class="css-ref">&lt;html&gt;</span> with <code class="code-ref">detail.theme</code>. Set <span class="variable-ref">$dark-mode-enabled: false</span> to drop the whole dark block from the compiled CSS.</p>
+  <p>The <a href="./theme-test.html">Theme Test Harness</a> renders every token, surface and component on one page for a side-by-side light / dark check.</p>
+  <pre class="language-markup">
+    <code>
+      &lt;button type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle dark mode"&gt;&hellip;&lt;/button&gt;
+    </code>
+  </pre>
 </div>
 </div>
 </div>

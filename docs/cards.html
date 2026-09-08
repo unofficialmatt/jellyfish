@@ -7,6 +7,19 @@
     <meta name="description" content="A simple element to display self-contained information such as a news post or call to action.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="color-scheme" content="light dark">
+    <script>
+      // Pre-paint theme: apply a stored preference before the first paint so
+      // there's no flash. Jellyfish's theme.js keeps this in sync afterwards.
+      (function () {
+        try {
+          var t = localStorage.getItem("jf-theme");
+          if (t === "dark" || t === "light") {
+            document.documentElement.classList.add("jf-" + t);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
     <link href="./prism.css" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
@@ -19,9 +32,15 @@
   <div class="row">
     <aside class="col xs-12 md-3">
       <div class="sidebar">
-        <a href="../index.html" class="navbar-brand">
-          <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
-        </a>
+        <div class="sidebar-top">
+          <a href="../index.html" class="navbar-brand">
+            <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+          </a>
+          <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false"
+            aria-label="Toggle dark mode">
+            <span class="theme-toggle-icon" aria-hidden="true"></span>
+          </button>
+        </div>
         <ul>
           <li class="li-title mt-0">
             Latest

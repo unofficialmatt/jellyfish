@@ -146,8 +146,10 @@ $token-prefix: jf !default;
 }
 
 // A $shadow-scale entry -> a box-shadow value: geometry + a color-mix of
-// --jf-shadow-color, per layer. `none` passes through.
-@function build-shadow($entry) {
+// --jf-shadow-color, per layer. `none` passes through. $boost scales every
+// layer's alpha (dark mode re-emits the scale boosted — shadows read weakly on
+// a dark ground).
+@function build-shadow($entry, $boost: 1) {
   @if $entry == none {
     @return none;
   }
@@ -158,7 +160,7 @@ $token-prefix: jf !default;
   }
   $out: ();
   @each $layer in $layers {
-    $mix: #{"color-mix(in srgb, #{token(shadow-color)} #{nth($layer, 2)}, transparent)"};
+    $mix: #{"color-mix(in srgb, #{token(shadow-color)} #{nth($layer, 2) * $boost}, transparent)"};
     $out: append($out, #{nth($layer, 1)} #{$mix}, comma);
   }
   @return $out;
@@ -208,9 +210,8 @@ $token-prefix: jf !default;
   @return $best-contrast;
 }
 
-// Resolves to the appropriate contrast color for a given background color.
-// Prefers the framework's known aliases (white/black/text/headings-preferred)
-// over raw values or arbitrary passed-in $color-dark.
+// Best-contrast text colour for a background. white / black return as tokens;
+// every other pick returns a literal colour.
 // @param {Color} $color - Background color
 // @param {Color} $color-dark - Dark color option, defaults to $color-text
 // @return {Color} The resolved contrast color
@@ -220,35 +221,17 @@ $token-prefix: jf !default;
     @return token(color-white);
   } @else if $contrast == $color-black {
     @return token(color-black);
-  } @else if $contrast == raw-color($color-text) {
-    @return token(color-text);
-  } @else if $contrast == raw-color($color-headings-preferred) {
-    @return token(color-headings);
-  } @else if $contrast == raw-color($color-dark) {
-    @return $color-dark;
-  } @else {
-    @return $contrast;
   }
+  @return $contrast;
 }
 
-// Picks the text colour for a coloured background, ready to drop straight into
-// a `--jf-color-text` declaration.
-//
-// resolve-contrast-color() does the actual choosing, but when its answer is
-// "just use the normal page text colour" it hands back `var(--jf-color-text)`.
-// Assigning that to `--jf-color-text` itself would be circular, so here we
-// swap in the real colour sitting behind it instead.
+// Text colour for a coloured background, safe to assign to --jf-color-text.
+// Alias of resolve-contrast-color(), used by the `.bg-*` surface code.
 // @param {Color} $bg - the background the text will sit on
 // @param {Color} $dark - the dark option to consider, defaults to $color-text
 // @return {String} a value safe to assign to --jf-color-text / --jf-color-headings
 @function surface-contrast-color($bg, $dark: $color-text) {
-  $picked: resolve-contrast-color($bg, $dark);
-  @if $picked == token(color-text) {
-    @return $color-text;
-  } @else if $picked == token(color-headings) {
-    @return $color-headings-preferred;
-  }
-  @return $picked;
+  @return resolve-contrast-color($bg, $dark);
 }
 
 // Picks the heading colour for a coloured background.

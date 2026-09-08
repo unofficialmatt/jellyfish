@@ -17,7 +17,7 @@ $colors: map-merge(
 
 $color-white: #ffffff !default;
 $color-black: #000000 !default;
-$body-background-color: token(color-white) !default;
+$body-background-color: #faf9f6 !default;
 
 $color-subtle-shade: 50 !default; // faint tinted backgrounds
 $color-muted-shade: 300 !default; // borders, low-emphasis fills, visited links
@@ -36,5 +36,15 @@ $mark-background-color: #ffff9d !default;
 $code-background-color: get-color-role(neutral, subtle) !default;
 $code-color: token(color-text) !default;
 
-$selection-background-mix: 15% !default;
+$selection-background-mix: 20% !default;
 $selection-color: token(color-text) !default;
+
+// DARK MODE
+$dark-mode-enabled: true !default;
+$dark-body-background-color: #14171c !default;
+$dark-color-role-shades: (
+  subtle: 800,
+  muted: 700,
+  emphasis: 300,
+  strong: 200,
+) !default;

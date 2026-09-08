@@ -1,6 +1,7 @@
 @if $generate-callouts == true {
   .callout {
     #{token-name("callout-bg-color")}: #{get-color-role(neutral, subtle)};
+    #{token-name("callout-color")}: #{token(color-on-neutral-subtle)};
     #{token-name("callout-border-color")}: #{get-color-role(neutral, muted)};
     #{token-name("callout-link-color")}: #{get-color-role(neutral, emphasis)};
     #{token-name("callout-link-color-hover")}: #{get-color-role(neutral, strong)};
@@ -12,6 +13,7 @@
       radius: $callout-border-radius;
     }
     background-color: token(callout-bg-color);
+    color: token(callout-color);
     margin-bottom: token(flow);
     padding: $callout-padding;
     display: block;
@@ -46,6 +48,7 @@
     }
     &.white {
       #{token-name("callout-bg-color")}: token(color-white);
+      #{token-name("callout-color")}: #{surface-contrast-color($color-white)};
     }
   }
 }

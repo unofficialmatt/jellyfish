@@ -55,6 +55,7 @@
 @mixin createCallout($color) {
   @if map-has-key($colors, $color) {
     #{token-name("callout-bg-color")}: #{get-color-role($color, subtle)};
+    #{token-name("callout-color")}: #{token(color-on-#{$color}-subtle)};
     #{token-name("callout-border-color")}: #{get-color-role($color, muted)};
     #{token-name("callout-link-color")}: #{get-color-role($color, emphasis)};
     #{token-name("callout-link-color-hover")}: #{get-color-role(
@@ -71,19 +72,19 @@
   @if map-has-key($colors, $color) {
     table.#{$color} {
       #{token-name("table-border-color")}: #{get-color-role($color, muted)};
-      #{token-name("table-stripe-bg-color")}: #{token(color-#{$color}-100)};
-      #{token-name("table-hover-background")}: #{token(
-          color-#{$color}-#{$table-hover-shade}
-        )};
+      #{token-name("table-stripe-bg-color")}: color-mix(
+        in srgb,
+        #{get-color-role($color, emphasis)} 10%,
+        #{get-color-role($color, subtle)}
+      );
+      #{token-name("table-hover-background")}: #{get-color-role($color, muted)};
       #{token-name("table-cell-background")}: #{get-color-role($color, subtle)};
-      #{token-name("table-text-color")}: #{get-on-color(
-          $color,
-          $color-subtle-shade
+      #{token-name("table-text-color")}: #{token(color-on-#{$color}-subtle)};
+      #{token-name("table-text-hover-color")}: #{token(
+          color-on-#{$color}-muted
         )};
-      #{token-name("table-text-hover-color")}: #{get-on-color(
-          $color,
-          $table-hover-shade
-        )};
+      #{token-name("table-head-background")}: #{get-color-role($color, muted)};
+      #{token-name("table-head-color")}: #{token(color-on-#{$color}-muted)};
     }
     table.#{$color} th,
     th.#{$color},

@@ -13,7 +13,7 @@ $form-items: (
   "[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea, [type=month]"
 ); // Stack of elements to target
 $form-accent-color: get-color(primary) !default;
-$input-background: token(color-white) !default;
+$input-background: token(color-bg) !default;
 $placeholder-color: token(color-text-subtle) !default;
 
 $select-chevron-color: get-color-raw(neutral, 500) !default;
@@ -32,7 +32,10 @@ $form-label-weight: get-weight(semibold) !default;
 
 $range-thumb-color: get-color-role(neutral, muted) !default;
 $range-track-color: get-color-role(neutral, subtle) !default;
-$range-track-color-bottom-ie: get-color-role(neutral, subtle) !default; // IE/EdgeHTML-only (::-ms-fill-lower) — dead code, delete with the ::-ms-* blocks
+$range-track-color-bottom-ie: get-color-role(
+  neutral,
+  subtle
+) !default; // IE/EdgeHTML-only (::-ms-fill-lower) — dead code, delete with the ::-ms-* blocks
 
 $range-track-color-focus: get-color-role(neutral, subtle) !default;
 
