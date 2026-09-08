@@ -1,452 +1,294 @@
 @@include('./src/docs/partials/html-head.html', {
 "title": "Grid",
-"description": "Why have twelve columns when you can have any number you want? (You probably still want twelve)",
+"description": "A 12-column CSS Grid, a flex row for the cases that need it, and a container you can bleed out of.",
 })
 
 @@include('./src/docs/partials/navigation.html')
 <h1 class="section-heading h2">Grid<a href="./variables.html#grid">[ Variable Reference ]</a></h1>
 <div>
-  <p class="standfirst">Jellyfish's grid system is built on <a href="https://flexboxfroggy.com/" rel="external" target="_blank">flexbox</a>.</p>
-  <p>The grid consists of containers (<span class="css-ref">.container</span>), rows (<span class="css-ref">.row</span>) and columns (<span class="css-ref">.col </span>).</p>
-  <h2 class="h3">A basic 2 column grid</h2>
+  <p class="standfirst">Jellyfish ships two layout engines that share one class API: <span class="css-ref">.grid</span> (CSS Grid &mdash; the default) and <span class="css-ref">.row</span> (flexbox &mdash; the escape hatch).</p>
+  <p>Both arrange <span class="css-ref">.col</span> children across 12 columns using the same <span class="css-ref">.{breakpoint}-{n}</span> and <span class="css-ref">.order-{breakpoint}-{n}</span> modifiers. Reach for <span class="css-ref">.grid</span> unless you specifically need flex behaviour (grow-to-fill columns, content-sized columns) &mdash; then use <span class="css-ref">.row</span> or <span class="css-ref">.auto-grid</span>.</p>
+  <table class="has-border">
+    <thead>
+      <tr><th></th><th><span class="css-ref">.grid</span></th><th><span class="css-ref">.row</span></th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Engine</td><td>CSS Grid</td><td>Flexbox</td></tr>
+      <tr><td>Gutter</td><td><span class="code-ref">gap</span></td><td>negative margin + <span class="css-ref">.col</span> padding</td></tr>
+      <tr><td>Bare <span class="css-ref">.col</span> (no size class)</td><td>full width &mdash; add <span class="css-ref">.{bp}-{n}</span> or use <span class="css-ref">.auto-grid</span></td><td>equal share of the row from <span class="code-ref">sm</span> up</td></tr>
+      <tr><td><span class="css-ref">.{bp}-auto</span> (content-sized) / <span class="css-ref">.{bp}-0</span> (fill remaining)</td><td>&mdash; (use <span class="css-ref">.row</span>)</td><td>✓</td></tr>
+      <tr><td>Zero gutter</td><td colspan="2"><span class="css-ref">.collapse</span> / <span class="css-ref">.collapse-{bp}</span> / <span class="css-ref">.nocollapse-{bp}</span></td></tr>
+      <tr><td>Placement</td><td><span class="css-ref">.col-start</span> / <span class="css-ref">.col-end</span></td><td>&mdash;</td></tr>
+      <tr><td>Align internal rows across items</td><td><span class="css-ref">.subgrid-rows</span> + <span class="code-ref">--jf-subgrid-rows</span></td><td>&mdash;</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Removed in v5:</strong> <span class="css-ref">.offset-*</span> and the push/pull classes. Use <span class="css-ref">.grid</span> with <span class="css-ref">.col-start</span> / <span class="css-ref">.col-end</span>, a margin utility, or an empty spacer <span class="css-ref">.col</span>. See the <a href="#migration">migration table</a>.</p>
+</div>
+
+<div>
+  <h2 class="h3">.grid &mdash; the default</h2>
+  <p>A bare <span class="css-ref">.col</span> spans the full width. Add breakpoint classes for columns. Jellyfish is mobile-first, so a class applies at its breakpoint <em>and up</em>.</p>
   <pre class="language-markup"><code><!--
-      <div class="container">
-        <div class="row">
-          <div class="col">1st column</div>
-          <div class="col">2nd column</div>
-        </div>
+      <div class="grid">
+        <div class="col md-6">md-6</div>
+        <div class="col md-6">md-6</div>
+        <div class="col md-4">md-4</div>
+        <div class="col md-4">md-4</div>
+        <div class="col md-4">md-4</div>
       </div>
-      --></code>
-    </pre>
-  <div class="row">
-    <div class="col">
-      <div class="boxed">1st column</div>
-    </div>
-    <div class="col">
-      <div class="boxed">2nd column</div>
-    </div>
+      --></code></pre>
+  <div class="grid">
+    <div class="col md-6"><div class="boxed">md-6</div></div>
+    <div class="col md-6"><div class="boxed">md-6</div></div>
+    <div class="col md-4"><div class="boxed">md-4</div></div>
+    <div class="col md-4"><div class="boxed">md-4</div></div>
+    <div class="col md-4"><div class="boxed">md-4</div></div>
+  </div>
+
+  <p>Mix breakpoints on one column &mdash; each overrides the smaller one.</p>
+  <pre class="language-markup"><code><!--
+      <div class="grid">
+        <div class="col sm-6 md-3 lg-8">sm-6 md-3 lg-8</div>
+        <div class="col sm-6 md-9 lg-4">sm-6 md-9 lg-4</div>
+      </div>
+      --></code></pre>
+  <div class="grid">
+    <div class="col sm-6 md-3 lg-8"><div class="boxed">sm-6 md-3 lg-8</div></div>
+    <div class="col sm-6 md-9 lg-4"><div class="boxed">sm-6 md-9 lg-4</div></div>
+  </div>
+
+  <p>Use <span class="css-ref">.xs-{n}</span> to size columns below the <span class="code-ref">sm</span> (600px) breakpoint.</p>
+  <pre class="language-markup"><code><!--
+      <div class="grid">
+        <div class="col xs-6">xs-6</div>
+        <div class="col xs-6">xs-6</div>
+      </div>
+      --></code></pre>
+  <div class="grid">
+    <div class="col xs-6"><div class="boxed">xs-6</div></div>
+    <div class="col xs-6"><div class="boxed">xs-6</div></div>
+  </div>
+
+  <p><span class="css-ref">.collapse</span> removes the gutter &mdash; the same class as <span class="css-ref">.row.collapse</span>. <span class="css-ref">.collapse-{bp}</span> / <span class="css-ref">.nocollapse-{bp}</span> gate it by breakpoint.</p>
+  <pre class="language-markup"><code><!--
+      <div class="grid collapse">
+        <div class="col md-3">md-3</div>
+        <div class="col md-9">md-9</div>
+      </div>
+      --></code></pre>
+  <div class="grid collapse">
+    <div class="col md-3"><div class="boxed">md-3</div></div>
+    <div class="col md-9"><div class="boxed">md-9</div></div>
+  </div>
+
+  <p>There's no <span class="css-ref">.grid</span> equivalent of <span class="css-ref">.{bp}-auto</span> (content-sized) or <span class="css-ref">.{bp}-0</span> (grow-to-fill) &mdash; CSS Grid can't size a track to its content inside a fixed 12-track template. Use <span class="css-ref">.row</span> for those.</p>
+</div>
+
+<div>
+  <h2 class="h3">.auto-grid</h2>
+  <p>Equal columns when you don't know how many there'll be &mdash; they wrap automatically once each would drop below a minimum width (<span class="code-ref">18rem</span> by default; override with <span class="code-ref">--jf-col-min</span> on the grid).</p>
+  <pre class="language-markup"><code><!--
+      <div class="auto-grid" style="--jf-col-min: 12rem;">
+        <div class="col">one</div>
+        <div class="col">two</div>
+        <div class="col">three</div>
+        <div class="col">four</div>
+      </div>
+      --></code></pre>
+  <div class="auto-grid" style="--jf-col-min: 12rem;">
+    <div class="col"><div class="boxed">one</div></div>
+    <div class="col"><div class="boxed">two</div></div>
+    <div class="col"><div class="boxed">three</div></div>
+    <div class="col"><div class="boxed">four</div></div>
   </div>
 </div>
+
+<div>
+  <h2 class="h3">.row &mdash; the flex engine</h2>
+  <p>Columns without a size class share the row equally and grow to fill it &mdash; the behaviour CSS Grid can't do without knowing the count. <span class="css-ref">.{bp}-{n}</span> and ordering work exactly as in <span class="css-ref">.grid</span>; <span class="css-ref">.{bp}-auto</span> (content-sized) and <span class="css-ref">.{bp}-0</span> (fill remaining) are <span class="css-ref">.row</span>-only.</p>
+  <pre class="language-markup"><code><!--
+      <div class="row">
+        <div class="col">auto</div>
+        <div class="col sm-6">sm-6</div>
+        <div class="col">auto</div>
+      </div>
+      --></code></pre>
+  <div class="row">
+    <div class="col"><div class="boxed">auto</div></div>
+    <div class="col sm-6"><div class="boxed">sm-6</div></div>
+    <div class="col"><div class="boxed">auto</div></div>
+  </div>
+  <p><span class="css-ref">.{bp}-0</span> resets a sized column back to "fill remaining space" (flex-only). <span class="css-ref">.collapse</span> removes the gutter; target one breakpoint with <span class="css-ref">.collapse-{bp}</span> and undo it with <span class="css-ref">.nocollapse-{bp}</span>.</p>
+  <pre class="language-markup"><code><!--
+      <div class="row collapse-sm nocollapse-lg">
+        <div class="col sm-4">sm-4</div>
+        <div class="col sm-4">sm-4</div>
+        <div class="col sm-4 lg-0">sm-4 lg-0</div>
+      </div>
+      --></code></pre>
+  <div class="row collapse-sm nocollapse-lg">
+    <div class="col sm-4"><div class="boxed">sm-4</div></div>
+    <div class="col sm-4"><div class="boxed">sm-4</div></div>
+    <div class="col sm-4 lg-0"><div class="boxed">sm-4 lg-0</div></div>
+  </div>
+  <p>For equal-height flex children, add <span class="css-ref">.equal-height</span> to the <span class="css-ref">.row</span>. (Grid children are equal-height already.)</p>
+</div>
+
+<div>
+  <h2 class="h3">Ordering</h2>
+  <p><span class="css-ref">.order-{bp}-{n}</span> works under both engines (it sets CSS <span class="code-ref">order</span>). Columns with no order class keep their source position; reset with <span class="css-ref">.order-{bp}-0</span>.</p>
+  <pre class="language-markup"><code><!--
+      <div class="grid">
+        <div class="col md-4 order-md-3">first in source, last at md</div>
+        <div class="col md-4 order-md-2">second</div>
+        <div class="col md-4 order-md-1">last in source, first at md</div>
+      </div>
+      --></code></pre>
+  <div class="grid">
+    <div class="col md-4 order-md-3"><div class="boxed">order-md-3</div></div>
+    <div class="col md-4 order-md-2"><div class="boxed">order-md-2</div></div>
+    <div class="col md-4 order-md-1"><div class="boxed">order-md-1</div></div>
+  </div>
+</div>
+
+<div>
+  <h2 class="h3">Placement (grid only)</h2>
+  <p><span class="css-ref">.col-end</span> pins a column to the last grid line &mdash; the "push it to the right" case offsets used to cover. <span class="css-ref">.col-start</span> forces a column onto a new row. Both keep the column's span.</p>
+  <pre class="language-markup"><code><!--
+      <div class="grid">
+        <div class="col md-3">md-3</div>
+        <div class="col md-3 col-end">md-3 col-end</div>
+        <div class="col md-4 col-start">md-4 col-start</div>
+      </div>
+      --></code></pre>
+  <div class="grid">
+    <div class="col md-3"><div class="boxed">md-3</div></div>
+    <div class="col md-3 col-end"><div class="boxed">md-3 col-end</div></div>
+    <div class="col md-4 col-start"><div class="boxed">md-4 col-start</div></div>
+  </div>
+</div>
+
 <div>
   <h2 class="h3">Containers</h2>
-  <p>Content without a container will span the width of the viewport. To restrict content width and ensure consistency, wrap elements in a <span class="css-ref">.container</span>.</p>
-  <p>The <span class="css-ref">.container</span> is centered horizontally and can be customised at each breakpoint with the following settings: width, max-width, gutter (left/right). See <a href="./breakpoints.html">breakpoints</a> for information.</p>
-  <p>A container can be modified with the class <span class="css-ref">.is-wide</span> to extend to fill half of the normal gutter on the left/right. This is useful for pulling content outside of the normal container for emphasis.</p>
-  <p>Containers aren't mandatory - indeed this documentation doesn't use them, however they do usually prove useful for most websites!</p>
-</div>
-<div>
-  <h2 class="h3">Rows / Columns</h2>
-  <p>Rows contain a number of <span class="css-ref">.col</span> elements, arranged horizontally. To preserve equal margins on the left and right, the only elements inside a <span class="css-ref">.row</span> should be <span class="css-ref">.col</span> elements.</p>
-  <p>Unlike most grid systems, Jellyfish allows you customise how many columns your grid will use. This is determined by the <span class="variable-ref">$cols</span> variable.</p>
-  <p>Columns are equal-width by default, and expand to fill all available width.</p>
-  <pre class="language-markup"><code><!--
-          <div class="row">
-            <div class="col">1st column</div>
-          </div>
-          <div class="row">
-            <div class="col">1st column</div>
-            <div class="col">2nd column</div>
-          </div>
-          <div class="row">
-            <div class="col">1st column</div>
-            <div class="col">2nd column</div>
-            <div class="col">3rd column</div>
-          </div>
-          --></code>
-        </pre>
-  <div class="row">
-    <div class="col">
-      <div class="boxed">1st column</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="boxed">1st column</div>
-    </div>
-    <div class="col">
-      <div class="boxed">2nd column</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="boxed">1st column</div>
-    </div>
-    <div class="col">
-      <div class="boxed">2nd column</div>
-    </div>
-    <div class="col">
-      <div class="boxed">3rd column</div>
-    </div>
-  </div>
-  <p>To size a column based on it's content, use <span class="css-ref">.col-auto</span></p>
-  <pre class="language-markup"><code><!--
-          <div class="row">
-            <div class="col">.col</div>
-            <div class="col">.col</div>
-            <div class="col col-auto">.col-auto</div>
-            <div class="col">.col</div>
-          </div>
-          --></code>
-        </pre>
-  <div class="row">
-    <div class="col">
-      <div class="boxed">.col</div>
-    </div>
-    <div class="col">
-      <div class="boxed">.col</div>
-    </div>
-    <div class="col col-auto">
-      <div class="boxed">.col-auto</div>
-    </div>
-    <div class="col">
-      <div class="boxed">.col</div>
-    </div>
-  </div>
-</div>
-<div>
-  <h2 class="h3">Making Columns Responsive</h2>
-  <p>To set the width of a column, use the <a href="./breakpoints.html">breakpoint-based</a> modifier classes to target different viewport widths.</p>
-  <pre class="language-markup"><code><!--
-          <div class="row">
-            <div class="col sm-3">sm-3</div>
-            <div class="col sm-6">sm-6</div>
-            <div class="col sm-3">sm-3</div>
-          </div>
-          --></code>
-        </pre>
-  <div class="row">
-    <div class="col sm-3">
-      <div class="boxed">sm-3</div>
-    </div>
-    <div class="col sm-6">
-      <div class="boxed">sm-6</div>
-    </div>
-    <div class="col sm-3">
-      <div class="boxed">sm-3</div>
-    </div>
-  </div>
-  <p>Additional columns wrap to a new line.</p>
-  <pre class="language-markup"><code><!--
-          <div class="row">
-            <div class="col sm-6">sm-6</div>
-            <div class="col sm-6">sm-6</div>
-            <div class="col sm-6">sm-6</div>
-          </div>
-          --></code>
-        </pre>
-  <div class="row">
-    <div class="col sm-6">
-      <div class="boxed">sm-6</div>
-    </div>
-    <div class="col sm-6">
-      <div class="boxed">sm-6</div>
-    </div>
-    <div class="col sm-6">
-      <div class="boxed">sm-6</div>
-    </div>
+  <p>A <span class="css-ref">.container</span> is full width with the side space applied as <em>padding</em>, computed from <span class="code-ref">100%</span> so it's exact &mdash; content is precisely <span class="code-ref">--jf-container-max</span> once the page is wide enough, <span class="code-ref">--jf-container-gutter</span> otherwise. The knobs are custom properties &mdash; override at <span class="code-ref">:root</span> or on a scope, no recompile:</p>
+  <p><span class="bold">See it live:</span> the <a href="./container-test.html">container &amp; bleed test page</a> is a standalone harness (no sidebar, so the viewport maths is honest) with viewport rulers and a live readout for every case below.</p>
+  <table class="has-border">
+    <thead><tr><th>Property</th><th>Default</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="code-ref">--jf-container-max</span></td><td>1140px (1280px from <span class="code-ref">xl</span>)</td><td>Content cap &mdash; the widest the content strip gets.</td></tr>
+      <tr><td><span class="code-ref">--jf-container-gutter</span></td><td><span class="code-ref">--jf-space-md</span> (24px), <span class="code-ref">--jf-space-lg</span> (48px) from <span class="code-ref">sm</span></td><td>Minimum side space before the cap kicks in.</td></tr>
+      <tr><td><span class="code-ref">--jf-page-max</span></td><td><span class="italic">unset</span> (no cap)</td><td>Optional cap on the whole page shell (with <span class="css-ref">.page</span>). The container adapts automatically; bleeds then reach the shell edge, not the viewport edge.</td></tr>
+      <tr><td><span class="code-ref">--jf-bleed-space</span></td><td>computed</td><td><span class="code-ref">max(gutter, (100vw - max) / 2)</span> &mdash; viewport-based (so a bleed works at any nesting depth). Re-resolved on every <span class="css-ref">.container</span> against its own <span class="code-ref">--jf-container-max</span> (so <span class="css-ref">.is-wide</span> widens the bleed to match), and re-capped inside <span class="css-ref">.page</span>. Read it (via <span class="css-ref">.bleed*</span>), don't set it.</td></tr>
+    </tbody>
+  </table>
+  <p><span class="css-ref">.container.is-wide</span> lifts <span class="code-ref">--jf-container-max</span> to 1800px; the padding maths is otherwise identical.</p>
+
+  <div class="callout warning">
+    <p class="callout-heading">The container must be centred in the viewport</p>
+    <p>The container <em>sizes</em> correctly wherever it sits, but <span class="code-ref">--jf-bleed-space</span> &mdash; and therefore every <span class="css-ref">.bleed*</span> &mdash; is measured against <span class="code-ref">100vw</span> on the assumption that the gap from the container's content edge to each viewport edge is the same on both sides. Push the container off-centre and bleeds break: they overshoot one edge and stop short of the other.</p>
+    <p>Anything that offsets it does this &mdash; asymmetric <span class="code-ref">padding</span> / <span class="code-ref">margin</span> on an ancestor (e.g. <span class="code-ref">padding-right: 300px</span> on a wrapper), a fixed sidebar, a scrollbar on only one side. The fix is to not offset it: put the sidebar <em>inside</em> the container as a grid column (this docs site does exactly that), rather than beside it. There's no pure-CSS way to bleed to the viewport edge from an element that doesn't know how far off-centre it is.</p>
   </div>
 
-  <p>You can mix and match column sizes over different breakpoints. <strong>Jellyfish is mobile first</strong>, so classes / widths inherit upwards.</p>
-  <pre class="language-markup"><code><!--
-          <div class="row">
-            <div class="col sm-6 md-3 lg-7">sm-6 md-3 lg-7</div>
-            <div class="col sm-6 md-9 lg-5">sm-6 md-9 lg-5</div>
-          </div>
-          <div class="row">
-            <div class="col sm-6 lg-3">sm-6 lg-3</div>
-            <div class="col sm-6">sm-6</div>
-          </div>
-          <div class="row">
-            <div class="col sm-6 lg-4">sm-6 lg-4</div>
-            <div class="col sm-6 lg-auto">sm-6 lg-auto</div>
-          </div>
-          --></code>
-        </pre>
-  <div class="row">
-    <div class="col sm-6 md-3 lg-7">
-      <div class="boxed">sm-6 md-3 lg-7</div>
-    </div>
-    <div class="col sm-6 md-9 lg-5">
-      <div class="boxed">sm-6 md-9 lg-5</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col sm-6 lg-3">
-      <div class="boxed">sm-6 lg-3</div>
-    </div>
-    <div class="col sm-6">
-      <div class="boxed">sm-6</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col sm-6 lg-4">
-      <div class="boxed">sm-6 lg-4</div>
-    </div>
-    <div class="col sm-6 lg-auto">
-      <div class="boxed">sm-6 lg-auto</div>
-    </div>
-  </div>
+  <h3 class="h4">Page cap (very wide screens)</h3>
+  <p>By default there's no cap &mdash; a full bleed reaches the viewport edge at any width. To stop bleeds spanning a 3000px monitor, set <span class="code-ref">--jf-page-max</span> and wrap your content in <span class="css-ref">.page</span> (or put its two lines on your own <span class="code-ref">&lt;main&gt;</span>):</p>
+  <pre class="language-scss"><code><!--
+      :root { --jf-page-max: 1600px; }
+      /* .page { max-width: var(--jf-page-max, none); margin-inline: auto; } */
+      --></code></pre>
+  <p>Inside <span class="css-ref">.page</span> the container's <span class="code-ref">100%</span> maths measures the shell, so it adapts with no extra config; <span class="code-ref">--jf-bleed-space</span> is re-capped to <span class="code-ref">min(100vw, --jf-page-max)</span> so bleeds stop at the shell edge.</p>
 
-  <p>On the smallest screens, all columns will be 100% width unless you specifier a modifier with the name defined in the <span class="variable-ref">$base-col-name</span> variable (default xs).</p>
+  <h3 class="h4">Full-bleed helpers</h3>
+  <p>Any descendant of a <span class="css-ref">.container</span> can break out of it &mdash; the helpers apply a negative <span class="code-ref">margin-inline</span> of <span class="code-ref">--jf-bleed-space</span>:</p>
+  <table class="has-border">
+    <thead><tr><th>Class</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td><span class="css-ref">.bleed</span></td><td>Both edges to the page edge. Only meaningful in a full-width context (a bare <span class="css-ref">.col</span>, or outside a row/grid).</td></tr>
+      <tr><td><span class="css-ref">.bleed-start</span> / <span class="css-ref">.bleed-end</span></td><td>One edge out, the other stays aligned &mdash; the multi-column case, e.g. <span class="css-ref">.bleed-end</span> on the last column of a two-column layout.</td></tr>
+      <tr><td><span class="css-ref">.bleed-md</span> / <span class="css-ref">.bleed-start-lg</span> / <span class="css-ref">.bleed-end-xl</span> &hellip;</td><td>Same, but only from that breakpoint up (append any breakpoint key).</td></tr>
+      <tr><td><span class="css-ref">.bleed-none-md</span> / <span class="css-ref">.bleed-none-lg</span> &hellip;</td><td>Cancel any bleed from that breakpoint up. Combine, e.g. <span class="css-ref">.bleed-end-md .bleed-none-lg</span> = bleed between <span class="code-ref">md</span> and <span class="code-ref">lg</span> only.</td></tr>
+    </tbody>
+  </table>
+  <p>On a full-width block inside a <span class="css-ref">.container</span> the negative margin is all it takes. To bleed a <em>sized column</em> it must be a <span class="css-ref">.grid</span> column &mdash; <span class="css-ref">.grid</span> pairs the bleed with a width that overrides the column's fixed size, which flexbox can't. Put the class on the <span class="css-ref">.col</span>:</p>
   <pre class="language-markup"><code><!--
-          <div class="row">
-            <div class="col xs-6">xs-6</div>
-            <div class="col xs-6">xs-6</div>
-            <div class="col">default</div>
-          </div>
-          --></code>
-        </pre>
-  <div class="row">
-    <div class="col xs-6">
-      <div class="boxed">xs-6</div>
-    </div>
-    <div class="col xs-6">
-      <div class="boxed">xs-6</div>
-    </div>
-    <div class="col">
-      <div class="boxed">default</div>
-    </div>
-  </div>
+      <div class="container">
+        <figure class="bleed">image runs edge to edge</figure>
+      </div>
 
-  <p>You can mix and match sized columns with unsized columns for flexibility. Unsized columns will take up equal widths of the remaining space.</p>
-  <p>Adding a modifier of <span class="css-ref">.*-0</span> for a breakpoint will reset the behaviour of a column to fill all remaining space in the row.</p>
-  <pre class="language-markup"><code><!--
-          <div class="row">
-            <div class="col">default</div>
-            <div class="col sm-6">sm-6</div>
-            <div class="col">default</div>
-          </div>
-          <div class="row">
-            <div class="col sm-3">sm-3</div>
-            <div class="col sm-3">sm-3</div>
-            <div class="col">default</div>
-          </div>
-          <div class="row">
-            <div class="col sm-3">sm-3</div>
-            <div class="col sm-3">sm-3</div>
-            <div class="col sm-3 lg-0">sm-3 lg-0</div>
-          </div>
-          --></code>
-        </pre>
-  <div class="row">
-    <div class="col">
-      <div class="boxed">default</div>
-    </div>
-    <div class="col sm-6">
-      <div class="boxed">sm-6</div>
-    </div>
-    <div class="col">
-      <div class="boxed">default</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col sm-3">
-      <div class="boxed">sm-3</div>
-    </div>
-    <div class="col sm-3">
-      <div class="boxed">sm-3</div>
-    </div>
-    <div class="col">
-      <div class="boxed">default</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col sm-3">
-      <div class="boxed">sm-3</div>
-    </div>
-    <div class="col sm-3">
-      <div class="boxed">sm-3</div>
-    </div>
-    <div class="col sm-3 lg-0">
-      <div class="boxed">sm-3 lg-0</div>
-    </div>
-  </div>
+      <div class="grid">
+        <div class="col md-6">text column</div>
+        <div class="col md-6 bleed-end"><img src="…" alt="…"></div>
+      </div>
+      --></code></pre>
+  <p><strong>Scrollbar note:</strong> the container padding is <span class="code-ref">100%</span>-based and exact. Bleeds are <span class="code-ref">100vw</span>-based (they have to be &mdash; a nested element can't measure the viewport any other way), and <span class="code-ref">100vw</span> includes the scrollbar. With an overlay scrollbar there's no difference; with a classic scrollbar a full bleed reaches <span class="code-ref">100vw</span> and its far edge sits under the scrollbar. Put <span class="code-ref">overflow-x: clip</span> on <span class="code-ref">&lt;body&gt;</span> (not <span class="code-ref">hidden</span> &mdash; <span class="code-ref">clip</span> doesn't create a scroll container or break <span class="code-ref">position: sticky</span>) if that shows a sliver of horizontal scroll. If you need it pixel-exact with a classic scrollbar, a small script setting <span class="code-ref">--jf-bleed-space</span> from <span class="code-ref">innerWidth - documentElement.clientWidth</span> is the only fully-reliable route.</p>
 </div>
+
 <div>
-  <h2 class="h3">Offsetting Columns</h2>
-  <p>Columns can be offset by using the <span class="css-ref">.offset-$breakpoint-$cols</span> modifiers. Offsets are inherited, and can be reset by using the class <span class="css-ref">.offset-$breakpoint-0</span>. When you offset a column, all columns that follow are pushed along.</p>
+  <h2 class="h3">Nesting</h2>
+  <p>Grids and rows nest freely. A nested <span class="css-ref">.container</span> resets its own padding to zero. The one rule: <strong>a <span class="css-ref">.grid</span> / <span class="css-ref">.row</span> only ever contains <span class="css-ref">.col</span> elements</strong>.</p>
   <pre class="language-markup"><code><!--
-          <div class="row">
-            <div class="col sm-3">sm-3</div>
-            <div class="col sm-6 offset-sm-3">sm-6 offset-sm-3</div>
-          </div>
-          <div class="row">
-            <div class="col sm-6 offset-sm-3">sm-6 offset-sm-3</div>
-            <div class="col sm-3">sm-3</div>
-          </div>
-          <div class="row">
-            <div class="col sm-3">sm-3</div>
-            <div class="col sm-6 offset-sm-3 offset-md-0">sm-6 offset-sm-3 offset-md-0</div>
-          </div>
-          <div class="row">
-            <div class="col sm-3">sm-3</div>
-            <div class="col sm-6 offset-sm-3 offset-md-2">sm-6 offset-sm-3 offset-md-2</div>
-          </div>
-          --></code>
-        </pre>
-  <div class="row">
-    <div class="col sm-3">
-      <div class="boxed">sm-3</div>
-    </div>
-    <div class="col sm-6 offset-sm-3">
-      <div class="boxed">sm-6 offset-sm-3</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col sm-6 offset-sm-3">
-      <div class="boxed">sm-6 offset-sm-3</div>
-    </div>
-    <div class="col sm-3">
-      <div class="boxed">sm-3</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col sm-3">
-      <div class="boxed">sm-3</div>
-    </div>
-    <div class="col sm-6 offset-sm-3 offset-md-0">
-      <div class="boxed">sm-6 offset-sm-3 offset-md-0</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col sm-3">
-      <div class="boxed">sm-3</div>
-    </div>
-    <div class="col sm-6 offset-sm-3 offset-md-2">
-      <div class="boxed">sm-6 offset-sm-3 offset-md-2</div>
-    </div>
-  </div>
-  <p><strong>Note:</strong> if you don't need to use offsets in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$grid-has-offset</span> to <span class="bold">false</span>.</p>
-</div>
-<div>
-  <h2 class="h3">Reordering Columns</h2>
-  <p>You can control the order of columns using the <span class="css-ref">.order-$breakpoint-*</span> modifiers. Note that columns without an order modifier will not be affected. Ordering is inherited, and can be reset by using the class <span class="css-ref">.order-$breakpoint-0</span>.</p>
-  <pre class="language-markup"><code><!--
-          <div class="row">
-            <div class="col">unordered</div>
-            <div class="col order-md-3">order-md-3</div>
-            <div class="col order-md-2">order-md-2</div>
-          </div>
-          <div class="row">
-            <div class="col order-md-3 order-lg-0">order-md-3 order-lg-0</div>
-            <div class="col order-md-2">order-md-2</div>
-            <div class="col order-md-1">order-md-1</div>
-          </div>
-          --></code>
-        </pre>
-  <div class="row">
-    <div class="col">
-      <div class="boxed">unordered</div>
-    </div>
-    <div class="col order-md-3">
-      <div class="boxed">order-md-3</div>
-    </div>
-    <div class="col order-md-2">
-      <div class="boxed">order-md-2</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col order-md-3 order-lg-0">
-      <div class="boxed">order-md-3 order-lg-0</div>
-    </div>
-    <div class="col order-md-2">
-      <div class="boxed">order-md-2</div>
-    </div>
-    <div class="col order-md-1">
-      <div class="boxed">order-md-1</div>
-    </div>
-  </div>
-  <p><strong>Note:</strong> if you don't need to use ordering in your project, you can disable the css from being generated (and slightly reduce compiled filesize) by changing <span class="variable-ref">$grid-has-order</span> to <span class="bold">false</span>.</p>
-</div>
-<div>
-  <h2 class="h3">Collapsing Columns</h2>
-  <p>Columns have horizontal spacing (gutters) around them by default. Should you wish to remove this spacing, apply the <span class="css-ref">.collapse</span> class to the parent <span class="css-ref">.row</span>. You can target specific breakpoints with <span class="css-ref">.collapse-$breakpoint</span> and reset with <span class="css-ref">.nocollapse-$breakpoint</span></p>
-  <pre class="language-markup"><code><!--
-          <div class="row">
-            <div class="col">col</div>
-            <div class="col">col</div>
-          </div>
-          <div class="row collapse">
-            <div class="col">collapsed col</div>
-            <div class="col">collapsed col</div>
-          </div>
-          <div class="row collapse-sm nocollapse-lg">
-            <div class="col">collapsed at sm, reset at lg</div>
-            <div class="col">collapsed at sm, reset at lg</div>
-          </div>
-          --></code>
-        </pre>
-  <div class="row">
-    <div class="col">
-      <div class="boxed">col</div>
-    </div>
-    <div class="col">
-      <div class="boxed">col</div>
-    </div>
-  </div>
-  <div class="row collapse">
-    <div class="col">
-      <div class="boxed">collapsed col</div>
-    </div>
-    <div class="col">
-      <div class="boxed">collapsed col</div>
-    </div>
-  </div>
-  <div class="row collapse-sm nocollapse-lg">
-    <div class="col">
-      <div class="boxed">collapsed at sm, reset at lg</div>
-    </div>
-    <div class="col">
-      <div class="boxed">collapsed at sm, reset at lg</div>
-    </div>
-  </div>
-</div>
-<div>
-  <h2 class="h3">Nested Grids</h2>
-  <p><span class="css-ref">.row</span> and <span class="css-ref">.col</span> elements can be infinitely nested within each other, so long as one golden rule is followed: <strong>A .row can only contain .col elements</strong>.</p>
-  <pre class="language-markup"><code><!--
-          <div class="row">
-          <div class="col md-8">
-            outer col md-8
-            <div class="row">
-              <div class="col md-8">inner md-8</div>
-              <div class="col md-4">inner md-4</div>
-            </div>
-          </div>
-          <div class="col md-4">
-            inner col md-4
-            <div class="row">
-              <div class="col md-6">inner md-6</div>
-              <div class="col md-6">inner md-6</div>
-          </div>
-        </div>
-          --></code>
-        </pre>
-  <div class="row">
-    <div class="col md-8">
-      <p class="bold text-center">outer col md-8</p>
-      <hr>
-      <div class="row">
+      <div class="grid">
         <div class="col md-8">
-          <div class="boxed">inner md-8</div>
+          <div class="grid">
+            <div class="col md-6">inner md-6</div>
+            <div class="col md-6">inner md-6</div>
+          </div>
         </div>
-        <div class="col md-4">
-          <div class="boxed">inner md-4</div>
-        </div>
+        <div class="col md-4">outer md-4</div>
+      </div>
+      --></code></pre>
+  <div class="grid">
+    <div class="col md-8">
+      <div class="grid">
+        <div class="col md-6"><div class="boxed">inner md-6</div></div>
+        <div class="col md-6"><div class="boxed">inner md-6</div></div>
       </div>
     </div>
-    <div class="col md-4">
-      <p class="bold text-center">outer col md-4</p>
-      <hr>
-      <div class="row">
-        <div class="col md-6">
-          <div class="boxed">inner md-6</div>
-        </div>
-        <div class="col md-6">
-          <div class="boxed">inner md-6</div>
-        </div>
-      </div>
-    </div>
+    <div class="col md-4"><div class="boxed">outer md-4</div></div>
   </div>
+
+  <h3 class="h4">Aligning cards</h3>
+  <p>A plain <span class="css-ref">.grid</span> (or <span class="css-ref">.auto-grid</span>) of cards is already equal-height &mdash; grid items stretch by default &mdash; and <span class="css-ref">.card-footer</span> (<span class="code-ref">margin-top: auto</span>) pins each footer to the bottom, so footers line up with no extra work. On the flex engine, add <span class="css-ref">.equal-height</span> to the <span class="css-ref">.row</span> for the same result (see <a href="./cards.html">Cards</a>).</p>
+  <p>To line up <em>internal</em> rows too &mdash; a heading that wraps to two lines in one item but not its neighbour &mdash; add <span class="css-ref">.subgrid-rows</span> to the grid and set <span class="code-ref">--jf-subgrid-rows</span> to each item's direct-child count. It makes every item a <span class="code-ref">subgrid</span> of shared row tracks, so those rows align across the whole set. Works for any repeating component with a consistent structure (cards, media objects, pricing tiles&hellip;). Two conditions: items sit <em>directly</em> in the grid (no <span class="css-ref">.col</span> wrapper), and every item has the same <span class="code-ref">--jf-subgrid-rows</span> structure. Compose with <span class="css-ref">.grid</span> or <span class="css-ref">.auto-grid</span>; override <span class="code-ref">grid-auto-rows: minmax(min-content, 1fr)</span> on it if you want short rows to stretch rather than sit content-height.</p>
+  <pre class="language-markup"><code><!--
+      <div class="auto-grid subgrid-rows" style="--jf-subgrid-rows: 3">
+        <article class="card"> heading / body / footer </article>
+        …
+      </div>
+      --></code></pre>
+  <div class="auto-grid subgrid-rows" style="--jf-subgrid-rows: 3">
+    <article class="card">
+      <div class="card-section"><h4>Short heading</h4></div>
+      <div class="card-section"><p>A little body copy.</p></div>
+      <footer class="card-section card-footer"><a href="#" class="button">Action</a></footer>
+    </article>
+    <article class="card">
+      <div class="card-section"><h4>A longer heading that wraps onto two lines</h4></div>
+      <div class="card-section"><p>This item carries more body copy so it's taller overall &mdash; yet its heading, body and footer rows still align with the items either side, because each is a subgrid of the same three tracks.</p></div>
+      <footer class="card-section card-footer"><a href="#" class="button">Action</a></footer>
+    </article>
+    <article class="card">
+      <div class="card-section"><h4>Short heading</h4></div>
+      <div class="card-section"><p>A little body copy.</p></div>
+      <footer class="card-section card-footer"><a href="#" class="button">Action</a></footer>
+    </article>
+  </div>
+  <p><strong>Support:</strong> <span class="code-ref">subgrid</span> is Baseline; where it's missing the items just don't cross-align &mdash; still fully usable.</p>
+</div>
+
+<div id="migration">
+  <h2 class="h3">v4 &rarr; v5 migration</h2>
+  <table class="has-border">
+    <thead><tr><th>v4</th><th>v5</th></tr></thead>
+    <tbody>
+      <tr><td><span class="css-ref">.row</span> as your only grid</td><td>Still works &mdash; or switch the class to <span class="css-ref">.grid</span> for the CSS Grid engine (add explicit <span class="css-ref">.{bp}-{n}</span> to any column that relied on flex auto-sizing).</td></tr>
+      <tr><td><span class="css-ref">.offset-sm-3</span></td><td><span class="css-ref">.grid</span> + <span class="css-ref">.col-start</span> / <span class="css-ref">.col-end</span>, a spacer <span class="css-ref">.col</span>, or a margin utility.</td></tr>
+      <tr><td><span class="css-ref">.collapse</span></td><td>Unchanged &mdash; same class zeroes the gutter on <span class="css-ref">.grid</span> and <span class="css-ref">.row</span>, with <span class="css-ref">.collapse-{bp}</span> / <span class="css-ref">.nocollapse-{bp}</span> variants.</td></tr>
+      <tr><td><span class="variable-ref">$cols</span>, <span class="variable-ref">$grid-has-order</span>, <span class="variable-ref">$grid-has-offset</span></td><td>Gone. 12 columns and ordering are always generated; offsets are removed.</td></tr>
+      <tr><td><span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></td><td>Gone. The base column class is <span class="css-ref">xs</span>; base gutters are the <span class="code-ref">--jf-grid-gutter</span> / <span class="code-ref">--jf-container-gutter</span> defaults.</td></tr>
+      <tr><td>Per-breakpoint <span class="code-ref">container-width</span> / <span class="code-ref">-max-width</span> / <span class="code-ref">-gutter</span> / <span class="code-ref">col-gutter</span> in <span class="variable-ref">$breakpoints</span></td><td>Custom properties: <span class="code-ref">--jf-container-max</span>, <span class="code-ref">--jf-container-gutter</span>, <span class="code-ref">--jf-grid-gutter</span>. Override at <span class="code-ref">:root</span> / a scope in your own <span class="code-ref">@media</span>.</td></tr>
+      <tr><td>Per-breakpoint <span class="code-ref">root-font-size</span> / <span class="code-ref">root-line-height</span></td><td>Removed. Root type is 16px / 1.5 everywhere. Reintroduce responsive root type by overriding <span class="code-ref">--jf-root-font-size</span> / <span class="code-ref">--jf-root-line-height</span> in your own <span class="code-ref">@media</span>.</td></tr>
+      <tr><td>Re-keying <span class="variable-ref">$breakpoints</span></td><td>The map is fixed at 600 / 900 / 1200 / 1800. The media mixins still take a raw px value (<span class="code-ref">@include above(950px)</span>), so one-off widths are fine &mdash; you just don't get generated column classes for them. Container queries cover the rest.</td></tr>
+    </tbody>
+  </table>
 </div>
 @@include('./src/docs/partials/html-footer.html')

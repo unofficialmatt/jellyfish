@@ -1,0 +1,78 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-inline: calc(#{token(grid-gutter)} * -0.5);
+
+  > .col {
+    padding-inline: calc(#{token(grid-gutter)} * 0.5);
+  }
+}
+
+// Bare columns fill equally from sm up.
+@include above(sm) {
+  .row > .col {
+    flex: 1 1 0;
+    max-width: 100%;
+  }
+}
+
+@for $i from 1 through $grid-columns {
+  .row > .col.xs-#{$i} {
+    flex: 0 0 #{$grid-one-col * $i};
+    max-width: #{$grid-one-col * $i};
+  }
+}
+@each $point, $px in $breakpoints {
+  @include above($point) {
+    @for $i from 1 through $grid-columns {
+      .row > .col.#{$point}-#{$i} {
+        flex: 0 0 #{$grid-one-col * $i};
+        max-width: #{$grid-one-col * $i};
+      }
+    }
+    .row > .col.#{$point}-auto {
+      flex: 0 0 auto;
+      max-width: none;
+      width: auto;
+    }
+    // fill remaining space (flex-only)
+    .row > .col.#{$point}-0 {
+      flex: 1 1 0;
+      max-width: 100%;
+    }
+  }
+}
+.row > .col.col-auto {
+  flex: 0 0 auto;
+  max-width: none;
+  width: auto;
+}
+.row > .col.col-0 {
+  flex: 1 1 0;
+  max-width: 100%;
+}
+
+// Zero the gutter.
+.row.collapse {
+  margin-inline: 0;
+  > .col {
+    padding-inline: 0;
+  }
+}
+@each $point, $px in $breakpoints {
+  @include above($point) {
+    .row.collapse-#{$point} {
+      margin-inline: 0;
+      > .col {
+        padding-inline: 0;
+      }
+    }
+    .row.nocollapse-#{$point} {
+      margin-inline: calc(#{token(grid-gutter)} * -0.5);
+      > .col {
+        padding-inline: calc(#{token(grid-gutter)} * 0.5);
+      }
+    }
+  }
+}

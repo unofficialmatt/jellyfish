@@ -1,0 +1,105 @@
+body.ct {
+  margin: 0;
+  padding-block: token(space-lg) token(space-2xl);
+  // Contains the residual scrollbar-width bleed overshoot without creating a
+  // scroll container.
+  overflow-x: clip;
+
+  // Fixed rulers at the true viewport edges — a bleed is correct when a
+  // bleeding block's edge sits on these (or, with a classic scrollbar, just
+  // under the right one).
+  .vp-edge {
+    position: fixed;
+    inset-block: 0;
+    width: token(border-width-strong);
+    background: token(color-error-500);
+    z-index: 9999;
+    pointer-events: none;
+
+    &.start {
+      inset-inline-start: 0;
+    }
+    &.end {
+      inset-inline-end: 0;
+    }
+  }
+
+  // Live readout, top-right.
+  .readout {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    z-index: 9999;
+    margin: 0;
+    padding: token(space-2xs) token(space-xs);
+    font-family: token(font-monospace);
+    font-size: token(font-size-xs);
+    line-height: token(leading-base);
+    background: token(color-neutral-900);
+    color: token(color-neutral-50);
+    white-space: pre;
+    border-end-start-radius: token(radius-md);
+    pointer-events: none;
+  }
+
+  section {
+    margin-block-end: token(space-xl);
+  }
+  h2 {
+    margin-block: 0 token(space-3xs);
+  }
+  .note {
+    margin-block: 0 token(space-md);
+    max-width: 80ch;
+  }
+
+  // Content-box marker (where the container's content sits).
+  .block {
+    background: token(color-primary-50);
+    border: token(border-width) token(border-style) token(color-primary-300);
+    color: token(color-primary-900);
+    padding: token(space-sm);
+    border-radius: token(radius-md);
+  }
+
+  // A block that bleeds — distinct colour so the edges read clearly. No
+  // explicit width, so a symmetric .bleed works.
+  .edge-block {
+    background: token(color-success-50);
+    border-color: token(color-success-400);
+    color: token(color-success-900);
+  }
+
+  .measure::after {
+    content: " — resized width: " attr(data-w);
+    color: token(color-text-muted);
+    font-size: 0.85em;
+  }
+
+  // Page-cap section: mark the shell edges.
+  .shell {
+    position: relative;
+    outline: token(border-width-strong) token(border-style) token(color-secondary-600);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      inset-block: calc(#{token(space-sm)} * -1);
+      width: token(border-width-strong);
+      background: token(color-secondary-600);
+    }
+    &::before {
+      inset-inline-start: 0;
+    }
+    &::after {
+      inset-inline-end: 0;
+    }
+  }
+
+  hr {
+    margin-block: token(space-sm);
+    border: 0;
+    border-block-start: token(border-width) dashed token(border-color);
+  }
+}

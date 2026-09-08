@@ -6,71 +6,21 @@
 @@include('./src/docs/partials/navigation.html')
 <h1 class="section-heading h2">Breakpoints<a href="./variables.html#breakpoints">[ Variable Reference ]</a></h1>
 <div>
-  <p class="standfirst">Jellyfish is designed to be flexible, allowing an infinite number of user-defined (and user-named) breakpoints.</p>
-  <p>These are declared through the <span class="variable-ref">$breakpoints</span> SCSS map. Upon code compile, css class names will be generated for each breakpoint, for columns <span class="css-ref">.$breakpoint-*</span> and modifiers <span class="css-ref">.order-$breakpoint-*</span>, <span class="css-ref">.hide-$breakpoint-*</span>.</p>
-  <h2 class="h3">Example breakpoint definition</h2>
-  <pre>
-    <code class="language-scss line-numbers">
-      md: (
-      breakpoint: 900px,
-      container-width: 90%,
-      container-max-width: 1140px,
-      container-gutter: 0px,
-      root-font-size: 18px,
-      root-line-height: 1.6,
-      col-gutter: get-size(2),
-    ),
-    </code>
-  </pre>
-  <p>Jellyfish is mobile-first, so breakpoint settings will inherit upwards if not defined. Rather than targetting specific devices, the default breakpoints are set to <a href="https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/" target="_blank">sensible agnostic sizes</a>.</p>
-  <p><span class="bold">Note:</span> The <span class="variable-ref">$breakpoints</span> map is merged with map-merge() into defaults, so if you need to remove an item for your project, you will need to use <a href="https://sass-lang.com/documentation/modules/map/" target="_blank">map.remove()</a>.</p>
-  <p><span class="bold">Note:</span> Javascript also requires breakpoints to be defined. These are defined through the Javascript variable <span class="variable-ref">breakPoints</span> and must be manually kept in sync with the SCSS breakpoints.</p>
+  <p class="standfirst">Four fixed breakpoints &mdash; <span class="code-ref">sm</span> 600px, <span class="code-ref">md</span> 900px, <span class="code-ref">lg</span> 1200px, <span class="code-ref">xl</span> 1800px.</p>
+  <p>They live in the <span class="variable-ref">$breakpoints</span> SCSS map as a flat <span class="code-ref">key: px</span> lookup. The keys are the class-name namespace for the grid and visibility APIs (<span class="css-ref">.md-6</span>, <span class="css-ref">.order-sm-3</span>, <span class="css-ref">.hide-lg</span>&hellip;); the values feed the media-query mixins below.</p>
+  <p><span class="bold">The map is fixed &mdash; not a consumer override surface.</span> Pre-container-query, fine-grained breakpoint tuning had to happen in the Sass map; it doesn't now. That doesn't lock you to four widths: the <a href="#media-queries">media-query mixins</a> take a raw px value too, so <span class="code-ref">@include above(950px)</span> works and compiles to a plain <span class="code-ref">@media (min-width: 59.375em)</span> &mdash; you're just not registering a <em>named</em> breakpoint (no <span class="css-ref">.950-6</span> column classes get generated). <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries" target="_blank">Container queries</a> and hand-written <span class="code-ref">@media</span> cover the rest.</p>
+  <p>What the map used to carry <em>per breakpoint</em> &mdash; container width / max-width / gutter, column gutter, root font-size / line-height &mdash; is now custom properties you override at <span class="code-ref">:root</span> or a scope: <span class="code-ref">--jf-container-max</span>, <span class="code-ref">--jf-container-gutter</span>, <span class="code-ref">--jf-grid-gutter</span>, <span class="code-ref">--jf-root-font-size</span>, <span class="code-ref">--jf-root-line-height</span>. See the <a href="./grid.html#migration">grid migration table</a>.</p>
+  <pre class="language-scss"><code><!--
+      // reintroduce responsive root type in your own stylesheet
+      @media (min-width: 56.25em) {
+        :root { --jf-root-font-size: 1.0625rem; --jf-root-line-height: 1.6; }
+      }
+      --></code></pre>
+  <p><span class="bold">Note:</span> the JavaScript <span class="variable-ref">breakPoints</span> object (<span class="code-ref">src/js/breakpoints.js</span>) mirrors these values for scripts that need them. It's already in sync and, now the values are fixed, stays that way.</p>
 </div>
 <div>
-  <h2 class="h3">Terminology</h2>
-  <table class="has-border">
-    <thead>
-      <tr>
-        <th>Term</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>breakpoint</td>
-        <td>The width at which the breakpoint will take effect. This must be provided in px and will be converted to an em value through the breakpoint mixin. <strong>This variable is required.</strong></td>
-      </tr>
-      <tr>
-        <td>container-width</td>
-        <td>The width of the <span class="css-ref">.container</span> element at this breakpoint - should be provided as %, px or rem.</td>
-      </tr>
-      <tr>
-        <td>container-max-width</td>
-        <td>The maximum width of the <span class="css-ref">.container</span> element at this breakpoint - should be provided as px or rem.</td>
-      </tr>
-      <tr>
-        <td>container-gutter</td>
-        <td>Padding applied to the left and right of the <span class="css-ref">.container</span> element - this should be provided as px value.</td>
-      </tr>
-      <tr>
-        <td>col-gutter</td>
-        <td>Padding applied to the left and right of <span class="css-ref">.col</span> elements - this should be provided as a px value. <strong>This variable is required.</strong></td>
-      </tr>
-      <tr>
-        <td>root-font-size</td>
-        <td>Global base font size (applied to <span class="css-ref">body</span>) which will affect all elements sized with em. Useful for improving legibility at different breakpoints. This should be provided as a px value.</td>
-      </tr>
-      <tr>
-        <td>root-line-height</td>
-        <td>Global base line-height (applied to <span class="css-ref">body</span>) which will affect all elements that do not have a line-height applied. Can be provided as a number, em or px.</td>
-      </tr>
-    </tbody>
-  </table>
-  <p><strong>Note:</strong> You can also configure settings for the smallest devices (i.e. before any media queries are activated) by setting the following variables: <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$root-font-size</span>, <span class="variable-ref">$root-line-height</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span></p>
-</div>
-<div>
-  <h2 class="h3">Media queries</h2>
-  <p>Jellyfish comes with three media query mixins. These mixins are flexible, allowing you to specify either a <span class="variable-ref">$breakpoint</span> name from your breakpoint map or a px value. The below examples are all valid uses of the media query mixins.</p>
+  <h2 id="media-queries" class="h3">Media queries</h2>
+  <p>Jellyfish comes with three media query mixins. Pass either a <span class="variable-ref">$breakpoint</span> name (<span class="code-ref">sm</span> / <span class="code-ref">md</span> / <span class="code-ref">lg</span> / <span class="code-ref">xl</span>) or an arbitrary px value &mdash; both resolve to an <span class="code-ref">em</span>-based <span class="code-ref">@media</span> query. The examples below are all valid.</p>
   <pre class="language-scss">
     <code>
       // 1. Use the mixin within an element declaration

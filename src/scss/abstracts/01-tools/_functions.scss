@@ -119,6 +119,7 @@ $token-prefix: jf !default;
 @function get-color($base, $shade: 500) {
   @return _color-token("color", $base, $shade);
 }
+// Type-scale accessor — the get-color / get-space analogue for font sizes.
 @function font-size($size) {
   @return _map-token($size, $type-scale, "font-size");
 }

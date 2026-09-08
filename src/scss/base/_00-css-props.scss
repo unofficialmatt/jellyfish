@@ -27,8 +27,21 @@
   #{token-name("color-headings")}: #{$color-headings-preferred};
   @include surface-text-tiers;
   #{token-name("accessibility-focus-color")}: #{$accessibility-focus-color};
-  /* Grid */
-  #{token-name("grid-gutter")}: #{$base-col-gutter};
+  /* Grid & container */
+  #{token-name("grid-gutter")}: #{token(space-sm)};
+  #{token-name("container-gutter")}: #{token(space-md)};
+  #{token-name("container-max")}: 1140px;
+  @include above(sm) {
+    #{token-name("grid-gutter")}: #{token(space-md)};
+    #{token-name("container-gutter")}: #{token(space-lg)};
+  }
+  @include above(xl) {
+    #{token-name("container-max")}: 1280px;
+  }
+  #{token-name("bleed-space")}: max(
+    #{token(container-gutter)},
+    calc((100vw - #{token(container-max)}) / 2)
+  );
   /* Typography */
   #{token-name("font-primary")}: #{$font-primary};
   #{token-name("font-secondary")}: #{$font-secondary};
@@ -118,33 +131,6 @@
   #{token-name("navbar-link-padding-x")}: #{$navbar-link-padding-x};
   #{token-name("navbar-link-padding-y")}: #{$navbar-link-padding-y};
   #{token-name("navbar-dropdown-width")}: #{$navbar-dropdown-width};
-
-  @each $point, $i in $breakpoints {
-    // for each breakpoint defined...
-    @include above($point) {
-      @if (map-deep-get($breakpoints, $point, "col-gutter") != null) {
-        #{token-name("grid-gutter")}: #{map-deep-get(
-            $breakpoints,
-            $point,
-            "col-gutter"
-          )};
-      }
-      @if (map-deep-get($breakpoints, $point, "root-font-size") != null) {
-        #{token-name("root-font-size")}: #{map-deep-get(
-            $breakpoints,
-            $point,
-            "root-font-size"
-          )};
-      }
-      @if (map-deep-get($breakpoints, $point, "root-line-height") != null) {
-        #{token-name("root-line-height")}: #{map-deep-get(
-            $breakpoints,
-            $point,
-            "root-line-height"
-          )};
-      }
-    }
-  }
 }
 
 // Reduced motion: zero the duration tokens in one place. Everything animated

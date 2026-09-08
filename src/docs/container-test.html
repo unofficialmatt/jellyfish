@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Container &amp; bleed test ~ 🎐 Jellyfish UI</title>
+  <meta name="description" content="Standalone harness for .container sizing and .bleed layouts — no docs sidebar, so the viewport maths is honest.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+  <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+</head>
+
+<body class="ct">
+  <div class="vp-edge start"></div>
+  <div class="vp-edge end"></div>
+  <pre class="readout" id="readout">…</pre>
+
+  <section>
+    <div class="container">
+      <h2>1. Default <code>.container</code></h2>
+      <p class="note">Content should cap at <code>--jf-container-max</code> (1140px, 1280px from <code>xl</code>) and stay centred; below that, side space = <code>--jf-container-gutter</code>. The primary-tinted block marks the content box.</p>
+      <div class="block">content box &mdash; left/right edges are the container's inner edges</div>
+      <hr>
+      <p class="note">Full bleed: <code>.bleed</code> (<code>margin-inline: calc(var(--jf-bleed-space) * -1)</code>). The green bleeding block's edges must land on the viewport rulers &mdash; or, with an overlay scrollbar, exactly on them; with a classic scrollbar the right edge sits <em>under</em> the scrollbar (harness <code>overflow-x: clip</code> hides the overflow).</p>
+      <div class="block edge-block bleed">.bleed &mdash; should touch both rulers</div>
+      <hr>
+      <div class="block edge-block bleed-start">.bleed-start &mdash; left edge on the ruler, right edge aligned with content</div>
+      <div style="height:.5rem"></div>
+      <div class="block edge-block bleed-end">.bleed-end &mdash; right edge on the ruler</div>
+      <p class="note" style="margin-block-start:1.5rem;">The <code>.bleed*</code> classes use only a negative <code>margin-inline</code> and let the box auto-size. A hand-rolled <code>width: 100vw</code> bleed lands in the same place when content is capped, but always overshoots by a scrollbar-width even on narrow screens where <code>.bleed</code> is exact &mdash; so there's no reason to add an explicit width. <code>overflow-x: clip</code> on <code>&lt;body&gt;</code> mops up the residual overshoot when it happens.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container is-wide">
+      <h2>2. <code>.container.is-wide</code></h2>
+      <p class="note"><code>--jf-container-max</code> lifted to 1800px; padding maths otherwise identical. Bleed still reaches the edges &mdash; <code>--jf-bleed-space</code> re-resolves on this container against the wider max.</p>
+      <div class="block">is-wide content box</div>
+      <hr>
+      <div class="block edge-block bleed">.bleed inside .is-wide</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container" style="--jf-container-max: 800px; --jf-container-gutter: 3rem;">
+      <h2>3. Consumer overrides</h2>
+      <p class="note">Inline <code>--jf-container-max: 800px; --jf-container-gutter: 3rem</code> on the container. Content caps at 800px; min side space 3rem; bleed still exact.</p>
+      <div class="block">narrow (800px) content box</div>
+      <hr>
+      <div class="block edge-block bleed">.bleed &mdash; still edge to edge</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>4. Nested container</h2>
+      <p class="note">Inner <code>.container</code> resets its own padding and sets <code>--jf-bleed-space: 0</code>. A bleed <em>inside the inner one</em> does nothing (expected) &mdash; bleed relative to the outermost container only.</p>
+      <div class="block">
+        outer container content
+        <div class="container" style="background:var(--jf-color-neutral-100);">
+          <div class="block" style="background:var(--jf-color-white);">inner container content (flush with outer)</div>
+          <div class="block edge-block bleed" style="margin-block-start:.5rem;">.bleed inside the nested container &mdash; no movement</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="page shell" style="--jf-page-max: 2400px;">
+      <div class="container">
+        <h2>5. Page cap &mdash; <code>.page</code> + <code>--jf-page-max: 2400px</code></h2>
+        <p class="note">On a viewport wider than 2400px the shell (secondary-tinted edges) is narrower than the viewport (rulers). <code>.bleed</code> should now land on the <strong>shell</strong> edges, not the viewport edges.</p>
+        <div class="block">content box inside the capped shell</div>
+        <hr>
+        <div class="block edge-block bleed">.bleed &mdash; touches the shell edges</div>
+        <hr>
+        <div class="grid">
+          <div class="col md-4"><div class="block">text column</div></div>
+          <div class="col md-7 col-end bleed-end"><div class="block edge-block">.bleed-end &mdash; right edge on the ruler</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>6. Column bleed</h2>
+      <p class="note">Two-column <code>.grid</code>, right column bleeds its outer edge with <code>.bleed-end</code>. Its right edge should land on the viewport ruler; the left column and the gutter between are untouched.</p>
+      <div class="grid">
+        <div class="col md-6"><div class="block">text column</div></div>
+        <div class="col md-6 bleed-end"><div class="block edge-block">.bleed-end &mdash; right edge on the ruler</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>7. Breakpoint bleed variants (<code>.grid</code>)</h2>
+      <p class="note">Resize across 900px (<code>md</code>) and 1200px (<code>lg</code>). The right column bleeds only between <code>md</code> and <code>lg</code>: <code>.bleed-end-md</code> turns it on from <code>md</code> up, <code>.bleed-none-lg</code> turns it off again from <code>lg</code> up.</p>
+      <div class="grid">
+        <div class="col md-6 bleed-start-md bleed-none-lg"><div class="block edge-block">.bleed-start-md .bleed-none-lg</div></div>
+        <div class="col md-6"><div class="block">Text column</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-right: 300px; outline: 1px dashed var(--jf-color-error-400);">
+    <div class="container">
+      <h2>8. Off-centre container &mdash; expected to break</h2>
+      <p class="note">This <code>&lt;section&gt;</code> has <code>padding-right: 300px</code> (dashed outline = its content box). The container still sizes fine, but it's no longer centred in the viewport &mdash; so <code>--jf-bleed-space</code> (measured against <code>100vw</code>) is wrong: the bleed overshoots the left ruler and stops ~300px short of the right one. This is the documented limitation, not a bug to fix.</p>
+      <div class="block">content box &mdash; shifted left of viewport centre</div>
+      <hr>
+      <div class="block edge-block bleed">.bleed &mdash; misaligned both sides</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>9. Container regime check</h2>
+      <p class="note measure" id="m1" data-w="?">Resize the window slowly and watch the readout. Content width should be exactly 1140px once <code>(100vw - 1140) / 2 &gt; gutter</code>, and exactly 1280px past <code>xl</code> (1800px).</p>
+      <div class="block" id="probe">probe block (content width mirrored in the readout)</div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var readout = document.getElementById('readout');
+      var probe = document.getElementById('probe');
+      var firstContainer = document.querySelector('.container');
+      var m1 = document.getElementById('m1');
+
+      function px(n) { return Math.round(n * 100) / 100 + 'px'; }
+
+      function update() {
+        var cs = getComputedStyle(firstContainer);
+          var space = cs.paddingInlineStart;
+        var probeRect = probe.getBoundingClientRect();
+        var lines = [
+          'innerWidth         ' + window.innerWidth + '  (= 100vw, incl scrollbar)',
+          'documentElement.cW ' + document.documentElement.clientWidth + '  (usable width)',
+          'scrollbar          ' + (window.innerWidth - document.documentElement.clientWidth) + 'px',
+          '--jf-container-max ' + (cs.getPropertyValue('--jf-container-max').trim() || '(unset here)'),
+          '--jf-container-gut ' + (cs.getPropertyValue('--jf-container-gutter').trim() || '(unset here)'),
+          '--jf-bleed-space   ' + (cs.getPropertyValue('--jf-bleed-space').trim() || '?'),
+          'resolved padding   ' + space + '  (100%-based, exact)',
+          'probe content w    ' + px(probeRect.width) + '  (should == container-max)',
+          'probe left offset  ' + px(probeRect.left)
+        ];
+        readout.textContent = lines.join('\n');
+        if (m1) m1.setAttribute('data-w', window.innerWidth + ' → content ' + px(probeRect.width));
+      }
+
+      update();
+      window.addEventListener('resize', update, { passive: true });
+      window.addEventListener('scroll', update, { passive: true });
+    })();
+  </script>
+</body>
+
+</html>

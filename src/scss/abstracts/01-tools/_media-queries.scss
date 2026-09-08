@@ -2,7 +2,7 @@
 @mixin above($min) {
   $bp-min: $min;
   @if map-has-key($breakpoints, $min) {
-      $bp-min: map-deep-get($breakpoints, $min, 'breakpoint');
+      $bp-min: map-get($breakpoints, $min);
   }
   @else if (str-index(#{$min}, 'px')) {
     // Do nothing, move to next step
@@ -17,7 +17,7 @@
 @mixin between($min, $max) {
   $bp-min: $min;
   @if map-has-key($breakpoints, $min) {
-      $bp-min: map-deep-get($breakpoints, $min, 'breakpoint');
+      $bp-min: map-get($breakpoints, $min);
   }
   @else if (str-index(#{$min}, 'px')) {
     // Do nothing, move to next step
@@ -27,7 +27,7 @@
   }
   $bp-max: $max;
   @if map-has-key($breakpoints, $max) {
-      $bp-max: map-deep-get($breakpoints, $max, 'breakpoint');
+      $bp-max: map-get($breakpoints, $max);
   }
   @else if (str-index(#{$max}, 'px')) {
     // Do nothing, move to next step
@@ -42,7 +42,7 @@
 @mixin below($max) {
   $bp-max: $max;
   @if map-has-key($breakpoints, $max) {
-      $bp-max: map-deep-get($breakpoints, $max, 'breakpoint');
+      $bp-max: map-get($breakpoints, $max);
   }
   @else if (str-index(#{$max}, 'px')) {
     // Do nothing, move to next step

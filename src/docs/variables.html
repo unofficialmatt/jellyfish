@@ -58,7 +58,7 @@
   </table>
 
   <h2 id="line-height-scale" class="h5">Line height</h2>
-  <p>Unitless leading steps for utility and component use. <span class="code-ref">--jf-leading-base</span> matches <span class="variable-ref">$root-line-height</span>; the responsive <span class="variable-ref">$root-line-height</span> (retuned per breakpoint) stays the source for the body itself. Reference with <a href="./mixins.html">get-leading()</a>. Retune via <span class="variable-ref">$leading-scale</span>.</p>
+  <p>Unitless leading steps for utility and component use. <span class="variable-ref">$root-line-height</span> is pointed at <span class="code-ref">--jf-leading-base</span>, so the body's line-height and this scale stay in sync. Reference with <a href="./mixins.html">get-leading()</a>. Retune via <span class="variable-ref">$leading-scale</span>.</p>
   <table class="is-responsive has-border">
     <thead>
       <tr><th>Token</th><th>Value</th><th>Use</th></tr>
@@ -174,7 +174,7 @@
       <tr>
         <td><span class="variable-ref">$type-scale</span></td>
         <td><span class="italic">(SCSS map)</span></td>
-        <td>A map of key: value pairs used to generate font sizes. <span class="bold">These are output as custom CSS properties eg --font-size-lg. The map is designed to scale progressively and usually doesn't need modifying.</td>
+        <td>A map of key: value pairs used to generate font sizes. <span class="bold">These are output as custom CSS properties eg --font-size-lg. The map is designed to scale progressively and usually doesn't need modifying.</span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$font-sizes-h1</span>, <span class="variable-ref">$font-sizes-h2</span>,<span class="variable-ref">$font-sizes-h3</span>,<span class="variable-ref">$font-sizes-h4</span>,<span class="variable-ref">$font-sizes-h5</span>,<span class="variable-ref">$font-sizes-h6</span>,</td>
@@ -184,12 +184,11 @@
       <tr>
         <td><span class="variable-ref">$root-font-size</span></td>
         <td><span class="code-ref">var(--jf-font-size-base)</span></td>
-        <td>The root font size at the smallest device size. <br><br><span class="bold">This is output as a custom CSS property --jf-root-font-size; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(root-font-size)</span>. The CSS property is automatically overwritten at each breakpoint defined in the <span class="variable-ref">$breakpoints</span> map.</span></td>
+        <td>The root font size (applied to <span class="css-ref">body</span>). Output as <span class="code-ref">--jf-root-font-size</span>; reference in SCSS with <span class="code-ref">token(root-font-size)</span>. Single value everywhere &mdash; the old per-breakpoint retune is gone; override the custom property in your own <span class="code-ref">@media</span> for responsive root type.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$root-line-height</span></td>
-        <td>1.5</td>
-        <td>The root line-height at the smallest device size. <br><br><span class="bold">This is output as a custom CSS property --jf-root-line-height; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(root-line-height)</span>. The CSS property is automatically overwritten at each breakpoint defined in the <span class="variable-ref">$breakpoints</span> map.</span></td>
+        <td><span class="code-ref">token(leading-base)</span></td>
+        <td>The root line-height (applied to <span class="css-ref">body</span>), pointed at <span class="code-ref">--jf-leading-base</span> (1.5). Output as <span class="code-ref">--jf-root-line-height</span>; reference with <span class="code-ref">token(root-line-height)</span>. It's a <span class="code-ref">var()</span> now, so passing it to Sass maths errors &mdash; use the token. Single value everywhere; override the custom property per <span class="code-ref">@media</span> for responsive root leading.</td>
       </tr>
 
       <tr>
@@ -372,8 +371,8 @@
     <tbody>
       <tr>
         <td><span class="variable-ref">$breakpoints</span></td>
-        <td><span class="italic">(SCSS map)</span></td>
-        <td>Multi-dimensional map of <a href="./breakpoints.html">breakpoint settings</a>.</td>
+        <td><span class="code-ref">(sm: 600px, md: 900px, lg: 1200px, xl: 1800px)</span></td>
+        <td>Flat <span class="code-ref">key: px</span> map, <a href="./breakpoints.html">fixed</a> &mdash; not overridable. Keys are the grid / visibility class namespace; values feed the media mixins.</td>
       </tr>
     </tbody>
   </table>
@@ -531,7 +530,7 @@
     <tbody>
       <tr>
         <td><span class="variable-ref">$card-border-radius</span></td>
-        <td><span class="code-ref"> get-size(0.75)</td>
+        <td><span class="code-ref">token(radius-lg)</span></td>
         <td>The border radius for <span class="css-ref">.card</span> elements.</td>
       </tr>
       <tr>
@@ -742,44 +741,50 @@
   <!-- TODO: forms.scss -->
 
   <h2 id="grid" class="h5">Grid</h2>
+  <p>The grid has no Sass settings. Layout is tuned through custom properties (override at <span class="code-ref">:root</span> or a scope). See the <a href="./grid.html">Grid</a> page.</p>
   <table class="is-responsive has-border">
     <thead>
       <tr>
-        <th>Variable</th>
+        <th>Custom property</th>
         <th>Default value</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="variable-ref">$cols</span></td>
-        <td>12</td>
-        <td>How many columns to use in your grid. You can change this if you want, but you probably want to keep it at 12.</td>
+        <td><span class="code-ref">--jf-grid-gutter</span></td>
+        <td><span class="code-ref">--jf-space-sm</span> &rarr; <span class="code-ref">--jf-space-md</span> from <span class="code-ref">sm</span></td>
+        <td>Space between columns &mdash; <span class="code-ref">gap</span> on <span class="css-ref">.grid</span> / <span class="css-ref">.auto-grid</span>, negative margin + padding on <span class="css-ref">.row</span>.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$grid-has-order</span></td>
-        <td>true</td>
-        <td>Whether or not to generate <span class="css-ref">.order-*</span> <a href="./grid.html">modifier classes</a></td>
+        <td><span class="code-ref">--jf-container-max</span></td>
+        <td>1140px &rarr; 1280px from <span class="code-ref">xl</span></td>
+        <td>The widest the <span class="css-ref">.container</span> content strip gets.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$grid-has-offset</span></td>
-        <td>true</td>
-        <td>Whether or not to generate <span class="css-ref">.offset-*</span> <a href="./grid.html">modifier classes</a></td>
+        <td><span class="code-ref">--jf-container-gutter</span></td>
+        <td><span class="code-ref">--jf-space-md</span> &rarr; <span class="code-ref">--jf-space-lg</span> from <span class="code-ref">sm</span></td>
+        <td>Minimum side space on the <span class="css-ref">.container</span> before the content cap engages.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$base-col-name</span></td>
-        <td>xs</td>
-        <td>The base name for <span class="variable-ref">$breakpoint</span>-style modifiers at the smallest screen widths.</td>
+        <td><span class="code-ref">--jf-page-max</span></td>
+        <td><span class="italic">unset</span></td>
+        <td>Optional cap on the whole page shell, applied via the <span class="css-ref">.page</span> class. When set, container side space (and therefore <span class="css-ref">.bleed*</span>) is measured against the shell width, not the raw viewport.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$base-container-gutter</span></td>
-        <td><span class="code-ref">get-space(md)</span></td>
-        <td>The base gutter around the <span class="css-ref">.container</span> element, used on the smallest screen widths.</td>
+        <td><span class="code-ref">--jf-bleed-space</span></td>
+        <td><span class="italic">computed</span></td>
+        <td><span class="code-ref">max(gutter, (100vw - max) / 2)</span> &mdash; viewport-based side space for the <span class="css-ref">.bleed</span> / <span class="css-ref">.bleed-start</span> / <span class="css-ref">.bleed-end</span> helpers (and their <span class="code-ref">-{bp}</span> / <span class="code-ref">-none-{bp}</span> variants), re-capped to <span class="code-ref">min(100vw, --jf-page-max)</span> inside <span class="css-ref">.page</span>. The container's own padding is <span class="code-ref">100%</span>-based (exact) and doesn't use this. Read it, don't set it. <span class="bold">Bleeds assume the container is centred in the viewport</span> &mdash; an ancestor that offsets it (asymmetric padding/margin, a fixed sidebar) breaks them; see <a href="./grid.html#migration">Grid</a>.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$base-col-gutter</span></td>
-        <td><span class="code-ref">get-space(sm)</span></td>
-        <td>The base gutter around <span class="css-ref">.col</span> elements, used on the smallest screen widths. The CSS property --jf-grid-gutter is automatically overwritten at each breakpoint defined in the <span class="variable-ref">$breakpoints</span> map.</span></td>
+        <td><span class="code-ref">--jf-col-min</span></td>
+        <td>18rem <span class="italic">(fallback)</span></td>
+        <td>Per-instance minimum column width for <span class="css-ref">.auto-grid</span> before it wraps.</td>
+      </tr>
+      <tr>
+        <td><span class="code-ref">--jf-subgrid-rows</span></td>
+        <td>1 <span class="italic">(fallback)</span></td>
+        <td>On a <span class="css-ref">.subgrid-rows</span> grid: how many internal rows each item spans and aligns. Set it to the items' shared direct-child count.</td>
       </tr>
     </tbody>
   </table>

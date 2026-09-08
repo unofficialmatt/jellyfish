@@ -115,20 +115,6 @@ body.font-size {
   &-lg {
     #{token-name("root-font-size")}: calc(#{$root-font-size} * 1.2);
   }
-
-  @each $point, $i in $breakpoints {
-    @include above($point) {
-      @if (map-deep-get($breakpoints, $point, "root-font-size") != null) {
-        $font-size: #{map-deep-get($breakpoints, $point, "root-font-size")};
-        &-md {
-          #{token-name("root-font-size")}: calc(#{$font-size} * 1.1);
-        }
-        &-lg {
-          #{token-name("root-font-size")}: calc(#{$font-size} * 1.2);
-        }
-      }
-    }
-  }
 }
 
 a[href^="mailto:"] {

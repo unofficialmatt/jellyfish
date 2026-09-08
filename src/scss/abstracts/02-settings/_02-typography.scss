@@ -25,9 +25,8 @@ $type-scale: map-merge(
   $type-scale
 );
 
-// DOCUMENT ROOT FONT SIZE AND LINE HEIGHT AT SMALLEST DEVICE WIDTH
 $root-font-size: token(font-size-base) !default;
-$root-line-height: 1.5 !default; // responsive (retuned per breakpoint) — kept as-is NOTE: MAYBE REMOVE LATER IN REFACTOR
+$root-line-height: token(leading-base) !default;
 
 $leading-scale: () !default;
 $leading-scale: map-merge(

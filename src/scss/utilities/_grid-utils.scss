@@ -4,6 +4,16 @@
     display: flex !important;
   }
 }
+// On a .grid / .auto-grid: align each item's internal rows via subgrid.
+.subgrid-rows {
+  grid-auto-rows: max-content;
+
+  > * {
+    grid-row: span var(#{token-name("subgrid-rows")}, 1);
+    display: grid !important;
+    grid-template-rows: subgrid !important;
+  }
+}
 // Converts anything into a flex container {
 .flex {
   display: flex !important;

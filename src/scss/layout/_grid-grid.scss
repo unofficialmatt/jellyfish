@@ -1,0 +1,68 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(#{$grid-columns}, minmax(0, 1fr));
+  gap: token(grid-gutter);
+
+  > .col {
+    #{token-name("col-span")}: #{$grid-columns};
+    grid-column: span var(#{token-name("col-span")});
+  }
+}
+
+.grid.collapse {
+  gap: 0;
+}
+
+@for $i from 1 through $grid-columns {
+  .grid > .col.xs-#{$i} {
+    #{token-name("col-span")}: #{$i};
+  }
+}
+@each $point, $px in $breakpoints {
+  @include above($point) {
+    @for $i from 1 through $grid-columns {
+      .grid > .col.#{$point}-#{$i} {
+        #{token-name("col-span")}: #{$i};
+      }
+    }
+    .grid.collapse-#{$point} {
+      gap: 0;
+    }
+    .grid.nocollapse-#{$point} {
+      gap: token(grid-gutter);
+    }
+  }
+}
+
+.grid > .col.col-start {
+  grid-column: 1 / span var(#{token-name("col-span")});
+}
+.grid > .col.col-end {
+  grid-column: span var(#{token-name("col-span")}) / -1;
+}
+
+@mixin col-bleed($n) {
+  max-width: none;
+  width: calc(100% + var(#{token-name("bleed-space")}) * #{$n});
+}
+.grid > .col.bleed {
+  @include col-bleed(2);
+}
+.grid > .col.bleed-start,
+.grid > .col.bleed-end {
+  @include col-bleed(1);
+}
+@each $point, $px in $breakpoints {
+  @include above($point) {
+    .grid > .col.bleed-#{$point} {
+      @include col-bleed(2);
+    }
+    .grid > .col.bleed-start-#{$point},
+    .grid > .col.bleed-end-#{$point} {
+      @include col-bleed(1);
+    }
+    .grid > .col.bleed-none-#{$point} {
+      width: auto;
+    }
+  }
+}

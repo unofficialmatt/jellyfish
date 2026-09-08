@@ -104,15 +104,23 @@
 </ul>
 <p>The <span class="code-ref">smooth()</span> mixin is renamed <span class="code-ref">motion()</span> (<span class="code-ref">smooth()</span> still works as an alias). For an off-tempo transition, redefine <span class="code-ref">--jf-transition</span> (or its parts) on a scope &mdash; it cascades.</p>
 
+<h2 class="h3">Grid</h2>
+<p>New <span class="css-ref">.grid</span> &mdash; a CSS Grid on the same 12-column class API as <span class="css-ref">.row</span>. Use <span class="css-ref">.grid</span> by default; keep <span class="css-ref">.row</span> (flexbox) where you need grow-to-fill columns. Also new: <span class="css-ref">.auto-grid</span> (count-agnostic equal columns), <span class="css-ref">.col-start</span> / <span class="css-ref">.col-end</span> placement utilities, and <span class="css-ref">.collapse</span> (zero-gutter) now on both engines.</p>
+<ul>
+  <li><span class="bold">Container is bleed-friendly.</span> Its side space is <span class="code-ref">100%</span>-based padding (exact &mdash; content is precisely <span class="code-ref">--jf-container-max</span>). New <span class="css-ref">.bleed</span> / <span class="css-ref">.bleed-start</span> / <span class="css-ref">.bleed-end</span> helpers (with <span class="code-ref">-{bp}</span> and <span class="code-ref">-none-{bp}</span> variants) break an element out to the page edge &mdash; put <span class="css-ref">.bleed-end</span> on the last column of a two-column <span class="css-ref">.grid</span> for the classic image-off-the-edge layout. Optional <span class="css-ref">.page</span> + <span class="code-ref">--jf-page-max</span> caps the shell on ultrawide monitors. Knobs: <span class="code-ref">--jf-container-max</span>, <span class="code-ref">--jf-container-gutter</span>, <span class="code-ref">--jf-page-max</span>.</li>
+  <li><span class="bold">Breakpoints are fixed</span> at 600 / 900 / 1200 / 1800. <span class="variable-ref">$breakpoints</span> is a flat <span class="code-ref">key: px</span> map, no longer a <span class="code-ref">!default</span>. Per-breakpoint container / gutter / root-size values moved to custom properties.</li>
+  <li><span class="bold">Removed:</span> <span class="css-ref">.offset-*</span> and push/pull; <span class="variable-ref">$cols</span>, <span class="variable-ref">$grid-has-order</span>, <span class="variable-ref">$grid-has-offset</span>, <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span>; the per-breakpoint <span class="code-ref">root-font-size</span> / <span class="code-ref">root-line-height</span> retune. Full <a href="./grid.html#migration">migration table</a>.</li>
+</ul>
+
 <h2 class="h3">Tables</h2>
 <p><span class="code-ref">table</span> elements now have smaller font sizes by default with a new SASS / CSS property: <span class="css-ref">$table-font-size</span> / <span class="css-ref">--table-font-size</span> .</p>
 <p>Tables can now be <a href="./tables.html">modified with colors</a> from the <span class="variable-ref">$colors</span> map.</p>
 
 <table>
   <thead>
-    <tr></tr>
-    <th>Color</th>
-    <th>Example</th>
+    <tr>
+      <th>Color</th>
+      <th>Example</th>
     </tr>
   </thead>
   <tbody>
@@ -162,6 +170,7 @@
         </table>
       </td>
     </tr>
+  </tbody>
 </table>
 
 <h2 class="h3">Text Balancing</h2>

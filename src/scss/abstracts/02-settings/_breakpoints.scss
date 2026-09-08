@@ -1,34 +1,11 @@
-// Breakpoints inherit upwards from the previous breakpoint.
-// The keys are used in column and modifier classes.
-// breakpoint and container-width are the only required values.
+@use "sass:math";
 
-$breakpoints: () !default;
-$breakpoints: map-merge(
-  (
-    sm: (
-      breakpoint: 600px,
-      container-width: 100%,
-      container-gutter: get-space(lg),
-      col-gutter: get-space(md),
-    ),
-    md: (
-      breakpoint: 900px,
-      container-width: 90%,
-      container-max-width: 1140px,
-      container-gutter: 0px,
-      root-font-size: 16px,
-      root-line-height: 1.4,
-      col-gutter: get-space(md),
-    ),
-    lg: (
-      breakpoint: 1200px,
-      container-width: 1140px,
-      container-max-width: none,
-    ),
-    xl: (
-      breakpoint: 1800px,
-      container-width: 1280px,
-    ),
-  ),
-  $breakpoints
+$breakpoints: (
+  sm: 600px,
+  md: 900px,
+  lg: 1200px,
+  xl: 1800px,
 );
+
+$grid-columns: 12;
+$grid-one-col: math.div(100%, $grid-columns);
