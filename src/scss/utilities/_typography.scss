@@ -27,7 +27,7 @@
   font-weight: get-weight(xbold) !important;
 }
 .weight-black {
-  font-weight: get-weight(black) !important;
+  font-weight: get-weight("black") !important;
 }
 
 .h1 {
@@ -51,14 +51,6 @@
 
 .small {
   @extend %small;
-}
-
-.text-muted {
-  color: token(color-text-muted) !important;
-}
-
-.text-subtle {
-  color: token(color-text-subtle) !important;
 }
 
 .nowrap {

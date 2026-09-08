@@ -4040,13 +4040,6 @@ body.ct hr {
   border-block-start: var(--jf-border-width) dashed var(--jf-border-color);
 }
 
-.docs-container {
-  width: 96%;
-  margin: 0 auto;
-  max-width: 100rem;
-  padding-bottom: var(--jf-space-md);
-}
-
 .navbar-logo {
   width: 7.5rem;
   margin-bottom: var(--jf-flow);
@@ -4708,6 +4701,18 @@ button.font-size-lg {
   color: var(--jf-color-error-500) !important;
 }
 
+.text-muted {
+  color: var(--jf-color-text-muted) !important;
+}
+
+.text-subtle {
+  color: var(--jf-color-text-subtle) !important;
+}
+
+.text-soft {
+  color: var(--jf-color-text-soft) !important;
+}
+
 input[type=checkbox]:focus,
 input[type=radio]:focus, [type=color]:focus, [type=date]:focus, [type=datetime]:focus, [type=datetime-local]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=url]:focus, [type=week]:focus, [type=time]:focus, select:focus, textarea:focus, .button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus,
 a:focus {
@@ -5180,14 +5185,6 @@ a[href^="mailto:"] {
 .h6 {
   line-height: var(--jf-leading-tight) !important;
   font-size: var(--jf-font-size-md) !important;
-}
-
-.text-muted {
-  color: var(--jf-color-text-muted) !important;
-}
-
-.text-subtle {
-  color: var(--jf-color-text-subtle) !important;
 }
 
 .nowrap {

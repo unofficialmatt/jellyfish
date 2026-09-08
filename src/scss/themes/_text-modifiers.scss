@@ -4,3 +4,15 @@
     color: get-color($key) !important;
   }
 }
+
+.text-muted {
+  color: token(color-text-muted) !important;
+}
+
+.text-subtle {
+  color: token(color-text-subtle) !important;
+}
+
+.text-soft {
+  color: token(color-text-soft) !important;
+}

@@ -233,7 +233,7 @@
 }
 
 @mixin h1 {
-  line-height: $heading-line-height !important;
+  line-height: $heading-line-height !important; // TODO: THESE SHOULD BE COMPARATIVE OT THE FONT SIZE WHEN WE MAKE THIS CLAMP
   @each $point, $size in $font-sizes-h1 {
     @if $point == "root" {
       // Root font size at smallest device width
