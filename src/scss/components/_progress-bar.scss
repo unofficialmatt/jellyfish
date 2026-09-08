@@ -71,9 +71,9 @@
         @include createProgressBar($key);
       }
     }
-    &.white {
-      #{token-name("progress-bar-color")}: #{token(color-white)};
-      #{token-name("progress-bar-color-unknown")}: #{token(color-white)};
+    &.soft {
+      #{token-name("progress-bar-color")}: #{token(color-bg-soft)};
+      #{token-name("progress-bar-color-unknown")}: #{token(color-bg-soft)};
     }
   }
 

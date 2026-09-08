@@ -169,9 +169,9 @@ a.button {
       @include createButton($key);
     }
   }
-  &.white {
-    #{token-name("button-color-theme")}: #{token(color-white)};
-    #{token-name("button-color-text")}: #{token(color-text)};
+  &.soft {
+    #{token-name("button-color-theme")}: #{token(color-bg-soft)};
+    #{token-name("button-color-text")}: #{token(color-text-soft)};
     @if $button-hover-value != 500 {
       #{token-name("button-hover-color-theme")}: #{get-color-role(neutral, subtle)};
     }

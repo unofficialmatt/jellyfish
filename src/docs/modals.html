@@ -9,13 +9,14 @@
   <p class="standfirst">Since v4.1.0, Jellyfish has included support for native <span class="code-ref">&lt;dialog></span> elements for the display of modals. This removes dependencies on external Javascript libraries and ensures that modal elements are accessible as standard.</p>
   <p>To avoid being opinionated on the <span class="code-ref">&lt;dialog></span> element, the <span class="css-ref">.modal</span> class is required on the element. The modal is targetted with a button or anchor calling <span class="code-ref">toggleModal('id')</span> where the argument is the ID of the dialog element. Close buttons are automatically appended to modals via Javascript, on initialization.</p>
   <p>To preserve padding and layout, a <span class="css-ref">.modal</span> should contain a <span class="css-ref">.modal-content</span> element, used to contain the modal's content. The <span class="css-ref">.modal</span> element is a flex element; consequently adding <span class="css-ref">.modal-header</span> or <span class="css-ref">.modal-footer</span> will ensure they are always visible. This allows for key information or call-to-actions to always be in sight.</p>
+  <p>The dialog is its own <a href="./theme-colors.html">surface</a> at the <span class="css-ref">.bg-soft</span> level &mdash; white-ish in light, a raised dark tint in dark &mdash; so its text, headings and muted tiers are set against the panel, not inherited from the page. You don't need (and shouldn't add) a <span class="css-ref">.bg-*</span> class on the <span class="code-ref">&lt;dialog></span>; override <span class="css-ref">--jf-color-surface</span> on <span class="css-ref">.modal</span> if you want a different fill.</p>
 </div>
 <div>
   <h2 class="h3">A basic modal</h2>
   <pre class="language-markup">
     <code><!--
       <button onclick="toggleModal('dialog');">Open modal</button>
-      <dialog id="dialog" class="modal bg-white">
+      <dialog id="dialog" class="modal">
         <div class="modal-header">
           <h2>This is a modal</h2>
         </div>
@@ -27,7 +28,7 @@
   --></code>
   </pre>
   <button onclick="toggleModal('dialog');">Open modal</button>
-  <dialog id="dialog" class="modal bg-white">
+  <dialog id="dialog" class="modal">
     <div class="modal-header">
       <h2>This is a modal</h2>
     </div>
@@ -83,31 +84,31 @@
     <button class="button small" onclick="toggleModal('modal-group-5');">Open modal 5</button>
   </div>
 
-  <dialog id="modal-group-1" class="modal bg-white" data-modalgroup="modalGroup">
+  <dialog id="modal-group-1" class="modal" data-modalgroup="modalGroup">
     <div class="modal-content">
       <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
       <p class="h4">This content is in the first modal of the group</p>
     </div>
   </dialog>
-  <dialog id="modal-group-2" class="modal bg-white" data-modalgroup="modalGroup">
+  <dialog id="modal-group-2" class="modal" data-modalgroup="modalGroup">
     <div class="modal-content">
       <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
       <p class="h4">This content is in the second modal of the group</p>
     </div>
   </dialog>
-  <dialog id="modal-group-3" class="modal bg-white" data-modalgroup="modalGroup">
+  <dialog id="modal-group-3" class="modal" data-modalgroup="modalGroup">
     <div class="modal-content">
       <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
       <p class="h4">This content is in the third modal of the group</p>
     </div>
   </dialog>
-  <dialog id="modal-group-4" class="modal bg-white" data-modalgroup="modalGroupAlt" data-title="Modal Four">
+  <dialog id="modal-group-4" class="modal" data-modalgroup="modalGroupAlt" data-title="Modal Four">
     <div class="modal-content">
       <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
       <p class="h4">This content is in the first modal of the second group</p>
     </div>
   </dialog>
-  <dialog id="modal-group-5" class="modal bg-white" data-modalgroup="modalGroupAlt">
+  <dialog id="modal-group-5" class="modal" data-modalgroup="modalGroupAlt">
     <div class="modal-content">
       <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
       <p class="h4">This content is in the second modal of the second group</p>

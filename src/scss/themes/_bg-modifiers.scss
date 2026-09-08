@@ -10,11 +10,20 @@
   background-color: token(color-surface);
 }
 
-.bg-white {
-  #{token-name("color-surface")}: #{token(color-white)};
-  #{token-name("color-text")}: #{surface-contrast-color($color-white)};
-  #{token-name("color-headings")}: #{surface-heading-color($color-white)};
-  @include surface-text-tiers;
+.bg-soft {
+  @include surface(
+    token(color-bg-soft),
+    token(color-text-soft),
+    token(color-headings-soft)
+  );
+}
+
+.bg-inverse {
+  @include surface(
+    token(color-bg-inverse),
+    token(color-text-inverse),
+    token(color-headings-inverse)
+  );
 }
 
 // Build the full list of surface classes: one per palette family (using that

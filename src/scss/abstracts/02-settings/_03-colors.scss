@@ -19,6 +19,15 @@ $color-white: #ffffff !default;
 $color-black: #000000 !default;
 $body-background-color: #faf9f6 !default;
 
+// Neutral surface modifiers. Both flip with the dark remap (see jf-dark-tokens):
+//  .bg-soft    — one step off the canvas, not emphasised. #fff in light, a raised
+//                dark tint in dark. What a component reaches for when it needs a
+//                little elevation without a theme colour.
+//  .bg-inverse — a full reverse of the page: the opposite theme's canvas, so it
+//                reads as a deliberate high-contrast block ($dark-body-background-color
+//                in light, $body-background-color in dark; text/headings follow).
+$soft-background-color: $color-white !default;
+
 $color-subtle-shade: 50 !default; // faint tinted backgrounds
 $color-muted-shade: 300 !default; // borders, low-emphasis fills, visited links
 $color-emphasis-shade: 700 !default; // hover / active, heading tone
@@ -42,6 +51,7 @@ $selection-color: token(color-text) !default;
 // DARK MODE
 $dark-mode-enabled: true !default;
 $dark-body-background-color: #14171c !default;
+$dark-soft-background-color: #1e222a !default;
 $dark-color-role-shades: (
   subtle: 800,
   muted: 700,

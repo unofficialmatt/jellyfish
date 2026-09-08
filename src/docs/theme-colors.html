@@ -46,7 +46,7 @@
 </div>
 <div>
   <h2 class="h3">Background modifiers</h2>
-  <p>A <span class="css-ref">.bg-{family}</span> class is generated for every family in <span class="variable-ref">$colors</span> &mdash; <span class="css-ref">.bg-primary</span>, <span class="css-ref">.bg-neutral</span>, &hellip; each painting that family at its <span class="code-ref">500</span> value &mdash; plus <span class="css-ref">.bg-white</span>. Put one on <em>any</em> element to theme it as a surface; don't set the tokens by hand.</p>
+  <p>A <span class="css-ref">.bg-{family}</span> class is generated for every family in <span class="variable-ref">$colors</span> &mdash; <span class="css-ref">.bg-primary</span>, <span class="css-ref">.bg-neutral</span>, &hellip; each painting that family at its <span class="code-ref">500</span> value. Put one on <em>any</em> element to theme it as a surface; don't set the tokens by hand.</p>
   <div class="row collapse text-center" style="margin-block-end: 1rem">
     <div class="col bg-primary" style="padding: 0.75rem">.bg-primary</div>
     <div class="col bg-secondary" style="padding: 0.75rem">.bg-secondary</div>
@@ -55,6 +55,16 @@
     <div class="col bg-warning" style="padding: 0.75rem">.bg-warning</div>
     <div class="col bg-error" style="padding: 0.75rem">.bg-error</div>
   </div>
+  <p>Two <span class="bold">neutral surfaces</span> sit alongside the families and <span class="bold">flip with the theme</span>:</p>
+  <ul>
+    <li><span class="css-ref">.bg-soft</span> &mdash; a little elevation off the canvas, not emphasised. Literal white in light (a gentle lift against the warm off-white body), a raised dark tint in dark. This is what a panel, callout, chip or modal reaches for when it wants to read as slightly raised without taking a theme colour.</li>
+    <li><span class="css-ref">.bg-inverse</span> &mdash; a full reverse of the page: the opposite theme's canvas, so it reads as a deliberate high-contrast block (dark in light mode, light in dark mode), with its text and headings following.</li>
+  </ul>
+  <div class="row collapse text-center" style="margin-block-end: 1rem">
+    <div class="col bg-soft" style="padding: 0.75rem;">.bg-soft</div>
+    <div class="col bg-inverse" style="padding: 0.75rem">.bg-inverse</div>
+  </div>
+  <p>Set the pair per project with <span class="variable-ref">$soft-background-color</span> / <span class="variable-ref">$dark-soft-background-color</span>, or at runtime via <span class="css-ref">--jf-color-bg-soft</span> and its <span class="css-ref">--jf-color-text-soft</span> / <span class="css-ref">--jf-color-headings-soft</span> companions (and the matching <span class="css-ref">--jf-color-*-inverse</span> set).</p>
   <p>For a <span class="bold">specific shade</span> or a <span class="bold">one-off colour</span>, add an entry to the <span class="variable-ref">$background-colors</span> map &mdash; key is the class suffix, value is a <code class="code-ref">get-color()</code> reference or a raw CSS colour. Reusing a family name as the key overrides its auto class.</p>
   <pre class="language-scss">
     <code>

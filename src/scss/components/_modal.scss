@@ -6,6 +6,14 @@ $nav-button-gap: 8px;
 }
 
 dialog.modal {
+  @include surface(
+    token(color-bg-soft),
+    token(color-text-soft),
+    token(color-headings-soft)
+  );
+  background-color: token(color-surface);
+  color: token(color-text);
+
   &::backdrop {
     background-color: $modal-backdrop-color;
     opacity: $modal-backdrop-opacity;

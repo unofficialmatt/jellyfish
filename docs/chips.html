@@ -211,7 +211,7 @@
 </div>
 <div>
   <h2 class="h3">Colors and Outlines</h2>
-  <p>Use modifier classes to change the coloring / semantics of the chip, or to display the chip as an outlined chip.</p>
+  <p>Use modifier classes to change the coloring / semantics of the chip, or to display the chip as an outlined chip. <span class="css-ref">.soft</span> and <span class="css-ref">.inverse</span> are neutral surfaces that flip with the theme &mdash; a step off the canvas, and the reverse of the page.</p>
   <pre class="language-markup">
     <code><!--
     <div class="chip-list">
@@ -227,6 +227,10 @@
       <span class="chip warning outline">Warning Outline</span>
       <span class="chip error">Error</span>
       <span class="chip error outline">Error Outline</span>
+      <span class="chip soft">Soft</span>
+      <span class="chip soft outline">Soft Outline</span>
+      <span class="chip inverse">Inverse</span>
+      <span class="chip inverse outline">Inverse Outline</span>
     </div>
   --></code>
   </pre>
@@ -243,6 +247,10 @@
     <span class="chip warning outline">Warning Outline</span>
     <span class="chip error">Error</span>
     <span class="chip error outline">Error Outline</span>
+    <span class="chip soft">Soft</span>
+    <span class="chip soft outline">Soft Outline</span>
+    <span class="chip inverse">Inverse</span>
+    <span class="chip inverse outline">Inverse Outline</span>
   </div>
 </div>
 <div>
@@ -250,14 +258,14 @@
   <p>Chips can be nested...</p>
   <pre class="language-markup">
     <code><!--
-    <h2>Heading 2 <span class="chip">Notifications <span class="chip white bold">5</span></span></h2>
-    <h2>Heading 2 <span class="chip error">Errors <span class="chip white bold">14</span></span></h2>
-    <h2>Heading 2 <span class="chip warning">OK <span class="chip white">That's<span class="chip success bold">enough!</span></span></span></h2>
+    <h2>Heading 2 <span class="chip">Notifications <span class="chip soft bold">5</span></span></h2>
+    <h2>Heading 2 <span class="chip error">Errors <span class="chip soft bold">14</span></span></h2>
+    <h2>Heading 2 <span class="chip warning">OK <span class="chip soft">That's<span class="chip success bold">enough!</span></span></span></h2>
   --></code>
   </pre>
-  <h2>Heading 2 <span class="chip">Notifications <span class="chip white bold">5</span></span></h2>
-  <h2>Heading 2 <span class="chip error">Errors <span class="chip white bold">14</span></span></h2>
-  <h2>Heading 2 <span class="chip warning">OK <span class="chip white">That's<span class="chip success bold">enough!</span></span></span></h2>
+  <h2>Heading 2 <span class="chip">Notifications <span class="chip soft bold">5</span></span></h2>
+  <h2>Heading 2 <span class="chip error">Errors <span class="chip soft bold">14</span></span></h2>
+  <h2>Heading 2 <span class="chip warning">OK <span class="chip soft">That's<span class="chip success bold">enough!</span></span></span></h2>
 </div>
 <div>
   <h2 class="h3">Create-your-own</h2>

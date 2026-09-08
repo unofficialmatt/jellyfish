@@ -26,8 +26,16 @@
 
   #{token-name("color-text")}: #{$color-text};
   #{token-name("color-headings")}: #{$color-headings-preferred};
-  @include surface-text-tiers;
   #{token-name("accessibility-focus-color")}: #{$accessibility-focus-color};
+
+  @include surface-text-tiers;
+  /* Surfaces */
+  #{token-name("color-bg-soft")}: #{$soft-background-color};
+  #{token-name("color-text-soft")}: #{$color-text};
+  #{token-name("color-headings-soft")}: #{$color-headings-preferred};
+  #{token-name("color-bg-inverse")}: #{$dark-body-background-color};
+  #{token-name("color-text-inverse")}: #{token(color-neutral-50)};
+  #{token-name("color-headings-inverse")}: #{token(color-neutral-25)};
   /* Grid & container */
   #{token-name("grid-gutter")}: #{token(space-sm)};
   #{token-name("container-gutter")}: #{token(space-md)};

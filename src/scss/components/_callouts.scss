@@ -46,9 +46,9 @@
         @include createCallout($key);
       }
     }
-    &.white {
-      #{token-name("callout-bg-color")}: token(color-white);
-      #{token-name("callout-color")}: #{surface-contrast-color($color-white)};
+    &.soft {
+      #{token-name("callout-bg-color")}: #{token(color-bg-soft)};
+      #{token-name("callout-color")}: #{token(color-text-soft)};
     }
   }
 }

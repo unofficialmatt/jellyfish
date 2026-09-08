@@ -225,8 +225,9 @@ div.code-toolbar {
 
 // Boxed Out Example
 .boxed {
-  background: get-color(neutral, 25);
-  border: 1px solid get-color(neutral, 100);
+  background: get-color-role(neutral, subtle);
+  color: token(color-on-neutral-subtle);
+  border: 1px solid get-color-role(neutral, muted);
   padding: get-space(xs) get-space(sm);
   line-height: 1.2;
   margin: 0 0 token(flow) 0;
@@ -236,14 +237,16 @@ div.code-toolbar {
 }
 
 .row-boxed {
-  background-color: get-color(neutral, 25);
+  background-color: get-color-role(neutral, subtle);
+  color: token(color-on-neutral-subtle);
   min-height: 160px;
   margin-bottom: token(flow);
   padding: token(flow) 0;
   .boxed {
     margin: 0;
-    background-color: token(color-white);
-    border: 1px solid get-color(neutral, 300);
+    background-color: token(color-bg-soft);
+    color: token(color-text-soft);
+    border: 1px solid get-color-role(neutral, muted);
   }
 }
 

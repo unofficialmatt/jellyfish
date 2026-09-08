@@ -97,6 +97,20 @@
   );
 }
 
+// One declaration for "this element is its own surface". Sets the surface + its
+// paired text (and heading) colour and re-mixes the muted / subtle text tiers
+// against the new surface. Links are left alone — they keep whatever
+// --jf-link-color* is in scope (the :root role aliases, which flip); a consumer
+// sets --jf-link-color in their own rule for a per-surface accent.
+@mixin surface($surface, $on, $headings: null) {
+  #{token-name("color-surface")}: #{$surface};
+  #{token-name("color-text")}: #{$on};
+  @if $headings != null {
+    #{token-name("color-headings")}: #{$headings};
+  }
+  @include surface-text-tiers;
+}
+
 // jf-dark-tokens repoints the semantic colour tokens and the step-role aliases
 // for a dark canvas.
 @mixin jf-dark-tokens {
@@ -110,6 +124,13 @@
   // the tiers here so they mix against the dark text/surface (same reason
   // .bg-* rules re-include this).
   @include surface-text-tiers;
+
+  #{token-name("color-bg-soft")}: #{$dark-soft-background-color};
+  #{token-name("color-text-soft")}: #{token(color-neutral-50)};
+  #{token-name("color-headings-soft")}: #{token(color-neutral-25)};
+  #{token-name("color-bg-inverse")}: #{$body-background-color};
+  #{token-name("color-text-inverse")}: #{$color-text};
+  #{token-name("color-headings-inverse")}: #{$color-headings-preferred};
 
   // Step-role aliases + their "on" companions, repointed per family.
   @each $family, $palette in $colors {
@@ -151,14 +172,30 @@
       ),
       (
         "dark link active"
-          get-color-raw($link-color, map-get($dark-color-role-shades, strong)) $bg
+          get-color-raw($link-color, map-get($dark-color-role-shades, strong))
+          $bg
       ),
       (
         "dark link visited"
-          get-color-raw($link-color, map-get($dark-color-role-shades, muted)) $bg
+          get-color-raw($link-color, map-get($dark-color-role-shades, muted))
+          $bg
       )
     ),
     "dark mode core pairs"
+  );
+
+  // The hand-set neutral surfaces, both halves of the flip.
+  @include apca-lint(
+    (
+      ("bg-soft light" get-color-raw(neutral, 1000) $soft-background-color),
+      ("bg-soft dark" get-color-raw(neutral, 50) $dark-soft-background-color),
+      (
+        "bg-inverse light" get-color-raw(neutral, 50)
+          $dark-body-background-color
+      ),
+      ("bg-inverse dark" get-color-raw(neutral, 1000) $body-background-color)
+    ),
+    "surface modifiers (.bg-soft / .bg-inverse)"
   );
 }
 

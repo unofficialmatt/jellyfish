@@ -27,9 +27,13 @@
         @include createChip($key);
       }
     }
-    &.white {
-      #{token-name("chip-color-theme")}: #{token(color-white)};
-      #{token-name("chip-color-text")}: #{token(color-text)};
+    &.soft {
+      #{token-name("chip-color-theme")}: #{token(color-bg-soft)};
+      #{token-name("chip-color-text")}: #{token(color-text-soft)};
+    }
+    &.inverse {
+      #{token-name("chip-color-theme")}: #{token(color-bg-inverse)};
+      #{token-name("chip-color-text")}: #{token(color-text-inverse)};
     }
     &.outline {
       #{token-name("chip-color-text")}: inherit;

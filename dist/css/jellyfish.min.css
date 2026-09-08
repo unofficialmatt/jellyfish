@@ -237,9 +237,16 @@
   --jf-color-surface: var(--jf-color-bg);
   --jf-color-text: var(--jf-color-neutral-1000);
   --jf-color-headings: var(--jf-color-neutral-700);
+  --jf-accessibility-focus-color: rgb(0, 140, 255);
   --jf-color-text-muted: color-mix(in srgb, var(--jf-color-text) 70%, var(--jf-color-surface));
   --jf-color-text-subtle: color-mix(in srgb, var(--jf-color-text) 60%, var(--jf-color-surface));
-  --jf-accessibility-focus-color: rgb(0, 140, 255);
+  /* Surfaces */
+  --jf-color-bg-soft: #ffffff;
+  --jf-color-text-soft: var(--jf-color-neutral-1000);
+  --jf-color-headings-soft: var(--jf-color-neutral-700);
+  --jf-color-bg-inverse: #14171c;
+  --jf-color-text-inverse: var(--jf-color-neutral-50);
+  --jf-color-headings-inverse: var(--jf-color-neutral-25);
   /* Grid & container */
   --jf-grid-gutter: var(--jf-space-sm);
   --jf-container-gutter: var(--jf-space-md);
@@ -397,6 +404,12 @@
     --jf-color-headings: var(--jf-color-neutral-25);
     --jf-color-text-muted: color-mix(in srgb, var(--jf-color-text) 70%, var(--jf-color-surface));
     --jf-color-text-subtle: color-mix(in srgb, var(--jf-color-text) 60%, var(--jf-color-surface));
+    --jf-color-bg-soft: #1e222a;
+    --jf-color-text-soft: var(--jf-color-neutral-50);
+    --jf-color-headings-soft: var(--jf-color-neutral-25);
+    --jf-color-bg-inverse: #faf9f6;
+    --jf-color-text-inverse: var(--jf-color-neutral-1000);
+    --jf-color-headings-inverse: var(--jf-color-neutral-700);
     --jf-color-primary-subtle: var(--jf-color-primary-800);
     --jf-color-on-primary-subtle: var(--jf-color-on-primary-800);
     --jf-color-primary-muted: var(--jf-color-primary-700);
@@ -462,6 +475,12 @@
   --jf-color-headings: var(--jf-color-neutral-25);
   --jf-color-text-muted: color-mix(in srgb, var(--jf-color-text) 70%, var(--jf-color-surface));
   --jf-color-text-subtle: color-mix(in srgb, var(--jf-color-text) 60%, var(--jf-color-surface));
+  --jf-color-bg-soft: #1e222a;
+  --jf-color-text-soft: var(--jf-color-neutral-50);
+  --jf-color-headings-soft: var(--jf-color-neutral-25);
+  --jf-color-bg-inverse: #faf9f6;
+  --jf-color-text-inverse: var(--jf-color-neutral-1000);
+  --jf-color-headings-inverse: var(--jf-color-neutral-700);
   --jf-color-primary-subtle: var(--jf-color-primary-800);
   --jf-color-on-primary-subtle: var(--jf-color-on-primary-800);
   --jf-color-primary-muted: var(--jf-color-primary-700);
@@ -3446,10 +3465,10 @@ a.button.error {
 a.button.error.ghost {
   --jf-button-hover-color-text: var(--jf-color-error-700);
 }
-.button.white,
-a.button.white {
-  --jf-button-color-theme: var(--jf-color-white);
-  --jf-button-color-text: var(--jf-color-text);
+.button.soft,
+a.button.soft {
+  --jf-button-color-theme: var(--jf-color-bg-soft);
+  --jf-button-color-text: var(--jf-color-text-soft);
   --jf-button-hover-color-theme: var(--jf-color-neutral-subtle);
   color: var(--jf-button-color-text);
 }
@@ -3539,9 +3558,9 @@ a.button.white {
   --jf-callout-link-color-hover: var(--jf-color-error-strong);
   --jf-callout-heading-color: var(--jf-color-error-strong);
 }
-.callout.white {
-  --jf-callout-bg-color: var(--jf-color-white);
-  --jf-callout-color: #232931;
+.callout.soft {
+  --jf-callout-bg-color: var(--jf-color-bg-soft);
+  --jf-callout-color: var(--jf-color-text-soft);
 }
 
 .card {
@@ -3622,9 +3641,13 @@ a.button.white {
   --jf-chip-color-theme: var(--jf-color-error);
   --jf-chip-color-text: var(--jf-color-on-error-500);
 }
-.chip.white {
-  --jf-chip-color-theme: var(--jf-color-white);
-  --jf-chip-color-text: var(--jf-color-text);
+.chip.soft {
+  --jf-chip-color-theme: var(--jf-color-bg-soft);
+  --jf-chip-color-text: var(--jf-color-text-soft);
+}
+.chip.inverse {
+  --jf-chip-color-theme: var(--jf-color-bg-inverse);
+  --jf-chip-color-text: var(--jf-color-text-inverse);
 }
 .chip.outline {
   --jf-chip-color-text: inherit;
@@ -3693,6 +3716,13 @@ p .chip-list .chip-group {
 }
 
 dialog.modal {
+  --jf-color-surface: var(--jf-color-bg-soft);
+  --jf-color-text: var(--jf-color-text-soft);
+  --jf-color-headings: var(--jf-color-headings-soft);
+  --jf-color-text-muted: color-mix(in srgb, var(--jf-color-text) 70%, var(--jf-color-surface));
+  --jf-color-text-subtle: color-mix(in srgb, var(--jf-color-text) 60%, var(--jf-color-surface));
+  background-color: var(--jf-color-surface);
+  color: var(--jf-color-text);
   max-height: calc(100% - 6rem);
   width: 100%;
   max-width: min(var(--jf-modal-max-width), 100vw - 6rem);
@@ -3858,9 +3888,9 @@ body.has-open-modal {
   --jf-progress-bar-color: var(--jf-color-error);
   --jf-progress-bar-color-unknown: var(--jf-color-error-muted);
 }
-.progress.white {
-  --jf-progress-bar-color: var(--jf-color-white);
-  --jf-progress-bar-color-unknown: var(--jf-color-white);
+.progress.soft {
+  --jf-progress-bar-color: var(--jf-color-bg-soft);
+  --jf-progress-bar-color-unknown: var(--jf-color-bg-soft);
 }
 
 @keyframes animateIndeterminate {
@@ -4159,8 +4189,9 @@ div.code-toolbar > .toolbar button:hover, div.code-toolbar > .toolbar button:foc
 }
 
 .boxed {
-  background: var(--jf-color-neutral-25);
-  border: 0.06rem solid var(--jf-color-neutral-100);
+  background: var(--jf-color-neutral-subtle);
+  color: var(--jf-color-on-neutral-subtle);
+  border: 0.06rem solid var(--jf-color-neutral-muted);
   padding: var(--jf-space-xs) var(--jf-space-sm);
   line-height: 1.2;
   margin: 0 0 var(--jf-flow) 0;
@@ -4170,15 +4201,17 @@ div.code-toolbar > .toolbar button:hover, div.code-toolbar > .toolbar button:foc
 }
 
 .row-boxed {
-  background-color: var(--jf-color-neutral-25);
+  background-color: var(--jf-color-neutral-subtle);
+  color: var(--jf-color-on-neutral-subtle);
   min-height: 10rem;
   margin-bottom: var(--jf-flow);
   padding: var(--jf-flow) 0;
 }
 .row-boxed .boxed {
   margin: 0;
-  background-color: var(--jf-color-white);
-  border: 0.06rem solid var(--jf-color-neutral-300);
+  background-color: var(--jf-color-bg-soft);
+  color: var(--jf-color-text-soft);
+  border: 0.06rem solid var(--jf-color-neutral-muted);
 }
 
 .navbar .container {
@@ -4484,10 +4517,18 @@ button.font-size-lg {
   background-color: var(--jf-color-surface);
 }
 
-.bg-white {
-  --jf-color-surface: var(--jf-color-white);
-  --jf-color-text: #232931;
-  --jf-color-headings: var(--jf-color-neutral-700);
+.bg-soft {
+  --jf-color-surface: var(--jf-color-bg-soft);
+  --jf-color-text: var(--jf-color-text-soft);
+  --jf-color-headings: var(--jf-color-headings-soft);
+  --jf-color-text-muted: color-mix(in srgb, var(--jf-color-text) 70%, var(--jf-color-surface));
+  --jf-color-text-subtle: color-mix(in srgb, var(--jf-color-text) 60%, var(--jf-color-surface));
+}
+
+.bg-inverse {
+  --jf-color-surface: var(--jf-color-bg-inverse);
+  --jf-color-text: var(--jf-color-text-inverse);
+  --jf-color-headings: var(--jf-color-headings-inverse);
   --jf-color-text-muted: color-mix(in srgb, var(--jf-color-text) 70%, var(--jf-color-surface));
   --jf-color-text-subtle: color-mix(in srgb, var(--jf-color-text) 60%, var(--jf-color-surface));
 }

@@ -66,11 +66,11 @@
   <h2 class="h3">Elevation <span class="chip">--jf-shadow-*</span></h2>
   <p>Box-shadows that mix <code class="code-ref">--jf-shadow-color</code> toward transparent at each step's alpha. Reference with <a href="./mixins.html">get-shadow()</a> or the token name. Geometry in <span class="variable-ref">$shadow-scale</span>; hue in <span class="variable-ref">$shadow-color</span> / <code class="code-ref">--jf-shadow-color</code>.</p>
   <div style="display:flex; flex-wrap:wrap; gap:2rem; padding:1.5rem 0;">
-    <span class="dt-swatch bg-white" style="box-shadow:var(--jf-shadow-xs);">xs</span>
-    <span class="dt-swatch bg-white" style="box-shadow:var(--jf-shadow-sm);">sm</span>
-    <span class="dt-swatch bg-white" style="box-shadow:var(--jf-shadow-md);">md</span>
-    <span class="dt-swatch bg-white" style="box-shadow:var(--jf-shadow-lg);">lg</span>
-    <span class="dt-swatch bg-white" style="box-shadow:var(--jf-shadow-xl);">xl</span>
+    <span class="dt-swatch bg-soft" style="box-shadow:var(--jf-shadow-xs);">xs</span>
+    <span class="dt-swatch bg-soft" style="box-shadow:var(--jf-shadow-sm);">sm</span>
+    <span class="dt-swatch bg-soft" style="box-shadow:var(--jf-shadow-md);">md</span>
+    <span class="dt-swatch bg-soft" style="box-shadow:var(--jf-shadow-lg);">lg</span>
+    <span class="dt-swatch bg-soft" style="box-shadow:var(--jf-shadow-xl);">xl</span>
   </div>
 </div>
 
@@ -100,7 +100,7 @@
       <span class="dt-swatch bg-primary" style="inline-size:8rem; border-radius:var(--jf-radius-lg);"><code class="code-ref">radius-lg</code> &rarr; 1px</span>
       <span class="dt-swatch" style="inline-size:8rem; border:var(--jf-border-width) solid var(--jf-border-color); border-radius:var(--jf-radius-sm);"><code class="code-ref">border-width</code> &rarr; 4px</span>
       <span class="bg-neutral" style="display:block; padding:var(--jf-space-md); border-radius:var(--jf-radius-sm); font-size:0.8rem;">padding: <code class="code-ref">--jf-space-md</code> &rarr; 6px</span>
-      <span class="dt-swatch bg-white" style="inline-size:8rem; border-radius:var(--jf-radius-sm); box-shadow:var(--jf-shadow-lg);"><code class="code-ref">--jf-shadow-lg</code> full override</span>
+      <span class="dt-swatch bg-soft" style="inline-size:8rem; border-radius:var(--jf-radius-sm); box-shadow:var(--jf-shadow-lg);"><code class="code-ref">--jf-shadow-lg</code> full override</span>
     </div>
   </div>
   <p class="mt-3"><span class="bold">Components:</span> the framework's own <code class="code-ref">$*-border-radius</code>, border widths and element spacing move onto these tokens in Tranche 2 &mdash; after that, a wrapper override like this restyles a <span class="css-ref">.card</span> / <span class="css-ref">.button</span> / <span class="css-ref">.callout</span> the same way.</p>
