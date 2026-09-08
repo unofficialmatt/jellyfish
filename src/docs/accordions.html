@@ -1,70 +1,67 @@
 @@include('./src/docs/partials/html-head.html', { "title": "Accordions",
-"description": "ARIA accessible accordions.", })
+"description": "Accordions built on the native <details> element.", })
 @@include('./src/docs/partials/navigation.html')
 <h1 class="section-heading h2">
   Accordions<a href="./variables.html#accordions">[ Variable Reference ]</a>
 </h1>
 <div>
   <p class="standfirst">
-    Since v4.4.0, Jellyfish has included support for ARIA accessible accordions.
-    Accordions are a great way to present content in a limited space, allowing
-    users to expand and collapse sections as needed.
+    Jellyfish accordions are built on the native
+    <span class="css-ref">&lt;details&gt;</span> /
+    <span class="css-ref">&lt;summary&gt;</span> elements. Open/close state,
+    keyboard support and screen-reader semantics are all handled by the browser
+    &mdash; the framework JavaScript only adds optional
+    <a href="#tracking">analytics</a> and <a href="#deep-linking">deep-link</a>
+    conveniences on top.
   </p>
   <p>
-    Including an accordion pattern within Jellyfish UI reduces the reliance on
-    external Javascript libraries, ensuring a consistent experience across your
-    project.
+    Style comes from three classes on the native elements:
+    <span class="css-ref">.accordion</span> on the wrapper,
+    <span class="css-ref">.accordion-item</span> on each
+    <span class="css-ref">&lt;details&gt;</span>,
+    <span class="css-ref">.accordion-heading</span> on its
+    <span class="css-ref">&lt;summary&gt;</span>, and
+    <span class="css-ref">.accordion-panel</span> on the content wrapper.
   </p>
 </div>
 
 <div>
-  <h2 class="h3">A Basic Accordion</h2>
+  <h2 class="h3">A basic accordion</h2>
   <p>
-    Accordions require the following markup to function properly. When the
-    document loads, accordions will automatically be detected by Javascript and
-    made ARIA-accessible with automatic IDs, aria-attributes and the Accordion
-    Heading converted into a button.
-  </p>
-  <p>
-    You can inspect the rendered example to see what the markup looks like after
-    the Javascript has processed it.
+    A shared <span class="code-ref">name</span> on the
+    <span class="css-ref">&lt;details&gt;</span> elements makes the group
+    <span class="italic">exclusive</span> &mdash; opening one closes the others
+    (the browser's own behaviour, no script). Add
+    <span class="code-ref">open</span> to the item that should start expanded.
   </p>
   <pre class="language-markup">
     <code><!--
      <div class="accordion">
-      <div class="accordion-item">
-        <h3 class="accordion-heading">
-          <span>Ancient Survivors</span>
-        </h3>
+      <details class="accordion-item" name="jellyfish-facts" open>
+        <summary class="accordion-heading">Ancient Survivors</summary>
         <div class="accordion-panel">
           <p>Jellyfish have existed for over 500 million years, predating dinosaurs and even trees. Fossil evidence shows they've survived multiple mass extinction events that wiped out countless other species, making them one of Earth's most resilient life forms.</p>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h3 class="accordion-heading">
-          <span>Fishy Imposters</span>
-        </h3>
+      </details>
+      <details class="accordion-item" name="jellyfish-facts">
+        <summary class="accordion-heading">Fishy Imposters</summary>
         <div class="accordion-panel">
           <p>Despite the name, jellyfish aren't fish at all. They're invertebrates called medusae, belonging to the phylum Cnidaria. Scientists prefer the term "jellies" or "sea jellies" to avoid the confusion with actual fish.</p>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h3 class="accordion-heading">
-          <span>Watery Beasts</span>
-        </h3>
+      </details>
+      <details class="accordion-item" name="jellyfish-facts">
+        <summary class="accordion-heading">Watery Beasts</summary>
         <div class="accordion-panel">
-          <p>Jellyfish bodies are composed almost entirely of water, with no brain, heart, or bones. Their simple body structure consists mainly of a gelatinous umbrella-shaped bell and trailing tentacles. Despite lacking a brain, they have a basic nervous system that helps them detect light, odors, and other stimuli.</p>
+          <p>Jellyfish bodies are composed almost entirely of water, with no brain, heart, or bones.</p>
         </div>
-      </div>
+      </details>
     </div>
   --></code>
   </pre>
 
   <div class="accordion">
-    <div class="accordion-item">
-      <h3 class="accordion-heading">
-        <span>Ancient Survivors</span>
-      </h3>
+    <details class="accordion-item" name="jellyfish-facts" open>
+      <summary class="accordion-heading">Ancient Survivors</summary>
       <div class="accordion-panel">
         <p>
           Jellyfish have existed for over 500 million years, predating dinosaurs
@@ -73,11 +70,9 @@
           one of Earth's most resilient life forms.
         </p>
       </div>
-    </div>
-    <div class="accordion-item">
-      <h3 class="accordion-heading">
-        <span>Fishy Imposters</span>
-      </h3>
+    </details>
+    <details class="accordion-item" name="jellyfish-facts">
+      <summary class="accordion-heading">Fishy Imposters</summary>
       <div class="accordion-panel">
         <p>
           Despite the name, jellyfish aren't fish at all. They're invertebrates
@@ -86,12 +81,10 @@
           fish.
         </p>
       </div>
-    </div>
-    <div class="accordion-item">
-      <h3 class="accordion-heading">
-        <span>Watery Beasts</span>
-      </h3>
-      <div class="accordion-panel">
+    </details>
+    <details class="accordion-item" name="jellyfish-facts">
+      <summary class="accordion-heading">Watery Beasts</summary>
+      <div class="accordion-panel" id="watery-beasts">
         <p>
           Jellyfish bodies are composed almost entirely of water, with no brain,
           heart, or bones. Their simple body structure consists mainly of a
@@ -100,39 +93,50 @@
           detect light, odors, and other stimuli.
         </p>
       </div>
-    </div>
+    </details>
   </div>
 
-  <h2 class="h3">Accordion Options</h2>
+  <h2 class="h3">Exclusive or independent</h2>
   <p>
-    Add <span class="code-ref">data-allow-multiple</span> to allow multiple
-    accordion items to be open simultaneously. Add
-    <span class="code-ref">data-start-collapsed</span> to have all accordion
-    items start in a collapsed state.
+    Give every <span class="css-ref">&lt;details&gt;</span> in a group the same
+    <span class="code-ref">name</span> and only one can be open at a time. Leave
+    <span class="code-ref">name</span> off (or give items different names) and
+    each opens and closes on its own &mdash; the equivalent of the old
+    <span class="code-ref">data-allow-multiple</span>. Leave
+    <span class="code-ref">open</span> off every item and the accordion starts
+    fully collapsed &mdash; the equivalent of the old
+    <span class="code-ref">data-start-collapsed</span>.
   </p>
   <pre class="language-markup">
     <code><!--
-     <div class="accordion" data-allow-multiple data-start-collapsed>
-      ...
+     <div class="accordion">
+      <details class="accordion-item">
+        <summary class="accordion-heading">Independent — starts closed</summary>
+        <div class="accordion-panel">…</div>
+      </details>
+      <details class="accordion-item">
+        <summary class="accordion-heading">Also independent</summary>
+        <div class="accordion-panel">…</div>
+      </details>
     </div>
   --></code>
   </pre>
 
-  <div class="accordion" data-allow-multiple data-start-collapsed>
-    <div class="accordion-item">
-      <h5 class="accordion-heading">Immortality? Completed it, Mate.</h5>
+  <div class="accordion">
+    <details class="accordion-item">
+      <summary class="accordion-heading">Immortality? Completed it, Mate.</summary>
       <div class="accordion-panel">
         <p>
           The Turritopsis dohrnii can reverse its aging process and potentially
           live forever by reverting to its juvenile stage. When faced with
           injury, starvation, or old age, it transforms back into a polyp and
           starts its life cycle over again, essentially achieving biological
-          immortality?
+          immortality.
         </p>
       </div>
-    </div>
-    <div class="accordion-item">
-      <h3 class="accordion-heading">That stings!</h3>
+    </details>
+    <details class="accordion-item">
+      <summary class="accordion-heading">That stings!</summary>
       <div class="accordion-panel">
         <p>
           The box jellyfish has venom potent enough to kill a human in minutes,
@@ -142,24 +146,30 @@
           simultaneously.
         </p>
       </div>
-    </div>
+    </details>
   </div>
 
   <h2 class="h3">Animation</h2>
   <p>
     Panels open and close with a pure CSS transition &mdash; no JavaScript
-    measures or sets a height. The panel transitions between
-    <span class="code-ref">height: 0</span> and
-    <span class="code-ref">height: auto</span>, which is made interpolatable by
+    measures or sets a height. The browser's
+    <span class="code-ref">::details-content</span> pseudo-element animates
+    <span class="code-ref">block-size</span> between
+    <span class="code-ref">0</span> and <span class="code-ref">auto</span>,
+    made interpolatable by
     <span class="code-ref">interpolate-size: allow-keywords</span> scoped to
-    <span class="code-ref">.accordion</span>.
+    <span class="css-ref">.accordion</span> (not
+    <span class="css-ref">:root</span> &mdash; it would change every auto-sized
+    transition in a consuming project). Panel padding sits inside that clipped
+    box, so a closed panel is exactly zero height.
   </p>
   <p>
-    This is a progressive enhancement. In browsers that don't yet support
-    <span class="code-ref">interpolate-size</span> the panel opens and closes
-    instantly instead of animating &mdash; the accordion is fully functional
-    either way, and no content is ever hidden or clipped. Panels also open
-    instantly when
+    This is progressive enhancement. In a browser without
+    <span class="code-ref">::details-content</span> /
+    <span class="code-ref">interpolate-size</span> support the panel simply
+    shows and hides with no transition &mdash; the accordion is fully
+    functional either way, and no content is ever hidden or clipped. Panels
+    also open instantly when
     <span class="code-ref">prefers-reduced-motion: reduce</span> is set.
   </p>
   <p>
@@ -170,16 +180,17 @@
     <span class="code-ref">.accordion { --jf-transition: 0.4s var(--jf-ease-out); }</span>
     &mdash; or move it framework-wide through
     <a href="./variables.html#motion"><span class="variable-ref">$duration-scale</span></a>.
-    <span class="code-ref">prefers-reduced-motion: reduce</span> zeroes the durations,
-    so there is no per-component setting to turn the animation off.
+    <span class="code-ref">prefers-reduced-motion: reduce</span> zeroes the
+    durations, so there is no per-component setting to turn the animation off.
   </p>
 
   <h2 class="h3">Colors</h2>
   <p>
     If <span class="variable-ref">$generate-accordion-modifiers</span> is set to
     true you can use a color modifier from the
-    <span class="variable-ref">$colors</span> map to apply formatting to an
-    accordion or an accordion-item.
+    <span class="variable-ref">$colors</span> map to theme an
+    <span class="css-ref">.accordion</span> or a single
+    <span class="css-ref">.accordion-item</span>.
   </p>
   <pre class="language-markup">
     <code><!--
@@ -187,19 +198,15 @@
       ...
     </div>
     <div class="accordion">
-      <div class="accordion-item success">
-        ...
-      </div>
-      <div class="accordion-item error">
-        ...
-      </div>
+      <details class="accordion-item success">...</details>
+      <details class="accordion-item error">...</details>
     </div>
   --></code>
   </pre>
 
-  <div class="accordion primary" data-start-collapsed>
-    <div class="accordion-item">
-      <h5 class="accordion-heading">Giant Tentacles</h5>
+  <div class="accordion primary">
+    <details class="accordion-item">
+      <summary class="accordion-heading">Giant Tentacles</summary>
       <div class="accordion-panel">
         <p>
           The lion's mane jellyfish can grow tentacles over 100 feet long,
@@ -208,9 +215,9 @@
           tentacles reaching an astounding 120 feet in length.
         </p>
       </div>
-    </div>
-    <div class="accordion-item">
-      <h3 class="accordion-heading">Glow Up</h3>
+    </details>
+    <details class="accordion-item">
+      <summary class="accordion-heading">Glow Up</summary>
       <div class="accordion-panel">
         <p>
           Many jellyfish species produce their own light through chemical
@@ -220,12 +227,12 @@
           the murky depths.
         </p>
       </div>
-    </div>
+    </details>
   </div>
 
-  <div class="accordion" data-start-collapsed>
-    <div class="accordion-item success">
-      <h5 class="accordion-heading">Breathe Easy</h5>
+  <div class="accordion">
+    <details class="accordion-item success">
+      <summary class="accordion-heading">Breathe Easy</summary>
       <div class="accordion-panel">
         <p>
           They absorb oxygen directly through their skin and have no need for
@@ -234,9 +241,9 @@
           spread throughout their body via a simple gastrovascular cavity.
         </p>
       </div>
-    </div>
-    <div class="accordion-item error">
-      <h3 class="accordion-heading">Smack My Fish Up</h3>
+    </details>
+    <details class="accordion-item error">
+      <summary class="accordion-heading">Smack My Fish Up</summary>
       <div class="accordion-panel">
         <p>
           Groups of jellyfish, called blooms or smacks, can contain hundreds of
@@ -246,16 +253,18 @@
           cooling water intake pipes.
         </p>
       </div>
-    </div>
+    </details>
   </div>
 
   <p>
     Each themed heading takes its background from the family at a role shade and
     its text from that shade's <span class="code-ref">--jf-color-on-*</span>
     companion (the APCA-picked contrast colour), so the pair stays readable
-    without you choosing a text colour. Override the custom properties to
-    retune — pair a background with the matching <span class="code-ref">on-</span>
-    companion so contrast is preserved:
+    without you choosing a text colour. Rest state is the
+    <span class="italic">subtle</span> role, hover/expanded the
+    <span class="italic">muted</span> role. Override the custom properties to
+    retune &mdash; pair a background with the matching
+    <span class="code-ref">on-</span> companion so contrast is preserved:
   </p>
   <pre class="language-scss">
     <code><!--
@@ -269,15 +278,167 @@
       }
   --></code>
   </pre>
+</div>
+
+<div>
+  <h2 class="h3" id="deep-linking">Deep linking &amp; in-page search</h2>
   <p>
-    Rest state is the <span class="italic">subtle</span> role, hover/expanded the
-    <span class="italic">muted</span> role - retune by overriding
-    <span class="code-ref">--jf-accordion-heading-background</span> /
-    <span class="code-ref">--jf-accordion-heading-hover-background</span> (and their
-    paired <span class="code-ref">-color</span> props) on <span class="css-ref">.accordion</span>.
+    Because the panels are native <span class="css-ref">&lt;details&gt;</span>,
+    Chromium browsers automatically expand the relevant item when the user runs
+    find-in-page (<span class="code-ref">Ctrl/Cmd&nbsp;+&nbsp;F</span>), follows a
+    <span class="code-ref">#fragment</span> link into it, or lands on a
+    <span class="code-ref">#:~:text=</span> scroll-to-text URL &mdash; no
+    attributes, no configuration.
+  </p>
+  <p>
+    For Firefox and Safari, the enhancement script covers plain fragment links:
+    give a panel (or anything inside it) an <span class="code-ref">id</span>, and
+    a link to <span class="code-ref">#that-id</span> opens its item and scrolls
+    it into view &mdash; on click (the script opens the panel first, so the jump
+    lands correctly), on cold load, and on back / forward. Find-in-page on
+    collapsed content stays Chromium-only; there is no cross-browser hook for it
+    on <span class="css-ref">&lt;details&gt;</span>.
+  </p>
+  <pre class="language-markup">
+    <code><!--
+     <details class="accordion-item" name="jellyfish-facts">
+      <summary class="accordion-heading">Watery Beasts</summary>
+      <div class="accordion-panel" id="watery-beasts">
+        <p>…</p>
+      </div>
+    </details>
+
+    <a href="#watery-beasts">Jump to Watery Beasts</a>
+  --></code>
+  </pre>
+
+  <h3 class="h4">Try it on this page</h3>
+  <p>
+    The <span class="code-ref">Watery Beasts</span> panel in the
+    <a href="#watery-beasts">first example above</a> has
+    <span class="code-ref">id="watery-beasts"</span> and starts closed. Test the
+    behaviour:
+  </p>
+  <ul>
+    <li>
+      <a href="#watery-beasts">Follow this <span class="code-ref">#watery-beasts</span> link</a>
+      &mdash; the panel should open and scroll into view. (It works even from a
+      cold load: open
+      <span class="code-ref">accordions.html#watery-beasts</span> directly, or
+      reload this page with that fragment on the URL.)
+    </li>
+    <li>
+      Close the panel, then use find-in-page
+      (<span class="code-ref">Ctrl/Cmd&nbsp;+&nbsp;F</span>) for a phrase only in
+      that panel, e.g. <span class="italic">&ldquo;gelatinous umbrella&rdquo;</span>
+      &mdash; in Chrome/Edge the panel auto-expands to reveal the match; in
+      Firefox/Safari it won't (no cross-browser hook).
+    </li>
+    <li>
+      In Chrome/Edge, a
+      <span class="code-ref">#:~:text=gelatinous%20umbrella</span> URL also
+      auto-expands the panel on load.
+    </li>
+  </ul>
+  <p>
+    Hooking the enhancement to your own content is just the
+    <span class="code-ref">id</span> &mdash; put it on the
+    <span class="css-ref">.accordion-panel</span>, on the
+    <span class="css-ref">&lt;summary&gt;</span>, on the
+    <span class="css-ref">&lt;details&gt;</span>, or on any element inside the
+    panel; the script walks up to the enclosing
+    <span class="css-ref">.accordion-item</span> and opens it.
+  </p>
+
+  <h2 class="h3" id="tracking">Tracking</h2>
+  <p>
+    Every open and close pushes to the GTM
+    <span class="code-ref">dataLayer</span> (a no-op unless the page already has
+    GTM installed) and fires a
+    <span class="css-ref">CustomEvent</span> on
+    <span class="code-ref">document</span> &mdash; the same pattern as
+    <a href="./modals.html">modals</a>. Default-open items (with the
+    <span class="code-ref">open</span> attribute) don't fire on load; only user
+    interaction does.
+  </p>
+  <pre class="language-javascript">
+    <code><!--
+     // dataLayer
+     { event: "accordionOpened", accordionId: "#watery-beasts", accordionTitle: "Watery Beasts" }
+     { event: "accordionClosed", accordionId: "#watery-beasts", accordionTitle: "Watery Beasts" }
+
+     // CustomEvents
+     document.addEventListener("jfAccordionOpened", (e) => {
+       console.log(e.detail); // { id, title, open: true }
+     });
+     document.addEventListener("jfAccordionClosed", (e) => { … });
+  --></code>
+  </pre>
+  <p>
+    The title is the <span class="css-ref">&lt;details&gt;</span>'s
+    <span class="code-ref">data-title</span> attribute if present, otherwise its
+    <span class="css-ref">&lt;summary&gt;</span> text.
   </p>
 </div>
 
-<!-- TODO: Should the details element work out the box? -->
+<div>
+  <h2 class="h3">Migrating from the v4 JavaScript accordion</h2>
+  <p>
+    The v4 accordion &mdash; class-based markup
+    (<span class="css-ref">.accordion-item</span> &gt;
+    <span class="css-ref">.accordion-heading</span> +
+    <span class="css-ref">.accordion-panel</span>) upgraded at runtime by
+    <span class="code-ref">accordions.js</span> &mdash; is
+    <span class="bold">removed in v5</span>. The script, the
+    <span class="code-ref">jfAccordionsInitialised</span> event and the
+    <span class="code-ref">.is-initialised</span> /
+    <span class="code-ref">.is-collapsed</span> /
+    <span class="code-ref">.accordion-button</span> classes it added are gone.
+    Convert the markup:
+  </p>
+  <table class="is-responsive has-border">
+    <thead>
+      <tr><th>v4</th><th>v5</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="css-ref">&lt;div class="accordion-item"&gt;</span></td>
+        <td><span class="css-ref">&lt;details class="accordion-item"&gt;</span> &mdash; add <span class="code-ref">name="…"</span> (shared across the group) to keep the old single-open behaviour</td>
+      </tr>
+      <tr>
+        <td><span class="css-ref">&lt;h3 class="accordion-heading"&gt;&lt;span&gt;Title&lt;/span&gt;&lt;/h3&gt;</span></td>
+        <td><span class="css-ref">&lt;summary class="accordion-heading"&gt;Title&lt;/summary&gt;</span> &mdash; the browser makes it a focusable, keyboard-operable control; no <span class="code-ref">&lt;button&gt;</span> is injected</td>
+      </tr>
+      <tr>
+        <td><span class="css-ref">&lt;div class="accordion-panel"&gt;</span></td>
+        <td>Unchanged &mdash; still <span class="css-ref">&lt;div class="accordion-panel"&gt;</span>, now a child of the <span class="css-ref">&lt;details&gt;</span></td>
+      </tr>
+      <tr>
+        <td><span class="code-ref">data-allow-multiple</span></td>
+        <td>Omit the <span class="code-ref">name</span> attribute (independent items are the default for <span class="css-ref">&lt;details&gt;</span>)</td>
+      </tr>
+      <tr>
+        <td><span class="code-ref">data-start-collapsed</span></td>
+        <td>Omit <span class="code-ref">open</span> from every item</td>
+      </tr>
+      <tr>
+        <td>First item open by default</td>
+        <td>Add <span class="code-ref">open</span> to that <span class="css-ref">&lt;details&gt;</span></td>
+      </tr>
+      <tr>
+        <td><span class="code-ref">document.addEventListener('jfAccordionsInitialised', …)</span></td>
+        <td>Gone (there is no init step). For open/close hooks, listen for <span class="code-ref">jfAccordionOpened</span> / <span class="code-ref">jfAccordionClosed</span> on <span class="code-ref">document</span>, or the native <span class="code-ref">toggle</span> event on a <span class="css-ref">&lt;details&gt;</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    The <span class="css-ref">.accordion</span> /
+    <span class="css-ref">.accordion-heading</span> /
+    <span class="css-ref">.accordion-panel</span> class names, the
+    <span class="variable-ref">$colors</span> modifiers and every
+    <span class="code-ref">--jf-accordion-*</span> custom property are
+    unchanged.
+  </p>
+</div>
 
 @@include('./src/docs/partials/html-footer.html')

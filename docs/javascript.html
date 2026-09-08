@@ -258,6 +258,16 @@
   </pre>
     <p>A <span class="code-ref">jfThemeChange</span> event fires on <span class="css-ref">&lt;html&gt;</span> whenever the resolved theme changes &mdash; <span class="code-ref">event.detail.theme</span> is <span class="code-ref">"dark"</span> or <span class="code-ref">"light"</span>. The script also updates <span class="code-ref">aria-pressed</span> on every <span class="css-ref">[data-theme-toggle]</span> and, while no explicit choice is stored, follows live OS changes.</p>
 
+    <h2 class="h3" id="accordions">Accordions</h2>
+    <p><span class="code-ref">accordions.js</span> is a thin enhancement layer only &mdash; the <a href="./accordions.html">accordion</a> itself is native <span class="css-ref">&lt;details&gt;</span> and needs no script. It does two things: pushes <span class="code-ref">accordionOpened</span> / <span class="code-ref">accordionClosed</span> to the GTM <span class="code-ref">dataLayer</span> (a no-op without GTM) and fires <span class="code-ref">jfAccordionOpened</span> / <span class="code-ref">jfAccordionClosed</span> on <span class="code-ref">document</span> (<span class="code-ref">detail: { id, title, open }</span>); and on load / <span class="code-ref">hashchange</span> it opens the item a URL <span class="code-ref">#fragment</span> points into (Firefox / Safari &mdash; Chromium does this for <span class="css-ref">&lt;details&gt;</span> natively).</p>
+    <pre>
+    <code class="language-javascript">
+      document.addEventListener("jfAccordionOpened", (e) =&gt; {
+        console.log(e.detail); // { id: "#watery-beasts", title: "Watery Beasts", open: true }
+      });
+    </code>
+  </pre>
+
     <h2 class="h3">Lazy Load Background Images</h2>
     <p>Jellyfish will lazy-load background images; you need to add a class <span class="css-ref">.has-bg-img</span> and a <span class="code-ref">data-bg-img</span> attribute to the element.</p>
     <pre>

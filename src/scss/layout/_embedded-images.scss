@@ -17,26 +17,20 @@ img {
   &.align-center {
     @extend %embedded-content;
   }
-  $is_first: 1; // Variable to check if first point in breakpoint
-  @each $point, $i in $breakpoints {
-    @include above($point) {
-      @if $is_first == 1 {
-        &.align-left {
-          margin: 0 token(flow) token(flow) 0;
-          float: left !important;
-        }
-        &.align-right {
-          margin: 0 0 token(flow) token(flow);
-          float: right !important;
-        }
-        &.align-none {
-          margin: 0 0 token(flow) 0;
-        }
-        &.align-center {
-          margin: 0 auto token(flow) auto;
-        }
-      }
+  @include above(sm) {
+    &.align-left {
+      margin: 0 token(flow) token(flow) 0;
+      float: left !important;
     }
-    $is_first: 0; // Reset to zero
+    &.align-right {
+      margin: 0 0 token(flow) token(flow);
+      float: right !important;
+    }
+    &.align-none {
+      margin: 0 0 token(flow) 0;
+    }
+    &.align-center {
+      margin: 0 auto token(flow) auto;
+    }
   }
 }

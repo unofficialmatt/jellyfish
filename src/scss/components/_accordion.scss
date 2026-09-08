@@ -1,20 +1,3 @@
-// Hide accordion panels by default until JavaScript initialises them
-.accordion:not(.is-initialised) {
-  .accordion-panel {
-    height: 0;
-    padding-block: 0;
-    overflow: hidden;
-    // No transition before JS has run, so the initially-open panel appears
-    // open rather than animating itself open on page load.
-    transition: none;
-  }
-
-  // Prevent the buttons from showing the expanded state
-  .accordion-button[aria-expanded="true"]::after {
-    transform: rotate(0deg);
-  }
-}
-
 .accordion {
   margin-bottom: token(flow);
   #{token-name("accordion-heading-background")}: #{get-color-role(
@@ -30,121 +13,113 @@
       color-on-neutral-muted
     )};
 
-  // Lets the panel's height: 0 <-> auto transition actually interpolate, so the
-  // open/close animation needs no measured pixel height and no JavaScript.
-  //
-  // Progressive enhancement, and deliberately scoped to .accordion rather than
-  // :root: where it isn't supported the panel snaps open and closed, which is
-  // correct, just not animated. Setting it globally would silently change every
-  // auto-sized transition in a consuming project.
+  // Lets ::details-content animate to its intrinsic size without JS measuring a
+  // pixel height. Progressive enhancement,not fully baseline as of Sept 2026
   interpolate-size: allow-keywords;
 }
 
-// Reset heading sizes inside accordions
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  &.accordion-heading,
-  .accordion-heading {
-    font-size: 1rem;
-  }
-}
-
-// Round off the border rads
-.accordion-item:first-child {
-  border-top-left-radius: $accordion-border-radius;
-  border-top-right-radius: $accordion-border-radius;
-  .accordion-heading button {
-    border-top-left-radius: $accordion-border-radius;
-    border-top-right-radius: $accordion-border-radius;
-  }
-}
-.accordion-item:last-child {
-  border-bottom-left-radius: $accordion-border-radius;
-  border-bottom-right-radius: $accordion-border-radius;
-  .accordion-heading button:not([aria-expanded="true"]) {
-    border-bottom-left-radius: $accordion-border-radius;
-    border-bottom-right-radius: $accordion-border-radius;
-  }
-}
-
-.accordion-heading {
-  margin: 0;
-  button {
-    position: relative;
-    padding: $accordion-padding-y $accordion-padding-x;
-    padding-right: calc(#{$accordion-padding-x} * 2.5);
-    font: inherit;
-    font-size: $accordion-heading-font-size;
-    font-weight: $accordion-heading-weight;
-    border-radius: 0;
-    border: none;
-    background: token(accordion-heading-background);
-    color: token(accordion-heading-color);
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    justify-content: flex-start;
-    @include motion(all);
-    &:hover,
-    &:focus {
-      background: token(accordion-heading-hover-background);
-      color: token(accordion-heading-hover-color);
-    }
-    &[aria-expanded="true"] {
-      background: token(accordion-heading-hover-background);
-      color: token(accordion-heading-hover-color);
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      &::after {
-        transform: rotate(-180deg);
-      }
-    }
-    &::after {
-      content: "";
-      position: absolute;
-      mask-image: url("data:image/svg+xml;charset=utf-8,<svg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'><path d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/></svg>");
-      mask-size: contain;
-      mask-repeat: no-repeat;
-      mask-position: center;
-      right: $accordion-padding-x;
-      background-color: currentColor;
-      width: 0.8em;
-      height: 0.8em;
-      @include motion(transform);
-    }
-  }
-}
-
 .accordion-item {
-  border: token(border-width) token(border-style) token-or(accordion-border-color, border-color);
-  border-radius: 0;
+  border: token(border-width) token(border-style)
+    token-or(accordion-border-color, border-color);
   @include motion(border-color);
 
   & + .accordion-item {
     border-top: 0;
   }
+
+  // Round the group's outer corners on the items themselves (the summary
+  // matches so its fill doesn't square off the corner).
+  &:first-child {
+    border-start-start-radius: $accordion-border-radius;
+    border-start-end-radius: $accordion-border-radius;
+    > .accordion-heading {
+      border-start-start-radius: $accordion-border-radius;
+      border-start-end-radius: $accordion-border-radius;
+    }
+  }
+  &:last-child {
+    border-end-start-radius: $accordion-border-radius;
+    border-end-end-radius: $accordion-border-radius;
+    &:not([open]) > .accordion-heading {
+      border-end-start-radius: $accordion-border-radius;
+      border-end-end-radius: $accordion-border-radius;
+    }
+  }
+}
+
+.accordion-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: get-space(sm);
+  padding: $accordion-padding-y $accordion-padding-x;
+  font-size: $accordion-heading-font-size;
+  font-weight: $accordion-heading-weight;
+  line-height: get-leading(tight);
+  background: token(accordion-heading-background);
+  color: token(accordion-heading-color);
+  cursor: pointer;
+  list-style: none; // strip the default disclosure triangle
+  @include motion(background-color, color);
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:hover,
+  .accordion-item[open] > & {
+    background: token(accordion-heading-hover-background);
+    color: token(accordion-heading-hover-color);
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-size: inherit;
+    margin: 0;
+  }
+
+  // Chevron
+  &::after {
+    content: "";
+    flex: none;
+    inline-size: 0.8em;
+    block-size: 0.8em;
+    background-color: currentColor;
+    mask-image: url("data:image/svg+xml;charset=utf-8,<svg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'><path d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/></svg>");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @include motion(transform);
+  }
+  .accordion-item[open] > &::after {
+    transform: rotate(-180deg);
+  }
 }
 
 .accordion-panel {
-  overflow: hidden;
   padding: $accordion-padding-y $accordion-padding-x;
-  height: auto;
-  // Named properties rather than `all`, which also animated colour and border
-  // changes inherited from the theme modifiers.
-  @include motion(height, padding);
-
-  &.is-collapsed {
-    height: 0;
-    padding-block: 0;
-  }
 
   > *:last-child {
     margin-bottom: 0;
   }
+}
+
+// Open/close animation on ::details-content. block-size 0 <-> auto is made
+// interpolatable by `interpolate-size` (scoped on .accordion above); the
+// content-visibility leg (allow-discrete) keeps the panel painted through the
+// close. Padding lives on .accordion-panel *inside* this clipped box, so it
+// never contributes a sliver of height when closed. Progressive enhancement —
+// with no ::details-content / interpolate-size support the panel just shows
+// and hides instantly, which is correct, only unanimated.
+.accordion-item::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size token(transition),
+    content-visibility token(transition);
+  transition-behavior: allow-discrete;
+}
+.accordion-item[open]::details-content {
+  block-size: auto;
 }
 
 @if ($generate-accordion-modifiers) == true {

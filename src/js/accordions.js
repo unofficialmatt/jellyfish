@@ -1,153 +1,113 @@
 /**
- * Built in class for ARIA accessible accordions
+ * Accordion enhancement layer.
+ *
+ * Accordions are native <details> / <summary> — open/close, keyboard and ARIA
+ * need no script. This file only adds two conveniences:
+ *
+ *  1. Analytics — on every toggle it pushes `accordionOpened` /
+ *     `accordionClosed` to the GTM dataLayer (a no-op unless the page already
+ *     has GTM) and fires a matching `jfAccordionOpened` / `jfAccordionClosed`
+ *     CustomEvent on `document`. Mirrors the modal `modalOpened` pushes.
+ *
+ *  2. Deep linking — opens the item a URL fragment points into, on same-page
+ *     link clicks and on load / hashchange / back-forward. Chromium already
+ *     does this (and find-in-page, and `#:~:text=` scroll-to-text) for
+ *     <details> natively; this covers Firefox and Safari for plain `#id`.
  */
-class jellyfishAccordion {
-  constructor(element, index) {
-    this.accordion = element;
-    this.accordionIndex = index;
-    this.allowMultiple = this.accordion.hasAttribute("data-allow-multiple");
-    this.startCollapsed = this.accordion.hasAttribute("data-start-collapsed");
+(function () {
+  "use strict";
 
-    this.init();
+  function itemTitle(details) {
+    if (details.dataset.title) return details.dataset.title.trim();
+    var summary = details.querySelector("summary");
+    return summary ? summary.textContent.trim() : "";
   }
 
-  init() {
-    this.accordion.removeAttribute("data-start-collapsed");
-    this.loopItems();
-    this.setupEventListeners();
+  function report(details) {
+    var isOpen = details.open;
+    var detail = {
+      id: details.id || "",
+      title: itemTitle(details),
+      open: isOpen,
+    };
 
-    this.accordion.classList.add("is-initialised");
-  }
-
-  loopItems() {
-    let sections = this.accordion.querySelectorAll(".accordion-item");
-    if (sections.length === 0) return;
-
-    let count = 0;
-    sections.forEach((section) => {
-      let panelIsCollapsed = true;
-      if (!this.startCollapsed && count === 0) {
-        panelIsCollapsed = false;
-      }
-
-      this.createPanel(section, count, panelIsCollapsed);
-      count++;
-    });
-  }
-
-  // Create the ARIA accessible panel
-  createPanel(section, index, isCollapsedAtStart) {
-    let panelHeading = section.querySelector(".accordion-heading");
-    let panelContent = section.querySelector(".accordion-panel");
-
-    if (!panelHeading || !panelContent) return;
-
-    // Set the panel ID, this will forcibly override any existing ID on the content to ensure uniqueness based on the accordion index and panel index
-    let panelId = `accordion-panel-${this.accordionIndex}-${index}`;
-    panelContent.id = panelId;
-
-    this.setupHeading(panelHeading, panelId, isCollapsedAtStart);
-    this.setupContent(panelContent, panelId, isCollapsedAtStart);
-  }
-
-  // Setup the accordion heading
-  setupHeading(heading, contentId, isCollapsedAtStart) {
-    let button = heading.querySelector("button");
-    if (!button) {
-      button = document.createElement("button");
-      while (heading.firstChild) {
-        button.appendChild(heading.firstChild);
-      }
-      heading.appendChild(button);
-    }
-
-    // In all instances, check that the button has the correct class and attributes
-    button.classList.add("accordion-button");
-    button.setAttribute("aria-expanded", isCollapsedAtStart ? "false" : "true");
-    button.setAttribute("aria-controls", contentId);
-    button.type = "button";
-    button.id = contentId.replace("panel", "heading");
-  }
-
-  // Setup the accordion content
-  setupContent(content, contentId, isCollapsedAtStart) {
-    content.id = contentId;
-
-    if (!isCollapsedAtStart) {
-      content.classList.remove("is-collapsed");
-    } else {
-      content.classList.add("is-collapsed");
-    }
-
-    content.setAttribute("role", "region");
-    content.setAttribute(
-      "aria-labelledby",
-      contentId.replace("panel", "heading")
+    document.dispatchEvent(
+      new CustomEvent(isOpen ? "jfAccordionOpened" : "jfAccordionClosed", {
+        detail: detail,
+      }),
     );
-  }
 
-  // Setup event listeners for all buttons
-  setupEventListeners() {
-    const buttons = this.accordion.querySelectorAll(".accordion-button");
-    buttons.forEach((button) => {
-      button.addEventListener("click", (e) => this.handleClick(e));
+    console.log(detail);
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: isOpen ? "accordionOpened" : "accordionClosed",
+      accordionId: detail.id ? "#" + detail.id : "",
+      accordionTitle: detail.title,
     });
   }
 
-  // Handle button click
-  handleClick(event) {
-    const button = event.currentTarget;
-    const panelId = button.getAttribute("aria-controls");
-    const panel = document.getElementById(panelId);
-    const isCurrentlyOpen = button.getAttribute("aria-expanded") === "true";
-
-    if (!this.allowMultiple) {
-      this.closeAllPanels(panelId);
-    }
-
-    if (isCurrentlyOpen) {
-      this.closePanel(button, panel);
-    } else {
-      this.openPanel(button, panel);
+  function elementFor(hash) {
+    if (!hash || hash === "#") return null;
+    try {
+      return document.querySelector(hash);
+    } catch (e) {
+      return null; // not a valid selector
     }
   }
 
-  closeAllPanels(exceptPanelId = null) {
-    const buttons = this.accordion.querySelectorAll(".accordion-button");
-    buttons.forEach((button) => {
-      const panelId = button.getAttribute("aria-controls");
-      if (panelId !== exceptPanelId) {
-        const panel = document.getElementById(panelId);
-        this.closePanel(button, panel);
-      }
-    });
+  // Open the enclosing accordion item and scroll it into view. We scroll the
+  // <details> itself, not the fragment target: the target may sit inside the
+  // still-`content-visibility: hidden` panel (scrollIntoView there is a no-op
+  // until the flip resolves a frame later), whereas the <details> is always
+  // visible and its top edge (the summary) doesn't move as the panel expands.
+  function reveal(target) {
+    var details = target.closest("details.accordion-item");
+    if (!details) {
+      target.scrollIntoView({ block: "start" });
+      return;
+    }
+    details.open = true;
+    details.scrollIntoView({ block: "start" });
   }
 
-  closePanel(button, panel) {
-    button.setAttribute("aria-expanded", "false");
-    panel.classList.add("is-collapsed");
-  }
+  // Intercept same-page fragment clicks so we open before the browser scrolls
+  // (its default jumps to the still-collapsed panel). Works even when the hash
+  // is already current, which fires no hashchange.
+  document.addEventListener("click", function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+      return;
+    }
 
-  openPanel(button, panel) {
-    button.setAttribute("aria-expanded", "true");
-    panel.classList.remove("is-collapsed");
-  }
-}
+    var link = e.target.closest('a[href*="#"]');
+    if (!link || link.pathname !== location.pathname || link.host !== location.host) {
+      return;
+    }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const accordionElements = document.querySelectorAll(".accordion");
+    var target = elementFor(link.hash);
+    if (!target || !target.closest("details.accordion-item")) return;
 
-  let count = 0;
-  accordionElements.forEach((element) => {
-    new jellyfishAccordion(element, count);
-    count++;
+    e.preventDefault();
+    if (location.hash !== link.hash) history.pushState(null, "", link.hash);
+    reveal(target);
   });
 
-  const event = new CustomEvent("jfAccordionsInitialised", {
-    detail: {
-      count: count,
-      timestamp: Date.now(),
-    },
+  // Cold load with a fragment, manual URL edit, back / forward.
+  function revealFromHash() {
+    var target = elementFor(location.hash);
+    if (target && target.closest("details.accordion-item")) reveal(target);
+  }
+  window.addEventListener("hashchange", revealFromHash);
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document
+      .querySelectorAll("details.accordion-item")
+      .forEach(function (details) {
+        details.addEventListener("toggle", function () {
+          report(details);
+        });
+      });
+
+    revealFromHash();
   });
-  document.dispatchEvent(event);
-});
+})();

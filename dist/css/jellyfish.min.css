@@ -1431,6 +1431,7 @@ img.align-center, img.align-none, img.align-right, img.align-left {
     margin: 0 auto var(--jf-flow) auto;
   }
 }
+
 [type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea {
   display: block;
   border: var(--jf-form-input-border-width) var(--jf-form-input-border-style) var(--jf-form-input-border-color);
@@ -3139,16 +3140,6 @@ button.hamburger:hover, button.hamburger:focus {
     padding-right: var(--jf-space-xs);
   }
 }
-.accordion:not(.is-initialised) .accordion-panel {
-  height: 0;
-  padding-block: 0;
-  overflow: hidden;
-  transition: none;
-}
-.accordion:not(.is-initialised) .accordion-button[aria-expanded=true]::after {
-  transform: rotate(0deg);
-}
-
 .accordion {
   margin-bottom: var(--jf-flow);
   --jf-accordion-heading-background: var(--jf-color-neutral-subtle);
@@ -3158,75 +3149,62 @@ button.hamburger:hover, button.hamburger:focus {
   interpolate-size: allow-keywords;
 }
 
-h1.accordion-heading,
-h1 .accordion-heading,
-h2.accordion-heading,
-h2 .accordion-heading,
-h3.accordion-heading,
-h3 .accordion-heading,
-h4.accordion-heading,
-h4 .accordion-heading,
-h5.accordion-heading,
-h5 .accordion-heading,
-h6.accordion-heading,
-h6 .accordion-heading {
-  font-size: 1rem;
+.accordion-item {
+  border: var(--jf-border-width) var(--jf-border-style) var(--jf-accordion-border-color, var(--jf-border-color));
+  transition: border-color var(--jf-transition);
 }
-
+.accordion-item + .accordion-item {
+  border-top: 0;
+}
 .accordion-item:first-child {
-  border-top-left-radius: var(--jf-radius-sm);
-  border-top-right-radius: var(--jf-radius-sm);
+  border-start-start-radius: var(--jf-radius-sm);
+  border-start-end-radius: var(--jf-radius-sm);
 }
-.accordion-item:first-child .accordion-heading button {
-  border-top-left-radius: var(--jf-radius-sm);
-  border-top-right-radius: var(--jf-radius-sm);
+.accordion-item:first-child > .accordion-heading {
+  border-start-start-radius: var(--jf-radius-sm);
+  border-start-end-radius: var(--jf-radius-sm);
 }
-
 .accordion-item:last-child {
-  border-bottom-left-radius: var(--jf-radius-sm);
-  border-bottom-right-radius: var(--jf-radius-sm);
+  border-end-start-radius: var(--jf-radius-sm);
+  border-end-end-radius: var(--jf-radius-sm);
 }
-.accordion-item:last-child .accordion-heading button:not([aria-expanded=true]) {
-  border-bottom-left-radius: var(--jf-radius-sm);
-  border-bottom-right-radius: var(--jf-radius-sm);
+.accordion-item:last-child:not([open]) > .accordion-heading {
+  border-end-start-radius: var(--jf-radius-sm);
+  border-end-end-radius: var(--jf-radius-sm);
 }
 
 .accordion-heading {
-  margin: 0;
-}
-.accordion-heading button {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jf-space-sm);
   padding: var(--jf-space-xs) var(--jf-space-sm);
-  padding-right: calc(var(--jf-space-sm) * 2.5);
-  font: inherit;
   font-size: var(--jf-font-size-md);
   font-weight: var(--jf-font-weight-bold);
-  border-radius: 0;
-  border: none;
+  line-height: var(--jf-leading-tight);
   background: var(--jf-accordion-heading-background);
   color: var(--jf-accordion-heading-color);
-  text-align: left;
-  width: 100%;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color var(--jf-transition), color var(--jf-transition);
+}
+.accordion-heading::-webkit-details-marker {
+  display: none;
+}
+.accordion-heading:hover, .accordion-item[open] > .accordion-heading {
+  background: var(--jf-accordion-heading-hover-background);
+  color: var(--jf-accordion-heading-hover-color);
+}
+.accordion-heading :where(h1, h2, h3, h4, h5, h6) {
+  font-size: inherit;
   margin: 0;
-  justify-content: flex-start;
-  transition: all var(--jf-transition);
 }
-.accordion-heading button:hover, .accordion-heading button:focus {
-  background: var(--jf-accordion-heading-hover-background);
-  color: var(--jf-accordion-heading-hover-color);
-}
-.accordion-heading button[aria-expanded=true] {
-  background: var(--jf-accordion-heading-hover-background);
-  color: var(--jf-accordion-heading-hover-color);
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.accordion-heading button[aria-expanded=true]::after {
-  transform: rotate(-180deg);
-}
-.accordion-heading button::after {
+.accordion-heading::after {
   content: "";
-  position: absolute;
+  flex: none;
+  inline-size: 0.8em;
+  block-size: 0.8em;
+  background-color: currentColor;
   -webkit-mask-image: url("data:image/svg+xml;charset=utf-8,<svg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'><path d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/></svg>");
           mask-image: url("data:image/svg+xml;charset=utf-8,<svg width='41' height='26' viewBox='0 0 41 26' xmlns='http://www.w3.org/2000/svg'><path d='M0 5.382l19.983 19.983L40.14 5.208 34.932 0 19.869 15.062 4.84.032z' fill-rule='evenodd'/></svg>");
   -webkit-mask-size: contain;
@@ -3235,34 +3213,28 @@ h6 .accordion-heading {
           mask-repeat: no-repeat;
   -webkit-mask-position: center;
           mask-position: center;
-  right: var(--jf-space-sm);
-  background-color: currentColor;
-  width: 0.8em;
-  height: 0.8em;
   transition: transform var(--jf-transition);
 }
-
-.accordion-item {
-  border: var(--jf-border-width) var(--jf-border-style) var(--jf-accordion-border-color, var(--jf-border-color));
-  border-radius: 0;
-  transition: border-color var(--jf-transition);
-}
-.accordion-item + .accordion-item {
-  border-top: 0;
+.accordion-item[open] > .accordion-heading::after {
+  transform: rotate(-180deg);
 }
 
 .accordion-panel {
-  overflow: hidden;
   padding: var(--jf-space-xs) var(--jf-space-sm);
-  height: auto;
-  transition: height var(--jf-transition), padding var(--jf-transition);
-}
-.accordion-panel.is-collapsed {
-  height: 0;
-  padding-block: 0;
 }
 .accordion-panel > *:last-child {
   margin-bottom: 0;
+}
+
+.accordion-item::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition: block-size var(--jf-transition), content-visibility var(--jf-transition);
+  transition-behavior: allow-discrete;
+}
+
+.accordion-item[open]::details-content {
+  block-size: auto;
 }
 
 .accordion.primary,
@@ -4714,18 +4686,18 @@ button.font-size-lg {
 }
 
 input[type=checkbox]:focus,
-input[type=radio]:focus, [type=color]:focus, [type=date]:focus, [type=datetime]:focus, [type=datetime-local]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=url]:focus, [type=week]:focus, [type=time]:focus, select:focus, textarea:focus, .button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus,
+input[type=radio]:focus, [type=color]:focus, [type=date]:focus, [type=datetime]:focus, [type=datetime-local]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=url]:focus, [type=week]:focus, [type=time]:focus, select:focus, textarea:focus, .accordion-heading:focus, .button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus,
 a:focus {
   outline: 0.19rem solid var(--jf-accessibility-focus-color);
   outline-offset: 0.13rem;
 }
 input[type=checkbox]:focus:not(:focus-visible),
-input[type=radio]:focus:not(:focus-visible), [type=color]:focus:not(:focus-visible), [type=date]:focus:not(:focus-visible), [type=datetime]:focus:not(:focus-visible), [type=datetime-local]:focus:not(:focus-visible), [type=email]:focus:not(:focus-visible), [type=month]:focus:not(:focus-visible), [type=number]:focus:not(:focus-visible), [type=password]:focus:not(:focus-visible), [type=search]:focus:not(:focus-visible), [type=tel]:focus:not(:focus-visible), [type=text]:focus:not(:focus-visible), [type=url]:focus:not(:focus-visible), [type=week]:focus:not(:focus-visible), [type=time]:focus:not(:focus-visible), select:focus:not(:focus-visible), textarea:focus:not(:focus-visible), .button:focus:not(:focus-visible), button:focus:not(:focus-visible), [type=submit]:focus:not(:focus-visible), [type=reset]:focus:not(:focus-visible), [type=button]:focus:not(:focus-visible),
+input[type=radio]:focus:not(:focus-visible), [type=color]:focus:not(:focus-visible), [type=date]:focus:not(:focus-visible), [type=datetime]:focus:not(:focus-visible), [type=datetime-local]:focus:not(:focus-visible), [type=email]:focus:not(:focus-visible), [type=month]:focus:not(:focus-visible), [type=number]:focus:not(:focus-visible), [type=password]:focus:not(:focus-visible), [type=search]:focus:not(:focus-visible), [type=tel]:focus:not(:focus-visible), [type=text]:focus:not(:focus-visible), [type=url]:focus:not(:focus-visible), [type=week]:focus:not(:focus-visible), [type=time]:focus:not(:focus-visible), select:focus:not(:focus-visible), textarea:focus:not(:focus-visible), .accordion-heading:focus:not(:focus-visible), .button:focus:not(:focus-visible), button:focus:not(:focus-visible), [type=submit]:focus:not(:focus-visible), [type=reset]:focus:not(:focus-visible), [type=button]:focus:not(:focus-visible),
 a:focus:not(:focus-visible) {
   outline: 0;
 }
 input[type=checkbox]:focus-visible,
-input[type=radio]:focus-visible, [type=color]:focus-visible, [type=date]:focus-visible, [type=datetime]:focus-visible, [type=datetime-local]:focus-visible, [type=email]:focus-visible, [type=month]:focus-visible, [type=number]:focus-visible, [type=password]:focus-visible, [type=search]:focus-visible, [type=tel]:focus-visible, [type=text]:focus-visible, [type=url]:focus-visible, [type=week]:focus-visible, [type=time]:focus-visible, select:focus-visible, textarea:focus-visible, .button:focus-visible, button:focus-visible, [type=submit]:focus-visible, [type=reset]:focus-visible, [type=button]:focus-visible,
+input[type=radio]:focus-visible, [type=color]:focus-visible, [type=date]:focus-visible, [type=datetime]:focus-visible, [type=datetime-local]:focus-visible, [type=email]:focus-visible, [type=month]:focus-visible, [type=number]:focus-visible, [type=password]:focus-visible, [type=search]:focus-visible, [type=tel]:focus-visible, [type=text]:focus-visible, [type=url]:focus-visible, [type=week]:focus-visible, [type=time]:focus-visible, select:focus-visible, textarea:focus-visible, .accordion-heading:focus-visible, .button:focus-visible, button:focus-visible, [type=submit]:focus-visible, [type=reset]:focus-visible, [type=button]:focus-visible,
 a:focus-visible {
   outline: 0.19rem solid var(--jf-accessibility-focus-color);
   outline-offset: 0.13rem;

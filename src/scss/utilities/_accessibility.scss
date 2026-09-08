@@ -28,6 +28,11 @@ a {
   @extend %accessible-focus;
 }
 
+// Native <summary> disclosure headings (accordion)
+.accordion-heading {
+  @extend %accessible-focus;
+}
+
 // Base Form Elements
 #{$form-items} {
   @extend %accessible-focus;
