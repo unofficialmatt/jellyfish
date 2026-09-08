@@ -82,9 +82,21 @@ $token-prefix: jf !default;
   @return map-get(map-get($colors, $base), $shade);
 }
 
+// The numbered shade a semantic role maps to, from $color-role-shades.
+// Build-time only — returns a plain number for Sass maths / token interpolation.
+// For the runtime-swappable alias use get-color-role().
+// @param {String} $role - subtle | muted | emphasis | strong
+// @return {Number} e.g. 700
+@function role-shade($role) {
+  @if not map-has-key($color-role-shades, $role) {
+    @error "Role '#{$role}' not in $color-role-shades. Expected: #{map-keys($color-role-shades)}.";
+  }
+  @return map-get($color-role-shades, $role);
+}
+
 // Reference a palette family by semantic role rather than shade number.
 // Returns the role alias custom property (var(--jf-color-{base}-{role})),
-// which :root resolves to whatever numbered shade $color-{role}-shade points
+// which :root resolves to whatever numbered shade $color-role-shades points
 // at (see 02-settings/_03-colors). Bare get-color($base) is still the 500.
 // @param {String} $base - palette family: primary, secondary, neutral, …
 // @param {String} $role - subtle | muted | emphasis | strong

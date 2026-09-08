@@ -21,14 +21,15 @@ td {
   background: token(table-cell-background);
   color: token(table-text-color, inherit);
 }
+
+thead th,
+tfoot th {
+  #{token-name("table-cell-background")}: #{get-color-role(neutral, subtle)};
+  #{token-name("table-text-color")}: #{token(color-on-neutral-subtle)};
+}
 thead th {
   border-bottom: token(border-width-strong) token(border-style)
     token-or(table-border-color, border-color);
-  background: token-or(table-head-background, table-cell-background);
-  color: var(
-    #{token-name("table-head-color")},
-    var(#{token-name("table-text-color")}, inherit)
-  );
 }
 tfoot th {
   border-top: token(border-width-strong) token(border-style)
@@ -48,7 +49,7 @@ tfoot th {
 
 table.is-striped {
   tr:nth-child(odd) td {
-    background: token(table-stripe-bg-color);
+    #{token-name("table-cell-background")}: token(table-stripe-bg-color);
   }
 }
 
@@ -71,9 +72,9 @@ table.is-hoverable {
   tr:hover td {
     #{token-name("table-text-color")}: token(
       table-text-hover-color,
-      #{get-on-color(neutral, $table-hover-shade)}
+      #{token(color-on-neutral-muted)}
     );
-    background: token(table-hover-background) !important;
+    #{token-name("table-cell-background")}: token(table-hover-background);
   }
 }
 

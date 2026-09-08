@@ -116,10 +116,12 @@
   @include select-bg();
 
   #{token-name("table-font-size")}: #{$table-font-size};
-  #{token-name("table-stripe-bg-color")}: #{get-color-role(neutral, subtle)};
+  #{token-name("table-stripe-bg-color")}: color-mix(
+    in srgb,
+    #{get-color-role(neutral, emphasis)} 10%,
+    #{get-color-role(neutral, subtle)}
+  );
   #{token-name("table-hover-background")}: #{get-color-role(neutral, muted)};
-  #{token-name("table-head-background")}: #{get-color-role(neutral, subtle)};
-  #{token-name("table-head-color")}: #{token(color-on-neutral-subtle)};
   #{token-name("table-cell-background")}: transparent;
 
   #{token-name("navbar-bg-color")}: #{$navbar-bg-color};

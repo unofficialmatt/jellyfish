@@ -12,7 +12,7 @@ $button-font-size: token(font-size-base) !default;
 $button-font-size-large: token(font-size-md) !default;
 $button-text-transform: none !default;
 $button-font-weight: get-weight(bold) !default;
-$button-hover-value: $color-emphasis-shade !default;
+$button-hover-value: role-shade(emphasis) !default;
 $button-disabled-opacity: 0.65 !default;
 $button-list-button-margin: get-space(2xs) !default;
 $button-base-color: primary !default;

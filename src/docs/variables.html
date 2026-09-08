@@ -301,25 +301,13 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$color-headings-preferred</span></td>
-        <td><span class="code-ref">get-color(neutral, $color-emphasis-shade)</span></td>
+        <td><span class="code-ref">get-color(neutral, role-shade(emphasis))</span></td>
         <td>The default color for headings &mdash; the neutral <span class="italic">emphasis</span> role (700 by default). Same live-reference behavior as <span class="variable-ref">$color-text</span> above; kept as a numbered <span class="code-ref">get-color()</span> rather than <span class="code-ref">get-color-role()</span> so <span class="code-ref">raw-color()</span> can still resolve it for Sass colour maths. <br><br><span class="bold">Output as <span class="code-ref">--jf-color-headings</span> (renamed from <span class="code-ref">--jf-color-headings-preferred</span> in v5); reference with <span class="code-ref">token(color-headings)</span>. This is the contextual heading token &mdash; <span class="code-ref">h1</span>&ndash;<span class="code-ref">h6</span> read it, and a <span class="css-ref">.bg-*</span> section re-declares it.</span></td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$color-subtle-shade</span></td>
-        <td>50</td>
-        <td rowspan="4">The semantic step-role ladder. Every palette family emits four named aliases &mdash; <span class="code-ref">--jf-color-{family}-subtle</span>, <span class="code-ref">-muted</span>, <span class="code-ref">-emphasis</span>, <span class="code-ref">-strong</span> &mdash; each pointing at the numbered shade set here, plus a bare <span class="code-ref">--jf-color-{family}</span> for the 500. Retune a role framework-wide by changing its shade; reference in SCSS with <span class="code-ref">get-color-role($family, $role)</span>. Roles: <span class="italic">subtle</span> = faint tinted backgrounds, <span class="italic">muted</span> = borders / low-emphasis fills / visited links, <span class="italic">emphasis</span> = hover &amp; active / heading tone, <span class="italic">strong</span> = text on a tint / strongest headings.<br><br>Each role also gets a matching <span class="code-ref">--jf-color-on-{family}-{role}</span> companion (plus bare <span class="code-ref">--jf-color-on-{family}</span> for the 500) &mdash; the APCA-picked text colour for that role's surface, tracking the same shade knob so the pair can't drift. Prefer these over a numbered <span class="code-ref">--jf-color-on-{family}-50</span> when pairing text with a role surface.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$color-muted-shade</span></td>
-        <td>300</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$color-emphasis-shade</span></td>
-        <td>700</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$color-strong-shade</span></td>
-        <td>900</td>
+        <td><span class="variable-ref">$color-role-shades</span></td>
+        <td><span class="code-ref">(subtle: 50, muted: 300, emphasis: 700, strong: 900)</span></td>
+        <td>The semantic step-role ladder. Every palette family emits four named aliases &mdash; <span class="code-ref">--jf-color-{family}-subtle</span>, <span class="code-ref">-muted</span>, <span class="code-ref">-emphasis</span>, <span class="code-ref">-strong</span> &mdash; each pointing at the numbered shade set here, plus a bare <span class="code-ref">--jf-color-{family}</span> for the 500. Retune a role framework-wide by changing its entry (merge-friendly map, same shape as <a href="#dark-mode"><span class="variable-ref">$dark-color-role-shades</span></a>); reference in SCSS with <span class="code-ref">get-color-role($family, $role)</span> for the runtime alias or <span class="code-ref">role-shade($role)</span> for the build-time number. Roles: <span class="italic">subtle</span> = faint tinted backgrounds, <span class="italic">muted</span> = borders / low-emphasis fills / visited links, <span class="italic">emphasis</span> = hover &amp; active / heading tone, <span class="italic">strong</span> = text on a tint / strongest headings.<br><br>Each role also gets a matching <span class="code-ref">--jf-color-on-{family}-{role}</span> companion (plus bare <span class="code-ref">--jf-color-on-{family}</span> for the 500) &mdash; the APCA-picked text colour for that role's surface, tracking the same shade so the pair can't drift. Prefer these over a numbered <span class="code-ref">--jf-color-on-{family}-50</span> when pairing text with a role surface.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$border-color</span></td>
@@ -404,7 +392,7 @@
       <tr>
         <td><span class="variable-ref">$link-color</span></td>
         <td><span class="code-ref">primary</span></td>
-        <td>The palette <span class="bold">family</span> for links (not a colour). All three link tokens are step-role aliases of it so they flip in dark mode: <span class="code-ref">--jf-link-color</span> = <span class="italic">emphasis</span>, <span class="code-ref">--jf-link-color-active</span> = <span class="italic">strong</span>, <span class="code-ref">--jf-link-color-visited</span> = <span class="italic">muted</span>. Change the treatments globally with <span class="variable-ref">$color-emphasis-shade</span> / <span class="variable-ref">$color-strong-shade</span> / <span class="variable-ref">$color-muted-shade</span>, or per site by overriding the custom properties. <br><br><span class="bold">Breaking change in v5:</span> <span class="variable-ref">$link-active</span> and <span class="variable-ref">$link-visited</span> have been removed &mdash; set the custom properties, or <span class="variable-ref">$link-color</span> to a different family.</td>
+        <td>The palette <span class="bold">family</span> for links (not a colour). All three link tokens are step-role aliases of it so they flip in dark mode: <span class="code-ref">--jf-link-color</span> = <span class="italic">emphasis</span>, <span class="code-ref">--jf-link-color-active</span> = <span class="italic">strong</span>, <span class="code-ref">--jf-link-color-visited</span> = <span class="italic">muted</span>. Change the treatments globally with <span class="variable-ref">$color-role-shades</span> (the <span class="italic">emphasis</span> / <span class="italic">strong</span> / <span class="italic">muted</span> entries), or per site by overriding the custom properties. <br><br><span class="bold">Breaking change in v5:</span> <span class="variable-ref">$link-active</span> and <span class="variable-ref">$link-visited</span> have been removed &mdash; set the custom properties, or <span class="variable-ref">$link-color</span> to a different family.</td>
       </tr>
     </tbody>
   </table>
@@ -509,7 +497,7 @@
       </tr>
       <tr>
         <td><span class="variable-ref">$button-hover-value</span></td>
-        <td><span class="code-ref">$color-emphasis-shade</span></td>
+        <td><span class="code-ref">role-shade(emphasis)</span></td>
         <td>The shade to use from <code class="code-ref">makeColorPalette()</code> for button hover states &mdash; the <span class="italic">emphasis</span> role (700 by default), so it tracks links and headings. Still a plain shade number: set it to any step, or to 500 to prevent hover states being created.</td>
       </tr>
       <tr>
@@ -631,14 +619,14 @@
         <td>The horizontal padding for accordion heading buttons.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$accordion-heading-shade</span></td>
-        <td><span class="code-ref">$color-subtle-shade</span></td>
-        <td>Palette shade for the accordion heading in its rest state. The heading background is the family at this shade; the heading text is that shade's <span class="code-ref">--jf-color-on-*</span> companion (APCA-picked), so the pair can't drift. Override <span class="code-ref">--jf-accordion-heading-background</span> / <span class="code-ref">--jf-accordion-heading-color</span> at runtime for a specific colour.</td>
+        <td><span class="css-ref">--jf-accordion-heading-background</span> / <span class="css-ref">--jf-accordion-heading-color</span></td>
+        <td><span class="italic">subtle</span> role</td>
+        <td>The accordion heading in its rest state. Background is the family (or <span class="italic">neutral</span> for a plain accordion) at the <span class="italic">subtle</span> role; text is that role's <span class="code-ref">--jf-color-on-*</span> companion, so the pair flips together and can't drift. No Sass knob &mdash; override these two custom properties for a specific colour.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$accordion-heading-hover-shade</span></td>
-        <td><span class="code-ref">$color-muted-shade</span></td>
-        <td>Palette shade for the accordion heading when hovered or expanded — background and text derived the same way as <span class="code-ref">$accordion-heading-shade</span>. The default <span class="code-ref">muted</span> (300) gives a light tinted background one step up from the rest state, keeping the heading quiet.</td>
+        <td><span class="css-ref">--jf-accordion-heading-hover-background</span> / <span class="css-ref">--jf-accordion-heading-hover-color</span></td>
+        <td><span class="italic">muted</span> role</td>
+        <td>The accordion heading when hovered or expanded &mdash; the <span class="italic">muted</span> role and its <span class="code-ref">--jf-color-on-*</span> companion. A light tint one step up from rest in light, a defined band in dark. Override the custom properties to retune.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$accordion-heading-weight</span></td>
@@ -897,19 +885,19 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="variable-ref">$table-stripe-shade</span></td>
-        <td><span class="code-ref">$color-subtle-shade</span></td>
-        <td>Palette shade for alternate rows on the neutral table (<span class="css-ref">.is-striped</span>). Themed <span class="css-ref">.{family}</span> tables wash their cells at the <span class="italic">subtle</span> role and stripe with <span class="code-ref">color-mix(emphasis 10%, subtle)</span> &mdash; role-derived, so both flip in dark; they don't read this. Override <span class="code-ref">--jf-table-stripe-bg-color</span> at runtime for a specific colour.</td>
+        <td><span class="css-ref">--jf-table-stripe-bg-color</span></td>
+        <td><span class="italic">subtle</span> role</td>
+        <td>Alternate rows on a striped table (<span class="css-ref">.is-striped</span>). Always <span class="code-ref">color-mix(role emphasis 10%, role subtle)</span> &mdash; of <span class="italic">neutral</span> for a plain table, of the family for a <span class="css-ref">.{family}</span> table (one nudge darker than the cell). Role-derived, so it flips in dark. No Sass knob &mdash; override this custom property for a specific colour.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$table-hover-shade</span></td>
-        <td><span class="code-ref">$color-muted-shade</span></td>
-        <td>Palette shade for a hovered row (<span class="css-ref">.is-hoverable</span>) on the neutral table. Themed <span class="css-ref">.{family}</span> tables use the <span class="italic">muted</span> role for the row background and that role's <span class="code-ref">--jf-color-on-*</span> companion for the text, so the pair stays legible and flips in dark. Override <span class="code-ref">--jf-table-hover-background</span> / <span class="code-ref">--jf-table-text-hover-color</span> at runtime for a specific colour.</td>
+        <td><span class="css-ref">--jf-table-hover-background</span> / <span class="css-ref">--jf-table-text-hover-color</span></td>
+        <td><span class="italic">muted</span> role</td>
+        <td>A hovered row (<span class="css-ref">.is-hoverable</span>). Background is the <span class="italic">muted</span> role (of <span class="italic">neutral</span>, or the family for a themed table), text its <span class="code-ref">--jf-color-on-*</span> companion &mdash; the pair stays legible and flips in dark. Override the custom properties to retune.</td>
       </tr>
       <tr>
-        <td><span class="css-ref">--jf-table-head-background</span> / <span class="css-ref">--jf-table-head-color</span></td>
-        <td><span class="code-ref">neutral</span> <span class="italic">subtle</span> role / its <span class="code-ref">--jf-color-on-*</span></td>
-        <td>Header band on <span class="code-ref">thead th</span>. The plain table uses the neutral <span class="italic">subtle</span> role &mdash; a faint band in light, a defined one in dark. A <span class="css-ref">.{family}</span> table sets the band to the <span class="italic">muted</span> role (a step darker than the <span class="italic">subtle</span> cell) with the matching <span class="code-ref">--jf-color-on-*</span> text. Override either token to retune or set it to <span class="code-ref">transparent</span> for no band.</td>
+        <td><span class="css-ref">thead th</span> / <span class="css-ref">tfoot th</span> band</td>
+        <td><span class="code-ref">neutral</span> <span class="italic">subtle</span> role</td>
+        <td>No dedicated token &mdash; <span class="code-ref">thead th</span> and <span class="code-ref">tfoot th</span> repoint <span class="code-ref">--jf-table-cell-background</span> / <span class="code-ref">--jf-table-text-color</span> to the neutral <span class="italic">subtle</span> role (a faint band in light, defined in dark); a <span class="css-ref">.{family}</span> table scopes the <span class="italic">muted</span> role to its <span class="code-ref">thead th</span> / <span class="code-ref">tfoot th</span>. Using the shared cell token means a themed header <span class="italic">row</span> (<span class="code-ref">&lt;tr class="error"&gt;</span> in <span class="code-ref">thead</span>) wins on specificity instead of being painted over. Retune with your own <span class="code-ref">thead th { --jf-table-cell-background: &hellip; }</span>, or <span class="code-ref">transparent</span> for no band.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$table-cell-padding</span></td>

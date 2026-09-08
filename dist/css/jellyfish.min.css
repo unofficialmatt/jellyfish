@@ -36,15 +36,15 @@
   --jf-color-primary-900: #952c44;
   --jf-color-primary-1000: #88253b;
   --jf-color-primary-subtle: var(--jf-color-primary-50);
-  --jf-color-primary-muted: var(--jf-color-primary-300);
-  --jf-color-primary: var(--jf-color-primary-500);
-  --jf-color-primary-emphasis: var(--jf-color-primary-700);
-  --jf-color-primary-strong: var(--jf-color-primary-900);
   --jf-color-on-primary-subtle: var(--jf-color-on-primary-50);
+  --jf-color-primary-muted: var(--jf-color-primary-300);
   --jf-color-on-primary-muted: var(--jf-color-on-primary-300);
-  --jf-color-on-primary: var(--jf-color-on-primary-500);
+  --jf-color-primary-emphasis: var(--jf-color-primary-700);
   --jf-color-on-primary-emphasis: var(--jf-color-on-primary-700);
+  --jf-color-primary-strong: var(--jf-color-primary-900);
   --jf-color-on-primary-strong: var(--jf-color-on-primary-900);
+  --jf-color-primary: var(--jf-color-primary-500);
+  --jf-color-on-primary: var(--jf-color-on-primary-500);
   --jf-color-on-primary-25: #232931;
   --jf-color-on-primary-50: #232931;
   --jf-color-on-primary-100: #232931;
@@ -71,15 +71,15 @@
   --jf-color-secondary-900: #e1468a;
   --jf-color-secondary-1000: #dd387f;
   --jf-color-secondary-subtle: var(--jf-color-secondary-50);
-  --jf-color-secondary-muted: var(--jf-color-secondary-300);
-  --jf-color-secondary: var(--jf-color-secondary-500);
-  --jf-color-secondary-emphasis: var(--jf-color-secondary-700);
-  --jf-color-secondary-strong: var(--jf-color-secondary-900);
   --jf-color-on-secondary-subtle: var(--jf-color-on-secondary-50);
+  --jf-color-secondary-muted: var(--jf-color-secondary-300);
   --jf-color-on-secondary-muted: var(--jf-color-on-secondary-300);
-  --jf-color-on-secondary: var(--jf-color-on-secondary-500);
+  --jf-color-secondary-emphasis: var(--jf-color-secondary-700);
   --jf-color-on-secondary-emphasis: var(--jf-color-on-secondary-700);
+  --jf-color-secondary-strong: var(--jf-color-secondary-900);
   --jf-color-on-secondary-strong: var(--jf-color-on-secondary-900);
+  --jf-color-secondary: var(--jf-color-secondary-500);
+  --jf-color-on-secondary: var(--jf-color-on-secondary-500);
   --jf-color-on-secondary-25: #232931;
   --jf-color-on-secondary-50: #232931;
   --jf-color-on-secondary-100: #232931;
@@ -106,15 +106,15 @@
   --jf-color-neutral-900: #2c333d;
   --jf-color-neutral-1000: #232931;
   --jf-color-neutral-subtle: var(--jf-color-neutral-50);
-  --jf-color-neutral-muted: var(--jf-color-neutral-300);
-  --jf-color-neutral: var(--jf-color-neutral-500);
-  --jf-color-neutral-emphasis: var(--jf-color-neutral-700);
-  --jf-color-neutral-strong: var(--jf-color-neutral-900);
   --jf-color-on-neutral-subtle: var(--jf-color-on-neutral-50);
+  --jf-color-neutral-muted: var(--jf-color-neutral-300);
   --jf-color-on-neutral-muted: var(--jf-color-on-neutral-300);
-  --jf-color-on-neutral: var(--jf-color-on-neutral-500);
+  --jf-color-neutral-emphasis: var(--jf-color-neutral-700);
   --jf-color-on-neutral-emphasis: var(--jf-color-on-neutral-700);
+  --jf-color-neutral-strong: var(--jf-color-neutral-900);
   --jf-color-on-neutral-strong: var(--jf-color-on-neutral-900);
+  --jf-color-neutral: var(--jf-color-neutral-500);
+  --jf-color-on-neutral: var(--jf-color-on-neutral-500);
   --jf-color-on-neutral-25: #232931;
   --jf-color-on-neutral-50: #232931;
   --jf-color-on-neutral-100: #232931;
@@ -141,15 +141,15 @@
   --jf-color-success-900: #005a24;
   --jf-color-success-1000: #00491d;
   --jf-color-success-subtle: var(--jf-color-success-50);
-  --jf-color-success-muted: var(--jf-color-success-300);
-  --jf-color-success: var(--jf-color-success-500);
-  --jf-color-success-emphasis: var(--jf-color-success-700);
-  --jf-color-success-strong: var(--jf-color-success-900);
   --jf-color-on-success-subtle: var(--jf-color-on-success-50);
+  --jf-color-success-muted: var(--jf-color-success-300);
   --jf-color-on-success-muted: var(--jf-color-on-success-300);
-  --jf-color-on-success: var(--jf-color-on-success-500);
+  --jf-color-success-emphasis: var(--jf-color-success-700);
   --jf-color-on-success-emphasis: var(--jf-color-on-success-700);
+  --jf-color-success-strong: var(--jf-color-success-900);
   --jf-color-on-success-strong: var(--jf-color-on-success-900);
+  --jf-color-success: var(--jf-color-success-500);
+  --jf-color-on-success: var(--jf-color-on-success-500);
   --jf-color-on-success-25: #232931;
   --jf-color-on-success-50: #232931;
   --jf-color-on-success-100: #232931;
@@ -176,15 +176,15 @@
   --jf-color-warning-900: #af7316;
   --jf-color-warning-1000: #a26712;
   --jf-color-warning-subtle: var(--jf-color-warning-50);
-  --jf-color-warning-muted: var(--jf-color-warning-300);
-  --jf-color-warning: var(--jf-color-warning-500);
-  --jf-color-warning-emphasis: var(--jf-color-warning-700);
-  --jf-color-warning-strong: var(--jf-color-warning-900);
   --jf-color-on-warning-subtle: var(--jf-color-on-warning-50);
+  --jf-color-warning-muted: var(--jf-color-warning-300);
   --jf-color-on-warning-muted: var(--jf-color-on-warning-300);
-  --jf-color-on-warning: var(--jf-color-on-warning-500);
+  --jf-color-warning-emphasis: var(--jf-color-warning-700);
   --jf-color-on-warning-emphasis: var(--jf-color-on-warning-700);
+  --jf-color-warning-strong: var(--jf-color-warning-900);
   --jf-color-on-warning-strong: var(--jf-color-on-warning-900);
+  --jf-color-warning: var(--jf-color-warning-500);
+  --jf-color-on-warning: var(--jf-color-on-warning-500);
   --jf-color-on-warning-25: #232931;
   --jf-color-on-warning-50: #232931;
   --jf-color-on-warning-100: #232931;
@@ -211,15 +211,15 @@
   --jf-color-error-900: #b31e1e;
   --jf-color-error-1000: #a71818;
   --jf-color-error-subtle: var(--jf-color-error-50);
-  --jf-color-error-muted: var(--jf-color-error-300);
-  --jf-color-error: var(--jf-color-error-500);
-  --jf-color-error-emphasis: var(--jf-color-error-700);
-  --jf-color-error-strong: var(--jf-color-error-900);
   --jf-color-on-error-subtle: var(--jf-color-on-error-50);
+  --jf-color-error-muted: var(--jf-color-error-300);
   --jf-color-on-error-muted: var(--jf-color-on-error-300);
-  --jf-color-on-error: var(--jf-color-on-error-500);
+  --jf-color-error-emphasis: var(--jf-color-error-700);
   --jf-color-on-error-emphasis: var(--jf-color-on-error-700);
+  --jf-color-error-strong: var(--jf-color-error-900);
   --jf-color-on-error-strong: var(--jf-color-on-error-900);
+  --jf-color-error: var(--jf-color-error-500);
+  --jf-color-on-error: var(--jf-color-on-error-500);
   --jf-color-on-error-25: #232931;
   --jf-color-on-error-50: #232931;
   --jf-color-on-error-100: #232931;
@@ -352,8 +352,6 @@
   --jf-table-font-size: var(--jf-font-size-sm);
   --jf-table-stripe-bg-color: var(--jf-color-neutral-subtle);
   --jf-table-hover-background: var(--jf-color-neutral-muted);
-  --jf-table-head-background: var(--jf-color-neutral-subtle);
-  --jf-table-head-color: var(--jf-color-on-neutral-subtle);
   --jf-table-cell-background: transparent;
   --jf-navbar-bg-color: var(--jf-color-secondary-500);
   --jf-navbar-link-color: var(--jf-color-white);
@@ -862,10 +860,14 @@ td {
   color: var(--jf-table-text-color, inherit);
 }
 
+thead th,
+tfoot th {
+  --jf-table-cell-background: var(--jf-color-neutral-subtle);
+  --jf-table-text-color: var(--jf-color-on-neutral-subtle);
+}
+
 thead th {
   border-bottom: var(--jf-border-width-strong) var(--jf-border-style) var(--jf-table-border-color, var(--jf-border-color));
-  background: var(--jf-table-head-background, var(--jf-table-cell-background));
-  color: var(--jf-table-head-color, var(--jf-table-text-color, inherit));
 }
 
 tfoot th {
@@ -883,7 +885,7 @@ tfoot th {
 }
 
 table.is-striped tr:nth-child(odd) td {
-  background: var(--jf-table-stripe-bg-color);
+  --jf-table-cell-background: var(--jf-table-stripe-bg-color);
 }
 
 table.has-border,
@@ -899,8 +901,8 @@ table.has-border tfoot th {
 }
 
 table.is-hoverable tr:hover td {
-  --jf-table-text-color: var(--jf-table-text-hover-color, var(--jf-color-on-neutral-300));
-  background: var(--jf-table-hover-background) !important;
+  --jf-table-text-color: var(--jf-table-text-hover-color, var(--jf-color-on-neutral-muted));
+  --jf-table-cell-background: var(--jf-table-hover-background);
 }
 
 @media (max-width: 56.1875em) {
@@ -943,8 +945,12 @@ table.primary {
   --jf-table-cell-background: var(--jf-color-primary-subtle);
   --jf-table-text-color: var(--jf-color-on-primary-subtle);
   --jf-table-text-hover-color: var(--jf-color-on-primary-muted);
-  --jf-table-head-background: var(--jf-color-primary-muted);
-  --jf-table-head-color: var(--jf-color-on-primary-muted);
+}
+
+table.primary thead th,
+table.primary tfoot th {
+  --jf-table-cell-background: var(--jf-color-primary-muted);
+  --jf-table-text-color: var(--jf-color-on-primary-muted);
 }
 
 table.primary th,
@@ -959,10 +965,10 @@ td.primary,
 tr.primary {
   --jf-table-cell-background: var(--jf-color-primary-subtle);
   --jf-table-border-color: var(--jf-color-primary-muted);
-  --jf-table-stripe-bg-color: var(--jf-color-primary-100);
-  --jf-table-hover-background: var(--jf-color-primary-300);
-  --jf-table-text-color: var(--jf-color-on-primary-50);
-  --jf-table-text-hover-color: var(--jf-color-on-primary-300);
+  --jf-table-stripe-bg-color: color-mix(in srgb, var(--jf-color-primary-emphasis) 10%, var(--jf-color-primary-subtle));
+  --jf-table-hover-background: var(--jf-color-primary-muted);
+  --jf-table-text-color: var(--jf-color-on-primary-subtle);
+  --jf-table-text-hover-color: var(--jf-color-on-primary-muted);
 }
 
 table.secondary {
@@ -972,8 +978,12 @@ table.secondary {
   --jf-table-cell-background: var(--jf-color-secondary-subtle);
   --jf-table-text-color: var(--jf-color-on-secondary-subtle);
   --jf-table-text-hover-color: var(--jf-color-on-secondary-muted);
-  --jf-table-head-background: var(--jf-color-secondary-muted);
-  --jf-table-head-color: var(--jf-color-on-secondary-muted);
+}
+
+table.secondary thead th,
+table.secondary tfoot th {
+  --jf-table-cell-background: var(--jf-color-secondary-muted);
+  --jf-table-text-color: var(--jf-color-on-secondary-muted);
 }
 
 table.secondary th,
@@ -988,10 +998,10 @@ td.secondary,
 tr.secondary {
   --jf-table-cell-background: var(--jf-color-secondary-subtle);
   --jf-table-border-color: var(--jf-color-secondary-muted);
-  --jf-table-stripe-bg-color: var(--jf-color-secondary-100);
-  --jf-table-hover-background: var(--jf-color-secondary-300);
-  --jf-table-text-color: var(--jf-color-on-secondary-50);
-  --jf-table-text-hover-color: var(--jf-color-on-secondary-300);
+  --jf-table-stripe-bg-color: color-mix(in srgb, var(--jf-color-secondary-emphasis) 10%, var(--jf-color-secondary-subtle));
+  --jf-table-hover-background: var(--jf-color-secondary-muted);
+  --jf-table-text-color: var(--jf-color-on-secondary-subtle);
+  --jf-table-text-hover-color: var(--jf-color-on-secondary-muted);
 }
 
 table.neutral {
@@ -1001,8 +1011,12 @@ table.neutral {
   --jf-table-cell-background: var(--jf-color-neutral-subtle);
   --jf-table-text-color: var(--jf-color-on-neutral-subtle);
   --jf-table-text-hover-color: var(--jf-color-on-neutral-muted);
-  --jf-table-head-background: var(--jf-color-neutral-muted);
-  --jf-table-head-color: var(--jf-color-on-neutral-muted);
+}
+
+table.neutral thead th,
+table.neutral tfoot th {
+  --jf-table-cell-background: var(--jf-color-neutral-muted);
+  --jf-table-text-color: var(--jf-color-on-neutral-muted);
 }
 
 table.neutral th,
@@ -1017,10 +1031,10 @@ td.neutral,
 tr.neutral {
   --jf-table-cell-background: var(--jf-color-neutral-subtle);
   --jf-table-border-color: var(--jf-color-neutral-muted);
-  --jf-table-stripe-bg-color: var(--jf-color-neutral-100);
-  --jf-table-hover-background: var(--jf-color-neutral-300);
-  --jf-table-text-color: var(--jf-color-on-neutral-50);
-  --jf-table-text-hover-color: var(--jf-color-on-neutral-300);
+  --jf-table-stripe-bg-color: color-mix(in srgb, var(--jf-color-neutral-emphasis) 10%, var(--jf-color-neutral-subtle));
+  --jf-table-hover-background: var(--jf-color-neutral-muted);
+  --jf-table-text-color: var(--jf-color-on-neutral-subtle);
+  --jf-table-text-hover-color: var(--jf-color-on-neutral-muted);
 }
 
 table.success {
@@ -1030,8 +1044,12 @@ table.success {
   --jf-table-cell-background: var(--jf-color-success-subtle);
   --jf-table-text-color: var(--jf-color-on-success-subtle);
   --jf-table-text-hover-color: var(--jf-color-on-success-muted);
-  --jf-table-head-background: var(--jf-color-success-muted);
-  --jf-table-head-color: var(--jf-color-on-success-muted);
+}
+
+table.success thead th,
+table.success tfoot th {
+  --jf-table-cell-background: var(--jf-color-success-muted);
+  --jf-table-text-color: var(--jf-color-on-success-muted);
 }
 
 table.success th,
@@ -1046,10 +1064,10 @@ td.success,
 tr.success {
   --jf-table-cell-background: var(--jf-color-success-subtle);
   --jf-table-border-color: var(--jf-color-success-muted);
-  --jf-table-stripe-bg-color: var(--jf-color-success-100);
-  --jf-table-hover-background: var(--jf-color-success-300);
-  --jf-table-text-color: var(--jf-color-on-success-50);
-  --jf-table-text-hover-color: var(--jf-color-on-success-300);
+  --jf-table-stripe-bg-color: color-mix(in srgb, var(--jf-color-success-emphasis) 10%, var(--jf-color-success-subtle));
+  --jf-table-hover-background: var(--jf-color-success-muted);
+  --jf-table-text-color: var(--jf-color-on-success-subtle);
+  --jf-table-text-hover-color: var(--jf-color-on-success-muted);
 }
 
 table.warning {
@@ -1059,8 +1077,12 @@ table.warning {
   --jf-table-cell-background: var(--jf-color-warning-subtle);
   --jf-table-text-color: var(--jf-color-on-warning-subtle);
   --jf-table-text-hover-color: var(--jf-color-on-warning-muted);
-  --jf-table-head-background: var(--jf-color-warning-muted);
-  --jf-table-head-color: var(--jf-color-on-warning-muted);
+}
+
+table.warning thead th,
+table.warning tfoot th {
+  --jf-table-cell-background: var(--jf-color-warning-muted);
+  --jf-table-text-color: var(--jf-color-on-warning-muted);
 }
 
 table.warning th,
@@ -1075,10 +1097,10 @@ td.warning,
 tr.warning {
   --jf-table-cell-background: var(--jf-color-warning-subtle);
   --jf-table-border-color: var(--jf-color-warning-muted);
-  --jf-table-stripe-bg-color: var(--jf-color-warning-100);
-  --jf-table-hover-background: var(--jf-color-warning-300);
-  --jf-table-text-color: var(--jf-color-on-warning-50);
-  --jf-table-text-hover-color: var(--jf-color-on-warning-300);
+  --jf-table-stripe-bg-color: color-mix(in srgb, var(--jf-color-warning-emphasis) 10%, var(--jf-color-warning-subtle));
+  --jf-table-hover-background: var(--jf-color-warning-muted);
+  --jf-table-text-color: var(--jf-color-on-warning-subtle);
+  --jf-table-text-hover-color: var(--jf-color-on-warning-muted);
 }
 
 table.error {
@@ -1088,8 +1110,12 @@ table.error {
   --jf-table-cell-background: var(--jf-color-error-subtle);
   --jf-table-text-color: var(--jf-color-on-error-subtle);
   --jf-table-text-hover-color: var(--jf-color-on-error-muted);
-  --jf-table-head-background: var(--jf-color-error-muted);
-  --jf-table-head-color: var(--jf-color-on-error-muted);
+}
+
+table.error thead th,
+table.error tfoot th {
+  --jf-table-cell-background: var(--jf-color-error-muted);
+  --jf-table-text-color: var(--jf-color-on-error-muted);
 }
 
 table.error th,
@@ -1104,10 +1130,10 @@ td.error,
 tr.error {
   --jf-table-cell-background: var(--jf-color-error-subtle);
   --jf-table-border-color: var(--jf-color-error-muted);
-  --jf-table-stripe-bg-color: var(--jf-color-error-100);
-  --jf-table-hover-background: var(--jf-color-error-300);
-  --jf-table-text-color: var(--jf-color-on-error-50);
-  --jf-table-text-hover-color: var(--jf-color-on-error-300);
+  --jf-table-stripe-bg-color: color-mix(in srgb, var(--jf-color-error-emphasis) 10%, var(--jf-color-error-subtle));
+  --jf-table-hover-background: var(--jf-color-error-muted);
+  --jf-table-text-color: var(--jf-color-on-error-subtle);
+  --jf-table-text-hover-color: var(--jf-color-on-error-muted);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -3109,8 +3135,8 @@ button.hamburger:hover, button.hamburger:focus {
   margin-bottom: var(--jf-flow);
   --jf-accordion-heading-background: var(--jf-color-neutral-subtle);
   --jf-accordion-heading-color: var(--jf-color-on-neutral-subtle);
-  --jf-accordion-heading-hover-background: var(--jf-color-neutral-500);
-  --jf-accordion-heading-hover-color: var(--jf-color-on-neutral-500);
+  --jf-accordion-heading-hover-background: var(--jf-color-neutral-muted);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-neutral-muted);
   interpolate-size: allow-keywords;
 }
 
@@ -3223,50 +3249,50 @@ h6 .accordion-heading {
 
 .accordion.primary,
 .accordion-item.primary {
-  --jf-accordion-heading-background: var(--jf-color-primary-50);
-  --jf-accordion-heading-color: var(--jf-color-on-primary-50);
-  --jf-accordion-heading-hover-background: var(--jf-color-primary-500);
-  --jf-accordion-heading-hover-color: var(--jf-color-on-primary-500);
+  --jf-accordion-heading-background: var(--jf-color-primary-subtle);
+  --jf-accordion-heading-color: var(--jf-color-on-primary-subtle);
+  --jf-accordion-heading-hover-background: var(--jf-color-primary-muted);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-primary-muted);
   --jf-accordion-border-color: var(--jf-color-primary-muted);
 }
 .accordion.secondary,
 .accordion-item.secondary {
-  --jf-accordion-heading-background: var(--jf-color-secondary-50);
-  --jf-accordion-heading-color: var(--jf-color-on-secondary-50);
-  --jf-accordion-heading-hover-background: var(--jf-color-secondary-500);
-  --jf-accordion-heading-hover-color: var(--jf-color-on-secondary-500);
+  --jf-accordion-heading-background: var(--jf-color-secondary-subtle);
+  --jf-accordion-heading-color: var(--jf-color-on-secondary-subtle);
+  --jf-accordion-heading-hover-background: var(--jf-color-secondary-muted);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-secondary-muted);
   --jf-accordion-border-color: var(--jf-color-secondary-muted);
 }
 .accordion.neutral,
 .accordion-item.neutral {
-  --jf-accordion-heading-background: var(--jf-color-neutral-50);
-  --jf-accordion-heading-color: var(--jf-color-on-neutral-50);
-  --jf-accordion-heading-hover-background: var(--jf-color-neutral-500);
-  --jf-accordion-heading-hover-color: var(--jf-color-on-neutral-500);
+  --jf-accordion-heading-background: var(--jf-color-neutral-subtle);
+  --jf-accordion-heading-color: var(--jf-color-on-neutral-subtle);
+  --jf-accordion-heading-hover-background: var(--jf-color-neutral-muted);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-neutral-muted);
   --jf-accordion-border-color: var(--jf-color-neutral-muted);
 }
 .accordion.success,
 .accordion-item.success {
-  --jf-accordion-heading-background: var(--jf-color-success-50);
-  --jf-accordion-heading-color: var(--jf-color-on-success-50);
-  --jf-accordion-heading-hover-background: var(--jf-color-success-500);
-  --jf-accordion-heading-hover-color: var(--jf-color-on-success-500);
+  --jf-accordion-heading-background: var(--jf-color-success-subtle);
+  --jf-accordion-heading-color: var(--jf-color-on-success-subtle);
+  --jf-accordion-heading-hover-background: var(--jf-color-success-muted);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-success-muted);
   --jf-accordion-border-color: var(--jf-color-success-muted);
 }
 .accordion.warning,
 .accordion-item.warning {
-  --jf-accordion-heading-background: var(--jf-color-warning-50);
-  --jf-accordion-heading-color: var(--jf-color-on-warning-50);
-  --jf-accordion-heading-hover-background: var(--jf-color-warning-500);
-  --jf-accordion-heading-hover-color: var(--jf-color-on-warning-500);
+  --jf-accordion-heading-background: var(--jf-color-warning-subtle);
+  --jf-accordion-heading-color: var(--jf-color-on-warning-subtle);
+  --jf-accordion-heading-hover-background: var(--jf-color-warning-muted);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-warning-muted);
   --jf-accordion-border-color: var(--jf-color-warning-muted);
 }
 .accordion.error,
 .accordion-item.error {
-  --jf-accordion-heading-background: var(--jf-color-error-50);
-  --jf-accordion-heading-color: var(--jf-color-on-error-50);
-  --jf-accordion-heading-hover-background: var(--jf-color-error-500);
-  --jf-accordion-heading-hover-color: var(--jf-color-on-error-500);
+  --jf-accordion-heading-background: var(--jf-color-error-subtle);
+  --jf-accordion-heading-color: var(--jf-color-on-error-subtle);
+  --jf-accordion-heading-hover-background: var(--jf-color-error-muted);
+  --jf-accordion-heading-hover-color: var(--jf-color-on-error-muted);
   --jf-accordion-border-color: var(--jf-color-error-muted);
 }
 

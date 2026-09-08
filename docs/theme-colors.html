@@ -157,13 +157,13 @@
     </thead>
     <tbody>
       <tr><td><span class="css-ref">--jf-color-{family}</span></td><td>500</td><td>The colour itself.</td></tr>
-      <tr><td><span class="css-ref">--jf-color-{family}-subtle</span></td><td>50 <span class="italic">(<span class="variable-ref">$color-subtle-shade</span>)</span></td><td>Faint tinted backgrounds.</td></tr>
-      <tr><td><span class="css-ref">--jf-color-{family}-muted</span></td><td>300 <span class="italic">(<span class="variable-ref">$color-muted-shade</span>)</span></td><td>Borders, low-emphasis fills, visited links.</td></tr>
-      <tr><td><span class="css-ref">--jf-color-{family}-emphasis</span></td><td>700 <span class="italic">(<span class="variable-ref">$color-emphasis-shade</span>)</span></td><td>Hover &amp; active states, heading tone.</td></tr>
-      <tr><td><span class="css-ref">--jf-color-{family}-strong</span></td><td>900 <span class="italic">(<span class="variable-ref">$color-strong-shade</span>)</span></td><td>Text on a tint, strongest headings.</td></tr>
+      <tr><td><span class="css-ref">--jf-color-{family}-subtle</span></td><td>50</td><td>Faint tinted backgrounds.</td></tr>
+      <tr><td><span class="css-ref">--jf-color-{family}-muted</span></td><td>300</td><td>Borders, low-emphasis fills, visited links.</td></tr>
+      <tr><td><span class="css-ref">--jf-color-{family}-emphasis</span></td><td>700</td><td>Hover &amp; active states, heading tone.</td></tr>
+      <tr><td><span class="css-ref">--jf-color-{family}-strong</span></td><td>900</td><td>Text on a tint, strongest headings.</td></tr>
     </tbody>
   </table>
-  <p>Each alias is a live <span class="code-ref">var()</span> reference to the numbered token, so a runtime override of a shade flows through to its aliases. Retune which shade a role points at &mdash; for the whole framework &mdash; with the <span class="code-ref">$color-*-shade</span> settings; from SCSS, reference an alias with <span class="code-ref">get-color-role($family, $role)</span>.</p>
+  <p>Each alias is a live <span class="code-ref">var()</span> reference to the numbered token, so a runtime override of a shade flows through to its aliases. Retune which shade a role points at &mdash; for the whole framework &mdash; with the <span class="code-ref">$color-role-shades</span> map; from SCSS, reference an alias with <span class="code-ref">get-color-role($family, $role)</span> (or <span class="code-ref">role-shade($role)</span> for the raw number).</p>
   <pre class="language-scss">
     <code>
       .promo {

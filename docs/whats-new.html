@@ -143,7 +143,7 @@
 <p>The bundled <span class="code-ref">theme.js</span> exposes <span class="code-ref">window.JellyfishTheme</span> (<span class="code-ref">get</span> / <span class="code-ref">set</span> / <span class="code-ref">toggle</span>), wires any <span class="code-ref">[data-theme-toggle]</span> / <span class="code-ref">[data-theme-set]</span> control by delegation, follows live OS changes while no explicit choice is stored, and fires <span class="code-ref">jfThemeChange</span>. Add <span class="code-ref">&lt;meta name="color-scheme" content="light dark"&gt;</span> and a small pre-paint snippet to your <span class="code-ref">&lt;head&gt;</span> &mdash; see <a href="./getting-started.html#dark-mode">Getting Started</a>, <a href="./theme-colors.html#dark-mode">Theme Colors</a> and <a href="./javascript.html#theme">Javascript</a>.</p>
 
 <h2 class="h3">Role-addressable <span class="code-ref">--jf-color-on-*</span> companions</h2>
-<p>Alongside the numbered <span class="code-ref">--jf-color-on-{family}-{shade}</span> tokens, every step-role now has a matching <span class="code-ref">--jf-color-on-{family}-{role}</span> (<span class="code-ref">-subtle</span> / <span class="code-ref">-muted</span> / <span class="code-ref">-emphasis</span> / <span class="code-ref">-strong</span>, plus bare for the 500). It tracks the same <span class="code-ref">$color-{role}-shade</span> knob as the role alias itself, so a role surface and its paired text can't drift apart when a knob is retuned &mdash; and the dark-mode role remap carries the text with it. Value-neutral in light mode.</p>
+<p>Alongside the numbered <span class="code-ref">--jf-color-on-{family}-{shade}</span> tokens, every step-role now has a matching <span class="code-ref">--jf-color-on-{family}-{role}</span> (<span class="code-ref">-subtle</span> / <span class="code-ref">-muted</span> / <span class="code-ref">-emphasis</span> / <span class="code-ref">-strong</span>, plus bare for the 500). It tracks the same <span class="code-ref">$color-role-shades</span> entry as the role alias itself, so a role surface and its paired text can't drift apart when a role is retuned &mdash; and the dark-mode role remap carries the text with it. Value-neutral in light mode.</p>
 
 <h2 class="h3">Surface (<span class="code-ref">.bg-*</span>) modifiers</h2>
 <p>A <span class="code-ref">.bg-{family}</span> class is now generated for every colour in <span class="code-ref">$colors</span> (<span class="code-ref">.bg-primary</span>, <span class="code-ref">.bg-neutral</span>, &hellip;). Put one on any element &mdash; a <span class="code-ref">section</span>, a <span class="code-ref">.card</span>, a <span class="code-ref">div</span> &mdash; and it becomes a themed surface: <span class="code-ref">--jf-color-surface</span> and its contrast-picked <span class="code-ref">--jf-color-text</span> / <span class="code-ref">--jf-color-headings</span> are set for you, the muted / subtle text tiers re-tint toward it, and everything nested (headings, <span class="code-ref">.text-muted</span>, callouts, cards) follows by inheritance &mdash; no descendant selectors. Add specific shades or one-off colours via the <span class="code-ref">$background-colors</span> map. <a href="./theme-colors.html">See Theme Colors.</a></p>
@@ -178,7 +178,7 @@
       --jf-link-color-visited: var(--jf-color-primary-muted);
 
       // Semantic aliases - emitted for every family in the $colors map.
-      // Bare = 500; the four roles map to $color-{role}-shade (retune once).
+      // Bare = 500; the four roles map to $color-role-shades (retune once).
       --jf-color-primary: var(--jf-color-primary-500);
       --jf-color-primary-subtle: var(--jf-color-primary-50);
       --jf-color-primary-muted: var(--jf-color-primary-300);
@@ -212,7 +212,6 @@
       --jf-table-font-size: #{$table-font-size};
       --jf-table-stripe-bg-color: var(--jf-color-neutral-subtle);
       --jf-table-hover-background: var(--jf-color-neutral-muted);
-      --jf-table-head-background: var(--jf-color-neutral-subtle);
       --jf-table-cell-background: transparent;
 
       --jf-navbar-bg-color: #{$navbar-bg-color};

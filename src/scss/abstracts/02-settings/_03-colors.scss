@@ -18,27 +18,20 @@ $colors: map-merge(
 $color-white: #ffffff !default;
 $color-black: #000000 !default;
 $body-background-color: #faf9f6 !default;
-
-// Neutral surface modifiers. Both flip with the dark remap (see jf-dark-tokens):
-//  .bg-soft    — one step off the canvas, not emphasised. #fff in light, a raised
-//                dark tint in dark. What a component reaches for when it needs a
-//                little elevation without a theme colour.
-//  .bg-inverse — a full reverse of the page: the opposite theme's canvas, so it
-//                reads as a deliberate high-contrast block ($dark-body-background-color
-//                in light, $body-background-color in dark; text/headings follow).
 $soft-background-color: $color-white !default;
-
-$color-subtle-shade: 50 !default; // faint tinted backgrounds
-$color-muted-shade: 300 !default; // borders, low-emphasis fills, visited links
-$color-emphasis-shade: 700 !default; // hover / active, heading tone
-$color-strong-shade: 900 !default; // text on a tint, strongest headings
+$color-role-shades: (
+  subtle: 50,
+  muted: 300,
+  emphasis: 700,
+  strong: 900,
+) !default;
 
 $link-color: primary !default; // Default family for links, output as css props --link-color-*
 
 $color-text: get-color(neutral, 1000) !default;
 $color-text-muted-mix: 70% !default; // secondary content: captions, .text-muted
 $color-text-subtle-mix: 60% !default; // hint text: ::placeholder, .text-subtle
-$color-headings-preferred: get-color(neutral, $color-emphasis-shade) !default;
+$color-headings-preferred: get-color(neutral, role-shade(emphasis)) !default;
 
 $mark-background-color: #ffff9d !default;
 

@@ -83,8 +83,11 @@
       #{token-name("table-text-hover-color")}: #{token(
           color-on-#{$color}-muted
         )};
-      #{token-name("table-head-background")}: #{get-color-role($color, muted)};
-      #{token-name("table-head-color")}: #{token(color-on-#{$color}-muted)};
+    }
+    table.#{$color} thead th,
+    table.#{$color} tfoot th {
+      #{token-name("table-cell-background")}: #{get-color-role($color, muted)};
+      #{token-name("table-text-color")}: #{token(color-on-#{$color}-muted)};
     }
     table.#{$color} th,
     th.#{$color},
@@ -97,17 +100,15 @@
     tr.#{$color} {
       #{token-name("table-cell-background")}: #{get-color-role($color, subtle)};
       #{token-name("table-border-color")}: #{get-color-role($color, muted)};
-      #{token-name("table-stripe-bg-color")}: #{token(color-#{$color}-100)};
-      #{token-name("table-hover-background")}: #{token(
-          color-#{$color}-#{$table-hover-shade}
-        )};
-      #{token-name("table-text-color")}: #{get-on-color(
-          $color,
-          $color-subtle-shade
-        )};
-      #{token-name("table-text-hover-color")}: #{get-on-color(
-          $color,
-          $table-hover-shade
+      #{token-name("table-stripe-bg-color")}: color-mix(
+        in srgb,
+        #{get-color-role($color, emphasis)} 10%,
+        #{get-color-role($color, subtle)}
+      );
+      #{token-name("table-hover-background")}: #{get-color-role($color, muted)};
+      #{token-name("table-text-color")}: #{token(color-on-#{$color}-subtle)};
+      #{token-name("table-text-hover-color")}: #{token(
+          color-on-#{$color}-muted
         )};
     }
   } @else {
@@ -117,19 +118,19 @@
 
 @mixin createAccordionTheme($color) {
   @if map-has-key($colors, $color) {
-    #{token-name("accordion-heading-background")}: #{token(
-        color-#{$color}-#{$accordion-heading-shade}
-      )};
-    #{token-name("accordion-heading-color")}: #{get-on-color(
+    #{token-name("accordion-heading-background")}: #{get-color-role(
         $color,
-        $accordion-heading-shade
+        subtle
       )};
-    #{token-name("accordion-heading-hover-background")}: #{token(
-        color-#{$color}-#{$accordion-heading-hover-shade}
+    #{token-name("accordion-heading-color")}: #{token(
+        color-on-#{$color}-subtle
       )};
-    #{token-name("accordion-heading-hover-color")}: #{get-on-color(
+    #{token-name("accordion-heading-hover-background")}: #{get-color-role(
         $color,
-        $accordion-heading-hover-shade
+        muted
+      )};
+    #{token-name("accordion-heading-hover-color")}: #{token(
+        color-on-#{$color}-muted
       )};
     #{token-name("accordion-border-color")}: #{get-color-role($color, muted)};
   } @else {

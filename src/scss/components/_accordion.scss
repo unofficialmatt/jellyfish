@@ -22,12 +22,12 @@
       subtle
     )};
   #{token-name("accordion-heading-color")}: #{token(color-on-neutral-subtle)};
-  #{token-name("accordion-heading-hover-background")}: #{token(
-      color-neutral-#{$accordion-heading-hover-shade}
-    )};
-  #{token-name("accordion-heading-hover-color")}: #{get-on-color(
+  #{token-name("accordion-heading-hover-background")}: #{get-color-role(
       neutral,
-      $accordion-heading-hover-shade
+      muted
+    )};
+  #{token-name("accordion-heading-hover-color")}: #{token(
+      color-on-neutral-muted
     )};
 
   // Lets the panel's height: 0 <-> auto transition actually interpolate, so the
