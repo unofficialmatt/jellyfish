@@ -833,7 +833,16 @@
   </table>
 
   <h2 id="navbar" class="h5">Navbar</h2>
-  <p>Coming Soon!</p>
+  <p>Full table coming soon. The colour model, in brief:</p>
+  <ul>
+    <li><span class="variable-ref">$navbar-family</span> (<span class="code-ref">primary</span>) &mdash; the branded top bar is this family at <span class="code-ref">500</span> in both modes; <span class="variable-ref">$navbar-bg-color</span> and <span class="variable-ref">$navbar-link-bg-color</span> derive from it.</li>
+    <li><span class="bold">Link and hover text are not settings</span> &mdash; they're <span class="italic">derived</span> from whatever the link / hover background resolves to (a palette shade &rarr; its <span class="code-ref">-on-*</span> companion, a plain colour &rarr; the APCA-picked contrast), so any bar colour gets fitting text. Retune only at runtime, via <span class="css-ref">--jf-navbar-link-color</span> / <span class="css-ref">--jf-navbar-link-hover-color</span>.</li>
+    <li><span class="variable-ref">$navbar-link-hover-bg-color</span> &mdash; the family's <span class="italic">emphasis</span> role (flips in dark; its derived text is the emphasis <span class="code-ref">-on-*</span>, so it flips too).</li>
+    <li><span class="variable-ref">$navbar-link-border</span> &mdash; <span class="code-ref">color-mix(currentColor 12%, transparent)</span> (was a literal <span class="code-ref">rgba(white,.1)</span>).</li>
+    <li>Sub-menus / dropdown / off-canvas drawer &mdash; a neutral <span class="css-ref">.bg-soft</span> surface (flips). Only the backgrounds are settings (<span class="variable-ref">$navbar-sublink-bg-color</span> = <span class="code-ref">--jf-color-bg-soft</span>, <span class="variable-ref">$navbar-sublink-hover-bg-color</span> = the <span class="italic">muted</span> role); the text is derived. All four are exposed as <span class="css-ref">--jf-navbar-sublink-color</span> / <span class="css-ref">-bg-color</span> / <span class="css-ref">-hover-color</span> / <span class="css-ref">-hover-bg-color</span> on <span class="css-ref">:root</span> &mdash; set <span class="css-ref">--jf-navbar-sublink-bg-color</span> once and the dropdown, mobile menu and drawer all follow.</li>
+    <li><span class="variable-ref">$navbar-offcanvas-body-overlay</span> &mdash; <span class="code-ref">color-mix(in srgb, black 50%, transparent)</span>.</li>
+  </ul>
+  <p>Everything else is a <span class="css-ref">--jf-navbar-*</span> custom property for runtime tuning.</p>
 
   <!-- TODO: navbar.scss -->
   <h2 id="progress" class="h5">Progress Bars</h2>

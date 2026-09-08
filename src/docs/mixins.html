@@ -29,6 +29,19 @@
 </div>
 <div>
   <h2 class="h3">Working with Colors</h2>
+  <p>The whole consumer-facing colour API is five functions plus <code class="code-ref">token()</code>:</p>
+  <table class="is-responsive has-border">
+    <thead><tr><th>Function</th><th>Reach for it when&hellip;</th></tr></thead>
+    <tbody>
+      <tr><td><code class="code-ref">get-color($family, $shade)</code></td><td>you want a specific numbered shade of a palette family.</td></tr>
+      <tr><td><code class="code-ref">get-color-role($family, $role)</code></td><td>you want a family by <span class="italic">intent</span> (<code class="code-ref">subtle</code> / <code class="code-ref">muted</code> / <code class="code-ref">emphasis</code> / <code class="code-ref">strong</code>) &mdash; the alias flips in dark mode.</td></tr>
+      <tr><td><code class="code-ref">get-on-color($x[, $shade])</code></td><td>you need <span class="italic">text for a background</span> &mdash; pass a family + shade, or a single already-resolved value (a <code class="code-ref">--jf-color-*</code> reference or a colour).</td></tr>
+      <tr><td><code class="code-ref">role-shade($role)</code></td><td>you need the raw shade <span class="italic">number</span> a role maps to (build-time maths / token interpolation).</td></tr>
+      <tr><td><code class="code-ref">token(name[, $fallback])</code></td><td>you want to reference any <code class="code-ref">--jf-*</code> custom property.</td></tr>
+    </tbody>
+  </table>
+  <p>Everything below <span class="italic">Under the hood</span> is plumbing the <span class="css-ref">.bg-*</span> / <code class="code-ref">surface()</code> code calls &mdash; you shouldn't need it directly.</p>
+
   <h3 class="h4">makeColorPalette() function</h3>
   <p>The <code class="code-ref">makeColorPalette($color)</code> function is used within the <span class="variable-ref">$colors</span> SCSS map to generate a harmonious color palette for each of your project's core colors. Pass a CSS color value (any valid format: hex, hsl, rgb) &mdash; it's used as the <span class="code-ref">500</span> value &mdash; and the function returns 12 tints and shades around it.</p>
   <div class="row collapse text-center mb">
@@ -109,7 +122,11 @@
   </pre>
 
   <h3 class="h4">get-on-color() function</h3>
-  <p>The <code class="code-ref">get-on-color($base, $shade: 500)</code> function references the &ldquo;on colour&rdquo; for a <span class="variable-ref">$colors</span> palette shade &mdash; the best-contrast text colour to place on top of it, returning its custom property. Every shade's on-colour is resolved once, in the <span class="css-ref">:root</span> token definitions, rather than recalculated by each component &mdash; this is what buttons, chips and tables use to set their text colour.</p>
+  <p>The <code class="code-ref">get-on-color()</code> function returns the text (&ldquo;on&rdquo;) colour for a background, in two call styles:</p>
+  <ul>
+    <li><code class="code-ref">get-on-color($family, $shade: 500)</code> &mdash; the shade's paired on-colour custom property. Resolved once in the <span class="css-ref">:root</span> token definitions, not recalculated per component; this is what buttons, chips and tables use.</li>
+    <li><code class="code-ref">get-on-color($value)</code> &mdash; text that fits an <span class="italic">already-resolved</span> value: a <code class="code-ref">--jf-color-*</code> reference (numbered or role) maps to its <code class="code-ref">-on-*</code> companion so the text flips with its background; a bare <code class="code-ref">--jf-color-bg</code> / <code class="code-ref">-bg-soft</code> / <code class="code-ref">-bg-inverse</code> maps to its paired text token; a one-off colour falls through to <code class="code-ref">resolve-contrast-color()</code>. Use this when a component's background is a token or setting rather than a known <code class="code-ref">($family, $shade)</code> &mdash; e.g. the navbar link text.</li>
+  </ul>
   <pre class="language-scss">
     <code>
       // Input:

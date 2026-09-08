@@ -382,8 +382,8 @@
             <li><a href="#">Menu Item</a></li>
           </ul>
         </div>
-        <div class="navbar-end bg-primary-200">
-          <a href="#" class="button soft small">Button</a>
+        <div class="navbar-end">
+          <a href="#" class="button primary small">Button</a>
         </div>
       </div>
     </div>
@@ -391,6 +391,7 @@
 </div>
 <div>
   <h2 class="h3">Variables</h2>
+  <p>The <span class="bold">top bar</span> is branded &mdash; <span class="variable-ref">$navbar-family</span> (default <span class="code-ref">secondary</span>) at its <span class="code-ref">500</span> in both light and dark, like a <span class="css-ref">.bg-{family}</span> section. Link text and hover states use that family's <span class="code-ref">--jf-color-on-*</span> companions so they stay legible. The <span class="bold">sub-menus / dropdown panels and the off-canvas drawer</span> are a neutral <a href="./theme-colors.html">soft surface</a> instead (white in light, a raised dark tint in dark) &mdash; so the whole navbar reads correctly in both modes out of the box. Set <span class="variable-ref">$navbar-family</span> to rebrand the bar, or override the <span class="css-ref">--jf-navbar-*</span> custom properties at runtime.</p>
   <p>Jellyfish's navbar is fully customisable with variables. You can control:</p>
   <ul>
     <li>The breakpoint at which the burger menu disappears and the full navbar is displayed. <span class="bold">Note:</span> if you change this value from it's default you also need to change the Javascript variable <code class="code-ref">var navPoint = '900';</code></li>

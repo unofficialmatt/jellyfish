@@ -44,7 +44,7 @@
         }
 
         & > ul {
-          // Secondary Level Navigation Menu
+          // Secondary Level Navigation Menu — a neutral soft surface panel.
           display: block;
           z-index: 1;
           position: absolute;
@@ -54,10 +54,16 @@
           opacity: 0.2;
           transition: transform 0.1s linear, opacity 0.05s linear;
           #{token-name("navbar-font-size")}: #{$navbar-sublink-font-size-expanded};
-          #{token-name("navbar-link-color")}: #{$navbar-sublink-color};
-          #{token-name("navbar-link-bg-color")}: #{$navbar-sublink-bg-color};
-          #{token-name("navbar-link-hover-color")}: #{$navbar-sublink-hover-color};
-          #{token-name("navbar-link-hover-bg-color")}: #{$navbar-sublink-hover-bg-color};
+          #{token-name("navbar-link-color")}: #{token(navbar-sublink-color)};
+          #{token-name("navbar-link-bg-color")}: #{token(navbar-sublink-bg-color)};
+          #{token-name("navbar-link-hover-color")}: #{token(
+              navbar-sublink-hover-color
+            )};
+          #{token-name("navbar-link-hover-bg-color")}: #{token(
+              navbar-sublink-hover-bg-color
+            )};
+          background: token(navbar-link-bg-color);
+          box-shadow: token(shadow-md);
           a {
             // Drop down link
             border-top: token(navbar-link-border);

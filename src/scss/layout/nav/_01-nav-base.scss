@@ -64,6 +64,17 @@
         #{token-name("navbar-font-weight")}: #{$navbar-sublink-font-weight};
         #{token-name("navbar-text-transform")}: #{$navbar-sublink-text-transform};
         #{token-name("navbar-link-hover-weight")}: #{$navbar-sublink-font-weight-hover};
+        #{token-name("navbar-link-color")}: #{token(navbar-sublink-color)};
+        #{token-name("navbar-link-bg-color")}: #{token(
+            navbar-sublink-bg-color
+          )};
+        #{token-name("navbar-link-hover-color")}: #{token(
+            navbar-sublink-hover-color
+          )};
+        #{token-name("navbar-link-hover-bg-color")}: #{token(
+            navbar-sublink-hover-bg-color
+          )};
+        background: token(navbar-link-bg-color);
       }
     }
     li.has-children > a {
@@ -77,7 +88,9 @@
         pointer-events: none;
         height: 12px;
         width: 12px;
-        border: $hamburger-layer-height solid rgba($color-white, 0.4);
+        border: $hamburger-layer-height
+          solid
+          color-mix(in srgb, currentColor 40%, transparent);
         border-left: 0;
         border-top: 0;
         top: 50%;
@@ -89,7 +102,7 @@
       &:hover,
       &:focus {
         &::after {
-          border-color: rgba($color-white, 0.6);
+          border-color: color-mix(in srgb, currentColor 60%, transparent);
         }
       }
     }
@@ -100,7 +113,7 @@
       }
       & > a::after {
         // Fade out drop down arrow
-        border-color: rgba($color-white, 0.1);
+        border-color: color-mix(in srgb, currentColor 15%, transparent);
       }
     }
     input,

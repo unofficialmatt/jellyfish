@@ -1,5 +1,17 @@
 @if ($generate-navbar) == true {
   @include below($nav-expands) {
+    .navbar-menu {
+      #{token-name("navbar-link-color")}: #{token(navbar-sublink-color)};
+      #{token-name("navbar-link-bg-color")}: #{token(navbar-sublink-bg-color)};
+      #{token-name("navbar-link-hover-color")}: #{token(
+          navbar-sublink-hover-color
+        )};
+      #{token-name("navbar-link-hover-bg-color")}: #{token(
+          navbar-sublink-hover-bg-color
+        )};
+      background: token(navbar-link-bg-color);
+    }
+
     .navbar-menu.is-off-canvas {
       position: fixed;
       z-index: 50000;

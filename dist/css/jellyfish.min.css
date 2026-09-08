@@ -350,16 +350,20 @@
   --jf-form-input-placeholder-color: var(--jf-color-text-subtle);
   --jf-form-select-bg-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
   --jf-table-font-size: var(--jf-font-size-sm);
-  --jf-table-stripe-bg-color: var(--jf-color-neutral-subtle);
+  --jf-table-stripe-bg-color: color-mix(in srgb, var(--jf-color-neutral-emphasis) 10%, var(--jf-color-neutral-subtle));
   --jf-table-hover-background: var(--jf-color-neutral-muted);
   --jf-table-cell-background: transparent;
-  --jf-navbar-bg-color: var(--jf-color-secondary-500);
-  --jf-navbar-link-color: var(--jf-color-white);
-  --jf-navbar-link-bg-color: var(--jf-color-secondary-500);
-  --jf-navbar-link-hover-color: var(--jf-color-white);
-  --jf-navbar-link-hover-bg-color: var(--jf-color-secondary-emphasis);
+  --jf-navbar-bg-color: var(--jf-color-primary-500);
+  --jf-navbar-link-color: var(--jf-color-on-primary-500);
+  --jf-navbar-link-bg-color: var(--jf-color-primary-500);
+  --jf-navbar-link-hover-color: var(--jf-color-on-primary-emphasis);
+  --jf-navbar-link-hover-bg-color: var(--jf-color-primary-emphasis);
   --jf-navbar-link-hover-weight: var(--jf-font-weight-bold);
-  --jf-navbar-link-border: 0.06rem solid rgba(255, 255, 255, 0.1);
+  --jf-navbar-link-border: var(--jf-border-width) var(--jf-border-style) color-mix(in srgb, currentColor 12%, transparent);
+  --jf-navbar-sublink-color: var(--jf-color-text-soft);
+  --jf-navbar-sublink-bg-color: var(--jf-color-bg-soft);
+  --jf-navbar-sublink-hover-color: var(--jf-color-on-neutral-muted);
+  --jf-navbar-sublink-hover-bg-color: var(--jf-color-neutral-muted);
   --jf-navbar-text-transform: none;
   --jf-navbar-font-size: var(--jf-font-size-lg);
   --jf-navbar-font-family: var(--jf-font-primary);
@@ -1340,7 +1344,7 @@ sup {
 .hamburger.is-active .hamburger-inner,
 .hamburger.is-active .hamburger-inner::before,
 .hamburger.is-active .hamburger-inner::after {
-  background-color: var(--jf-color-white);
+  background-color: var(--jf-navbar-link-color);
 }
 
 .hamburger-box {
@@ -1358,7 +1362,7 @@ sup {
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
   width: 1.5rem;
   height: 0.19rem;
-  background-color: var(--jf-color-white);
+  background-color: var(--jf-navbar-link-color);
   border-radius: 0.19rem;
   position: absolute;
   transition-property: transform;
@@ -2817,6 +2821,11 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
   --jf-navbar-font-weight: var(--jf-font-weight-bold);
   --jf-navbar-text-transform: none;
   --jf-navbar-link-hover-weight: var(--jf-font-weight-bold);
+  --jf-navbar-link-color: var(--jf-navbar-sublink-color);
+  --jf-navbar-link-bg-color: var(--jf-navbar-sublink-bg-color);
+  --jf-navbar-link-hover-color: var(--jf-navbar-sublink-hover-color);
+  --jf-navbar-link-hover-bg-color: var(--jf-navbar-sublink-hover-bg-color);
+  background: var(--jf-navbar-link-bg-color);
 }
 .navbar-menu li.has-children > a {
   padding-right: calc(var(--jf-navbar-link-padding-x) + 1.88rem);
@@ -2828,7 +2837,7 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
   pointer-events: none;
   height: 0.75rem;
   width: 0.75rem;
-  border: 0.19rem solid rgba(255, 255, 255, 0.4);
+  border: 0.19rem solid color-mix(in srgb, currentColor 40%, transparent);
   border-left: 0;
   border-top: 0;
   top: 50%;
@@ -2838,13 +2847,13 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
   transition: opacity var(--jf-transition), border-color var(--jf-transition);
 }
 .navbar-menu li.has-children > a:hover::after, .navbar-menu li.has-children > a:focus::after {
-  border-color: rgba(255, 255, 255, 0.6);
+  border-color: color-mix(in srgb, currentColor 60%, transparent);
 }
 .navbar-menu li.drop-active > ul {
   display: block;
 }
 .navbar-menu li.drop-active > a::after {
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: color-mix(in srgb, currentColor 15%, transparent);
 }
 .navbar-menu input,
 .navbar-menu .button,
@@ -2890,12 +2899,12 @@ form .col [type=color], form .col [type=date], form .col [type=datetime], form .
 button.hamburger {
   transition: background-color var(--jf-transition), border var(--jf-transition), color var(--jf-transition);
   margin-left: auto;
-  background-color: var(--jf-color-secondary-500);
+  background-color: var(--jf-color-primary-500);
   border-radius: 0;
   margin-top: 0;
   margin-bottom: 0;
-  border: 0.06rem solid var(--jf-color-secondary-500);
-  color: var(--jf-color-white);
+  border: 0.06rem solid var(--jf-color-primary-500);
+  color: var(--jf-navbar-link-color);
   display: flex;
   align-items: center;
 }
@@ -2905,12 +2914,12 @@ button.hamburger {
   }
 }
 button.hamburger.is-active {
-  color: var(--jf-color-white);
+  color: var(--jf-navbar-link-color);
 }
 button.hamburger:hover, button.hamburger:focus {
-  background-color: var(--jf-color-secondary-emphasis);
-  border: 0.06rem solid var(--jf-color-secondary-emphasis);
-  color: var(--jf-color-white);
+  background-color: var(--jf-color-primary-emphasis);
+  border: 0.06rem solid var(--jf-color-primary-emphasis);
+  color: var(--jf-navbar-link-color);
 }
 
 .hamburger-label {
@@ -2923,14 +2932,14 @@ button.hamburger:hover, button.hamburger:focus {
 .hamburger-inner,
 .hamburger-inner:after,
 .hamburger-inner:before {
-  background-color: var(--jf-color-white);
+  background-color: var(--jf-navbar-link-color);
 }
 .hamburger:hover .hamburger-inner, .hamburger:focus .hamburger-inner,
 .hamburger:hover .hamburger-inner:after,
 .hamburger:focus .hamburger-inner:after,
 .hamburger:hover .hamburger-inner:before,
 .hamburger:focus .hamburger-inner:before {
-  background-color: var(--jf-color-white);
+  background-color: var(--jf-navbar-link-color);
 }
 
 @media (min-width: 75em) {
@@ -2976,10 +2985,12 @@ button.hamburger:hover, button.hamburger:focus {
     opacity: 0.2;
     transition: transform 0.1s linear, opacity 0.05s linear;
     --jf-navbar-font-size: var(--jf-font-size-sm);
-    --jf-navbar-link-color: var(--jf-color-white);
-    --jf-navbar-link-bg-color: var(--jf-color-secondary-500);
-    --jf-navbar-link-hover-color: var(--jf-color-white);
-    --jf-navbar-link-hover-bg-color: var(--jf-color-secondary-emphasis);
+    --jf-navbar-link-color: var(--jf-navbar-sublink-color);
+    --jf-navbar-link-bg-color: var(--jf-navbar-sublink-bg-color);
+    --jf-navbar-link-hover-color: var(--jf-navbar-sublink-hover-color);
+    --jf-navbar-link-hover-bg-color: var(--jf-navbar-sublink-hover-bg-color);
+    background: var(--jf-navbar-link-bg-color);
+    box-shadow: var(--jf-shadow-md);
   }
   .navbar-menu li > ul a {
     border-top: var(--jf-navbar-link-border);
@@ -3056,6 +3067,13 @@ button.hamburger:hover, button.hamburger:focus {
   }
 }
 @media (max-width: 74.9375em) {
+  .navbar-menu {
+    --jf-navbar-link-color: var(--jf-navbar-sublink-color);
+    --jf-navbar-link-bg-color: var(--jf-navbar-sublink-bg-color);
+    --jf-navbar-link-hover-color: var(--jf-navbar-sublink-hover-color);
+    --jf-navbar-link-hover-bg-color: var(--jf-navbar-sublink-hover-bg-color);
+    background: var(--jf-navbar-link-bg-color);
+  }
   .navbar-menu.is-off-canvas {
     position: fixed;
     z-index: 50000;
@@ -3067,7 +3085,7 @@ button.hamburger:hover, button.hamburger:focus {
     justify-content: flex-start !important;
     width: 80%;
     max-width: 30rem;
-    background: var(--jf-color-secondary-500);
+    background: var(--jf-color-bg-soft);
     transform: translateX(100%);
     right: 0;
   }
@@ -3109,7 +3127,7 @@ button.hamburger:hover, button.hamburger:focus {
     content: "";
     display: block;
     position: fixed;
-    background: rgba(0, 0, 0, 0.5);
+    background: color-mix(in srgb, var(--jf-color-black) 50%, transparent);
     z-index: 49999;
     height: 100vh;
     height: 100dvh;
@@ -3500,12 +3518,17 @@ a.button.soft {
 }
 
 .callout {
-  --jf-callout-bg-color: var(--jf-color-neutral-subtle);
-  --jf-callout-color: var(--jf-color-on-neutral-subtle);
+  --jf-color-surface: var(--jf-color-neutral-subtle);
+  --jf-color-text: var(--jf-color-on-neutral-subtle);
+  --jf-color-headings: var(--jf-color-neutral-strong);
+  --jf-color-text-muted: color-mix(in srgb, var(--jf-color-text) 70%, var(--jf-color-surface));
+  --jf-color-text-subtle: color-mix(in srgb, var(--jf-color-text) 60%, var(--jf-color-surface));
+  --jf-callout-bg-color: var(--jf-color-surface);
+  --jf-callout-color: var(--jf-color-text);
   --jf-callout-border-color: var(--jf-color-neutral-muted);
   --jf-callout-link-color: var(--jf-color-neutral-emphasis);
   --jf-callout-link-color-hover: var(--jf-color-neutral-strong);
-  --jf-callout-heading-color: var(--jf-color-neutral-strong);
+  --jf-callout-heading-color: var(--jf-color-headings);
   border-width: 0.06rem 0.06rem 0.06rem 0.5rem;
   border-style: solid;
   border-color: var(--jf-callout-border-color);
@@ -3520,73 +3543,78 @@ a.button.soft {
 .callout h1, .callout h2, .callout h3, .callout h4, .callout h5, .callout h6 {
   color: var(--jf-callout-heading-color);
 }
-.callout .callout-heading {
+.callout > :last-child {
+  margin-bottom: 0;
+}
+.callout.primary {
+  --jf-color-surface: var(--jf-color-primary-subtle);
+  --jf-color-text: var(--jf-color-on-primary-subtle);
+  --jf-color-headings: var(--jf-color-primary-strong);
+  --jf-callout-border-color: var(--jf-color-primary-muted);
+  --jf-callout-link-color: var(--jf-color-primary-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-primary-strong);
+}
+.callout.secondary {
+  --jf-color-surface: var(--jf-color-secondary-subtle);
+  --jf-color-text: var(--jf-color-on-secondary-subtle);
+  --jf-color-headings: var(--jf-color-secondary-strong);
+  --jf-callout-border-color: var(--jf-color-secondary-muted);
+  --jf-callout-link-color: var(--jf-color-secondary-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-secondary-strong);
+}
+.callout.neutral {
+  --jf-color-surface: var(--jf-color-neutral-subtle);
+  --jf-color-text: var(--jf-color-on-neutral-subtle);
+  --jf-color-headings: var(--jf-color-neutral-strong);
+  --jf-callout-border-color: var(--jf-color-neutral-muted);
+  --jf-callout-link-color: var(--jf-color-neutral-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-neutral-strong);
+}
+.callout.success {
+  --jf-color-surface: var(--jf-color-success-subtle);
+  --jf-color-text: var(--jf-color-on-success-subtle);
+  --jf-color-headings: var(--jf-color-success-strong);
+  --jf-callout-border-color: var(--jf-color-success-muted);
+  --jf-callout-link-color: var(--jf-color-success-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-success-strong);
+}
+.callout.warning {
+  --jf-color-surface: var(--jf-color-warning-subtle);
+  --jf-color-text: var(--jf-color-on-warning-subtle);
+  --jf-color-headings: var(--jf-color-warning-strong);
+  --jf-callout-border-color: var(--jf-color-warning-muted);
+  --jf-callout-link-color: var(--jf-color-warning-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-warning-strong);
+}
+.callout.error {
+  --jf-color-surface: var(--jf-color-error-subtle);
+  --jf-color-text: var(--jf-color-on-error-subtle);
+  --jf-color-headings: var(--jf-color-error-strong);
+  --jf-callout-border-color: var(--jf-color-error-muted);
+  --jf-callout-link-color: var(--jf-color-error-emphasis);
+  --jf-callout-link-color-hover: var(--jf-color-error-strong);
+}
+.callout.soft {
+  --jf-color-surface: var(--jf-color-bg-soft);
+  --jf-color-text: var(--jf-color-text-soft);
+  --jf-color-headings: var(--jf-color-headings-soft);
+}
+
+.callout-heading {
+  line-height: var(--jf-leading-tight) !important;
+  font-size: var(--jf-font-size-md) !important;
   margin-bottom: 0.5em;
   text-transform: uppercase;
   font-weight: var(--jf-font-weight-semibold);
   letter-spacing: 0.02em;
 }
-.callout a.callout-link {
+
+a.callout-link {
   font-weight: var(--jf-font-weight-bold);
   color: var(--jf-callout-link-color);
 }
-.callout a.callout-link:hover, .callout a.callout-link:focus {
+a.callout-link:hover, a.callout-link:focus {
   color: var(--jf-callout-link-color-hover);
-}
-.callout > :last-child {
-  margin-bottom: 0;
-}
-.callout.primary {
-  --jf-callout-bg-color: var(--jf-color-primary-subtle);
-  --jf-callout-color: var(--jf-color-on-primary-subtle);
-  --jf-callout-border-color: var(--jf-color-primary-muted);
-  --jf-callout-link-color: var(--jf-color-primary-emphasis);
-  --jf-callout-link-color-hover: var(--jf-color-primary-strong);
-  --jf-callout-heading-color: var(--jf-color-primary-strong);
-}
-.callout.secondary {
-  --jf-callout-bg-color: var(--jf-color-secondary-subtle);
-  --jf-callout-color: var(--jf-color-on-secondary-subtle);
-  --jf-callout-border-color: var(--jf-color-secondary-muted);
-  --jf-callout-link-color: var(--jf-color-secondary-emphasis);
-  --jf-callout-link-color-hover: var(--jf-color-secondary-strong);
-  --jf-callout-heading-color: var(--jf-color-secondary-strong);
-}
-.callout.neutral {
-  --jf-callout-bg-color: var(--jf-color-neutral-subtle);
-  --jf-callout-color: var(--jf-color-on-neutral-subtle);
-  --jf-callout-border-color: var(--jf-color-neutral-muted);
-  --jf-callout-link-color: var(--jf-color-neutral-emphasis);
-  --jf-callout-link-color-hover: var(--jf-color-neutral-strong);
-  --jf-callout-heading-color: var(--jf-color-neutral-strong);
-}
-.callout.success {
-  --jf-callout-bg-color: var(--jf-color-success-subtle);
-  --jf-callout-color: var(--jf-color-on-success-subtle);
-  --jf-callout-border-color: var(--jf-color-success-muted);
-  --jf-callout-link-color: var(--jf-color-success-emphasis);
-  --jf-callout-link-color-hover: var(--jf-color-success-strong);
-  --jf-callout-heading-color: var(--jf-color-success-strong);
-}
-.callout.warning {
-  --jf-callout-bg-color: var(--jf-color-warning-subtle);
-  --jf-callout-color: var(--jf-color-on-warning-subtle);
-  --jf-callout-border-color: var(--jf-color-warning-muted);
-  --jf-callout-link-color: var(--jf-color-warning-emphasis);
-  --jf-callout-link-color-hover: var(--jf-color-warning-strong);
-  --jf-callout-heading-color: var(--jf-color-warning-strong);
-}
-.callout.error {
-  --jf-callout-bg-color: var(--jf-color-error-subtle);
-  --jf-callout-color: var(--jf-color-on-error-subtle);
-  --jf-callout-border-color: var(--jf-color-error-muted);
-  --jf-callout-link-color: var(--jf-color-error-emphasis);
-  --jf-callout-link-color-hover: var(--jf-color-error-strong);
-  --jf-callout-heading-color: var(--jf-color-error-strong);
-}
-.callout.soft {
-  --jf-callout-bg-color: var(--jf-color-bg-soft);
-  --jf-callout-color: var(--jf-color-text-soft);
 }
 
 .card {
@@ -5149,7 +5177,7 @@ a[href^="mailto:"] {
   font-size: var(--jf-font-size-lg) !important;
 }
 
-.h6, .callout .callout-heading {
+.h6 {
   line-height: var(--jf-leading-tight) !important;
   font-size: var(--jf-font-size-md) !important;
 }
@@ -5168,14 +5196,5 @@ a[href^="mailto:"] {
 
 .full-width {
   width: 100% !important;
-}
-
-.vw-100 {
-  width: 100vw !important;
-  position: relative !important;
-  left: 50% !important;
-  right: 50% !important;
-  margin-left: -50vw !important;
-  margin-right: -50vw !important;
 }
 /*# sourceMappingURL=jellyfish.min.css.map */

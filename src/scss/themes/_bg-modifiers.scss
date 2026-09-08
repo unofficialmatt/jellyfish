@@ -43,19 +43,17 @@ $_bg-classes: map-merge($_bg-classes, $background-colors);
     // traced back, so $parts is null and we work its contrast out from scratch.
     $parts: palette-ref-parts($val);
 
-    #{token-name("color-surface")}: #{$val};
-
     @if $parts {
-      // Palette shade: point the text at the shade's paired "on" colour - the heading can fallback to this too
+      // Palette shade: text is the shade's paired "on" colour.
       $on: get-on-color(nth($parts, 1), nth($parts, 2));
-      #{token-name("color-text")}: #{$on};
-      #{token-name("color-headings")}: #{surface-heading-color($bg-color, $on)};
+      @include surface($val, $on, surface-heading-color($bg-color, $on));
     } @else {
       // Plain colour: work the text and heading colours out at build time.
-      #{token-name("color-text")}: #{surface-contrast-color($bg-color)};
-      #{token-name("color-headings")}: #{surface-heading-color($bg-color)};
+      @include surface(
+        $val,
+        surface-contrast-color($bg-color),
+        surface-heading-color($bg-color)
+      );
     }
-
-    @include surface-text-tiers;
   }
 }

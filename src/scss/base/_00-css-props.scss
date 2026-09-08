@@ -125,12 +125,22 @@
   #{token-name("table-cell-background")}: transparent;
 
   #{token-name("navbar-bg-color")}: #{$navbar-bg-color};
-  #{token-name("navbar-link-color")}: #{$navbar-link-color};
+  #{token-name("navbar-link-color")}: #{get-on-color($navbar-link-bg-color)};
   #{token-name("navbar-link-bg-color")}: #{$navbar-link-bg-color};
-  #{token-name("navbar-link-hover-color")}: #{$navbar-link-hover-color};
+  #{token-name("navbar-link-hover-color")}: #{get-on-color(
+      $navbar-link-hover-bg-color
+    )};
   #{token-name("navbar-link-hover-bg-color")}: #{$navbar-link-hover-bg-color};
   #{token-name("navbar-link-hover-weight")}: #{$navbar-link-hover-weight};
   #{token-name("navbar-link-border")}: #{$navbar-link-border};
+  #{token-name("navbar-sublink-color")}: #{get-on-color(
+      $navbar-sublink-bg-color
+    )};
+  #{token-name("navbar-sublink-bg-color")}: #{$navbar-sublink-bg-color};
+  #{token-name("navbar-sublink-hover-color")}: #{get-on-color(
+      $navbar-sublink-hover-bg-color
+    )};
+  #{token-name("navbar-sublink-hover-bg-color")}: #{$navbar-sublink-hover-bg-color};
 
   #{token-name("navbar-text-transform")}: #{$navbar-text-transform};
   #{token-name("navbar-font-size")}: #{$navbar-font-size};

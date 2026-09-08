@@ -120,12 +120,19 @@ $token-prefix: jf !default;
   @error "'#{$size}' not found in $sizing-system map. Cancelling compile.";
 }
 
-// The "on colour" for a $colors palette shade: the best-contrast text colour to
-// place on top of it.
-// @param {String} $base - palette family
-// @param {Number} $shade - shade of that family
+// The text ("on") colour for a background. Two call styles:
+//   get-on-color($family, $shade)  -> that shade's paired -on- companion
+//   get-on-color($value)           -> text that fits an already-resolved value
+//                                     (a --jf-color-* reference or a colour)
+// The single-value form is what a component reaches for when its background is
+// a token / setting rather than a known ($family, $shade).
+// @param {String} $base - palette family, or a resolved surface value
+// @param {Number} $shade - shade of $base when it's a family (else ignored)
 // @return {String} e.g. var(--jf-color-on-primary-700)
 @function get-on-color($base, $shade: 500) {
+  @if not map-has-key($colors, $base) {
+    @return _on-surface($base);
+  }
   @return _color-token("color-on", $base, $shade);
 }
 @function get-color($base, $shade: 500) {
@@ -244,6 +251,38 @@ $token-prefix: jf !default;
 // @return {String} a value safe to assign to --jf-color-text / --jf-color-headings
 @function surface-contrast-color($bg, $dark: $color-text) {
   @return resolve-contrast-color($bg, $dark);
+}
+
+// Internal — the single-value branch of get-on-color(). Prefers a known pairing
+// so the text flips with its background, and only recomputes contrast for a
+// one-off colour:
+//   * the flipping canvas / soft / inverse tokens -> their paired text token
+//   * any var(--jf-color-{family}-{shade|role}) -> its -on- companion
+//   * a plain colour -> the APCA-picked contrast colour (resolve-contrast-color)
+@function _on-surface($bg) {
+  @if $bg == token(color-bg) {
+    @return token(color-text);
+  } @else if $bg == token(color-bg-soft) {
+    @return token(color-text-soft);
+  } @else if $bg == token(color-bg-inverse) {
+    @return token(color-text-inverse);
+  }
+  $parts: palette-ref-parts($bg);
+  @if $parts {
+    @return get-on-color(nth($parts, 1), nth($parts, 2));
+  }
+  // Role alias — var(--jf-color-{family}-{subtle|muted|emphasis|strong}).
+  @if type-of($bg) == "string" {
+    $needle: "var(" + token-name("color-");
+    @if str-index($bg, $needle) {
+      @each $role in (subtle, muted, emphasis, strong) {
+        @if str-index($bg, "-#{$role})") {
+          @return str-replace($bg, $needle, "var(" + token-name("color-on-"));
+        }
+      }
+    }
+  }
+  @return resolve-contrast-color(raw-color($bg));
 }
 
 // Picks the heading colour for a coloured background.

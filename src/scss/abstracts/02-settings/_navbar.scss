@@ -1,18 +1,18 @@
 $generate-navbar: true !default;
 $nav-expands: 1200px !default; // Point at which the nav kicks in. You'll also need to change this in the .js to produce a clickable drop down when responsive
-$navbar-bg-color: get-color(secondary) !default;
+$navbar-family: primary !default;
+$navbar-bg-color: get-color($navbar-family) !default;
 // Parent Level Links
 $navbar-font-size: token(font-size-lg) !default;
 $navbar-font-size-expanded: token(font-size-base) !default;
 $navbar-font-family: token(font-primary) !default;
 $navbar-font-weight: get-weight(bold) !default;
 $navbar-text-transform: none !default;
-$navbar-link-color: token(color-white) !default;
 $navbar-link-bg-color: $navbar-bg-color !default;
-$navbar-link-border: 1px solid rgba($color-white, 0.1) !default;
+$navbar-link-border: token(border-width) token(border-style)
+  color-mix(in srgb, currentColor 12%, transparent) !default;
 // Links: Hover
-$navbar-link-hover-color: token(color-white) !default;
-$navbar-link-hover-bg-color: get-color-role(secondary, emphasis) !default;
+$navbar-link-hover-bg-color: get-color-role($navbar-family, emphasis) !default;
 $navbar-link-hover-weight: $navbar-font-weight !default;
 // Child Level Links
 $navbar-sublink-font-size: token(font-size-md) !default;
@@ -26,20 +26,21 @@ $navbar-link-padding-x: get-space(xs) !default;
 $navbar-link-padding-y: get-space(2xs) !default;
 $navbar-link-padding-expanded-x: get-space(xs) !default;
 $navbar-link-padding-expanded-y: get-space(xs) !default;
-// THESE SETTINGS APPLY ABOVE $nav-expands ONLY
-$navbar-sublink-color: $navbar-link-color !default;
-$navbar-sublink-bg-color: $navbar-link-bg-color !default;
-$navbar-sublink-hover-color: $navbar-link-hover-color !default;
-$navbar-sublink-hover-bg-color: $navbar-link-hover-bg-color !default;
+$navbar-sublink-bg-color: token(color-bg-soft) !default;
+$navbar-sublink-hover-bg-color: get-color-role(neutral, muted) !default;
 $navbar-dropdown-width: get-size(16) !default;
 $navbar-start-flex-align: stretch !default;
 $navbar-end-flex-align: center !default;
 $navbar-dropdown-anchors-right-after: 3 !default;
 
 // Off canvas navbar. Only applies if you add a class of .is-off-canvas to the .navbar-menu element
-$navbar-offcanvas-body-overlay: rgba(0, 0, 0, 0.5) !default;
+$navbar-offcanvas-body-overlay: color-mix(
+  in srgb,
+  token(color-black) 50%,
+  transparent
+) !default;
 $navbar-offcanvas-transition-speed: token(duration-slow) !default;
-$navbar-offcanvas-bg-color: $navbar-bg-color !default;
+$navbar-offcanvas-bg-color: token(color-bg-soft) !default;
 $navbar-offcanvas-width: 80% !default;
 $navbar-offcanvas-maxwidth: 480px !default;
 $navbar-offcanvas-position: right !default;
@@ -57,7 +58,7 @@ $hamburger-layer-border-radius: 3px !default; // Radius of hamburger lines
 $hamburger-bg-color: $navbar-bg-color !default;
 $hamburger-border: $border-width $border-style $hamburger-bg-color !default;
 $hamburger-border-radius: 0px !default;
-$hamburger-color: $navbar-link-color !default; // Color of hamburger
+$hamburger-color: token(navbar-link-color) !default; // Color of hamburger
 $hamburger-layer-color: $hamburger-color !default; // Color of label
 $hamburger-hover-bg-color: $navbar-link-hover-bg-color !default;
 $hamburger-hover-border: $border-width $border-style $hamburger-hover-bg-color !default;
