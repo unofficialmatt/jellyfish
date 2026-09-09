@@ -27,6 +27,7 @@
   </head>
 
   <body>
+    <a href="#content" class="skip-link">Skip to content</a>
 
 <div class="container is-wide">
   <div class="grid">
@@ -41,6 +42,7 @@
             <span class="theme-toggle-icon" aria-hidden="true"></span>
           </button>
         </div>
+        <nav aria-label="Documentation">
         <ul>
           <li class="li-title mt-0">
             Latest
@@ -130,27 +132,28 @@
             <a href="./utilities.html">Utility Classes</a>
           </li>
         </ul>
+        </nav>
       </div>
     </aside>
-    <div class="col xs-12 md-9 content">
+    <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
 <h1 class="section-heading h2">Utilities</h1>
 
 <div>
   <h2 class="h3">Floats</h2>
-  <p>Elements can be floated with <span class="css-ref">.align-*</span> classes. Add a <span class="css-ref">.clearfix</span> class to a parent element to clear the floats.</p>
-  <p>Float's should generally be avoided, we're not in the early 00's anymore!</p>
+  <p>Elements can be floated with the <span class="css-ref">.align-left</span> / <span class="css-ref">.align-right</span> / <span class="css-ref">.align-none</span> classes. To contain floated children, put <span class="code-ref">display: flow-root</span> on the parent &mdash; the modern replacement for the old <span class="code-ref">.clearfix</span> hack (removed in v5).</p>
+  <p>Floats should generally be avoided &mdash; reach for flexbox or grid instead.</p>
   <pre class="language-markup">
     <code><!--
-    <div class="clearfix">
+    <div style="display: flow-root">
       <div class="align-right boxed">Float Right</div>
       <div class="align-left boxed">Float Left</div>
     </div>
     <div class="align-none boxed">Float None</div>
   --></code>
   </pre>
-  <div class="clearfix">
+  <div style="display: flow-root">
     <div class="align-right boxed">
       Float Right
     </div>
@@ -450,7 +453,8 @@
   <h2 class="h3">Manipulating width</h2>
   <p>The utility class <span class="css-ref">.full-width</span> can be applied to any element to make <code class="code-ref">width: 100%</code>.</p>
 </div>
-</div>
+</section>
+</main>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
@@ -471,6 +475,7 @@
         var currentPage = window.location.pathname.split('/').pop();
         if (link == currentPage) {
           linkElement.classList.add('is-active');
+          linkElement.setAttribute('aria-current', 'page');
         }
       });
     }

@@ -27,6 +27,7 @@
   </head>
 
   <body>
+    <a href="#content" class="skip-link">Skip to content</a>
 
 <div class="container is-wide">
   <div class="grid">
@@ -41,6 +42,7 @@
             <span class="theme-toggle-icon" aria-hidden="true"></span>
           </button>
         </div>
+        <nav aria-label="Documentation">
         <ul>
           <li class="li-title mt-0">
             Latest
@@ -130,9 +132,10 @@
             <a href="./utilities.html">Utility Classes</a>
           </li>
         </ul>
+        </nav>
       </div>
     </aside>
-    <div class="col xs-12 md-9 content">
+    <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
 <h1 class="section-heading h2">Navbar<a href="./variables.html#navbar">[ Variable Reference ]</a></h1>
@@ -412,7 +415,8 @@
   <p>Rather than including all animation options in the output css, Jellyfish has a variable <span class="variable-ref">$primary-hamburger-type</span> which is used to select your chosen animation type for compilation.</p>
 </div>
 
-</div>
+</section>
+</main>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
@@ -433,6 +437,7 @@
         var currentPage = window.location.pathname.split('/').pop();
         if (link == currentPage) {
           linkElement.classList.add('is-active');
+          linkElement.setAttribute('aria-current', 'page');
         }
       });
     }

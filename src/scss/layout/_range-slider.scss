@@ -47,23 +47,11 @@
       background: $range-track-color-focus;
     }
 
-    &::-ms-fill-lower {
-      background: $range-track-color-focus;
-    }
-
-    &::-ms-fill-upper {
-      background: $range-track-color-focus;
-    }
-
     &::-webkit-slider-thumb {
       background-color: $form-accent-color;
     }
 
     &::-moz-range-thumb {
-      background-color: $form-accent-color;
-    }
-
-    &::-ms-thumb {
       background-color: $form-accent-color;
     }
   }
@@ -106,48 +94,10 @@
     @include input-range-thumb;
   }
 
-  &::-ms-track {
-    @include input-range-track;
-    background: transparent;
-    border-color: transparent;
-    border-width: ($range-thumb-height * 0.5) 0;
-    color: transparent;
-  }
-
-  &::-ms-fill-lower {
-    @include input-range-shadow(
-      $range-track-shadow-size,
-      $range-track-shadow-blur,
-      $range-track-shadow-color
-    );
-    background: $range-track-color-bottom-ie;
-    border: $range-track-border-width solid $range-track-border-color;
-    border-radius: calc(#{$range-track-radius} * 2);
-  }
-
-  &::-ms-fill-upper {
-    @include input-range-shadow(
-      $range-track-shadow-size,
-      $range-track-shadow-blur,
-      $range-track-shadow-color
-    );
-    background: $range-track-color;
-    border: $range-track-border-width solid $range-track-border-color;
-    border-radius: calc(#{$range-track-radius} * 2);
-  }
-
-  &::-ms-thumb {
-    @include input-range-thumb;
-    margin-top: $range-track-height * 0.25;
-  }
-
   &:disabled {
     &::-webkit-slider-thumb,
     &::-moz-range-thumb,
-    &::-ms-thumb,
-    &::-webkit-slider-runnable-track,
-    &::-ms-fill-lower,
-    &::-ms-fill-upper {
+    &::-webkit-slider-runnable-track {
       cursor: not-allowed;
     }
   }

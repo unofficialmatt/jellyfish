@@ -27,6 +27,7 @@
   </head>
 
   <body>
+    <a href="#content" class="skip-link">Skip to content</a>
 <div class="container is-wide">
   <div class="grid">
     <aside class="col xs-12 md-3">
@@ -40,6 +41,7 @@
             <span class="theme-toggle-icon" aria-hidden="true"></span>
           </button>
         </div>
+        <nav aria-label="Documentation">
         <ul>
           <li class="li-title mt-0">
             Latest
@@ -129,9 +131,10 @@
             <a href="./utilities.html">Utility Classes</a>
           </li>
         </ul>
+        </nav>
       </div>
     </aside>
-    <div class="col xs-12 md-9 content">
+    <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
 <h1 class="section-heading h2">
@@ -212,7 +215,8 @@
   <p>Then add a control &mdash; any <span class="code-ref">[data-theme-toggle]</span> element toggles, <span class="code-ref">[data-theme-set="dark|light|system"]</span> picks a mode &mdash; or drive it from your own code via <code class="code-ref">window.JellyfishTheme</code>. Full detail on the <a href="./theme-colors.html#dark-mode">Theme Colors</a> and <a href="./javascript.html#theme">Javascript</a> pages.</p>
 </div>
 
-</div>
+</section>
+</main>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
@@ -233,6 +237,7 @@
         var currentPage = window.location.pathname.split('/').pop();
         if (link == currentPage) {
           linkElement.classList.add('is-active');
+          linkElement.setAttribute('aria-current', 'page');
         }
       });
     }

@@ -7,7 +7,7 @@
 <h1 class="section-heading h2">Modals<a href="./variables.html#modals">[ Variable Reference ]</a></h1>
 <div>
   <p class="standfirst">Since v4.1.0, Jellyfish has included support for native <span class="code-ref">&lt;dialog></span> elements for the display of modals. This removes dependencies on external Javascript libraries and ensures that modal elements are accessible as standard.</p>
-  <p>To avoid being opinionated on the <span class="code-ref">&lt;dialog></span> element, the <span class="css-ref">.modal</span> class is required on the element. The modal is targetted with a button or anchor calling <span class="code-ref">toggleModal('id')</span> where the argument is the ID of the dialog element. Close buttons are automatically appended to modals via Javascript, on initialization.</p>
+  <p>To avoid being opinionated on the <span class="code-ref">&lt;dialog></span> element, the <span class="css-ref">.modal</span> class is required on the element. Open a modal with a <span class="code-ref">data-modal-target="id"</span> attribute on any button (the argument is the dialog's <span class="code-ref">id</span>); the bundled script handles the click by delegation, so no inline <span class="code-ref">onclick</span> is needed and it works under a Content-Security-Policy. A close button is appended to every modal automatically; you can also put <span class="code-ref">data-modal-close</span> on your own button anywhere inside the modal.</p>
   <p>To preserve padding and layout, a <span class="css-ref">.modal</span> should contain a <span class="css-ref">.modal-content</span> element, used to contain the modal's content. The <span class="css-ref">.modal</span> element is a flex element; consequently adding <span class="css-ref">.modal-header</span> or <span class="css-ref">.modal-footer</span> will ensure they are always visible. This allows for key information or call-to-actions to always be in sight.</p>
   <p>The dialog is its own <a href="./theme-colors.html">surface</a> at the <span class="css-ref">.bg-soft</span> level &mdash; white-ish in light, a raised dark tint in dark &mdash; so its text, headings and muted tiers are set against the panel, not inherited from the page. You don't need (and shouldn't add) a <span class="css-ref">.bg-*</span> class on the <span class="code-ref">&lt;dialog></span>; override <span class="css-ref">--jf-color-surface</span> on <span class="css-ref">.modal</span> if you want a different fill.</p>
 </div>
@@ -15,56 +15,64 @@
   <h2 class="h3">A basic modal</h2>
   <pre class="language-markup">
     <code><!--
-      <button onclick="toggleModal('dialog');">Open modal</button>
-      <dialog id="dialog" class="modal">
+      <button data-modal-target="dialog">Open modal</button>
+      <dialog id="dialog" class="modal" closedby="any">
         <div class="modal-header">
           <h2>This is a modal</h2>
         </div>
         <div class="modal-content">
-          <img src="https://placehold.it/870x2000" alt="Placeholder image" class="mb">
+          <img src="https://placehold.co/870x2000" alt="Placeholder image" class="mb">
           <p>Sed a sollicitudin dolor. Nulla vel lacus a mauris rutrum pellentesque eget cursus arcu. Sed finibus gravida dui, in tempor velit suscipit eu. Fusce molestie purus pretium tellus suscipit, non rutrum libero mattis. Morbi consequat est ac diam efficitur, quis consectetur sapien finibus. In varius lacus turpis, et tincidunt metus malesuada et. Curabitur venenatis commodo ante ac sollicitudin. Aliquam quis condimentum ipsum, eget dignissim dolor. Praesent feugiat laoreet odio, eget suscipit metus pretium eget. Nunc tincidunt nulla sapien, a eleifend eros posuere commodo. Duis volutpat elit sed risus semper gravida. Morbi ultricies pharetra ante ac condimentum. Donec euismod erat felis, non viverra nunc tincidunt eu. Nam hendrerit rhoncus libero sit amet fermentum. Curabitur quis gravida orci.</p>
         </div>
       </dialog>
   --></code>
   </pre>
-  <button onclick="toggleModal('dialog');">Open modal</button>
-  <dialog id="dialog" class="modal">
+  <button data-modal-target="dialog">Open modal</button>
+  <dialog id="dialog" class="modal" closedby="any">
     <div class="modal-header">
       <h2>This is a modal</h2>
     </div>
     <div class="modal-content">
-      <img src="https://placehold.it/870x2000" alt="Placeholder image" class="mb">
+      <img src="https://placehold.co/870x2000" alt="Placeholder image" class="mb">
       <p>Sed a sollicitudin dolor. Nulla vel lacus a mauris rutrum pellentesque eget cursus arcu. Sed finibus gravida dui, in tempor velit suscipit eu. Fusce molestie purus pretium tellus suscipit, non rutrum libero mattis. Morbi consequat est ac diam efficitur, quis consectetur sapien finibus. In varius lacus turpis, et tincidunt metus malesuada et. Curabitur venenatis commodo ante ac sollicitudin. Aliquam quis condimentum ipsum, eget dignissim dolor. Praesent feugiat laoreet odio, eget suscipit metus pretium eget. Nunc tincidunt nulla sapien, a eleifend eros posuere commodo. Duis volutpat elit sed risus semper gravida. Morbi ultricies pharetra ante ac condimentum. Donec euismod erat felis, non viverra nunc tincidunt eu. Nam hendrerit rhoncus libero sit amet fermentum. Curabitur quis gravida orci.</p>
     </div>
   </dialog>
 </div>
 
 <div>
-  <h2 class="h3">Modal groups</h2>
+  <h2 class="h3">Opening and closing</h2>
+  <p><span class="code-ref">data-modal-target="id"</span> on a button opens (or toggles) that modal; <span class="code-ref">data-modal-close</span> on any element inside a modal closes it. Both are handled by delegation in the bundled script. If you drive modals from your own code, <span class="code-ref">toggleModal('id')</span> is still exposed globally.</p>
+  <p><strong>Dismiss:</strong> Escape always closes a modal, and a click on the dark backdrop closes it too. Add <span class="code-ref">closedby="any"</span> to the <span class="code-ref">&lt;dialog></span> (as in the example above) so browsers that support it handle the click-outside natively; the bundled script does the same for those that don't.</p>
+  <p><strong>Animation:</strong> opening slides the modal up and scales it in, with the backdrop fading, over <span class="code-ref">--jf-transition</span> (via <span class="code-ref">@starting-style</span>). Closing is an opacity-only dissolve at the slightly slower <span class="code-ref">--jf-duration-slow</span>, held in place with <span class="code-ref">transition-behavior: allow-discrete</span> &mdash; that leg needs the <span class="code-ref">overlay</span> property, so the fade-out runs in Chromium and Safari but Firefox cuts straight to closed (it opens the same everywhere). <span class="code-ref">prefers-reduced-motion: reduce</span> collapses both to an instant change. Retune per modal by redeclaring <span class="code-ref">--jf-transition</span> / <span class="code-ref">--jf-duration-slow</span> on <span class="css-ref">.modal</span>, or the whole entry by overriding the <span class="code-ref">@starting-style</span> transform. Stepping through a <a href="#modal-groups">group</a> with the arrows / arrow keys is a hard cut &mdash; the animation only runs when a modal opens or closes on its own.</p>
+  <p><strong>Nested modals:</strong> a modal opened from a button inside another modal (outside of <a href="#modal-groups">modal groups</a>) isn't supported &mdash; the script tracks a single open modal, so the first one's state is lost. Close one before opening the next, or use a modal group.</p>
+</div>
+
+<div>
+  <h2 class="h3" id="modal-groups">Modal groups</h2>
   <p>You can combine modals into a group, which will automatically append navigation arrows to the modals within the group. The user can also navigate via keyboard (left and right arrows). Just add a <span class="code-ref">data-modalgroup</span> attribute to the modals within the group.</p>
   <p>None of these modals have a heading, so their <span class="code-ref">modalTitle</span> (see <a href="#javascript-api">Javascript API</a> below) falls back to their first paragraph's text - eg. "This content is in the first modal of the group" for Modal 1. <span class="css-ref">modal-group-4</span> instead has a <span class="css-ref">data-title</span> attribute, which takes priority over its paragraph text.</p>
 
   <pre class="language-markup">
     <code><!--
-      <button onclick="toggleModal('modal-group-1');">Open modal 1</button>
-      <button onclick="toggleModal('modal-group-2');">Open modal 2</button>
-      <button onclick="toggleModal('modal-group-3');">Open modal 3</button>
-      <button onclick="toggleModal('modal-group-4');">Open modal 4</button>
-      <button onclick="toggleModal('modal-group-5');">Open modal 5</button>
+      <button data-modal-target="modal-group-1">Open modal 1</button>
+      <button data-modal-target="modal-group-2">Open modal 2</button>
+      <button data-modal-target="modal-group-3">Open modal 3</button>
+      <button data-modal-target="modal-group-4">Open modal 4</button>
+      <button data-modal-target="modal-group-5">Open modal 5</button>
 
-      <dialog id="modal-group-1" data-modalgroup="modalGroup">
+      <dialog id="modal-group-1" class="modal" data-modalgroup="modalGroup">
           ...
       </dialog>
-      <dialog id="modal-group-2" data-modalgroup="modalGroup">
+      <dialog id="modal-group-2" class="modal" data-modalgroup="modalGroup">
           ...
       </dialog>
-      <dialog id="modal-group-3" data-modalgroup="modalGroup">
+      <dialog id="modal-group-3" class="modal" data-modalgroup="modalGroup">
           ...
       </dialog>
-      <dialog id="modal-group-4" data-modalgroup="modalGroupAlt" data-title="Modal Four">
+      <dialog id="modal-group-4" class="modal" data-modalgroup="modalGroupAlt" data-title="Modal Four">
           ...
       </dialog>
-      <dialog id="modal-group-5" data-modalgroup="modalGroupAlt">
+      <dialog id="modal-group-5" class="modal" data-modalgroup="modalGroupAlt">
           ...
       </dialog>
 
@@ -73,44 +81,44 @@
 
   <h3 class="h4">Modal Group One</h3>
   <div class="button-list">
-    <button class="button small" onclick="toggleModal('modal-group-1');">Open modal 1</button>
-    <button class="button small" onclick="toggleModal('modal-group-2');">Open modal 2</button>
-    <button class="button small" onclick="toggleModal('modal-group-3');">Open modal 3</button>
+    <button class="button small" data-modal-target="modal-group-1">Open modal 1</button>
+    <button class="button small" data-modal-target="modal-group-2">Open modal 2</button>
+    <button class="button small" data-modal-target="modal-group-3">Open modal 3</button>
   </div>
 
   <h3 class="h4">Modal Group Two</h3>
   <div class="button-list">
-    <button class="button small" onclick="toggleModal('modal-group-4');">Open modal 4</button>
-    <button class="button small" onclick="toggleModal('modal-group-5');">Open modal 5</button>
+    <button class="button small" data-modal-target="modal-group-4">Open modal 4</button>
+    <button class="button small" data-modal-target="modal-group-5">Open modal 5</button>
   </div>
 
   <dialog id="modal-group-1" class="modal" data-modalgroup="modalGroup">
     <div class="modal-content">
-      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <img src="https://placehold.co/400x200" alt="Placeholder image" class="mb full-width">
       <p class="h4">This content is in the first modal of the group</p>
     </div>
   </dialog>
   <dialog id="modal-group-2" class="modal" data-modalgroup="modalGroup">
     <div class="modal-content">
-      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <img src="https://placehold.co/400x200" alt="Placeholder image" class="mb full-width">
       <p class="h4">This content is in the second modal of the group</p>
     </div>
   </dialog>
   <dialog id="modal-group-3" class="modal" data-modalgroup="modalGroup">
     <div class="modal-content">
-      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <img src="https://placehold.co/400x200" alt="Placeholder image" class="mb full-width">
       <p class="h4">This content is in the third modal of the group</p>
     </div>
   </dialog>
   <dialog id="modal-group-4" class="modal" data-modalgroup="modalGroupAlt" data-title="Modal Four">
     <div class="modal-content">
-      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <img src="https://placehold.co/400x200" alt="Placeholder image" class="mb full-width">
       <p class="h4">This content is in the first modal of the second group</p>
     </div>
   </dialog>
   <dialog id="modal-group-5" class="modal" data-modalgroup="modalGroupAlt">
     <div class="modal-content">
-      <img src="https://placehold.it/400x200" alt="Placeholder image" class="mb full-width">
+      <img src="https://placehold.co/400x200" alt="Placeholder image" class="mb full-width">
       <p class="h4">This content is in the second modal of the second group</p>
     </div>
   </dialog>

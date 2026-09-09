@@ -1,4 +1,5 @@
-</div>
+</section>
+</main>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
@@ -19,6 +20,7 @@
         var currentPage = window.location.pathname.split('/').pop();
         if (link == currentPage) {
           linkElement.classList.add('is-active');
+          linkElement.setAttribute('aria-current', 'page');
         }
       });
     }

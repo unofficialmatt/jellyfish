@@ -27,6 +27,7 @@
   </head>
 
   <body>
+    <a href="#content" class="skip-link">Skip to content</a>
 <div class="container is-wide">
   <div class="grid">
     <aside class="col xs-12 md-3">
@@ -40,6 +41,7 @@
             <span class="theme-toggle-icon" aria-hidden="true"></span>
           </button>
         </div>
+        <nav aria-label="Documentation">
         <ul>
           <li class="li-title mt-0">
             Latest
@@ -129,9 +131,10 @@
             <a href="./utilities.html">Utility Classes</a>
           </li>
         </ul>
+        </nav>
       </div>
     </aside>
-    <div class="col xs-12 md-9 content">
+    <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
 <h1 class="section-heading h2">
@@ -327,18 +330,18 @@
         <td><span class="variable-ref">$font-primary</span></td>
         <td>-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
           Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"</td>
-        <td>Primary font stack. <br><br><span class="bold">This is output as a custom CSS property --jf-font-primary; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(font-primary)</span></span></td>
+        <td>Primary font stack.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$root-secondary</span></td>
         <td><span class="variable-ref">var(--jf-font-primary)</span></td>
-        <td>Secondary font stack. <br><br><span class="bold">This is output as a custom CSS property --jf-font-secondary; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(font-secondary)</span></span></td>
+        <td>Secondary font stack.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$font-monospace</span></td>
         <td>"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
           monospace</td>
-        <td>Monospace font stack used for code tags. <br><br><span class="bold">This is output as a custom CSS property --jf-font-monospace; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(font-monospace)</span></span></td>
+        <td>Monospace font stack used for code tags.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$font-body</span></td>
@@ -389,22 +392,22 @@
       <tr>
         <td><span class="variable-ref">$colors</span></td>
         <td><span class="italic">(SCSS map)</span></td>
-        <td>A map of key: value pairs used to generate <a href="./theme-colors.html">theme colors</a>. <br><br><span class="bold">These are output as custom CSS properties eg --color-primary-500; the recommended way to reference within your SCSS files is by calling the <span class="code-ref">get-color()</span> function.</span></td>
+        <td>A map of key: value pairs used to generate <a href="./theme-colors.html">theme colors</a>. Emitted as <span class="code-ref">--jf-color-{family}-{shade}</span>; reference from SCSS with <span class="code-ref">get-color()</span> / <span class="code-ref">get-color-role()</span>.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$color-white</span></td>
         <td>#ffffff</td>
-        <td>Pure white, used for various SCSS functions. Shouldn't be changed.<br><br><span class="bold">This is output as a custom CSS property --jf-color-white; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-white)</span></span></td>
+        <td>Pure white, used for various SCSS functions. Shouldn't be changed.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$color-black</span></td>
         <td>#000000</td>
-        <td>Pure black, used for various SCSS functions. Shouldn't be changed.<br><br><span class="bold">This is output as a custom CSS property --jf-color-black; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-black)</span></span></td>
+        <td>Pure black, used for various SCSS functions. Shouldn't be changed.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$body-background-color</span></td>
         <td><span class="code-ref">#faf9f6</span></td>
-        <td>The background color for the <span class="code-ref">body</span> tag &mdash; the <span class="bold">canvas</span>. A warm off-white by default, so a literal-white <span class="css-ref">.bg-soft</span> panel (<span class="code-ref">#fff</span>) reads as a slightly raised surface against it. <span class="code-ref">html</span>/<span class="code-ref">body</span> paint it; components never override it. <span class="code-ref">--jf-color-surface</span> ("the background of the current context") defaults to it and <span class="italic">is</span> overridden &mdash; by cards, modals, menus and <span class="css-ref">.bg-*</span> sections. <span class="code-ref">--jf-color-surface</span> is registered with <span class="code-ref">@property</span> as <span class="code-ref">inherits: false</span>, so each context sets its own and a nested element can't pick up an ancestor section's surface by accident; <span class="code-ref">--jf-color-text</span> is registered <span class="code-ref">inherits: true</span>. Browsers without <span class="code-ref">@property</span> treat both as ordinary custom properties.<br><br><span class="bold">This is output as a custom CSS property --jf-color-bg; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(color-bg)</span></span></td>
+        <td>The background color for the <span class="code-ref">body</span> tag &mdash; the <span class="bold">canvas</span>. A warm off-white by default, so a literal-white <span class="css-ref">.bg-soft</span> panel (<span class="code-ref">#fff</span>) reads as a slightly raised surface against it. <span class="code-ref">html</span>/<span class="code-ref">body</span> paint it; components never override it. <span class="code-ref">--jf-color-surface</span> ("the background of the current context") defaults to it and <span class="italic">is</span> overridden &mdash; by cards, modals, menus and <span class="css-ref">.bg-*</span> sections. <span class="code-ref">--jf-color-surface</span> is registered with <span class="code-ref">@property</span> as <span class="code-ref">inherits: false</span>, so each context sets its own and a nested element can't pick up an ancestor section's surface by accident; <span class="code-ref">--jf-color-text</span> is registered <span class="code-ref">inherits: true</span>. Browsers without <span class="code-ref">@property</span> treat both as ordinary custom properties.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$soft-background-color</span></td>
@@ -1093,7 +1096,7 @@
       <tr>
         <td><span class="variable-ref">$accessibility-focus-color</span></td>
         <td>rgb(0, 140, 255)</td>
-        <td>The color used for the outline when an element receives keyboard-focus.<br><br><span class="bold">This is output as a custom CSS property --jf-accessibility-focus-color; the recommended way to reference within your SCSS files is by calling <span class="code-ref">token(accessibility-focus-color)</span></span></td>
+        <td>The color used for the outline when an element receives keyboard-focus.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$accessibility-focus-outline-width</span></td>
@@ -1166,7 +1169,8 @@
   </table>
 
 </div>
-</div>
+</section>
+</main>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
@@ -1187,6 +1191,7 @@
         var currentPage = window.location.pathname.split('/').pop();
         if (link == currentPage) {
           linkElement.classList.add('is-active');
+          linkElement.setAttribute('aria-current', 'page');
         }
       });
     }

@@ -27,6 +27,7 @@
   </head>
 
   <body>
+    <a href="#content" class="skip-link">Skip to content</a>
 <div class="container is-wide">
   <div class="grid">
     <aside class="col xs-12 md-3">
@@ -40,6 +41,7 @@
             <span class="theme-toggle-icon" aria-hidden="true"></span>
           </button>
         </div>
+        <nav aria-label="Documentation">
         <ul>
           <li class="li-title mt-0">
             Latest
@@ -129,9 +131,10 @@
             <a href="./utilities.html">Utility Classes</a>
           </li>
         </ul>
+        </nav>
       </div>
     </aside>
-    <div class="col xs-12 md-9 content">
+    <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
 <h1 class="section-heading h2">
@@ -289,6 +292,7 @@
       </tr>
     </tbody>
   </table>
+  <p>Textareas use <span class="code-ref">field-sizing: content</span>, so where the browser supports it they grow to fit what's typed (the <span class="code-ref">rows</span> attribute sets the starting height). Elsewhere they stay at <span class="code-ref">rows</span> height and scroll, as before.</p>
 </div>
 <div>
   <h2 class="h3">Working with checkboxes and radio buttons</h2>
@@ -506,7 +510,8 @@
     still substitute the colour.
   </p>
 </div>
-</div>
+</section>
+</main>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
@@ -527,6 +532,7 @@
         var currentPage = window.location.pathname.split('/').pop();
         if (link == currentPage) {
           linkElement.classList.add('is-active');
+          linkElement.setAttribute('aria-current', 'page');
         }
       });
     }

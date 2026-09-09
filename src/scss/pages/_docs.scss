@@ -1,3 +1,25 @@
+html {
+  scroll-padding-block-start: 7rem;
+}
+
+.skip-link {
+  position: fixed;
+  inset-block-start: get-space(2xs);
+  inset-inline-start: get-space(2xs);
+  z-index: 100;
+  padding: get-space(2xs) get-space(sm);
+  background: token(color-bg);
+  color: token(color-text);
+  border: token(border-width) token(border-style) token(border-color);
+  border-radius: token(radius-sm);
+  transform: translateY(calc(-100% - #{get-space(sm)}));
+  transition: transform token(transition);
+
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
 .navbar-logo {
   width: 120px;
   margin-bottom: token(flow);

@@ -32,11 +32,6 @@ $form-label-weight: get-weight(semibold) !default;
 
 $range-thumb-color: get-color-role(neutral, muted) !default;
 $range-track-color: get-color-role(neutral, subtle) !default;
-$range-track-color-bottom-ie: get-color-role(
-  neutral,
-  subtle
-) !default; // IE/EdgeHTML-only (::-ms-fill-lower) — dead code, delete with the ::-ms-* blocks
-
 $range-track-color-focus: get-color-role(neutral, subtle) !default;
 
 $range-thumb-height: get-size(1.5) !default;

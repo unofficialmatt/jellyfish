@@ -38,7 +38,8 @@ class jellyfishModals {
     if (dialog.dataset.title) return dialog.dataset.title.trim();
 
     const heading = dialog.querySelector("h1, h2, h3, h4, h5, h6");
-    if (heading && heading.textContent.trim()) return heading.textContent.trim();
+    if (heading && heading.textContent.trim())
+      return heading.textContent.trim();
 
     const textElements = dialog.querySelectorAll(
       "p, li, span, blockquote, dd, dt, td, th",
@@ -65,6 +66,14 @@ class jellyfishModals {
     // data-modalgroup, whose own prev/next arrow targets itself).
     const wasAlreadyOpen = this.currentModalId === id;
 
+    // Group prev/next: one modal closes and the next opens in this same tick.
+    // Animating the fade/scale on both at once is chaotic, so run the swap with
+    // no transition (a hard cut). Standalone open/close still animate.
+    const isSwap =
+      closeCurrent && this.currentModalId && this.currentModalId !== id;
+    const root = document.documentElement;
+    if (isSwap) root.classList.add("jf-modal-instant");
+
     if (closeCurrent) {
       this.closeModal();
     }
@@ -79,6 +88,13 @@ class jellyfishModals {
         // above (eg. navigating a single-item group back to itself) - (re)open it.
         this.openModal(id);
       }
+    }
+
+    if (isSwap) {
+      // Flush the no-transition state now, then re-enable so the next
+      // standalone open / close animates.
+      void root.offsetWidth;
+      root.classList.remove("jf-modal-instant");
     }
   }
 
@@ -129,7 +145,7 @@ class jellyfishModals {
     // Dispatch an Event to the DataLayer
     window.dataLayer = window.dataLayer || [];
 
-    dataLayer.push({
+    window.dataLayer.push({
       event: "modalClosed",
       modalId: "#" + closedModalId,
       modalTitle,
@@ -148,10 +164,6 @@ class jellyfishModals {
         clearInterval(this.modalInterval);
         this.modalInterval = null;
       }
-
-      // Same guard: don't strip this off <body> if a newer modal (opened
-      // synchronously before this event fired) is the reason it's still set
-      document.body.classList.remove("has-open-modal");
     }
   }
 
@@ -238,16 +250,11 @@ class jellyfishModals {
       // Dispatch an Event to the DataLayer
       window.dataLayer = window.dataLayer || [];
 
-      dataLayer.push({
+      window.dataLayer.push({
         event: "modalOpened",
         modalId: "#" + id,
         modalTitle: this.getModalTitle(dialog),
       });
-
-      // Add has-open-modal class to body
-      if (!document.body.classList.contains("has-open-modal")) {
-        document.body.classList.add("has-open-modal");
-      }
     }
   }
 
@@ -421,9 +428,23 @@ class jellyfishModals {
 // Initialize the class
 const modalManager = new jellyfishModals();
 
-// Expose toggleModal outside the class
+// Expose toggleModal for callers that drive modals from their own scripts.
 const toggleModal = (id, closeCurrent) =>
   modalManager.toggleModal(id, closeCurrent);
+
+// Delegated triggers (no inline onclick, so this works under a CSP):
+//   <button data-modal-target="id">      open / toggle that modal
+//   <... data-modal-close> inside a modal close the current modal
+document.addEventListener("click", (event) => {
+  const opener = event.target.closest("[data-modal-target]");
+  if (opener) {
+    modalManager.toggleModal(opener.dataset.modalTarget);
+    return;
+  }
+  if (event.target.closest("[data-modal-close]")) {
+    modalManager.closeModal();
+  }
+});
 
 // Add eventListener for keydown
 document.addEventListener("keydown", (event) =>

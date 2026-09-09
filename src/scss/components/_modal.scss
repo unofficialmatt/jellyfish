@@ -14,10 +14,14 @@ dialog.modal {
   background-color: token(color-surface);
   color: token(color-text);
 
-  &::backdrop {
-    background-color: $modal-backdrop-color;
-    opacity: $modal-backdrop-opacity;
-  }
+  // Centre it ourselves rather than leaning on the UA `:modal` centring — that
+  // stops matching the instant close() is called, which would drop the dialog
+  // toward its static position mid-fade.
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  flex-direction: column;
+
   max-height: calc(100% - $modal-outer-margin * 2);
   width: 100%;
   max-width: min(
@@ -26,12 +30,63 @@ dialog.modal {
   );
   border: $modal-border;
   border-radius: $modal-border-radius;
-  overflow: hidden;
+  overflow: visible;
   padding: token(modal-padding);
+
+  // Closed state + EXIT transition. The close is an opacity-only dissolve at
+  // --jf-duration-slow (a touch slower than the entry, so it doesn't blink
+  // out); the discrete `display` / `overlay` legs (allow-discrete) hold the
+  // dialog in the top layer while it fades — Chromium + Safari. Firefox has no
+  // `overlay` yet, so there the close is an instant cut. prefers-reduced-motion
+  // zeroes the duration tokens, so it all collapses to instant.
+  opacity: 0;
+  transition:
+    opacity var(--jf-duration-slow) var(--jf-ease-in-out),
+    overlay var(--jf-duration-slow) allow-discrete,
+    display var(--jf-duration-slow) allow-discrete;
+
   &[open] {
     display: flex;
-    flex-direction: column;
-    overflow: visible;
+    opacity: 1;
+    // ENTRY: fade + a small scale-up on the standard --jf-transition speed.
+    transition:
+      opacity token(transition),
+      transform token(transition);
+  }
+
+  @starting-style {
+    &[open] {
+      opacity: 0;
+      transform: scale(0.8) translateY(min(10vw, 150px));
+    }
+  }
+
+  &::backdrop {
+    background-color: $modal-backdrop-color;
+    opacity: 0;
+    transition:
+      opacity var(--jf-duration-slow) var(--jf-ease-in-out),
+      overlay var(--jf-duration-slow) allow-discrete,
+      display var(--jf-duration-slow) allow-discrete;
+  }
+  &[open]::backdrop {
+    opacity: $modal-backdrop-opacity;
+    transition: opacity token(transition); // entry matches the dialog's speed
+  }
+  @starting-style {
+    &[open]::backdrop {
+      opacity: 0;
+    }
+  }
+}
+
+// Group prev/next navigation closes one modal and opens the next in the same
+// tick — animating both is chaotic, so modals.js flags the swap and it runs
+// with no transition (a direct cut). Standalone open/close still animate.
+:root.jf-modal-instant {
+  dialog.modal,
+  dialog.modal::backdrop {
+    transition: none;
   }
 }
 
@@ -43,7 +98,9 @@ dialog.modal {
   }
 }
 
-body.has-open-modal {
+// Lock background scroll while a modal is open. The scrollbar-width shift this
+// would cause is absorbed by `scrollbar-gutter: stable` on <html>.
+body:has(dialog.modal[open]) {
   overflow: hidden;
 }
 
@@ -76,7 +133,7 @@ body.has-open-modal {
 
 .modal-navigation-button {
   #{token-name("button-color-theme")}: #{get-color-role(neutral, muted)};
-  #{token-name("button-hover-color-theme")}: token(color-white);
+  #{token-name("button-hover-color-theme")}: #{get-color(neutral)};
   padding: 0;
   width: $modal-navigation-arrow-size;
   height: $modal-navigation-arrow-size * 3; // Increase the hit area
@@ -87,6 +144,16 @@ body.has-open-modal {
   mask-position: center;
   border: 0;
   margin: 0;
+}
+
+// The close / nav icons are a mask over the button's background fill; in
+// forced-colors the system replaces that fill and the glyph can vanish into
+// the button face. Paint it in a contrasting system colour instead.
+@media (forced-colors: active) {
+  .modal-close,
+  .modal-navigation-button {
+    background-color: ButtonText;
+  }
 }
 
 .modal-navigation--prev {
