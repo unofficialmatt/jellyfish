@@ -1,5 +1,3 @@
-require("es6-promise").polyfill();
-
 // Set up required modules
 const { parallel, series, src, dest, watch } = require("gulp");
 const rename = require("gulp-rename");

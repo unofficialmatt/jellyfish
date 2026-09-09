@@ -18,7 +18,7 @@
     document.querySelectorAll("button[data-font-size]").forEach(function (btn) {
       btn.setAttribute(
         "aria-pressed",
-        String(btn.getAttribute("data-font-size") === size)
+        String(btn.getAttribute("data-font-size") === size),
       );
     });
   }

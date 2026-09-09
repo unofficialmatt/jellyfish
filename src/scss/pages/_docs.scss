@@ -74,6 +74,8 @@ html {
   padding: get-space(sm) get-space(md);
   font-weight: get-weight(bold);
   line-height: get-leading(tight);
+  position: sticky;
+  inset-block-start: get-size(2);
   z-index: 1;
   li + li {
     margin-block-start: get-space(3xs);
@@ -125,6 +127,8 @@ html {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
+  position: sticky;
+  inset-block-start: 0;
   z-index: 9;
   background-color: color-mix(in srgb, token(color-bg) 90%, transparent);
   backdrop-filter: blur(3px);
@@ -181,19 +185,100 @@ pre {
     position: absolute;
     float: inline-end;
     display: block;
-    background-color: get-color(neutral, 400);
-    color: token(color-white);
+    background-color: get-color-role(neutral, muted);
+    color: token(color-on-neutral-muted);
     padding: 0.4em 0.6em;
     text-shadow: none;
   }
 }
+// Prism's stock "prism" theme loads after jellyfish.css. The base rule ties it
+// on specificity, so background / text / the white text-shadow emboss need
+// !important to drop; the child `code` is beaten on specificity alone.
 pre[class*="language-"] {
-  background: get-color(neutral, 25) !important;
+  background: token(code-background) !important;
+  color: token(code-color) !important;
+  text-shadow: none !important;
   border: $borders;
+}
+pre[class*="language-"] code {
+  color: inherit;
+  text-shadow: none;
+}
+// Prism pins a fixed pale-blue ::selection (0,0,1,1) and loads after us — put
+// the framework's flipping selection back inside code blocks.
+pre[class*="language-"] ::selection,
+pre[class*="language-"]::selection {
+  background: color-mix(
+    in srgb,
+    token(color-text) $selection-background-mix,
+    token(color-surface)
+  ) !important;
+  color: token(color-text) !important;
 }
 
 [class*="language-"] {
   line-height: 1.6;
+}
+
+// Syntax colours mapped onto the palette's flipping roles + text tiers, so
+// highlighting tracks light / dark with no separate dark block (Phase 5
+// carry-forward, item d). `pre[class*="language-"] .token.x` (0,0,3,1) outranks
+// Prism's `.token.x` (0,0,2,0) on specificity — no !important needed. Our six
+// families carry no blue/purple, so keyword/function sit on neighbouring pinks
+// (primary vs secondary) and operators fall back to strong neutral text.
+pre[class*="language-"] {
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: token(color-text-muted);
+  }
+
+  .token.punctuation {
+    color: token(color-text-subtle);
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: get-color-role(warning, emphasis);
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: get-color-role(success, emphasis);
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url {
+    color: get-color-role(neutral, emphasis);
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: get-color-role(primary, emphasis);
+  }
+
+  .token.function,
+  .token.class-name {
+    color: get-color-role(secondary, emphasis);
+  }
+
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: get-color-role(error, emphasis);
+  }
 }
 
 div.code-toolbar {
@@ -207,12 +292,12 @@ div.code-toolbar {
       padding: 0.5em !important;
       text-transform: uppercase !important;
       font-weight: get-weight(bold) !important;
-      background-color: get-color(neutral, 100) !important;
-      color: get-color(neutral, 800) !important;
+      background-color: get-color-role(neutral, muted) !important;
+      color: token(color-on-neutral-muted) !important;
       &:hover,
       &:focus {
         background-color: get-color(primary) !important;
-        color: get-color(neutral, 25) !important;
+        color: token(color-on-primary) !important;
       }
       //@extend .button.tertiary;
     }
