@@ -482,5 +482,11 @@
     in your replacement SVG so <span class="code-ref">select-bg()</span> can
     still substitute the colour.
   </p>
+  <p>
+    The chevron is a background image, so in forced-colors modes (Windows High
+    Contrast) it keeps rendering but in its fixed colour rather than a palette
+    one. The <span class="code-ref">&lt;select&gt;</span>'s border and text take
+    system colours as normal.
+  </p>
 </div>
 @@include('./src/docs/partials/html-footer.html')

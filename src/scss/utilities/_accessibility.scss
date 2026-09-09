@@ -1,5 +1,6 @@
 @mixin accessible-focus-state {
-  outline: $accessibility-focus-outline-width solid token(accessibility-focus-color);
+  outline: $accessibility-focus-outline-width solid
+    token(accessibility-focus-color);
   outline-offset: $accessibility-focus-outline-offset;
   // z-index: 1;
   //position: relative;
@@ -116,4 +117,60 @@ body.font-size {
 
 a[href^="mailto:"] {
   hyphens: auto;
+}
+
+// Forced colours (Windows High Contrast, etc.)
+@media (forced-colors: active) {
+  .accordion-heading::after {
+    background-color: CanvasText;
+  }
+  .modal-close,
+  .modal-navigation-button {
+    background-color: CanvasText !important;
+  }
+
+  .progress {
+    background-color: Canvas;
+    border: 1px solid CanvasText;
+
+    &::-webkit-progress-bar {
+      background-color: Canvas;
+    }
+    &::-webkit-progress-value {
+      background-color: Highlight;
+    }
+    &::-moz-progress-bar {
+      background-color: Highlight;
+    }
+
+    &:indeterminate {
+      background-color: Highlight;
+      background-image: none;
+      animation: jf-progress-indeterminate-forced 1.2s ease-in-out infinite
+        alternate;
+
+      &::-webkit-progress-bar {
+        background-color: transparent;
+      }
+      &::-webkit-progress-value {
+        background-color: transparent;
+      }
+      &::-moz-progress-bar {
+        background-color: transparent;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        animation-duration: 4s;
+      }
+    }
+  }
+
+  @keyframes jf-progress-indeterminate-forced {
+    from {
+      opacity: 0.45;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }

@@ -199,6 +199,7 @@
   <li><span class="bold"><span class="code-ref">&lt;textarea&gt;</span> auto-grows</span> via <span class="code-ref">field-sizing: content</span> where supported; <span class="code-ref">rows</span> sets the starting height.</li>
   <li><span class="bold">Validation states.</span> <span class="code-ref">:user-invalid</span> (and <span class="code-ref">[aria-invalid="true"]</span> for server-rendered errors) turn a field's border <span class="variable-ref">error</span> after interaction &mdash; no JS. New <span class="css-ref">.form-hint</span> / <span class="css-ref">.form-error</span> message classes. <a href="./forms.html#validation-states">See Forms.</a></li>
   <li><span class="bold">Grouped controls.</span> The docs now model related checkbox / radio sets as <span class="code-ref">&lt;fieldset&gt;</span> + <span class="code-ref">&lt;legend&gt;</span>. New <span class="css-ref">.is-plain</span> strips a fieldset's border to read as a plain label + controls, and <span class="css-ref">.form-group-inline</span> now works on a <span class="code-ref">&lt;fieldset&gt;</span> (legend stays above the inline row).</li>
+  <li><span class="bold">Forced-colors hardening.</span> The progress bar, the accordion chevron and the modal close / prev / next glyphs are repainted with system colours under Windows High Contrast (<span class="code-ref">forced-colors: active</span>) so they stay visible in every state. All of it lives in one block in the accessibility partial.</li>
 </ul>
 
 <h2 class="h3">Text Balancing</h2>

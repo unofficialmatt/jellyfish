@@ -146,15 +146,9 @@ body:has(dialog.modal[open]) {
   margin: 0;
 }
 
-// The close / nav icons are a mask over the button's background fill; in
-// forced-colors the system replaces that fill and the glyph can vanish into
-// the button face. Paint it in a contrasting system colour instead.
-@media (forced-colors: active) {
-  .modal-close,
-  .modal-navigation-button {
-    background-color: ButtonText;
-  }
-}
+// The close / nav icons are a mask over the button's background fill.
+// forced-colors fixup (it has to survive :hover) lives in the single block in
+// utilities/_accessibility.scss.
 
 .modal-navigation--prev {
   transform: rotate(180deg);
