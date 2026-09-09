@@ -31,7 +31,7 @@
 }
 
 [type="range"] {
-  -webkit-appearance: none;
+  appearance: none;
   background: transparent;
   margin: $range-thumb-height * 0.5 0;
   width: 100%;
@@ -71,7 +71,7 @@
   &::-webkit-slider-thumb {
     @include input-range-thumb;
     -webkit-appearance: none;
-    margin-top: (
+    margin-block-start: (
       (-$range-track-border-width * 2 + $range-track-height) * 0.5 -
         $range-thumb-height * 0.5
     );

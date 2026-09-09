@@ -22,8 +22,8 @@ html {
 
 .navbar-logo {
   width: 120px;
-  margin-bottom: token(flow);
-  margin-left: 1.5ch;
+  margin-block-end: token(flow);
+  margin-inline-start: 1.5ch;
 }
 
 .sidebar-top {
@@ -31,10 +31,10 @@ html {
   align-items: flex-start;
   justify-content: space-between;
   gap: get-space(sm);
-  margin-left: 1.5ch;
+  margin-inline-start: 1.5ch;
 
   .navbar-logo {
-    margin-left: 0;
+    margin-inline-start: 0;
   }
 }
 
@@ -65,24 +65,24 @@ html {
   ul {
     list-style-type: none;
     margin: 0;
-    margin-left: 1.5ch;
+    margin-inline-start: 1.5ch;
     a {
       font-size: token(font-size-sm);
     }
   }
-  margin-top: get-space(md);
+  margin-block-start: get-space(md);
   padding: get-space(sm) get-space(md);
   font-weight: get-weight(bold);
   line-height: get-leading(tight);
   z-index: 1;
   li + li {
-    margin-top: get-space(3xs);
+    margin-block-start: get-space(3xs);
   }
 
   li:not(.li-title) {
     @include below(md) {
       display: inline-block;
-      margin-right: get-space(sm);
+      margin-inline-end: get-space(sm);
     }
   }
 
@@ -90,8 +90,8 @@ html {
     text-decoration: none;
     &:before {
       content: "#";
-      margin-left: n(1.5ch);
-      margin-right: get-space(2xs);
+      margin-inline-start: -1.5ch;
+      margin-inline-end: get-space(2xs);
       color: get-color(neutral, 50);
       @include motion(all);
     }
@@ -115,13 +115,13 @@ html {
 
 .section-heading {
   a {
-    margin-left: auto;
+    margin-inline-start: auto;
     font-size: 0.35em;
     text-decoration: none;
   }
 
   padding: get-space(md) 0 get-space(xs) 0;
-  border-bottom: 1px solid get-color(primary, 100);
+  border-block-end: 1px solid get-color(primary, 100);
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -130,17 +130,17 @@ html {
   backdrop-filter: blur(3px);
   //  font-weight: get-weight(light);
   .chip-group:first-of-type {
-    margin-left: auto;
+    margin-inline-start: auto;
   }
   .chip-group {
     font-size: token(font-size-xs);
-    margin-left: get-space(xs);
+    margin-inline-start: get-space(xs);
   }
 }
 
 .docs-section {
   > div {
-    margin-bottom: get-space(lg);
+    margin-block-end: get-space(lg);
   }
 }
 // Standfirst
@@ -181,10 +181,10 @@ pre {
 
   label {
     font-size: token(font-size-sm);
-    top: 0;
-    right: 0;
+    inset-block-start: 0;
+    inset-inline-end: 0;
     position: absolute;
-    float: right;
+    float: inline-end;
     display: block;
     background-color: get-color(neutral, 400);
     color: token(color-white);
@@ -203,9 +203,9 @@ pre[class*="language-"] {
 
 div.code-toolbar {
   & > .toolbar {
-    top: auto !important;
-    bottom: 0.5em !important;
-    right: 0.5em !important;
+    inset-block-start: auto !important;
+    inset-block-end: 0.5em !important;
+    inset-inline-end: 0.5em !important;
     button {
       margin: 0 !important;
       box-shadow: none !important;
@@ -234,7 +234,7 @@ div.code-toolbar {
   font-weight: initial;
   line-height: initial;
   margin: 0;
-  top: 0;
+  inset-block-start: 0;
   border-radius: 0;
 }
 
@@ -255,7 +255,7 @@ div.code-toolbar {
   background-color: get-color-role(neutral, subtle);
   color: token(color-on-neutral-subtle);
   min-height: 160px;
-  margin-bottom: token(flow);
+  margin-block-end: token(flow);
   padding: token(flow) 0;
   .boxed {
     margin: 0;
@@ -270,12 +270,12 @@ div.code-toolbar {
 }
 
 .li-title {
-  //border-top: 1px solid get-color(neutral, 100);
-  margin-top: get-space(xs) !important;
-  padding-top: get-space(2xs);
+  //border-block-start: 1px solid get-color(neutral, 100);
+  margin-block-start: get-space(xs) !important;
+  padding-block-start: get-space(2xs);
   color: get-color(neutral, 400);
   font-size: token(font-size-xs);
-  margin-left: -1.5ch;
+  margin-inline-start: -1.5ch;
   font-weight: get-weight(medium);
 }
 
@@ -365,7 +365,7 @@ div.code-toolbar {
   container-name: parent-container;
 
   .card-section {
-    padding-top: $card-padding;
+    padding-block-start: $card-padding;
   }
 }
 .card.container-query-1 {

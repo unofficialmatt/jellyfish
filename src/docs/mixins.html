@@ -247,29 +247,11 @@
   </table>
   <p><code class="code-ref">build-shadow($entry)</code> assembles a <span class="code-ref">box-shadow</span> value from a <a href="./variables.html#elevation"><span class="variable-ref">$shadow-scale</span></a> entry &mdash; each <span class="code-ref">(geometry, alpha)</span> tuple becomes <span class="code-ref">&lt;geometry&gt; color-mix(in srgb, var(--jf-shadow-color) &lt;alpha&gt;, transparent)</span>.</p>
 
-  <p>Jellyfish comes with a few simple functions for manipulating numbers.</p>
-  <pre class="language-scss">
-    <code>
-      // Input:
-      .some-element {
-        width: em(32px);        // 1. Convert a pixel value to an em value based on a docroot em sixe of 16px
-        height: h(100vh);       // 2. Half a given value
-        margin-left: n(20px);   // 3. Return the negative of a given value
-        margin-right: hn(30px); // 4. Return the negative, half of a given value
-        margin-top: nh(50px);   // 4. Return the negative, half of a given value
-      }
-
-      // Output:
-      .some-element {
-        width: 2em;             // 1. Convert a pixel value to an em value based on a docroot em sixe of 16px
-        height: 50vh;           // 2. Half a given value
-        margin-left: -20px;     // 3. Return the negative of a given value
-        margin-right: -15px;    // 4. Return the negative, half of a given value
-        margin-top: -25px;      // 4. Return the negative, half of a given value
-      }
-
-    </code>
-  </pre>
+  <p>
+    <code class="code-ref">em($pixels)</code> converts a pixel value to
+    <span class="code-ref">em</span>, relative to a 16px root &mdash;
+    <code class="code-ref">em(32px)</code> gives <code class="code-ref">2em</code>.
+  </p>
 </div>
 
 <div>

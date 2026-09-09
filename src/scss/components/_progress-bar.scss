@@ -9,7 +9,6 @@
     appearance: none;
     border: none;
     background-color: token(progress-bar-bg-color);
-    background-size: auto; // Required polyfill for Safari if background image used
     display: block;
     width: 100%;
     height: $progressbar-height;
@@ -25,10 +24,6 @@
       border-radius: $progressbar-value-border-radius;
     }
     &::-moz-progress-bar {
-      background-color: token(progress-bar-color);
-      border-radius: $progressbar-value-border-radius;
-    }
-    &::-ms-fill {
       background-color: token(progress-bar-color);
       border-radius: $progressbar-value-border-radius;
     }
@@ -60,9 +55,6 @@
       }
       &::-moz-progress-bar {
         background-color: transparent;
-      }
-      &::-ms-fill {
-        animation-name: none;
       }
     }
 

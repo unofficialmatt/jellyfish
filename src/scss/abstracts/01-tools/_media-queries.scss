@@ -1,56 +1,29 @@
-// Media queries check the breakpoint map to see if a given string exists, else they convert a given pixel value to em.
+// Resolve a breakpoint argument to a length: a $breakpoints key -> its value;
+// a bare px value -> itself; anything else -> compile error.
+@function _resolve-bp($value) {
+  @if map-has-key($breakpoints, $value) {
+    @return map-get($breakpoints, $value);
+  }
+  @if str-index(#{$value}, "px") {
+    @return $value;
+  }
+  @error "The breakpoint `#{$value}` is not in $breakpoints and is not a px value. Compile stopping.";
+}
+
 @mixin above($min) {
-  $bp-min: $min;
-  @if map-has-key($breakpoints, $min) {
-      $bp-min: map-get($breakpoints, $min);
-  }
-  @else if (str-index(#{$min}, 'px')) {
-    // Do nothing, move to next step
-  }
-  @else {
-   @error "The specified breakpoint `#{$min}` does not exist in the breakpoint map. Compile stopping.";
-  }
-  @media (min-width: em($bp-min)) {
-      @content;
+  @media (min-width: em(_resolve-bp($min))) {
+    @content;
   }
 }
+
 @mixin between($min, $max) {
-  $bp-min: $min;
-  @if map-has-key($breakpoints, $min) {
-      $bp-min: map-get($breakpoints, $min);
-  }
-  @else if (str-index(#{$min}, 'px')) {
-    // Do nothing, move to next step
-  }
-  @else {
-   @error "The specified breakpoint `#{$min}` does not exist in the breakpoint map. Compile stopping.";
-  }
-  $bp-max: $max;
-  @if map-has-key($breakpoints, $max) {
-      $bp-max: map-get($breakpoints, $max);
-  }
-  @else if (str-index(#{$max}, 'px')) {
-    // Do nothing, move to next step
-  }
-  @else {
-   @error "The specified breakpoint `#{$max}` does not exist in the breakpoint map. Compile stopping.";
-  }
-  @media (min-width: em($bp-min)) and (max-width: em($bp-max - 1px)) {
-      @content;
+  @media (min-width: em(_resolve-bp($min))) and (max-width: em(_resolve-bp($max) - 1px)) {
+    @content;
   }
 }
+
 @mixin below($max) {
-  $bp-max: $max;
-  @if map-has-key($breakpoints, $max) {
-      $bp-max: map-get($breakpoints, $max);
-  }
-  @else if (str-index(#{$max}, 'px')) {
-    // Do nothing, move to next step
-  }
-  @else {
-   @error "The specified breakpoint `#{$max}` does not exist in the breakpoint map. Compile stopping.";
-  }
-  @media (max-width: em($bp-max - 1px)) {
-      @content;
+  @media (max-width: em(_resolve-bp($max) - 1px)) {
+    @content;
   }
 }

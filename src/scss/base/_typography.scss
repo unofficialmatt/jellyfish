@@ -180,7 +180,7 @@ caption {
 }
 
 caption {
-  margin-bottom: get-space(xs);
+  margin-block-end: get-space(xs);
 }
 
 // Inline Quote
@@ -231,8 +231,8 @@ sup {
   vertical-align: baseline;
 }
 sub {
-  bottom: -0.25em;
+  inset-block-end: -0.25em;
 }
 sup {
-  top: -0.75em;
+  inset-block-start: -0.75em;
 }

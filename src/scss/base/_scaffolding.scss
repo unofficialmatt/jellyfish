@@ -55,11 +55,12 @@ table {
 
 // Lists
 %lists {
-  margin: 0 0 token(flow) 2.5em;
+  margin: 0 0 token(flow);
+  margin-inline-start: 2.5em;
   list-style-position: outside;
   ul,
   ol {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 }
 ul {
@@ -77,7 +78,7 @@ ol {
   }
 }
 li + li {
-  margin-top: get-space(3xs);
+  margin-block-start: get-space(3xs);
 }
 dl {
   margin: 0 0 token(flow) 0;
@@ -85,7 +86,7 @@ dl {
     font-weight: get-weight(bold);
   }
   dd {
-    margin-bottom: calc(#{token(flow)} * 0.5);
+    margin-block-end: calc(#{token(flow)} * 0.5);
   }
 }
 
@@ -98,7 +99,7 @@ dl {
 hr {
   height: 0;
   border: 0;
-  border-top: token(border-width) token(border-style) token(border-color);
+  border-block-start: token(border-width) token(border-style) token(border-color);
   margin: token(flow) 0;
 }
 
@@ -122,7 +123,7 @@ blockquote {
     font-style: italic;
     font-size: token(font-size-md);
     line-height: 1.4;
-    margin-bottom: get-space(2xs);
+    margin-block-end: get-space(2xs);
   }
   > cite {
     &::before {

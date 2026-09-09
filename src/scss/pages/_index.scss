@@ -1,8 +1,8 @@
 body.home {
   .github {
     position: absolute;
-    top: get-space(2xs);
-    right: get-space(2xs);
+    inset-block-start: get-space(2xs);
+    inset-inline-end: get-space(2xs);
     border: 0;
     z-index: 100;
   }
@@ -14,12 +14,12 @@ body.home {
     padding: 0.5em 1em;
     display: inline-block;
     position: absolute;
-    bottom: 0;
+    inset-block-end: 0;
     width: max-content;
-    left: 50%;
+    inset-inline-start: 50%;
     margin: 0 auto;
     text-transform: uppercase;
-    transform: translate(-50%, n(get-size(1))) rotate(-2deg);
+    transform: translate(-50%, -(get-size(1))) rotate(-2deg);
     border-radius: get-radius(lg);
     box-shadow:
       0 0 0 6px get-color(secondary),
@@ -32,8 +32,8 @@ body.home {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: get-space(lg);
-  padding-bottom: get-space(lg);
+  padding-block-start: get-space(lg);
+  padding-block-end: get-space(lg);
   min-height: 100dvh;
 }
 .logo {

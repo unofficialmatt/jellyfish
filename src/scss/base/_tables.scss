@@ -7,7 +7,7 @@ table {
   font-size: token(table-font-size);
 }
 td {
-  border-bottom: token(border-width) token(border-style)
+  border-block-end: token(border-width) token(border-style)
     token-or(table-border-color, border-color);
 }
 th {
@@ -16,7 +16,7 @@ th {
 th,
 td {
   vertical-align: top;
-  text-align: left;
+  text-align: start;
   padding: $table-cell-padding;
   background: token(table-cell-background);
   color: token(table-text-color, inherit);
@@ -28,11 +28,11 @@ tfoot th {
   #{token-name("table-text-color")}: #{token(color-on-neutral-subtle)};
 }
 thead th {
-  border-bottom: token(border-width-strong) token(border-style)
+  border-block-end: token(border-width-strong) token(border-style)
     token-or(table-border-color, border-color);
 }
 tfoot th {
-  border-top: token(border-width-strong) token(border-style)
+  border-block-start: token(border-width-strong) token(border-style)
     token-or(table-border-color, border-color);
 }
 
@@ -42,9 +42,9 @@ tfoot th {
   overflow-x: auto;
   overflow-y: clip;
   table {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
-  margin-bottom: token(flow);
+  margin-block-end: token(flow);
 }
 
 table.is-striped {
@@ -61,10 +61,10 @@ table.has-border {
       token-or(table-border-color, border-color);
   }
   thead th {
-    border-bottom-width: token(border-width-strong);
+    border-block-end-width: token(border-width-strong);
   }
   tfoot th {
-    border-top-width: token(border-width-strong);
+    border-block-start-width: token(border-width-strong);
   }
 }
 
@@ -111,9 +111,9 @@ table.is-responsive {
         font-weight: get-weight(semibold);
         display: block;
         color: token(color-headings);
-        //border-bottom: 1px solid token-or(table-border-color, border-color)
-        //padding-bottom: 0.25em;
-        margin-bottom: 0.5em;
+        //border-block-end: 1px solid token-or(table-border-color, border-color)
+        //padding-block-end: 0.25em;
+        margin-block-end: 0.5em;
       }
     }
   }

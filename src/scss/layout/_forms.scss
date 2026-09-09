@@ -66,11 +66,11 @@ label {
 
 input[type="checkbox"],
 input[type="radio"] {
-  margin-right: get-space(3xs);
+  margin-inline-end: get-space(3xs);
   font-size: 1em;
   width: 0.9em;
   height: 0.9em;
-  top: 0.1em;
+  inset-block-start: 0.1em;
   position: relative;
 }
 
@@ -83,7 +83,7 @@ fieldset {
 }
 legend {
   padding: 0 get-space(xs);
-  margin-left: calc(#{token(space-xs)} * -1);
+  margin-inline-start: calc(#{token(space-xs)} * -1);
   font-weight: get-weight(bold);
 }
 
@@ -112,8 +112,6 @@ select {
   width: fit-content;
   max-width: 100%;
   color: token(color-text);
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   background-color: token(form-input-background);
   background-image: token(form-select-bg-img);
@@ -122,11 +120,6 @@ select {
   background-size: get-size(1) get-size(0.75);
   padding-inline-end: calc(get-space(2xs) * 2 + get-space(sm));
   line-height: 1.4; // ensures text doesn't get cut off
-}
-
-// Dropdown icon fix for IE
-select::-ms-expand {
-  display: none;
 }
 
 // Make color picker look better
@@ -146,7 +139,7 @@ form {
   [type="submit"],
   [type="reset"],
   [type="button"] {
-    margin-top: get-space(3xs);
+    margin-block-start: get-space(3xs);
   }
   .col {
     #{$form-items} {
@@ -188,7 +181,7 @@ form {
     display: inline-block;
   }
   label {
-    margin-right: get-space(2xs);
+    margin-inline-end: get-space(2xs);
   }
   // When .form-group-inline is on a <fieldset>, keep the legend a full-width
   // heading above the inline row (inert for the plain-<div> use).
@@ -199,12 +192,10 @@ form {
 
 // Tighter gutters on form rows
 .form-row {
-  margin-left: calc(get-space(2xs) * -0.5);
-  margin-right: calc(get-space(2xs) * -0.5);
+  margin-inline: calc(get-space(2xs) * -0.5);
   display: flex;
   flex-wrap: wrap;
   .col {
-    padding-left: calc(get-space(2xs) * 0.5);
-    padding-right: calc(get-space(2xs) * 0.5);
+    padding-inline: calc(get-space(2xs) * 0.5);
   }
 }

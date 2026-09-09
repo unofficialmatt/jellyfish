@@ -25,20 +25,6 @@ $token-prefix: jf !default;
   @return #{math.div($pixels, 16px)}em;
 }
 
-// Get a value from deep inside a map. Arguments:
-// @param {Map} $map - name of map
-// @param {Arglist} $keys - name of keys to retrieve. This can work with an infinitely nested map
-// @return {*} The value found at the nested keys, or null if any key is missing.
-@function map-deep-get($map, $keys...) {
-  @each $key in $keys {
-    $map: map-get($map, $key);
-    @if not $map {
-      //@warn "`#{$key}` does not exist in the queried key."; // Redacted as this is not super useful, because we only have one key value and not the parent key
-    }
-  }
-  @return $map;
-}
-
 // Test if a map has all `$keys` nested within each other.
 // @param {Map} $map - Map
 // @param {Arglist} $keys - Keys to test
@@ -185,24 +171,6 @@ $token-prefix: jf !default;
   @return $out;
 }
 
-// Returns a given number divided by 2
-@function h($num) {
-  @return $num// 0.5;
-}
-
-// Returns the negative value of a given number
-@function n($num) {
-  @return -$num;
-}
-
-// Returns the negative and halved value of a given number
-@function nh($num) {
-  @return n(h($num));
-}
-@function hn($num) {
-  @return n(h($num));
-}
-
 // Allows us to use #{headings(1,6)} to apply css to all headings
 @function headings($from: 1, $to: 6) {
   @if $from == $to {
@@ -318,9 +286,6 @@ $token-prefix: jf !default;
     @return var(#{token-name($value)}, #{$fallback});
   }
   @return var(#{token-name($value)});
-}
-@function v($value, $fallback: null) {
-  @return token($value, $fallback);
 }
 
 // Reference a component-scoped token, falling back to a shared token when the

@@ -1,20 +1,22 @@
-// Alignment
+.align-start,
 .align-left {
-  float: left !important;
+  float: inline-start !important;
 }
+.align-end,
 .align-right {
-  float: right !important;
+  float: inline-end !important;
 }
 .align-none {
   float: none !important;
 }
 
-// Text Alignment
+.text-start,
 .text-left {
-  text-align: left !important;
+  text-align: start !important;
 }
+.text-end,
 .text-right {
-  text-align: right !important;
+  text-align: end !important;
 }
 .text-center {
   text-align: center !important;

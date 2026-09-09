@@ -15,7 +15,7 @@
   #{token-name("button-padding-x")}: #{$button-padding-x};
   #{token-name("button-padding-y")}: #{$button-padding-y};
   #{token-name("button-scale-modifier")}: 1;
-  -webkit-appearance: none;
+  appearance: none;
   user-select: none;
   display: inline-flex;
   align-items: center;
@@ -70,40 +70,41 @@ button,
   display: flex;
   align-items: center;
   @extend %button-groups;
-  margin-bottom: calc(#{token(flow)} - #{$button-list-button-margin});
-  margin-right: calc(#{$button-list-button-margin} * -1);
-  margin-left: calc(#{$button-list-button-margin} * -1);
+  margin-block-end: calc(#{token(flow)} - #{$button-list-button-margin});
+  margin-inline: calc(#{$button-list-button-margin} * -1);
   .button,
   a.button {
-    margin: 0 #{$button-list-button-margin} calc(#{$button-list-button-margin} * 2)
-      #{$button-list-button-margin};
+    margin: 0 #{$button-list-button-margin}
+      calc(#{$button-list-button-margin} * 2) #{$button-list-button-margin};
     //display: inline-flex;
   }
 }
 
+// TODO: This would be better without the negative margins and just using gap?
 .button-group {
   @extend %button-groups;
   display: inline-flex;
-  margin-bottom: token(flow);
+  margin-block-end: token(flow);
   .button,
   a.button {
-    margin: 0 0 0 calc(#{token(border-width)} * -1);
+    margin: 0;
+    margin-inline-start: calc(#{token(border-width)} * -1);
     &:not(:first-child) {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+      border-start-start-radius: 0;
+      border-end-start-radius: 0;
     }
     &:not(:last-child) {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+      border-start-end-radius: 0;
+      border-end-end-radius: 0;
     }
   }
   & + & {
-    margin-left: token(flow);
+    margin-inline-start: token(flow);
   }
 }
 
 .button-list .button-group {
-  margin-bottom: calc(#{token(flow)} - #{$button-list-button-margin});
+  margin-block-end: calc(#{token(flow)} - #{$button-list-button-margin});
 }
 
 /***************
@@ -173,7 +174,10 @@ a.button {
     #{token-name("button-color-theme")}: #{token(color-bg-soft)};
     #{token-name("button-color-text")}: #{token(color-text-soft)};
     @if $button-hover-value != 500 {
-      #{token-name("button-hover-color-theme")}: #{get-color-role(neutral, subtle)};
+      #{token-name("button-hover-color-theme")}: #{get-color-role(
+          neutral,
+          subtle
+        )};
     }
     color: token(button-color-text);
   }

@@ -22,11 +22,11 @@
     font-size: 0.8em;
     font-weight: get-weight(bold);
     height: auto;
-    left: 5px;
+    inset-inline-start: 5px;
     line-height: normal;
     padding: 15px 23px 14px;
     text-decoration: none;
-    top: 5px;
+    inset-block-start: 5px;
     width: auto;
     z-index: 100000;
   }
@@ -57,15 +57,15 @@
 button.font-size {
   @extend %accessibility-button;
   font-weight: $accessibility-button-font-weight;
-  border-bottom: $accessibility-button-border-bottom solid transparent;
+  border-block-end: $accessibility-button-border-bottom solid transparent;
   vertical-align: baseline;
   &:hover,
   &:focus {
-    border-bottom-color: $accessibility-button-hover-border-color;
+    border-block-end-color: $accessibility-button-hover-border-color;
   }
   &.active {
     color: $accessibility-button-active-color;
-    border-bottom-color: $accessibility-button-active-border-color;
+    border-block-end-color: $accessibility-button-active-border-color;
   }
   &-sm {
     font-size: 0.8em;

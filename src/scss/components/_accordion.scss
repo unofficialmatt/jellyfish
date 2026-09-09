@@ -1,5 +1,5 @@
 .accordion {
-  margin-bottom: token(flow);
+  margin-block-end: token(flow);
   #{token-name("accordion-heading-background")}: #{get-color-role(
       neutral,
       subtle
@@ -24,7 +24,7 @@
   @include motion(border-color);
 
   & + .accordion-item {
-    border-top: 0;
+    border-block-start: 0;
   }
 
   // Round the group's outer corners on the items themselves (the summary
@@ -99,7 +99,7 @@
   padding: $accordion-padding-y $accordion-padding-x;
 
   > *:last-child {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 }
 

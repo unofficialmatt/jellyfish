@@ -1,57 +1,78 @@
+// Logical-axis spacing / border utilities. `i` = inline, `b` = block;
+// `s` = start, `e` = end.
+.mbe,
 .mb {
-  margin-bottom: token(flow) !important;
+  margin-block-end: token(flow) !important;
 }
+.mbs,
 .mt {
-  margin-top: token(flow) !important;
+  margin-block-start: token(flow) !important;
 }
+.mie,
 .mr {
-  margin-right: token(flow) !important;
+  margin-inline-end: token(flow) !important;
 }
+.mis,
 .ml {
-  margin-left: token(flow) !important;
+  margin-inline-start: token(flow) !important;
 }
+
 .m-0 {
   margin: 0px !important;
 }
+.mbs-0,
 .mt-0 {
-  margin-top: 0px !important;
+  margin-block-start: 0px !important;
 }
+.mie-0,
 .mr-0 {
-  margin-right: 0px !important;
+  margin-inline-end: 0px !important;
 }
+.mbe-0,
 .mb-0 {
-  margin-bottom: 0px !important;
+  margin-block-end: 0px !important;
 }
+.mis-0,
 .ml-0 {
-  margin-left: 0px !important;
+  margin-inline-start: 0px !important;
 }
+
 .p-0 {
   padding: 0px !important;
 }
+.pbs-0,
 .pt-0 {
-  padding-top: 0px !important;
+  padding-block-start: 0px !important;
 }
+.pie-0,
 .pr-0 {
-  padding-right: 0px !important;
+  padding-inline-end: 0px !important;
 }
+.pbe-0,
 .pb-0 {
-  padding-bottom: 0px !important;
+  padding-block-end: 0px !important;
 }
+.pis-0,
 .pl-0 {
-  padding-left: 0px !important;
+  padding-inline-start: 0px !important;
 }
+
 .b-0 {
   border: none !important;
 }
+.bbs-0,
 .bt-0 {
-  border-top: none !important;
+  border-block-start: none !important;
 }
+.bie-0,
 .br-0 {
-  border-right: none !important;
+  border-inline-end: none !important;
 }
+.bbe-0,
 .bb-0 {
-  border-bottom: none !important;
+  border-block-end: none !important;
 }
+.bis-0,
 .bl-0 {
-  border-left: none !important;
+  border-inline-start: none !important;
 }

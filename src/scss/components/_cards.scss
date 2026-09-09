@@ -6,32 +6,32 @@
   border-radius: token(card-border-radius);
   border: token(card-border-width) token(card-border-style)
     token-or(card-border-color, border-color);
-  margin-bottom: token(flow);
+  margin-block-end: token(flow);
 
   & > :last-child {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 
   .card-image,
   .card-image img {
     width: 100%;
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 
   &-section {
     padding: token(card-padding);
     & > :last-child {
-      margin-bottom: 0;
+      margin-block-end: 0;
     }
     .card-image {
-      margin-bottom: token(flow);
+      margin-block-end: token(flow);
     }
 
     & + .card-section {
-      padding-top: 0;
+      padding-block-start: 0;
     }
   }
   &-footer {
-    margin-top: auto;
+    margin-block-start: auto;
   }
 }

@@ -5,26 +5,26 @@
 }
 
 img {
-  &.align-left {
-    @extend %embedded-content;
-  }
-  &.align-right {
-    @extend %embedded-content;
-  }
-  &.align-none {
-    @extend %embedded-content;
-  }
+  &.align-start,
+  &.align-left,
+  &.align-end,
+  &.align-right,
+  &.align-none,
   &.align-center {
     @extend %embedded-content;
   }
   @include above(sm) {
+    &.align-start,
     &.align-left {
-      margin: 0 token(flow) token(flow) 0;
-      float: left !important;
+      margin-block: 0 token(flow);
+      margin-inline: 0 token(flow);
+      float: inline-start !important;
     }
+    &.align-end,
     &.align-right {
-      margin: 0 0 token(flow) token(flow);
-      float: right !important;
+      margin-block: 0 token(flow);
+      margin-inline: token(flow) 0;
+      float: inline-end !important;
     }
     &.align-none {
       margin: 0 0 token(flow) 0;

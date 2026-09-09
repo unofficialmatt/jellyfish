@@ -22,7 +22,7 @@
     }
     background-color: token(callout-bg-color);
     color: token(callout-color);
-    margin-bottom: token(flow);
+    margin-block-end: token(flow);
     padding: $callout-padding;
     display: block;
     width: 100%;
@@ -32,7 +32,7 @@
     }
 
     & > :last-child {
-      margin-bottom: 0;
+      margin-block-end: 0;
     }
 
     @each $key, $map in $colors {
@@ -48,7 +48,7 @@
   }
   .callout-heading {
     @include h6();
-    margin-bottom: 0.5em;
+    margin-block-end: 0.5em;
     text-transform: uppercase;
     font-weight: get-weight(semibold);
     letter-spacing: 0.02em;
