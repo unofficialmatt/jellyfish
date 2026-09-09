@@ -87,6 +87,20 @@ legend {
   font-weight: get-weight(bold);
 }
 
+// Borderless fieldset — reads as a plain group label followed by its controls.
+fieldset.is-plain {
+  border: 0;
+  padding: 0;
+
+  > legend {
+    margin-inline-start: 0;
+    margin-block-end: get-space(3xs);
+    padding-inline: 0;
+    font-size: $form-label-size;
+    font-weight: $form-label-weight;
+  }
+}
+
 // Make range full width
 [type="range"] {
   width: 100%;
@@ -175,6 +189,11 @@ form {
   }
   label {
     margin-right: get-space(2xs);
+  }
+  // When .form-group-inline is on a <fieldset>, keep the legend a full-width
+  // heading above the inline row (inert for the plain-<div> use).
+  legend {
+    display: block;
   }
 }
 

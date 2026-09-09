@@ -162,41 +162,66 @@
 <div>
   <h2 class="h3">Working with checkboxes and radio buttons</h2>
   <p>
-    Wrap checkboxes and radio buttons in a
-    <span class="css-ref">.form-group</span> to preserve spacing.
+    A set of related checkboxes or radio buttons that answers one question is a
+    <em>group</em>: wrap it in a <code class="code-ref">&lt;fieldset></code> with a
+    <code class="code-ref">&lt;legend></code> naming the choice. Each control
+    keeps its own <code class="code-ref">&lt;label></code>; the
+    <code class="code-ref">&lt;legend></code> is what a screen reader announces
+    for the group as a whole.
   </p>
   <pre class="language-markup">
     <code><!--
-    <input type="text">
-    <div class="form-group">
-      <label><input type="radio" name="radio" checked=""> Radio 1</label>
-      <label><input type="radio" name="radio"> Radio 2</label>
-    </div>
-    <textarea></textarea>
+    <fieldset>
+      <legend>Notify me</legend>
+      <label><input type="radio" name="notify" checked> By email</label>
+      <label><input type="radio" name="notify"> By text message</label>
+      <label><input type="radio" name="notify"> Not at all</label>
+    </fieldset>
   --></code>
   </pre>
-  <input type="text" />
-  <div class="form-group">
-    <label><input type="radio" name="radio" checked="" /> Radio 1</label>
-    <label><input type="radio" name="radio" /> Radio 2</label>
-  </div>
-  <textarea></textarea>
+  <fieldset>
+    <legend>Notify me</legend>
+    <label><input type="radio" name="notify" checked="" /> By email</label>
+    <label><input type="radio" name="notify" /> By text message</label>
+    <label><input type="radio" name="notify" /> Not at all</label>
+  </fieldset>
   <p>
-    Add the class <span class="css-ref">.form-group-inline</span> to make
-    checkboxes and radio buttons inline-block elements rather than block.
+    For a single control, or to group controls for spacing only (no group
+    label), use <span class="css-ref">.form-group</span> instead.
   </p>
   <pre class="language-markup">
     <code><!--
-    <div class="form-group-inline">
-      ...
+    <div class="form-group">
+      <label><input type="checkbox" name="terms"> I accept the terms</label>
     </div>
   --></code>
   </pre>
-  <div class="form-group-inline">
-    <label><input type="radio" name="radio" checked="" /> Radio 1</label>
-    <label><input type="radio" name="radio" /> Radio 2</label>
-    <label><input type="radio" name="radio" /> Radio 3</label>
+  <div class="form-group">
+    <label><input type="checkbox" name="terms" /> I accept the terms</label>
   </div>
+  <p>
+    Add <span class="css-ref">.form-group-inline</span> to lay the controls out
+    inline rather than stacked. It works on a
+    <code class="code-ref">&lt;fieldset></code> too &mdash; the
+    <code class="code-ref">&lt;legend></code> stays on its own line above the
+    row.
+  </p>
+  <pre class="language-markup">
+    <code><!--
+    <fieldset class="form-group-inline">
+      <legend>Size</legend>
+      <label><input type="radio" name="size" checked> Small</label>
+      <label><input type="radio" name="size"> Medium</label>
+      <label><input type="radio" name="size"> Large</label>
+    </fieldset>
+  --></code>
+  </pre>
+  <fieldset class="form-group-inline">
+    <legend>Size</legend>
+    <label><input type="radio" name="size" checked="" /> Small</label>
+    <label><input type="radio" name="size" /> Medium</label>
+    <label><input type="radio" name="size" /> Large</label>
+  </fieldset>
   <p>
     Checkboxes and radio buttons will scale to remain in proportion to their
     label.
@@ -221,10 +246,11 @@
 <div>
   <h2 class="h3">Fieldsets</h2>
   <p>
-    Related form controls can be grouped in a
-    <code class="code-ref">&lt;fieldset></code>. An optional
-    <code class="code-ref">&lt;legend></code> can be used to display a name for
-    the group.
+    Any set of related controls can sit in a
+    <code class="code-ref">&lt;fieldset></code> &mdash; the radio group above is
+    the common case, but it also suits a larger block such as a sign-in or
+    address section. Add a <code class="code-ref">&lt;legend></code> whenever the
+    group needs a name; Jellyfish styles it to sit across the top border.
   </p>
   <pre class="language-markup">
     <code><!--
@@ -244,6 +270,37 @@
       <label> <input type="checkbox" /> Remember me </label>
     </div>
     <button type="button">Login</button>
+  </fieldset>
+  <p>
+    Add <span class="css-ref">.is-plain</span> to drop the border and padding so
+    the group reads as a plain label followed by its controls. Combine it with
+    <span class="css-ref">.form-group-inline</span> for a label with an inline
+    row of options.
+  </p>
+  <pre class="language-markup">
+    <code><!--
+    <fieldset class="is-plain">
+      <legend>Contact preference</legend>
+      <label><input type="radio" name="contact" checked> Email</label>
+      <label><input type="radio" name="contact"> Phone</label>
+    </fieldset>
+
+    <fieldset class="is-plain form-group-inline">
+      <legend>Delivery speed</legend>
+      <label><input type="radio" name="speed" checked> Standard</label>
+      <label><input type="radio" name="speed"> Express</label>
+    </fieldset>
+  --></code>
+  </pre>
+  <fieldset class="is-plain">
+    <legend>Contact preference</legend>
+    <label><input type="radio" name="contact" checked="" /> Email</label>
+    <label><input type="radio" name="contact" /> Phone</label>
+  </fieldset>
+  <fieldset class="is-plain form-group-inline">
+    <legend>Delivery speed</legend>
+    <label><input type="radio" name="speed" checked="" /> Standard</label>
+    <label><input type="radio" name="speed" /> Express</label>
   </fieldset>
 </div>
 <div>
