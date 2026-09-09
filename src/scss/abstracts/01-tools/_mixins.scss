@@ -232,90 +232,37 @@
   background-size: cover;
 }
 
-@mixin h1 {
-  line-height: $heading-line-height !important; // TODO: THESE SHOULD BE COMPARATIVE OT THE FONT SIZE WHEN WE MAKE THIS CLAMP
-  @each $point, $size in $font-sizes-h1 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size !important;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size !important;
-      }
-    }
+// The type system's single seam: a font-size step from $type-scale plus the
+// line-height that pairs with it ($type-leading). Every heading — the element,
+// the .hN utility, and @include hN() — routes through here, so size and leading
+// can't drift. Utilities pass $important: true so they beat the element rules;
+// element rules leave it false.
+@mixin type($step, $important: false) {
+  $step: "#{$step}";
+  @if $important {
+    font-size: token(font-size-#{$step}) !important;
+    line-height: get-leading(leading-for($step)) !important;
+  } @else {
+    font-size: token(font-size-#{$step});
+    line-height: get-leading(leading-for($step));
   }
 }
 
-@mixin h2 {
-  line-height: $heading-line-height !important;
-  @each $point, $size in $font-sizes-h2 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size !important;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size !important;
-      }
-    }
-  }
+@mixin h1($important: false) {
+  @include type(map-get($heading-scale, "h1"), $important);
 }
-
-@mixin h3 {
-  line-height: $heading-line-height !important;
-  @each $point, $size in $font-sizes-h3 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size !important;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size !important;
-      }
-    }
-  }
+@mixin h2($important: false) {
+  @include type(map-get($heading-scale, "h2"), $important);
 }
-
-@mixin h4 {
-  line-height: $heading-line-height !important;
-  @each $point, $size in $font-sizes-h4 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size !important;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size !important;
-      }
-    }
-  }
+@mixin h3($important: false) {
+  @include type(map-get($heading-scale, "h3"), $important);
 }
-@mixin h5 {
-  line-height: $heading-line-height !important;
-  @each $point, $size in $font-sizes-h5 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size !important;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size !important;
-      }
-    }
-  }
+@mixin h4($important: false) {
+  @include type(map-get($heading-scale, "h4"), $important);
 }
-@mixin h6 {
-  line-height: $heading-line-height !important;
-  @each $point, $size in $font-sizes-h6 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size !important;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size !important;
-      }
-    }
-  }
+@mixin h5($important: false) {
+  @include type(map-get($heading-scale, "h5"), $important);
+}
+@mixin h6($important: false) {
+  @include type(map-get($heading-scale, "h6"), $important);
 }

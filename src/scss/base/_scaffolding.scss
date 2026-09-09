@@ -2,6 +2,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: $font-body;
+  font-size: token(root-font-size);
+  font-size-adjust: token(font-size-adjust);
   min-height: 100vh;
   min-height: 100dvh;
   scrollbar-gutter: stable;
@@ -22,7 +24,6 @@ body {
   #{token-name("color-surface")}: #{token("color-bg")};
   min-height: 100vh;
   min-height: 100dvh;
-  font-size: token(root-font-size);
   line-height: token(root-line-height);
   color: token(color-text);
   background-color: token(color-bg);
@@ -99,7 +100,8 @@ dl {
 hr {
   height: 0;
   border: 0;
-  border-block-start: token(border-width) token(border-style) token(border-color);
+  border-block-start: token(border-width) token(border-style)
+    token(border-color);
   margin: token(flow) 0;
 }
 
@@ -113,7 +115,7 @@ pre {
   background-color: token(code-background);
   color: token(code-color);
   border: $borders;
-  line-height: 1.2;
+  line-height: get-leading(tight);
 }
 
 // Blockquote
@@ -121,8 +123,7 @@ blockquote {
   margin: 0 0 token(flow) 0;
   p {
     font-style: italic;
-    font-size: token(font-size-md);
-    line-height: 1.4;
+    @include type(md);
     margin-block-end: get-space(2xs);
   }
   > cite {

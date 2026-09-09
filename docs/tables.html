@@ -9,13 +9,19 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
     <script>
-      // Pre-paint theme: apply a stored preference before the first paint so
-      // there's no flash. Jellyfish's theme.js keeps this in sync afterwards.
+      // Pre-paint: apply stored theme + text-size preferences before the first
+      // paint so there's no flash. theme.js / accessibility.js keep these in
+      // sync afterwards.
       (function () {
+        var el = document.documentElement;
         try {
           var t = localStorage.getItem("jf-theme");
-          if (t === "dark" || t === "light") {
-            document.documentElement.classList.add("jf-" + t);
+          if (t === "dark" || t === "light") el.classList.add("jf-" + t);
+        } catch (e) {}
+        try {
+          var f = localStorage.getItem("jf-font-size");
+          if (f === "smaller" || f === "larger" || f === "largest") {
+            el.classList.add("font-size-" + f);
           }
         } catch (e) {}
       })();
@@ -417,7 +423,7 @@
           <th>How to identify it</th>
         </tr>
       </thead>
-      <tbody class="small">
+      <tbody class="font-size-small">
         <tr>
           <td data-label="Jellyfish Species">Cotylorhiza tuberculata</td>
           <td data-label="Stinger">Harmless to humans, but it is better not to touch it. It is probably harmless also for most fishes. Just as for Rhizostoma, it is often associated to young fish that use it as a shelter</td>
@@ -454,7 +460,7 @@
             <th>Average IQ</th>
           </tr>
         </thead>
-        <tbody class="small">
+        <tbody class="font-size-small">
           <tr>
             <td>Cotylorhiza tuberculata</td>
             <td>Harmless to humans, but it is better not to touch it. It is probably harmless also for most fishes. Just as for Rhizostoma, it is often associated to young fish that use it as a shelter</td>

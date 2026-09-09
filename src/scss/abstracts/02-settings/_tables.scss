@@ -2,3 +2,4 @@ $generate-table-modifiers: true !default;
 $table-cell-padding: 0.5em 0.8em !default;
 $table-responsive-breakpoint: 900px !default;
 $table-font-size: token(font-size-sm) !default;
+$table-line-height: get-leading(snug) !default;

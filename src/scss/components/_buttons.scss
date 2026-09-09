@@ -39,7 +39,7 @@
     style: solid;
     radius: $button-border-radius;
   }
-  line-height: 1.3;
+  line-height: $button-line-height;
   padding: calc(token(button-padding-y) * token(button-scale-modifier))
     calc(token(button-padding-x) * token(button-scale-modifier));
   margin: 0 0 token(flow) 0;

@@ -9,13 +9,19 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
     <script>
-      // Pre-paint theme: apply a stored preference before the first paint so
-      // there's no flash. Jellyfish's theme.js keeps this in sync afterwards.
+      // Pre-paint: apply stored theme + text-size preferences before the first
+      // paint so there's no flash. theme.js / accessibility.js keep these in
+      // sync afterwards.
       (function () {
+        var el = document.documentElement;
         try {
           var t = localStorage.getItem("jf-theme");
-          if (t === "dark" || t === "light") {
-            document.documentElement.classList.add("jf-" + t);
+          if (t === "dark" || t === "light") el.classList.add("jf-" + t);
+        } catch (e) {}
+        try {
+          var f = localStorage.getItem("jf-font-size");
+          if (f === "smaller" || f === "larger" || f === "largest") {
+            el.classList.add("font-size-" + f);
           }
         } catch (e) {}
       })();

@@ -57,9 +57,11 @@
   #{token-name("font-monospace")}: #{$font-monospace};
   #{token-name("root-font-size")}: #{$root-font-size};
   #{token-name("root-line-height")}: #{$root-line-height};
+  #{token-name("font-size-adjust")}: #{$font-size-adjust};
   @include map-to-css-properties($type-scale, "font-size-");
   @include map-to-css-properties($leading-scale, "leading-");
   @include map-to-css-properties($font-weight-scale, "font-weight-");
+  #{token-name("measure")}: #{$measure};
   /* Spacing */
   @include map-to-css-properties($space-scale, "space-");
   #{token-name("flow")}: #{get-space($flow-step)};

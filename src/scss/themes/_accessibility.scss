@@ -49,12 +49,12 @@
     background: transparent;
     color: $accessibility-button-hover-color;
   }
-  line-height: 1;
+  line-height: get-leading(flush);
   &:focus {
     box-shadow: none;
   }
 }
-button.font-size {
+button[data-font-size] {
   @extend %accessibility-button;
   font-weight: $accessibility-button-font-weight;
   border-block-end: $accessibility-button-border-bottom solid transparent;
@@ -63,17 +63,21 @@ button.font-size {
   &:focus {
     border-block-end-color: $accessibility-button-hover-border-color;
   }
-  &.active {
+  &[aria-pressed="true"] {
     color: $accessibility-button-active-color;
     border-block-end-color: $accessibility-button-active-border-color;
   }
-  &-sm {
+  // the glyph size hints at what each button does
+  &[data-font-size="smaller"] {
     font-size: 0.8em;
   }
-  &-md {
+  &[data-font-size="default"] {
     font-size: 1em;
   }
-  &-lg {
+  &[data-font-size="larger"] {
     font-size: 1.2em;
+  }
+  &[data-font-size="largest"] {
+    font-size: 1.45em;
   }
 }

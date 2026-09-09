@@ -106,12 +106,17 @@ input[type="range"] {
   }
 }
 
-body.font-size {
-  &-md {
-    #{token-name("root-font-size")}: calc(#{$root-font-size} * 1.1);
+// User text-size preference. accessibility.js adds one of these to <html> when
+// a [data-font-size] button is clicked; "default" = no class.
+html.font-size {
+  &-smaller {
+    #{token-name("root-font-size")}: calc(#{$root-font-size} * 0.9);
   }
-  &-lg {
-    #{token-name("root-font-size")}: calc(#{$root-font-size} * 1.2);
+  &-larger {
+    #{token-name("root-font-size")}: calc(#{$root-font-size} * 1.15);
+  }
+  &-largest {
+    #{token-name("root-font-size")}: calc(#{$root-font-size} * 1.3);
   }
 }
 

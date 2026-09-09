@@ -23,7 +23,7 @@ iframe,
   html,
   body {
     font-size: 9pt !important;
-    line-height: 1.2 !important;
+    line-height: get-leading(tight) !important;
     font-family: Arial, sans-serif !important;
   }
   #{headings()} {

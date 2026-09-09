@@ -9,13 +9,19 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
     <script>
-      // Pre-paint theme: apply a stored preference before the first paint so
-      // there's no flash. Jellyfish's theme.js keeps this in sync afterwards.
+      // Pre-paint: apply stored theme + text-size preferences before the first
+      // paint so there's no flash. theme.js / accessibility.js keep these in
+      // sync afterwards.
       (function () {
+        var el = document.documentElement;
         try {
           var t = localStorage.getItem("jf-theme");
-          if (t === "dark" || t === "light") {
-            document.documentElement.classList.add("jf-" + t);
+          if (t === "dark" || t === "light") el.classList.add("jf-" + t);
+        } catch (e) {}
+        try {
+          var f = localStorage.getItem("jf-font-size");
+          if (f === "smaller" || f === "larger" || f === "largest") {
+            el.classList.add("font-size-" + f);
           }
         } catch (e) {}
       })();
@@ -163,21 +169,32 @@
 </div>
 <div>
   <h2 class="h3">Increase font size globally</h2>
-  <p>Add a class <span class="css-ref">.font-size-sm</span>, <span class="css-ref">.font-size-md</span> or <span class="css-ref">.font-size-lg</span> to the body element to change the base font size. This will allow visitors with limited eye sight to increase the size of type throughout the site.</p>
-  <p>For a quick and easy way to implement this feature, you can add the code snippet below to your project.</p>
-  <p><strong>Note:</strong> this approach uses javascript to store the preference in <span class="code-ref">localStorage</span> under the key <span class="code-ref">fontsize</span>, so the setting persists across the site.</p>
+  <p>Give any button a <span class="code-ref">data-font-size</span> of <span class="code-ref">smaller</span>, <span class="code-ref">default</span>, <span class="code-ref">larger</span> or <span class="code-ref">largest</span>. The bundled <span class="code-ref">accessibility.js</span> handles the click by delegation (no inline handler, CSP&#8209;safe), adds the matching <span class="css-ref">.font-size-*</span> class to <span class="code-ref">&lt;html&gt;</span> (<span class="code-ref">default</span> = none) &mdash; a relative multiplier on <span class="code-ref">--jf-root-font-size</span>, which is read on <span class="code-ref">&lt;html&gt;</span>, so the whole <span class="code-ref">rem</span>&#8209;based type scale grows or shrinks with it &mdash; and stores the choice in <span class="code-ref">localStorage</span> under <span class="code-ref">jf-font-size</span>. The active button gets <span class="code-ref">aria-pressed="true"</span>. <span class="code-ref">window.setRootFontSize('larger')</span> is exposed for script callers.</p>
+  <p>These are <em>preference levels</em>, not scale steps &mdash; deliberately named <span class="code-ref">smaller</span>&hellip;<span class="code-ref">largest</span> rather than reusing the <a href="./variables.html#typography"><span class="variable-ref">$type-scale</span></a> keys.</p>
+  <p>Restoring the stored preference runs on <span class="code-ref">DOMContentLoaded</span>; add the inline snippet to your <span class="code-ref">&lt;head&gt;</span> if you want it applied before first paint (no flash).</p>
   <pre class="language-markup">
     <code><!--
       <span class="screen-reader-text">Adjust font size:</span>
-      <button class="font-size font-size-sm" title="Small Font Size">A</button>
-      <button class="font-size font-size-md" title="Medium Font Size">A</button>
-      <button class="font-size font-size-lg" title="Large Font Size">A</button>
+      <button data-font-size="smaller" title="Smaller text">A</button>
+      <button data-font-size="default" title="Default text size">A</button>
+      <button data-font-size="larger"  title="Larger text">A</button>
+      <button data-font-size="largest" title="Largest text">A</button>
+
+      <!-- optional, in <head>, to apply the stored size before paint -->
+      <script>
+        try {
+          var s = localStorage.getItem("jf-font-size");
+          if (s === "smaller" || s === "larger" || s === "largest")
+            document.documentElement.classList.add("font-size-" + s);
+        } catch (e) {}
+      </script>
     --></code>
   </pre>
   <span class="screen-reader-text">Adjust font size:</span>
-  <button class="font-size font-size-sm" title="Small Font Size">A</button>
-  <button class="font-size font-size-md" title="Medium Font Size">A</button>
-  <button class="font-size font-size-lg" title="Large Font Size">A</button>
+  <button data-font-size="smaller" title="Smaller text">A</button>
+  <button data-font-size="default" title="Default text size">A</button>
+  <button data-font-size="larger" title="Larger text">A</button>
+  <button data-font-size="largest" title="Largest text">A</button>
 </div>
 </section>
 </main>

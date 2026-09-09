@@ -9,13 +9,19 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
     <script>
-      // Pre-paint theme: apply a stored preference before the first paint so
-      // there's no flash. Jellyfish's theme.js keeps this in sync afterwards.
+      // Pre-paint: apply stored theme + text-size preferences before the first
+      // paint so there's no flash. theme.js / accessibility.js keep these in
+      // sync afterwards.
       (function () {
+        var el = document.documentElement;
         try {
           var t = localStorage.getItem("jf-theme");
-          if (t === "dark" || t === "light") {
-            document.documentElement.classList.add("jf-" + t);
+          if (t === "dark" || t === "light") el.classList.add("jf-" + t);
+        } catch (e) {}
+        try {
+          var f = localStorage.getItem("jf-font-size");
+          if (f === "smaller" || f === "larger" || f === "largest") {
+            el.classList.add("font-size-" + f);
           }
         } catch (e) {}
       })();
@@ -309,17 +315,37 @@
       <tr>
         <td><span class="variable-ref">$type-scale</span></td>
         <td><span class="italic">(SCSS map)</span></td>
-        <td>A map of key: value pairs used to generate font sizes. <span class="bold">These are output as custom CSS properties eg --font-size-lg. The map is designed to scale progressively and usually doesn't need modifying.</span></td>
+        <td>The type scale, in <span class="code-ref">rem</span>, emitted as <span class="code-ref">--jf-font-size-*</span>. <span class="code-ref">xs</span> / <span class="code-ref">sm</span> / <span class="code-ref">base</span> are fixed; <span class="code-ref">md</span>&ndash;<span class="code-ref">6xl</span> are build-time <span class="code-ref">clamp()</span> values that slide from the previous step's size up to their own, between <span class="variable-ref">$fluid-min-vw</span> and <span class="variable-ref">$fluid-max-vw</span>. Extend or override entries via the map.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$font-sizes-h1</span>, <span class="variable-ref">$font-sizes-h2</span>,<span class="variable-ref">$font-sizes-h3</span>,<span class="variable-ref">$font-sizes-h4</span>,<span class="variable-ref">$font-sizes-h5</span>,<span class="variable-ref">$font-sizes-h6</span>,</td>
+        <td><span class="variable-ref">$heading-scale</span></td>
         <td><span class="italic">(SCSS map)</span></td>
-        <td>A map of key: value pairs used to size heading elements responsively. The key should be a valid breakpoint from the <span class="variable-ref">$breakpoints</span> map; the value should be a font size in the <span class="variable-ref">$type-scale</span> map.</td>
+        <td>Which <span class="variable-ref">$type-scale</span> step each heading level uses &mdash; <span class="code-ref">h1: "4xl"</span> &hellip; <span class="code-ref">h6: "md"</span>. Resize a level with <span class="code-ref">$heading-scale: ("h2": "2xl")</span>.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$type-leading</span></td>
+        <td><span class="italic">(SCSS map)</span></td>
+        <td>The line-height (a <a href="#leading-scale"><span class="variable-ref">$leading-scale</span></a> key) paired with each font-size step &mdash; bigger text, tighter leading. The <a href="./mixins.html"><span class="code-ref">type()</span></a> mixin reads it, so setting a heading size pulls the matching line-height automatically.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$fluid-min-vw</span> / <span class="variable-ref">$fluid-max-vw</span></td>
+        <td><span class="code-ref">320px</span> / <span class="code-ref">1240px</span></td>
+        <td>The viewport range the fluid sizes interpolate across (independent of the layout breakpoints). Below the min every fluid size sits at its floor; above the max, at its ceiling.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$measure</span></td>
+        <td><span class="code-ref">none</span></td>
+        <td>Optional max line length for reading text (WCAG 1.4.8). Emitted as <span class="code-ref">--jf-measure</span> and applied as <span class="code-ref">max-inline-size</span> to <span class="css-ref">p</span> / <span class="css-ref">li</span> / <span class="css-ref">dd</span> / <span class="css-ref">blockquote</span>. Set a <span class="code-ref">ch</span> value (e.g. <span class="code-ref">66ch</span>), or flip it on per-context at runtime via the custom property.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$font-size-adjust</span></td>
+        <td><span class="code-ref">none</span></td>
+        <td>Applied to <span class="css-ref">html</span> as <span class="code-ref">font-size-adjust</span> (emitted <span class="code-ref">--jf-font-size-adjust</span>). Normalises apparent text size across fonts by x-height &mdash; set a number like <span class="code-ref">0.5</span>, <span class="code-ref">from-font</span>, or <span class="code-ref">ex-height 0.53</span> when a swapped-in typeface reads small or large. Progressive; unsupported browsers skip it.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$root-font-size</span></td>
-        <td><span class="code-ref">var(--jf-font-size-base)</span></td>
-        <td>The root font size (applied to <span class="css-ref">body</span>). Output as <span class="code-ref">--jf-root-font-size</span>; reference in SCSS with <span class="code-ref">token(root-font-size)</span>. Single value everywhere &mdash; the old per-breakpoint retune is gone; override the custom property in your own <span class="code-ref">@media</span> for responsive root type.</td>
+        <td><span class="code-ref">var(--jf-font-size-base)</span> (1rem)</td>
+        <td>Applied to <span class="css-ref">html</span> (output <span class="code-ref">--jf-root-font-size</span>; SCSS <span class="code-ref">token(root-font-size)</span>). Because the whole type scale is <span class="code-ref">rem</span>, overriding this one custom property scales <em>everything</em> proportionally &mdash; a large-print build for low-vision users is <span class="code-ref">:root { --jf-root-font-size: 1.25rem }</span>. Single value by default; the old per-breakpoint retune is gone (use your own <span class="code-ref">@media</span>).</td>
       </tr>
       <tr>
         <td><span class="code-ref">token(leading-base)</span></td>
@@ -357,15 +383,6 @@
         <td><span class="variable-ref">$font-weight-scale</span></td>
         <td><span class="italic">(SCSS map)</span></td>
         <td>The nine named weights (100&ndash;900), emitted as <a href="#font-weight-scale"><span class="code-ref">--jf-font-weight-*</span></a>.</td>
-      </tr>
-      <tr>
-        <td>
-          <span class="variable-ref">$heading-line-height</span>
-        </td>
-        <td>
-          <span class="code-ref">token(leading-tight)</span>
-        </td>
-        <td>Line height for h1-h6 tags.</td>
       </tr>
       <tr>
         <td>
@@ -608,6 +625,11 @@
         <td><span class="variable-ref">$button-font-weight</span></td>
         <td><span class="code-ref">get-weight(bold)</span></td>
         <td>Button font weight</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$button-line-height</span></td>
+        <td><span class="code-ref">get-leading(snug)</span></td>
+        <td>Button line-height (matters for wrapping labels).</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$button-font-size-xsmall</span></td>
@@ -1056,6 +1078,11 @@
         <td><span class="variable-ref">$table-font-size</span></td>
         <td><span class="code-ref">var(--jf-font-size-sm)</span></td>
         <td>The font size for table cells.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$table-line-height</span></td>
+        <td><span class="code-ref">get-leading(snug)</span></td>
+        <td>Table line-height &mdash; denser than body copy so data rows don't get airy.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$generate-table-modifiers</span></td>

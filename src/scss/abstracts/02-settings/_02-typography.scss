@@ -1,30 +1,72 @@
-// Create empty maps. This allows the maps to be defined in the project's settings file to override and add any sizes as required
+// Empty maps so a project's settings file can override / extend them.
 $type-scale: () !default;
-$font-sizes-h1: () !default;
-$font-sizes-h2: () !default;
-$font-sizes-h3: () !default;
-$font-sizes-h4: () !default;
-$font-sizes-h5: () !default;
-$font-sizes-h6: () !default;
+$heading-scale: () !default;
+$type-leading: () !default;
 
-// Merge default sizes into the map
+// Viewport range the fluid sizes interpolate across — independent of the
+// layout breakpoints. Below $fluid-min-vw every fluid size sits at its min;
+// above $fluid-max-vw, at its max.
+$fluid-min-vw: 320px !default;
+$fluid-max-vw: 1240px !default;
+
+// The type scale, in rem. xs / sm / base are fixed (reading text and small UI
+// text shouldn't scale with the window); md and up are fluid clamps — each one
+// slides from the previous step's size up to its own.
 $type-scale: map-merge(
   (
-    "xs": em($root-size * 0.75),
-    "sm": em($root-size * 0.875),
-    "base": em($root-size * 1),
-    "md": em($root-size * 1.125),
-    "lg": em($root-size * 1.25),
-    "xl": em($root-size * 1.5),
-    "2xl": em($root-size * 1.875),
-    "3xl": em($root-size * 2.25),
-    "4xl": em($root-size * 3),
-    "5xl": em($root-size * 3.75),
-    "6xl": em($root-size * 4.5),
+    "xs": rem(12px),
+    "sm": rem(14px),
+    "base": rem(16px),
+    "md": fluid(16px, 18px),
+    "lg": fluid(18px, 20px),
+    "xl": fluid(20px, 24px),
+    "2xl": fluid(24px, 30px),
+    "3xl": fluid(30px, 36px),
+    "4xl": fluid(36px, 48px),
+    "5xl": fluid(48px, 60px),
+    "6xl": fluid(60px, 72px),
   ),
   $type-scale
 );
 
+// Which scale step each heading level uses. Override an entry to resize a
+// level: `$heading-scale: ("h2": "2xl")`.
+$heading-scale: map-merge(
+  (
+    "h1": "4xl",
+    "h2": "3xl",
+    "h3": "2xl",
+    "h4": "xl",
+    "h5": "lg",
+    "h6": "md",
+  ),
+  $heading-scale
+);
+
+// The line-height (a $leading-scale key) that pairs with each font-size step —
+// bigger text gets tighter leading. Consumed by the type() mixin, so setting a
+// heading size automatically pulls the right leading.
+$type-leading: map-merge(
+  (
+    "xs": "base",
+    "sm": "base",
+    "base": "base",
+    "md": "snug",
+    "lg": "snug",
+    "xl": "tight",
+    "2xl": "tight",
+    "3xl": "tight",
+    "4xl": "tight",
+    "5xl": "tight",
+    "6xl": "tight",
+  ),
+  $type-leading
+);
+
+// Optional max line length for reading text (WCAG 1.4.8).
+$measure: none !default;
+
+$font-size-adjust: none !default;
 $root-font-size: token(font-size-base) !default;
 $root-line-height: token(leading-base) !default;
 
@@ -49,48 +91,6 @@ $font-monospace:
 $font-body: token(font-primary) !default;
 $font-headings: token(font-secondary) !default;
 
-$font-sizes-h1: map-merge(
-  (
-    "root": token(font-size-3xl),
-    "md": token(font-size-4xl),
-  ),
-  $font-sizes-h1
-);
-$font-sizes-h2: map-merge(
-  (
-    "root": token(font-size-xl),
-    "sm": token(font-size-2xl),
-    "md": token(font-size-3xl),
-  ),
-  $font-sizes-h2
-);
-$font-sizes-h3: map-merge(
-  (
-    "root": token(font-size-xl),
-    "md": token(font-size-2xl),
-  ),
-  $font-sizes-h3
-);
-$font-sizes-h4: map-merge(
-  (
-    "root": token(font-size-lg),
-    "sm": token(font-size-xl),
-  ),
-  $font-sizes-h4
-);
-$font-sizes-h5: map-merge(
-  (
-    "root": token(font-size-lg),
-  ),
-  $font-sizes-h5
-);
-$font-sizes-h6: map-merge(
-  (
-    "root": token(font-size-md),
-  ),
-  $font-sizes-h6
-);
-
 $font-weight-scale: () !default;
 $font-weight-scale: map-merge(
   (
@@ -107,5 +107,4 @@ $font-weight-scale: map-merge(
   $font-weight-scale
 );
 
-$heading-line-height: token(leading-tight) !default;
 $heading-weight: get-weight(medium) !default;

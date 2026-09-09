@@ -25,6 +25,49 @@ $token-prefix: jf !default;
   @return #{math.div($pixels, 16px)}em;
 }
 
+@function _round($number, $dp: 4) {
+  $factor: 1;
+  @if $dp > 0 {
+    @for $i from 1 through $dp {
+      $factor: $factor * 10;
+    }
+  }
+  @return math.div(math.round($number * $factor), $factor);
+}
+
+// px -> rem, relative to $root-size, rounded. Non-px values pass through
+// unchanged (safe on breakpoint keywords etc.). Used by the type scale, the
+// fluid() maths and the container-query mixins.
+@function rem($value) {
+  @if type-of($value) == "number" and unit($value) == "px" {
+    @return #{_round(math.div($value, $root-size))}rem;
+  }
+  @return $value;
+}
+
+// Build-time fluid type: a clamp() that slides one font-size to another across
+// a viewport range (defaults to $fluid-min-vw..$fluid-max-vw). $min / $max are
+// px. Formula: https://www.smashingmagazine.com/2022/10/fluid-typography-clamp-sass-functions/
+//   fluid(24px, 30px) -> clamp(1.5rem, 0.65vw + 1.37rem, 1.875rem)
+@function fluid($min, $max, $min-vw: $fluid-min-vw, $max-vw: $fluid-max-vw) {
+  @if $min == $max {
+    @return rem($min);
+  }
+  $slope: math.div($max - $min, $max-vw - $min-vw); // unitless (px / px)
+  $vw: _round($slope * 100);
+  $intercept: _round(math.div($min - $slope * $min-vw, $root-size));
+  @return clamp(#{rem($min)}, #{$vw}vw + #{$intercept}rem, #{rem($max)});
+}
+
+// The line-height key paired with a font-size step, from $type-leading.
+@function leading-for($step) {
+  $step: "#{$step}";
+  @if not map-has-key($type-leading, $step) {
+    @error "'#{$step}' is not in $type-leading. Valid: #{map-keys($type-leading)}.";
+  }
+  @return map-get($type-leading, $step);
+}
+
 // Test if a map has all `$keys` nested within each other.
 // @param {Map} $map - Map
 // @param {Arglist} $keys - Keys to test

@@ -1,26 +1,18 @@
-@function to-rem($value) {
-  @if type-of($value) == "number" and unit($value) == "px" {
-    @return calc($value / $root-size) * 1rem;
-  }
-  @return $value;
-}
+// Container-query helpers. Pixel args are converted to rem (via rem() in
+// _functions.scss) so a user zoom / root-font change scales the breakpoint.
 
 @mixin container-above($min, $containerName: "") {
-  $min: to-rem($min);
-  @container #{$containerName} (width >= #{$min}) {
+  @container #{$containerName} (width >= #{rem($min)}) {
     @content;
   }
 }
 @mixin container-below($max, $containerName: "") {
-  $max: to-rem($max);
-  @container #{$containerName} (width < #{$max}) {
+  @container #{$containerName} (width < #{rem($max)}) {
     @content;
   }
 }
 @mixin container-between($min, $max, $containerName: "") {
-  $min: to-rem($min);
-  $max: to-rem($max);
-  @container #{$containerName} (width >= #{$min}) and (width < #{$max}) {
+  @container #{$containerName} (width >= #{rem($min)}) and (width < #{rem($max)}) {
     @content;
   }
 }

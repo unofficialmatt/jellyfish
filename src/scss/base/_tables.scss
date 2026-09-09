@@ -3,7 +3,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  line-height: 1.3;
+  line-height: $table-line-height;
   font-size: token(table-font-size);
 }
 td {

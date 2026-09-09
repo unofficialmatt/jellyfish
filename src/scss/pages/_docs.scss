@@ -143,11 +143,6 @@ html {
     margin-block-end: get-space(lg);
   }
 }
-// Standfirst
-.standfirst {
-  font-size: token(font-size-lg);
-  font-weight: get-weight(medium);
-}
 
 // Inline references
 %reference {

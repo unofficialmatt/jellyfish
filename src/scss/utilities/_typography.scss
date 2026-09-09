@@ -31,26 +31,31 @@
 }
 
 .h1 {
-  @include h1();
+  @include h1($important: true);
 }
 .h2 {
-  @include h2();
+  @include h2($important: true);
 }
 .h3 {
-  @include h3();
+  @include h3($important: true);
 }
 .h4 {
-  @include h4();
+  @include h4($important: true);
 }
 .h5 {
-  @include h5();
+  @include h5($important: true);
 }
 .h6 {
-  @include h6();
+  @include h6($important: true);
 }
 
-.small {
-  @extend %small;
+.font-size-small {
+  @include type(sm, $important: true);
+}
+
+.standfirst {
+  @include type(lg);
+  font-weight: get-weight(medium);
 }
 
 .nowrap {

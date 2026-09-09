@@ -10,7 +10,7 @@
   margin: get-space(3xs) 0 get-space(xs) 0;
   //width: 100%;
   max-width: 100%;
-  line-height: 1;
+  line-height: get-leading(flush);
   // >= 16px stops iOS Safari zooming on focus; scales up with context.
   font-size: max(16px, 1em);
   opacity: 1;
@@ -119,7 +119,7 @@ select {
   background-position: right get-space(2xs) center;
   background-size: get-size(1) get-size(0.75);
   padding-inline-end: calc(get-space(2xs) * 2 + get-space(sm));
-  line-height: 1.4; // ensures text doesn't get cut off
+  line-height: get-leading(snug); // looser than %forms' flush so the value isn't clipped
 }
 
 // Make color picker look better

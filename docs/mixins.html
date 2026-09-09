@@ -9,13 +9,19 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
     <script>
-      // Pre-paint theme: apply a stored preference before the first paint so
-      // there's no flash. Jellyfish's theme.js keeps this in sync afterwards.
+      // Pre-paint: apply stored theme + text-size preferences before the first
+      // paint so there's no flash. theme.js / accessibility.js keep these in
+      // sync afterwards.
       (function () {
+        var el = document.documentElement;
         try {
           var t = localStorage.getItem("jf-theme");
-          if (t === "dark" || t === "light") {
-            document.documentElement.classList.add("jf-" + t);
+          if (t === "dark" || t === "light") el.classList.add("jf-" + t);
+        } catch (e) {}
+        try {
+          var f = localStorage.getItem("jf-font-size");
+          if (f === "smaller" || f === "larger" || f === "largest") {
+            el.classList.add("font-size-" + f);
           }
         } catch (e) {}
       })();
@@ -315,6 +321,18 @@
 
     </code>
   </pre>
+  <h3 class="h4">type() mixin &mdash; fluid size + paired leading</h3>
+  <p><code class="code-ref">type($step, $important: false)</code> is the single seam for heading-scale type. It sets <code class="code-ref">font-size</code> to a <a href="./variables.html#typography"><span class="variable-ref">$type-scale</span></a> step (a fluid <code class="code-ref">clamp()</code> for <code class="code-ref">md</code> and up) <em>and</em> the <code class="code-ref">line-height</code> that <span class="variable-ref">$type-leading</span> pairs with that step &mdash; so size and leading can't drift apart.</p>
+  <pre class="language-scss">
+    <code>
+      .lead-in {
+        @include type(2xl);   // font-size: var(--jf-font-size-2xl); line-height: var(--jf-leading-tight);
+      }
+    </code>
+  </pre>
+  <p><code class="code-ref">h1()</code>&hellip;<code class="code-ref">h6()</code> are thin wrappers &mdash; <code class="code-ref">@include h2()</code> is <code class="code-ref">type()</code> with the step from <span class="variable-ref">$heading-scale</span>. The <span class="css-ref">.h1</span>&ndash;<span class="css-ref">.h6</span> utility classes call them with <code class="code-ref">$important: true</code> so they win over element styles; the <code class="code-ref">&lt;h1&gt;</code>&ndash;<code class="code-ref">&lt;h6&gt;</code> element rules don't. <code class="code-ref">leading-for($step)</code> returns just the leading key for a step.</p>
+  <h3 class="h4">fluid() / rem() functions</h3>
+  <p><code class="code-ref">fluid($minPx, $maxPx, $minVw, $maxVw)</code> builds a <code class="code-ref">clamp()</code> that slides between two pixel sizes across a viewport range (defaulting to <span class="variable-ref">$fluid-min-vw</span>&ndash;<span class="variable-ref">$fluid-max-vw</span>) &mdash; <code class="code-ref">fluid(24px, 30px)</code> &rarr; <code class="code-ref">clamp(1.5rem, &hellip;vw + &hellip;rem, 1.875rem)</code>. <code class="code-ref">rem($value)</code> converts a pixel value to <code class="code-ref">rem</code> (relative to <span class="variable-ref">$root-size</span>); non-pixel values pass through untouched. It also backs the container-query mixins.</p>
   <h3 class="h4">Replacing Text with an image</h3>
   <p>Sometimes you might want to use text on a page for semantics or SEO, but display an image in place. You can do this with the mixin <span class="code-ref">text-replace</span> or the css class <span class="css-ref">.text-replace</span>. It's important to note that you need to give the element a fixed height and width to match your image in order for this to work correctly.</p>
   <pre class="language-markup">

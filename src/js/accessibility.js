@@ -1,63 +1,53 @@
-function changeRootFontSize(fontSize) {
-  document.body.classList.remove(
-    "font-size-sm",
-    "font-size-md",
-    "font-size-lg"
-  );
-  document.body.classList.add("font-size-" + fontSize);
+/**
+ * User text-size preference. Any `<button data-font-size="smaller|default|
+ * larger|largest">` sets the matching `.font-size-*` class on <html> (a
+ * relative multiplier on --jf-root-font-size — consumed on <html>, so the
+ * rem-based type scale scales with it). "default" = no class. The choice is
+ * stored in localStorage under "jf-font-size". Delegated, CSP-safe.
+ */
+(function () {
+  var STORAGE_KEY = "jf-font-size";
+  var VALID = ["smaller", "default", "larger", "largest"];
+  var CLASSES = ["smaller", "larger", "largest"]; // "default" adds no class
 
-  var fontButtons = document.querySelectorAll("button.font-size");
-
-  fontButtons.forEach(function (button) {
-    button.classList.remove("active");
-  });
-
-  var activeButton = document.querySelector("button.font-size-" + fontSize);
-  if (activeButton) {
-    activeButton.classList.add("active");
-  }
-
-  localStorage.setItem("fontsize", fontSize);
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  /**
-   * Function to allow the user to change the root font-size to increase legibility.
-   */
-  var fontButtons = document.querySelectorAll("button.font-size");
-
-  fontButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      var fontSize = button.classList.contains("font-size-sm")
-        ? "sm"
-        : button.classList.contains("font-size-md")
-        ? "md"
-        : button.classList.contains("font-size-lg")
-        ? "lg"
-        : null;
-
-      if (fontSize) {
-        changeRootFontSize(fontSize);
-      }
+  function apply(size) {
+    var root = document.documentElement;
+    CLASSES.forEach(function (c) {
+      root.classList.toggle("font-size-" + c, c === size);
     });
+    document.querySelectorAll("button[data-font-size]").forEach(function (btn) {
+      btn.setAttribute(
+        "aria-pressed",
+        String(btn.getAttribute("data-font-size") === size)
+      );
+    });
+  }
+
+  function setRootFontSize(size) {
+    if (VALID.indexOf(size) === -1) size = "default";
+    apply(size);
+    try {
+      localStorage.setItem(STORAGE_KEY, size);
+    } catch (e) {
+      /* private mode / storage disabled */
+    }
+  }
+
+  document.addEventListener("click", function (e) {
+    var trigger = e.target.closest("button[data-font-size]");
+    if (trigger) setRootFontSize(trigger.getAttribute("data-font-size"));
   });
 
-  /**
-   * Check for a stored 'fontsize' preference on document ready.
-   * Append appropriate class to body element.
-   */
-  var docFontSize = localStorage.getItem("fontsize");
-  switch (docFontSize) {
-    case "sm":
-      changeRootFontSize("sm");
-      break;
-    case "md":
-      changeRootFontSize("md");
-      break;
-    case "lg":
-      changeRootFontSize("lg");
-      break;
-    default:
-      break;
-  }
-});
+  document.addEventListener("DOMContentLoaded", function () {
+    var stored;
+    try {
+      stored = localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      /* ignore */
+    }
+    apply(VALID.indexOf(stored) !== -1 ? stored : "default");
+  });
+
+  // Exposed for script callers.
+  window.setRootFontSize = setRootFontSize;
+})();

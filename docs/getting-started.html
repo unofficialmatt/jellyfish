@@ -9,13 +9,19 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
     <script>
-      // Pre-paint theme: apply a stored preference before the first paint so
-      // there's no flash. Jellyfish's theme.js keeps this in sync afterwards.
+      // Pre-paint: apply stored theme + text-size preferences before the first
+      // paint so there's no flash. theme.js / accessibility.js keep these in
+      // sync afterwards.
       (function () {
+        var el = document.documentElement;
         try {
           var t = localStorage.getItem("jf-theme");
-          if (t === "dark" || t === "light") {
-            document.documentElement.classList.add("jf-" + t);
+          if (t === "dark" || t === "light") el.classList.add("jf-" + t);
+        } catch (e) {}
+        try {
+          var f = localStorage.getItem("jf-font-size");
+          if (f === "smaller" || f === "larger" || f === "largest") {
+            el.classList.add("font-size-" + f);
           }
         } catch (e) {}
       })();
@@ -197,16 +203,21 @@
   <h3 class="h4">Javascript</h3>
   <p>You should also include the Javascript files - either by importing the src files into your build process or by including the dist file <span class="code-ref">/dist/js/jellyfish.min.js</span> in your project's markup.</p>
   <h3 class="h4" id="dark-mode">Dark mode</h3>
-  <p>Dark mode ships on by default (set <span class="variable-ref">$dark-mode-enabled: false</span> to drop it). With no opt-in the page follows the OS <code class="code-ref">prefers-color-scheme</code>. To let visitors choose &mdash; and to persist that choice without a flash on the next load &mdash; add this to your <span class="code-ref">&lt;head&gt;</span>, before the stylesheet:</p>
+  <p>Dark mode ships on by default (set <span class="variable-ref">$dark-mode-enabled: false</span> to drop it). With no opt-in the page follows the OS <code class="code-ref">prefers-color-scheme</code>. To let visitors choose &mdash; and to persist that choice (plus the <a href="./accessibility.html">text-size preference</a>) without a flash on the next load &mdash; add this to your <span class="code-ref">&lt;head&gt;</span>, before the stylesheet:</p>
   <pre class="language-markup">
       <code>
         &lt;meta name="color-scheme" content="light dark"&gt;
         &lt;script&gt;
           (function () {
+            var el = document.documentElement;
             try {
               var t = localStorage.getItem("jf-theme");
-              if (t === "dark" || t === "light")
-                document.documentElement.classList.add("jf-" + t);
+              if (t === "dark" || t === "light") el.classList.add("jf-" + t);
+            } catch (e) {}
+            try {
+              var f = localStorage.getItem("jf-font-size");
+              if (f === "smaller" || f === "larger" || f === "largest")
+                el.classList.add("font-size-" + f);
             } catch (e) {}
           })();
         &lt;/script&gt;

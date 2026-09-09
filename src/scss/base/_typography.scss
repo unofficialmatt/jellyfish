@@ -3,121 +3,53 @@
 #{headings()} {
   font-family: $font-headings;
   margin: 0 0 token(flow) 0;
-  line-height: $heading-line-height;
   color: token(color-headings);
   font-weight: $heading-weight;
-  @supports (text-wrap: pretty) {
-    text-wrap: pretty;
-  }
+}
+// balance evens short multi-line headings; unsupported browsers ignore it.
+:where(h1, h2, h3) {
+  text-wrap: balance;
 }
 
 h1 {
-  @each $point, $size in $font-sizes-h1 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size;
-      }
-    }
-  }
+  @include h1;
 }
-
 h2 {
-  @each $point, $size in $font-sizes-h2 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size;
-      }
-    }
-  }
+  @include h2;
 }
-
 h3 {
-  @each $point, $size in $font-sizes-h3 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size;
-      }
-    }
-  }
+  @include h3;
 }
-
 h4 {
-  @each $point, $size in $font-sizes-h4 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size;
-      }
-    }
-  }
+  @include h4;
 }
-
 h5 {
-  @each $point, $size in $font-sizes-h5 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size;
-      }
-    }
-  }
+  @include h5;
 }
-
 h6 {
-  @each $point, $size in $font-sizes-h6 {
-    @if $point == "root" {
-      // Root font size at smallest device width
-      font-size: $size;
-    } @else {
-      // Otherwise use the breakpoint map to set the font size
-      @include above($point) {
-        font-size: $size;
-      }
-    }
-  }
+  @include h6;
 }
 
 p,
 li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  // FIXME
-  //word-break: break-word;
-  //hyphens: auto;
+dd,
+figcaption {
+  text-wrap: pretty;
 }
 
+// Optional reading measure (WCAG 1.4.8). --jf-measure defaults to `none`;
+// set $measure or override the custom property to cap line length. `small` is
+// display:block here, so fine-print blocks get it too.
 p,
-li {
-  @supports (text-wrap: pretty) {
-    text-wrap: pretty;
-  }
+li,
+dd,
+blockquote,
+small {
+  max-inline-size: token(measure, none);
 }
 
-/* TEXT TRANSFORM */
 %small {
-  font-size: token(font-size-sm);
+  @include type(sm);
 }
 small {
   display: block;
@@ -195,7 +127,7 @@ q {
 %inline-code {
   @extend %code;
   font-size: token(font-size-sm);
-  line-height: 1;
+  line-height: get-leading(flush);
   border-radius: $border-radius;
   padding: 0.3em 0.35em;
 }

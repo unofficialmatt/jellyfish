@@ -9,13 +9,19 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
     <script>
-      // Pre-paint theme: apply a stored preference before the first paint so
-      // there's no flash. Jellyfish's theme.js keeps this in sync afterwards.
+      // Pre-paint: apply stored theme + text-size preferences before the first
+      // paint so there's no flash. theme.js / accessibility.js keep these in
+      // sync afterwards.
       (function () {
+        var el = document.documentElement;
         try {
           var t = localStorage.getItem("jf-theme");
-          if (t === "dark" || t === "light") {
-            document.documentElement.classList.add("jf-" + t);
+          if (t === "dark" || t === "light") el.classList.add("jf-" + t);
+        } catch (e) {}
+        try {
+          var f = localStorage.getItem("jf-font-size");
+          if (f === "smaller" || f === "larger" || f === "largest") {
+            el.classList.add("font-size-" + f);
           }
         } catch (e) {}
       })();
@@ -141,7 +147,8 @@
 <h1 class="section-heading h2">Typography<a href="./variables.html#typography">[ Variable Reference ]</a></h1>
 <div>
   <p class="standfirst">Jellyfish provides default styling for all standard typography tags.</p>
-  <p>For easy spacing, Jellyfish removes the top margin and applies a bottom margin to block elements set with the <span class="code-ref">--jf-flow</span> token. Text sizing is set with em, cascading from the root. You can use the <a href="./breakpoints.html">grid breakpoint settings</a> to alter the root font size and line-height at different breakpoints.</p>
+  <p>For easy spacing, Jellyfish removes the top margin and applies a bottom margin to block elements set with the <span class="code-ref">--jf-flow</span> token.</p>
+  <p>The type scale is in <span class="code-ref">rem</span>. Reading text (<span class="code-ref">xs</span>, <span class="code-ref">sm</span>, <span class="code-ref">base</span>) is a fixed size; everything larger (<span class="code-ref">md</span> and up, which is all the headings) is <em>fluid</em> &mdash; a single <span class="code-ref">clamp()</span> that scales smoothly with the viewport between <span class="code-ref">320px</span> and <span class="code-ref">1240px</span>, no breakpoints. Each heading also gets a line-height matched to its size automatically. Retune via <a href="./variables.html#typography"><span class="variable-ref">$type-scale</span> / <span class="variable-ref">$heading-scale</span> / <span class="variable-ref">$type-leading</span></a>, or the <a href="./mixins.html"><span class="code-ref">type()</span></a> mixin.</p>
 </div>
 <div>
   <h2 class="h3">Headings <span class="chip">&lt;h1-h6></span></h2>
@@ -244,9 +251,9 @@ console.log("JellyFish is Awesome!");
         <td><a href="#">This is an anchor</a></td>
       </tr>
       <tr>
-        <td><code class="code-ref">&lt;small&gt;</code> or <span class="css-ref">.small</span></td>
+        <td><code class="code-ref">&lt;small&gt;</code> or <span class="css-ref">.font-size-small</span></td>
         <td>
-          <p class="small">This text has been defined via <span class="css-ref">.small</span> but you can also use the <code class="code-ref">small</code> tag where semantically appropriate.</p>
+          <p class="font-size-small">This text uses <span class="css-ref">.font-size-small</span> (or the <code class="code-ref">small</code> tag where semantically appropriate). It carries its own line-height, not the body's. Named <span class="css-ref">.font-size-small</span> rather than <span class="css-ref">.small</span> so it doesn't clash with the <span class="css-ref">.button.small</span> / <span class="css-ref">.chip.small</span> size modifiers.</p>
         </td>
       </tr>
       <tr>
@@ -357,6 +364,17 @@ console.log("JellyFish is Awesome!");
     <li><span class="weight-xbold">.weight-xbold</span></li>
     <li><span class="weight-black">.weight-black</span></li>
   </ul>
+  <h3 class="h4">Lead paragraph</h3>
+  <p>Put <span class="css-ref">.standfirst</span> on the intro <code class="code-ref">&lt;p&gt;</code> between a heading and the body copy. It's one step up the scale (<code class="code-ref">lg</code>, fluid), medium weight, with the line-height paired to that size.</p>
+  <pre class="language-markup">
+    <code><!--
+    <h1>Title</h1>
+    <p class="standfirst">A short intro that sets up what follows.</p>
+    <p>Body copy&hellip;</p>
+  --></code>
+  </pre>
+  <p class="standfirst">A standfirst reads a little larger than the body, so the jump from heading to running text feels deliberate.</p>
+
   <h3 class="h4">Keep words together</h3>
   <p>If you need to keep certain words together (e.g. brand names), wrap them in a span with the utility class <span class="css-ref">.nowrap</span>.</p>
   <p><strong>Note:</strong> This may cause elements to break out of their container and for paragraphs to be ragged - you have been warned!</p>

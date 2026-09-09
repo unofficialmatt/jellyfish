@@ -4,7 +4,7 @@
     display: inline-flex;
     vertical-align: baseline;
     align-items: center;
-    line-height: 1;
+    line-height: get-leading(flush);
     position: relative;
     text-align: center;
     white-space: nowrap;
