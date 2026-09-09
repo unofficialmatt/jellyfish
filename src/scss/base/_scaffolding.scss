@@ -137,11 +137,9 @@ blockquote {
   }
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  vertical-align: top; // Removes the white space under images
-}
+// `img` sizing (display:block, max-inline-size, block-size:auto) lives in
+// base/_01-reset — display:block also removes the old descender gap that
+// `vertical-align: top` used to patch.
 
 // Highlighted text — the text colour mixed toward the current surface.
 ::selection {
