@@ -326,6 +326,13 @@
   </tbody>
 </table>
 
+<h2 class="h3">Forms</h2>
+<ul>
+  <li><span class="bold"><span class="code-ref">&lt;select&gt;</span> sizes to its widest option.</span> The arbitrary <span class="code-ref">width: 300px; max-width: 60%</span> default is gone &mdash; <span class="code-ref">&lt;select&gt;</span> is now <span class="code-ref">width: fit-content</span> with <span class="code-ref">max-width: 100%</span>, so it never overflows its container. It still fills a <span class="css-ref">.col</span> / <span class="css-ref">.form-row</span>; set <span class="code-ref">width</span> yourself for a fixed size.</li>
+  <li><span class="bold">Control font size is <span class="code-ref">max(16px, 1em)</span></span>, not <span class="code-ref">16px !important</span> &mdash; still no iOS focus-zoom, but it scales with context and the <span class="code-ref">!important</span> is gone.</li>
+  <li><span class="bold"><span class="code-ref">&lt;textarea&gt;</span> auto-grows</span> via <span class="code-ref">field-sizing: content</span> where supported; <span class="code-ref">rows</span> sets the starting height.</li>
+</ul>
+
 <h2 class="h3">Text Balancing</h2>
 <p>Headings, paragraphs and list items will now have balanced text by default, negating orphans.</p>
 <div class="boxed">

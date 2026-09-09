@@ -36,7 +36,6 @@ textarea {
   overflow: auto;
   height: auto;
   width: 100%;
-  // Grow to fit content where supported; otherwise the default rows height.
   field-sizing: content;
 }
 
@@ -79,8 +78,9 @@ legend {
 
 // Fix issues with select
 select {
-  width: 300px;
-  max-width: 60%;
+  // Sizes to the widest <option>; never wider than the container.
+  width: fit-content;
+  max-width: 100%;
   color: token(color-text);
   -webkit-appearance: none;
   -moz-appearance: none;

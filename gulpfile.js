@@ -190,7 +190,7 @@ function sassProcess() {
       mediaQuery: false, // Do not apply within media queries (we use em instead)
       minPixelValue: 0,
     }),
-    // cssnano(),
+    cssnano(),
   ];
 
   return src(opts.src_dir + "/scss/main.scss")
