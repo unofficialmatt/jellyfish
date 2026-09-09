@@ -8,18 +8,19 @@
 
 <div>
   <h2 class="h3">Floats</h2>
-  <p>Elements can be floated with the <span class="css-ref">.align-left</span> / <span class="css-ref">.align-right</span> / <span class="css-ref">.align-none</span> classes. To contain floated children, put <span class="code-ref">display: flow-root</span> on the parent &mdash; the modern replacement for the old <span class="code-ref">.clearfix</span> hack (removed in v5).</p>
+  <p>Elements can be floated with the <span class="css-ref">.align-left</span> / <span class="css-ref">.align-right</span> / <span class="css-ref">.align-none</span> classes.</p>
+  <p>Common block containers (<span class="code-ref">div</span>, <span class="code-ref">section</span>, <span class="code-ref">article</span>, <span class="code-ref">p</span>, <span class="code-ref">li</span>, <span class="code-ref">figure</span>, <span class="code-ref">blockquote</span>, <span class="code-ref">aside</span>, <span class="code-ref">header</span>, <span class="code-ref">footer</span>, <span class="code-ref">dd</span>, <span class="code-ref">main</span>) <strong>contain a directly-floated <span class="css-ref">.align-*</span> child automatically</strong> &mdash; they get <span class="code-ref">display: flow-root</span> via <span class="code-ref">:has()</span>, the modern replacement for the old <span class="code-ref">.clearfix</span> hack (removed in v5). For any other element, or a parent you have set to <span class="code-ref">display: flex</span> / <span class="code-ref">grid</span> (which wins over the auto-rule), add <span class="code-ref">display: flow-root</span> yourself. Note it establishes a block formatting context, so margins no longer collapse through that parent.</p>
   <p>Floats should generally be avoided &mdash; reach for flexbox or grid instead.</p>
   <pre class="language-markup">
     <code><!--
-    <div style="display: flow-root">
+    <div>
       <div class="align-right boxed">Float Right</div>
       <div class="align-left boxed">Float Left</div>
     </div>
     <div class="align-none boxed">Float None</div>
   --></code>
   </pre>
-  <div style="display: flow-root">
+  <div>
     <div class="align-right boxed">
       Float Right
     </div>

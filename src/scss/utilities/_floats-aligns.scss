@@ -24,3 +24,18 @@
 .text-justify {
   text-align: justify !important;
 }
+
+// Auto-contain floats — the modern replacement for the removed `.clearfix`.
+// A block-flow container with a directly-floated `.align-*` child gets a BFC so
+// following content clears it. `:has()` is Baseline. Both selectors are wrapped
+// in `:where()` (zero specificity) on purpose: this is a safety net, so any
+// explicit `display` on the parent wins — a consumer's, a plugin's, or
+// Jellyfish's own `.grid` / `.row`. Table cells are omitted (they contain floats
+// already, and `flow-root` would kill `table-cell`).
+// Note: `flow-root` establishes a BFC, so margins stop collapsing through these
+// parents while a float child is present (the old `.clearfix` didn't do this).
+$_float-parents: "p, div, section, article, aside, figure, blockquote, li, dd, main, header, footer";
+
+:where(#{$_float-parents}):where(:has(> .align-start, > .align-end, > .align-left, > .align-right)) {
+  display: flow-root;
+}
