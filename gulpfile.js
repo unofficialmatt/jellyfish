@@ -12,7 +12,7 @@ const glob = require("glob");
 const fileinclude = require("gulp-file-include");
 
 var eslint = require("gulp-eslint");
-var uglify = require("gulp-uglify");
+var terser = require("gulp-terser");
 var concat = require("gulp-concat");
 var sass = require("gulp-sass")(require("sass"));
 var postcss = require("gulp-postcss");
@@ -100,7 +100,7 @@ function javascriptProcess() {
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(concat("jellyfish.min.js"))
-    .pipe(uglify({ mangle: true }))
+    .pipe(terser({ mangle: true }))
     .pipe(
       banner(opts.bannerText, {
         pkg: pkg,
