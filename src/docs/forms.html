@@ -144,7 +144,7 @@
         <td>select</td>
         <td>
           <select>
-            <option>Item 1 asd s a a as dasd a sad. as das daa aa d</option>
+            <option>Item 1</option>
             <option>Item 2</option>
             <option>Item 3</option>
           </select>
@@ -245,6 +245,57 @@
     </div>
     <button type="button">Login</button>
   </fieldset>
+</div>
+<div>
+  <h2 id="validation-states" class="h3">Validation states</h2>
+  <p>
+    Once a field has been interacted with,
+    <span class="code-ref">:user-invalid</span> turns its border
+    <span class="variable-ref">error</span> &mdash; no class or JavaScript. Unlike
+    <span class="code-ref">:invalid</span> it won't flag empty required fields on
+    load. Only the invalid state is styled; there's no green
+    <span class="code-ref">:user-valid</span> treatment.
+  </p>
+  <form>
+    <label for="v-email">Email address</label>
+    <input type="email" id="v-email" required placeholder="you@example.com" />
+    <p class="form-hint">
+      Helper text like this uses <span class="css-ref">.form-hint</span> (muted).
+      Type something that isn't an email and blur the field to see the invalid
+      state.
+    </p>
+  </form>
+  <p>
+    For a server- or script-rendered error, set
+    <span class="code-ref">aria-invalid="true"</span> on the field &mdash; the
+    framework styles it identically to
+    <span class="code-ref">:user-invalid</span> &mdash; and point
+    <span class="code-ref">aria-describedby</span> at the message. Style the
+    message with <span class="css-ref">.form-error</span>
+    (<span class="variable-ref">error</span> colour, semibold). The ARIA is what a
+    screen reader needs; <span class="code-ref">:user-invalid</span> on its own
+    isn't announced. Add <span class="code-ref">role="alert"</span> to a message
+    inserted after load.
+  </p>
+  <pre class="language-markup">
+    <code><!--
+    <label for="email">Email address</label>
+    <input type="email" id="email" required
+           aria-invalid="true" aria-describedby="email-error">
+    <p id="email-error" class="form-error">Enter a valid email address.</p>
+  --></code>
+  </pre>
+  <form>
+    <label for="v-email2">Email address</label>
+    <input
+      type="email"
+      id="v-email2"
+      value="not-an-email"
+      aria-invalid="true"
+      aria-describedby="v-email2-error"
+    />
+    <p id="v-email2-error" class="form-error">Enter a valid email address.</p>
+  </form>
 </div>
 <div>
   <h2 class="h3">Form Layout</h2>

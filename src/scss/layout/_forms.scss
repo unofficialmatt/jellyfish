@@ -29,6 +29,22 @@
     box-shadow: none;
     opacity: 0.5;
   }
+  // Invalid state. :user-invalid fires only after the user has interacted, so
+  // empty required fields don't flag on load. [aria-invalid="true"] is the hook
+  // for server- / script-rendered errors.
+  &:user-invalid,
+  &[aria-invalid="true"] {
+    #{token-name("form-input-border-color")}: #{get-color(error)};
+  }
+  // Overrides the focus border-color + bevel from utilities/_accessibility.scss
+  // (higher specificity wins regardless of load order).
+  &:user-invalid:focus,
+  &[aria-invalid="true"]:focus {
+    border-color: get-color(error);
+    box-shadow:
+      inset 1px 2px 1px 0 #{get-color-role(error, subtle)},
+      inset -1px -2px 1px 0 #{get-color-role(error, subtle)};
+  }
 }
 
 // Fix textarea height and overflow
@@ -127,12 +143,28 @@ form {
 
 // TODO: add a field-group container
 // TODO: Add input groups and input addons https://www.shoelace.style/docs/forms.html
-// TODO: Add validation?
 // TODO: Add Input Group https://getbootstrap.com/docs/4.0/components/input-group/
 
 // Wrapper to apply better margins to radioboxes and checkboxes
 .form-group {
   margin: get-space(3xs) 0 get-space(xs) 0;
+}
+
+// Helper text (.form-hint) and validation messages (.form-error). Link a
+// .form-error to its field with aria-describedby; add role="alert" if it's
+// inserted after load so it's announced.
+.form-hint,
+.form-error {
+  display: block;
+  margin: get-space(3xs) 0 get-space(2xs);
+  font-size: token(font-size-sm);
+}
+.form-hint {
+  color: token(color-text-muted);
+}
+.form-error {
+  color: get-color-role(error, emphasis);
+  font-weight: get-weight(semibold);
 }
 
 // Make checkboxes/radioboxes inline-block
