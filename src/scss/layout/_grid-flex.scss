@@ -3,9 +3,14 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin-inline: calc(#{token(grid-gutter)} * -0.5);
+  row-gap: token(flow);
 
   > .col {
     padding-inline: calc(#{token(grid-gutter)} * 0.5);
+  }
+
+  > .col > * {
+    margin: 0;
   }
 }
 
@@ -56,6 +61,7 @@
 // Zero the gutter.
 .row.collapse {
   margin-inline: 0;
+  row-gap: 0;
   > .col {
     padding-inline: 0;
   }
@@ -64,12 +70,14 @@
   @include above($point) {
     .row.collapse-#{$point} {
       margin-inline: 0;
+      row-gap: 0;
       > .col {
         padding-inline: 0;
       }
     }
     .row.nocollapse-#{$point} {
       margin-inline: calc(#{token(grid-gutter)} * -0.5);
+      row-gap: token(flow);
       > .col {
         padding-inline: calc(#{token(grid-gutter)} * 0.5);
       }

@@ -1,0 +1,10 @@
+.object-cover,
+.object-contain {
+  margin-block-end: 0;
+}
+.object-cover {
+  object-fit: cover !important;
+}
+.object-contain {
+  object-fit: contain !important;
+}

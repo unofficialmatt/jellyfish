@@ -23,16 +23,15 @@
   display: flex !important;
   flex-direction: column !important;
 }
-// Flex Alignment Classes
-// TODO: MAKE THESE GRID/FLEX AGNOSTIC
+
 .align-top {
-  align-items: flex-start !important;
+  align-items: start !important;
 }
 .align-middle {
   align-items: center !important;
 }
 .align-bottom {
-  align-items: flex-end !important;
+  align-items: end !important;
 }
 .align-baseline {
   align-items: baseline !important;
@@ -41,23 +40,23 @@
   align-items: stretch !important;
 }
 .align-self-top {
-  align-self: flex-start !important;
+  align-self: start !important;
 }
 .align-self-middle {
   align-self: center !important;
 }
 .align-self-bottom {
-  align-self: flex-end !important;
+  align-self: end !important;
 }
-// Flex Justify Classes
+// Justify classes
 .justify-start {
-  justify-content: flex-start !important;
+  justify-content: start !important;
 }
 .justify-center {
   justify-content: center !important;
 }
 .justify-end {
-  justify-content: flex-end !important;
+  justify-content: end !important;
 }
 .justify-around {
   justify-content: space-around !important;

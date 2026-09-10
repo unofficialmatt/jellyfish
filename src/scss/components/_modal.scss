@@ -6,6 +6,9 @@ $nav-button-gap: 8px;
 }
 
 dialog.modal {
+  #{token-name("modal-max-width")}: #{$modal-max-width};
+  #{token-name("modal-padding")}: #{$modal-padding};
+
   @include surface(
     token(color-bg-soft),
     token(color-text-soft),
@@ -145,10 +148,6 @@ body:has(dialog.modal[open]) {
   border: 0;
   margin: 0;
 }
-
-// The close / nav icons are a mask over the button's background fill.
-// forced-colors fixup (it has to survive :hover) lives in the single block in
-// utilities/_accessibility.scss.
 
 .modal-navigation--prev {
   transform: rotate(180deg);

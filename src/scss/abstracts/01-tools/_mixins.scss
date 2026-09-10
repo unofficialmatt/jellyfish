@@ -100,8 +100,8 @@
 
   #{token-name("color-bg")}: #{$dark-body-background-color};
   #{token-name("color-surface")}: #{token(color-bg)};
-  #{token-name("color-text")}: #{token(color-neutral-50)};
-  #{token-name("color-headings")}: #{token(color-neutral-25)};
+  #{token-name("color-text-base")}: #{token(color-neutral-50)};
+  #{token-name("color-headings-base")}: #{token(color-neutral-25)};
   // color-mix() custom properties don't re-resolve per descendant — re-declare
   // the tiers here so they mix against the dark text/surface (same reason
   // .bg-* rules re-include this).
@@ -206,6 +206,19 @@
   $encoded-color: str-replace("#{$color}", "#", "%23");
   $svg: str-replace($select-chevron-icon-svg, "{{color}}", $encoded-color);
   #{token-name("form-select-bg-img")}: url("#{$svg}");
+}
+
+@mixin icon($size: 1em) {
+  display: inline-block;
+  flex: none;
+  inline-size: $size;
+  block-size: $size;
+  background-color: currentColor;
+  mask: var(#{token-name("icon")}, linear-gradient(#0000, #0000)) center /
+    contain no-repeat;
+  @media (forced-colors: active) {
+    background-color: CanvasText;
+  }
 }
 
 // DRY mixin for Pseudo elements. Pass optional args or leave as default

@@ -126,12 +126,10 @@ a[href^="mailto:"] {
 
 // Forced colours (Windows High Contrast, etc.)
 @media (forced-colors: active) {
-  .accordion-heading::after {
-    background-color: CanvasText;
-  }
   .modal-close,
   .modal-navigation-button {
-    background-color: CanvasText !important;
+    #{token-name("button-color-theme")}: CanvasText;
+    #{token-name("button-hover-color-theme")}: CanvasText;
   }
 
   .progress {

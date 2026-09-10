@@ -9,6 +9,11 @@
   }
 }
 
+// Hack to avoid !important tag by doubling the class selector
+.grid.grid > * {
+  margin: 0;
+}
+
 .grid.collapse {
   gap: 0;
 }

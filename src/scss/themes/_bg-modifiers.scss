@@ -26,6 +26,14 @@
   );
 }
 
+.bg-base {
+  @include surface(
+    token(color-bg),
+    token(color-text-base),
+    token(color-headings-base)
+  );
+}
+
 // Build the full list of surface classes: one per palette family (using that
 // family's 500 shade), then merge in anything the project added to $background-colors.
 $_bg-classes: ();

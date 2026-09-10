@@ -1,5 +1,5 @@
 html {
-  scroll-padding-block-start: 7rem;
+  #{token-name("scroll-offset")}: 7rem;
 }
 
 .skip-link {
@@ -142,11 +142,6 @@ html {
   }
 }
 
-.docs-section {
-  > div {
-    margin-block-end: get-space(lg);
-  }
-}
 
 // Inline references
 %reference {
@@ -496,5 +491,21 @@ div.code-toolbar {
 
   select {
     @include select-bg(#fff);
+  }
+}
+
+.docs-section {
+  .section:last-of-type {
+    margin-block-end: token(section-space);
+  }
+
+  .section.bg-soft {
+    box-shadow: token(shadow-md);
+    padding-inline: token(section-space);
+  }
+
+  > .section.bg-base + .section.bg-base {
+    padding-block-start: token(section-space);
+    border-top: token("border-width") dashed get-color-role(neutral, muted);
   }
 }

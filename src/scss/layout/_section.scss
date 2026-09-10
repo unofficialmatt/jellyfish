@@ -1,0 +1,31 @@
+.section {
+  padding-block: token(section-space);
+}
+
+// Collapse the seam between two stacked sections when they share a background
+@each $s in (base, soft, inverse) {
+  .section.bg-#{$s} + .section.bg-#{$s} {
+    padding-block-start: 0;
+  }
+}
+@each $family, $palette in $colors {
+  .section.bg-#{$family} + .section.bg-#{$family} {
+    padding-block-start: 0;
+  }
+}
+@each $key, $value in $background-colors {
+  .section.bg-#{$key} + .section.bg-#{$key} {
+    padding-block-start: 0;
+  }
+}
+.section:not([class*="bg-"]) + .section:not([class*="bg-"]) {
+  padding-block-start: 0;
+}
+
+// Density modifiers — or set --jf-section-space inline / in your own rule.
+.section.is-tight {
+  #{token-name("section-space")}: #{$section-space-tight};
+}
+.section.is-loose {
+  #{token-name("section-space")}: #{$section-space-loose};
+}

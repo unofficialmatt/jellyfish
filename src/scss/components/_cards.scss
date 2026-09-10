@@ -1,4 +1,8 @@
 .card {
+  #{token-name("card-border-radius")}: #{$card-border-radius};
+  #{token-name("card-border-style")}: #{$card-border-style};
+  #{token-name("card-border-width")}: #{$card-border-width};
+  #{token-name("card-padding")}: #{$card-padding};
   display: flex;
   flex-direction: column;
   flex-grow: 1;

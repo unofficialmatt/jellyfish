@@ -33,3 +33,11 @@
 .ratio-21x9 {
   aspect-ratio: 21/9;
 }
+
+img[class*="ratio-"],
+[class*="ratio-"] > img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  margin-block-end: 0;
+}

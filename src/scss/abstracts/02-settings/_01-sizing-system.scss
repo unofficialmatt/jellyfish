@@ -1,7 +1,12 @@
 $root-size: 16px;
 
-$sizing-system: () !default;
+// Viewport range the fluid sizes interpolate across — independent of the
+// layout breakpoints. Below $fluid-min-vw every fluid size sits at its min;
+// above $fluid-max-vw, at its max.
+$fluid-min-vw: 320px !default;
+$fluid-max-vw: 1240px !default;
 
+$sizing-system: () !default;
 $sizing-system: map-merge(
   (
     0.125: $root-size * 0.125,
@@ -41,3 +46,8 @@ $space-scale: map-merge(
 );
 
 $flow-step: "md" !default;
+$scroll-offset: 0 !default;
+
+$section-space: fluid(get-size(2), get-size(6)) !default;
+$section-space-tight: fluid(get-size(2), get-size(3)) !default;
+$section-space-loose: fluid(get-size(3), get-size(8)) !default;

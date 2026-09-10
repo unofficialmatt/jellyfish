@@ -7,6 +7,7 @@ html {
   min-height: 100vh;
   min-height: 100dvh;
   scrollbar-gutter: stable;
+  scroll-padding-block-start: token(scroll-offset);
 }
 // :focus-within so only keyboard / anchor navigation scrolls smoothly.
 html:focus-within {
@@ -48,10 +49,24 @@ a {
   }
 }
 
-// Consistent Margins
+// Consistent Margins — standalone block content flows like a paragraph.
 p,
-table {
+table,
+address {
   margin: 0 0 token(flow) 0;
+}
+
+img,
+picture,
+video,
+audio,
+figure {
+  margin-block-end: token(flow);
+}
+figure > img,
+figure > picture,
+figure > video {
+  margin-block-end: 0;
 }
 
 // Lists

@@ -193,6 +193,7 @@ form {
 // Tighter gutters on form rows
 .form-row {
   margin-inline: calc(get-space(2xs) * -0.5);
+  margin-block-end: token(flow);
   display: flex;
   flex-wrap: wrap;
   .col {

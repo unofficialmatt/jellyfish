@@ -3,12 +3,6 @@ $type-scale: () !default;
 $heading-scale: () !default;
 $type-leading: () !default;
 
-// Viewport range the fluid sizes interpolate across — independent of the
-// layout breakpoints. Below $fluid-min-vw every fluid size sits at its min;
-// above $fluid-max-vw, at its max.
-$fluid-min-vw: 320px !default;
-$fluid-max-vw: 1240px !default;
-
 // The type scale, in rem. xs / sm / base are fixed (reading text and small UI
 // text shouldn't scale with the window); md and up are fluid clamps — each one
 // slides from the previous step's size up to its own.

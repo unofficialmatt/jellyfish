@@ -1,5 +1,14 @@
 // Table expands to full width of container
 table {
+  #{token-name("table-font-size")}: #{$table-font-size};
+  #{token-name("table-stripe-bg-color")}: color-mix(
+    in srgb,
+    #{get-color-role(neutral, emphasis)} 10%,
+    #{get-color-role(neutral, subtle)}
+  );
+  #{token-name("table-hover-background")}: #{get-color-role(neutral, muted)};
+  #{token-name("table-cell-background")}: transparent;
+
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;

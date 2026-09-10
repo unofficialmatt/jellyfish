@@ -1,5 +1,7 @@
 @if $generate-chips == true {
   .chip {
+    #{token-name("chip-color-theme")}: #{get-color-role(neutral, subtle)};
+    #{token-name("chip-color-text")}: #{token(color-on-neutral-subtle)};
     padding: $chip-padding;
     display: inline-flex;
     vertical-align: baseline;

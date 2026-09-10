@@ -70,26 +70,26 @@ button,
   display: flex;
   align-items: center;
   @extend %button-groups;
-  margin-block-end: calc(#{token(flow)} - #{$button-list-button-margin});
-  margin-inline: calc(#{$button-list-button-margin} * -1);
-  .button,
-  a.button {
-    margin: 0 #{$button-list-button-margin}
-      calc(#{$button-list-button-margin} * 2) #{$button-list-button-margin};
-    //display: inline-flex;
+  gap: calc(#{$button-list-button-margin} * 2);
+  margin-block-end: token(flow);
+  > * {
+    margin: 0;
   }
 }
 
-// TODO: This would be better without the negative margins and just using gap?
+// Segmented control: buttons sit flush and share one border — every child after
+// the first is pulled a border-width to the inline-start so its edge overlaps
+// the previous one's. `gap` can't do this (it adds space); the negative margin
+// stays. Targets every direct child (bare <button>, .button, a.button) so only
+// the two outermost keep a corner radius, whatever $button-border-radius is.
 .button-group {
   @extend %button-groups;
   display: inline-flex;
   margin-block-end: token(flow);
-  .button,
-  a.button {
+  > * {
     margin: 0;
-    margin-inline-start: calc(#{token(border-width)} * -1);
     &:not(:first-child) {
+      margin-inline-start: calc(#{token(border-width)} * -1);
       border-start-start-radius: 0;
       border-end-start-radius: 0;
     }
@@ -104,7 +104,7 @@ button,
 }
 
 .button-list .button-group {
-  margin-block-end: calc(#{token(flow)} - #{$button-list-button-margin});
+  margin-block-end: 0;
 }
 
 /***************

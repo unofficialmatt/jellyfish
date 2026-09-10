@@ -24,8 +24,11 @@
   #{token-name("color-bg")}: #{$body-background-color};
   #{token-name("color-surface")}: #{token("color-bg")};
 
-  #{token-name("color-text")}: #{$color-text};
-  #{token-name("color-headings")}: #{$color-headings-preferred};
+  // Need to declare explicitly the base values, so these can be referenced in .bg-base
+  #{token-name("color-text-base")}: #{$color-text};
+  #{token-name("color-headings-base")}: #{$color-headings-preferred};
+  #{token-name("color-text")}: #{token(color-text-base)};
+  #{token-name("color-headings")}: #{token(color-headings-base)};
   #{token-name("accessibility-focus-color")}: #{$accessibility-focus-color};
 
   @include surface-text-tiers;
@@ -51,6 +54,8 @@
     #{token(container-gutter)},
     calc((100vw - #{token(container-max)}) / 2)
   );
+  #{token-name("section-space")}: #{$section-space};
+  #{token-name("scroll-offset")}: #{$scroll-offset};
   /* Typography */
   #{token-name("font-primary")}: #{$font-primary};
   #{token-name("font-secondary")}: #{$font-secondary};
@@ -98,17 +103,6 @@
   #{token-name("code-background")}: #{$code-background-color};
   #{token-name("code-color")}: #{$code-color};
 
-  #{token-name("card-border-radius")}: #{$card-border-radius};
-  #{token-name("card-border-style")}: #{$card-border-style};
-  #{token-name("card-border-width")}: #{$card-border-width};
-  #{token-name("card-padding")}: #{$card-padding};
-
-  #{token-name("chip-color-theme")}: #{get-color-role(neutral, subtle)};
-  #{token-name("chip-color-text")}: #{token(color-on-neutral-subtle)};
-
-  #{token-name("modal-max-width")}: #{$modal-max-width};
-  #{token-name("modal-padding")}: #{$modal-padding};
-
   #{token-name("form-input-background")}: #{$input-background};
   #{token-name("form-input-border-width")}: #{$border-width};
   #{token-name("form-input-border-style")}: #{$border-style};
@@ -116,15 +110,6 @@
   #{token-name("form-input-border-radius")}: #{$border-radius};
   #{token-name("form-input-placeholder-color")}: #{$placeholder-color};
   @include select-bg();
-
-  #{token-name("table-font-size")}: #{$table-font-size};
-  #{token-name("table-stripe-bg-color")}: color-mix(
-    in srgb,
-    #{get-color-role(neutral, emphasis)} 10%,
-    #{get-color-role(neutral, subtle)}
-  );
-  #{token-name("table-hover-background")}: #{get-color-role(neutral, muted)};
-  #{token-name("table-cell-background")}: transparent;
 
   #{token-name("navbar-bg-color")}: #{$navbar-bg-color};
   #{token-name("navbar-link-color")}: #{get-on-color($navbar-link-bg-color)};
