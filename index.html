@@ -1,37 +1,289 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr">
-
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Thanks for swimming by! | 🎐 Jellyfish Grid by Matt Weet</title>
-    <meta name="description" content="Jellyfish is a lightweight and customisable front-end framework for rapidly designing websites with intuitive class naming conventions.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="stylesheet" href="./dist/css/jellyfish.min.css" media="all">
-    <link rel="icon" type="image/svg+xml" href="./img/favicon.svg">
-    <link rel="icon" type="image/png" href="./img/favicon.png">
+    <meta
+      name="description"
+      content="Jellyfish is a lightweight and customisable front-end framework for rapidly designing websites with intuitive class naming conventions."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      (function () {
+        var el = document.documentElement;
+        try {
+          var t = localStorage.getItem("jf-theme");
+          if (t === "dark" || t === "light") el.classList.add("jf-" + t);
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="./dist/css/jellyfish.min.css" media="all" />
+    <link rel="icon" type="image/svg+xml" href="./img/favicon.svg" />
+    <link rel="icon" type="image/png" href="./img/favicon.png" />
   </head>
 
   <body class="home">
     <div class="center-container text-center">
       <a class="logo" href="/docs/getting-started.html">
-        <img src="/img/jellyfish-badge.svg" alt="Jellyfish Logo">
-        <h1 class="h5"><span class="screen-reader-text">Jellyfish UI</span> Front End Framework</h1>
+        <img src="/img/jellyfish-badge.svg" alt="Jellyfish Logo" />
+        <h1 class="h5">
+          <span class="screen-reader-text">Jellyfish UI</span> Front End
+          Framework
+        </h1>
       </a>
     </div>
-    <div class="github"><a class="github-button" href="https://github.com/unofficialmatt/jellyfish" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star unofficialmatt/jellyfish on GitHub">Star</a> <a class="github-button" href="https://github.com/unofficialmatt" data-size="large" data-show-count="true" aria-label="Follow @unofficialmatt on GitHub">Follow @unofficialmatt</a></div>
-    <script src="https://cdn.jsdelivr.net/npm/bubbly-bg@1.0.0/dist/bubbly-bg.js"></script>
+    <div class="github">
+      <a
+        class="github-button"
+        href="https://github.com/unofficialmatt/jellyfish"
+        data-icon="octicon-star"
+        data-size="large"
+        data-show-count="true"
+        aria-label="Star unofficialmatt/jellyfish on GitHub"
+        >Star</a
+      >
+      <a
+        class="github-button"
+        href="https://github.com/unofficialmatt"
+        data-size="large"
+        data-show-count="true"
+        aria-label="Follow @unofficialmatt on GitHub"
+        >Follow @unofficialmatt</a
+      >
+    </div>
+    <div class="home-controls">
+      <button
+        type="button"
+        class="theme-toggle"
+        data-theme-toggle
+        aria-pressed="false"
+        aria-label="Toggle dark mode"
+      >
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        id="bubble-decrease"
+        class="button xsmall secondary"
+        aria-label="Remove 10 bubbles"
+      >
+        &minus;
+      </button>
+      <button
+        type="button"
+        id="bubble-increase"
+        class="button xsmall secondary"
+        aria-label="Add 10 bubbles"
+      >
+        +
+      </button>
+    </div>
+    <script src="./dist/js/jellyfish.min.js"></script>
     <script>
-      bubbly({
-        radiusFunc: () => 4 + Math.random() * window.innerWidth / 30,
-        compose: "source-over",
-        bubbles: 70,
-        colorStart: "#ff3c74",
-        colorStop: "#ffa0cd",
-        blur: 1,
-      });
+      // Floating bubble background.
+      (function () {
+        var reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (window.matchMedia("(forced-colors: active)").matches) {
+          return;
+        }
+
+        var canvas = document.createElement("canvas");
+        canvas.style.position = "fixed";
+        canvas.style.zIndex = "-1";
+        canvas.style.top = "0";
+        canvas.style.left = "0";
+        canvas.style.maxWidth = "none";
+        document.body.appendChild(canvas);
+
+        var ctx = canvas.getContext("2d");
+        var width, height;
+
+        var MIN_BUBBLES = 50;
+        var MAX_BUBBLES = 300;
+        var STEP = 10;
+        var POP_CHANCE = 0.00015; // per bubble, per frame
+        var POP_FRAMES = 18;
+        var SPAWN_FRAMES = 18;
+
+        function spawnBubble(state) {
+          return {
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: 4 + (Math.random() * width) / 30,
+            angle: Math.random() * Math.PI * 2,
+            v: 0.1 + Math.random() * 0.5,
+            alpha: 0.1 * Math.random(),
+            state: state,
+            t: 0,
+            removing: false,
+          };
+        }
+
+        var count = 120;
+        var bubbles = [];
+
+        function resizeCanvas() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+          canvas.style.width = width + "px";
+          canvas.style.height = height + "px";
+          // Resizing the canvas resets all context state.
+          ctx.shadowColor = "#fff";
+          ctx.shadowBlur = 1;
+          bubbles = [];
+          for (var i = 0; i < count; i++) {
+            bubbles.push(spawnBubble("alive"));
+          }
+          // No rAF loop running to pick this up on its own.
+          if (reduceMotion) {
+            frame();
+          }
+        }
+        resizeCanvas();
+        if (typeof jfDebounce === "function") {
+          jfDebounce("resize", resizeCanvas, 150);
+        } else {
+          window.addEventListener("resize", resizeCanvas);
+        }
+
+        function step(bubble) {
+          if (bubble.state === "alive") {
+            if (Math.random() < POP_CHANCE) {
+              bubble.state = "popping";
+              bubble.t = 0;
+            }
+            return;
+          }
+          if (bubble.state === "popping") {
+            bubble.t++;
+            if (bubble.t >= POP_FRAMES) {
+              if (bubble.removing) {
+                bubble.dead = true;
+              } else {
+                var fresh = spawnBubble("spawning");
+                for (var key in fresh) {
+                  bubble[key] = fresh[key];
+                }
+              }
+            }
+            return;
+          }
+          // spawning
+          bubble.t++;
+          if (bubble.t >= SPAWN_FRAMES) {
+            bubble.state = "alive";
+          }
+        }
+
+        function move(bubble) {
+          bubble.x += Math.cos(bubble.angle) * bubble.v;
+          bubble.y += Math.sin(bubble.angle) * bubble.v;
+          if (bubble.x - bubble.r > width) bubble.x = -bubble.r;
+          if (bubble.x + bubble.r < 0) bubble.x = width + bubble.r;
+          if (bubble.y - bubble.r > height) bubble.y = -bubble.r;
+          if (bubble.y + bubble.r < 0) bubble.y = height + bubble.r;
+        }
+
+        function draw(bubble) {
+          var scale = 1;
+          var alpha = bubble.alpha;
+          if (bubble.state === "popping") {
+            var popProgress = bubble.t / POP_FRAMES;
+            scale = 1 + popProgress * 0.6;
+            alpha = bubble.alpha * (1 - popProgress);
+          } else if (bubble.state === "spawning") {
+            var spawnProgress = bubble.t / SPAWN_FRAMES;
+            scale = spawnProgress;
+            alpha = bubble.alpha * spawnProgress;
+          }
+          ctx.beginPath();
+          ctx.arc(bubble.x, bubble.y, bubble.r * scale, 0, 2 * Math.PI);
+          ctx.fillStyle = "hsla(0, 0%, 100%, " + alpha + ")";
+          ctx.fill();
+        }
+
+        function frame() {
+          if (canvas.parentNode === null) {
+            return;
+          }
+          if (!reduceMotion) {
+            requestAnimationFrame(frame);
+          }
+          ctx.clearRect(0, 0, width, height);
+          for (var i = bubbles.length - 1; i >= 0; i--) {
+            var bubble = bubbles[i];
+            if (!reduceMotion) {
+              step(bubble);
+              if (bubble.dead) {
+                bubbles.splice(i, 1);
+                continue;
+              }
+              if (bubble.state !== "popping") {
+                move(bubble);
+              }
+            }
+            draw(bubble);
+          }
+        }
+
+        frame();
+
+        var decreaseBtn = document.getElementById("bubble-decrease");
+        var increaseBtn = document.getElementById("bubble-increase");
+
+        function updateControls() {
+          decreaseBtn.disabled = count <= MIN_BUBBLES;
+          increaseBtn.disabled = count >= MAX_BUBBLES;
+        }
+
+        function addBubbles(n) {
+          for (var k = 0; k < n; k++) {
+            bubbles.push(spawnBubble(reduceMotion ? "alive" : "spawning"));
+          }
+          if (reduceMotion) {
+            frame();
+          }
+        }
+
+        function removeBubbles(n) {
+          var candidates = bubbles.filter(function (bubble) {
+            return !bubble.removing;
+          });
+          for (var k = 0; k < n && candidates.length > 0; k++) {
+            var idx = Math.floor(Math.random() * candidates.length);
+            var bubble = candidates.splice(idx, 1)[0];
+            if (reduceMotion) {
+              bubbles.splice(bubbles.indexOf(bubble), 1);
+            } else {
+              bubble.removing = true;
+              bubble.state = "popping";
+              bubble.t = 0;
+            }
+          }
+          if (reduceMotion) {
+            frame();
+          }
+        }
+
+        increaseBtn.addEventListener("click", function () {
+          var next = Math.min(MAX_BUBBLES, count + STEP);
+          addBubbles(next - count);
+          count = next;
+          updateControls();
+        });
+        decreaseBtn.addEventListener("click", function () {
+          var next = Math.max(MIN_BUBBLES, count - STEP);
+          removeBubbles(count - next);
+          count = next;
+          updateControls();
+        });
+        updateControls();
+      })();
     </script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
-
 </html>

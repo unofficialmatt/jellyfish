@@ -1,10 +1,25 @@
 body.home {
+  background: linear-gradient(
+    135deg,
+    var(--jf-color-primary),
+    var(--jf-color-secondary)
+  );
+
   .github {
     position: absolute;
     inset-block-start: get-space(2xs);
     inset-inline-end: get-space(2xs);
     border: 0;
     z-index: 100;
+  }
+  .home-controls {
+    position: absolute;
+    inset-block-start: get-space(2xs);
+    inset-inline-start: get-space(2xs);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: get-space(2xs);
   }
   h1 {
     background-color: get-color(secondary, 50);
@@ -40,9 +55,15 @@ body.home {
   user-select: none;
   position: relative;
   img {
-    width: 400px;
+    width: 240px;
+    @include above(sm) {
+      width: 320px;
+    }
+    @include above(md) {
+      width: 400px;
+    }
     filter: drop-shadow(0 0 0.3rem rgba(get-color-raw(primary, 900), 0.4));
-    transition: filter 0.3s ease-in-out;
+    @include motion(all);
   }
   &:hover,
   &:focus {
@@ -72,4 +93,25 @@ body.home {
       transition: none;
     }
   }
+}
+
+// Same dark-mode gate as jf-dark-tokens (_00-css-props.scss): OS preference
+// unless overridden by .jf-light/.jf-dark. Primary's raw 900/1000 shades,
+// not a semantic role — secondary's palette never gets dark enough to read
+// as "dark mode" (its base colour is too light to mix down far).
+@media (prefers-color-scheme: dark) {
+  :root:not(.jf-light) body.home {
+    background: linear-gradient(
+      135deg,
+      var(--jf-color-primary-900),
+      var(--jf-color-primary-1000)
+    );
+  }
+}
+:root.jf-dark body.home {
+  background: linear-gradient(
+    135deg,
+    var(--jf-color-primary-900),
+    var(--jf-color-primary-1000)
+  );
 }
