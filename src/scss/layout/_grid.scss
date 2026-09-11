@@ -91,7 +91,16 @@
     auto-fit,
     minmax(min(#{token(col-min, 18rem)}, 100%), 1fr)
   );
-  gap: token(grid-gutter);
+  column-gap: token(grid-gutter);
+  row-gap: token(flow);
+  margin-block-end: token(flow);
+
+  > * {
+    margin: 0;
+  }
+  > .col > *:last-child {
+    margin-block-end: 0;
+  }
 }
 
 // `order` works on flex and grid items alike, so ordering is unscoped.

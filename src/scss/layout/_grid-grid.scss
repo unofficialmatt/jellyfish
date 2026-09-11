@@ -1,11 +1,16 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(#{$grid-columns}, minmax(0, 1fr));
-  gap: token(grid-gutter);
+  column-gap: token(grid-gutter);
+  row-gap: token(flow);
+  margin-block-end: token(flow);
 
   > .col {
     #{token-name("col-span")}: #{$grid-columns};
     grid-column: span var(#{token-name("col-span")});
+  }
+  > .col > *:last-child {
+    margin-block-end: 0;
   }
 }
 
@@ -34,7 +39,8 @@
       gap: 0;
     }
     .grid.nocollapse-#{$point} {
-      gap: token(grid-gutter);
+      column-gap: token(grid-gutter);
+      row-gap: token(flow);
     }
   }
 }

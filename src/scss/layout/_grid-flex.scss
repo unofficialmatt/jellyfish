@@ -4,13 +4,14 @@
   flex-wrap: wrap;
   margin-inline: calc(#{token(grid-gutter)} * -0.5);
   row-gap: token(flow);
+  margin-block-end: token(flow);
 
   > .col {
     padding-inline: calc(#{token(grid-gutter)} * 0.5);
   }
 
-  > .col > * {
-    margin: 0;
+  > .col > *:last-child {
+    margin-block-end: 0;
   }
 }
 

@@ -41,6 +41,10 @@
           align-items: center;
           flex: 1 0 auto; // Grow to fill container
           border: 0;
+
+          &:focus-visible {
+            z-index: 6;
+          }
         }
 
         & > ul {
@@ -52,10 +56,14 @@
           transform: translateY(-$nav-fade-offset);
           width: token(navbar-dropdown-width);
           opacity: 0.2;
-          transition: transform 0.1s linear, opacity 0.05s linear;
+          transition:
+            transform 0.1s linear,
+            opacity 0.05s linear;
           #{token-name("navbar-font-size")}: #{$navbar-sublink-font-size-expanded};
           #{token-name("navbar-link-color")}: #{token(navbar-sublink-color)};
-          #{token-name("navbar-link-bg-color")}: #{token(navbar-sublink-bg-color)};
+          #{token-name("navbar-link-bg-color")}: #{token(
+              navbar-sublink-bg-color
+            )};
           #{token-name("navbar-link-hover-color")}: #{token(
               navbar-sublink-hover-color
             )};
@@ -172,6 +180,11 @@
       margin-left: auto;
       display: flex;
       align-items: $navbar-end-flex-align;
+    }
+
+    .navbar-item a:focus-visible {
+      position: relative;
+      z-index: 6;
     }
   }
 }

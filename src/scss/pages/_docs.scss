@@ -142,7 +142,6 @@ html {
   }
 }
 
-
 // Inline references
 %reference {
   @extend %inline-code;
@@ -273,6 +272,14 @@ pre[class*="language-"] {
   .token.important,
   .token.variable {
     color: get-color-role(error, emphasis);
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string {
+    background: none;
   }
 }
 
