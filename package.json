@@ -7,7 +7,7 @@
     "url": "https://www.weareboba.com/"
   },
   "description": "Jellyfish is a front end SCSS and JS framework for creating modern and performant websites. It has similar class names and components as Bootstrap, but without the bloat. Jellyfish also comes with some useful helpers in JS for common project requirements. Jellyfish uses gulp as a task runner, to help with build tasks.",
-  "homepage": "https://unofficialmatt.github.io/jellyfish/",
+  "homepage": "https://www.jellyfish-ui.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/unofficialmatt/jellyfish.git"
@@ -33,6 +33,13 @@
     "gulp"
   ],
   "browserslist": "defaults",
+  "files": [
+    "src/scss",
+    "src/js",
+    "dist",
+    "readme.md",
+    "license.md"
+  ],
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "browser-sync": "^2.27.11",
