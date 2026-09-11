@@ -13,6 +13,6 @@ $accessibility-button-border-bottom: 2px !default;
 $accessibility-button-hover-border-color: get-color(secondary) !default;
 $accessibility-button-active-border-color: get-color(primary) !default;
 
-$apca-lint: true !default;
-$apca-lint-warn: false !default;
-$apca-lint-threshold: 60 !default;
+$contrast-lint: true !default;
+$contrast-lint-warn: true !default;
+$contrast-lint-threshold: 4.5 !default; // WCAG AA, normal text

@@ -3,7 +3,7 @@
 // on top by token-name().
 @mixin map-to-css-properties($map, $map-prefix: "") {
   // Accumulate every palette shade's [label text bg] triple across all families
-  // so the APCA linter can check them in a single pass after the loop. Only the
+  // so the contrast linter can check them in a single pass after the loop. Only the
   // top-level "color-" call touches this list — recursive calls ("color-{name}-")
   // and non-colour calls ("font-size-") skip both the reset and the lint.
   @if $map-prefix == "color-" {
@@ -55,7 +55,7 @@
   }
   // One lint pass over every palette on-colour pair the loop just emitted.
   @if $map-prefix == "color-" {
-    @include apca-lint($palette-on-pairs, "palette on-colour contrast");
+    @include contrast-lint($palette-on-pairs, "palette on-colour contrast");
   }
 }
 // The two softer text shades — muted and subtle — mixed from the current text
@@ -128,6 +128,10 @@
     }
   }
 
+  #{token-name("link-color-visited")}: #{token(
+      color-#{$link-color}-#{$dark-link-visited-color-shade}
+    )};
+
   #{token-name("shadow-color")}: #{$dark-shadow-color};
   // Re-emit the elevation scale with a boosted tint — the :root shadows are
   // near-invisible on the dark canvas.
@@ -139,11 +143,11 @@
   }
 }
 
-// APCA-scores the dark-mode text-on-canvas pairs (body, headings, links). The
+// WCAG-scores the dark-mode text-on-canvas pairs (body, headings, links). The
 // palette -contrast pairs are unchanged in dark and covered by the light pass.
-@mixin jf-dark-apca-lint {
+@mixin jf-dark-contrast-lint {
   $bg: $dark-body-background-color;
-  @include apca-lint(
+  @include contrast-lint(
     (
       ("dark body text" get-color-raw(neutral, 50) $bg),
       ("dark headings" get-color-raw(neutral, 25) $bg),
@@ -159,7 +163,7 @@
       ),
       (
         "dark link visited"
-          get-color-raw($link-color, map-get($dark-color-role-shades, muted))
+          get-color-raw($link-color, $dark-link-visited-color-shade)
           $bg
       )
     ),
@@ -167,7 +171,7 @@
   );
 
   // The hand-set neutral surfaces, both halves of the flip.
-  @include apca-lint(
+  @include contrast-lint(
     (
       ("bg-soft light" get-color-raw(neutral, 1000) $soft-background-color),
       ("bg-soft dark" get-color-raw(neutral, 50) $dark-soft-background-color),

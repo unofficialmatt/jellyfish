@@ -1,5 +1,5 @@
 @use "sass:math";
-@use "sass-apca" as apca;
+@use "sass-wcag" as wcag;
 @use "to-number" as str;
 
 // Namespace prefix for every CSS custom property Jellyfish emits.
@@ -230,7 +230,7 @@ $token-prefix: jf !default;
 // normalised through raw-color() first, so a live get-color() reference
 // (e.g. $color-text, $color-headings-preferred) works here too.
 @function choose-contrast-color($color, $color-dark: $color-text) {
-  $best-contrast: apca.recommend-text-color(
+  $best-contrast: wcag.recommend-text-color(
     $color,
     $color-white,
     raw-color($color-dark),
@@ -269,7 +269,7 @@ $token-prefix: jf !default;
 // one-off colour:
 //   * the flipping canvas / soft / inverse tokens -> their paired text token
 //   * any var(--jf-color-{family}-{shade|role}) -> its -on- companion
-//   * a plain colour -> the APCA-picked contrast colour (resolve-contrast-color)
+//   * a plain colour -> the WCAG-picked contrast colour (resolve-contrast-color)
 @function _on-surface($bg) {
   @if $bg == token(color-bg) {
     @return token(color-text);

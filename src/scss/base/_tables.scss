@@ -15,6 +15,7 @@ table {
   line-height: $table-line-height;
   font-size: token(table-font-size);
 }
+th,
 td {
   border-block-end: token(border-width) token(border-style)
     token-or(table-border-color, border-color);

@@ -1,0 +1,76 @@
+@use "sass:list";
+@use "sass:math";
+@use "sass:meta";
+@use "sass-wcag" as wcag;
+
+// -------------------
+//
+// WCAG 2.x contrast linter
+//
+// Build-time check on the colour pairs Jellyfish actually emits. Every pair the
+// framework generates (button theme/text, chip, table cell, callout heading,
+// accordion heading, .bg-* section text, and each palette step against its
+// --jf-color-on-* companion) is scored against the WCAG 2.x contrast ratio and
+// anything below the threshold is reported via @warn. Treat that output as a
+// failing test — see CLAUDE.md.
+//
+// Replaces the project's former APCA-based linter (see ROADMAP.md): APCA is
+// more perceptually accurate but not yet a ratified WCAG success criterion,
+// and scored several pink/orange/red shades as failing despite them clearing
+// WCAG AA by a wide margin (ratio 7–9:1). WCAG AA is the standard this
+// project is actually held to, so it's the standard the linter checks.
+//
+// Configured by $contrast-lint / $contrast-lint-warn / $contrast-lint-threshold
+// in abstracts/02-settings/_wcag_accessibility.scss.
+//
+// -------------------
+
+// WCAG contrast ratio between two colours, or null when either side isn't a
+// resolvable Sass colour — a var() reference can't be scored at build time,
+// and "can't check" is not the same as "failed".
+@function contrast-score($text, $background) {
+  @if meta.type-of($text) != "color" or meta.type-of($background) != "color" {
+    @return null;
+  }
+  @return wcag.contrast($text, $background);
+}
+
+// Scores a comma-separated list of `$label $text $background` triples (each
+// triple space-separated, so nesting stays unambiguous) and emits one @warn
+// naming every pair that falls below the threshold. One warning per context
+// rather than one per pair, so a failing palette reads as a single report.
+//
+// Returns null so it can be called from inside a function:
+//   $_: contrast-lint($pairs, "context");
+// or via the matching mixin from inside a mixin/rule:
+//   @include contrast-lint($pairs, "context");
+@function contrast-lint($pairs, $context, $threshold: null) {
+  @if $contrast-lint != true {
+    @return null;
+  }
+
+  $threshold: if($threshold == null, $contrast-lint-threshold, $threshold);
+  $failures: "";
+
+  @each $pair in $pairs {
+    $label: list.nth($pair, 1);
+    $text: list.nth($pair, 2);
+    $background: list.nth($pair, 3);
+    $score: contrast-score($text, $background);
+
+    @if $score != null and $score < $threshold {
+      $rounded: math.div(math.round($score * 100), 100);
+      $failures: "#{$failures}\a      #{$label}: #{$text} on #{$background} scores #{$rounded}:1";
+    }
+  }
+
+  @if $failures != "" and $contrast-lint-warn == true {
+    @warn "WCAG: #{$context} has pairs below #{$threshold}:1:#{$failures}";
+  }
+
+  @return null;
+}
+
+@mixin contrast-lint($pairs, $context, $threshold: null) {
+  $_: contrast-lint($pairs, $context, $threshold);
+}

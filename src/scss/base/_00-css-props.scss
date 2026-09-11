@@ -95,7 +95,7 @@
   #{token-name("mark-background")}: #{$mark-background-color};
   $mark-on-color: choose-contrast-color($mark-background-color);
   #{token-name("mark-color")}: #{$mark-on-color};
-  @include apca-lint(
+  @include contrast-lint(
     append((), ("mark" $mark-on-color $mark-background-color), comma),
     "mark"
   );
@@ -156,7 +156,7 @@
 // Dark mode. .jf-light forces light even on a dark OS; .jf-dark forces dark;
 // with neither class, prefers-color-scheme decides.
 @if $dark-mode-enabled {
-  @include jf-dark-apca-lint;
+  @include jf-dark-contrast-lint;
   :root.jf-light {
     color-scheme: light;
   }

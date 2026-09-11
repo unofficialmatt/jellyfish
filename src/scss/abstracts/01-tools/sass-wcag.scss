@@ -1,0 +1,106 @@
+@use "sass:math";
+@use "sass:color";
+@use "sass:meta";
+
+// -------------------
+//
+// Sass WCAG 2.x contrast
+//
+// Implementation of the WCAG 2.x relative-luminance contrast ratio
+// (https://www.w3.org/TR/WCAG21/#contrast-minimum). Replaces the project's
+// former APCA module (see ROADMAP.md) — same shape/API, so call sites barely
+// changed: only the scoring algorithm and the "good enough" threshold (a
+// ratio like 4.5, not an Lc score) are different.
+//
+// -------------------
+
+@function _linearise-channel($value) {
+  $c: math.div($value, 255);
+  @if $c <= 0.03928 {
+    @return math.div($c, 12.92);
+  }
+  @return math.pow(math.div($c + 0.055, 1.055), 2.4);
+}
+
+@function _relative-luminance($color) {
+  $r: _linearise-channel(color.red($color));
+  $g: _linearise-channel(color.green($color));
+  $b: _linearise-channel(color.blue($color));
+  @return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+}
+
+// WCAG contrast ratio between two colours, order-independent.
+// @param {Color} $color1
+// @param {Color} $color2
+// @return {Number} a ratio from 1 (identical) to 21 (black on white)
+@function contrast($color1, $color2) {
+  @if (meta.type-of($color1) != "color") {
+    @error "Type Error: wcag.contrast expects a color as first argument but received #{meta.type-of($color1)}. Please provide a valid color.";
+  }
+  @if (meta.type-of($color2) != "color") {
+    @error "Type Error: wcag.contrast expects a color as second argument but received #{meta.type-of($color2)}. Please provide a valid color.";
+  }
+
+  $l1: _relative-luminance($color1);
+  $l2: _relative-luminance($color2);
+  $lighter: math.max($l1, $l2);
+  $darker: math.min($l1, $l2);
+  @return math.div($lighter + 0.05, $darker + 0.05);
+}
+
+// Compares contrast of light or dark text against a given background and
+// recommends the text colour with the better ratio.
+//
+// @param   {color}  $backgroundColor  Background color
+// @param   {color}  $lightColor       [optional] Preferred light color, default is white
+// @param   {color}  $darkColor        [optional] Preferred dark color, default is black
+// @param   {bool}   $force            [optional] Force a fallback to $forceColor if neither candidate reaches $threshold
+// @param   {color}  $forceColor       [optional] Fallback color used when $force retries, default is black
+// @param   {number} $threshold        [optional] The "good enough" ratio, default 4.5 (WCAG AA, normal text)
+//
+// @return  {color}                    Light or dark text color, whichever provides the better contrast against the chosen background
+@function recommend-text-color(
+  $backgroundColor,
+  $lightColor: white,
+  $darkColor: black,
+  $force: false,
+  $forceColor: black,
+  $threshold: 4.5
+) {
+  @if (meta.type-of($backgroundColor) != "color") {
+    @error "Type Error: wcag.recommend-text-color expects a color as first argument but received #{meta.type-of($backgroundColor)}. Please provide a valid color.";
+  }
+  @if (meta.type-of($lightColor) != "color") {
+    @error "Type Error: wcag.recommend-text-color expects a color as second argument but received #{meta.type-of($lightColor)}. Please provide a valid color.";
+  }
+  @if (meta.type-of($darkColor) != "color") {
+    @error "Type Error: wcag.recommend-text-color expects a color as third argument but received #{meta.type-of($darkColor)}. Please provide a valid color.";
+  }
+
+  $lightContrast: contrast($lightColor, $backgroundColor);
+  $darkContrast: contrast($darkColor, $backgroundColor);
+
+  $contrastColor: null;
+  $bestContrast: null;
+
+  @if ($darkContrast > $lightContrast) {
+    $contrastColor: $darkColor;
+    $bestContrast: $darkContrast;
+  } @else {
+    $contrastColor: $lightColor;
+    $bestContrast: $lightContrast;
+  }
+
+  @if ($bestContrast < $threshold and $force == true) {
+    $forceContrast: contrast($forceColor, $backgroundColor);
+    @if ($forceContrast > $lightContrast) {
+      $contrastColor: $forceColor;
+      $bestContrast: $forceContrast;
+    } @else {
+      $contrastColor: $lightColor;
+      $bestContrast: $lightContrast;
+    }
+  }
+
+  @return $contrastColor;
+}
