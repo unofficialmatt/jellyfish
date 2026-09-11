@@ -444,7 +444,7 @@
       <tr>
         <td><span class="variable-ref">$colors</span></td>
         <td><span class="italic">(SCSS map)</span></td>
-        <td>A map of key: value pairs used to generate <a href="./theme-colors.html">theme colors</a>. Emitted as <span class="code-ref">--jf-color-{family}-{shade}</span>; reference from SCSS with <span class="code-ref">get-color()</span> / <span class="code-ref">get-color-role()</span>.</td>
+        <td>Family name &rarr; <span class="bold">seed colour</span>. Each entry's 25&ndash;1000 ramp is generated from that seed at build, so <span class="code-ref">$colors: ("brand": #0b7)</span> is the whole declaration. Pass a map of shades instead only for a hand-tuned ramp. Emitted as <span class="code-ref">--jf-color-{family}-{shade}</span>; reference from SCSS with <span class="code-ref">get-color()</span> / <span class="code-ref">get-color-role()</span>. See <a href="./theme-colors.html">Theme Colours</a>.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$color-white</span></td>

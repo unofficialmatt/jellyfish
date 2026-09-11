@@ -4,15 +4,31 @@ $background-colors: () !default;
 
 $colors: map-merge(
   (
-    "primary": makeColorPalette(#eb567d),
-    "secondary": makeColorPalette(#ffa0cd),
-    "neutral": makeColorPalette(#64748b),
-    "success": makeColorPalette(#00c851),
-    "warning": makeColorPalette(#ffbb33),
-    "error": makeColorPalette(#ff4444),
+    "primary": #eb567d,
+    "secondary": #ffa0cd,
+    "neutral": #64748b,
+    "success": #00c851,
+    "warning": #ffbb33,
+    "error": #ff4444,
   ),
   $colors
 );
+
+// A family is declared as a single seed colour and the 25–1000 ramp is built
+// here, so a consumer writes `$colors: ("brand": #0b7)` and never has to call
+// makeColorPalette() themselves. An already-built map is passed through
+// untouched, for the rare hand-tuned ramp.
+$_jf-palettes: ();
+@each $family, $value in $colors {
+  @if type-of($value) == "color" {
+    $_jf-palettes: map-merge($_jf-palettes, ($family: makeColorPalette($value)));
+  } @else if type-of($value) == "map" {
+    $_jf-palettes: map-merge($_jf-palettes, ($family: $value));
+  } @else {
+    @error "$colors family `#{$family}` must be a colour (the seed for a generated ramp) or a map of shades. Got #{type-of($value)}: #{$value}.";
+  }
+}
+$colors: $_jf-palettes;
 
 $color-white: #ffffff !default;
 $color-black: #000000 !default;

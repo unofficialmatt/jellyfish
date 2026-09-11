@@ -182,7 +182,7 @@
       <tr><th scope="row"><span class="code-ref">role-shade($role)</span></th><td>you need the raw shade <em>number</em> a role maps to.</td><td><span class="code-ref">role-shade(emphasis)</span><br>&rarr; <span class="code-ref">700</span></td></tr>
     </tbody>
   </table>
-  <p><span class="code-ref">makeColorPalette($seed)</span> &mdash; used inside the <a href="./theme-colors.html"><span class="variable-ref">$colors</span></a> map; the seed becomes <span class="code-ref">500</span> and it returns 25&ndash;1000:</p>
+  <p><span class="code-ref">makeColorPalette($seed)</span> &mdash; turns one seed colour into the 25&ndash;1000 ramp, with the seed as <span class="code-ref">500</span>. Jellyfish calls it for you on every <a href="./theme-colors.html"><span class="variable-ref">$colors</span></a> entry, so you write <span class="code-ref">("brand": #0b7)</span> and get this. Call it yourself only to build a ramp outside the palette:</p>
   <div class="grid collapse text-center mb">
     <div class="col xs-3 sm-1 bg-demo" style="--jf-color-text:var(--jf-color-on-primary-1000);--jf-color-bg:var(--jf-color-primary-1000);">1000</div>
     <div class="col xs-3 sm-1 bg-demo" style="--jf-color-text:var(--jf-color-on-primary-900);--jf-color-bg:var(--jf-color-primary-900);">900</div>

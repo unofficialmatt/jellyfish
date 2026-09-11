@@ -11,6 +11,8 @@ _.git/
 tests/
 deprecated/
 *.md
+!ROADMAP.md
+
 
 ### macOS ###
 # General

@@ -210,7 +210,7 @@
   <h2 class="h3">Use it</h2>
   <p>Happy with it? Add it as a new family in your settings, before Jellyfish's own <span class="code-ref">@import</span>:</p>
   <pre class="language-scss"><code id="pg-scss">$colors: (
-  "custom": makeColorPalette(#eb567d),
+  "custom": #eb567d,
 );</code></pre>
   <button type="button" class="button soft" id="pg-copy" aria-label="Copy the SCSS snippet above">Copy SCSS</button>
 </div>
@@ -524,7 +524,7 @@
       swatches.appendChild(textSwatch);
 
       scssOut.textContent =
-        '$colors: (\n  "custom": makeColorPalette(' + currentFamilyHex + "),\n);";
+        '$colors: (\n  "custom": ' + currentFamilyHex + ",\n);";
     }
 
     var applyFamily = wireHexField(hexInput, picker, errorMsg, function (hex) {
