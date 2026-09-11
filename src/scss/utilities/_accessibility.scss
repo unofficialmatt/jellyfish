@@ -49,33 +49,6 @@ input[type="radio"] {
   @extend %accessible-focus;
 }
 
-// Styling for nicer radio buttons and checkboxes
-.radio input[type="radio"] {
-  &:focus + .radio-control {
-    @include accessible-focus-state;
-  }
-  // Remove :focus styling for browsers that do support :focus-visible.
-  &:focus:not(:focus-visible) + .radio-control {
-    outline: 0;
-  }
-  // Add focus styling back in browsers that do support :focus-visible
-  &:focus-visible + .radio-control {
-    @include accessible-focus-state;
-  }
-}
-.checkbox input[type="checkbox"] {
-  &:focus + .checkbox-control {
-    @include accessible-focus-state;
-  }
-  // Remove :focus styling for browsers that do support :focus-visible.
-  &:focus:not(:focus-visible) + .checkbox-control {
-    outline: 0;
-  }
-  // Add focus styling back in browsers that do support :focus-visible
-  &:focus-visible + .checkbox-control {
-    @include accessible-focus-state;
-  }
-}
 // Range slider - outline the thumb not the track
 input[type="range"] {
   // WebKit / Gecko thumb pseudo-elements don't combine into one rule — each

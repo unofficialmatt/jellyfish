@@ -32,26 +32,31 @@ $i in $breakpoints {
     }
   }
 
-  // Apply .hide class for the last item in the map
-  @if $loop_count==length($breakpoints) {
-    .hide-#{$point} {
+  // Below the first breakpoint is the `xs` band (the same name the grid uses for
+  // its base columns). It has no lower bound, so .hide-xs is exactly
+  // .hide-below-{first} — share the rule rather than emit the query twice.
+  $hide-below-selector: ".hide-below-#{$point}";
+  @if $loop_count==1 {
+    $hide-below-selector: "#{$hide-below-selector}, .hide-xs";
+  }
+
+  #{$hide-below-selector} {
+    @include below($point) {
       display: none !important;
     }
   }
 
-  .hide-below {
-    &-#{$point} {
-      @include below($point) {
-        display: none !important;
-      }
-    }
+  // The last breakpoint's band has no upper bound, so .hide-{last} is exactly
+  // .hide-above-{last} — share the rule rather than emit the query twice.
+  // (It used to be emitted bare, outside any query, which hid it at every width.)
+  $hide-above-selector: ".hide-above-#{$point}";
+  @if $loop_count==length($breakpoints) {
+    $hide-above-selector: "#{$hide-above-selector}, .hide-#{$point}";
   }
 
-  .hide-above {
-    &-#{$point} {
-      @include above($point) {
-        display: none !important;
-      }
+  #{$hide-above-selector} {
+    @include above($point) {
+      display: none !important;
     }
   }
   $last: $point; // Store the current point to be used on the next loop

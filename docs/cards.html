@@ -153,6 +153,7 @@
 <h1 class="section-heading h2">Cards</h1>
 <div class="section is-tight bg-base">
   <p class="standfirst">A bordered container &mdash; usually an <span class="code-ref">&lt;article&gt;</span> &mdash; with no padding of its own. Padding comes from <span class="css-ref">.card-section</span>, so images can bleed to the edge.</p>
+  <p>A card has <strong>no background of its own</strong> &mdash; it's a border on whatever surface it's sitting on. For a panel that reads as lifted off the canvas, add a <a href="./theme-colors.html#surfaces">surface class</a>: <span class="css-ref">.card.bg-soft</span> for a neutral lift, or <span class="css-ref">.bg-primary</span> / any family to theme it. The surface brings its own text, heading and muted / subtle colours with it, so everything inside stays readable.</p>
   <pre class="language-markup"><code><!--
     <article class="card">
       <img class="card-image" src="photo.jpg" alt="…">
@@ -252,19 +253,31 @@
 
 <div class="section is-tight bg-soft">
   <h2 class="h3" id="overriding">Overriding</h2>
-  <p>Set the custom properties on <span class="css-ref">.card</span>, a card modifier or a scoped selector: <span class="code-ref">--jf-card-padding</span>, <span class="code-ref">--jf-card-border-radius</span>, <span class="code-ref">--jf-card-border-width</span> / <span class="code-ref">-border-style</span>, and <span class="code-ref">--jf-card-border-color</span> (falls back to <span class="code-ref">--jf-border-color</span>). Or the Sass variables below, before import.</p>
+  <p>Set the <span class="code-ref">--jf-card-*</span> custom properties (tabled below) on <span class="css-ref">.card</span>, your own card modifier, or a scoped selector &mdash; padding is per axis (<span class="code-ref">--jf-card-padding-x</span> and <span class="code-ref">--jf-card-padding-y</span>), both taking <span class="variable-ref">$card-padding</span> at build &mdash; not on <span class="code-ref">:root</span>, where the component's own declaration would shadow them. Or the Sass variables below, before import.</p>
 
   <h3 class="h4">Variables</h3>
   <div class="variables-reference">
+        <h4 class="h6">Sass variables</h4>
     <table class="is-responsive has-border">
-          <caption class="screen-reader-text">Card Sass variables and custom properties</caption>
-          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
-          <tbody>
-            <tr><td><span class="variable-ref">$card-padding</span></td><td><span class="code-ref">token(space-md)</span></td><td><span class="css-ref">.card-section</span> padding &rarr; <span class="code-ref">--jf-card-padding</span>.</td></tr>
-            <tr><td><span class="variable-ref">$card-border-radius</span></td><td><span class="code-ref">token(radius-lg)</span></td><td>&rarr; <span class="code-ref">--jf-card-border-radius</span>.</td></tr>
-            <tr><td><span class="variable-ref">$card-border-width</span><br>/ <span class="variable-ref">-style</span></td><td><span class="code-ref">token(border-width)</span><br>/ <span class="code-ref">solid</span></td><td>&rarr; <span class="code-ref">--jf-card-border-width</span> / <span class="code-ref">-border-style</span>. Colour is <span class="code-ref">--jf-card-border-color</span> (unset; falls back to the shared border colour).</td></tr>
-          </tbody>
-        </table>
+      <caption class="screen-reader-text">Cards Sass variables</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$card-padding</span></td><td><span class="code-ref">token(space-md)</span></td><td>Build-time default for both <span class="css-ref">--jf-card-padding-x</span> and <span class="css-ref">--jf-card-padding-y</span>.</td></tr>
+        <tr><td><span class="variable-ref">$card-border-radius</span></td><td><span class="code-ref">token(radius-lg)</span></td><td>Corner radius &rarr; <span class="css-ref">--jf-card-border-radius</span>. The card is <span class="code-ref">overflow: hidden</span>, so a <span class="css-ref">.card-image</span> is clipped to it.</td></tr>
+        <tr><td><span class="variable-ref">$card-border-width</span></td><td><span class="code-ref">token(border-width)</span></td><td>Border width &rarr; <span class="css-ref">--jf-card-border-width</span>.</td></tr>
+        <tr><td><span class="variable-ref">$card-border-style</span></td><td><span class="code-ref">solid</span></td><td>Border style &rarr; <span class="css-ref">--jf-card-border-style</span>.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Custom properties</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Cards custom properties</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+            <tr><td><span class="css-ref">--jf-card-padding-x</span></td><td><span class="variable-ref">$card-padding</span></td><td>Inline padding on <span class="css-ref">.card-section</span> &mdash; flatten the sides without touching top and bottom.</td></tr>
+            <tr><td><span class="css-ref">--jf-card-padding-y</span></td><td><span class="variable-ref">$card-padding</span></td><td>Block padding on <span class="css-ref">.card-section</span>. Adjacent sections still collapse their shared edge to zero.</td></tr>
+            <tr><td><span class="css-ref">--jf-card-border-color</span></td><td>falls back to <span class="code-ref">--jf-border-color</span></td><td>Not emitted by default &mdash; set it to give cards a border colour of their own without moving the shared one.</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 </section>

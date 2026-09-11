@@ -41,7 +41,7 @@
     <thead><tr><th scope="col">Class</th><th scope="col">Effect</th></tr></thead>
     <tbody>
       <tr><td><span class="css-ref">.outline</span> / <span class="css-ref">.ghost</span></td><td>Border-only / text-only. Combine with a family.</td></tr>
-      <tr><td><span class="css-ref">.xsmall</span> / <span class="css-ref">.small</span> / <span class="css-ref">.large</span></td><td>Scale padding and text (via <span class="code-ref">--jf-button-scale-modifier</span>).</td></tr>
+      <tr><td><span class="css-ref">.xsmall</span> / <span class="css-ref">.small</span> / <span class="css-ref">.large</span></td><td>Change the text size, and with it the <span class="code-ref">em</span>-based padding. <span class="css-ref">.xsmall</span> and <span class="css-ref">.small</span> tighten the padding further via <span class="code-ref">--jf-button-scale-modifier</span> (<span class="code-ref">0.66</span> / <span class="code-ref">0.8</span>); <span class="css-ref">.large</span> leaves it at <span class="code-ref">1</span>, so the larger type does the work on its own.</td></tr>
       <tr><td><span class="css-ref">.expanded</span></td><td>Full width, block display.</td></tr>
       <tr><td><span class="code-ref">:disabled</span> / <span class="code-ref">[disabled]</span></td><td>Dims and blocks pointer events (native).</td></tr>
     </tbody>
@@ -89,23 +89,58 @@
 
   <h3 class="h4">Variables</h3>
   <div class="variables-reference">
+        <h4 class="h6">Colour</h4>
     <table class="is-responsive has-border">
-          <caption class="screen-reader-text">Button Sass variables and custom properties</caption>
-          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
-          <tbody>
-            <tr><td><span class="variable-ref">$buttons</span></td><td><span class="code-ref">.button, a.button, button, [type=submit|reset|button]</span></td><td>The selector stack every button rule uses.</td></tr>
-            <tr><td><span class="variable-ref">$button-base-color</span></td><td><span class="code-ref">primary</span></td><td>Default family for an unmodified button.</td></tr>
-            <tr><td><span class="variable-ref">$button-hover-value</span></td><td><span class="code-ref">role-shade(emphasis)</span></td><td>Which shade a button darkens to on hover. Set <span class="code-ref">500</span> for no hover shift.</td></tr>
-            <tr><td><span class="variable-ref">$button-padding-x</span> / <span class="variable-ref">-y</span></td><td><span class="code-ref">1.25em</span> / <span class="code-ref">0.75em</span></td><td>Base padding (em). Size modifiers scale it.</td></tr>
-            <tr><td><span class="variable-ref">$button-font-size</span> (+ <span class="variable-ref">-xsmall</span> / <span class="variable-ref">-small</span> / <span class="variable-ref">-large</span>)</td><td><span class="code-ref">font-size-base</span> …</td><td>Per-size text.</td></tr>
-            <tr><td><span class="variable-ref">$button-font-family</span> / <span class="variable-ref">-font-weight</span> / <span class="variable-ref">-text-transform</span> / <span class="variable-ref">-line-height</span></td><td><span class="code-ref">font-secondary</span> / <span class="code-ref">bold</span> / <span class="code-ref">none</span> / <span class="code-ref">snug</span></td><td>Typography.</td></tr>
-            <tr><td><span class="variable-ref">$button-border-radius</span> / <span class="variable-ref">-border-width</span></td><td><span class="code-ref">radius-md</span> / <span class="code-ref">border-width</span></td><td>Border.</td></tr>
-            <tr><td><span class="variable-ref">$button-disabled-opacity</span></td><td><span class="code-ref">0.65</span></td><td>Disabled dim.</td></tr>
-            <tr><td><span class="variable-ref">$button-list-button-margin</span></td><td><span class="code-ref">space-2xs</span></td><td>Half the <span class="css-ref">.button-list</span> gap.</td></tr>
-            <tr><td><span class="css-ref">--jf-button-color-theme</span> / <span class="css-ref">-color-text</span> (+ <span class="css-ref">-hover-</span>)</td><td>from the family</td><td>Fill/border and text. Family / <span class="css-ref">.outline</span> / <span class="css-ref">.ghost</span> / <span class="css-ref">.soft</span> repoint these.</td></tr>
-            <tr><td><span class="css-ref">--jf-button-scale-modifier</span></td><td><span class="code-ref">1</span></td><td>Multiplier the size classes set (<span class="code-ref">0.66</span>–<span class="code-ref">1.2</span>).</td></tr>
-          </tbody>
-        </table>
+      <caption class="screen-reader-text">Button variables &mdash; Colour</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$buttons</span></td><td><span class="code-ref">.button, a.button, button, [type=submit], [type=reset], [type=button]</span></td><td>The selector stack every button rule targets.</td></tr>
+        <tr><td><span class="variable-ref">$button-base-color</span></td><td><span class="code-ref">primary</span></td><td>Palette family for an unmodified button.</td></tr>
+        <tr><td><span class="variable-ref">$button-hover-value</span></td><td><span class="code-ref">role-shade(emphasis)</span> (700)</td><td>Shade a button moves to on hover / focus. Set <span class="code-ref">500</span> to drop the hover shift entirely &mdash; that also removes the <span class="css-ref">.ghost</span> underline treatment.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Size &amp; typography</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Button variables &mdash; Size &amp; typography</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$button-padding-x</span></td><td><span class="code-ref">1.25em</span></td><td>Inline padding &rarr; <span class="code-ref">--jf-button-padding-x</span>. In <span class="code-ref">em</span>, so it tracks the button's font size.</td></tr>
+        <tr><td><span class="variable-ref">$button-padding-y</span></td><td><span class="code-ref">0.75em</span></td><td>Block padding &rarr; <span class="code-ref">--jf-button-padding-y</span>.</td></tr>
+        <tr><td><span class="variable-ref">$button-font-size</span></td><td><span class="code-ref">token(font-size-base)</span></td><td>Default text size.</td></tr>
+        <tr><td><span class="variable-ref">$button-font-size-xsmall</span></td><td><span class="code-ref">token(font-size-xs)</span></td><td>Text size for <span class="css-ref">.xsmall</span>.</td></tr>
+        <tr><td><span class="variable-ref">$button-font-size-small</span></td><td><span class="code-ref">token(font-size-sm)</span></td><td>Text size for <span class="css-ref">.small</span>.</td></tr>
+        <tr><td><span class="variable-ref">$button-font-size-large</span></td><td><span class="code-ref">token(font-size-md)</span></td><td>Text size for <span class="css-ref">.large</span>.</td></tr>
+        <tr><td><span class="variable-ref">$button-font-family</span></td><td><span class="code-ref">token(font-secondary)</span></td><td>Button typeface.</td></tr>
+        <tr><td><span class="variable-ref">$button-font-weight</span></td><td><span class="code-ref">get-weight(bold)</span></td><td>Button text weight.</td></tr>
+        <tr><td><span class="variable-ref">$button-line-height</span></td><td><span class="code-ref">get-leading(snug)</span></td><td>Button line height.</td></tr>
+        <tr><td><span class="variable-ref">$button-text-transform</span></td><td><span class="code-ref">none</span></td><td><span class="code-ref">text-transform</span> &mdash; set <span class="code-ref">uppercase</span> for a caps button.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Border &amp; states</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Button variables &mdash; Border &amp; states</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$button-border-radius</span></td><td><span class="code-ref">token(radius-md)</span></td><td>Corner radius. <span class="css-ref">.button-group</span> squares off the inner corners.</td></tr>
+        <tr><td><span class="variable-ref">$button-border-width</span></td><td><span class="code-ref">token(border-width)</span></td><td>Border width. The border is always <span class="code-ref">solid</span> and takes the button's theme colour, so it only reads on <span class="css-ref">.outline</span>.</td></tr>
+        <tr><td><span class="variable-ref">$button-disabled-opacity</span></td><td><span class="code-ref">0.65</span></td><td>Opacity of a <span class="code-ref">:disabled</span> button.</td></tr>
+        <tr><td><span class="variable-ref">$button-list-button-margin</span></td><td><span class="code-ref">get-space(2xs)</span></td><td>Half the <span class="css-ref">.button-list</span> gap &mdash; the gap is twice this.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Custom properties</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Button variables &mdash; Custom properties</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="css-ref">--jf-button-color-theme</span></td><td>the family's 500</td><td>Fill and border colour. Family / <span class="css-ref">.soft</span> modifiers repoint it; <span class="css-ref">.outline</span> and <span class="css-ref">.ghost</span> read it as the <em>text</em> colour instead.</td></tr>
+        <tr><td><span class="css-ref">--jf-button-color-text</span></td><td>its <span class="code-ref">--jf-color-on-*</span></td><td>Text colour, contrast-picked against the fill.</td></tr>
+        <tr><td><span class="css-ref">--jf-button-hover-color-theme</span></td><td>the family at <span class="variable-ref">$button-hover-value</span></td><td>Fill and border on hover / focus. Not emitted when <span class="variable-ref">$button-hover-value</span> is <span class="code-ref">500</span>.</td></tr>
+        <tr><td><span class="css-ref">--jf-button-hover-color-text</span></td><td>its <span class="code-ref">--jf-color-on-*</span></td><td>Text colour on hover / focus.</td></tr>
+        <tr><td><span class="css-ref">--jf-button-padding-x</span> </td><td><span class="variable-ref">$button-padding-x</span></td><td>Inline padding, multiplied by the scale modifier below.</td></tr>
+        <tr><td><span class="css-ref">--jf-button-padding-y</span></td><td><span class="variable-ref">$button-padding-y</span></td><td>Block padding, multiplied by the scale modifier below.</td></tr>
+        <tr><td><span class="css-ref">--jf-button-scale-modifier</span></td><td><span class="code-ref">1</span></td><td>Multiplier applied to both paddings. <span class="css-ref">.xsmall</span> sets <span class="code-ref">0.66</span>, <span class="css-ref">.small</span> <span class="code-ref">0.8</span>, <span class="css-ref">.large</span> <span class="code-ref">1</span>.</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 @@include('./src/docs/partials/html-footer.html')

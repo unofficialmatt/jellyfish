@@ -3,17 +3,37 @@
 @use "to-number" as str;
 
 // Namespace prefix for every CSS custom property Jellyfish emits.
-//   jf  ->  --jf-color-primary-500, --jf-card-padding, ...
-//   ""  (or null)  ->  --color-primary-500, --card-padding  (v4 behaviour)
+//   jf  ->  --jf-color-primary-500, --jf-border-color, ...
+//   ""  (or null)  ->  --color-primary-500, --border-color  (v4 behaviour)
 $token-prefix: jf !default;
+
+// The four semantic step-roles, in ladder order. A closed set: get-color-role()
+// and the :root token emission both key off these names, so an extra entry in
+// $color-role-shades would emit aliases nothing reads.
+$role-names: (subtle, muted, emphasis, strong);
+
+// Guard a role map against unknown keys, then hand it back. Lets the role maps
+// use the empty-map + merge pattern (so a project can retune one role without
+// restating the others) while keeping the key set closed.
+// @param {Map} $map - the merged role map
+// @param {String} $name - the variable name, for the error message
+// @return {Map} $map, unchanged
+@function check-role-map($map, $name) {
+  @each $role, $shade in $map {
+    @if not index($role-names, $role) {
+      @error "Unknown role `#{$role}` in #{$name}. Roles are fixed: #{$role-names}. Retune an existing role's shade instead of adding a key.";
+    }
+  }
+  @return $map;
+}
 
 // Build the CSS custom-property *name* for a token, honouring $token-prefix.
 // @param {String} $name - The name of the token.
 // @return {String} The full CSS custom property name, including the prefix if applicable.
 // @example scss
 //   token-name("color-primary-500")   -> --jf-color-primary-500
-//   token-name("card-padding")        -> --jf-card-padding
-//   ($token-prefix: "")               -> --card-padding
+//   token-name("border-color")        -> --jf-border-color
+//   ($token-prefix: "")               -> --border-color
 @function token-name($name) {
   @if $token-prefix == "" or $token-prefix == null {
     @return #{"--" + $name};
@@ -131,8 +151,8 @@ $token-prefix: jf !default;
 // @param {String} $role - subtle | muted | emphasis | strong
 // @return {String} e.g. var(--jf-color-primary-emphasis)
 @function get-color-role($base, $role) {
-  @if not index((subtle, muted, emphasis, strong), $role) {
-    @error "Role '#{$role}' not recognised. Expected: subtle | muted | emphasis | strong.";
+  @if not index($role-names, $role) {
+    @error "Role '#{$role}' not recognised. Expected: #{$role-names}.";
   }
   @if not map-has-key($colors, $base) {
     @error "Family '#{$base}' not found in $colors map. Cancelling compile.";

@@ -2,7 +2,10 @@
   #{token-name("card-border-radius")}: #{$card-border-radius};
   #{token-name("card-border-style")}: #{$card-border-style};
   #{token-name("card-border-width")}: #{$card-border-width};
-  #{token-name("card-padding")}: #{$card-padding};
+  // Per-axis, so a project can flatten the sides without touching the block
+  // edges. Both take $card-padding at build; override either at runtime.
+  #{token-name("card-padding-x")}: #{$card-padding};
+  #{token-name("card-padding-y")}: #{$card-padding};
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -23,7 +26,8 @@
   }
 
   &-section {
-    padding: token(card-padding);
+    padding-block: token(card-padding-y);
+    padding-inline: token(card-padding-x);
     & > :last-child {
       margin-block-end: 0;
     }

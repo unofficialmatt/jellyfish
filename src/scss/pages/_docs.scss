@@ -148,7 +148,7 @@ html {
   font-weight: get-weight(semibold);
   background-color: token(code-background);
   color: token(code-color);
-  font-size: token(font-size-sm);
+  @include type(xs);
 }
 
 .code-ref {
@@ -412,21 +412,102 @@ div.code-toolbar {
   }
 }
 
-.variables-reference {
-  table td {
-    font-size: token(font-size-sm);
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: get-space(sm);
+  margin-block-end: token(flow);
+
+  // Rows whose items differ in height read better aligned to the top.
+  &.is-top {
+    align-items: flex-start;
   }
+  // Shadows need room to fall before the next row clips them.
+  &.is-airy {
+    gap: get-space(md);
+    padding-block: get-space(xs);
+  }
+}
+
+.demo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: get-space(2xs);
+  margin-block-end: token(flow);
+
+  // The stack's gap does the spacing — a nested row must not add its own.
+  .demo-row {
+    margin-block-end: 0;
+  }
+}
+
+// Fixed-width leading label so a column of token names lines up.
+.demo-label {
+  flex: 0 0 18ch;
+}
+
+// Padded demo surfaces: -pad for a strip in a .row, -panel for a block that
+// shows a surface's text colours.
+.demo-pad {
+  padding: get-space(xs);
+}
+
+.demo-panel {
+  padding: get-space(sm);
+}
+
+// A deliberately taller item, so align-items / align-self have something to act on.
+.demo-tall {
+  padding-block: get-space(md);
+}
+
+// A small gap between bare demo children (the .flex / .flex-column examples,
+// which set no gap of their own).
+.demo-gap {
+  gap: get-space(2xs);
+}
+
+// A plain ruled box, for showing what a block contains — floats, overflow.
+.demo-outline {
+  padding: get-space(xs) get-space(sm);
+  border: token(border-width) token(border-style) token(border-color);
+  margin-block-end: token(flow);
+}
+
+// Reference tables: a settled first-column width so names line up when scanning
+// down a page and across pages. Applied to every docs table; add .table-auto-col
+// to opt one out (the table component's own demos, and generated tool output,
+// need to size themselves).
+//
+// Position-based (tr > *:first-child), not td:first-of-type: where a row header
+// is a <th scope="row">, the first <td> is the second column, so the old
+// selector sized that one and crushed it.
+//
+// Column two is pinned only when it is not also the last, so a two-column table
+// still gives its Action / Effect column the remaining width.
+#content table:not(.table-auto-col),
+.table-left-col {
   @include above($table-responsive-breakpoint) {
-    table tr td:first-of-type {
-      width: 180px;
+    tr > *:first-child {
+      inline-size: 18rem;
     }
-    table tr td:nth-of-type(2) {
-      width: 240px;
+    tr > *:nth-child(2):not(:last-child) {
+      inline-size: 15rem;
     }
   }
 }
 
+.variables-reference {
+  table td {
+    font-size: token(font-size-sm);
+  }
+}
+
+// Palette-ramp cell (mixins.html): forced back to the page surface so each cell
+// shows only the shade it sets inline.
 .bg-demo {
+  padding-block: get-space(2xs);
   background: token(color-bg) !important;
   color: token(color-text) !important;
 }

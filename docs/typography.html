@@ -164,6 +164,29 @@
 </div>
 
 <div class="section is-tight bg-base">
+  <h2 class="h3" id="scale">The scale</h2>
+  <p>Eleven steps, emitted as <span class="code-ref">--jf-font-size-*</span>. Reference one with <span class="code-ref">@include type($step)</span> (size <em>and</em> leading) or <span class="code-ref">token(font-size-lg)</span> (size only). The <em>Line-height</em> column is what <span class="variable-ref">$type-leading</span> pairs with that step; see <a href="./variables.html#line-height-scale">the leading scale</a> for the values behind those keys.</p>
+  <table class="is-responsive has-border">
+    <caption class="screen-reader-text">The type scale &mdash; step, size, paired line-height and what uses it</caption>
+    <thead><tr><th scope="col">Step</th><th scope="col">Size</th><th scope="col">Line-height</th><th scope="col">Used by</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><span class="code-ref">xs</span></th><td>12px</td><td><span class="code-ref">base</span> (1.5)</td><td>&mdash;</td></tr>
+      <tr><th scope="row"><span class="code-ref">sm</span></th><td>14px</td><td><span class="code-ref">base</span> (1.5)</td><td><span class="code-ref">&lt;small&gt;</span>, <span class="css-ref">.font-size-small</span>, <span class="css-ref">.chip</span>, tables</td></tr>
+      <tr><th scope="row"><span class="code-ref">base</span></th><td>16px</td><td><span class="code-ref">base</span> (1.5)</td><td>Body copy, form labels, buttons</td></tr>
+      <tr><th scope="row"><span class="code-ref">md</span></th><td>16 &rarr; 18px</td><td><span class="code-ref">snug</span> (1.35)</td><td><span class="code-ref">&lt;h6&gt;</span>, <span class="css-ref">.button.large</span>, accordion headings</td></tr>
+      <tr><th scope="row"><span class="code-ref">lg</span></th><td>18 &rarr; 20px</td><td><span class="code-ref">snug</span> (1.35)</td><td><span class="code-ref">&lt;h5&gt;</span>, <span class="css-ref">.standfirst</span></td></tr>
+      <tr><th scope="row"><span class="code-ref">xl</span></th><td>20 &rarr; 24px</td><td><span class="code-ref">tight</span> (1.2)</td><td><span class="code-ref">&lt;h4&gt;</span></td></tr>
+      <tr><th scope="row"><span class="code-ref">2xl</span></th><td>24 &rarr; 30px</td><td><span class="code-ref">tight</span> (1.2)</td><td><span class="code-ref">&lt;h3&gt;</span></td></tr>
+      <tr><th scope="row"><span class="code-ref">3xl</span></th><td>30 &rarr; 36px</td><td><span class="code-ref">tight</span> (1.2)</td><td><span class="code-ref">&lt;h2&gt;</span></td></tr>
+      <tr><th scope="row"><span class="code-ref">4xl</span></th><td>36 &rarr; 48px</td><td><span class="code-ref">tight</span> (1.2)</td><td><span class="code-ref">&lt;h1&gt;</span></td></tr>
+      <tr><th scope="row"><span class="code-ref">5xl</span></th><td>48 &rarr; 60px</td><td><span class="code-ref">tight</span> (1.2)</td><td>&mdash;</td></tr>
+      <tr><th scope="row"><span class="code-ref">6xl</span></th><td>60 &rarr; 72px</td><td><span class="code-ref">tight</span> (1.2)</td><td>&mdash;</td></tr>
+    </tbody>
+  </table>
+  <p>A single value is fixed; <span class="code-ref">a &rarr; b</span> is a <span class="code-ref">clamp()</span> sliding between those two sizes as the viewport goes from <span class="variable-ref">$fluid-min-vw</span> (320px) to <span class="variable-ref">$fluid-max-vw</span> (1240px). Which step each heading level takes is <span class="variable-ref">$heading-scale</span>; merge <span class="variable-ref">$type-scale</span> to retune a size or add a step.</p>
+</div>
+
+<div class="section is-tight bg-base">
   <h2 class="h3" id="headings">Headings</h2>
   <p>Semantic <span class="code-ref">&lt;h1&gt;</span>&ndash;<span class="code-ref">&lt;h6&gt;</span> are sized by the scale. The matching <span class="css-ref">.h1</span>&ndash;<span class="css-ref">.h6</span> classes apply the same size + line-height to any element without the semantics (they use <span class="code-ref">!important</span>). In Sass, <span class="code-ref">@include h3();</span> does the same in your own rule.</p>
   <div class="grid">
@@ -230,7 +253,7 @@
       <tr><th scope="row"><code class="code-ref">&lt;em&gt;</code> / <span class="css-ref">.italic</span></th><td><em>emphasis</em> &middot; <span class="italic">italic, no semantics</span></td></tr>
       <tr><th scope="row"><code class="code-ref">&lt;a&gt;</code></th><td><a href="#">a link</a>, with a hover transition on <span class="code-ref">--jf-transition</span></td></tr>
       <tr><th scope="row"><code class="code-ref">&lt;small&gt;</code> / <span class="css-ref">.font-size-small</span></th><td><small>fine print &mdash; carries its own line-height</small></td></tr>
-      <tr><th scope="row"><code class="code-ref">&lt;mark&gt;</code></th><td><mark>highlighted</mark> (its own surface, so it reads on any background)</td></tr>
+      <tr><th scope="row"><code class="code-ref">&lt;mark&gt;</code></th><td><mark>highlighted</mark> &mdash; its own surface, so it reads on any background. Fill is <span class="variable-ref">$mark-background-color</span> / <span class="code-ref">--jf-mark-background</span>; the text colour is contrast-picked at build (<a href="./variables.html#colors">Variables</a>).</td></tr>
       <tr><th scope="row"><code class="code-ref">&lt;code&gt;</code> / <code class="code-ref">&lt;samp&gt;</code> / <code class="code-ref">&lt;var&gt;</code> / <code class="code-ref">&lt;kbd&gt;</code></th><td><code>code</code> &middot; <samp>samp</samp> &middot; <var>var</var> &middot; <kbd>kbd</kbd></td></tr>
       <tr><th scope="row"><code class="code-ref">&lt;sup&gt;</code> / <code class="code-ref">&lt;sub&gt;</code></th><td>E = mc<sup>2</sup> &middot; H<sub>2</sub>O</td></tr>
       <tr><th scope="row"><code class="code-ref">&lt;ins&gt;</code> / <code class="code-ref">&lt;del&gt;</code> / <code class="code-ref">&lt;s&gt;</code> / <code class="code-ref">&lt;u&gt;</code> / <code class="code-ref">&lt;abbr&gt;</code></th><td><ins>inserted</ins> &middot; <del>deleted</del> &middot; <s>struck</s> &middot; <u>underlined</u> &middot; <abbr title="Abbreviation">ABBR</abbr></td></tr>
@@ -270,21 +293,30 @@
   </ul>
   <h3 class="h4">Variables</h3>
   <div class="variables-reference">
+        <h4 class="h6">Sass variables</h4>
     <table class="is-responsive has-border">
-          <caption class="screen-reader-text">Typography Sass variables</caption>
-          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
-          <tbody>
-            <tr><td><span class="variable-ref">$font-primary</span> / <span class="variable-ref">-secondary</span> / <span class="variable-ref">-monospace</span></td><td>system stacks</td><td>&rarr; <span class="code-ref">--jf-font-*</span>.</td></tr>
-            <tr><td><span class="variable-ref">$type-scale</span></td><td><span class="code-ref">xs … 6xl</span></td><td>Size map. <span class="code-ref">md</span>+ are <span class="code-ref">fluid($min, $max)</span>.</td></tr>
-            <tr><td><span class="variable-ref">$heading-scale</span></td><td><span class="code-ref">h1: 4xl … h6: md</span></td><td>Step per heading level.</td></tr>
-            <tr><td><span class="variable-ref">$type-leading</span></td><td>size &rarr; leading key</td><td><span class="code-ref">md</span>/<span class="code-ref">lg</span> &rarr; <span class="code-ref">snug</span>, <span class="code-ref">xl</span>+ &rarr; <span class="code-ref">tight</span>.</td></tr>
-            <tr><td><span class="variable-ref">$fluid-min-vw</span> / <span class="variable-ref">-max-vw</span></td><td><span class="code-ref">320px</span> / <span class="code-ref">1240px</span></td><td>Viewport range the fluid sizes clamp across.</td></tr>
-            <tr><td><span class="variable-ref">$heading-weight</span></td><td><span class="code-ref">get-weight(medium)</span></td><td>Heading font-weight.</td></tr>
-            <tr><td><span class="variable-ref">$root-font-size</span> / <span class="variable-ref">$root-line-height</span> / <span class="variable-ref">$font-size-adjust</span></td><td><span class="code-ref">1rem</span> / <span class="code-ref">1.5</span> / <span class="code-ref">none</span></td><td>&rarr; <span class="code-ref">--jf-root-font-size</span> etc. on <span class="css-ref">&lt;html&gt;</span>.</td></tr>
-            <tr><td><span class="variable-ref">$measure</span></td><td><span class="code-ref">none</span></td><td>&rarr; <span class="code-ref">--jf-measure</span>, a reading-width cap.</td></tr>
-            <tr><td><span class="variable-ref">$font-weight-scale</span></td><td><span class="code-ref">hairline: 100 … black: 900</span></td><td>&rarr; <span class="code-ref">--jf-font-weight-*</span> + <span class="code-ref">get-weight()</span> + <span class="css-ref">.weight-*</span>.</td></tr>
-          </tbody>
-        </table>
+      <caption class="screen-reader-text">Typography Sass variables</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$font-primary</span></td><td>system sans stack</td><td>&rarr; <span class="css-ref">--jf-font-primary</span>. The project typeface.</td></tr>
+        <tr><td><span class="variable-ref">$font-secondary</span></td><td><span class="code-ref">token(font-primary)</span></td><td>&rarr; <span class="css-ref">--jf-font-secondary</span>. Defaults to the primary stack &mdash; set it for a separate display face.</td></tr>
+        <tr><td><span class="variable-ref">$font-monospace</span></td><td>system mono stack</td><td>&rarr; <span class="css-ref">--jf-font-monospace</span>. Used by <span class="code-ref">code</span> / <span class="code-ref">pre</span> / <span class="code-ref">samp</span> / <span class="code-ref">var</span> / <span class="code-ref">kbd</span>.</td></tr>
+        <tr><td><span class="variable-ref">$font-body</span></td><td><span class="code-ref">token(font-primary)</span></td><td>The stack <span class="code-ref">&lt;body&gt;</span> uses. Point it at <span class="variable-ref">$font-secondary</span> to swap body and headings without touching either stack.</td></tr>
+        <tr><td><span class="variable-ref">$font-headings</span></td><td><span class="code-ref">token(font-secondary)</span></td><td>The stack <span class="code-ref">h1</span>&ndash;<span class="code-ref">h6</span> use.</td></tr>
+        <tr><td><span class="variable-ref">$type-scale</span></td><td>11 steps, <span class="code-ref">xs</span> &ndash; <span class="code-ref">6xl</span></td><td>The size map &rarr; <span class="css-ref">--jf-font-size-*</span>. <span class="code-ref">md</span> and up are <span class="code-ref">fluid($min, $max)</span> clamps. All values are <a href="#scale">tabled above</a>. Merge to retune a step or add one.</td></tr>
+        <tr><td><span class="variable-ref">$heading-scale</span></td><td><span class="code-ref">h1: "4xl" &hellip; h6: "md"</span></td><td>Which <span class="variable-ref">$type-scale</span> step each heading level takes. Merge one entry to resize a level.</td></tr>
+        <tr><td><span class="variable-ref">$type-leading</span></td><td>step &rarr; leading key</td><td>The line-height paired with each size step. Read by <span class="code-ref">type()</span>, so size and leading can't drift apart.</td></tr>
+        <tr><td><span class="variable-ref">$leading-scale</span></td><td><span class="code-ref">flush tight snug base loose</span></td><td>The unitless leading values those keys point at &rarr; <span class="css-ref">--jf-leading-*</span>. Values on <a href="./variables.html#line-height-scale">Variables</a>.</td></tr>
+        <tr><td><span class="variable-ref">$fluid-min-vw</span></td><td><span class="code-ref">320px</span></td><td>Viewport width at which every fluid size sits at its floor.</td></tr>
+        <tr><td><span class="variable-ref">$fluid-max-vw</span></td><td><span class="code-ref">1240px</span></td><td>Viewport width at which every fluid size reaches its ceiling. Independent of the layout <a href="./breakpoints.html">breakpoints</a>.</td></tr>
+        <tr><td><span class="variable-ref">$heading-weight</span></td><td><span class="code-ref">get-weight(medium)</span></td><td>Font weight for <span class="code-ref">h1</span>&ndash;<span class="code-ref">h6</span>.</td></tr>
+        <tr><td><span class="variable-ref">$font-weight-scale</span></td><td><span class="code-ref">hairline: 100 &hellip; black: 900</span></td><td>The nine named weights &rarr; <span class="css-ref">--jf-font-weight-*</span>, behind <span class="code-ref">get-weight()</span> and the <span class="css-ref">.weight-*</span> utilities.</td></tr>
+        <tr><td><span class="variable-ref">$root-font-size</span></td><td><span class="code-ref">token(font-size-base)</span> (1rem)</td><td>Applied to <span class="code-ref">&lt;html&gt;</span> &rarr; <span class="css-ref">--jf-root-font-size</span>. The whole scale is <span class="code-ref">rem</span>, so overriding this one property rescales everything &mdash; that's how the <a href="./accessibility.html">font-size control</a> works.</td></tr>
+        <tr><td><span class="variable-ref">$root-line-height</span></td><td><span class="code-ref">token(leading-base)</span> (1.5),</td><td>Applied to <span class="code-ref">&lt;body&gt;</span> &rarr; <span class="css-ref">--jf-root-line-height</span>. Holds a <span class="code-ref">var()</span>, so it can't be passed to Sass maths &mdash; use the token.</td></tr>
+        <tr><td><span class="variable-ref">$font-size-adjust</span></td><td><span class="code-ref">none</span></td><td>&rarr; <span class="css-ref">--jf-font-size-adjust</span> on <span class="code-ref">&lt;html&gt;</span>. Normalises apparent size across faces by x-height when a swapped-in typeface reads small or large. Progressive &mdash; unsupported browsers skip it.</td></tr>
+        <tr><td><span class="variable-ref">$measure</span></td><td><span class="code-ref">none</span></td><td>&rarr; <span class="css-ref">--jf-measure</span>, a <span class="code-ref">max-inline-size</span> on <span class="code-ref">p</span> / <span class="code-ref">li</span> / <span class="code-ref">dd</span> / <span class="code-ref">blockquote</span> / <span class="code-ref">small</span> (WCAG 1.4.8). Set a <span class="code-ref">ch</span> value like <span class="code-ref">66ch</span>.</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 </section>

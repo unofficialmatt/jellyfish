@@ -153,7 +153,7 @@
 <div class="section is-tight bg-base">
   <p class="standfirst">A bare <span class="code-ref">&lt;table&gt;</span> is full-width with a bottom rule per row and a heavier rule under <span class="code-ref">&lt;thead&gt;</span> / above <span class="code-ref">&lt;tfoot&gt;</span>. Use <span class="code-ref">&lt;caption&gt;</span> and <span class="code-ref">scope</span> on your header cells.</p>
   <pre class="language-markup"><code><!--
-    <table>
+    <table class="table-auto-col">
       <caption>Jellyfish by danger level</caption>
       <thead>
         <tr><th scope="col">Species</th><th scope="col">Danger</th><th scope="col">Habitat</th></tr>
@@ -164,7 +164,7 @@
       </tbody>
     </table>
     --></code></pre>
-  <table>
+  <table class="table-auto-col">
     <caption>Jellyfish by danger level</caption>
     <thead>
       <tr><th scope="col">Species</th><th scope="col">Danger</th><th scope="col">Habitat</th></tr>
@@ -194,9 +194,9 @@
 
   <h3 class="h4">Striped</h3>
   <pre class="language-markup"><code><!--
-    <table class="is-striped">…</table>
+    <table class="is-striped table-auto-col">…</table>
     --></code></pre>
-  <table class="is-striped">
+  <table class="is-striped table-auto-col">
     <thead><tr><th scope="col">Species</th><th scope="col">Danger</th><th scope="col">Habitat</th></tr></thead>
     <tbody>
       <tr><th scope="row">Cotylorhiza tuberculata</th><td>Mild</td><td>Mediterranean Sea</td></tr>
@@ -207,9 +207,9 @@
 
   <h3 class="h4">Bordered</h3>
   <pre class="language-markup"><code><!--
-    <table class="has-border">…</table>
+    <table class="has-border table-auto-col">…</table>
     --></code></pre>
-  <table class="has-border">
+  <table class="has-border table-auto-col">
     <thead><tr><th scope="col">Species</th><th scope="col">Danger</th><th scope="col">Habitat</th></tr></thead>
     <tbody>
       <tr><th scope="row">Cotylorhiza tuberculata</th><td>Mild</td><td>Mediterranean Sea</td></tr>
@@ -220,9 +220,9 @@
 
   <h3 class="h4">Hoverable</h3>
   <pre class="language-markup"><code><!--
-    <table class="is-hoverable">…</table>
+    <table class="is-hoverable table-auto-col">…</table>
     --></code></pre>
-  <table class="is-hoverable">
+  <table class="is-hoverable table-auto-col">
     <thead><tr><th scope="col">Species</th><th scope="col">Danger</th><th scope="col">Habitat</th></tr></thead>
     <tbody>
       <tr><th scope="row">Cotylorhiza tuberculata</th><td>Mild</td><td>Mediterranean Sea</td></tr>
@@ -234,19 +234,19 @@
   <h3 class="h4">Colours</h3>
   <p>Needs <span class="variable-ref">$generate-table-modifiers</span>. A <span class="css-ref">.{family}</span> on <span class="code-ref">&lt;table&gt;</span> colours the whole table; on <span class="code-ref">&lt;tr&gt;</span> a row; on <span class="code-ref">&lt;td&gt;</span> one cell.</p>
   <pre class="language-markup"><code><!--
-    <table class="primary">…</table>
-    <table>
+    <table class="primary table-auto-col">…</table>
+    <table class="table-auto-col">
       <tr class="primary">…</tr>
       <tr><td class="success">…</td></tr>
     </table>
     --></code></pre>
-  <table class="primary has-border">
+  <table class="primary has-border table-auto-col">
     <thead><tr><th scope="col">Class</th><th scope="col">Heading</th></tr></thead>
     <tbody>
       <tr><td>table.primary</td><td>table.primary</td></tr>
     </tbody>
   </table>
-  <table class="has-border">
+  <table class="has-border table-auto-col">
     <thead>
       <tr class="error"><th scope="col">tr.error</th><th scope="col">tr.error</th></tr>
     </thead>
@@ -266,7 +266,7 @@
   <h3 class="h4">Method one: .is-responsive</h3>
   <p>Below <span class="variable-ref">$table-responsive-breakpoint</span> (900px) each row stacks into its own block, and every cell &mdash; <span class="code-ref">&lt;td&gt;</span> or a row-header <span class="code-ref">&lt;th scope="row"&gt;</span> alike &mdash; needs its column heading repeated inline. Add <span class="code-ref">data-label="…"</span> to each cell yourself, or leave it out: <span class="code-ref">responsive-tables.js</span> copies each <span class="code-ref">&lt;thead&gt;</span> <span class="code-ref">&lt;th&gt;</span>'s text into the matching column's cells' <span class="code-ref">data-label</span> on <span class="code-ref">DOMContentLoaded</span>, by position &mdash; so it works whether that column's cells are <span class="code-ref">&lt;td&gt;</span> or <span class="code-ref">&lt;th&gt;</span>.</p>
   <pre class="language-markup"><code><!--
-    <table class="is-responsive">
+    <table class="is-responsive table-auto-col">
       <thead>
         <tr><th scope="col">Species</th><th scope="col">Stinger</th></tr>
       </thead>
@@ -278,7 +278,7 @@
       </tbody>
     </table>
     --></code></pre>
-  <table class="has-border is-responsive">
+  <table class="has-border is-responsive table-auto-col">
     <caption>Resize the window below <span class="variable-ref">$table-responsive-breakpoint</span> (900px) to see it stack</caption>
     <thead>
       <tr><th scope="col">Species</th><th scope="col">Stinger</th><th scope="col">Habitat</th></tr>
@@ -301,11 +301,11 @@
   <p>Wrap the table instead of classing it, and it scrolls horizontally rather than reflowing &mdash; far less control (no per-column labelling, no reordering), so reach for it only when a stack genuinely doesn't suit the data.</p>
   <pre class="language-markup"><code><!--
     <div class="table-container">
-      <table class="has-border">…</table>
+      <table class="has-border table-auto-col">…</table>
     </div>
     --></code></pre>
   <div class="table-container">
-    <table class="has-border">
+    <table class="has-border table-auto-col">
       <thead>
         <tr><th scope="col">Species</th><th scope="col">Stinger</th><th scope="col">Habitat</th><th scope="col">How to identify it</th><th scope="col">Average weight</th></tr>
       </thead>
@@ -332,25 +332,37 @@
 <div class="section is-tight bg-soft">
   <h2 class="h3" id="overriding">Overriding</h2>
   <ul>
-    <li><strong>One table / a scoped rule</strong> &mdash; <span class="code-ref">--jf-table-cell-background</span>, <span class="code-ref">--jf-table-text-color</span>, <span class="code-ref">--jf-table-border-color</span>, <span class="code-ref">--jf-table-stripe-bg-color</span>, <span class="code-ref">--jf-table-hover-background</span> / <span class="code-ref">--jf-table-text-hover-color</span> on <span class="code-ref">&lt;table&gt;</span>.</li>
+    <li><strong>One table / a scoped rule</strong> &mdash; set the <span class="code-ref">--jf-table-*</span> custom properties (tabled below) on the <span class="code-ref">&lt;table&gt;</span>, or on a single <span class="code-ref">&lt;tr&gt;</span> / <span class="code-ref">&lt;td&gt;</span> to scope it to that row or cell.</li>
     <li><strong>Everywhere</strong> &mdash; the Sass variables below.</li>
   </ul>
 
   <h3 class="h4">Variables</h3>
   <div class="variables-reference">
+        <h4 class="h6">Sass variables</h4>
     <table class="is-responsive has-border">
-          <caption class="screen-reader-text">Table Sass variables and custom properties</caption>
-          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
-          <tbody>
-            <tr><td><span class="variable-ref">$generate-table-modifiers</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.{family}</span> colour classes for tables / rows / cells.</td></tr>
-            <tr><td><span class="variable-ref">$table-cell-padding</span></td><td><span class="code-ref">0.5em 0.8em</span></td><td>Cell padding.</td></tr>
-            <tr><td><span class="variable-ref">$table-font-size</span> / <span class="variable-ref">$table-line-height</span></td><td><span class="code-ref">font-size-sm</span> / <span class="code-ref">snug</span></td><td>Text.</td></tr>
-            <tr><td><span class="variable-ref">$table-responsive-breakpoint</span></td><td><span class="code-ref">900px</span></td><td>Where <span class="css-ref">.is-responsive</span> switches to the stacked layout.</td></tr>
-            <tr><td><span class="css-ref">--jf-table-cell-background</span> / <span class="css-ref">-text-color</span></td><td><span class="code-ref">transparent</span> / inherit</td><td>Per-cell; <span class="code-ref">&lt;thead&gt;</span>, stripes, hover and <span class="css-ref">.{family}</span> all repoint the cell background.</td></tr>
-            <tr><td><span class="css-ref">--jf-table-border-color</span></td><td>falls back to <span class="code-ref">--jf-border-color</span></td><td>Not emitted by default &mdash; set it to override just tables.</td></tr>
-            <tr><td><span class="css-ref">--jf-table-stripe-bg-color</span> / <span class="css-ref">-hover-background</span> / <span class="css-ref">-text-hover-color</span></td><td><span class="code-ref">neutral</span> mixes</td><td>The stripe and hover states.</td></tr>
-          </tbody>
-        </table>
+      <caption class="screen-reader-text">Tables Sass variables</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$generate-table-modifiers</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.{family}</span> colour classes for tables, rows and cells.</td></tr>
+        <tr><td><span class="variable-ref">$table-cell-padding</span></td><td><span class="code-ref">0.5em 0.8em</span></td><td>Cell padding. In <span class="code-ref">em</span>, so it tracks <span class="variable-ref">$table-font-size</span>.</td></tr>
+        <tr><td><span class="variable-ref">$table-font-size</span></td><td><span class="code-ref">token(font-size-sm)</span></td><td>&rarr; <span class="css-ref">--jf-table-font-size</span>, declared on <span class="code-ref">&lt;table&gt;</span>. Override it there for one table.</td></tr>
+        <tr><td><span class="variable-ref">$table-line-height</span></td><td><span class="code-ref">get-leading(snug)</span></td><td>Cell line height. Baked at build; not a token.</td></tr>
+        <tr><td><span class="variable-ref">$table-responsive-breakpoint</span></td><td><span class="code-ref">900px</span></td><td>Width below which <span class="css-ref">.is-responsive</span> switches to the stacked layout.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Custom properties</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Tables custom properties</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="css-ref">--jf-table-cell-background</span></td><td><span class="code-ref">transparent</span></td><td>Per-cell fill. <span class="code-ref">&lt;thead&gt;</span> / <span class="code-ref">&lt;tfoot&gt;</span>, stripes, hover and every <span class="css-ref">.{family}</span> modifier repoint this one token.</td></tr>
+        <tr><td><span class="css-ref">--jf-table-text-color</span></td><td>inherit</td><td>Per-cell text colour, paired with the fill above.</td></tr>
+        <tr><td><span class="css-ref">--jf-table-border-color</span></td><td>falls back to <span class="code-ref">--jf-border-color</span></td><td>Not emitted by default &mdash; set it to restyle table rules without moving the shared border colour.</td></tr>
+        <tr><td><span class="css-ref">--jf-table-stripe-bg-color</span></td><td>a neutral mix</td><td>Fill of alternate rows under <span class="css-ref">.is-striped</span>.</td></tr>
+        <tr><td><span class="css-ref">--jf-table-hover-background</span></td><td><span class="code-ref">neutral / muted</span></td><td>Row fill under the pointer with <span class="css-ref">.is-hoverable</span>.</td></tr>
+        <tr><td><span class="css-ref">--jf-table-text-hover-color</span></td><td><span class="code-ref">--jf-color-on-neutral-muted</span></td><td>Row text colour on hover, so the pair stays readable as the fill changes.</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 </section>

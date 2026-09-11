@@ -21,7 +21,7 @@
       <tr>
         <td><span class="variable-ref">$root-size</span></td>
         <td>16px</td>
-        <td>The base size that <span class="variable-ref">$sizing-system</span> and <span class="variable-ref">$type-scale</span> are calculated from. You probably don't want to change this.</td>
+        <td>The base size that <span class="variable-ref">$sizing-system</span> and <span class="variable-ref">$type-scale</span> are calculated from. <span class="bold">Fixed &mdash; no <span class="code-ref">!default</span>, so it can't be overridden.</span> To rescale everything, override <span class="code-ref">--jf-root-font-size</span> at runtime instead.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$sizing-system</span></td>
@@ -39,9 +39,19 @@
         <td>Emitted as <span class="code-ref">--jf-scroll-offset</span> and applied via <code class="code-ref">scroll-padding</code> on <span class="css-ref">&lt;html&gt;</span>. Set it to a sticky header's height so <code class="code-ref">#fragment</code> landings clear it &mdash; see <a href="./getting-started.html#sticky-headers">Getting Started</a>.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$section-space</span> / <span class="variable-ref">$section-space-tight</span> / <span class="variable-ref">$section-space-loose</span></td>
-        <td><span class="code-ref">fluid(48px, 112px)</span> / <span class="code-ref">token(space-lg)</span> / <span class="code-ref">fluid(80px, 160px)</span></td>
-        <td>Vertical space for the <a href="./grid.html">.section</a> band, as <span class="code-ref">--jf-section-space</span> (and the <span class="css-ref">.is-tight</span> / <span class="css-ref">.is-loose</span> values).</td>
+        <td><span class="variable-ref">$section-space</span></td>
+        <td><span class="code-ref">fluid(32px, 96px)</span></td>
+        <td>Block padding on a <a href="./grid.html#sections">.section</a> band, emitted as <span class="code-ref">--jf-section-space</span>.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$section-space-tight</span></td>
+        <td><span class="code-ref">fluid(32px, 48px)</span></td>
+        <td>What <span class="css-ref">.section.is-tight</span> repoints <span class="code-ref">--jf-section-space</span> to.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$section-space-loose</span></td>
+        <td><span class="code-ref">fluid(48px, 128px)</span></td>
+        <td>What <span class="css-ref">.section.is-loose</span> repoints it to.</td>
       </tr>
     </tbody>
   </table>
@@ -147,6 +157,14 @@
       <tr><td><span class="code-ref">--jf-shadow-xl</span></td><td><span class="code-ref">(0 20px 48px, 0.18)</span></td><td>modal</td></tr>
     </tbody>
   </table>
+  <table class="is-responsive has-border">
+    <caption class="screen-reader-text">Elevation settings</caption>
+    <thead><tr><th scope="col">Variable</th><th scope="col">Default</th><th scope="col">Description</th></tr></thead>
+    <tbody>
+      <tr><td><span class="variable-ref">$shadow-scale</span></td><td><span class="italic">(SCSS map)</span></td><td>The steps above, as <span class="code-ref">(geometry, alpha)</span> tuples &mdash; or a list of tuples for a stacked shadow. Merge to retune a step or add one.</td></tr>
+      <tr><td><span class="variable-ref">$shadow-color</span></td><td><span class="code-ref">#0b1220</span></td><td>The hue every step mixes toward transparent, emitted as <span class="code-ref">--jf-shadow-color</span>. Override the variable at build or the custom property at runtime. Dark mode swaps it for <a href="#dark-mode"><span class="variable-ref">$dark-shadow-color</span></a>.</td></tr>
+    </tbody>
+  </table>
 
   <h2 id="motion" class="h5">Motion</h2>
   <p>Durations are custom properties <span class="bold">because</span> <span class="code-ref">prefers-reduced-motion</span> has to zero them and that can't be done in Sass. Everything animated resolves through <span class="code-ref">--jf-transition</span> (or a <span class="code-ref">--jf-duration-*</span> step), so the reduced-motion media query switches the whole framework's motion off in one place. The <a href="./mixins.html">motion()</a> mixin emits <span class="code-ref">&lt;prop&gt; var(--jf-transition)</span>. Reference steps with <a href="./mixins.html">get-duration()</a> / <a href="./mixins.html">get-ease()</a>. Durations come from <span class="variable-ref">$duration-scale</span>, curves from <span class="variable-ref">$ease-scale</span> (<span class="code-ref">in-out</span> is the default) &mdash; retune or add steps by <a href="./design-tokens.html">merging those maps</a>. For a one-off, redefine <span class="code-ref">--jf-transition</span> (or its parts) on the element or a scope; it cascades.</p>
@@ -160,10 +178,9 @@
       <tr><td><span class="code-ref">--jf-duration-base</span></td><td>0.2s</td></tr>
       <tr><td><span class="code-ref">--jf-duration-slow</span></td><td>0.35s</td></tr>
       <tr><td><span class="code-ref">--jf-duration-slower</span></td><td>0.5s</td></tr>
-      <tr><td><span class="code-ref">--jf-ease-in-out</span> &mdash; the default curve</td><td><span class="code-ref">ease</span></td><td>&mdash;</td></tr>
-      <tr><td><span class="code-ref">--jf-ease-in</span></td><td><span class="code-ref">cubic-bezier(0.4, 0, 1, 1)</span></td><td>&mdash;</td></tr>
+            <tr><td><span class="code-ref">--jf-ease-in</span></td><td><span class="code-ref">cubic-bezier(0.4, 0, 1, 1)</span></td><td>&mdash;</td></tr>
       <tr><td><span class="code-ref">--jf-ease-out</span></td><td><span class="code-ref">cubic-bezier(0, 0, 0.2, 1)</span></td><td>&mdash;</td></tr>
-      <tr><td><span class="code-ref">--jf-ease-in-out</span></td><td><span class="code-ref">cubic-bezier(0.4, 0, 0.2, 1)</span></td><td>&mdash;</td></tr>
+      <tr><td><span class="code-ref">--jf-ease-in-out</span></td><td><span class="code-ref">cubic-bezier(0.4, 0, 0.2, 1)</span></td><td>The default curve &mdash; what <span class="code-ref">--jf-transition</span> and <span class="code-ref">get-ease()</span> use if you don't name one.</td></tr>
       <tr><td><span class="code-ref">--jf-ease-spring</span></td><td><span class="code-ref">cubic-bezier(0.35, 1.6, 0.6, 1)</span></td><td>&mdash;</td></tr>
       <tr><td><span class="code-ref">--jf-transition</span></td><td><span class="code-ref">var(--jf-duration-base) var(--jf-ease-in-out)</span></td><td>0.01ms</td></tr>
     </tbody>
@@ -182,7 +199,7 @@
       <tr>
         <td><span class="variable-ref">$type-scale</span></td>
         <td><span class="italic">(SCSS map)</span></td>
-        <td>The type scale, in <span class="code-ref">rem</span>, emitted as <span class="code-ref">--jf-font-size-*</span>. <span class="code-ref">xs</span> / <span class="code-ref">sm</span> / <span class="code-ref">base</span> are fixed; <span class="code-ref">md</span>&ndash;<span class="code-ref">6xl</span> are build-time <span class="code-ref">clamp()</span> values that slide from the previous step's size up to their own, between <span class="variable-ref">$fluid-min-vw</span> and <span class="variable-ref">$fluid-max-vw</span>. Extend or override entries via the map.</td>
+        <td>The type scale, in <span class="code-ref">rem</span>, emitted as <span class="code-ref">--jf-font-size-*</span>. <span class="code-ref">xs</span> / <span class="code-ref">sm</span> / <span class="code-ref">base</span> are fixed; <span class="code-ref">md</span>&ndash;<span class="code-ref">6xl</span> are build-time <span class="code-ref">clamp()</span> values that slide from the previous step's size up to their own, between <span class="variable-ref">$fluid-min-vw</span> and <span class="variable-ref">$fluid-max-vw</span>. Extend or override entries via the map. <span class="bold">All eleven steps and their values are tabled on <a href="./typography.html#scale">Typography</a>.</span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$heading-scale</span></td>
@@ -195,9 +212,14 @@
         <td>The line-height (a <a href="#leading-scale"><span class="variable-ref">$leading-scale</span></a> key) paired with each font-size step &mdash; bigger text, tighter leading. The <a href="./mixins.html"><span class="code-ref">type()</span></a> mixin reads it, so setting a heading size pulls the matching line-height automatically.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$fluid-min-vw</span> / <span class="variable-ref">$fluid-max-vw</span></td>
-        <td><span class="code-ref">320px</span> / <span class="code-ref">1240px</span></td>
-        <td>The viewport range the fluid sizes interpolate across (independent of the layout breakpoints). Below the min every fluid size sits at its floor; above the max, at its ceiling.</td>
+        <td><span class="variable-ref">$fluid-min-vw</span></td>
+        <td><span class="code-ref">320px</span></td>
+        <td>Viewport width below which every fluid size sits at its floor. Independent of the layout <a href="#breakpoints">breakpoints</a>.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$fluid-max-vw</span></td>
+        <td><span class="code-ref">1240px</span></td>
+        <td>Viewport width above which every fluid size sits at its ceiling.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$measure</span></td>
@@ -226,9 +248,9 @@
         <td>Primary font stack.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$root-secondary</span></td>
-        <td><span class="variable-ref">var(--jf-font-primary)</span></td>
-        <td>Secondary font stack.</td>
+        <td><span class="variable-ref">$font-secondary</span></td>
+        <td><span class="code-ref">token(font-primary)</span></td>
+        <td>Secondary font stack &mdash; headings by default.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$font-monospace</span></td>
@@ -281,12 +303,12 @@
       <tr>
         <td><span class="variable-ref">$color-white</span></td>
         <td>#ffffff</td>
-        <td>Pure white, used for various SCSS functions. Shouldn't be changed.</td>
+        <td>Pure white, emitted as <span class="code-ref">--jf-color-white</span> and used by several SCSS functions (and the range-slider thumb border). Shouldn't be changed.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$color-black</span></td>
         <td>#000000</td>
-        <td>Pure black, used for various SCSS functions. Shouldn't be changed.</td>
+        <td>Pure black, emitted as <span class="code-ref">--jf-color-black</span> and used by several SCSS functions (and the <a href="./modals.html#overriding">modal backdrop</a>). Shouldn't be changed.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$body-background-color</span></td>
@@ -296,7 +318,7 @@
       <tr>
         <td><span class="variable-ref">$soft-background-color</span></td>
         <td><span class="code-ref">$color-white</span></td>
-        <td>The <span class="css-ref">.bg-soft</span> fill in light mode &mdash; one step of elevation off the canvas, not emphasised. White by default (a gentle lift against the warm off-white body). Its dark-mode counterpart is <a href="#dark-mode"><span class="variable-ref">$dark-soft-background-color</span></a>. Consumed by <span class="css-ref">.bg-soft</span>, a plain <span class="css-ref">.modal</span>, and the <span class="css-ref">.soft</span> component modifiers (<span class="css-ref">.button.soft</span>, <span class="css-ref">.chip.soft</span>, <span class="css-ref">.progress.soft</span>).<br><br><span class="bold">Output as <span class="code-ref">--jf-color-bg-soft</span>, with paired <span class="code-ref">--jf-color-text-soft</span> / <span class="code-ref">--jf-color-headings-soft</span>; <span class="code-ref">jf-dark-tokens</span> swaps all three to the opposite canvas. Override at runtime in <span class="code-ref">:root { &hellip; }</span>. The reverse-of-page surface uses the matching <span class="code-ref">--jf-color-bg-inverse</span> / <span class="code-ref">-text-inverse</span> / <span class="code-ref">-headings-inverse</span> set (built from <span class="variable-ref">$dark-body-background-color</span> / <span class="variable-ref">$body-background-color</span>, no separate setting).</span></td>
+        <td>The <span class="css-ref">.bg-soft</span> fill in light mode &mdash; one step of elevation off the canvas, not emphasised. White by default (a gentle lift against the warm off-white body). Its dark-mode counterpart is <a href="#dark-mode"><span class="variable-ref">$dark-soft-background-color</span></a>. Consumed by <span class="css-ref">.bg-soft</span>, a plain <span class="css-ref">.modal</span>, and the <span class="css-ref">.soft</span> component modifiers (<span class="css-ref">.button.soft</span>, <span class="css-ref">.chip.soft</span>, <span class="css-ref">.progress.soft</span>).<br><br><span class="bold">Output as <span class="code-ref">--jf-color-bg-soft</span>, with paired <span class="code-ref">--jf-color-text-soft</span> / <span class="code-ref">--jf-color-headings-soft</span>; <span class="code-ref">jf-dark-tokens</span> swaps all three to the opposite canvas. Override at runtime in <span class="code-ref">:root { &hellip; }</span>. The reverse-of-page surface (<span class="css-ref">.bg-inverse</span>) uses a matching set of three: <span class="code-ref">--jf-color-bg-inverse</span>, <span class="code-ref">--jf-color-text-inverse</span> and <span class="code-ref">--jf-color-headings-inverse</span> (built from <span class="variable-ref">$dark-body-background-color</span> / <span class="variable-ref">$body-background-color</span>, no separate setting).</span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$background-colors</span></td>
@@ -325,12 +347,17 @@
       <tr>
         <td><span class="variable-ref">$color-role-shades</span></td>
         <td><span class="code-ref">(subtle: 50, muted: 300, emphasis: 700, strong: 900)</span></td>
-        <td>The semantic step-role ladder. Every palette family emits four named aliases &mdash; <span class="code-ref">--jf-color-{family}-subtle</span>, <span class="code-ref">-muted</span>, <span class="code-ref">-emphasis</span>, <span class="code-ref">-strong</span> &mdash; each pointing at the numbered shade set here, plus a bare <span class="code-ref">--jf-color-{family}</span> for the 500. Retune a role framework-wide by changing its entry (merge-friendly map, same shape as <a href="#dark-mode"><span class="variable-ref">$dark-color-role-shades</span></a>); reference in SCSS with <span class="code-ref">get-color-role($family, $role)</span> for the runtime alias or <span class="code-ref">role-shade($role)</span> for the build-time number. Roles: <span class="italic">subtle</span> = faint tinted backgrounds, <span class="italic">muted</span> = borders / low-emphasis fills / visited links, <span class="italic">emphasis</span> = hover &amp; active / heading tone, <span class="italic">strong</span> = text on a tint / strongest headings.<br><br>Each role also gets a matching <span class="code-ref">--jf-color-on-{family}-{role}</span> companion (plus bare <span class="code-ref">--jf-color-on-{family}</span> for the 500) &mdash; the WCAG-picked text colour for that role's surface, tracking the same shade so the pair can't drift. Prefer these over a numbered <span class="code-ref">--jf-color-on-{family}-50</span> when pairing text with a role surface.</td>
+        <td><span class="bold">Build-time only.</span> A role alias resolves to <span class="code-ref">var(--jf-color-{family}-{shade})</span>, and CSS can't build a property <em>name</em> out of another custom property &mdash; so there's no runtime switch that moves a role across every family at once. At runtime you repoint the alias itself, per family: <span class="code-ref">:root { --jf-color-primary-emphasis: var(--jf-color-primary-600) }</span>. <br><br>The semantic step-role ladder. Every palette family emits four named aliases &mdash; <span class="code-ref">--jf-color-{family}-subtle</span>, <span class="code-ref">-muted</span>, <span class="code-ref">-emphasis</span>, <span class="code-ref">-strong</span> &mdash; each pointing at the numbered shade set here, plus a bare <span class="code-ref">--jf-color-{family}</span> for the 500. Retune a role framework-wide by changing its entry &mdash; merge-friendly, so <span class="code-ref">$color-role-shades: (emphasis: 600)</span> moves that one role and leaves the other three alone. <span class="bold">The four role names are fixed</span>: a key that isn't one of them stops the build rather than emitting aliases nothing reads. Same shape as <a href="#dark-mode"><span class="variable-ref">$dark-color-role-shades</span></a>; reference in SCSS with <span class="code-ref">get-color-role($family, $role)</span> for the runtime alias or <span class="code-ref">role-shade($role)</span> for the build-time number. Roles: <span class="italic">subtle</span> = faint tinted backgrounds, <span class="italic">muted</span> = borders / low-emphasis fills / visited links, <span class="italic">emphasis</span> = hover &amp; active / heading tone, <span class="italic">strong</span> = text on a tint / strongest headings.<br><br>Each role also gets a matching <span class="code-ref">--jf-color-on-{family}-{role}</span> companion (plus bare <span class="code-ref">--jf-color-on-{family}</span> for the 500) &mdash; the WCAG-picked text colour for that role's surface, tracking the same shade so the pair can't drift. Prefer these over a numbered <span class="code-ref">--jf-color-on-{family}-50</span> when pairing text with a role surface.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$border-color</span></td>
         <td><span class="code-ref">get-color-role(neutral, muted)</span></td>
         <td>The shared hairline colour. Card, table and accordion borders fall back to it &mdash; <span class="code-ref">--jf-card-border-color</span> / <span class="code-ref">--jf-table-border-color</span> / <span class="code-ref">--jf-accordion-border-color</span> aren't emitted; set one to override a single component, or change this to move all three. <span class="italic">Themed</span> table / accordion modifiers still use their own family colour.<br><br><span class="bold">Output as <span class="code-ref">--jf-border-color</span>; reference with <span class="code-ref">token(border-color)</span>, or <span class="code-ref">token-or(card-border-color, border-color)</span> for the component-with-fallback form. Because it holds a <span class="code-ref">var()</span> reference it can't be passed to Sass colour maths &mdash; use <span class="code-ref">get-color-role()</span> / <span class="code-ref">get-color-raw()</span> for that.</span></td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$mark-background-color</span></td>
+        <td><span class="code-ref">#ffff9d</span></td>
+        <td>The <span class="code-ref">&lt;mark&gt;</span> highlight fill. Its text colour isn't a setting &mdash; <span class="code-ref">choose-contrast-color()</span> picks it at build time and the pair is run through the <a href="#accessibility">contrast linter</a>, so a custom highlight can't end up unreadable. <br><br><span class="bold">Output as <span class="code-ref">--jf-mark-background</span> / <span class="code-ref">--jf-mark-color</span>; reference with <span class="code-ref">token(mark-background)</span> / <span class="code-ref">token(mark-color)</span>. <span class="code-ref">&lt;mark&gt;</span> also re-declares <span class="code-ref">--jf-color-surface</span> / <span class="code-ref">--jf-color-text</span> from them, so it's a surface in its own right and <span class="code-ref">::selection</span> re-tints against the highlight inside it.</span></td>
       </tr>
       <tr>
         <td><span class="variable-ref">$code-background-color</span></td>
@@ -354,7 +381,7 @@
   </table>
 
   <h3 id="dark-mode" class="h6">Dark mode</h3>
-  <p>Dark mode is a class on <span class="css-ref">&lt;html&gt;</span> (<span class="css-ref">.jf-dark</span> / <span class="css-ref">.jf-light</span>), with <span class="code-ref">prefers-color-scheme</span> as the fallback. In dark, the semantic tokens and the step-role aliases are repointed; the numbered primitives and their <span class="code-ref">-contrast</span> / <span class="code-ref">-on-*</span> companions are left alone. See <a href="./theme-colors.html#dark-mode">Theme Colors &rarr; Dark mode</a>.</p>
+  <p>Dark mode is a class on <span class="css-ref">&lt;html&gt;</span> (<span class="css-ref">.jf-dark</span> / <span class="css-ref">.jf-light</span>), with <span class="code-ref">prefers-color-scheme</span> as the fallback. In dark, the semantic tokens and the step-role aliases are repointed; the numbered primitives and their <span class="code-ref">--jf-color-on-*</span> companions are left alone. See <a href="./theme-colors.html#dark-mode">Theme Colors &rarr; Dark mode</a>.</p>
   <table class="is-responsive has-border">
     <thead>
       <tr>
@@ -382,7 +409,7 @@
       <tr>
         <td><span class="variable-ref">$dark-color-role-shades</span></td>
         <td><span class="code-ref">(subtle: 800, muted: 700, emphasis: 300, strong: 200)</span></td>
-        <td>Which numbered shade each step-role alias (and its <span class="code-ref">-on-*</span> companion) points at once dark. Background-ish roles move toward the dark end of the ramp, accent-text roles toward the light end. Applied per family by <span class="code-ref">@mixin jf-dark-tokens</span>. Merge-friendly map &mdash; override any subset.</td>
+        <td>Which numbered shade each step-role alias (and its <span class="code-ref">-on-*</span> companion) points at once dark. Background-ish roles move toward the dark end of the ramp, accent-text roles toward the light end. Applied per family by <span class="code-ref">@mixin jf-dark-tokens</span>. Merge-friendly and closed to new keys, exactly like <a href="#colors"><span class="variable-ref">$color-role-shades</span></a>.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$dark-link-visited-color-shade</span></td>
@@ -447,7 +474,7 @@
       <tr><th scope="row"><a href="./buttons.html#overriding">Buttons</a></th><td><span class="variable-ref">$buttons</span>, <span class="variable-ref">$button-base-color</span>, <span class="variable-ref">$button-hover-value</span>, padding / size / weight, <span class="code-ref">--jf-button-color-*</span></td></tr>
       <tr><th scope="row"><a href="./chips.html#overriding">Chips</a></th><td><span class="variable-ref">$generate-chips</span>, <span class="variable-ref">$chip-padding</span> / <span class="variable-ref">-font-size</span> / <span class="variable-ref">-border-*</span>, <span class="code-ref">--jf-chip-color-theme</span> / <span class="code-ref">-text</span></td></tr>
       <tr><th scope="row"><a href="./callouts.html#overriding">Callouts</a></th><td><span class="variable-ref">$generate-callouts</span>, <span class="variable-ref">$callout-padding</span> / <span class="variable-ref">-border-*</span>, <span class="code-ref">--jf-callout-bg-color</span> / <span class="code-ref">-color</span> / <span class="code-ref">-border-color</span> / <span class="code-ref">-heading-color</span> / <span class="code-ref">-link-color</span></td></tr>
-      <tr><th scope="row"><a href="./cards.html#overriding">Cards</a></th><td><span class="variable-ref">$card-padding</span>, <span class="variable-ref">$card-border-radius</span> / <span class="variable-ref">-width</span> / <span class="variable-ref">-style</span>, <span class="code-ref">--jf-card-*</span> (on <span class="css-ref">.card</span>)</td></tr>
+      <tr><th scope="row"><a href="./cards.html#overriding">Cards</a></th><td><span class="variable-ref">$card-padding</span>, <span class="code-ref">--jf-card-padding-x</span> / <span class="code-ref">-y</span>, <span class="variable-ref">$card-border-radius</span> / <span class="variable-ref">-width</span> / <span class="variable-ref">-style</span>, <span class="code-ref">--jf-card-*</span> (on <span class="css-ref">.card</span>)</td></tr>
       <tr><th scope="row"><a href="./accordions.html#overriding">Accordions</a></th><td><span class="variable-ref">$generate-accordion-modifiers</span>, <span class="variable-ref">$accordion-padding-*</span> / <span class="variable-ref">-heading-*</span> / <span class="variable-ref">-border-radius</span>, <span class="code-ref">--jf-accordion-heading-*</span></td></tr>
       <tr><th scope="row"><a href="./modals.html#overriding">Modals</a></th><td><span class="variable-ref">$modal-max-width</span> / <span class="variable-ref">-padding</span> / <span class="variable-ref">-outer-margin</span> / <span class="variable-ref">-border-*</span> / <span class="variable-ref">-backdrop-*</span>, <span class="code-ref">--jf-modal-max-width</span> / <span class="code-ref">-padding</span> (on <span class="css-ref">dialog.modal</span>)</td></tr>
       <tr><th scope="row"><a href="./forms.html#overriding">Forms</a></th><td><span class="variable-ref">$form-items</span>, <span class="variable-ref">$form-accent-color</span>, border primitives (<span class="variable-ref">$border-width</span> / <span class="variable-ref">-style</span> / <span class="variable-ref">-color</span> / <span class="variable-ref">-radius</span>), focus / label / select / range, <span class="code-ref">--jf-form-input-*</span> (global)</td></tr>
@@ -471,7 +498,7 @@
       <tr>
         <td><span class="variable-ref">$token-prefix</span></td>
         <td>jf</td>
-        <td>Namespace applied to every CSS custom property Jellyfish emits, via the <span class="code-ref">token-name()</span> helper &mdash; so <span class="variable-ref">$card-padding</span> is output as <span class="code-ref">--jf-card-padding</span>, the palette as <span class="code-ref">--jf-color-primary-500</span>, and so on. Reference tokens from SCSS with <span class="code-ref">token(card-padding)</span> (expands to <span class="code-ref">var(--jf-card-padding)</span>); from plain CSS use the full <span class="code-ref">--jf-*</span> name. Set to <span class="code-ref">""</span> (or <span class="code-ref">null</span>) for un-prefixed <span class="code-ref">--card-padding</span> names.<br><br><span class="bold">This one must be overridden <span class="italic">before</span> your first <span class="code-ref">@import "jellyfish-ui/&hellip;"</span>, not in your own <span class="code-ref">abstracts/__all</span>.</span> It's defined in <span class="code-ref">abstracts/01-tools/_functions.scss</span> and consumed as the settings layer loads (the same as the <span class="variable-ref">$colors</span> palette map), so a later override lands too late.</td>
+        <td>Namespace applied to every CSS custom property Jellyfish emits, via the <span class="code-ref">token-name()</span> helper &mdash; so <span class="variable-ref">$border-color</span> is output as <span class="code-ref">--jf-border-color</span>, the palette as <span class="code-ref">--jf-color-primary-500</span>, and so on. Reference tokens from SCSS with <span class="code-ref">token(border-color)</span> (expands to <span class="code-ref">var(--jf-border-color)</span>); from plain CSS use the full <span class="code-ref">--jf-*</span> name. Set to <span class="code-ref">""</span> (or <span class="code-ref">null</span>) for un-prefixed <span class="code-ref">--border-color</span> names.<br><br><span class="bold">This one must be overridden <span class="italic">before</span> your first <span class="code-ref">@import "jellyfish-ui/&hellip;"</span>, not in your own <span class="code-ref">abstracts/__all</span>.</span> It's defined in <span class="code-ref">abstracts/01-tools/_functions.scss</span> and consumed as the settings layer loads (the same as the <span class="variable-ref">$colors</span> palette map), so a later override lands too late.</td>
       </tr>
     </tbody>
   </table>

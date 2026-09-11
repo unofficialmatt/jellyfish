@@ -370,25 +370,86 @@
   <h2 class="h3" id="overriding">Overriding</h2>
   <ul>
     <li><strong>Runtime</strong> &mdash; <span class="code-ref">--jf-form-input-background</span>, <span class="code-ref">--jf-form-input-border-color</span> / <span class="code-ref">-border-width</span> / <span class="code-ref">-border-style</span> / <span class="code-ref">-border-radius</span>, <span class="code-ref">--jf-form-input-placeholder-color</span>, <span class="code-ref">--jf-form-select-bg-img</span>. These stay on <span class="code-ref">:root</span> (a bare <span class="code-ref">&lt;input&gt;</span> outside a <span class="code-ref">&lt;form&gt;</span> still needs them).</li>
-    <li><strong>Build</strong> &mdash; the Sass variables below. <span class="variable-ref">$form-items</span> is the selector list every rule targets.</li>
+    <li><strong>Build</strong> &mdash; the Sass variables below.</li>
   </ul>
   <h3 class="h4">Variables</h3>
   <div class="variables-reference">
+        <h4 class="h6">Controls &amp; typography</h4>
     <table class="is-responsive has-border">
-          <caption class="screen-reader-text">Form Sass variables</caption>
-          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
-          <tbody>
-            <tr><td><span class="variable-ref">$form-items</span></td><td>the text-ish input types + <span class="code-ref">select</span> + <span class="code-ref">textarea</span></td><td>Selector stack every form rule uses.</td></tr>
-            <tr><td><span class="variable-ref">$form-accent-color</span></td><td><span class="code-ref">get-color(primary)</span></td><td><span class="code-ref">accent-color</span> for checkboxes / radios / range / progress.</td></tr>
-            <tr><td><span class="variable-ref">$input-background</span> / <span class="variable-ref">$placeholder-color</span></td><td><span class="code-ref">color-bg</span> / <span class="code-ref">color-text-subtle</span></td><td>&rarr; <span class="code-ref">--jf-form-input-background</span> / <span class="code-ref">-placeholder-color</span>.</td></tr>
-            <tr><td><span class="variable-ref">$border-width</span> / <span class="variable-ref">-style</span> / <span class="variable-ref">-color</span> / <span class="variable-ref">-radius</span></td><td><span class="code-ref">1px</span> / <span class="code-ref">solid</span> / <span class="code-ref">neutral muted</span> / <span class="code-ref">radius-sm</span></td><td>Shared border primitives (used well beyond forms).</td></tr>
-            <tr><td><span class="variable-ref">$form-focus-border-color</span> / <span class="variable-ref">$form-focus-shadow-inner</span> / <span class="variable-ref">-outer</span></td><td><span class="code-ref">neutral</span> + bevel</td><td>The focus treatment on inputs.</td></tr>
-            <tr><td><span class="variable-ref">$form-border-hover</span></td><td><span class="code-ref">get-color(neutral)</span></td><td>Hover border.</td></tr>
-            <tr><td><span class="variable-ref">$form-label-size</span> / <span class="variable-ref">-weight</span></td><td><span class="code-ref">font-size-base</span> / <span class="code-ref">semibold</span></td><td>Labels.</td></tr>
-            <tr><td><span class="variable-ref">$select-chevron-color</span> / <span class="variable-ref">-icon-svg</span></td><td>neutral 500</td><td>The <span class="code-ref">&lt;select&gt;</span> arrow (baked into a data-URI at build; use <span class="code-ref">select-bg()</span> to recolour per scope).</td></tr>
-            <tr><td><span class="variable-ref">$range-thumb-*</span> / <span class="variable-ref">$range-track-*</span></td><td>neutral roles</td><td>Range slider thumb and track.</td></tr>
-          </tbody>
-        </table>
+      <caption class="screen-reader-text">Form variables &mdash; Controls &amp; typography</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$form-items</span></td><td>the text-ish input types + <span class="code-ref">select</span> + <span class="code-ref">textarea</span></td><td>The selector stack every form rule targets. <span class="bold">Fixed</span> &mdash; no <span class="code-ref">!default</span>, so it can't be overridden; write your own rule for anything outside the stack.</td></tr>
+        <tr><td><span class="variable-ref">$form-accent-color</span></td><td><span class="code-ref">get-color(primary)</span></td><td><span class="code-ref">accent-color</span> for checkboxes, radios, range and progress &mdash; the browser draws the control, this tints it.</td></tr>
+        <tr><td><span class="variable-ref">$form-font</span></td><td><span class="code-ref">token(font-primary)</span></td><td><span class="code-ref">font-family</span> on every control in the stack.</td></tr>
+        <tr><td><span class="variable-ref">$input-background</span></td><td><span class="code-ref">token(color-bg)</span></td><td>&rarr; <span class="css-ref">--jf-form-input-background</span>.</td></tr>
+        <tr><td><span class="variable-ref">$placeholder-color</span></td><td><span class="code-ref">token(color-text-subtle)</span></td><td>&rarr; <span class="css-ref">--jf-form-input-placeholder-color</span>.</td></tr>
+        <tr><td><span class="variable-ref">$form-label-size</span></td><td><span class="code-ref">token(font-size-base)</span></td><td><span class="code-ref">&lt;label&gt;</span> text size.</td></tr>
+        <tr><td><span class="variable-ref">$form-label-weight</span></td><td><span class="code-ref">get-weight(semibold)</span></td><td><span class="code-ref">&lt;label&gt;</span> text weight.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Borders &amp; focus</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Form variables &mdash; Borders &amp; focus</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$border-width</span></td><td><span class="code-ref">1px</span></td><td>Shared border primitive &mdash; used well beyond forms. See <a href="./variables.html#border-width">Variables</a>.</td></tr>
+        <tr><td><span class="variable-ref">$border-style</span></td><td><span class="code-ref">solid</span></td><td>Shared border primitive.</td></tr>
+        <tr><td><span class="variable-ref">$border-color</span></td><td><span class="code-ref">get-color-role(neutral, muted)</span></td><td>Shared border primitive.</td></tr>
+        <tr><td><span class="variable-ref">$border-radius</span></td><td><span class="code-ref">token(radius-sm)</span></td><td>Shared border primitive &mdash; the control corner radius.</td></tr>
+        <tr><td><span class="variable-ref">$form-border-hover</span></td><td><span class="code-ref">get-color(neutral)</span></td><td>Border colour on hover.</td></tr>
+        <tr><td><span class="variable-ref">$form-focus-border-color</span></td><td><span class="code-ref">get-color(neutral)</span></td><td>Border colour while focused.</td></tr>
+        <tr><td><span class="variable-ref">$form-focus-shadow-inner</span></td><td>an inset bevel</td><td>Inner <span class="code-ref">box-shadow</span> on focus.</td></tr>
+        <tr><td><span class="variable-ref">$form-focus-shadow-outer</span></td><td>an inset bevel</td><td>Outer <span class="code-ref">box-shadow</span> on focus. The two compose the pressed-in focus look; the keyboard focus ring is separate (<a href="./accessibility.html"><span class="code-ref">%accessible-focus</span></a>).</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Select chevron</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Form variables &mdash; Select chevron</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$select-chevron-color</span></td><td><span class="code-ref">get-color-raw(neutral, 500)</span></td><td>Colour baked into the <span class="code-ref">&lt;select&gt;</span> chevron data-URI. A literal, not a token &mdash; custom properties don't resolve inside an embedded SVG. Recolour per scope with <a href="#recolouring-the-select-chevron"><span class="code-ref">select-bg()</span></a>.</td></tr>
+        <tr><td><span class="variable-ref">$select-chevron-icon-svg</span></td><td>a chevron</td><td>The chevron SVG itself. Keep the <span class="code-ref">{{color}}</span> placeholder in any replacement so <span class="code-ref">select-bg()</span> can still substitute a colour.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Range slider</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Form variables &mdash; Range slider</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$range-thumb-color</span></td><td><span class="code-ref">get-color-role(neutral, muted)</span></td><td>Thumb fill.</td></tr>
+        <tr><td><span class="variable-ref">$range-thumb-height</span></td><td><span class="code-ref">get-size(1.5)</span> (24px)</td><td>Thumb height. <span class="variable-ref">$range-thumb-width</span>, <span class="variable-ref">-radius</span> and <span class="variable-ref">$range-track-height</span> are all derived from it, so this one value resizes the whole control.</td></tr>
+        <tr><td><span class="variable-ref">$range-thumb-width</span></td><td><span class="variable-ref">$range-thumb-height</span></td><td>Thumb width &mdash; square by default.</td></tr>
+        <tr><td><span class="variable-ref">$range-thumb-radius</span></td><td><span class="code-ref">calc($range-thumb-height * 0.5)</span></td><td>Thumb corner radius &mdash; half its height, so a circle.</td></tr>
+        <tr><td><span class="variable-ref">$range-thumb-border-width</span></td><td><span class="code-ref">2px</span></td><td>Thumb border width.</td></tr>
+        <tr><td><span class="variable-ref">$range-thumb-border-color</span></td><td><span class="code-ref">token(color-white)</span></td><td>Thumb border colour &mdash; the ring that lifts it off the track.</td></tr>
+        <tr><td><span class="variable-ref">$range-thumb-shadow-size</span></td><td><span class="code-ref">0px 1px</span></td><td>Thumb shadow offset.</td></tr>
+        <tr><td><span class="variable-ref">$range-thumb-shadow-blur</span></td><td><span class="code-ref">6px</span></td><td>Thumb shadow blur.</td></tr>
+        <tr><td><span class="variable-ref">$range-thumb-shadow-color</span></td><td><span class="code-ref">rgba(200, 200, 200, 0.8)</span></td><td>Thumb shadow colour.</td></tr>
+        <tr><td><span class="variable-ref">$range-track-color</span></td><td><span class="code-ref">get-color-role(neutral, subtle)</span></td><td>Track fill.</td></tr>
+        <tr><td><span class="variable-ref">$range-track-color-focus</span></td><td><span class="code-ref">get-color-role(neutral, subtle)</span></td><td>Track fill while the control has focus &mdash; same as the resting colour by default (the focus ring is on the thumb).</td></tr>
+        <tr><td><span class="variable-ref">$range-track-height</span></td><td><span class="code-ref">calc($range-thumb-height * 0.5)</span> (12px)</td><td>Track thickness.</td></tr>
+        <tr><td><span class="variable-ref">$range-track-radius</span></td><td><span class="variable-ref">$border-radius</span> (<span class="code-ref">radius-sm</span>)</td><td>Track corner radius.</td></tr>
+        <tr><td><span class="variable-ref">$range-track-border-width</span></td><td><span class="variable-ref">$border-width</span> (1px)</td><td>Track border width.</td></tr>
+        <tr><td><span class="variable-ref">$range-track-border-color</span></td><td><span class="variable-ref">$border-color</span></td><td>Track border colour.</td></tr>
+        <tr><td><span class="variable-ref">$range-track-shadow-size</span></td><td><span class="code-ref">0px 0px</span></td><td>Track shadow offset.</td></tr>
+        <tr><td><span class="variable-ref">$range-track-shadow-blur</span></td><td><span class="code-ref">0px</span></td><td>Track shadow blur.</td></tr>
+        <tr><td><span class="variable-ref">$range-track-shadow-color</span></td><td><span class="code-ref">transparent</span></td><td>Track shadow colour &mdash; off by default.</td></tr>
+      </tbody>
+    </table>    <h4 class="h6">Custom properties</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Form variables &mdash; Custom properties</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="css-ref">--jf-form-input-background</span></td><td><span class="variable-ref">$input-background</span></td><td>Control fill.</td></tr>
+        <tr><td><span class="css-ref">--jf-form-input-border-width</span></td><td><span class="variable-ref">$border-width</span></td><td>Control border width.</td></tr>
+        <tr><td><span class="css-ref">--jf-form-input-border-style</span></td><td><span class="variable-ref">$border-style</span></td><td>Control border style.</td></tr>
+        <tr><td><span class="css-ref">--jf-form-input-border-color</span></td><td><span class="variable-ref">$border-color</span></td><td>Control border colour.</td></tr>
+        <tr><td><span class="css-ref">--jf-form-input-border-radius</span></td><td><span class="variable-ref">$border-radius</span></td><td>Control corner radius.</td></tr>
+        <tr><td><span class="css-ref">--jf-form-input-placeholder-color</span></td><td><span class="variable-ref">$placeholder-color</span></td><td><span class="code-ref">::placeholder</span> colour.</td></tr>
+        <tr><td><span class="css-ref">--jf-form-select-bg-img</span></td><td>the chevron data-URI</td><td>Set by <span class="code-ref">select-bg()</span>. Assign it directly only if you already have an encoded <span class="code-ref">url()</span>.</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 </section>

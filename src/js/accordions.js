@@ -37,8 +37,6 @@
       }),
     );
 
-    console.log(detail);
-
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: isOpen ? "accordionOpened" : "accordionClosed",

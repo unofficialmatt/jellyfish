@@ -1,6 +1,5 @@
 // Create empty maps. This allows the maps to be defined in the project's settings file to override and add any colors as required
 $colors: () !default;
-$theme-colors: () !default;
 $background-colors: () !default;
 
 $colors: map-merge(
@@ -19,12 +18,20 @@ $color-white: #ffffff !default;
 $color-black: #000000 !default;
 $body-background-color: #faf9f6 !default;
 $soft-background-color: $color-white !default;
-$color-role-shades: (
-  subtle: 50,
-  muted: 300,
-  emphasis: 700,
-  strong: 900,
-) !default;
+
+$color-role-shades: () !default;
+$color-role-shades: check-role-map(
+  map-merge(
+    (
+      subtle: 50,
+      muted: 300,
+      emphasis: 700,
+      strong: 900,
+    ),
+    $color-role-shades
+  ),
+  "$color-role-shades"
+);
 
 $link-color: primary !default; // Default family for links, output as css props --link-color-*
 
@@ -45,10 +52,17 @@ $selection-color: token(color-text) !default;
 $dark-mode-enabled: true !default;
 $dark-body-background-color: #14171c !default;
 $dark-soft-background-color: #1e222a !default;
-$dark-color-role-shades: (
-  subtle: 800,
-  muted: 700,
-  emphasis: 300,
-  strong: 200,
-) !default;
+$dark-color-role-shades: () !default;
+$dark-color-role-shades: check-role-map(
+  map-merge(
+    (
+      subtle: 800,
+      muted: 700,
+      emphasis: 300,
+      strong: 200,
+    ),
+    $dark-color-role-shades
+  ),
+  "$dark-color-role-shades"
+);
 $dark-link-visited-color-shade: 400 !default;

@@ -39,8 +39,8 @@
 <div class="section is-tight bg-base">
   <h2 class="h3">Palette preview</h2>
   <p>Each family swatch's background is the generated shade; its text colour is the pick between white, your text colour and black, with the resulting WCAG contrast ratio. The last swatch is the text colour itself, with its ratio against the framework's default page background. The label in each swatch is rendered at real <span class="css-ref">.h4</span> size &mdash; WCAG's "large text" exception (3:1 instead of 4.5:1) only applies at that scale and up, so the sample shows what a 3:1 pass actually looks like rather than leaving it to a number.</p>
-  <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-block-end: 1rem;" id="pg-swatches"></div>
-  <table class="has-border is-responsive">
+  <div class="demo-row" id="pg-swatches"></div>
+  <table class="has-border is-responsive table-auto-col">
     <caption class="screen-reader-text">Generated palette shades and their WCAG text-colour recommendation</caption>
     <thead>
       <tr><th scope="col">Role</th><th scope="col">Shade</th><th scope="col">Hex</th><th scope="col">Text colour</th><th scope="col">Contrast ratio</th></tr>
@@ -48,7 +48,7 @@
     <tbody id="pg-table"></tbody>
   </table>
   <p>What each ratio actually clears, per <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum" target="_blank" rel="noopener">WCAG 2.x's contrast-minimum criterion</a>:</p>
-  <table class="has-border">
+  <table class="has-border table-auto-col">
     <caption class="screen-reader-text">What each WCAG contrast ratio is suitable for</caption>
     <thead><tr><th scope="col">Ratio</th><th scope="col">Suitable for</th></tr></thead>
     <tbody>

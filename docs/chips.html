@@ -157,7 +157,41 @@
     <span class="chip">New</span>
     <h2>Watery beasts <span class="chip">12</span></h2>
     --></code></pre>
-  <p>A chip sits to the font's baseline and shrinks inside a heading, so it reads as part of the line: <span class="chip">New</span> &mdash; <span class="h4" style="display:inline">Watery beasts <span class="chip">12</span></span></p>
+  <p>On its own a chip is <span class="code-ref">--jf-font-size-sm</span>: <span class="chip">New</span></p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="sizing">Sizing in text</h2>
+  <p>Inside a heading a chip scales to <span class="code-ref">0.6em</span> of that heading and lifts slightly off the baseline, so it reads as part of the line rather than a box bolted on. It never drops <em>below</em> its standalone size &mdash; the rule is <span class="code-ref">max(0.6em, var(--jf-font-size-sm))</span> &mdash; so it stays legible in a small heading or in body copy, where <span class="code-ref">0.6em</span> alone would land under 10px. In a paragraph there's no lift; at near-parity size the chip sits on the baseline like any other inline element.</p>
+  <pre class="language-markup"><code><!--
+    <h1>Watery beasts <span class="chip">12</span></h1>
+    <p>Watery beasts <span class="chip">12</span></p>
+    --></code></pre>
+  <p>Every level, plus a paragraph and a standalone chip for reference. The chip tracks the heading down to <span class="code-ref">h4</span>, then flattens out &mdash; <span class="code-ref">h5</span>, <span class="code-ref">h6</span> and <span class="code-ref">&lt;p&gt;</span> all sit on the floor, at the same size as the bare chip at the bottom:</p>
+  <div class="boxed bg-soft">
+    <h1>Watery beasts <span class="chip">12</span></h1>
+    <h2>Watery beasts <span class="chip">12</span></h2>
+    <h3>Watery beasts <span class="chip">12</span></h3>
+    <h4>Watery beasts <span class="chip">12</span></h4>
+    <h5>Watery beasts <span class="chip">12</span></h5>
+    <h6>Watery beasts <span class="chip">12</span></h6>
+    <p>Watery beasts <span class="chip">12</span> &mdash; in a paragraph.</p>
+    <p class="mbe-0">Watery beasts <span class="chip">12</span> is the floor, matching a standalone <span class="chip">12</span>.</p>
+  </div>
+  <table class="is-responsive has-border">
+    <caption class="screen-reader-text">Rendered chip size by context</caption>
+    <thead><tr><th scope="col">Context</th><th scope="col">Parent size</th><th scope="col">Chip</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><span class="code-ref">h1</span></th><td>36&ndash;48px</td><td>21.6&ndash;28.8px</td></tr>
+      <tr><th scope="row"><span class="code-ref">h2</span></th><td>30&ndash;36px</td><td>18&ndash;21.6px</td></tr>
+      <tr><th scope="row"><span class="code-ref">h3</span></th><td>24&ndash;30px</td><td>14.4&ndash;18px</td></tr>
+      <tr><th scope="row"><span class="code-ref">h4</span></th><td>20&ndash;24px</td><td>14&ndash;14.4px <span class="text-muted">&mdash; floor engages</span></td></tr>
+      <tr><th scope="row"><span class="code-ref">h5</span> / <span class="code-ref">h6</span> / <span class="code-ref">p</span></th><td>16&ndash;20px</td><td>14px <span class="text-muted">&mdash; floored</span></td></tr>
+      <tr><th scope="row"><span class="code-ref">li</span> / <span class="code-ref">td</span> / standalone</th><td>&mdash;</td><td>14px <span class="text-muted">&mdash; no rule applies</span></td></tr>
+    </tbody>
+  </table>
+  <p>Only <span class="code-ref">&lt;h1&gt;</span>&ndash;<span class="code-ref">&lt;h6&gt;</span> and <span class="code-ref">&lt;p&gt;</span> are targeted. Elsewhere &mdash; a <span class="code-ref">&lt;li&gt;</span>, a table cell, a <span class="css-ref">.chip-list</span> &mdash; the chip keeps its own size, which is the figure the floor lands on anyway, so every body-text context agrees.</p>
+  <p><span class="bold">Override:</span> change <span class="variable-ref">$chip-font-size</span> (or <span class="code-ref">--jf-font-size-sm</span> at runtime) to move the floor and the standalone size together; write your own <span class="code-ref">h1 .chip { font-size: &hellip; }</span> to change the ratio.</p>
 </div>
 
 <div class="section is-tight bg-base">
@@ -201,24 +235,35 @@
 <div class="section is-tight bg-soft">
   <h2 class="h3" id="overriding">Overriding</h2>
   <ul>
-    <li><strong>One chip / a scoped rule</strong> &mdash; <span class="code-ref">--jf-chip-color-theme</span> (fill + border) and <span class="code-ref">--jf-chip-color-text</span> on <span class="css-ref">.chip</span>.</li>
+    <li><strong>One chip / a scoped rule</strong> &mdash; set the <span class="code-ref">--jf-chip-*</span> custom properties (tabled below) on <span class="css-ref">.chip</span> or a scoped selector.</li>
     <li><strong>A new colour everywhere</strong> &mdash; add a family to <a href="./theme-colors.html"><span class="variable-ref">$colors</span></a>; <span class="css-ref">.chip.{family}</span> is generated.</li>
     <li><strong>Shape / size</strong> &mdash; the Sass variables below, before import.</li>
   </ul>
 
   <h3 class="h4">Variables</h3>
   <div class="variables-reference">
+        <h4 class="h6">Sass variables</h4>
     <table class="is-responsive has-border">
-          <caption class="screen-reader-text">Chip Sass variables and custom properties</caption>
-          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
-          <tbody>
-            <tr><td><span class="variable-ref">$generate-chips</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.chip</span> CSS at all.</td></tr>
-            <tr><td><span class="variable-ref">$chip-padding</span></td><td><span class="code-ref">0.25em 0.3em</span></td><td>Inner padding (em, so it tracks the chip's font size).</td></tr>
-            <tr><td><span class="variable-ref">$chip-font-size</span> / <span class="variable-ref">-weight</span></td><td><span class="code-ref">font-size-sm</span> / <span class="code-ref">normal</span></td><td>Text.</td></tr>
-            <tr><td><span class="variable-ref">$chip-border-radius</span> / <span class="variable-ref">-width</span> / <span class="variable-ref">-style</span></td><td><span class="code-ref">radius-sm</span> / <span class="code-ref">border-width</span> / <span class="code-ref">solid</span></td><td>Border. <span class="css-ref">.chip-group</span> zeroes the inner corners.</td></tr>
-            <tr><td><span class="css-ref">--jf-chip-color-theme</span> / <span class="css-ref">-text</span></td><td><span class="code-ref">neutral / subtle</span> + its on-colour</td><td>Fill/border and text. The family / <span class="css-ref">.soft</span> / <span class="css-ref">.inverse</span> modifiers repoint these.</td></tr>
-          </tbody>
-        </table>
+      <caption class="screen-reader-text">Chips Sass variables</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$generate-chips</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.chip</span> CSS at all.</td></tr>
+        <tr><td><span class="variable-ref">$chip-padding</span></td><td><span class="code-ref">0.25em 0.3em</span></td><td>Inner padding (em, so it tracks the chip's font size).</td></tr>
+        <tr><td><span class="variable-ref">$chip-font-size</span></td><td><span class="code-ref">token(font-size-sm)</span></td><td>Chip text size &mdash; and the floor for a chip inside a heading or paragraph (see <a href="#sizing">Sizing in text</a>). Emitted as a <span class="code-ref">var()</span>, so overriding <span class="code-ref">--jf-font-size-sm</span> moves both.</td></tr>
+        <tr><td><span class="variable-ref">$chip-font-weight</span></td><td><span class="code-ref">get-weight(normal)</span></td><td>Chip text weight.</td></tr>
+        <tr><td><span class="variable-ref">$chip-border-radius</span></td><td><span class="code-ref">token(radius-sm)</span></td><td>Corner radius. <span class="css-ref">.chip-group</span> zeroes the inner corners so the group reads as one pill.</td></tr>
+        <tr><td><span class="variable-ref">$chip-border-width</span></td><td><span class="code-ref">token(border-width)</span></td><td>Border width. The border is always <span class="code-ref">solid</span>, and takes the chip's own theme colour &mdash; so on a filled chip it's invisible, and on <span class="css-ref">.outline</span> it's the whole look.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Custom properties</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Chips custom properties</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="css-ref">--jf-chip-color-theme</span></td><td><span class="code-ref">neutral / subtle</span></td><td>Fill and border colour. The family / <span class="css-ref">.soft</span> / <span class="css-ref">.inverse</span> modifiers repoint it; <span class="css-ref">.outline</span> keeps it on the border and drops the fill.</td></tr>
+        <tr><td><span class="css-ref">--jf-chip-color-text</span></td><td><span class="code-ref">--jf-color-on-neutral-subtle</span></td><td>Text colour, contrast-picked against the fill. <span class="css-ref">.outline</span> sets it to <span class="code-ref">inherit</span> so the chip takes the surrounding text colour.</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 </section>

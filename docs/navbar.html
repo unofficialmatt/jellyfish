@@ -167,7 +167,6 @@
       <tr><th scope="row"><span class="css-ref">.navbar-start</span> / <span class="css-ref">.navbar-end</span></th><td>Optional wrappers to split the menu left / right on wide screens.</td></tr>
       <tr><th scope="row"><span class="css-ref">.navbar-item</span></th><td>A vertically-centred item (link, text, button&hellip;) placed directly in the bar.</td></tr>
       <tr><th scope="row"><span class="css-ref">li.has-children</span></th><td>A list item that contains a nested <span class="code-ref">&lt;ul&gt;</span> submenu.</td></tr>
-      <tr><th scope="row"><span class="css-ref">.current-page</span></th><td>Marks the current item.</td></tr>
       <tr><th scope="row"><span class="css-ref">.hide-above-nav</span> / <span class="css-ref">.hide-below-nav</span></th><td>Show an element only in the collapsed / expanded state.</td></tr>
     </tbody>
   </table>
@@ -202,7 +201,7 @@
         <div id="navbar-menu" class="navbar-menu">
           <div class="navbar-start">
             <ul>
-              <li class="current-page"><a href="/">Home</a></li>
+              <li><a href="/" aria-current="page">Home</a></li>
               <li class="has-children"><a href="/species">Species</a>
                 <ul>
                   <li><a href="/species/box">Box jellyfish</a></li>
@@ -236,7 +235,7 @@
       <div id="nb1" class="navbar-menu">
         <div class="navbar-start">
           <ul>
-            <li class="current-page"><a href="#">Home</a></li>
+            <li><a href="#" aria-current="page">Home</a></li>
             <li class="has-children"><a href="#">Species</a>
               <ul>
                 <li><a href="#">Box jellyfish</a></li>
@@ -294,7 +293,7 @@
   <p>The bar is branded: <span class="variable-ref">$navbar-family</span> (default <span class="code-ref">primary</span>) at its <span class="code-ref">500</span> in both modes, with link and hover colours derived from that family's <span class="code-ref">--jf-color-on-*</span> companions. Submenus and the drawer sit on a neutral <a href="./theme-colors.html">soft surface</a> instead, so the whole navbar reads correctly in light and dark out of the box.</p>
   <ul>
     <li><strong>Rebrand</strong> &mdash; set <span class="variable-ref">$navbar-family</span>.</li>
-    <li><strong>Retune at runtime</strong> &mdash; the <span class="code-ref">--jf-navbar-*</span> custom properties (link / sublink colour, background and hover for each; font size / family / weight; link padding; dropdown width).</li>
+    <li><strong>Retune at runtime</strong> &mdash; the <span class="code-ref">--jf-navbar-*</span> custom properties, tabled below. They stay on <span class="code-ref">:root</span>, so set them there or on a scoped selector.</li>
     <li><strong>Breakpoint</strong> &mdash; <span class="variable-ref">$nav-expands</span>. Also update <span class="code-ref">breakPoints.navBar</span> in your JS if you change it &mdash; see the caveat below.</li>
   </ul>
   <div class="callout has-icon warning">
@@ -303,24 +302,73 @@
   </div>
   <h3 class="h4">Variables</h3>
   <div class="variables-reference">
+        <h4 class="h6">Sass variables</h4>
     <table class="is-responsive has-border">
-          <caption class="screen-reader-text">Navbar Sass variables</caption>
-          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
-          <tbody>
-            <tr><td><span class="variable-ref">$generate-navbar</span></td><td><span class="code-ref">true</span></td><td>Emit the navbar CSS.</td></tr>
-            <tr><td><span class="variable-ref">$nav-expands</span></td><td><span class="code-ref">1200px</span></td><td>Collapsed &harr; expanded breakpoint.</td></tr>
-            <tr><td><span class="variable-ref">$navbar-family</span></td><td><span class="code-ref">primary</span></td><td>Brand family for the bar.</td></tr>
-            <tr><td><span class="variable-ref">$navbar-font-size</span><br>/ <span class="variable-ref">-font-size-expanded</span></td><td><span class="code-ref">font-size-lg</span><br>/ <span class="code-ref">-base</span></td><td>Link text, collapsed / expanded.</td></tr>
-            <tr><td><span class="variable-ref">$navbar-font-family</span><br>/ <span class="variable-ref">-font-weight</span><br>/ <span class="variable-ref">-text-transform</span></td><td><span class="code-ref">font-primary</span><br>/ <span class="code-ref">bold</span><br>/ <span class="code-ref">none</span></td><td>Link typography.</td></tr>
-            <tr><td><span class="variable-ref">$navbar-link-padding-x</span><br>/ <span class="variable-ref">-y</span><br>/ <span class="variable-ref">-expanded-x</span><br>/ <span class="variable-ref">-expanded-y</span></td><td><span class="code-ref">space-xs</span><br>/ <span class="code-ref">space-2xs</span><br>/ <span class="code-ref">space-xs</span><br>/ <span class="code-ref">space-xs</span></td><td>Link padding, collapsed / expanded.</td></tr>
-            <tr><td><span class="variable-ref">$navbar-sublink-font-size</span><br>/ <span class="variable-ref">-font-size-expanded</span></td><td><span class="code-ref">font-size-md</span><br>/ <span class="code-ref">-sm</span></td><td>Submenu link text, collapsed / expanded.</td></tr>
-            <tr><td><span class="variable-ref">$navbar-sublink-font-family</span><br>/ <span class="variable-ref">-font-weight</span><br>/ <span class="variable-ref">-font-weight-hover</span><br>/ <span class="variable-ref">-text-transform</span></td><td><span class="code-ref">font-primary</span><br>/ <span class="code-ref">$navbar-font-weight</span><br>/ <span class="code-ref">$navbar-link-hover-weight</span><br>/ <span class="code-ref">$navbar-text-transform</span></td><td>Submenu link typography; weight / transform default to the parent link's.</td></tr>
-            <tr><td><span class="variable-ref">$navbar-sublink-bg-color</span><br>/ <span class="variable-ref">-hover-bg-color</span></td><td><span class="code-ref">color-bg-soft</span><br>/ <span class="code-ref">neutral / muted</span></td><td>Submenu panel background, default / hover.</td></tr>
-            <tr><td><span class="variable-ref">$navbar-dropdown-width</span></td><td><span class="code-ref">get-size(16)</span></td><td>Wide-screen submenu panel width.</td></tr>
-            <tr><td><span class="variable-ref">$navbar-offcanvas-width</span><br>/ <span class="variable-ref">-maxwidth</span><br>/ <span class="variable-ref">-position</span></td><td><span class="code-ref">80%</span><br>/ <span class="code-ref">480px</span><br>/ <span class="code-ref">right</span></td><td>Drawer size and side.</td></tr>
-            <tr><td><span class="variable-ref">$primary-hamburger-type</span></td><td><span class="code-ref">spin</span></td><td>Which <a href="https://jonsuh.com/hamburgers/" target="_blank" rel="noopener">hamburgers</a> animation to compile in (one only).</td></tr>
-          </tbody>
-        </table>
+      <caption class="screen-reader-text">Navbar Sass variables</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$generate-navbar</span></td><td><span class="code-ref">true</span></td><td>Emit the navbar CSS at all.</td></tr>
+        <tr><td><span class="variable-ref">$nav-expands</span></td><td><span class="code-ref">1200px</span></td><td>Width at which the bar switches from collapsed to expanded. Keep <span class="code-ref">breakPoints.navBar</span> in your JS in sync &mdash; see the note above.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-family</span></td><td><span class="code-ref">primary</span></td><td>Palette family the bar is branded from. Everything below defaults off it.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-bg-color</span></td><td><span class="code-ref">get-color($navbar-family)</span></td><td>Bar background &rarr; <span class="css-ref">--jf-navbar-bg-color</span>.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-link-bg-color</span></td><td><span class="variable-ref">$navbar-bg-color</span></td><td>Top-level link background &rarr; <span class="css-ref">--jf-navbar-link-bg-color</span>. Its text colour is contrast-picked from this.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-link-hover-bg-color</span></td><td><span class="code-ref">get-color-role($navbar-family, emphasis)</span></td><td>Top-level link background on hover / focus &rarr; <span class="css-ref">--jf-navbar-link-hover-bg-color</span>.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-link-hover-weight</span></td><td><span class="variable-ref">$navbar-font-weight</span></td><td>Link weight on hover &rarr; <span class="css-ref">--jf-navbar-link-hover-weight</span>. Changing it reflows the bar unless the face is variable.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-link-border</span></td><td>a 12% <span class="code-ref">currentColor</span> rule</td><td>Divider between top-level links &rarr; <span class="css-ref">--jf-navbar-link-border</span>.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-font-size</span></td><td><span class="code-ref">token(font-size-lg)</span></td><td>Link text size while collapsed &rarr; <span class="css-ref">--jf-navbar-font-size</span>.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-font-size-expanded</span></td><td><span class="code-ref">token(font-size-base)</span></td><td>Link text size once expanded. Build-time only.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-font-family</span></td><td><span class="code-ref">token(font-primary)</span></td><td>Link typeface &rarr; <span class="css-ref">--jf-navbar-font-family</span>.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-font-weight</span></td><td><span class="code-ref">get-weight(bold)</span></td><td>Link weight &rarr; <span class="css-ref">--jf-navbar-font-weight</span>.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-text-transform</span></td><td><span class="code-ref">none</span></td><td>Link <span class="code-ref">text-transform</span> &rarr; <span class="css-ref">--jf-navbar-text-transform</span>.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-link-padding-x</span></td><td><span class="code-ref">get-space(xs)</span></td><td>Link inline padding while collapsed &rarr; <span class="css-ref">--jf-navbar-link-padding-x</span>.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-link-padding-y</span></td><td><span class="code-ref">get-space(2xs)</span></td><td>Link block padding while collapsed &rarr; <span class="css-ref">--jf-navbar-link-padding-y</span>.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-link-padding-expanded-x</span></td><td><span class="code-ref">get-space(xs)</span></td><td>Link inline padding once expanded. Build-time only.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-link-padding-expanded-y</span></td><td><span class="code-ref">get-space(xs)</span></td><td>Link block padding once expanded. Build-time only.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-sublink-bg-color</span></td><td><span class="code-ref">token(color-bg-soft)</span></td><td>Submenu panel background &rarr; <span class="css-ref">--jf-navbar-sublink-bg-color</span>. A neutral surface, not the brand family, so submenus read correctly in both themes.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-sublink-hover-bg-color</span></td><td><span class="code-ref">get-color-role(neutral, muted)</span></td><td>Submenu link background on hover &rarr; <span class="css-ref">--jf-navbar-sublink-hover-bg-color</span>.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-sublink-font-size</span></td><td><span class="code-ref">token(font-size-md)</span></td><td>Submenu link text size while collapsed.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-sublink-font-size-expanded</span></td><td><span class="code-ref">token(font-size-sm)</span></td><td>Submenu link text size once expanded.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-sublink-font-family</span></td><td><span class="code-ref">token(font-primary)</span></td><td>Submenu link typeface.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-sublink-font-weight</span></td><td><span class="variable-ref">$navbar-font-weight</span></td><td>Submenu link weight &mdash; inherits the top-level link's by default.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-sublink-font-weight-hover</span></td><td><span class="variable-ref">$navbar-link-hover-weight</span></td><td>Submenu link weight on hover.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-sublink-text-transform</span></td><td><span class="variable-ref">$navbar-text-transform</span></td><td>Submenu link <span class="code-ref">text-transform</span>.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-dropdown-width</span></td><td><span class="code-ref">get-size(16)</span> (256px)</td><td>Width of an expanded submenu panel &rarr; <span class="css-ref">--jf-navbar-dropdown-width</span>.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-dropdown-anchors-right-after</span></td><td><span class="code-ref">3</span></td><td>Submenus on the <em>n</em>th top-level item and beyond open to the inline-start instead of the end, so a menu near the edge of the bar does not run off-screen.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-start-flex-align</span></td><td><span class="code-ref">stretch</span></td><td><span class="code-ref">align-items</span> on <span class="css-ref">.navbar-start</span> once expanded.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-end-flex-align</span></td><td><span class="code-ref">center</span></td><td><span class="code-ref">align-items</span> on <span class="css-ref">.navbar-end</span> once expanded.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-offcanvas-position</span></td><td><span class="code-ref">right</span></td><td>Side the <span class="css-ref">.is-off-canvas</span> drawer slides in from.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-offcanvas-width</span></td><td><span class="code-ref">80%</span></td><td>Drawer width.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-offcanvas-maxwidth</span></td><td><span class="code-ref">480px</span></td><td>Cap on that width.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-offcanvas-bg-color</span></td><td><span class="code-ref">token(color-bg-soft)</span></td><td>Drawer background.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-offcanvas-body-overlay</span></td><td>50% black</td><td>Scrim painted over the page behind an open drawer.</td></tr>
+        <tr><td><span class="variable-ref">$navbar-offcanvas-transition-speed</span></td><td><span class="code-ref">token(duration-slow)</span></td><td>Drawer slide duration. Zeroed by <span class="code-ref">prefers-reduced-motion</span> along with every other duration token.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Custom properties</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Navbar custom properties</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="css-ref">--jf-navbar-bg-color</span></td><td><span class="variable-ref">$navbar-bg-color</span></td><td>Bar background.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-link-color</span></td><td>contrast-picked</td><td>Top-level link text, chosen against <span class="css-ref">--jf-navbar-link-bg-color</span>.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-link-bg-color</span></td><td><span class="variable-ref">$navbar-link-bg-color</span></td><td>Top-level link background.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-link-hover-color</span></td><td>contrast-picked</td><td>Top-level link text on hover / focus.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-link-hover-bg-color</span></td><td><span class="variable-ref">$navbar-link-hover-bg-color</span></td><td>Top-level link background on hover / focus.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-link-hover-weight</span></td><td><span class="variable-ref">$navbar-link-hover-weight</span></td><td>Top-level link weight on hover.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-link-border</span></td><td><span class="variable-ref">$navbar-link-border</span></td><td>Divider between top-level links.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-sublink-color</span></td><td>contrast-picked</td><td>Submenu link text.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-sublink-bg-color</span></td><td><span class="variable-ref">$navbar-sublink-bg-color</span></td><td>Submenu panel background.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-sublink-hover-color</span></td><td>contrast-picked</td><td>Submenu link text on hover.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-sublink-hover-bg-color</span></td><td><span class="variable-ref">$navbar-sublink-hover-bg-color</span></td><td>Submenu link background on hover.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-font-size</span></td><td><span class="variable-ref">$navbar-font-size</span></td><td>Link text size.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-font-family</span></td><td><span class="variable-ref">$navbar-font-family</span></td><td>Link typeface.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-font-weight</span></td><td><span class="variable-ref">$navbar-font-weight</span></td><td>Link weight.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-text-transform</span></td><td><span class="variable-ref">$navbar-text-transform</span></td><td>Link <span class="code-ref">text-transform</span>.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-link-padding-x</span></td><td><span class="variable-ref">$navbar-link-padding-x</span></td><td>Link inline padding.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-link-padding-y</span></td><td><span class="variable-ref">$navbar-link-padding-y</span></td><td>Link block padding.</td></tr>
+        <tr><td><span class="css-ref">--jf-navbar-dropdown-width</span></td><td><span class="variable-ref">$navbar-dropdown-width</span></td><td>Expanded submenu panel width.</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 </section>

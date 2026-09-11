@@ -277,24 +277,39 @@
 <div class="section is-tight bg-soft">
   <h2 class="h3" id="overriding">Overriding</h2>
   <ul>
-    <li><strong>One modal</strong> &mdash; <span class="code-ref">--jf-modal-max-width</span>, <span class="code-ref">--jf-modal-padding</span>, <span class="code-ref">--jf-color-surface</span> on <span class="css-ref">.modal</span>.</li>
-    <li><strong>Everywhere</strong> &mdash; the Sass variables below. The close / arrow glyphs are SVG data-URIs (<span class="variable-ref">$modal-close-icon-svg</span>, <span class="variable-ref">$modal-arrow-icon-svg</span>).</li>
+    <li><strong>One modal</strong> &mdash; set the <span class="code-ref">--jf-modal-*</span> custom properties (tabled below) on <span class="css-ref">.modal</span>, or <span class="code-ref">--jf-color-surface</span> for a different fill.</li>
+    <li><strong>Everywhere</strong> &mdash; the Sass variables below, before import.</li>
   </ul>
 
   <h3 class="h4">Variables</h3>
   <div class="variables-reference">
+        <h4 class="h6">Sass variables</h4>
     <table class="is-responsive has-border">
-          <caption class="screen-reader-text">Modal Sass variables and custom properties</caption>
-          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
-          <tbody>
-            <tr><td><span class="variable-ref">$modal-max-width</span></td><td><span class="code-ref">900px</span></td><td>&rarr; <span class="code-ref">--jf-modal-max-width</span>. Actual width is <span class="code-ref">min(that, 100vw − margin)</span>.</td></tr>
-            <tr><td><span class="variable-ref">$modal-padding</span></td><td><span class="code-ref">token(space-md)</span></td><td>&rarr; <span class="code-ref">--jf-modal-padding</span>.</td></tr>
-            <tr><td><span class="variable-ref">$modal-outer-margin</span></td><td><span class="code-ref">get-size(3)</span></td><td>Minimum gap between the dialog and the viewport edge.</td></tr>
-            <tr><td><span class="variable-ref">$modal-border</span> / <span class="variable-ref">-border-radius</span></td><td><span class="code-ref">none</span> / <span class="code-ref">token(radius-md)</span></td><td>Panel border.</td></tr>
-            <tr><td><span class="variable-ref">$modal-backdrop-color</span> / <span class="variable-ref">-opacity</span></td><td><span class="code-ref">black</span> / <span class="code-ref">0.9</span></td><td>The <span class="code-ref">::backdrop</span> (baked at build).</td></tr>
-            <tr><td><span class="variable-ref">$modal-navigation-arrow-size</span></td><td><span class="code-ref">get-size(2)</span></td><td>Group prev / next button size.</td></tr>
-          </tbody>
-        </table>
+      <caption class="screen-reader-text">Modal Sass variables</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$modal-max-width</span></td><td><span class="code-ref">900px</span></td><td>&rarr; <span class="css-ref">--jf-modal-max-width</span>. Actual width is <span class="code-ref">min(that, 100vw &minus; 2 &times; outer-margin)</span>.</td></tr>
+        <tr><td><span class="variable-ref">$modal-padding</span></td><td><span class="code-ref">token(space-md)</span></td><td>&rarr; <span class="css-ref">--jf-modal-padding</span>. Applied to <span class="css-ref">.modal-header</span> / <span class="css-ref">.modal-content</span> / <span class="css-ref">.modal-footer</span>.</td></tr>
+        <tr><td><span class="variable-ref">$modal-outer-margin</span></td><td><span class="code-ref">get-size(3)</span> (48px)</td><td>Minimum gap between the dialog and the viewport edge.</td></tr>
+        <tr><td><span class="variable-ref">$modal-border</span></td><td><span class="code-ref">none</span></td><td>Border on the dialog panel.</td></tr>
+        <tr><td><span class="variable-ref">$modal-border-radius</span></td><td><span class="code-ref">token(radius-md)</span></td><td>Panel corner radius.</td></tr>
+        <tr><td><span class="variable-ref">$modal-backdrop-color</span></td><td><span class="code-ref">token(color-black)</span></td><td>The <span class="code-ref">::backdrop</span> fill. Baked at build &mdash; <span class="code-ref">::backdrop</span> reads no custom properties, so this is a Sass value only.</td></tr>
+        <tr><td><span class="variable-ref">$modal-backdrop-opacity</span></td><td><span class="code-ref">0.9</span></td><td>Opacity of that backdrop. Also build-time.</td></tr>
+        <tr><td><span class="variable-ref">$modal-close-icon-svg</span></td><td>an &times; glyph</td><td>Data-URI for the injected close button. Uses <span class="code-ref">currentColor</span>, so it follows the button text colour.</td></tr>
+        <tr><td><span class="variable-ref">$modal-arrow-icon-svg</span></td><td>a chevron</td><td>Data-URI for the group prev / next arrows.</td></tr>
+        <tr><td><span class="variable-ref">$modal-navigation-arrow-size</span></td><td><span class="code-ref">get-size(2)</span> (32px)</td><td>Size of the group prev / next buttons.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Custom properties</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Modal custom properties</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="css-ref">--jf-modal-max-width</span></td><td><span class="variable-ref">$modal-max-width</span></td><td>Declared on <span class="code-ref">dialog.modal</span> &mdash; override it there or on a modal-specific class, not <span class="code-ref">:root</span>.</td></tr>
+        <tr><td><span class="css-ref">--jf-modal-padding</span></td><td><span class="variable-ref">$modal-padding</span></td><td>As above.</td></tr>
+        <tr><td><span class="css-ref">--jf-color-surface</span></td><td><span class="code-ref">var(--jf-color-bg-soft)</span></td><td>The dialog is its own surface at the <span class="css-ref">.bg-soft</span> level. Repoint this for a different fill rather than adding a <span class="css-ref">.bg-*</span> class.</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 </section>

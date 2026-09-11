@@ -154,21 +154,22 @@
 <div class="section is-tight bg-base">
   <p class="standfirst">Every non-colour design axis is a thin semantic scale of CSS custom properties, each with a matching <code class="code-ref">get-*()</code> Sass accessor. Value tables are on the <a href="./variables.html">Variables</a> page; this page shows them rendered, and the last section is the visual check for the token cascade.</p>
   <p>Reference a token from CSS with its full <code class="code-ref">--jf-*</code> name, or from SCSS with the accessor: <code class="code-ref">padding: get-space(md);</code>, <code class="code-ref">border-radius: get-radius(lg);</code>, <code class="code-ref">box-shadow: get-shadow(md);</code>.</p>
+  <p>The one axis not shown here is <span class="bold">type</span> &mdash; the <code class="code-ref">--jf-font-size-*</code> scale, its paired line-heights and which heading level takes each step are tabled on <a href="./typography.html#scale">Typography</a>.</p>
   <p><span class="bold">Extending a scale.</span> Every scale (<span class="variable-ref">$space-scale</span>, <span class="variable-ref">$radius-scale</span>, <span class="variable-ref">$leading-scale</span>, <span class="variable-ref">$duration-scale</span>, <span class="variable-ref">$ease-scale</span>) uses the empty-map + merge pattern &mdash; your map is merged <span class="italic">over</span> the defaults. Set one <span class="italic">before</span> importing Jellyfish: a matching key <span class="bold">overwrites</span> (<code class="code-ref">$radius-scale: ("md": 20px)</code> makes <code class="code-ref">--jf-radius-md</code> 20px), a new key <span class="bold">appends</span> (<code class="code-ref">("xxl": 40px)</code> adds <code class="code-ref">--jf-radius-xxl</code>, resolvable as <code class="code-ref">get-radius(xxl)</code>). Everything you don't mention keeps its default. Setting it <span class="italic">after</span> the import is too late &mdash; the <code class="code-ref">!default</code> has already fired.</p>
 </div>
 
 <div class="section is-tight bg-base">
   <h2 class="h3">Spacing <span class="chip">--jf-space-*</span></h2>
   <p>A t-shirt scale for flow between elements &mdash; margin, padding, gap &mdash; pointing at <span class="variable-ref">$sizing-system</span> steps. Reference with <a href="./mixins.html">get-space()</a> or the token name. <code class="code-ref">--jf-flow</code> is the block-flow rhythm (bottom margin between block elements) &mdash; <code class="code-ref">$flow-step</code> picks which step it uses, <code class="code-ref">md</code> by default. For the fixed size of a thing (width, height, icon dimensions) use <code class="code-ref">get-size()</code> against the Sass-only <code class="code-ref">$sizing-system</code> map instead.</p>
-  <div style="display:flex; flex-direction:column; gap:0.5rem;">
-    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-3xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-3xs);"></span><span>4px</span></div>
-    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-2xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-2xs);"></span><span>8px</span></div>
-    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-xs);"></span><span>12px</span></div>
-    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-sm</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-sm);"></span><span>16px</span></div>
-    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-md</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-md);"></span><span>24px &mdash; <code class="code-ref">--jf-flow</code> default</span></div>
-    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-lg</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-lg);"></span><span>48px</span></div>
-    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-xl</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-xl);"></span><span>96px</span></div>
-    <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-2xl</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-2xl);"></span><span>128px</span></div>
+  <div class="demo-stack">
+    <div class="demo-row"><code class="code-ref demo-label">--jf-space-3xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-3xs);"></span><span>4px</span></div>
+    <div class="demo-row"><code class="code-ref demo-label">--jf-space-2xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-2xs);"></span><span>8px</span></div>
+    <div class="demo-row"><code class="code-ref demo-label">--jf-space-xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-xs);"></span><span>12px</span></div>
+    <div class="demo-row"><code class="code-ref demo-label">--jf-space-sm</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-sm);"></span><span>16px</span></div>
+    <div class="demo-row"><code class="code-ref demo-label">--jf-space-md</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-md);"></span><span>24px &mdash; <code class="code-ref">--jf-flow</code> default</span></div>
+    <div class="demo-row"><code class="code-ref demo-label">--jf-space-lg</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-lg);"></span><span>48px</span></div>
+    <div class="demo-row"><code class="code-ref demo-label">--jf-space-xl</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-xl);"></span><span>96px</span></div>
+    <div class="demo-row"><code class="code-ref demo-label">--jf-space-2xl</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-2xl);"></span><span>128px</span></div>
   </div>
 </div>
 
@@ -187,7 +188,7 @@
 <div class="section is-tight bg-base">
   <h2 class="h3">Border radius <span class="chip">--jf-radius-*</span></h2>
   <p>A t-shirt scale with values drawn from <span class="variable-ref">$sizing-system</span>. Reference with <a href="./mixins.html">get-radius()</a> or the token name. Component defaults map onto it; retune the whole framework's corners from <span class="variable-ref">$radius-scale</span>.</p>
-  <div style="display:flex; flex-wrap:wrap; gap:1rem;">
+  <div class="demo-row">
     <span class="dt-swatch bg-primary" style="border-radius:var(--jf-radius-none);">none</span>
     <span class="dt-swatch bg-primary" style="border-radius:var(--jf-radius-xs);">xs</span>
     <span class="dt-swatch bg-primary" style="border-radius:var(--jf-radius-sm);">sm</span>
@@ -202,7 +203,7 @@
 <div class="section is-tight bg-base">
   <h2 class="h3">Border width <span class="chip">--jf-border-width</span></h2>
   <p>Two widths only &mdash; not a stepped scale, so there's no <code class="code-ref">get-*()</code> accessor; reference with <code class="code-ref">token(border-width)</code> / <code class="code-ref">token(border-width-strong)</code> in Sass, or the custom property directly. Naming mirrors the colour role ladder.</p>
-  <div style="display:flex; flex-wrap:wrap; gap:1rem;">
+  <div class="demo-row">
     <span class="dt-swatch" style="inline-size:12rem; block-size:4rem; border:var(--jf-border-width) solid var(--jf-border-color); border-radius:var(--jf-radius-sm);"><code class="code-ref">--jf-border-width</code> &mdash; 1px</span>
     <span class="dt-swatch" style="inline-size:12rem; block-size:4rem; border:var(--jf-border-width-strong) solid var(--jf-border-color); border-radius:var(--jf-radius-sm);"><code class="code-ref">--jf-border-width-strong</code> &mdash; 2px</span>
   </div>
@@ -211,7 +212,7 @@
 <div class="section is-tight bg-base">
   <h2 class="h3">Elevation <span class="chip">--jf-shadow-*</span></h2>
   <p>Box-shadows that mix <code class="code-ref">--jf-shadow-color</code> toward transparent at each step's alpha. Reference with <a href="./mixins.html">get-shadow()</a> or the token name. Geometry in <span class="variable-ref">$shadow-scale</span>; hue in <span class="variable-ref">$shadow-color</span> / <code class="code-ref">--jf-shadow-color</code>.</p>
-  <div style="display:flex; flex-wrap:wrap; gap:2rem; padding:1.5rem 0;">
+  <div class="demo-row is-airy">
     <span class="dt-swatch bg-soft" style="box-shadow:var(--jf-shadow-xs);">xs</span>
     <span class="dt-swatch bg-soft" style="box-shadow:var(--jf-shadow-sm);">sm</span>
     <span class="dt-swatch bg-soft" style="box-shadow:var(--jf-shadow-md);">md</span>
@@ -223,7 +224,7 @@
 <div class="section is-tight bg-base">
   <h2 class="h3">Motion <span class="chip">--jf-transition</span></h2>
   <p>Hover the boxes. Each declares its own <code class="code-ref">transition</code> from the motion tokens; the OS "reduce motion" setting zeroes the durations and stops all of them.</p>
-  <div style="display:flex; flex-wrap:wrap; gap:1rem;">
+  <div class="demo-row">
     <span class="dt-swatch dt-motion bg-primary" style="transition:transform var(--jf-transition);">base</span>
     <span class="dt-swatch dt-motion bg-primary" style="transition:transform var(--jf-duration-fast) var(--jf-ease-in-out);">fast</span>
     <span class="dt-swatch dt-motion bg-primary" style="transition:transform var(--jf-duration-slow) var(--jf-ease-in-out);">slow</span>
@@ -232,7 +233,7 @@
     <span class="dt-swatch dt-motion bg-primary" style="transition:transform var(--jf-duration-slow) var(--jf-ease-spring);">slow · spring</span>
   </div>
   <p class="mt-3">Or set <code class="code-ref">--jf-transition</code> once on a scope and let <code class="code-ref">motion()</code> pick it up &mdash; everything inside runs to that tempo:</p>
-  <div style="--jf-transition:var(--jf-duration-slow) var(--jf-ease-out); display:flex; flex-wrap:wrap; gap:1rem;">
+  <div class="demo-row" style="--jf-transition:var(--jf-duration-slow) var(--jf-ease-out);">
     <span class="dt-swatch dt-motion dt-motion--token bg-primary">via motion()</span>
     <span class="dt-swatch dt-motion dt-motion--token bg-primary">via motion()</span>
   </div>
@@ -242,7 +243,7 @@
   <h2 class="h3">Retuning tokens</h2>
   <p>The wrapper below deliberately overrides four tokens <em>on this one box</em> to values nothing like their real defaults (<code class="code-ref">--jf-radius-lg</code> is normally a generous rounded corner, not <code class="code-ref">1px</code> &mdash; it's squashed down here purely so the override is unmistakable at a glance). Anything inside that reads them re-resolves with no other change &mdash; a single scope override cascades. This section is the permanent visual check for the token cascade: if a swatch stops responding to its overridden value, something's regressed.</p>
   <div class="boxed bg-soft" style="--jf-radius-lg:1px; --jf-space-md:0.375rem; --jf-border-width:4px; --jf-shadow-lg:0 8px 24px rgba(0,128,128,0.35);">
-    <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:flex-start;">
+    <div class="demo-row is-top">
       <span class="dt-swatch bg-primary" style="inline-size:8rem; border-radius:var(--jf-radius-lg);"><code class="code-ref">--jf-radius-lg</code> overridden to 1px here</span>
       <span class="dt-swatch" style="inline-size:8rem; border:var(--jf-border-width) solid var(--jf-border-color); border-radius:var(--jf-radius-sm);"><code class="code-ref">--jf-border-width</code> overridden to 4px here</span>
       <span class="bg-neutral" style="display:block; padding:var(--jf-space-md); border-radius:var(--jf-radius-sm); font-size:0.8rem;"><code class="code-ref">--jf-space-md</code> overridden to 6px here (padding)</span>

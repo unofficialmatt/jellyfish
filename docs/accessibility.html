@@ -176,6 +176,28 @@
   <p>The outline is <span class="code-ref">--jf-accessibility-focus-color</span> &mdash; override it at <span class="code-ref">:root</span> or a scope.</p>
 </div>
 
+<div class="section is-tight bg-base" id="contrast-linter">
+  <h2 class="h3">Contrast linter</h2>
+  <p>Every colour pair Jellyfish generates is scored against the WCAG 2.x contrast ratio <strong>at build time</strong> &mdash; each palette shade against its <span class="code-ref">--jf-color-on-*</span> text colour, plus buttons, chips, callouts, tables, <span class="css-ref">.bg-*</span> surfaces, <span class="code-ref">&lt;mark&gt;</span>, and the dark-mode text-on-canvas pairs. Anything below the threshold prints a Sass <span class="code-ref">@warn</span> naming the pair and its score. <span class="bold">Treat a warning as a failing test</span> &mdash; it means a colour you added can't be read on the surface it's paired with.</p>
+  <pre class="language-shell"><code>
+    WCAG: palette on-colour contrast has pairs below 4.5:1:
+      on-brand-400: #ffffff on #7fb8a4 scores 2.31:1
+  </code></pre>
+  <p>Run it over your own pairs with the same mixin the framework uses &mdash; pass a list of <span class="code-ref">(label text background)</span> triples and a context name:</p>
+  <pre class="language-scss"><code>
+    .promo {
+      color: get-color-raw(primary, 900);
+      background: get-color-raw(primary, 100);
+      @include contrast-lint(
+        ("promo text" get-color-raw(primary, 900) get-color-raw(primary, 100)),
+        "promo"
+      );
+    }
+  </code></pre>
+  <p>Both arguments must be <em>literal</em> colours, so use <a href="./mixins.html"><span class="code-ref">get-color-raw()</span></a> rather than <span class="code-ref">get-color()</span> &mdash; a <span class="code-ref">var()</span> reference can't be scored at build time. Settings: <a href="./variables.html#accessibility"><span class="variable-ref">$contrast-lint</span></a> (off switch), <span class="variable-ref">$contrast-lint-warn</span> (score silently), <span class="variable-ref">$contrast-lint-threshold</span> (default <span class="code-ref">4.5</span>; <span class="code-ref">3</span> for the AA large-text exception).</p>
+  <p>The linter only sees pairs it's handed. Anything where you set a colour without telling it what's behind &mdash; a <a href="./theme-colors.html#text-modifiers"><span class="css-ref">.text-{family}</span></a> utility, a hand-written rule &mdash; is yours to check.</p>
+</div>
+
 <div class="section is-tight bg-base">
   <h2 class="h3">Reduced motion &amp; forced colours</h2>
   <ul>

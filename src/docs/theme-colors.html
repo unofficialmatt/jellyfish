@@ -25,12 +25,12 @@
     </tbody>
   </table>
   <p><span class="bold">On <span class="code-ref">primary</span>:</span></p>
-  <div class="row collapse text-center" style="margin-block-end: 1rem">
-    <div class="col" style="padding: 0.75rem; background: var(--jf-color-primary); color: var(--jf-color-on-primary);">primary</div>
-    <div class="col" style="padding: 0.75rem; background: var(--jf-color-primary-subtle); color: var(--jf-color-on-primary-subtle);">-subtle</div>
-    <div class="col" style="padding: 0.75rem; background: var(--jf-color-primary-muted); color: var(--jf-color-on-primary-muted);">-muted</div>
-    <div class="col" style="padding: 0.75rem; background: var(--jf-color-primary-emphasis); color: var(--jf-color-on-primary-emphasis);">-emphasis</div>
-    <div class="col" style="padding: 0.75rem; background: var(--jf-color-primary-strong); color: var(--jf-color-on-primary-strong);">-strong</div>
+  <div class="row collapse text-center mbe">
+    <div class="col demo-pad" style="background: var(--jf-color-primary); color: var(--jf-color-on-primary);">primary</div>
+    <div class="col demo-pad" style="background: var(--jf-color-primary-subtle); color: var(--jf-color-on-primary-subtle);">-subtle</div>
+    <div class="col demo-pad" style="background: var(--jf-color-primary-muted); color: var(--jf-color-on-primary-muted);">-muted</div>
+    <div class="col demo-pad" style="background: var(--jf-color-primary-emphasis); color: var(--jf-color-on-primary-emphasis);">-emphasis</div>
+    <div class="col demo-pad" style="background: var(--jf-color-primary-strong); color: var(--jf-color-on-primary-strong);">-strong</div>
   </div>
   <p>Each alias is a live <span class="code-ref">var()</span> reference to the numbered token, so a runtime override of a shade flows through to its aliases. Retune which shade a role points at &mdash; for the whole framework &mdash; with the <span class="code-ref">$color-role-shades</span> map; from SCSS, reference an alias with <span class="code-ref">get-color-role($family, $role)</span> (or <span class="code-ref">role-shade($role)</span> for the raw number).</p>
   <pre class="language-scss">
@@ -46,13 +46,13 @@
 <div class="section is-tight bg-base">
   <h2 class="h3" id="surfaces">Background modifiers</h2>
   <p>A <span class="css-ref">.bg-{family}</span> class is generated for every family in <span class="variable-ref">$colors</span> &mdash; <span class="css-ref">.bg-primary</span>, <span class="css-ref">.bg-neutral</span>, &hellip; each painting that family at its <span class="code-ref">500</span> value. Put one on <em>any</em> element to theme it as a surface; don't set the tokens by hand.</p>
-  <div class="row collapse text-center" style="margin-block-end: 1rem">
-    <div class="col bg-primary" style="padding: 0.75rem">.bg-primary</div>
-    <div class="col bg-secondary" style="padding: 0.75rem">.bg-secondary</div>
-    <div class="col bg-neutral" style="padding: 0.75rem">.bg-neutral</div>
-    <div class="col bg-success" style="padding: 0.75rem">.bg-success</div>
-    <div class="col bg-warning" style="padding: 0.75rem">.bg-warning</div>
-    <div class="col bg-error" style="padding: 0.75rem">.bg-error</div>
+  <div class="row collapse text-center mbe">
+    <div class="col bg-primary demo-pad">.bg-primary</div>
+    <div class="col bg-secondary demo-pad">.bg-secondary</div>
+    <div class="col bg-neutral demo-pad">.bg-neutral</div>
+    <div class="col bg-success demo-pad">.bg-success</div>
+    <div class="col bg-warning demo-pad">.bg-warning</div>
+    <div class="col bg-error demo-pad">.bg-error</div>
   </div>
   <p>Three <span class="bold">neutral surfaces</span> sit alongside the families and <span class="bold">flip with the theme</span>:</p>
   <ul>
@@ -60,10 +60,10 @@
     <li><span class="css-ref">.bg-soft</span> &mdash; a little elevation off the canvas, not emphasised. Literal white in light (a gentle lift against the warm off-white body), a raised dark tint in dark. This is what a panel, callout, chip or modal reaches for when it wants to read as slightly raised without taking a theme colour.</li>
     <li><span class="css-ref">.bg-inverse</span> &mdash; a full reverse of the page: the opposite theme's canvas, so it reads as a deliberate high-contrast block (dark in light mode, light in dark mode), with its text and headings following.</li>
   </ul>
-  <div class="row collapse text-center" style="margin-block-end: 1rem">
-    <div class="col bg-base" style="padding: 0.75rem;">.bg-base</div>
-    <div class="col bg-soft" style="padding: 0.75rem;">.bg-soft</div>
-    <div class="col bg-inverse" style="padding: 0.75rem">.bg-inverse</div>
+  <div class="row collapse text-center mbe">
+    <div class="col bg-base demo-pad">.bg-base</div>
+    <div class="col bg-soft demo-pad">.bg-soft</div>
+    <div class="col bg-inverse demo-pad">.bg-inverse</div>
   </div>
   <p>Each surface is a background token plus its paired text / heading tokens: <span class="css-ref">--jf-color-bg</span> + <span class="css-ref">--jf-color-text-base</span> / <span class="css-ref">--jf-color-headings-base</span> for the canvas (the plain <span class="css-ref">--jf-color-text</span> / <span class="css-ref">-headings</span> alias the <span class="code-ref">-base</span> pair); <span class="css-ref">--jf-color-bg-soft</span> + <span class="css-ref">-text-soft</span> / <span class="css-ref">-headings-soft</span>; and the <span class="css-ref">--jf-color-*-inverse</span> set. Set the soft pair per project with <span class="variable-ref">$soft-background-color</span> / <span class="variable-ref">$dark-soft-background-color</span>.</p>
   <p>For a <span class="bold">specific shade</span> or a <span class="bold">one-off colour</span>, add an entry to the <span class="variable-ref">$background-colors</span> map &mdash; key is the class suffix, value is a <code class="code-ref">get-color()</code> reference or a raw CSS colour. Reusing a family name as the key overrides its auto class.</p>
@@ -78,17 +78,17 @@
   </pre>
   <p>Each modifier sets the background and picks text and heading colours that stay readable on it. The lighter <span class="css-ref">.text-muted</span> and <span class="css-ref">.text-subtle</span> shades re-mix to suit the new background too, and anything nested inside &mdash; headings, cards, callouts, muted text &mdash; picks all of this up on its own:</p>
   <div class="grid">
-    <div class="col sm-4 bg-primary" style="padding: 1rem;">
+    <div class="col sm-4 bg-primary demo-panel">
       <h4>Heading</h4>
       <p class="text-muted">Muted text</p>
       <p class="text-subtle mbe-0">Subtle text</p>
     </div>
-    <div class="col sm-4 bg-soft" style="padding: 1rem;">
+    <div class="col sm-4 bg-soft demo-panel">
       <h4>Heading</h4>
       <p class="text-muted">Muted text</p>
       <p class="text-subtle mbe-0">Subtle text</p>
     </div>
-    <div class="col sm-4 bg-inverse" style="padding: 1rem;">
+    <div class="col sm-4 bg-inverse demo-panel">
       <h4>Heading</h4>
       <p class="text-muted">Muted text</p>
       <p class="text-subtle mbe-0">Subtle text</p>
@@ -96,13 +96,13 @@
   </div>
   <p>Headings use your normal heading colour (<span class="variable-ref">$color-headings-preferred</span>, see <a href="./variables.html#colors">Variables</a>) where it stays readable, switch to white on dark backgrounds, and only fall back to a plainer colour when neither works. A modifier built from a palette shade reuses colours the framework has already worked out for that shade, so it follows any later palette override; a one-off colour has its contrast fixed at build time.</p>
   <p>Surfaces nest &mdash; each one re-establishes its own text, heading and muted / subtle tiers for everything inside it, however deep:</p>
-  <div class="bg-primary mb" style="padding: 1.5rem;">
+  <div class="bg-primary mb demo-panel">
     .bg-primary
-    <div class="bg-base" style="padding: 1.5rem; margin-block-start: 1rem;">
+    <div class="bg-base demo-panel mbs">
       .bg-base &mdash; resets back to the page canvas
-      <div class="bg-secondary" style="padding: 1.5rem; margin-block-start: 1rem;">
+      <div class="bg-secondary demo-panel mbs">
         .bg-secondary
-        <div class="bg-soft mbe-0" style="padding: 1.5rem; margin-block-start: 1rem;">
+        <div class="bg-soft mbe-0 demo-panel mbs">
           .bg-soft
         </div>
       </div>
@@ -122,10 +122,38 @@
     </code></pre>
   </div>
 </div>
+<div class="section is-tight bg-base" id="text-modifiers">
+  <h2 class="h3">Text modifiers</h2>
+  <p>Where a <span class="css-ref">.bg-*</span> class themes a whole surface, these colour text alone. All are <span class="code-ref">!important</span>.</p>
+  <table class="is-responsive has-border">
+    <caption class="screen-reader-text">Text colour utility classes</caption>
+    <thead><tr><th scope="col">Class</th><th scope="col">Colour</th><th scope="col">Flips in dark?</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><span class="css-ref">.text-{family}</span></th><td>That family's <span class="code-ref">500</span> &mdash; one class per family in <span class="variable-ref">$colors</span>.</td><td>No &mdash; it's the numbered primitive, which is the same in both modes.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.text-muted</span></th><td><span class="code-ref">--jf-color-text-muted</span> &mdash; secondary content, captions.</td><td>Yes &mdash; re-mixes against the current surface.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.text-subtle</span></th><td><span class="code-ref">--jf-color-text-subtle</span> &mdash; hints, placeholder-level text.</td><td>Yes &mdash; as above, mixed further.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.text-soft</span></th><td><span class="code-ref">--jf-color-text-soft</span> &mdash; the text colour paired with <span class="css-ref">.bg-soft</span>. For text sitting on a soft panel you've painted yourself.</td><td>Yes.</td></tr>
+    </tbody>
+  </table>
+  <p>
+    <span class="text-primary">.text-primary</span> &middot;
+    <span class="text-secondary">.text-secondary</span> &middot;
+    <span class="text-neutral">.text-neutral</span> &middot;
+    <span class="text-success">.text-success</span> &middot;
+    <span class="text-warning">.text-warning</span> &middot;
+    <span class="text-error">.text-error</span> &middot;
+    <span class="text-muted">.text-muted</span> &middot;
+    <span class="text-subtle">.text-subtle</span>
+  </p>
+  <div class="callout has-icon warning">
+    <p class="callout-heading">Check the contrast yourself</p>
+    <p><span class="css-ref">.text-{family}</span> sets a colour with no knowledge of what's behind it, so it's the one part of the colour system the build-time <a href="./mixins.html">contrast linter</a> can't score. A mid-scale <span class="code-ref">500</span> that reads fine on the page canvas may not clear 4.5:1 on a <span class="css-ref">.bg-*</span> section or once dark mode flips the surface underneath it. For text that has to track its background, reach for a <a href="#roles">role alias</a> (<span class="code-ref">get-color-role($family, strong)</span>) or let the surface supply the colour.</p>
+  </div>
+</div>
 <div class="section is-tight bg-base" id="dark-mode">
   <h2 class="h3">Dark mode</h2>
   <p>Dark mode is a class on <span class="css-ref">&lt;html&gt;</span>, not <code class="code-ref">light-dark()</code>. With no class set, the OS <code class="code-ref">prefers-color-scheme</code> decides; <span class="css-ref">.jf-dark</span> or <span class="css-ref">.jf-light</span> forces a choice (<span class="css-ref">.jf-light</span> wins even on a dark OS).</p>
-  <p>Only the <a href="./variables.html#colors">semantic tokens</a> and the <span class="bold">role aliases</span> above are repointed in dark &mdash; the numbered primitives (<span class="css-ref">--jf-color-primary-500</span> &hellip;) and their build-time <span class="css-ref">-contrast</span> / <span class="css-ref">-on-*</span> companions are untouched. So a <span class="css-ref">.bg-primary</span> section and a <span class="css-ref">.button.error</span> look the same in both modes, while surfaces, body text, borders and links flip. Which numbered shade each role points at once dark is set by <span class="variable-ref">$dark-color-role-shades</span> (backgrounds move toward the dark end, accent text toward the light end).</p>
+  <p>Only the <a href="./variables.html#colors">semantic tokens</a> and the <span class="bold">role aliases</span> above are repointed in dark &mdash; the numbered primitives (<span class="css-ref">--jf-color-primary-500</span> &hellip;) and their build-time <span class="css-ref">--jf-color-on-*</span> companions are untouched. So a <span class="css-ref">.bg-primary</span> section and a <span class="css-ref">.button.error</span> look the same in both modes, while surfaces, body text, borders and links flip. Which numbered shade each role points at once dark is set by <span class="variable-ref">$dark-color-role-shades</span> (backgrounds move toward the dark end, accent text toward the light end).</p>
   <h3 class="h5">Wiring it up</h3>
   <p>Add the colour-scheme hint and a pre-paint script to your <span class="css-ref">&lt;head&gt;</span> so a stored preference applies before the first paint (no flash):</p>
   <pre class="language-markup">

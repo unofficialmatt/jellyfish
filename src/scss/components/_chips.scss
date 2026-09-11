@@ -40,7 +40,6 @@
     &.outline {
       #{token-name("chip-color-text")}: inherit;
       background: transparent;
-      border-style: $chip-border-style;
     }
 
     h1 &,
@@ -50,7 +49,17 @@
     h5 &,
     h6 &,
     p & {
-      font-size: 0.6em;
+      font-size: max(0.6em, #{$chip-font-size});
+    }
+
+    // Optical lift against tall display type only. In a paragraph the chip is
+    // at near-parity size, so it sits on the baseline like any other inline.
+    h1 &,
+    h2 &,
+    h3 &,
+    h4 &,
+    h5 &,
+    h6 & {
       inset-block-start: -0.2em;
     }
 

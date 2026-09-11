@@ -248,23 +248,37 @@
 <div class="section is-tight bg-soft">
   <h2 class="h3" id="overriding">Overriding</h2>
   <ul>
-    <li><strong>One accordion / a scoped rule</strong> &mdash; <span class="code-ref">--jf-accordion-heading-background</span>, <span class="code-ref">--jf-accordion-heading-color</span>, <span class="code-ref">--jf-accordion-heading-hover-background</span>, <span class="code-ref">--jf-accordion-heading-hover-color</span>, <span class="code-ref">--jf-accordion-border-color</span> (falls back to <span class="code-ref">--jf-border-color</span>).</li>
+    <li><strong>One accordion / a scoped rule</strong> &mdash; set the <span class="code-ref">--jf-accordion-*</span> custom properties (tabled below) on <span class="css-ref">.accordion</span> or a single <span class="css-ref">.accordion-item</span>.</li>
     <li><strong>Everywhere</strong> &mdash; the Sass variables below.</li>
   </ul>
   <h3 class="h4">Variables</h3>
   <div class="variables-reference">
+        <h4 class="h6">Sass variables</h4>
     <table class="is-responsive has-border">
-          <caption class="screen-reader-text">Accordion Sass variables and custom properties</caption>
-          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
-          <tbody>
-            <tr><td><span class="variable-ref">$generate-accordion-modifiers</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.{family}</span> colour classes.</td></tr>
-            <tr><td><span class="variable-ref">$accordion-padding-y</span> / <span class="variable-ref">-x</span></td><td><span class="code-ref">get-space(xs)</span> / <span class="code-ref">get-space(sm)</span></td><td>Heading and panel padding.</td></tr>
-            <tr><td><span class="variable-ref">$accordion-heading-font-size</span> / <span class="variable-ref">-weight</span></td><td><span class="code-ref">font-size-md</span> / <span class="code-ref">bold</span></td><td>Summary text.</td></tr>
-            <tr><td><span class="variable-ref">$accordion-border-radius</span></td><td><span class="code-ref">token(radius-sm)</span></td><td>Rounds the group's outer corners.</td></tr>
-            <tr><td><span class="css-ref">--jf-accordion-heading-background</span><br>/ <span class="css-ref">--jf-accordion-heading-color</span></td><td><span class="code-ref">neutral</span> roles</td><td>Summary fill / text, closed and unhovered.</td></tr>
-            <tr><td><span class="css-ref">--jf-accordion-heading-hover-background</span><br>/ <span class="css-ref">--jf-accordion-heading-hover-color</span></td><td><span class="code-ref">neutral</span> roles</td><td>Summary fill / text, hovered <em>or</em> open (same styling for both).</td></tr>
-          </tbody>
-        </table>
+      <caption class="screen-reader-text">Accordions Sass variables</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$generate-accordion-modifiers</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.{family}</span> colour classes.</td></tr>
+        <tr><td><span class="variable-ref">$accordion-padding-y</span></td><td><span class="code-ref">get-space(xs)</span></td><td>Block padding on both the <span class="code-ref">&lt;summary&gt;</span> and the panel.</td></tr>
+        <tr><td><span class="variable-ref">$accordion-padding-x</span></td><td><span class="code-ref">get-space(sm)</span></td><td>Inline padding on both.</td></tr>
+        <tr><td><span class="variable-ref">$accordion-heading-font-size</span></td><td><span class="code-ref">token(font-size-md)</span></td><td><span class="code-ref">&lt;summary&gt;</span> text size. A heading nested inside inherits it.</td></tr>
+        <tr><td><span class="variable-ref">$accordion-heading-weight</span></td><td><span class="code-ref">get-weight(bold)</span></td><td><span class="code-ref">&lt;summary&gt;</span> text weight.</td></tr>
+        <tr><td><span class="variable-ref">$accordion-border-radius</span></td><td><span class="code-ref">token(radius-sm)</span></td><td>Rounds the group's outer corners only &mdash; items in the middle stay square so the stack reads as one block.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Custom properties</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Accordions custom properties</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="css-ref">--jf-accordion-heading-background</span></td><td><span class="code-ref">neutral / subtle</span></td><td>Summary fill, closed and unhovered.</td></tr>
+        <tr><td><span class="css-ref">--jf-accordion-heading-color</span></td><td><span class="code-ref">--jf-color-on-neutral-subtle</span></td><td>Summary text, closed and unhovered.</td></tr>
+        <tr><td><span class="css-ref">--jf-accordion-heading-hover-background</span></td><td><span class="code-ref">neutral / muted</span></td><td>Summary fill when hovered <em>or</em> open &mdash; the same styling covers both.</td></tr>
+        <tr><td><span class="css-ref">--jf-accordion-heading-hover-color</span></td><td><span class="code-ref">--jf-color-on-neutral-muted</span></td><td>Summary text when hovered or open.</td></tr>
+        <tr><td><span class="css-ref">--jf-accordion-border-color</span></td><td>falls back to <span class="code-ref">--jf-border-color</span></td><td>Not emitted by default. A <span class="css-ref">.{family}</span> modifier sets it to that family's <em>muted</em> role.</td></tr>
+        <tr><td><span class="css-ref">--jf-icon</span></td><td>a chevron</td><td>The <span class="code-ref">::after</span> disclosure mask, rotated 180&deg; when open.</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 </section>

@@ -28,7 +28,7 @@
       <tr><th scope="row"><a href="./utilities.html#icons">Icons</a></th><td><span class="css-ref">.icon</span> + <span class="code-ref">@mixin icon()</span> &mdash; a mask-based SVG icon in the current text colour, sized to the font. Point <span class="code-ref">--jf-icon</span> at a URL.</td></tr>
       <tr><th scope="row"><a href="./media.html#image-ratios">Image ratios &amp; fit</a></th><td><span class="css-ref">.ratio-*</span> on an <span class="code-ref">&lt;img&gt;</span> crops it; <span class="css-ref">.object-cover</span> / <span class="css-ref">.object-contain</span> utilities.</td></tr>
       <tr><th scope="row"><a href="./getting-started.html#sticky-headers">Scroll offset</a></th><td><span class="code-ref">--jf-scroll-offset</span> &mdash; set it to a sticky header's height so <span class="code-ref">#fragment</span> landings clear it.</td></tr>
-      <tr><th scope="row"><a href="./accessibility.html">Contrast linter</a></th><td>Colour pairs are scored against WCAG 2.x contrast ratios (4.5:1) at build time; a failure is a build warning.</td></tr>
+      <tr><th scope="row"><a href="./accessibility.html#contrast-linter">Contrast linter</a></th><td>Colour pairs are scored against WCAG 2.x contrast ratios (4.5:1) at build time; a failure is a build warning.</td></tr>
     </tbody>
   </table>
 </div>
@@ -60,9 +60,9 @@
     <caption class="screen-reader-text">Breaking changes and what to do</caption>
     <thead><tr><th scope="col">Change</th><th scope="col">Migrate</th></tr></thead>
     <tbody>
-      <tr><td>Every custom property is namespaced <span class="code-ref">--jf-*</span></td><td>Rename <span class="code-ref">--card-padding</span> &rarr; <span class="code-ref">--jf-card-padding</span> etc. Or set <span class="variable-ref">$token-prefix: ""</span> before import to keep the un-prefixed names.</td></tr>
+      <tr><td>Every custom property is namespaced <span class="code-ref">--jf-*</span></td><td>Rename <span class="code-ref">--border-color</span> &rarr; <span class="code-ref">--jf-border-color</span> etc. Or set <span class="variable-ref">$token-prefix: ""</span> before import to keep the un-prefixed names.</td></tr>
       <tr><td><span class="code-ref">v()</span> Sass function removed</td><td>Use <span class="code-ref">token($name, $fallback)</span>.</td></tr>
-      <tr><td><span class="code-ref">smooth()</span> mixin removed</td><td>Use <span class="code-ref">motion()</span>.</td></tr>
+      <tr><td><span class="variable-ref">$chip-border-style</span> removed</td><td>It only ever reached <span class="css-ref">.chip.outline</span> &mdash; the base <span class="css-ref">.chip</span> border was hard-coded <span class="code-ref">solid</span>, so setting it appeared to do nothing on a filled chip. Chip borders are now always <span class="code-ref">solid</span>; write your own <span class="code-ref">border-style</span> rule if you need otherwise.</td></tr>
       <tr><td><span class="css-ref">.small</span> removed (clashed with size modifiers)</td><td>Use <span class="css-ref">.font-size-small</span>.</td></tr>
       <tr><td><span class="css-ref">.bg-white</span> and <span class="css-ref">.*.white</span> removed</td><td>Use <span class="css-ref">.bg-soft</span>, <span class="css-ref">.button.soft</span>, <span class="css-ref">.chip.soft</span>, <span class="css-ref">.callout.soft</span>, <span class="css-ref">.progress.soft</span>.</td></tr>
       <tr><td><span class="css-ref">.clearfix</span> removed</td><td>Usually nothing &mdash; floats self-contain now. Otherwise <span class="code-ref">display: flow-root</span> on the parent.</td></tr>
@@ -88,7 +88,10 @@
   <h2 class="h3">Also changed</h2>
   <p>Smaller housekeeping that shouldn't need any action:</p>
   <ul>
-    <li>Dropped the <span class="code-ref">hamburgers</span>, <span class="code-ref">stickybits</span> and <span class="code-ref">es6-promise</span> dependencies; <span class="code-ref">lazyload-bg.js</span> for backgrounds is kept.</li>
+    <li>Dropped the <span class="code-ref">stickybits</span> and <span class="code-ref">es6-promise</span> dependencies; <span class="code-ref">lazyload-bg.js</span> for backgrounds is kept. <span class="code-ref">hamburgers</span> is still vendored for the <a href="./navbar.html">navbar</a> toggle.</li>
+    <li><span class="code-ref">smooth()</span> is deprecated in favour of <span class="code-ref">motion()</span>. It still compiles as an alias, so existing SCSS keeps working &mdash; switch when convenient.</li>
+    <li><span class="css-ref">.hide-xl</span> fixed &mdash; it was emitted outside any media query, so it hid at every width instead of only from 1800px. It's now an alias of <span class="css-ref">.hide-above-xl</span>. If you were using it to hide something everywhere, switch to <span class="css-ref">.hide</span>. New <span class="css-ref">.hide-xs</span> closes the other end, so the band classes now cover <span class="code-ref">xs</span>&ndash;<span class="code-ref">xl</span> with no gaps &mdash; see <a href="./utilities.html#display-utilities">Utilities</a>.</li>
+    <li>Dead <span class="css-ref">.radio-control</span> / <span class="css-ref">.checkbox-control</span> focus rules dropped &mdash; the component they styled was replaced by native <span class="code-ref">accent-color</span> back in 4.x; the rules had been shipping ever since.</li>
     <li>Removed all IE-only vendor pseudo-elements (<span class="code-ref">::-ms-*</span>) and hand-written prefixes autoprefixer now manages.</li>
     <li>Removed dead Sass helpers (<span class="code-ref">map-deep-get</span>, <span class="code-ref">n</span>, <span class="code-ref">h</span>, <span class="code-ref">nh</span>, <span class="code-ref">hn</span>).</li>
     <li><span class="code-ref">gulp-uglify</span> &rarr; <span class="code-ref">gulp-terser</span> (handles modern JS).</li>

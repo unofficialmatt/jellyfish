@@ -252,27 +252,39 @@
 <div class="section is-tight bg-soft">
   <h2 class="h3" id="overriding">Overriding</h2>
   <ul>
-    <li><strong>One callout / a scoped rule</strong> &mdash; set the custom properties on <span class="css-ref">.callout</span>: <span class="code-ref">--jf-callout-bg-color</span>, <span class="code-ref">--jf-callout-color</span>, <span class="code-ref">--jf-callout-border-color</span>, <span class="code-ref">--jf-callout-heading-color</span>, <span class="code-ref">--jf-callout-link-color</span> / <span class="code-ref">--jf-callout-link-color-hover</span>.</li>
+    <li><strong>One callout / a scoped rule</strong> &mdash; set the <span class="code-ref">--jf-callout-*</span> custom properties (tabled below) on <span class="css-ref">.callout</span> itself, on your own modifier class, or on any ancestor.</li>
     <li><strong>A new colour everywhere</strong> &mdash; add a family to the <a href="./theme-colors.html"><span class="variable-ref">$colors</span></a> map; <span class="css-ref">.callout.{family}</span> is generated for it.</li>
     <li><strong>Shape</strong> &mdash; the Sass variables below, before import.</li>
   </ul>
 
   <h3 class="h4">Variables</h3>
   <div class="variables-reference">
+        <h4 class="h6">Sass variables</h4>
     <table class="is-responsive has-border">
-          <caption class="screen-reader-text">Callout Sass variables and custom properties</caption>
-          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
-          <tbody>
-            <tr><td><span class="variable-ref">$generate-callouts</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.callout</span> CSS at all.</td></tr>
-            <tr><td><span class="variable-ref">$callout-padding</span></td><td><span class="code-ref">token(space-md)</span></td><td>Inner padding.</td></tr>
-            <tr><td><span class="variable-ref">$callout-border-radius</span></td><td><span class="code-ref">0</span></td><td>Corner radius.</td></tr>
-            <tr><td><span class="variable-ref">$callout-border-width</span> / <span class="variable-ref">-style</span></td><td><span class="code-ref">1px 1px 1px get-size(0.5)</span> / <span class="code-ref">solid</span></td><td>The thick inline-start edge is the default look.</td></tr>
-            <tr><td><span class="css-ref">--jf-callout-bg-color</span> / <span class="css-ref">-color</span></td><td><span class="code-ref">color-surface</span> / <span class="code-ref">color-text</span></td><td>Fill and body text. Set as a pair.</td></tr>
-            <tr><td><span class="css-ref">--jf-callout-border-color</span></td><td><span class="code-ref">neutral / muted</span></td><td>Border colour.</td></tr>
-            <tr><td><span class="css-ref">--jf-callout-heading-color</span></td><td><span class="code-ref">color-headings</span></td><td><span class="css-ref">.callout-heading</span> colour.</td></tr>
-            <tr><td><span class="css-ref">--jf-callout-link-color</span> / <span class="css-ref">-hover</span></td><td><span class="code-ref">neutral / emphasis</span> / <span class="code-ref">strong</span></td><td>Colour of any link inside the callout.</td></tr>
-          </tbody>
-        </table>
+      <caption class="screen-reader-text">Callouts Sass variables</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$generate-callouts</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.callout</span> CSS at all.</td></tr>
+        <tr><td><span class="variable-ref">$callout-padding</span></td><td><span class="code-ref">token(space-md)</span></td><td>Inner padding. The <span class="css-ref">.has-icon</span> indent is computed from it.</td></tr>
+        <tr><td><span class="variable-ref">$callout-border-radius</span></td><td><span class="code-ref">token(radius-none)</span> (0)</td><td>Corner radius.</td></tr>
+        <tr><td><span class="variable-ref">$callout-border-width</span></td><td><span class="code-ref">1px 1px 1px get-size(0.5)</span></td><td>Border width, as a four-value shorthand &mdash; the thick inline-start edge is the default look. Set all four to <span class="code-ref">1px</span> for an evenly-bordered box.</td></tr>
+        <tr><td><span class="variable-ref">$callout-border-style</span></td><td><span class="code-ref">solid</span></td><td>Border style.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Custom properties</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Callouts custom properties</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="css-ref">--jf-callout-bg-color</span></td><td><span class="code-ref">var(--jf-color-surface)</span></td><td>Fill. The callout is its own surface, so set this with <span class="css-ref">--jf-callout-color</span> as a pair.</td></tr>
+        <tr><td><span class="css-ref">--jf-callout-color</span></td><td><span class="code-ref">var(--jf-color-text)</span></td><td>Body text colour.</td></tr>
+        <tr><td><span class="css-ref">--jf-callout-border-color</span></td><td><span class="code-ref">neutral / muted</span></td><td>Border colour.</td></tr>
+        <tr><td><span class="css-ref">--jf-callout-heading-color</span></td><td><span class="code-ref">neutral / strong</span></td><td><span class="css-ref">.callout-heading</span> colour &mdash; and the <span class="css-ref">.has-icon</span> glyph, which is painted from it.</td></tr>
+        <tr><td><span class="css-ref">--jf-callout-link-color</span></td><td><span class="code-ref">neutral / emphasis</span></td><td>Colour of any <span class="code-ref">&lt;a&gt;</span> inside the callout. No class needed.</td></tr>
+        <tr><td><span class="css-ref">--jf-callout-link-color-hover</span></td><td><span class="code-ref">neutral / strong</span></td><td>Link colour on hover / focus.</td></tr>
+        <tr><td><span class="css-ref">--jf-icon</span></td><td>an info glyph</td><td>The <span class="css-ref">.has-icon</span> mask. <span class="css-ref">.warning</span> / <span class="css-ref">.error</span> / <span class="css-ref">.success</span> / <span class="css-ref">.icon-help</span> each set their own; override per instance with <span class="code-ref">--jf-icon: url("&hellip;")</span>.</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 </section>

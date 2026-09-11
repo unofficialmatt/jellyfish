@@ -2,6 +2,5 @@ $generate-chips: true !default;
 $chip-padding: 0.25em 0.3em !default;
 $chip-border-radius: token(radius-sm) !default;
 $chip-border-width: token(border-width) !default;
-$chip-border-style: solid !default;
 $chip-font-weight: get-weight(normal) !default;
 $chip-font-size: token(font-size-sm) !default;

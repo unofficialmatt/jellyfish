@@ -23,7 +23,7 @@
     @import "jellyfish-ui/src/scss/base/__all";
     @import "my-theme/base/__all";
 
-    @import "jellyfish-ui/vendors/hamburgers/hamburgers";
+    @import "jellyfish-ui/src/scss/vendors/hamburgers/hamburgers";
     @import "my-theme/vendors/__all";
 
     @import "jellyfish-ui/src/scss/layout/__all";
@@ -42,7 +42,7 @@
   </code></pre>
   <p>Most settings can go in your <span class="code-ref">abstracts/__all</span> above (they're consumed later), including the <span class="variable-ref">$colors</span> palette map &mdash; merge into it with the standard <span class="code-ref">map-merge</span> pattern to add your own families. One setting must be set at the very top, before the first Jellyfish <span class="code-ref">@import</span>, because the framework's own settings read it as they load:</p>
   <ul>
-    <li><span class="variable-ref">$token-prefix</span> &mdash; the custom-property namespace (default <span class="code-ref">jf</span>; <span class="code-ref">""</span> for un-prefixed <span class="code-ref">--card-padding</span> names).</li>
+    <li><span class="variable-ref">$token-prefix</span> &mdash; the custom-property namespace (default <span class="code-ref">jf</span>; <span class="code-ref">""</span> for un-prefixed <span class="code-ref">--border-color</span> names).</li>
   </ul>
   <pre class="language-scss"><code>
     @charset "UTF-8";

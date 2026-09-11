@@ -32,23 +32,34 @@
 <div class="section is-tight bg-soft">
   <h2 class="h3" id="overriding">Overriding</h2>
   <ul>
-    <li><strong>One bar / a scoped rule</strong> &mdash; <span class="code-ref">--jf-progress-bar-color</span> (the value), <span class="code-ref">--jf-progress-bar-color-unknown</span> (the indeterminate sweep), <span class="code-ref">--jf-progress-bar-bg-color</span> (the track).</li>
+    <li><strong>One bar / a scoped rule</strong> &mdash; set the <span class="code-ref">--jf-progress-bar-*</span> custom properties (tabled below) on <span class="css-ref">.progress</span> or a scoped selector.</li>
     <li><strong>Shape</strong> &mdash; the Sass variables below.</li>
   </ul>
 
   <h3 class="h4">Variables</h3>
   <div class="variables-reference">
+        <h4 class="h6">Sass variables</h4>
     <table class="is-responsive has-border">
-          <caption class="screen-reader-text">Progress bar Sass variables and custom properties</caption>
-          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
-          <tbody>
-            <tr><td><span class="variable-ref">$generate-progressbar</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.progress</span> CSS at all.</td></tr>
-            <tr><td><span class="variable-ref">$progressbar-height</span></td><td><span class="code-ref">get-size(1)</span></td><td>Bar thickness.</td></tr>
-            <tr><td><span class="variable-ref">$progressbar-border-radius</span> / <span class="variable-ref">-value-border-radius</span></td><td><span class="code-ref">radius-md</span> / <span class="code-ref">radius-none</span></td><td>Track / fill corners.</td></tr>
-            <tr><td><span class="variable-ref">$progressbar-indeterminate-duration</span></td><td><span class="code-ref">10s</span></td><td>One sweep. Clamped slower under reduced-motion.</td></tr>
-            <tr><td><span class="css-ref">--jf-progress-bar-color</span> / <span class="css-ref">-color-unknown</span> / <span class="css-ref">-bg-color</span></td><td><span class="code-ref">neutral</span> roles</td><td>Fill / indeterminate sweep / track. Family modifiers repoint these.</td></tr>
-          </tbody>
-        </table>
+      <caption class="screen-reader-text">Progress Sass variables</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="variable-ref">$generate-progressbar</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.progress</span> CSS at all.</td></tr>
+        <tr><td><span class="variable-ref">$progressbar-height</span></td><td><span class="code-ref">get-size(1)</span> (16px)</td><td>Bar thickness.</td></tr>
+        <tr><td><span class="variable-ref">$progressbar-border-radius</span></td><td><span class="code-ref">token(radius-md)</span></td><td>Track corner radius.</td></tr>
+        <tr><td><span class="variable-ref">$progressbar-value-border-radius</span></td><td><span class="code-ref">token(radius-none)</span> (0)</td><td>Corner radius of the filled portion. Square by default so a part-full bar meets the track edge cleanly.</td></tr>
+        <tr><td><span class="variable-ref">$progressbar-indeterminate-duration</span></td><td><span class="code-ref">10s</span></td><td>One sweep of the indeterminate animation. Slowed, not stopped, under <span class="code-ref">prefers-reduced-motion</span> &mdash; an indeterminate bar still has to signal activity.</td></tr>
+      </tbody>
+    </table>
+    <h4 class="h6">Custom properties</h4>
+    <table class="is-responsive has-border">
+      <caption class="screen-reader-text">Progress custom properties</caption>
+      <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="css-ref">--jf-progress-bar-color</span></td><td><span class="code-ref">neutral / 500</span></td><td>The filled portion.</td></tr>
+        <tr><td><span class="css-ref">--jf-progress-bar-color-unknown</span></td><td><span class="code-ref">neutral / muted</span></td><td>The indeterminate sweep.</td></tr>
+        <tr><td><span class="css-ref">--jf-progress-bar-bg-color</span></td><td><span class="code-ref">neutral / subtle</span></td><td>The track behind the fill.</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 @@include('./src/docs/partials/html-footer.html')

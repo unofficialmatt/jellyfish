@@ -186,7 +186,7 @@
     </tbody>
   </table>
   <p>A block that <em>directly</em> contains a floated <span class="css-ref">.align-*</span> child contains the float itself (<span class="code-ref">display: flow-root</span> via <span class="code-ref">:has()</span>) &mdash; no <span class="css-ref">.clearfix</span>. The rule is wrapped in <span class="code-ref">:where()</span> on purpose, giving it <em>zero</em> specificity: <strong>any</strong> other <span class="code-ref">display</span> declaration on that same element wins, no matter how it got there &mdash; a plugin's, an explicit <span class="code-ref">flex</span> / <span class="code-ref">grid</span> of your own, Jellyfish's own <span class="css-ref">.grid</span> / <span class="css-ref">.row</span>, or even <span class="css-ref">.boxed</span> itself (<span class="code-ref">display: inherit</span>). Put <span class="css-ref">.boxed</span> only on the floated children, not the containing box, or its <span class="code-ref">display: inherit</span> silently cancels the auto-containment and you're back to setting <span class="code-ref">flow-root</span> by hand. Prefer flex / grid over floats.</p>
-  <div style="border: var(--jf-border-width) solid var(--jf-border-color); padding: 0.75rem 1rem;">
+  <div class="demo-outline">
     <div class="align-end bg-soft boxed">float end</div>
     <div class="align-start bg-soft boxed">float start</div>
     Text wraps around both; this box has no competing <span class="code-ref">display</span> of its own, so the auto <span class="code-ref">flow-root</span> actually applies &mdash; nothing spills out below.
@@ -201,11 +201,14 @@
     <tbody>
       <tr><th scope="row"><span class="css-ref">.hide</span></th><td><span class="code-ref">display: none</span> at every width.</td></tr>
       <tr><th scope="row"><span class="css-ref">.invisible</span></th><td><span class="code-ref">visibility: hidden</span> &mdash; hidden but still takes space.</td></tr>
-      <tr><th scope="row"><span class="css-ref">.hide-{bp}</span></th><td>Hidden only at that breakpoint band.</td></tr>
-      <tr><th scope="row"><span class="css-ref">.hide-above-{bp}</span> / <span class="css-ref">.hide-below-{bp}</span></th><td>Hidden at and above / below the breakpoint.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.hide-xs</span></th><td>Hidden below 600px &mdash; the <span class="code-ref">xs</span> band, the same name the <a href="./grid.html">grid</a> gives its base columns. The band has no lower bound, so this is an alias of <span class="css-ref">.hide-below-sm</span>; they compile to one rule.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.hide-sm</span> / <span class="css-ref">.hide-md</span> / <span class="css-ref">.hide-lg</span></th><td>Hidden only within that breakpoint's band &mdash; 600&ndash;899px, 900&ndash;1199px, 1200&ndash;1799px.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.hide-xl</span></th><td>Hidden from 1800px up. The top band has no upper bound, so this is an alias of <span class="css-ref">.hide-above-xl</span> &mdash; they compile to one rule.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.hide-above-{bp}</span> / <span class="css-ref">.hide-below-{bp}</span></th><td>Hidden at and above / below the breakpoint. Generated for all four keys.</td></tr>
       <tr><th scope="row"><span class="css-ref">.hide-above-nav</span> / <span class="css-ref">.hide-below-nav</span></th><td>Same, keyed to <span class="variable-ref">$nav-expands</span> (for navbar items).</td></tr>
     </tbody>
   </table>
+  <p><span class="bold">Two families, two mental models.</span> <span class="css-ref">.hide-{bp}</span> hides within <em>one band only</em> and lets everything either side through &mdash; five bands, <span class="code-ref">xs</span> through <span class="code-ref">xl</span>, covering the whole range with no gaps. <span class="css-ref">.hide-above-{bp}</span> / <span class="css-ref">.hide-below-{bp}</span> are open-ended and stack, so combine them for a custom span: <span class="css-ref">.hide-below-md .hide-above-lg</span> hides everywhere except 900&ndash;1199px.</p>
 </div>
 
 <div class="section is-tight bg-base">
@@ -226,22 +229,22 @@
   <p><span class="code-ref">align-items</span> (on the container), one row per value, with a taller item in each to make the effect visible:</p>
   <div class="row row-boxed align-top">
     <div class="col md-4"><div class="boxed bg-soft">align-top</div></div>
-    <div class="col md-4"><div class="boxed bg-soft" style="padding-block:1.5rem">taller</div></div>
+    <div class="col md-4"><div class="boxed bg-soft demo-tall">taller</div></div>
     <div class="col md-4 align-self-bottom"><div class="boxed bg-soft">align-self-bottom</div></div>
   </div>
   <div class="row row-boxed align-middle">
     <div class="col md-4"><div class="boxed bg-soft">align-middle</div></div>
-    <div class="col md-4"><div class="boxed bg-soft" style="padding-block:1.5rem">taller</div></div>
+    <div class="col md-4"><div class="boxed bg-soft demo-tall">taller</div></div>
     <div class="col md-4"><div class="boxed bg-soft">align-middle</div></div>
   </div>
   <div class="row row-boxed align-bottom">
     <div class="col md-4"><div class="boxed bg-soft">align-bottom</div></div>
-    <div class="col md-4"><div class="boxed bg-soft" style="padding-block:1.5rem">taller</div></div>
+    <div class="col md-4"><div class="boxed bg-soft demo-tall">taller</div></div>
     <div class="col md-4 align-self-top"><div class="boxed bg-soft">align-self-top</div></div>
   </div>
   <div class="row row-boxed align-stretch">
     <div class="col md-4"><div class="boxed bg-soft mbe-0">align-stretch (default)</div></div>
-    <div class="col md-4"><div class="boxed bg-soft mbe-0" style="padding-block:1.5rem">taller</div></div>
+    <div class="col md-4"><div class="boxed bg-soft mbe-0 demo-tall">taller</div></div>
     <div class="col md-4"><div class="boxed bg-soft mbe-0">stretches to match</div></div>
   </div>
   <p class="mt-3"><span class="code-ref">justify-content</span> (on the container):</p>
@@ -266,12 +269,25 @@
     <div class="col md-3"><div class="boxed bg-soft">justify-evenly</div></div>
   </div>
   <p class="mt-3"><span class="css-ref">.flex</span> / <span class="css-ref">.flex-column</span> on a plain element (not a <span class="css-ref">.row</span>):</p>
-  <div class="flex bg-soft boxed" style="gap:0.5rem;">
+  <div class="flex bg-soft boxed demo-gap">
     <span>.flex</span><span>row</span><span>(default direction)</span>
   </div>
-  <div class="flex-column bg-soft boxed" style="gap:0.5rem;">
+  <div class="flex-column bg-soft boxed demo-gap">
     <span>.flex-column</span><span>stacks</span><span>instead</span>
   </div>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="object-fit">Object fit</h2>
+  <table class="has-border">
+    <caption class="screen-reader-text">Object-fit utilities</caption>
+    <thead><tr><th scope="col">Class</th><th scope="col">Effect</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><span class="css-ref">.object-cover</span></th><td><span class="code-ref">object-fit: cover</span> &mdash; crops to fill the box.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.object-contain</span></th><td><span class="code-ref">object-fit: contain</span> &mdash; letterboxes so the whole image shows.</td></tr>
+    </tbody>
+  </table>
+  <p>Both need the image to have been given a size &mdash; a <span class="code-ref">width</span> and <span class="code-ref">height</span>, an <span class="code-ref">aspect-ratio</span>, or a <span class="css-ref">.ratio-*</span> class. Both also zero the image's trailing <span class="code-ref">--jf-flow</span> margin. A <span class="css-ref">.ratio-*</span> already applies <span class="code-ref">cover</span>, so pair it with <span class="css-ref">.object-contain</span> to letterbox within that ratio. See <a href="./media.html#object-fit">Images and media</a>.</p>
 </div>
 
 <div class="section is-tight bg-base">
@@ -291,7 +307,14 @@
     <span class="icon" style="--jf-icon: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 21s-8-4.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 6.5-8 11-8 11z%22/%3E%3C/svg%3E');" aria-hidden="true"></span>
     <span class="icon text-primary" style="--jf-icon: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M20 6L9 17l-5-5%22 fill=%22none%22 stroke=%22black%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E');" aria-hidden="true"></span>
   </p>
-  <p>In your CSS, e.g. an arrow after external links: <span class="code-ref">a[target="_blank"]::after { --jf-icon: url("data:image/svg+xml,…") }</span> with <span class="css-ref">.icon</span> on the pseudo. In Sass, <span class="code-ref">@include icon($url, $size)</span> does the same on any selector.</p>
+  <p>In your own CSS the class isn't needed &mdash; <span class="code-ref">@include icon()</span> emits the same rules on any selector, a pseudo-element included. Set <span class="code-ref">--jf-icon</span> in the same rule, and pass a size if you want something other than <span class="code-ref">1em</span>. An arrow after external links:</p>
+  <pre class="language-scss"><code>
+    a[target="_blank"]::after {
+      @include icon(0.8em);
+      content: "";
+      --jf-icon: url("data:image/svg+xml,&hellip;");
+    }
+  </code></pre>
 </div>
 
 </section>
