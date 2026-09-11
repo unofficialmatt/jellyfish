@@ -2,8 +2,7 @@
   .callout {
     @include surface(
       get-color-role(neutral, subtle),
-      token(color-on-neutral-subtle),
-      get-color-role(neutral, strong)
+      token(color-on-neutral-subtle)
     );
     #{token-name("callout-bg-color")}: #{token(color-surface)};
     #{token-name("callout-color")}: #{token(color-text)};
@@ -13,7 +12,7 @@
         neutral,
         strong
       )};
-    #{token-name("callout-heading-color")}: #{token(color-headings)};
+    #{token-name("callout-heading-color")}: #{get-color-role(neutral, strong)};
     border: {
       width: $callout-border-width;
       style: $callout-border-style;
@@ -43,7 +42,7 @@
     &.soft {
       #{token-name("color-surface")}: #{token(color-bg-soft)};
       #{token-name("color-text")}: #{token(color-text-soft)};
-      #{token-name("color-headings")}: #{token(color-headings-soft)};
+      #{token-name("callout-heading-color")}: #{token(color-headings-soft)};
     }
 
     &.has-icon {
@@ -57,7 +56,7 @@
         @include icon($icon-size);
         content: "";
         position: absolute;
-        background-color: #{token(color-headings)};
+        background-color: #{token(callout-heading-color)};
         inset-inline-start: $callout-padding;
         inset-block-start: $callout-padding;
       }
@@ -86,13 +85,14 @@
   }
   .callout-heading {
     @include h6();
+    color: token(callout-heading-color);
     margin-block-end: 0.5em;
     text-transform: uppercase;
     font-weight: get-weight(semibold);
     letter-spacing: 0.02em;
   }
 
-  a.callout-link {
+  .callout a {
     font-weight: get-weight(bold);
     color: token(callout-link-color);
     &:hover,

@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Callouts ~ 🎐 Jellyfish UI</title>
-    <meta name="description" content="Provide information in a themed box, using color to indicate importance or context.">
+    <meta name="description" content="A themed box that draws attention to a piece of information.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
@@ -54,7 +54,7 @@
             Latest
           </li>
           <li>
-            <a href="./whats-new.html">What's New in 4.3.0</a>
+            <a href="./whats-new.html">What's new in 5.0</a>
           </li>
           <li class="li-title mt-0">
             HTML
@@ -108,6 +108,9 @@
             <a href="./breakpoints.html">Breakpoints</a>
           </li>
           <li>
+            <a href="./container-queries.html">Container Queries</a>
+          </li>
+          <li>
             <a href="./mixins.html">Mixins</a>
           </li>
           <li>
@@ -129,6 +132,9 @@
             <a href="./theme-colors.html">Theme Colors</a>
           </li>
           <li>
+            <a href="./palette-generator.html">Palette Generator</a>
+          </li>
+          <li>
             <a href="./accessibility.html">Accessibility</a>
           </li>
           <li>
@@ -144,114 +150,130 @@
     <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
-<h1 class="section-heading h2">Callouts<a href="./variables.html#callouts">[ Variable Reference ]</a></h1>
-<div>
-  <p class="standfirst">A callout provides a simple way to draw attention to information. It is an element with the class <span class="css-ref">.callout</span> applied.</p>
-  <p>A callout is its own <a href="./theme-colors.html">surface</a> &mdash; nested <span class="css-ref">.text-muted</span>, <span class="code-ref">figcaption</span> and <span class="css-ref">.font-size-small</span> re-tint against the callout fill rather than the page, and it flips correctly in dark mode.</p>
+<h1 class="section-heading h2">Callouts</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">A themed box that draws attention to a piece of information. Add <span class="css-ref">.callout</span> to a block element &mdash; ideally an <span class="css-ref">&lt;aside&gt;</span>, with <span class="code-ref">role="alert"</span> if it needs to be announced.</p>
+  <p>A callout is its own <a href="./theme-colors.html">surface</a>: a nested <span class="css-ref">.text-muted</span>, <span class="code-ref">&lt;figcaption&gt;</span> or <span class="css-ref">.font-size-small</span> re-tints against the callout fill rather than the page, and it flips in dark mode.</p>
 </div>
-<div>
-  <h2 class="h3">Basic Callout</h2>
-  <pre class="language-markup">
-    <code><!--
-    <aside class="callout" role="alert">
-      <h2 class="callout-heading">Important information!</h2>
-      <p>Jellyfish have no brain, heart, bones or eyes. They are made up of a smooth, bag-like body and tentacles armed with tiny, stinging cells.</p>
-      <a href="#">Cool - tell me more!</a>
-    </aside>
-  --></code>
-  </pre>
-  <aside class="callout" role="alert">
-    <h2 class="callout-heading">Important information!</h2>
-    <p>Jellyfish have no brain, heart, bones or eyes. They are made up of a smooth, bag-like body and tentacles armed with tiny, stinging cells. </p>
-    <a href="#">Cool - tell me more!</a>
-  </aside>
-</div>
-<div>
-  <h2 class="h3">Colors</h2>
-  <p>Provide more context to callouts by using the modifiers <span class="css-ref">.primary</span>, <span class="css-ref">.secondary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span>, <span class="css-ref">.error</span> or <span class="css-ref">.soft</span>. <span class="css-ref">.soft</span> is a plain neutral callout lifted a step off the canvas (white in light, a raised dark tint in dark) and flips with the theme.</p>
-  <pre class="language-markup">
-    <code><!--
-    <div class="callout primary"><h6 class="callout-heading">This is a primary call out</h6>...</div>
-    <div class="callout secondary"><h6 class="callout-heading">This is a secondary call out</h6>...</div>
-    <div class="callout success"><h6 class="callout-heading">This is a success call out</h6>...</div>
-    <div class="callout warning"><h6 class="callout-heading">This is a warning call out</h6>...</div>
-    <div class="callout error"><h6 class="callout-heading">This is an error call out</h6>...</div>
-    <div class="callout soft"><h6 class="callout-heading">This is a soft call out</h6>...</div>
-  --></code>
-  </pre>
-  <div class="grid auto-grid" style="--jf-col-min: 480px;">
-    <div class="callout primary">
-      <h6 class="callout-heading">This is a primary call out</h6>
-      <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
-      <p class="text-muted">This text is styled with the muted text color.</p>
-      <p class="text-subtle">This text is styled with the subtle text color.</p>
-    </div>
-    <div class="callout secondary">
-      <h6 class="callout-heading">This is a secondary call out</h6>
-      <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
-      <p class="text-muted">This text is styled with the muted text color.</p>
-      <p class="text-subtle">This text is styled with the subtle text color.</p>
-    </div>
-    <div class="callout success">
-      <h6 class="callout-heading">This is a success call out</h6>
-      <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
-      <p class="text-muted">This text is styled with the muted text color.</p>
-      <p class="text-subtle">This text is styled with the subtle text color.</p>
-    </div>
-    <div class="callout warning">
-      <h6 class="callout-heading">This is a warning call out</h6>
-      <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
-      <p class="text-muted">This text is styled with the muted text color.</p>
-      <p class="text-subtle">This text is styled with the subtle text color.</p>
-    </div>
-    <div class="callout error">
-      <h6 class="callout-heading">This is an error call out</h6>
-      <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
-      <p class="text-muted">This text is styled with the muted text color.</p>
-      <p class="text-subtle">This text is styled with the subtle text color.</p>
-    </div>
-    <div class="callout soft">
-      <h6 class="callout-heading">This is a soft call out</h6>
-      <p>Despite their name, jellyfish aren't really a type of fish. Fish are vertebrates that live in water and breathe through their gills. Jellyfish, on the other hand, are invertebrates, meaning they have no backbone and they absorb oxygen from water through membranes.</p>
-      <p class="text-muted">This text is styled with the muted text color.</p>
-      <p class="text-subtle">This text is styled with the subtle text color.</p>
-    </div>
-  </div>
-</div>
-<div>
-  <h2 class="h3">Callout links</h2>
-  <p>Use the class <span class="css-ref">.callout-link</span> to apply matching colouring to a link in a callout.</p>
-  <pre class="language-markup">
-    <code><!--
-    <div class="callout primary"><h6 class="callout-heading">This is a primary call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
-    <div class="callout secondary"><h6 class="callout-heading">This is a secondary call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
-    <div class="callout success"><h6 class="callout-heading">This is a success call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
-    <div class="callout warning"><h6 class="callout-heading">This is a warning call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
-    <div class="callout error"><h6 class="callout-heading">This is an error call out</h6>This is a <a href="#" class="callout-link">very important link</a></div>
-  --></code>
-  </pre>
 
+<div class="section is-tight bg-base">
+  <h2 class="h3">Example</h2>
+  <pre class="language-markup"><code><!--
+    <aside class="callout" role="alert">
+      <h2 class="callout-heading">Important information</h2>
+      <p>Jellyfish have no brain, heart, bones or eyes.</p>
+      <p><a href="#">Tell me more</a></p>
+    </aside>
+    --></code></pre>
+  <aside class="callout" role="alert">
+    <h2 class="callout-heading">Important information</h2>
+    <p>Jellyfish have no brain, heart, bones or eyes. They are a smooth, bag-like body and tentacles armed with tiny stinging cells.</p>
+    <p><a href="#">Tell me more</a></p>
+  </aside>
+  <ul>
+    <li><span class="css-ref">.callout-heading</span> &mdash; an uppercase eyebrow heading (any <span class="code-ref">&lt;h*&gt;</span> level; sized independently).</li>
+    <li>Any <span class="code-ref">&lt;a&gt;</span> inside a <span class="css-ref">.callout</span> is tinted to match it automatically &mdash; no class needed.</li>
+  </ul>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Colours</h2>
+  <p>Add one modifier: <span class="css-ref">.primary</span>, <span class="css-ref">.secondary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span>, <span class="css-ref">.error</span>, or <span class="css-ref">.soft</span> (a plain neutral callout lifted one step off the canvas). Each retints the fill, border, heading and any link together, and flips with the theme.</p>
   <div class="grid auto-grid" style="--jf-col-min: 320px;">
-    <div class="callout primary">
-      <h6 class="callout-heading">This is a primary call out</h6>This is a <a href="#" class="callout-link">very important link</a>
-    </div>
-    <div class="callout secondary">
-      <h6 class="callout-heading">This is a secondary call out</h6>This is a <a href="#" class="callout-link">very important link</a>
-    </div>
-    <div class="callout success">
-      <h6 class="callout-heading">This is a success call out</h6>This is a <a href="#" class="callout-link">very important link</a>
-    </div>
-    <div class="callout warning">
-      <h6 class="callout-heading">This is a warning call out</h6>This is a <a href="#" class="callout-link">very important link</a>
-    </div>
-    <div class="callout error">
-      <h6 class="callout-heading">This is an error call out</h6>This is a <a href="#" class="callout-link">very important link</a>
-    </div>
+    <aside class="callout primary"><h6 class="callout-heading">primary</h6><p>Invertebrates &mdash; no backbone, oxygen absorbed straight through the skin. <a href="#">A link</a></p></aside>
+    <aside class="callout secondary"><h6 class="callout-heading">secondary</h6><p>Invertebrates &mdash; no backbone, oxygen absorbed straight through the skin. <a href="#">A link</a></p></aside>
+    <aside class="callout success"><p>Invertebrates &mdash; no backbone, oxygen absorbed straight through the skin. <a href="#">A link</a></p></aside>
+    <aside class="callout warning"><h6 class="callout-heading">warning</h6><p>Invertebrates &mdash; no backbone, oxygen absorbed straight through the skin. <a href="#">A link</a></p></aside>
+    <aside class="callout error"><h6 class="callout-heading">error</h6><p>Invertebrates &mdash; no backbone, oxygen absorbed straight through the skin. <a href="#">A link</a></p></aside>
+    <aside class="callout soft"><h6 class="callout-heading">soft</h6><p>Invertebrates &mdash; no backbone, oxygen absorbed straight through the skin. <a href="#">A link</a></p></aside>
   </div>
 </div>
-<div>
-  <h2 class="h3">Create-your-own</h2>
-  <p>It's easy to create callouts with additional color schemes; simply add a new color to the <span class="variable-ref">$colors</span> SCSS map.</p>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="icons">Icons</h2>
+  <p>Add <span class="css-ref">.has-icon</span> for a leading icon, drawn as a mask (see <a href="./utilities.html#icons">Icons</a>). The default glyph is an info <em>i</em>; <span class="css-ref">.warning</span>, <span class="css-ref">.error</span> and <span class="css-ref">.success</span> each bring their own, and <span class="css-ref">.icon-help</span> swaps in a question mark. Override any of them per instance &mdash; or in a scoped rule &mdash; with <span class="code-ref">--jf-icon: url("&hellip;")</span>.</p>
+  <ul>
+    <li><strong>First child is a <span class="css-ref">.callout-heading</span></strong> &mdash; the icon sits beside that heading and the body text flows full-width beneath it.</li>
+    <li><strong>Anything else first</strong> &mdash; the whole callout is indented past the icon.</li>
+  </ul>
+  <pre class="language-markup"><code><!--
+    <aside class="callout has-icon primary">
+      <h2 class="callout-heading">Heads up</h2>
+      <p>Icon aligns with the heading; this paragraph runs full width.</p>
+    </aside>
+
+    <aside class="callout has-icon icon-help">
+      <p>No heading &mdash; the icon indents the whole block.</p>
+    </aside>
+
+    <aside class="callout has-icon" style="--jf-icon: url('/icons/star.svg')">
+      <p>Bring your own glyph.</p>
+    </aside>
+    --></code></pre>
+  <div class="grid auto-grid" style="--jf-col-min: 320px;">
+    <aside class="callout has-icon primary">
+      <h2 class="callout-heading">Heads up</h2>
+      <p class="mbe-0">Icon aligns with the heading; this paragraph runs full width beneath it. This is the default info icon &mdash; <span class="css-ref">.warning</span> / <span class="css-ref">.error</span> / <span class="css-ref">.success</span> bring their own instead.</p>
+    </aside>
+    <aside class="callout has-icon icon-help">
+      <p class="mbe-0">No heading &mdash; the icon indents the whole block, current behaviour.</p>
+    </aside>
+    <aside class="callout has-icon" style="--jf-icon: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 1l3.09 7.26L22 9.27l-5.91 5.76L17.18 23 12 19.27 6.82 23l1.09-7.97L2 9.27l6.91-1.01L12 1z%22/%3E%3C/svg%3E');">
+      <p class="mbe-0">Bring your own glyph via <span class="code-ref">--jf-icon</span>.</p>
+    </aside>
+  </div>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Text tiers</h2>
+  <p>Because the callout is its own surface, <span class="css-ref">.text-muted</span> and <span class="css-ref">.text-subtle</span> re-mix toward the callout fill, not the page &mdash; so secondary and hint text stay legible on any variant.</p>
+  <div class="grid auto-grid" style="--jf-col-min: 320px;">
+    <aside class="callout">
+      <h6 class="callout-heading">Default</h6>
+      <p>Body text.</p>
+      <p class="text-muted">Muted &mdash; secondary content, captions.</p>
+      <p class="text-subtle mbe-0">Subtle &mdash; hints, placeholders.</p>
+    </aside>
+    <aside class="callout primary">
+      <h6 class="callout-heading">On a coloured fill</h6>
+      <p>Body text.</p>
+      <p class="text-muted">Muted, mixed toward the primary fill.</p>
+      <p class="text-subtle mbe-0">Subtle, mixed further.</p>
+    </aside>
+    <aside class="callout soft">
+      <h6 class="callout-heading">Soft</h6>
+      <p>Body text.</p>
+      <p class="text-muted">Muted.</p>
+      <p class="text-subtle mbe-0">Subtle.</p>
+    </aside>
+  </div>
+</div>
+
+<div class="section is-tight bg-soft">
+  <h2 class="h3" id="overriding">Overriding</h2>
+  <ul>
+    <li><strong>One callout / a scoped rule</strong> &mdash; set the custom properties on <span class="css-ref">.callout</span>: <span class="code-ref">--jf-callout-bg-color</span>, <span class="code-ref">--jf-callout-color</span>, <span class="code-ref">--jf-callout-border-color</span>, <span class="code-ref">--jf-callout-heading-color</span>, <span class="code-ref">--jf-callout-link-color</span> / <span class="code-ref">--jf-callout-link-color-hover</span>.</li>
+    <li><strong>A new colour everywhere</strong> &mdash; add a family to the <a href="./theme-colors.html"><span class="variable-ref">$colors</span></a> map; <span class="css-ref">.callout.{family}</span> is generated for it.</li>
+    <li><strong>Shape</strong> &mdash; the Sass variables below, before import.</li>
+  </ul>
+
+  <h3 class="h4">Variables</h3>
+  <div class="variables-reference">
+    <table class="is-responsive has-border">
+          <caption class="screen-reader-text">Callout Sass variables and custom properties</caption>
+          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+          <tbody>
+            <tr><td><span class="variable-ref">$generate-callouts</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.callout</span> CSS at all.</td></tr>
+            <tr><td><span class="variable-ref">$callout-padding</span></td><td><span class="code-ref">token(space-md)</span></td><td>Inner padding.</td></tr>
+            <tr><td><span class="variable-ref">$callout-border-radius</span></td><td><span class="code-ref">0</span></td><td>Corner radius.</td></tr>
+            <tr><td><span class="variable-ref">$callout-border-width</span> / <span class="variable-ref">-style</span></td><td><span class="code-ref">1px 1px 1px get-size(0.5)</span> / <span class="code-ref">solid</span></td><td>The thick inline-start edge is the default look.</td></tr>
+            <tr><td><span class="css-ref">--jf-callout-bg-color</span> / <span class="css-ref">-color</span></td><td><span class="code-ref">color-surface</span> / <span class="code-ref">color-text</span></td><td>Fill and body text. Set as a pair.</td></tr>
+            <tr><td><span class="css-ref">--jf-callout-border-color</span></td><td><span class="code-ref">neutral / muted</span></td><td>Border colour.</td></tr>
+            <tr><td><span class="css-ref">--jf-callout-heading-color</span></td><td><span class="code-ref">color-headings</span></td><td><span class="css-ref">.callout-heading</span> colour.</td></tr>
+            <tr><td><span class="css-ref">--jf-callout-link-color</span> / <span class="css-ref">-hover</span></td><td><span class="code-ref">neutral / emphasis</span> / <span class="code-ref">strong</span></td><td>Colour of any link inside the callout.</td></tr>
+          </tbody>
+        </table>
+  </div>
 </div>
 </section>
 </main>

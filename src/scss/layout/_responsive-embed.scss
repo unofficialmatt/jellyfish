@@ -16,8 +16,8 @@
   }
 }
 
-// Fix for MS Edge and Firefox
 [class*="ratio-"] {
+  display: block;
   overflow: hidden;
 }
 
@@ -37,7 +37,6 @@
 img[class*="ratio-"],
 [class*="ratio-"] > img {
   inline-size: 100%;
-  block-size: 100%;
   object-fit: cover;
   margin-block-end: 0;
 }

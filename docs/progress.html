@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Progress Bars ~ 🎐 Jellyfish UI</title>
-    <meta name="description" content="Native HTML progress bars can be styled with modifiers to display different colors depending on the context.">
+    <meta name="description" content="Styling for the native progress element, determinate and indeterminate.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
@@ -54,7 +54,7 @@
             Latest
           </li>
           <li>
-            <a href="./whats-new.html">What's New in 4.3.0</a>
+            <a href="./whats-new.html">What's new in 5.0</a>
           </li>
           <li class="li-title mt-0">
             HTML
@@ -108,6 +108,9 @@
             <a href="./breakpoints.html">Breakpoints</a>
           </li>
           <li>
+            <a href="./container-queries.html">Container Queries</a>
+          </li>
+          <li>
             <a href="./mixins.html">Mixins</a>
           </li>
           <li>
@@ -129,6 +132,9 @@
             <a href="./theme-colors.html">Theme Colors</a>
           </li>
           <li>
+            <a href="./palette-generator.html">Palette Generator</a>
+          </li>
+          <li>
             <a href="./accessibility.html">Accessibility</a>
           </li>
           <li>
@@ -144,42 +150,52 @@
     <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
-<h1 class="section-heading h2">Progress Bars<a href="./variables.html#progress">[ Variable Reference ]</a></h1>
-<div>
-  <p class="standfirst">Jellyfish includes a simple CSS class <span class="css-ref">.progress</span> for the native <code class="code-ref">&lt;progress></code> HTML element.</p>
-  <pre class="language-markup">
-      <code><!--
-      <progress class="progress" max="100"></progress>
-      <progress class="progress" value="25" max="100">25%</progress>
-    --></code>
-    </pre>
-  <h2 class="h3">Indeterminate State</h2>
-  <p>Displays when no value is set - it is used to show that progress is occuring but the value is not yet determined.</p>
-  <progress class="progress mb" max="100"></progress>
-  <p>In forced-colors modes (Windows High Contrast) the bar is repainted with system colours &mdash; a <span class="code-ref">Canvas</span> track and a <span class="code-ref">Highlight</span> fill. The indeterminate bar becomes a solid <span class="code-ref">Highlight</span> bar that pulses, since the swept gradient doesn't survive forced colours.</p>
-  <h2 class="h3">Known value</h2>
-  <progress class="progress" value="25" max="100">25%</progress>
+<h1 class="section-heading h2">Progress bars</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">Styling for the native <span class="code-ref">&lt;progress&gt;</span> element. Add <span class="css-ref">.progress</span>.</p>
+  <pre class="language-markup"><code><!--
+    <progress class="progress" value="70" max="100">70%</progress>
+    <progress class="progress">Loading…</progress>
+    --></code></pre>
+  <p>Give it a <span class="code-ref">value</span> for a known amount; omit <span class="code-ref">value</span> for an indeterminate, animated bar. The text content is the fallback / accessible name.</p>
+  <progress class="progress" value="70" max="100">70%</progress>
+  <progress class="progress">Loading…</progress>
 </div>
-<div>
-  <h2 class="h3">Colors</h2>
-  <p>Use the usual modifiers <span class="css-ref">.primary</span>, <span class="css-ref">.secondary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span>, <span class="css-ref">.error</span> or <span class="css-ref">.soft</span> to change the progress bar color. <span class="css-ref">.soft</span> fills with the neutral lifted surface colour and flips with the theme.
-  </p>
-  <progress class="progress mb primary"></progress>
-  <progress class="progress mb primary" value="25" max="100">25%</progress>
-  <progress class="progress mb secondary"></progress>
-  <progress class="progress mb secondary" value="45" max="100">45%</progress>
-  <progress class="progress mb success"></progress>
-  <progress class="progress mb success" value="65" max="100">65%</progress>
-  <progress class="progress mb warning"></progress>
-  <progress class="progress mb warning" value="85" max="100">85%</progress>
-  <progress class="progress mb error"></progress>
-  <progress class="progress mb error" value="100" max="100">100%</progress>
-  <progress class="progress mb soft"></progress>
-  <progress class="progress mb soft" value="40" max="100">40%</progress>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Colours</h2>
+  <p>A palette-family class recolours the fill: <span class="css-ref">.primary</span>, <span class="css-ref">.secondary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span>, <span class="css-ref">.error</span>, or <span class="css-ref">.soft</span>. New families in <a href="./theme-colors.html"><span class="variable-ref">$colors</span></a> get a variant automatically.</p>
+  <progress class="progress primary" value="45" max="100">45%</progress>
+  <progress class="progress success">Loading&hellip;</progress>
+  <progress class="progress error" value="20" max="100">20%</progress>
 </div>
-<div>
-  <h2 class="h3">Create-your-own</h2>
-  <p>In order to create additional progress bar themes, simply add a new color to the <span class="variable-ref">$colors</span> SCSS map and the framework will do the rest.</p>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Motion</h2>
+  <p>The indeterminate sweep respects <span class="code-ref">prefers-reduced-motion</span> &mdash; it slows to a crawl rather than stopping, since an indeterminate bar still has to signal activity. In Windows High Contrast mode it becomes a pulsing <span class="code-ref">Highlight</span> bar.</p>
+</div>
+
+<div class="section is-tight bg-soft">
+  <h2 class="h3" id="overriding">Overriding</h2>
+  <ul>
+    <li><strong>One bar / a scoped rule</strong> &mdash; <span class="code-ref">--jf-progress-bar-color</span> (the value), <span class="code-ref">--jf-progress-bar-color-unknown</span> (the indeterminate sweep), <span class="code-ref">--jf-progress-bar-bg-color</span> (the track).</li>
+    <li><strong>Shape</strong> &mdash; the Sass variables below.</li>
+  </ul>
+
+  <h3 class="h4">Variables</h3>
+  <div class="variables-reference">
+    <table class="is-responsive has-border">
+          <caption class="screen-reader-text">Progress bar Sass variables and custom properties</caption>
+          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+          <tbody>
+            <tr><td><span class="variable-ref">$generate-progressbar</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.progress</span> CSS at all.</td></tr>
+            <tr><td><span class="variable-ref">$progressbar-height</span></td><td><span class="code-ref">get-size(1)</span></td><td>Bar thickness.</td></tr>
+            <tr><td><span class="variable-ref">$progressbar-border-radius</span> / <span class="variable-ref">-value-border-radius</span></td><td><span class="code-ref">radius-md</span> / <span class="code-ref">radius-none</span></td><td>Track / fill corners.</td></tr>
+            <tr><td><span class="variable-ref">$progressbar-indeterminate-duration</span></td><td><span class="code-ref">10s</span></td><td>One sweep. Clamped slower under reduced-motion.</td></tr>
+            <tr><td><span class="css-ref">--jf-progress-bar-color</span> / <span class="css-ref">-color-unknown</span> / <span class="css-ref">-bg-color</span></td><td><span class="code-ref">neutral</span> roles</td><td>Fill / indeterminate sweep / track. Family modifiers repoint these.</td></tr>
+          </tbody>
+        </table>
+  </div>
 </div>
 </section>
 </main>
@@ -250,3 +266,4 @@
 </body>
 
 </html>
+

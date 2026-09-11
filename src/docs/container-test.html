@@ -105,9 +105,32 @@
     </div>
   </section>
 
+  <section>
+    <div class="container">
+      <h2 id="col-start-end">8. Breakpoint <code>.col-start</code> / <code>.col-end</code> (<code>.grid</code>)</h2>
+      <p class="note">Resize across 900px (<code>md</code>). Below <code>md</code> the three columns stack in source order. From <code>md</code> up, <code>.col-end-md</code> pins the middle column to the last grid line and <code>.col-start-md</code> forces the third column onto a new row.</p>
+      <div class="grid">
+        <div class="col md-3"><div class="block">md-3</div></div>
+        <div class="col md-3 col-end-md"><div class="block edge-block">md-3 col-end-md</div></div>
+        <div class="col md-4 col-end-md"><div class="block">md-4 col-end-md</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>9. Bleed on a flex column &mdash; unsupported</h2>
+      <p class="note">Same two-column layout as case 6, but on <code>.row</code> instead of <code>.grid</code>. <code>.bleed-end</code> still applies the negative margin, but flexbox can't widen the column to compensate, so the column just narrows &mdash; its right edge does <strong>not</strong> reach the ruler. Use <code>.grid</code> to bleed a sized column.</p>
+      <div class="row">
+        <div class="col md-6"><div class="block">text column</div></div>
+        <div class="col md-6 bleed-end"><div class="block edge-block">.bleed-end on .row &mdash; doesn't reach the ruler</div></div>
+      </div>
+    </div>
+  </section>
+
   <section style="padding-right: 300px; outline: 1px dashed var(--jf-color-error-400);">
     <div class="container">
-      <h2>8. Off-centre container &mdash; expected to break</h2>
+      <h2>10. Off-centre container &mdash; expected to break</h2>
       <p class="note">This <code>&lt;section&gt;</code> has <code>padding-right: 300px</code> (dashed outline = its content box). The container still sizes fine, but it's no longer centred in the viewport &mdash; so <code>--jf-bleed-space</code> (measured against <code>100vw</code>) is wrong: the bleed overshoots the left ruler and stops ~300px short of the right one. This is the documented limitation, not a bug to fix.</p>
       <div class="block">content box &mdash; shifted left of viewport centre</div>
       <hr>
@@ -117,10 +140,45 @@
 
   <section>
     <div class="container">
-      <h2>9. Container regime check</h2>
+      <h2>11. Container regime check</h2>
       <p class="note measure" id="m1" data-w="?">Resize the window slowly and watch the readout. Content width should be exactly 1140px once <code>(100vw - 1140) / 2 &gt; gutter</code>, and exactly 1280px past <code>xl</code> (1800px).</p>
       <div class="block" id="probe">probe block (content width mirrored in the readout)</div>
     </div>
+  </section>
+
+  <section id="section-seams">
+    <div class="container">
+      <h2>12. <code>.section</code> seam collapse</h2>
+      <p class="note">Two stacked sections with the <em>same</em> background collapse their seam to a single gap; a background <em>change</em> keeps both sections' full padding, so the colour edge reads as a deliberate boundary.</p>
+    </div>
+    <section class="section bg-base">
+      <div class="container"><p class="mbe-0">Two <code>.section.bg-base</code> in a row&hellip;</p></div>
+    </section>
+    <section class="section bg-base">
+      <div class="container"><p class="mbe-0">&hellip;same background, so the seam between them collapses to one gap.</p></div>
+    </section>
+    <section class="section bg-primary">
+      <div class="container"><p class="mbe-0"><code>.section.bg-primary</code> &mdash; background changes, so the full padding is kept on both sides of the edge.</p></div>
+    </section>
+    <section class="section bg-primary">
+      <div class="container"><p class="mbe-0">Another <code>.bg-primary</code> &mdash; matches the one above, seam collapses again.</p></div>
+    </section>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>13. <code>.is-tight</code> / <code>.is-loose</code> spacing</h2>
+      <p class="note">Same background throughout, so the seam always collapses &mdash; the only thing changing between these three is <code>--jf-section-space</code>: <code>.is-tight</code> is <code>fluid(32px, 48px)</code>, the default (middle) is <code>fluid(32px, 96px)</code>, <code>.is-loose</code> is <code>fluid(48px, 128px)</code>. Resize the window to see each range play out.</p>
+    </div>
+    <section class="section is-tight bg-soft">
+      <div class="container"><p class="mbe-0"><code>.section.is-tight</code> &mdash; smallest padding, caps early (48px).</p></div>
+    </section>
+    <section class="section bg-soft">
+      <div class="container"><p class="mbe-0"><code>.section</code> (default) &mdash; widest fluid range, 32&ndash;96px.</p></div>
+    </section>
+    <section class="section is-loose bg-soft">
+      <div class="container"><p class="mbe-0"><code>.section.is-loose</code> &mdash; largest padding, up to 128px.</p></div>
+    </section>
   </section>
 
   <script>

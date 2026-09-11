@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Palette Generator ~ 🎐 Jellyfish UI</title>
+    <meta name="description" content="Type a hex colour and preview the five semantic role shades makeColorPalette() would generate, with a WCAG-recommended text colour on each.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="color-scheme" content="light dark">
+    <script>
+      // Pre-paint: apply stored theme + text-size preferences before the first
+      // paint so there's no flash. theme.js / accessibility.js keep these in
+      // sync afterwards.
+      (function () {
+        var el = document.documentElement;
+        try {
+          var t = localStorage.getItem("jf-theme");
+          if (t === "dark" || t === "light") el.classList.add("jf-" + t);
+        } catch (e) {}
+        try {
+          var f = localStorage.getItem("jf-font-size");
+          if (f === "smaller" || f === "larger" || f === "largest") {
+            el.classList.add("font-size-" + f);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="../dist/css/jellyfish.min.css" media="all">
+    <link href="./prism.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+  </head>
+
+  <body>
+    <a href="#content" class="skip-link">Skip to content</a>
+
+<div class="container is-wide">
+  <div class="grid">
+    <aside class="col xs-12 md-3">
+      <div class="sidebar">
+        <div class="sidebar-top">
+          <a href="../index.html" class="navbar-brand">
+            <img src="/img/jellyfish.svg" alt="Jellyfish Logo" class="navbar-logo">
+          </a>
+          <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false"
+            aria-label="Toggle dark mode">
+            <span class="theme-toggle-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+        <nav aria-label="Documentation">
+        <ul>
+          <li class="li-title mt-0">
+            Latest
+          </li>
+          <li>
+            <a href="./whats-new.html">What's new in 5.0</a>
+          </li>
+          <li class="li-title mt-0">
+            HTML
+          </li>
+          <li>
+            <a href="./getting-started.html">Getting Started</a>
+          </li>
+          <li>
+            <a href="./grid.html">Grid</a>
+          </li>
+          <li>
+            <a href="./navbar.html">Navbar</a>
+          </li>
+          <li>
+            <a href="./typography.html">Typography</a>
+          </li>
+          <li>
+            <a href="./media.html">Images and Media</a>
+          </li>
+          <li>
+            <a href="./tables.html">Tables</a>
+          </li>
+          <li>
+            <a href="./forms.html">Forms</a>
+          </li>
+          <li>
+            <a href="./progress.html">Progress Bars</a>
+          </li>
+          <li>
+            <a href="./buttons.html">Buttons</a>
+          </li>
+          <li>
+            <a href="./chips.html">Chips</a>
+          </li>
+          <li>
+            <a href="./callouts.html">Callouts</a>
+          </li>
+          <li>
+            <a href="./cards.html">Cards</a>
+          </li>
+          <li>
+            <a href="./accordions.html">Accordions</a>
+          </li>
+          <li>
+            <a href="./modals.html">Modals</a>
+          </li>
+          <li class="li-title">
+            SCSS
+          </li>
+          <li>
+            <a href="./breakpoints.html">Breakpoints</a>
+          </li>
+          <li>
+            <a href="./container-queries.html">Container Queries</a>
+          </li>
+          <li>
+            <a href="./mixins.html">Mixins</a>
+          </li>
+          <li>
+            <a href="./variables.html">Variables</a>
+          </li>
+          <li>
+            <a href="./design-tokens.html">Design Tokens</a>
+          </li>
+          <li class="li-title">
+            Javascript
+          </li>
+          <li>
+            <a href="./javascript.html">Javascript Functions</a>
+          </li>
+          <li class="li-title">
+            Utilities
+          </li>
+          <li>
+            <a href="./theme-colors.html">Theme Colors</a>
+          </li>
+          <li>
+            <a href="./palette-generator.html">Palette Generator</a>
+          </li>
+          <li>
+            <a href="./accessibility.html">Accessibility</a>
+          </li>
+          <li>
+            <a href="./printing.html">Printing</a>
+          </li>
+          <li>
+            <a href="./utilities.html">Utility Classes</a>
+          </li>
+        </ul>
+        </nav>
+      </div>
+    </aside>
+    <main class="col xs-12 md-9 content" id="content">
+      <section class="docs-section">
+
+<h1 class="section-heading h2">Palette generator</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">Preview a <a href="./theme-colors.html"><span class="variable-ref">$colors</span></a> entry before you commit it. Type a base colour below and this re-runs <span class="code-ref">makeColorPalette()</span>'s tint/shade maths and a WCAG text-colour pick <em>in the browser</em>, against the same five <a href="./theme-colors.html#roles">semantic role aliases</a> a real family gets: the base colour itself (<span class="code-ref">500</span>) plus <span class="code-ref">subtle</span> (<span class="code-ref">50</span>), <span class="code-ref">muted</span> (<span class="code-ref">300</span>), <span class="code-ref">emphasis</span> (<span class="code-ref">700</span>) and <span class="code-ref">strong</span> (<span class="code-ref">900</span>).</p>
+  <p>Text colour follows <span class="code-ref">resolve-contrast-color()</span>'s real order of preference: your <span class="bold">text colour</span> below wins wherever it clears a 4.5:1 WCAG AA contrast ratio, white otherwise, black only as a last resort. It's prefilled with the framework's actual default (<span class="code-ref">$colors.neutral</span>'s <span class="code-ref">1000</span> shade, seeded <span class="code-ref">#64748b</span>) and shown as its own swatch &mdash; edit it to preview a custom <span class="variable-ref">$color-text</span> too. The maths here matches the build exactly; the one thing this can't preview is a per-shade override via <span class="code-ref">map.merge()</span> &mdash; see <a href="./mixins.html"><span class="code-ref">makeColorPalette()</span></a>.</p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Colours</h2>
+  <div class="row" style="align-items: flex-end;">
+    <div class="col sm-6 md-4">
+      <label for="pg-hex">Family seed</label>
+      <input type="text" id="pg-hex" value="#eb567d" autocomplete="off" spellcheck="false" aria-describedby="pg-error">
+    </div>
+    <div class="col col-auto">
+      <label for="pg-picker">Pick</label>
+      <input type="color" id="pg-picker" value="#eb567d" aria-label="Pick a family seed colour">
+    </div>
+  </div>
+  <p id="pg-error" class="form-error" role="alert" hidden style="display: none;">Enter a valid 6-digit hex colour, e.g. <span class="code-ref">#eb567d</span>.</p>
+  <div class="row" style="align-items: flex-end;">
+    <div class="col sm-6 md-4">
+      <label for="pg-text-hex">Text colour</label>
+      <input type="text" id="pg-text-hex" value="#232931" autocomplete="off" spellcheck="false" aria-describedby="pg-text-error">
+    </div>
+    <div class="col col-auto">
+      <label for="pg-text-picker">Pick</label>
+      <input type="color" id="pg-text-picker" value="#232931" aria-label="Pick a text colour">
+    </div>
+  </div>
+  <p id="pg-text-error" class="form-error" role="alert" hidden style="display: none;">Enter a valid 6-digit hex colour, e.g. <span class="code-ref">#232931</span>.</p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Palette preview</h2>
+  <p>Each family swatch's background is the generated shade; its text colour is the pick between white, your text colour and black, with the resulting WCAG contrast ratio. The last swatch is the text colour itself, with its ratio against the framework's default page background. The label in each swatch is rendered at real <span class="css-ref">.h4</span> size &mdash; WCAG's "large text" exception (3:1 instead of 4.5:1) only applies at that scale and up, so the sample shows what a 3:1 pass actually looks like rather than leaving it to a number.</p>
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-block-end: 1rem;" id="pg-swatches"></div>
+  <table class="has-border is-responsive">
+    <caption class="screen-reader-text">Generated palette shades and their WCAG text-colour recommendation</caption>
+    <thead>
+      <tr><th scope="col">Role</th><th scope="col">Shade</th><th scope="col">Hex</th><th scope="col">Text colour</th><th scope="col">Contrast ratio</th></tr>
+    </thead>
+    <tbody id="pg-table"></tbody>
+  </table>
+  <p>What each ratio actually clears, per <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum" target="_blank" rel="noopener">WCAG 2.x's contrast-minimum criterion</a>:</p>
+  <table class="has-border">
+    <caption class="screen-reader-text">What each WCAG contrast ratio is suitable for</caption>
+    <thead><tr><th scope="col">Ratio</th><th scope="col">Suitable for</th></tr></thead>
+    <tbody>
+      <tr><td>7:1+</td><td>AAA &mdash; any text size.</td></tr>
+      <tr><td>4.5:1+</td><td>AA &mdash; normal text (under 18px, or under ~19px/14pt bold). The default bar this tool checks.</td></tr>
+      <tr><td>3:1+</td><td>AA &mdash; large text only (18px normal weight and up, or ~19px/14pt bold and up), and for UI component / graphical-object boundaries.</td></tr>
+      <tr><td>under 3:1</td><td>Fails WCAG AA outright.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section is-tight bg-soft">
+  <h2 class="h3">Use it</h2>
+  <p>Happy with it? Add it as a new family in your settings, before Jellyfish's own <span class="code-ref">@import</span>:</p>
+  <pre class="language-scss"><code id="pg-scss">$colors: (
+  "custom": makeColorPalette(#eb567d),
+);</code></pre>
+  <button type="button" class="button soft" id="pg-copy" aria-label="Copy the SCSS snippet above">Copy SCSS</button>
+</div>
+
+<script>
+  (function () {
+    "use strict";
+
+    // ---- Colour maths — a JS port of makeColorPalette() (_color-palette.scss)
+    // and the WCAG contrast-ratio text-colour pick (sass-wcag.scss). The same
+    // formulas the build uses.
+
+    function clamp(n, min, max) {
+      return Math.min(max, Math.max(min, n));
+    }
+
+    function hexToRgb(hex) {
+      var h = hex.replace("#", "");
+      return {
+        r: parseInt(h.substring(0, 2), 16),
+        g: parseInt(h.substring(2, 4), 16),
+        b: parseInt(h.substring(4, 6), 16),
+      };
+    }
+
+    function rgbToHex(c) {
+      function h(n) {
+        return clamp(Math.round(n), 0, 255).toString(16).padStart(2, "0");
+      }
+      return "#" + h(c.r) + h(c.g) + h(c.b);
+    }
+
+    function rgbToHsl(r, g, b) {
+      r /= 255; g /= 255; b /= 255;
+      var max = Math.max(r, g, b), min = Math.min(r, g, b);
+      var h, s, l = (max + min) / 2;
+      if (max === min) {
+        h = s = 0;
+      } else {
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          default: h = (r - g) / d + 4;
+        }
+        h /= 6;
+      }
+      return { h: h * 360, s: s * 100, l: l * 100 };
+    }
+
+    function hslToRgb(h, s, l) {
+      h /= 360; s /= 100; l /= 100;
+      var r, g, b;
+      if (s === 0) {
+        r = g = b = l;
+      } else {
+        var hue2rgb = function (p, q, t) {
+          if (t < 0) t += 1;
+          if (t > 1) t -= 1;
+          if (t < 1 / 6) return p + (q - p) * 6 * t;
+          if (t < 1 / 2) return q;
+          if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+          return p;
+        };
+        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        var p = 2 * l - q;
+        r = hue2rgb(p, q, h + 1 / 3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1 / 3);
+      }
+      return {
+        r: Math.round(r * 255),
+        g: Math.round(g * 255),
+        b: Math.round(b * 255),
+      };
+    }
+
+    // Sass darken(): same hue/saturation, lightness reduced by amount%.
+    function darken(c, amountPct) {
+      var hsl = rgbToHsl(c.r, c.g, c.b);
+      return hslToRgb(hsl.h, hsl.s, clamp(hsl.l - amountPct, 0, 100));
+    }
+
+    // Sass multiply($fore, $back): per-channel multiply blend mode. Sass
+    // colour channels are always integers, so round at each step (matches
+    // rgb() construction rounding in the real Sass pipeline).
+    function multiply(fore, back) {
+      return {
+        r: Math.round((back.r * fore.r) / 255),
+        g: Math.round((back.g * fore.g) / 255),
+        b: Math.round((back.b * fore.b) / 255),
+      };
+    }
+
+    // Sass mix($c1, $c2, $weight%) for two fully-opaque colours reduces to a
+    // plain per-channel linear blend.
+    function mix(c1, c2, weightPct) {
+      var w = weightPct / 100;
+      return {
+        r: Math.round(c1.r * w + c2.r * (1 - w)),
+        g: Math.round(c1.g * w + c2.g * (1 - w)),
+        b: Math.round(c1.b * w + c2.b * (1 - w)),
+      };
+    }
+
+    function makeColorPalette(seedHex) {
+      var light = { r: 255, g: 255, b: 255 };
+      var color = hexToRgb(seedHex);
+      var dark = darken(multiply(color, color), 30);
+      return {
+        25: mix(light, color, 90),
+        50: mix(light, color, 80),
+        100: mix(light, color, 70),
+        200: mix(light, color, 50),
+        300: mix(light, color, 30),
+        400: mix(light, color, 15),
+        500: mix(light, color, 0),
+        600: mix(dark, color, 14),
+        700: mix(dark, color, 28),
+        800: mix(dark, color, 42),
+        900: mix(dark, color, 56),
+        1000: mix(dark, color, 65),
+      };
+    }
+
+    // ---- WCAG 2.x contrast ratio (sass-wcag.scss port)
+    function linearise(v) {
+      var c = v / 255;
+      return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    }
+
+    function relativeLuminance(c) {
+      return 0.2126 * linearise(c.r) + 0.7152 * linearise(c.g) + 0.0722 * linearise(c.b);
+    }
+
+    // WCAG contrast ratio between two colours — always >= 1, order-independent.
+    function wcagContrast(c1, c2) {
+      var l1 = relativeLuminance(c1);
+      var l2 = relativeLuminance(c2);
+      var lighter = Math.max(l1, l2);
+      var darker = Math.min(l1, l2);
+      return (lighter + 0.05) / (darker + 0.05);
+    }
+
+    // Best of white / the chosen text colour / black against a background,
+    // with the resulting ratio — a JS port of recommend-text-color()'s real
+    // preference order (site text colour before black), not a plain
+    // white-or-black pick.
+    function recommendTextColor(bg) {
+      var white = { r: 255, g: 255, b: 255 };
+      var black = { r: 0, g: 0, b: 0 };
+      var lightRatio = wcagContrast(white, bg);
+      var darkRatio = wcagContrast(textColorRgb, bg);
+      var color, best;
+      if (darkRatio > lightRatio) {
+        color = textColorRgb;
+        best = darkRatio;
+      } else {
+        color = white;
+        best = lightRatio;
+      }
+      if (best < 4.5) {
+        var forceRatio = wcagContrast(black, bg);
+        if (forceRatio > lightRatio) {
+          color = black;
+          best = forceRatio;
+        } else {
+          color = white;
+          best = lightRatio;
+        }
+      }
+      return { color: color, ratio: best };
+    }
+
+    var ROLES = [
+      { key: "50", label: "subtle" },
+      { key: "300", label: "muted" },
+      { key: "500", label: "base" },
+      { key: "700", label: "emphasis" },
+      { key: "900", label: "strong" },
+    ];
+
+    // The framework's default page background ($body-background-color) — used
+    // only to show the text-colour swatch's own real-world ratio.
+    var PAGE_BG_RGB = hexToRgb("#faf9f6");
+
+    // Current text colour — mutable, editable below; starts at the
+    // framework's actual default $color-text ($colors.neutral's 1000 shade
+    // at the default #64748b seed — darken(multiply(seed,seed), 30%) clips
+    // to pure black at this seed, so 1000 lands exactly on #232931).
+    // Hardcoded rather than recomputed — same value, no redundant call.
+    var textColorRgb = hexToRgb("#232931");
+    var currentFamilyHex = "#eb567d";
+
+    // ---- Wiring
+    var hexInput = document.getElementById("pg-hex");
+    var picker = document.getElementById("pg-picker");
+    var errorMsg = document.getElementById("pg-error");
+    var textHexInput = document.getElementById("pg-text-hex");
+    var textPicker = document.getElementById("pg-text-picker");
+    var textErrorMsg = document.getElementById("pg-text-error");
+    var swatches = document.getElementById("pg-swatches");
+    var table = document.getElementById("pg-table");
+    var scssOut = document.getElementById("pg-scss");
+    var copyBtn = document.getElementById("pg-copy");
+
+    function normaliseHex(value) {
+      var v = value.trim();
+      if (v[0] !== "#") v = "#" + v;
+      return /^#[0-9a-fA-F]{6}$/.test(v) ? v.toLowerCase() : null;
+    }
+
+    function formatRatio(n) {
+      return n.toFixed(2) + ":1";
+    }
+
+    // Shared wiring for a text+colour input pair: validates on input, syncs
+    // the sibling control, and calls back with the normalised hex once valid.
+    function wireHexField(textEl, pickerEl, errorEl, onValid) {
+      function setErrorVisible(visible) {
+        // .form-error's own `display: block` (layout/_forms.scss) ties
+        // [hidden]'s `display: none` (base/_01-reset.scss) on specificity —
+        // whichever loads later wins the cascade, so the hidden attribute
+        // alone doesn't reliably hide a .form-error. Force it with an inline
+        // style, which always wins over an external, non-!important rule.
+        errorEl.hidden = !visible;
+        errorEl.style.display = visible ? "" : "none";
+      }
+
+      function apply(hex, source) {
+        var valid = normaliseHex(hex);
+        if (!valid) {
+          // Don't nag mid-keystroke — only once enough characters are typed
+          // that it's actually wrong, not just incomplete.
+          setErrorVisible(hex.trim().replace(/^#/, "").length >= 6);
+          return;
+        }
+        setErrorVisible(false);
+        if (source !== "text") textEl.value = valid;
+        if (source !== "picker") pickerEl.value = valid;
+        onValid(valid);
+      }
+      textEl.addEventListener("input", function () {
+        apply(textEl.value, "text");
+      });
+      pickerEl.addEventListener("input", function () {
+        apply(pickerEl.value, "picker");
+      });
+      return apply;
+    }
+
+    function renderAll() {
+      var palette = makeColorPalette(currentFamilyHex);
+      swatches.innerHTML = "";
+      table.innerHTML = "";
+
+      ROLES.forEach(function (role) {
+        var rgb = palette[role.key];
+        var bgHex = rgbToHex(rgb);
+        var pick = recommendTextColor(rgb);
+        var textHex = rgbToHex(pick.color);
+        var ratio = formatRatio(pick.ratio);
+
+        // Sized as a real .h4 sample — not just a number — so the swatch
+        // shows what WCAG's "large text" exception (3:1) actually looks
+        // like, not a small caption claiming to speak for it.
+        var swatch = document.createElement("span");
+        swatch.className = "dt-swatch";
+        swatch.style.backgroundColor = bgHex;
+        swatch.style.color = textHex;
+        swatch.style.inlineSize = "9rem";
+        swatch.style.blockSize = "auto";
+        swatch.style.minBlockSize = "6rem";
+        swatch.innerHTML =
+          "<strong class=\"h4\" style=\"display:block;\">" + role.label + "</strong>" +
+          "<small>" + bgHex + " &middot; " + ratio + "</small>";
+        swatches.appendChild(swatch);
+
+        var row = document.createElement("tr");
+        row.innerHTML =
+          "<td>" + role.label + "</td>" +
+          "<td>" + role.key + "</td>" +
+          "<td><span class=\"code-ref\">" + bgHex + "</span></td>" +
+          "<td><span class=\"code-ref\">" + textHex + "</span></td>" +
+          "<td>" + ratio + "</td>";
+        table.appendChild(row);
+      });
+
+      // The text colour's own swatch — background is the text colour, its
+      // ratio is measured against the framework's default page background,
+      // and its label uses a plain white/black pick (not
+      // recommendTextColor(), which would just point back at itself).
+      var textHexValue = rgbToHex(textColorRgb);
+      var pageRatio = formatRatio(wcagContrast(textColorRgb, PAGE_BG_RGB));
+      var labelColor =
+        wcagContrast({ r: 255, g: 255, b: 255 }, textColorRgb) >
+        wcagContrast({ r: 0, g: 0, b: 0 }, textColorRgb)
+          ? "#fff"
+          : "#000";
+      var textSwatch = document.createElement("span");
+      textSwatch.className = "dt-swatch";
+      textSwatch.style.backgroundColor = textHexValue;
+      textSwatch.style.color = labelColor;
+      textSwatch.style.inlineSize = "9rem";
+      textSwatch.style.blockSize = "auto";
+      textSwatch.style.minBlockSize = "6rem";
+      textSwatch.innerHTML =
+        "<strong class=\"h4\" style=\"display:block;\">text colour</strong>" +
+        "<small>" + textHexValue + " &middot; " + pageRatio + " on page</small>";
+      swatches.appendChild(textSwatch);
+
+      scssOut.textContent =
+        '$colors: (\n  "custom": makeColorPalette(' + currentFamilyHex + "),\n);";
+    }
+
+    var applyFamily = wireHexField(hexInput, picker, errorMsg, function (hex) {
+      currentFamilyHex = hex;
+      renderAll();
+    });
+    applyFamily(hexInput.value, "text");
+
+    var applyText = wireHexField(textHexInput, textPicker, textErrorMsg, function (hex) {
+      textColorRgb = hexToRgb(hex);
+      renderAll();
+    });
+    applyText(textHexInput.value, "text");
+
+    copyBtn.addEventListener("click", function () {
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(scssOut.textContent).then(function () {
+        var original = copyBtn.textContent;
+        copyBtn.textContent = "Copied!";
+        setTimeout(function () {
+          copyBtn.textContent = original;
+        }, 1500);
+      });
+    });
+  })();
+</script>
+
+</section>
+</main>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="../dist/js/jellyfish.min.js"></script>
+<script src="./prism.js"></script>
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    var sidebarLinks = document.querySelectorAll('.sidebar a');
+    if (sidebarLinks.length > 0) {
+      sidebarLinks.forEach(function (linkElement) {
+        var link = linkElement.getAttribute('href');
+        link = link.replace('./', '');
+        var currentPage = window.location.pathname.split('/').pop();
+        if (link == currentPage) {
+          linkElement.classList.add('is-active');
+          linkElement.setAttribute('aria-current', 'page');
+        }
+      });
+    }
+  });
+
+  // On document ready, set up the letters inside the element to be split into spans
+  document.addEventListener("DOMContentLoaded", function () {
+    let itemToChange = document.querySelector("#debounce-example");
+    if (!itemToChange) return;
+
+    if (!itemToChange.classList.contains("is-split")) {
+      // Add the is-split class to the element
+      itemToChange.classList.add("is-split");
+
+      let letters = itemToChange.innerHTML.split("");
+
+      // Wrap each letter inside the element with a span
+      itemToChange.innerHTML = letters
+        .map(
+          (letter) =>
+            `<span class="debounce-letter" style="transition-delay: ${Math.random() * 1
+            }s">${letter}</span>`
+        )
+        .join("");
+    }
+  });
+
+  function debounceExample(eventType) {
+    let itemToChange = document.querySelector("#debounce-example");
+    if (!itemToChange) return;
+
+    if (eventType === "changeCase") {
+      // Get all the letters inside the element and randomly set size between 0.8em and 1.2em
+      let lettersToChange = document.querySelectorAll(".debounce-letter");
+      lettersToChange.forEach((letter) => {
+        letter.style.fontSize = `${Math.random() * 0.4 + 0.8}em`;
+      });
+    } else if (eventType === "changeColor") {
+      let lettersToChange = document.querySelectorAll(".debounce-letter");
+      lettersToChange.forEach((letter) => {
+        let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        letter.style.color = `#${randomColor}`;
+      });
+    }
+  }
+  jfDebounce("resize", debounceExample, 100, ["changeCase"]);
+  jfDebounce("scroll", debounceExample, ["changeColor"]);
+</script>
+</body>
+
+</html>
+

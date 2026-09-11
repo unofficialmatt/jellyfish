@@ -69,6 +69,10 @@ figure > video {
   margin-block-end: 0;
 }
 
+figure * + figcaption {
+  margin-block-start: calc(#{token(flow)} * 0.5);
+}
+
 // Lists
 %lists {
   margin: 0 0 token(flow);

@@ -42,7 +42,10 @@ body.ct {
     pointer-events: none;
   }
 
-  section {
+  // Spacing between numbered test cases only — a nested real .section (the
+  // seam-collapse / is-tight / is-loose cases) must keep its own margin-free
+  // seam behaviour, not inherit this.
+  > section {
     margin-block-end: token(space-xl);
   }
   h2 {

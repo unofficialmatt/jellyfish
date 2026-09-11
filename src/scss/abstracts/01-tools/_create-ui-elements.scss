@@ -56,7 +56,7 @@
   @if map-has-key($colors, $color) {
     #{token-name("color-surface")}: #{get-color-role($color, subtle)};
     #{token-name("color-text")}: #{token(color-on-#{$color}-subtle)};
-    #{token-name("color-headings")}: #{get-color-role($color, strong)};
+    #{token-name("callout-heading-color")}: #{get-color-role($color, strong)};
     #{token-name("callout-border-color")}: #{get-color-role($color, muted)};
     #{token-name("callout-link-color")}: #{get-color-role($color, emphasis)};
     #{token-name("callout-link-color-hover")}: #{get-color-role(

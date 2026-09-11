@@ -200,3 +200,10 @@ form {
     padding-inline: calc(get-space(2xs) * 0.5);
   }
 }
+// Bare columns fill equally from sm up (same as .row).
+@include above(sm) {
+  .form-row > .col {
+    flex: 1 1 0;
+    max-width: 100%;
+  }
+}

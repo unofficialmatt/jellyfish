@@ -72,7 +72,8 @@ button,
   @extend %button-groups;
   gap: calc(#{$button-list-button-margin} * 2);
   margin-block-end: token(flow);
-  > * {
+  > *,
+  > .button {
     margin: 0;
   }
 }
@@ -127,7 +128,7 @@ a.button {
   }
   &.large {
     font-size: $button-font-size-large;
-    #{token-name("button-scale-modifier")}: 1.2;
+    #{token-name("button-scale-modifier")}: 1;
   }
 
   &.outline,

@@ -53,7 +53,7 @@
             Latest
           </li>
           <li>
-            <a href="./whats-new.html">What's New in 4.3.0</a>
+            <a href="./whats-new.html">What's new in 5.0</a>
           </li>
           <li class="li-title mt-0">
             HTML
@@ -107,6 +107,9 @@
             <a href="./breakpoints.html">Breakpoints</a>
           </li>
           <li>
+            <a href="./container-queries.html">Container Queries</a>
+          </li>
+          <li>
             <a href="./mixins.html">Mixins</a>
           </li>
           <li>
@@ -128,6 +131,9 @@
             <a href="./theme-colors.html">Theme Colors</a>
           </li>
           <li>
+            <a href="./palette-generator.html">Palette Generator</a>
+          </li>
+          <li>
             <a href="./accessibility.html">Accessibility</a>
           </li>
           <li>
@@ -143,13 +149,10 @@
     <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
-<h1 class="section-heading h2">
-  Variable Reference
-</h1>
+<h1 class="section-heading h2">Variables</h1>
 <div class="variables-reference">
-  <p class="standfirst">Providing that you <a href="./getting-started.html">import the SCSS files into your project</a> in the correct order, you can override any of the default variables below in your own project's SCSS files.</p>
-
-  <p>Many of these settings are also emitted as CSS custom properties for runtime theming. Every one is <span class="bold">namespaced</span> with the <span class="variable-ref">$token-prefix</span> setting (default <span class="code-ref">jf</span>) &mdash; so <span class="variable-ref">$card-padding</span> becomes <span class="code-ref">--jf-card-padding</span>, the palette becomes <span class="code-ref">--jf-color-primary-500</span> and so on. Reference them from your own SCSS with <span class="code-ref">token(card-padding)</span> (which expands to <span class="code-ref">var(--jf-card-padding)</span>), or from plain CSS / a <span class="code-ref">[data-theme]</span> block with the full <span class="code-ref">--jf-*</span> name. Set <span class="code-ref">$token-prefix: ""</span> before importing Jellyfish to emit un-prefixed <span class="code-ref">--card-padding</span> names instead.</p>
+  <p class="standfirst">Every public setting is a Sass <span class="code-ref">!default</span> variable &mdash; override it in your own <span class="code-ref">abstracts/</span> layer (<a href="./getting-started.html">import order</a> matters). This page lists the <strong>global</strong> axes; a component's own variables live in a <em>Variables</em> panel at the bottom of <a href="#components">its page</a>.</p>
+  <p>Many settings are also emitted as <span class="code-ref">--jf-*</span> custom properties for runtime theming, namespaced by <span class="variable-ref">$token-prefix</span> (default <span class="code-ref">jf</span>). Reference one from Sass with <span class="code-ref">token(x)</span> &rarr; <span class="code-ref">var(--jf-x)</span>, or by its full name from CSS. Global tokens sit on <span class="code-ref">:root</span>; component tokens (<span class="code-ref">--jf-card-*</span>, <span class="code-ref">--jf-chip-*</span>, <span class="code-ref">--jf-modal-*</span>, <span class="code-ref">--jf-table-*</span>) sit on the component &mdash; override them there, not on <span class="code-ref">:root</span> (<span class="code-ref">--jf-form-input-*</span> and <span class="code-ref">--jf-navbar-*</span> stay global). Set <span class="code-ref">$token-prefix: ""</span> before import for un-prefixed names.</p>
 
   <h2 id="sizing-system" class="h5">Sizing System</h2>
   <table class="is-responsive has-border">
@@ -175,6 +178,16 @@
         <td><span class="variable-ref">$flow-step</span></td>
         <td><span class="code-ref">"md"</span></td>
         <td>Which <span class="variable-ref">$space-scale</span> key drives <span class="bold">block-flow rhythm</span> &mdash; the bottom margin between block elements (paragraphs, lists, tables, cards&hellip;). Baked into the <span class="code-ref">--jf-flow</span> token at build; components reference it as <span class="code-ref">token(flow)</span> / <span class="code-ref">var(--jf-flow)</span>. Set to any <span class="variable-ref">$space-scale</span> key before import, or override <span class="code-ref">--jf-flow</span> at runtime &mdash; either leaves other uses of that step (card padding&hellip;) untouched. <span class="bold">Replaces v4's <span class="variable-ref">$element-margin</span> / <span class="variable-ref">$element-padding</span></span> (both removed).</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$scroll-offset</span></td>
+        <td><span class="code-ref">0</span></td>
+        <td>Emitted as <span class="code-ref">--jf-scroll-offset</span> and applied via <code class="code-ref">scroll-padding</code> on <span class="css-ref">&lt;html&gt;</span>. Set it to a sticky header's height so <code class="code-ref">#fragment</code> landings clear it &mdash; see <a href="./getting-started.html#sticky-headers">Getting Started</a>.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$section-space</span> / <span class="variable-ref">$section-space-tight</span> / <span class="variable-ref">$section-space-loose</span></td>
+        <td><span class="code-ref">fluid(48px, 112px)</span> / <span class="code-ref">token(space-lg)</span> / <span class="code-ref">fluid(80px, 160px)</span></td>
+        <td>Vertical space for the <a href="./grid.html">.section</a> band, as <span class="code-ref">--jf-section-space</span> (and the <span class="css-ref">.is-tight</span> / <span class="css-ref">.is-loose</span> values).</td>
       </tr>
     </tbody>
   </table>
@@ -320,7 +333,7 @@
       <tr>
         <td><span class="variable-ref">$heading-scale</span></td>
         <td><span class="italic">(SCSS map)</span></td>
-        <td>Which <span class="variable-ref">$type-scale</span> step each heading level uses &mdash; <span class="code-ref">h1: "4xl"</span> &hellip; <span class="code-ref">h6: "md"</span>. Resize a level with <span class="code-ref">$heading-scale: ("h2": "2xl")</span>.</td>
+        <td>Which <span class="variable-ref">$type-scale</span> step each heading level uses:<br><span class="code-ref">h1: "4xl"</span>, <span class="code-ref">h2: "3xl"</span>, <span class="code-ref">h3: "2xl"</span>, <span class="code-ref">h4: "xl"</span>, <span class="code-ref">h5: "lg"</span>, <span class="code-ref">h6: "md"</span>.<br>Resize a level with <span class="code-ref">$heading-scale: ("h2": "2xl")</span>.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$type-leading</span></td>
@@ -458,7 +471,7 @@
       <tr>
         <td><span class="variable-ref">$color-role-shades</span></td>
         <td><span class="code-ref">(subtle: 50, muted: 300, emphasis: 700, strong: 900)</span></td>
-        <td>The semantic step-role ladder. Every palette family emits four named aliases &mdash; <span class="code-ref">--jf-color-{family}-subtle</span>, <span class="code-ref">-muted</span>, <span class="code-ref">-emphasis</span>, <span class="code-ref">-strong</span> &mdash; each pointing at the numbered shade set here, plus a bare <span class="code-ref">--jf-color-{family}</span> for the 500. Retune a role framework-wide by changing its entry (merge-friendly map, same shape as <a href="#dark-mode"><span class="variable-ref">$dark-color-role-shades</span></a>); reference in SCSS with <span class="code-ref">get-color-role($family, $role)</span> for the runtime alias or <span class="code-ref">role-shade($role)</span> for the build-time number. Roles: <span class="italic">subtle</span> = faint tinted backgrounds, <span class="italic">muted</span> = borders / low-emphasis fills / visited links, <span class="italic">emphasis</span> = hover &amp; active / heading tone, <span class="italic">strong</span> = text on a tint / strongest headings.<br><br>Each role also gets a matching <span class="code-ref">--jf-color-on-{family}-{role}</span> companion (plus bare <span class="code-ref">--jf-color-on-{family}</span> for the 500) &mdash; the APCA-picked text colour for that role's surface, tracking the same shade so the pair can't drift. Prefer these over a numbered <span class="code-ref">--jf-color-on-{family}-50</span> when pairing text with a role surface.</td>
+        <td>The semantic step-role ladder. Every palette family emits four named aliases &mdash; <span class="code-ref">--jf-color-{family}-subtle</span>, <span class="code-ref">-muted</span>, <span class="code-ref">-emphasis</span>, <span class="code-ref">-strong</span> &mdash; each pointing at the numbered shade set here, plus a bare <span class="code-ref">--jf-color-{family}</span> for the 500. Retune a role framework-wide by changing its entry (merge-friendly map, same shape as <a href="#dark-mode"><span class="variable-ref">$dark-color-role-shades</span></a>); reference in SCSS with <span class="code-ref">get-color-role($family, $role)</span> for the runtime alias or <span class="code-ref">role-shade($role)</span> for the build-time number. Roles: <span class="italic">subtle</span> = faint tinted backgrounds, <span class="italic">muted</span> = borders / low-emphasis fills / visited links, <span class="italic">emphasis</span> = hover &amp; active / heading tone, <span class="italic">strong</span> = text on a tint / strongest headings.<br><br>Each role also gets a matching <span class="code-ref">--jf-color-on-{family}-{role}</span> companion (plus bare <span class="code-ref">--jf-color-on-{family}</span> for the 500) &mdash; the WCAG-picked text colour for that role's surface, tracking the same shade so the pair can't drift. Prefer these over a numbered <span class="code-ref">--jf-color-on-{family}-50</span> when pairing text with a role surface.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$border-color</span></td>
@@ -510,12 +523,17 @@
       <tr>
         <td><span class="variable-ref">$dark-soft-background-color</span></td>
         <td><span class="code-ref">#1e222a</span></td>
-        <td>The <span class="css-ref">.bg-soft</span> fill once dark &mdash; a hair <span class="italic">lighter</span> than <span class="variable-ref">$dark-body-background-color</span>, so a raised panel (modal, callout, chip) still reads as lifted rather than sinking to pure black. Feeds <span class="code-ref">--jf-color-bg-soft</span> inside the dark block; the APCA linter checks both halves of the flip. Override <span class="code-ref">--jf-color-bg-soft</span> in your own <span class="code-ref">:root.jf-dark { &hellip; }</span> to retune at runtime.</td>
+        <td>The <span class="css-ref">.bg-soft</span> fill once dark &mdash; a hair <span class="italic">lighter</span> than <span class="variable-ref">$dark-body-background-color</span>, so a raised panel (modal, callout, chip) still reads as lifted rather than sinking to pure black. Feeds <span class="code-ref">--jf-color-bg-soft</span> inside the dark block; the contrast linter checks both halves of the flip. Override <span class="code-ref">--jf-color-bg-soft</span> in your own <span class="code-ref">:root.jf-dark { &hellip; }</span> to retune at runtime.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$dark-color-role-shades</span></td>
         <td><span class="code-ref">(subtle: 800, muted: 700, emphasis: 300, strong: 200)</span></td>
         <td>Which numbered shade each step-role alias (and its <span class="code-ref">-on-*</span> companion) points at once dark. Background-ish roles move toward the dark end of the ramp, accent-text roles toward the light end. Applied per family by <span class="code-ref">@mixin jf-dark-tokens</span>. Merge-friendly map &mdash; override any subset.</td>
+      </tr>
+      <tr>
+        <td><span class="variable-ref">$dark-link-visited-color-shade</span></td>
+        <td>400</td>
+        <td>Visited-link text is the one place that reuses <span class="italic">muted</span> as a <em>text</em> colour rather than a background/border fill &mdash; and <span class="italic">muted</span>'s dark shade (700, above) is tuned for the fills, too dark to read on the dark canvas. This setting repoints <span class="code-ref">--jf-link-color-visited</span> only, in dark mode, to a lighter shade that clears WCAG AA against <span class="variable-ref">$dark-body-background-color</span> across the default palette. Retuning <span class="variable-ref">$dark-color-role-shades</span>'s <span class="italic">muted</span> instead would "fix" this at the cost of washing out every table-hover row, callout/accordion/form border, and modal button fill in dark mode.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$dark-shadow-color</span></td>
@@ -566,529 +584,23 @@
     </tbody>
   </table>
 
-  <h2 id="buttons" class="h5">Buttons</h2>
+  <h2 id="components" class="h5">Component variables</h2>
+  <p>Each component's Sass variables and custom properties are documented in a collapsible <em>Variables</em> panel at the bottom of its page:</p>
   <table class="is-responsive has-border">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default value</th>
-        <th>Description</th>
-      </tr>
-    </thead>
+    <caption class="screen-reader-text">Where each component's variables are documented</caption>
+    <thead><tr><th scope="col">Component</th><th scope="col">Key seams</th></tr></thead>
     <tbody>
-      <tr>
-        <td><span class="variable-ref">$buttons</span></td>
-        <td>.button, a.button, button, [type=submit], [type=reset], [type=button]</td>
-        <td>List of elements to target with base button styling. Should usually not be edited.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-border-width</span></td>
-        <td> 1px</td>
-        <td>Button border width</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-border-radius</span></td>
-        <td><span class="code-ref">get-size(0.5)</span></td>
-        <td>Button border radius</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-font-family</span></td>
-        <td><span class="code-ref">var(--jf-font-secondary)</span></td>
-        <td>Button font family</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-padding-xsmall</span></td>
-        <td>0.5em 0.75em</td>
-        <td>Button padding when utility class <span class="css-ref">.xsmall</span> is added</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-padding-small</span></td>
-        <td>0.6em 1em</td>
-        <td>Button padding when utility class <span class="css-ref">xsmall</span> is added</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-padding</span></td>
-        <td>0.75em 1.25em</td>
-        <td>Default button padding</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-padding-large</span></td>
-        <td>0.75em 1.5em</td>
-        <td>Button padding when utility class <span class="css-ref">.large</span> is added</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-text-transform</span></td>
-        <td>none</td>
-        <td>Button text transform</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-font-weight</span></td>
-        <td><span class="code-ref">get-weight(bold)</span></td>
-        <td>Button font weight</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-line-height</span></td>
-        <td><span class="code-ref">get-leading(snug)</span></td>
-        <td>Button line-height (matters for wrapping labels).</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-font-size-xsmall</span></td>
-        <td><span class="code-ref">var(--jf-font-size-xs)</span></td>
-        <td>Button font size when utility class <span class="css-ref">.xsmall</span> is added</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-font-size-small</span></td>
-        <td><span class="code-ref">var(--jf-font-size-sm)</span></td>
-        <td>Button font size when utility class <span class="css-ref">.small</span> is added</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-font-size</span></td>
-        <td><span class="code-ref">var(--jf-font-size-base)</span></td>
-        <td>Default button font size</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-font-size-large</span></td>
-        <td><span class="code-ref">var(--jf-font-size-md)</span></td>
-        <td>Button font size when utility class <span class="css-ref">.large</span> is added</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-hover-value</span></td>
-        <td><span class="code-ref">role-shade(emphasis)</span></td>
-        <td>The shade to use from <code class="code-ref">makeColorPalette()</code> for button hover states &mdash; the <span class="italic">emphasis</span> role (700 by default), so it tracks links and headings. Still a plain shade number: set it to any step, or to 500 to prevent hover states being created.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-disabled-opacity</span></td>
-        <td>0.65</td>
-        <td>The opacity to use for buttons that are disabled</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-list-button-margin</span></td>
-        <td><span class="code-ref">get-size(0.5)</span></td>
-        <td>The margins to use around buttons in a <span class="css-ref">.button-list</span></td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$button-base-color</span></td>
-        <td>primary</td>
-        <td>The base color to use for buttons, must be a valid color from the <span class="variable-ref">$colors</span> SCSS map</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2 id="callouts" class="h5">Callouts</h2>
-  <table class="is-responsive has-border">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default value</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="variable-ref">$generate-callouts</span></td>
-        <td>true</td>
-        <td>Whether or not to generate the css for <span class="css-ref">.callout</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$callout-border-radius</span></td>
-        <td>0px</td>
-        <td>The border radius for <span class="css-ref">.callout</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$callout-border-width</span></td>
-        <td>1px 1px 1px <span class="code-ref">get-size(0.5)</span></td>
-        <td>The border width for <span class="css-ref">.callout</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$callout-border-style</span></td>
-        <td>solid</td>
-        <td>The border style for <span class="css-ref">.callout</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$callout-padding</span></td>
-        <td><span class="code-ref">token(space-md)</span></td>
-        <td>The padding for <span class="css-ref">.callout</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="css-ref">--jf-callout-color</span></td>
-        <td><span class="code-ref">token(color-on-neutral-subtle)</span></td>
-        <td>Body-text colour inside a callout, paired with <span class="code-ref">--jf-callout-bg-color</span>. Was previously inherited from the surrounding context, which went wrong on a themed section or in dark mode. The default callout reads as a neutral <span class="italic">subtle</span> surface (and flips in dark); a <span class="css-ref">.callout.{family}</span> repoints it to that family's <span class="code-ref">--jf-color-on-*-subtle</span> companion. Override alongside <span class="code-ref">--jf-callout-bg-color</span> if you hand-set a callout colour. A <span class="css-ref">.callout.soft</span> (replacing <span class="css-ref">.callout.white</span>) points the pair at the flipping <span class="code-ref">--jf-color-bg-soft</span> / <span class="code-ref">-text-soft</span> tokens. <span class="italic">(The fuller "callout as a full surface" fix, so nested <span class="css-ref">.text-muted</span> re-tints to the callout fill too, is still on the surface-refactor list.)</span></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2 id="cards" class="h5">Cards</h2>
-  <table class="is-responsive has-border">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default value</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="variable-ref">$card-border-radius</span></td>
-        <td><span class="code-ref">token(radius-lg)</span></td>
-        <td>The border radius for <span class="css-ref">.card</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$callout-border-width</span></td>
-        <td>1px</td>
-        <td>The border width for <span class="css-ref">.card</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$callout-border-style</span></td>
-        <td>solid</td>
-        <td>The border style for <span class="css-ref">.card</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$card-padding</span></td>
-        <td><span class="code-ref">token(space-md)</span></td>
-        <td>The padding for <span class="css-ref">.card-section</span> elements.</td>
-      </tr>
-    </tbody>
-  </table>
-  <h2 id="accordions" class="h5">Accordions</h2>
-  <table class="is-responsive has-border">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default value</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="variable-ref">$generate-accordion-modifiers</span></td>
-        <td>true</td>
-        <td>Whether or not to generate the CSS modifiers for colors.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$accordion-padding-y</span></td>
-        <td><span class="code-ref">get-size(0.75)</span></td>
-        <td>The block padding for the accordion heading (<span class="css-ref">&lt;summary&gt;</span>).</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$accordion-padding-x</span></td>
-        <td><span class="code-ref">get-size(1)</span></td>
-        <td>The inline padding for the accordion heading (<span class="css-ref">&lt;summary&gt;</span>).</td>
-      </tr>
-      <tr>
-        <td><span class="css-ref">--jf-accordion-heading-background</span> / <span class="css-ref">--jf-accordion-heading-color</span></td>
-        <td><span class="italic">subtle</span> role</td>
-        <td>The accordion heading in its rest state. Background is the family (or <span class="italic">neutral</span> for a plain accordion) at the <span class="italic">subtle</span> role; text is that role's <span class="code-ref">--jf-color-on-*</span> companion, so the pair flips together and can't drift. No Sass knob &mdash; override these two custom properties for a specific colour.</td>
-      </tr>
-      <tr>
-        <td><span class="css-ref">--jf-accordion-heading-hover-background</span> / <span class="css-ref">--jf-accordion-heading-hover-color</span></td>
-        <td><span class="italic">muted</span> role</td>
-        <td>The accordion heading when hovered or expanded &mdash; the <span class="italic">muted</span> role and its <span class="code-ref">--jf-color-on-*</span> companion. A light tint one step up from rest in light, a defined band in dark. Override the custom properties to retune.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$accordion-heading-weight</span></td>
-        <td><span class="code-ref">get-weight(bold)</span></td>
-        <td>The font weight for accordion heading text.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$accordion-heading-font-size</span></td>
-        <td><span class="code-ref">token(font-size-md)</span></td>
-        <td>The font size for accordion heading text.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$accordion-border-radius</span></td>
-        <td><span class="code-ref">get-size(0.25)</span></td>
-        <td>The border radius applied to accordion items.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2 id="modals" class="h5">Modals</h2>
-  <table class="is-responsive has-border">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default value</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="variable-ref">$modal-backdrop-color</span></td>
-        <td>#000</td>
-        <td>The colour for the backdrop (overlay) of <span class="css-ref">.modal</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$modal-backdrop-opacity</span></td>
-        <td>0.9</td>
-        <td>The opacity for the backdrop (overlay) of <span class="css-ref">.modal</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$modal-max-width</span></td>
-        <td>900px</td>
-        <td>The maximum width for <span class="css-ref">.modal</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$modal-border</span></td>
-        <td>none</td>
-        <td>The border style for <span class="css-ref">.modal</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$modal-border-radius</span></td>
-        <td><span class="code-ref"> get-size(0.5)</span></td>
-        <td>The border-radius style for <span class="css-ref">.modal</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$modal-outer-margin</span></td>
-        <td><span class="code-ref">get-size(3)</span></td>
-        <td>The outer margin around <span class="css-ref">.modal</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$modal-padding</span></td>
-        <td><span class="code-ref">token(space-md)</span></td>
-        <td>The inner padding for <span class="css-ref">.modal</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$modal-close-icon-svg</span></td>
-        <td><span class="code-ref"> get-size(0.5)</span></td>
-        <td>The border-radius style for <span class="css-ref">.modal</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$modal-close-icon-svg</span></td>
-        <td>data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M10.3,10.3l19.3,19.3 M10.3,29.7l19.3-19.3' stroke='currentColor' stroke-width='6' stroke-linecap='square' /%3E%3C/svg%3E</td>
-        <td>An SVG for use as the <span class="css-ref">.modal</span> arrow icon.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$modal-arrow-icon-svg</span></td>
-        <td>data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M15.5,4.9L30.6,20 M15.5,35.1L30.6,20' stroke='currentColor' stroke-width='6' stroke-linecap='square' /%3E%3C/svg%3E</td>
-        <td>An SVG for use as the <span class="css-ref">.modal</span> prev/next arrows.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2 id="chips" class="h5">Chips</h2>
-  <table class="is-responsive has-border">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default value</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="variable-ref">$generate-chips</span></td>
-        <td>true</td>
-        <td>Whether or not to generate the css for <span class="css-ref">.chip</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$chip-padding</span></td>
-        <td>0.25em 0.3em</td>
-        <td>The padding for <span class="css-ref">.chip</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$chip-border-radius</span></td>
-        <td><span class="code-ref"> get-size(0.25)</span></td>
-        <td>The border radius for <span class="css-ref">.chip</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$chip-border-width</span></td>
-        <td>1px</td>
-        <td>The border width for <span class="css-ref">.chip</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$chip-border-style</span></td>
-        <td>solid</td>
-        <td>The border style for <span class="css-ref">.chip</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$chip-font-weight</span></td>
-        <td><span class="code-ref">get-weight(normal)</span></td>
-        <td>The font weight for <span class="css-ref">.chip</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$chip-font-size</span></td>
-        <td><span class="code-ref">var(--jf-font-size-sm)</span></td>
-        <td>The font size for <span class="css-ref">.chip</span> elements.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2 id="forms" class="h5">Forms</h2>
-  <p>Full reference coming soon &mdash; documented so far:</p>
-  <table class="is-responsive has-border">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default value</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="variable-ref">$select-chevron-color</span></td>
-        <td><span class="code-ref">get-color-raw(neutral, 500)</span></td>
-        <td>The colour of the <span class="css-ref">select</span> chevron. See <a href="./forms.html#recolouring-the-select-chevron">recolouring the select chevron</a>.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$select-chevron-icon-svg</span></td>
-        <td>A data-URI SVG chevron, with a <code class="code-ref">{{color}}</code> token in place of the colour</td>
-        <td>Override to change the chevron's shape entirely. Keep the <code class="code-ref">{{color}}</code> token so <span class="code-ref">select-bg()</span> can still substitute the colour.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- TODO: forms.scss -->
-
-  <h2 id="grid" class="h5">Grid</h2>
-  <p>The grid has no Sass settings. Layout is tuned through custom properties (override at <span class="code-ref">:root</span> or a scope). See the <a href="./grid.html">Grid</a> page.</p>
-  <table class="is-responsive has-border">
-    <thead>
-      <tr>
-        <th>Custom property</th>
-        <th>Default value</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="code-ref">--jf-grid-gutter</span></td>
-        <td><span class="code-ref">--jf-space-sm</span> &rarr; <span class="code-ref">--jf-space-md</span> from <span class="code-ref">sm</span></td>
-        <td>Space between columns &mdash; <span class="code-ref">gap</span> on <span class="css-ref">.grid</span> / <span class="css-ref">.auto-grid</span>, negative margin + padding on <span class="css-ref">.row</span>.</td>
-      </tr>
-      <tr>
-        <td><span class="code-ref">--jf-container-max</span></td>
-        <td>1140px &rarr; 1280px from <span class="code-ref">xl</span></td>
-        <td>The widest the <span class="css-ref">.container</span> content strip gets.</td>
-      </tr>
-      <tr>
-        <td><span class="code-ref">--jf-container-gutter</span></td>
-        <td><span class="code-ref">--jf-space-md</span> &rarr; <span class="code-ref">--jf-space-lg</span> from <span class="code-ref">sm</span></td>
-        <td>Minimum side space on the <span class="css-ref">.container</span> before the content cap engages.</td>
-      </tr>
-      <tr>
-        <td><span class="code-ref">--jf-page-max</span></td>
-        <td><span class="italic">unset</span></td>
-        <td>Optional cap on the whole page shell, applied via the <span class="css-ref">.page</span> class. When set, container side space (and therefore <span class="css-ref">.bleed*</span>) is measured against the shell width, not the raw viewport.</td>
-      </tr>
-      <tr>
-        <td><span class="code-ref">--jf-bleed-space</span></td>
-        <td><span class="italic">computed</span></td>
-        <td><span class="code-ref">max(gutter, (100vw - max) / 2)</span> &mdash; viewport-based side space for the <span class="css-ref">.bleed</span> / <span class="css-ref">.bleed-start</span> / <span class="css-ref">.bleed-end</span> helpers (and their <span class="code-ref">-{bp}</span> / <span class="code-ref">-none-{bp}</span> variants), re-capped to <span class="code-ref">min(100vw, --jf-page-max)</span> inside <span class="css-ref">.page</span>. The container's own padding is <span class="code-ref">100%</span>-based (exact) and doesn't use this. Read it, don't set it. <span class="bold">Bleeds assume the container is centred in the viewport</span> &mdash; an ancestor that offsets it (asymmetric padding/margin, a fixed sidebar) breaks them; see <a href="./grid.html#migration">Grid</a>.</td>
-      </tr>
-      <tr>
-        <td><span class="code-ref">--jf-col-min</span></td>
-        <td>18rem <span class="italic">(fallback)</span></td>
-        <td>Per-instance minimum column width for <span class="css-ref">.auto-grid</span> before it wraps.</td>
-      </tr>
-      <tr>
-        <td><span class="code-ref">--jf-subgrid-rows</span></td>
-        <td>1 <span class="italic">(fallback)</span></td>
-        <td>On a <span class="css-ref">.subgrid-rows</span> grid: how many internal rows each item spans and aligns. Set it to the items' shared direct-child count.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2 id="navbar" class="h5">Navbar</h2>
-  <p>Full table coming soon. The colour model, in brief:</p>
-  <ul>
-    <li><span class="variable-ref">$navbar-family</span> (<span class="code-ref">primary</span>) &mdash; the branded top bar is this family at <span class="code-ref">500</span> in both modes; <span class="variable-ref">$navbar-bg-color</span> and <span class="variable-ref">$navbar-link-bg-color</span> derive from it.</li>
-    <li><span class="bold">Link and hover text are not settings</span> &mdash; they're <span class="italic">derived</span> from whatever the link / hover background resolves to (a palette shade &rarr; its <span class="code-ref">-on-*</span> companion, a plain colour &rarr; the APCA-picked contrast), so any bar colour gets fitting text. Retune only at runtime, via <span class="css-ref">--jf-navbar-link-color</span> / <span class="css-ref">--jf-navbar-link-hover-color</span>.</li>
-    <li><span class="variable-ref">$navbar-link-hover-bg-color</span> &mdash; the family's <span class="italic">emphasis</span> role (flips in dark; its derived text is the emphasis <span class="code-ref">-on-*</span>, so it flips too).</li>
-    <li><span class="variable-ref">$navbar-link-border</span> &mdash; <span class="code-ref">color-mix(currentColor 12%, transparent)</span> (was a literal <span class="code-ref">rgba(white,.1)</span>).</li>
-    <li>Sub-menus / dropdown / off-canvas drawer &mdash; a neutral <span class="css-ref">.bg-soft</span> surface (flips). Only the backgrounds are settings (<span class="variable-ref">$navbar-sublink-bg-color</span> = <span class="code-ref">--jf-color-bg-soft</span>, <span class="variable-ref">$navbar-sublink-hover-bg-color</span> = the <span class="italic">muted</span> role); the text is derived. All four are exposed as <span class="css-ref">--jf-navbar-sublink-color</span> / <span class="css-ref">-bg-color</span> / <span class="css-ref">-hover-color</span> / <span class="css-ref">-hover-bg-color</span> on <span class="css-ref">:root</span> &mdash; set <span class="css-ref">--jf-navbar-sublink-bg-color</span> once and the dropdown, mobile menu and drawer all follow.</li>
-    <li><span class="variable-ref">$navbar-offcanvas-body-overlay</span> &mdash; <span class="code-ref">color-mix(in srgb, black 50%, transparent)</span>.</li>
-  </ul>
-  <p>Everything else is a <span class="css-ref">--jf-navbar-*</span> custom property for runtime tuning.</p>
-
-  <!-- TODO: navbar.scss -->
-  <h2 id="progress" class="h5">Progress Bars</h2>
-  <table class="is-responsive has-border">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default value</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="variable-ref">$generate-progressbar</span></td>
-        <td>true</td>
-        <td>Whether or not to generate the css modifiers for <span class="code-ref">progress</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$progressbar-height</span></td>
-        <td><span class="code-ref">get-size(1)</span></td>
-        <td>The height property for <span class="code-ref">progress</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$progressbar-border-radius</span></td>
-        <td><span class="code-ref">get-size(0.5)</span></td>
-        <td>The border-radius for <span class="code-ref">progress</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$progressbar-value-border-radius</span></td>
-        <td>0px</td>
-        <td>The border-radius for the actual value in <span class="code-ref">progress</span> elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$progressbar-indeterminate-duration</span></td>
-        <td>10s</td>
-        <td>The speed for <span class="code-ref">progress</span> element indeterminate states. Under <span class="code-ref">prefers-reduced-motion: reduce</span> the loop is clamped to a minimum of 10s rather than stopping &mdash; an indeterminate bar has to keep signalling activity.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2 id="tables" class="h5">Tables</h2>
-  <table class="is-responsive has-border">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default value</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="css-ref">--jf-table-stripe-bg-color</span></td>
-        <td><span class="italic">subtle</span> role</td>
-        <td>Alternate rows on a striped table (<span class="css-ref">.is-striped</span>). Always <span class="code-ref">color-mix(role emphasis 10%, role subtle)</span> &mdash; of <span class="italic">neutral</span> for a plain table, of the family for a <span class="css-ref">.{family}</span> table (one nudge darker than the cell). Role-derived, so it flips in dark. No Sass knob &mdash; override this custom property for a specific colour.</td>
-      </tr>
-      <tr>
-        <td><span class="css-ref">--jf-table-hover-background</span> / <span class="css-ref">--jf-table-text-hover-color</span></td>
-        <td><span class="italic">muted</span> role</td>
-        <td>A hovered row (<span class="css-ref">.is-hoverable</span>). Background is the <span class="italic">muted</span> role (of <span class="italic">neutral</span>, or the family for a themed table), text its <span class="code-ref">--jf-color-on-*</span> companion &mdash; the pair stays legible and flips in dark. Override the custom properties to retune.</td>
-      </tr>
-      <tr>
-        <td><span class="css-ref">thead th</span> / <span class="css-ref">tfoot th</span> band</td>
-        <td><span class="code-ref">neutral</span> <span class="italic">subtle</span> role</td>
-        <td>No dedicated token &mdash; <span class="code-ref">thead th</span> and <span class="code-ref">tfoot th</span> repoint <span class="code-ref">--jf-table-cell-background</span> / <span class="code-ref">--jf-table-text-color</span> to the neutral <span class="italic">subtle</span> role (a faint band in light, defined in dark); a <span class="css-ref">.{family}</span> table scopes the <span class="italic">muted</span> role to its <span class="code-ref">thead th</span> / <span class="code-ref">tfoot th</span>. Using the shared cell token means a themed header <span class="italic">row</span> (<span class="code-ref">&lt;tr class="error"&gt;</span> in <span class="code-ref">thead</span>) wins on specificity instead of being painted over. Retune with your own <span class="code-ref">thead th { --jf-table-cell-background: &hellip; }</span>, or <span class="code-ref">transparent</span> for no band.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$table-cell-padding</span></td>
-        <td>0.5em 0.8em</td>
-        <td>The padding to use within th and td elements.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$table-responsive-breakpoint</span></td>
-        <td>900px</td>
-        <td>The screen width at which a table collapses to a responsive table, when the modifier class of <span class="css-ref">.is-responsive</span> is applied.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$table-font-size</span></td>
-        <td><span class="code-ref">var(--jf-font-size-sm)</span></td>
-        <td>The font size for table cells.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$table-line-height</span></td>
-        <td><span class="code-ref">get-leading(snug)</span></td>
-        <td>Table line-height &mdash; denser than body copy so data rows don't get airy.</td>
-      </tr>
-      <tr>
-        <td><span class="variable-ref">$generate-table-modifiers</span></td>
-        <td><span class="code-ref">true</span></td>
-        <td>Whether or not to generate the CSS modifiers for colors.</td>
-      </tr>
+      <tr><th scope="row"><a href="./buttons.html#overriding">Buttons</a></th><td><span class="variable-ref">$buttons</span>, <span class="variable-ref">$button-base-color</span>, <span class="variable-ref">$button-hover-value</span>, padding / size / weight, <span class="code-ref">--jf-button-color-*</span></td></tr>
+      <tr><th scope="row"><a href="./chips.html#overriding">Chips</a></th><td><span class="variable-ref">$generate-chips</span>, <span class="variable-ref">$chip-padding</span> / <span class="variable-ref">-font-size</span> / <span class="variable-ref">-border-*</span>, <span class="code-ref">--jf-chip-color-theme</span> / <span class="code-ref">-text</span></td></tr>
+      <tr><th scope="row"><a href="./callouts.html#overriding">Callouts</a></th><td><span class="variable-ref">$generate-callouts</span>, <span class="variable-ref">$callout-padding</span> / <span class="variable-ref">-border-*</span>, <span class="code-ref">--jf-callout-bg-color</span> / <span class="code-ref">-color</span> / <span class="code-ref">-border-color</span> / <span class="code-ref">-heading-color</span> / <span class="code-ref">-link-color</span></td></tr>
+      <tr><th scope="row"><a href="./cards.html#overriding">Cards</a></th><td><span class="variable-ref">$card-padding</span>, <span class="variable-ref">$card-border-radius</span> / <span class="variable-ref">-width</span> / <span class="variable-ref">-style</span>, <span class="code-ref">--jf-card-*</span> (on <span class="css-ref">.card</span>)</td></tr>
+      <tr><th scope="row"><a href="./accordions.html#overriding">Accordions</a></th><td><span class="variable-ref">$generate-accordion-modifiers</span>, <span class="variable-ref">$accordion-padding-*</span> / <span class="variable-ref">-heading-*</span> / <span class="variable-ref">-border-radius</span>, <span class="code-ref">--jf-accordion-heading-*</span></td></tr>
+      <tr><th scope="row"><a href="./modals.html#overriding">Modals</a></th><td><span class="variable-ref">$modal-max-width</span> / <span class="variable-ref">-padding</span> / <span class="variable-ref">-outer-margin</span> / <span class="variable-ref">-border-*</span> / <span class="variable-ref">-backdrop-*</span>, <span class="code-ref">--jf-modal-max-width</span> / <span class="code-ref">-padding</span> (on <span class="css-ref">dialog.modal</span>)</td></tr>
+      <tr><th scope="row"><a href="./forms.html#overriding">Forms</a></th><td><span class="variable-ref">$form-items</span>, <span class="variable-ref">$form-accent-color</span>, border primitives (<span class="variable-ref">$border-width</span> / <span class="variable-ref">-style</span> / <span class="variable-ref">-color</span> / <span class="variable-ref">-radius</span>), focus / label / select / range, <span class="code-ref">--jf-form-input-*</span> (global)</td></tr>
+      <tr><th scope="row"><a href="./progress.html#overriding">Progress bars</a></th><td><span class="variable-ref">$generate-progressbar</span>, <span class="variable-ref">$progressbar-height</span> / <span class="variable-ref">-border-radius</span> / <span class="variable-ref">-indeterminate-duration</span>, <span class="code-ref">--jf-progress-bar-color</span> / <span class="code-ref">-color-unknown</span> / <span class="code-ref">-bg-color</span></td></tr>
+      <tr><th scope="row"><a href="./tables.html#overriding">Tables</a></th><td><span class="variable-ref">$generate-table-modifiers</span>, <span class="variable-ref">$table-cell-padding</span> / <span class="variable-ref">-font-size</span> / <span class="variable-ref">-line-height</span> / <span class="variable-ref">-responsive-breakpoint</span>, <span class="code-ref">--jf-table-*</span> (on <span class="css-ref">table</span>)</td></tr>
+      <tr><th scope="row"><a href="./navbar.html#overriding">Navbar</a></th><td><span class="variable-ref">$generate-navbar</span>, <span class="variable-ref">$nav-expands</span>, <span class="variable-ref">$navbar-family</span>, link / sublink / padding / dropdown / off-canvas / hamburger, <span class="code-ref">--jf-navbar-*</span> (global)</td></tr>
+      <tr><th scope="row"><a href="./grid.html#overriding">Grid &amp; container</a></th><td><span class="code-ref">--jf-grid-gutter</span>, <span class="code-ref">--jf-container-max</span> / <span class="code-ref">-gutter</span>, <span class="code-ref">--jf-page-max</span>, <span class="code-ref">--jf-col-min</span>, <span class="code-ref">--jf-section-space</span>, <span class="code-ref">--jf-bleed-space</span></td></tr>
     </tbody>
   </table>
 
@@ -1141,19 +653,19 @@
         <td>Whether to force color to black when using <span class="code-ref">choose-contrast-color()</span> if the <span class="variable-ref">$color-text</span> does not have sufficient contrast.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$apca-lint</span></td>
+        <td><span class="variable-ref">$contrast-lint</span></td>
         <td>true</td>
-        <td>Whether the build-time APCA contrast linter scores the colour pairs Jellyfish generates (buttons, chips, tables, <span class="css-ref">.bg-*</span> sections, and each palette shade against its <span class="css-ref">--jf-color-on-*</span> companion). Set to <span class="code-ref">false</span> to skip the check entirely.</td>
+        <td>Whether the build-time WCAG contrast linter scores the colour pairs Jellyfish generates (buttons, chips, tables, <span class="css-ref">.bg-*</span> sections, and each palette shade against its <span class="css-ref">--jf-color-on-*</span> companion). Set to <span class="code-ref">false</span> to skip the check entirely.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$apca-lint-warn</span></td>
-        <td>false</td>
-        <td>Whether a failing pair actually prints a Sass <span class="code-ref">@warn</span>. Off by default; set to <span class="code-ref">true</span> to surface failures while tuning your own palette.</td>
+        <td><span class="variable-ref">$contrast-lint-warn</span></td>
+        <td>true</td>
+        <td>Whether a failing pair actually prints a Sass <span class="code-ref">@warn</span>. Set to <span class="code-ref">false</span> to score silently (e.g. for tooling) without spamming the console.</td>
       </tr>
       <tr>
-        <td><span class="variable-ref">$apca-lint-threshold</span></td>
-        <td>60</td>
-        <td>The minimum APCA Lc score a pair must reach before <span class="variable-ref">$apca-lint-warn</span> will report it as a failure.</td>
+        <td><span class="variable-ref">$contrast-lint-threshold</span></td>
+        <td>4.5</td>
+        <td>The minimum WCAG contrast ratio a pair must reach before <span class="variable-ref">$contrast-lint-warn</span> will report it as a failure &mdash; 4.5:1 is WCAG AA for normal text; use 3 to lint against the AA large-text exception instead (18px normal weight or ~19px/14pt bold and up).</td>
       </tr>
 
       <tr>

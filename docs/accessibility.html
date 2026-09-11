@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Accessibility ~ 🎐 Jellyfish UI</title>
-    <meta name="description" content="Tools and techniques to make your website accessible to all users.">
+    <meta name="description" content="Screen-reader text, focus-visible outlines, forced-colors support and a font-size control.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
@@ -54,7 +54,7 @@
             Latest
           </li>
           <li>
-            <a href="./whats-new.html">What's New in 4.3.0</a>
+            <a href="./whats-new.html">What's new in 5.0</a>
           </li>
           <li class="li-title mt-0">
             HTML
@@ -108,6 +108,9 @@
             <a href="./breakpoints.html">Breakpoints</a>
           </li>
           <li>
+            <a href="./container-queries.html">Container Queries</a>
+          </li>
+          <li>
             <a href="./mixins.html">Mixins</a>
           </li>
           <li>
@@ -129,6 +132,9 @@
             <a href="./theme-colors.html">Theme Colors</a>
           </li>
           <li>
+            <a href="./palette-generator.html">Palette Generator</a>
+          </li>
+          <li>
             <a href="./accessibility.html">Accessibility</a>
           </li>
           <li>
@@ -144,57 +150,64 @@
     <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
-<h1 class="section-heading h2">Accessibility<a href="./variables.html#accessibility">[ Variable Reference ]</a></h1>
-<div>
-  <h2 class="h3">Screen reader text</h2>
-  <p>Add a class of <span class="css-ref">.screen-reader-text</span> to an element to remove it from the DOM whilst keeping it readable to screen-readers and search engines.</p>
-  <pre class="language-markup">
-    <code><!--
-      <a href="#">Find out more <span class="screen-reader-text">about Jellyfish, the CSS framework</span></a>
-    --></code>
-  </pre>
-  <a href="#">Find out more <span class="screen-reader-text">about Jellyfish, the CSS framework</span></a>
+<h1 class="section-heading h2">Accessibility</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">Accessibility is built into the components (native <span class="code-ref">&lt;details&gt;</span> / <span class="code-ref">&lt;dialog&gt;</span>, ARIA on the navbar toggle, keyboard tables on each interactive page). This page covers the framework-wide helpers.</p>
 </div>
-<div>
-  <h2 class="h3">:focus-visible outlines</h2>
-  <p>Jellyfish includes clear focus highlighting of buttons, anchors, and inputs to aid users navigating a website via keyboard. To preserve design aesthetics these styles will not be applied when a user is navigating with a mouse - with the exception of input fields which, by specification, should inherit :focus-visible when active. <a href="https://www.w3.org/TR/selectors-4/#the-focus-visible-pseudo">See this directive</a> for clarification.</p>
-  <p>Go ahead and tab...</p>
-  <p><a href="#">Basic link</a></p>
-  <div class="button-list">
-    <a href="#" class="button">Button Link</a>
-    <button class="button">Button Element</button>
-  </div>
-  <label for="tabbed-input">Text Input</label>
-  <input type="text" name="tabbed-input">
-</div>
-<div>
-  <h2 class="h3">Increase font size globally</h2>
-  <p>Give any button a <span class="code-ref">data-font-size</span> of <span class="code-ref">smaller</span>, <span class="code-ref">default</span>, <span class="code-ref">larger</span> or <span class="code-ref">largest</span>. The bundled <span class="code-ref">accessibility.js</span> handles the click by delegation (no inline handler, CSP&#8209;safe), adds the matching <span class="css-ref">.font-size-*</span> class to <span class="code-ref">&lt;html&gt;</span> (<span class="code-ref">default</span> = none) &mdash; a relative multiplier on <span class="code-ref">--jf-root-font-size</span>, which is read on <span class="code-ref">&lt;html&gt;</span>, so the whole <span class="code-ref">rem</span>&#8209;based type scale grows or shrinks with it &mdash; and stores the choice in <span class="code-ref">localStorage</span> under <span class="code-ref">jf-font-size</span>. The active button gets <span class="code-ref">aria-pressed="true"</span>. <span class="code-ref">window.setRootFontSize('larger')</span> is exposed for script callers.</p>
-  <p>These are <em>preference levels</em>, not scale steps &mdash; deliberately named <span class="code-ref">smaller</span>&hellip;<span class="code-ref">largest</span> rather than reusing the <a href="./variables.html#typography"><span class="variable-ref">$type-scale</span></a> keys.</p>
-  <p>Restoring the stored preference runs on <span class="code-ref">DOMContentLoaded</span>; add the inline snippet to your <span class="code-ref">&lt;head&gt;</span> if you want it applied before first paint (no flash).</p>
-  <pre class="language-markup">
-    <code><!--
-      <span class="screen-reader-text">Adjust font size:</span>
-      <button data-font-size="smaller" title="Smaller text">A</button>
-      <button data-font-size="default" title="Default text size">A</button>
-      <button data-font-size="larger"  title="Larger text">A</button>
-      <button data-font-size="largest" title="Largest text">A</button>
 
-      <!-- optional, in <head>, to apply the stored size before paint -->
-      <script>
-        try {
-          var s = localStorage.getItem("jf-font-size");
-          if (s === "smaller" || s === "larger" || s === "largest")
-            document.documentElement.classList.add("font-size-" + s);
-        } catch (e) {}
-      </script>
-    --></code>
-  </pre>
-  <span class="screen-reader-text">Adjust font size:</span>
-  <button data-font-size="smaller" title="Smaller text">A</button>
-  <button data-font-size="default" title="Default text size">A</button>
-  <button data-font-size="larger" title="Larger text">A</button>
-  <button data-font-size="largest" title="Largest text">A</button>
+<div class="section is-tight bg-base">
+  <h2 class="h3">Screen-reader text</h2>
+  <p><span class="css-ref">.screen-reader-text</span> hides an element visually but keeps it in the accessibility tree &mdash; for extra context on a link, a <span class="code-ref">&lt;caption&gt;</span>, a form-control group label.</p>
+  <pre class="language-markup"><code><!--
+    <a href="/species">Find out more<span class="screen-reader-text"> about jellyfish species</span></a>
+    --></code></pre>
+  <p><a href="#">Find out more<span class="screen-reader-text"> about jellyfish species</span></a> &mdash; visually identical to a plain link; inspect it or turn on a screen reader to find the extra text.</p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Focus outlines</h2>
+  <p>Buttons, links and form controls get a clear <span class="code-ref">:focus-visible</span> outline for keyboard users; it's suppressed for pointer users (form fields keep theirs, per spec). Tab through these:</p>
+  <a href="#">A plain link</a>
+  <div class="button-list">
+    <a href="#" class="button">Link button</a>
+    <button type="button" class="button">Button element</button>
+  </div>
+  <p><label for="focus-demo">A field</label><input type="text" id="focus-demo"></p>
+  <p>The outline is <span class="code-ref">--jf-accessibility-focus-color</span> &mdash; override it at <span class="code-ref">:root</span> or a scope.</p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Reduced motion &amp; forced colours</h2>
+  <ul>
+    <li><span class="code-ref">prefers-reduced-motion: reduce</span> zeroes every framework transition (the indeterminate <a href="./progress.html">progress bar</a> slows instead of stopping).</li>
+    <li>In Windows High Contrast mode the masked chevron, progress bar and modal buttons repaint from system colours so they stay visible.</li>
+  </ul>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Font-size control</h2>
+  <p>Give any button <span class="code-ref">data-font-size="smaller|default|larger|largest"</span>. The bundled <span class="code-ref">accessibility.js</span> adds the matching <span class="css-ref">.font-size-*</span> class to <span class="code-ref">&lt;html&gt;</span> (a multiplier on <span class="code-ref">--jf-root-font-size</span>, so the whole <span class="code-ref">rem</span> scale grows), stores the choice in <span class="code-ref">localStorage["jf-font-size"]</span>, and sets <span class="code-ref">aria-pressed</span> on the active button. Handled by delegation (CSP-safe); <span class="code-ref">window.setRootFontSize('larger')</span> is exposed for scripts.</p>
+  <pre class="language-markup"><code><!--
+    <span class="screen-reader-text">Adjust text size:</span>
+    <button data-font-size="smaller" aria-label="Smaller text">A</button>
+    <button data-font-size="default" aria-label="Default text size">A</button>
+    <button data-font-size="larger"  aria-label="Larger text">A</button>
+    <button data-font-size="largest" aria-label="Largest text">A</button>
+
+    <!-- optional, in <head>, to restore the choice before first paint -->
+    <script>
+      try {
+        var s = localStorage.getItem("jf-font-size");
+        if (s === "smaller" || s === "larger" || s === "largest")
+          document.documentElement.classList.add("font-size-" + s);
+      } catch (e) {}
+    </script>
+    --></code></pre>
+  <span class="screen-reader-text">Adjust text size:</span>
+  <button data-font-size="smaller" aria-label="Smaller text">A</button>
+  <button data-font-size="default" aria-label="Default text size">A</button>
+  <button data-font-size="larger" aria-label="Larger text">A</button>
+  <button data-font-size="largest" aria-label="Largest text">A</button>
 </div>
 </section>
 </main>
@@ -265,3 +278,4 @@
 </body>
 
 </html>
+

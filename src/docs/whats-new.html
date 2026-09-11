@@ -1,395 +1,99 @@
 @@include('./src/docs/partials/html-head.html', {
-"title": "What's New",
-"description": "New additions to the Jellyfish framework.",
+"title": "What's new in 5.0",
+"description": "The headline changes in Jellyfish UI 5.0, and how to migrate from v4.",
 })
+
 @@include('./src/docs/partials/navigation.html')
-<h1 class="section-heading h2">
-  What's New
-</h1>
-
-<h2 class="h3">Dark mode</h2>
-<p>Jellyfish now ships a dark theme. It's a class on <span class="code-ref">&lt;html&gt;</span> &mdash; so a consumer can override any single dark value at runtime and get a clean three-way control: <span class="code-ref">.jf-dark</span> forces dark, <span class="code-ref">.jf-light</span> forces light (even on a dark OS), and with neither the OS <span class="code-ref">prefers-color-scheme</span> decides.</p>
-<p>Only the <a href="./variables.html#colors">semantic tokens</a> and the step-role aliases are repointed in dark &mdash; the numbered primitives (<span class="code-ref">--jf-color-primary-500</span> &hellip;) and their build-time <span class="code-ref">-contrast</span> / <span class="code-ref">-on-*</span> companions are untouched, so <span class="code-ref">.bg-*</span> sections and themed component fills render identically in both modes while surfaces, text, borders and links flip. New settings: <span class="code-ref">$dark-mode-enabled</span> (default <span class="code-ref">true</span>; set <span class="code-ref">false</span> to drop the block), <span class="code-ref">$dark-body-background-color</span>, <span class="code-ref">$dark-color-role-shades</span>.</p>
-<p>The bundled <span class="code-ref">theme.js</span> exposes <span class="code-ref">window.JellyfishTheme</span> (<span class="code-ref">get</span> / <span class="code-ref">set</span> / <span class="code-ref">toggle</span>), wires any <span class="code-ref">[data-theme-toggle]</span> / <span class="code-ref">[data-theme-set]</span> control by delegation, follows live OS changes while no explicit choice is stored, and fires <span class="code-ref">jfThemeChange</span>. Add <span class="code-ref">&lt;meta name="color-scheme" content="light dark"&gt;</span> and a small pre-paint snippet to your <span class="code-ref">&lt;head&gt;</span> &mdash; see <a href="./getting-started.html#dark-mode">Getting Started</a>, <a href="./theme-colors.html#dark-mode">Theme Colors</a> and <a href="./javascript.html#theme">Javascript</a>.</p>
-
-<h2 class="h3">Role-addressable <span class="code-ref">--jf-color-on-*</span> companions</h2>
-<p>Alongside the numbered <span class="code-ref">--jf-color-on-{family}-{shade}</span> tokens, every step-role now has a matching <span class="code-ref">--jf-color-on-{family}-{role}</span> (<span class="code-ref">-subtle</span> / <span class="code-ref">-muted</span> / <span class="code-ref">-emphasis</span> / <span class="code-ref">-strong</span>, plus bare for the 500). It tracks the same <span class="code-ref">$color-role-shades</span> entry as the role alias itself, so a role surface and its paired text can't drift apart when a role is retuned &mdash; and the dark-mode role remap carries the text with it. Value-neutral in light mode.</p>
-
-<h2 class="h3">Surface (<span class="code-ref">.bg-*</span>) modifiers</h2>
-<p>A <span class="code-ref">.bg-{family}</span> class is now generated for every colour in <span class="code-ref">$colors</span> (<span class="code-ref">.bg-primary</span>, <span class="code-ref">.bg-neutral</span>, &hellip;). Put one on any element &mdash; a <span class="code-ref">section</span>, a <span class="code-ref">.card</span>, a <span class="code-ref">div</span> &mdash; and it becomes a themed surface: <span class="code-ref">--jf-color-surface</span> and its contrast-picked <span class="code-ref">--jf-color-text</span> / <span class="code-ref">--jf-color-headings</span> are set for you, the muted / subtle text tiers re-tint toward it, and everything nested (headings, <span class="code-ref">.text-muted</span>, callouts, cards) follows by inheritance &mdash; no descendant selectors. Add specific shades or one-off colours via the <span class="code-ref">$background-colors</span> map. <a href="./theme-colors.html">See Theme Colors.</a></p>
-
-<h2 class="h3">Neutral surfaces: <span class="code-ref">.bg-soft</span> / <span class="code-ref">.bg-inverse</span></h2>
-<p>Two neutral surfaces sit alongside the families and <span class="bold">flip with the theme</span>. <span class="code-ref">.bg-soft</span> is a step of elevation off the canvas &mdash; literal white in light (a gentle lift against the warm off-white body), a raised dark tint in dark &mdash; and is what a panel, callout, chip or modal now reaches for to read as slightly raised without taking a theme colour. <span class="code-ref">.bg-inverse</span> is a full reverse of the page: the opposite theme's canvas, for a deliberate high-contrast block. Both carry their paired text / heading colours and re-mix the muted / subtle tiers, built from flipping tokens (<span class="code-ref">--jf-color-bg-soft</span> / <span class="code-ref">-text-soft</span> / <span class="code-ref">-headings-soft</span> and the <span class="code-ref">-inverse</span> set), tuned per project via <span class="code-ref">$soft-background-color</span> / <span class="code-ref">$dark-soft-background-color</span>.</p>
-<p><span class="bold">Breaking:</span> <span class="code-ref">.bg-white</span> is removed &mdash; use <span class="code-ref">.bg-soft</span>. The component <span class="code-ref">.white</span> modifiers go the same way: <span class="code-ref">.button.white</span> &rarr; <span class="code-ref">.button.soft</span>, <span class="code-ref">.chip.white</span> &rarr; <span class="code-ref">.chip.soft</span> (with a new <span class="code-ref">.chip.inverse</span>), <span class="code-ref">.progress.white</span> &rarr; <span class="code-ref">.progress.soft</span>, <span class="code-ref">.callout.white</span> &rarr; <span class="code-ref">.callout.soft</span>. A plain <span class="code-ref">.modal</span> is now its own <span class="code-ref">.bg-soft</span>-level surface, so modal text no longer comes out dark-on-dark &mdash; drop any <span class="code-ref">.bg-white</span> from your <span class="code-ref">&lt;dialog class="modal"&gt;</span> markup.</p>
-
-<h2 class="h3">Components as surfaces</h2>
-<p>A component that paints its own background now also declares itself a <span class="bold">surface</span> &mdash; it sets <span class="code-ref">--jf-color-surface</span> / <span class="code-ref">-text</span> / <span class="code-ref">-headings</span> and re-mixes the muted / subtle text tiers against its own fill. So a nested <span class="code-ref">.text-muted</span>, <span class="code-ref">figcaption</span> or <span class="code-ref">.font-size-small</span> inside a <span class="code-ref">.callout</span> (or <span class="code-ref">.modal</span>) tints toward the callout, not the page &mdash; no more grey-on-tint clash, in either mode. The <span class="code-ref">--jf-callout-*</span> seams still work, defaulting to the surface. Transparent-by-design components (<span class="code-ref">.card</span>, accordion panels) are deliberately <span class="italic">not</span> surfaces &mdash; they read whatever they sit on.</p>
-
-<h2 class="h3">Navbar &mdash; light / dark out of the box</h2>
-<p>The navbar colour set runs on the semantic layer. The <span class="bold">top bar</span> is branded &mdash; <span class="code-ref">$navbar-family</span> (<span class="code-ref">primary</span>) at <span class="code-ref">500</span> in both modes &mdash; and its link / hover text is <span class="bold">derived from the background</span>, like a <span class="code-ref">.bg-*</span> surface, so any bar colour comes with fitting text. Set the bar to a shade or a one-off colour and the text follows; retune it directly with <span class="code-ref">--jf-navbar-link-color</span> if you want.</p>
-<p><span class="bold">Dropdown panels, and the whole menu below the breakpoint</span> (the mobile menu / off-canvas drawer) are a neutral <span class="code-ref">.bg-soft</span> surface that flips with the theme &mdash; subtle links, a light neutral hover tint. The branded strip stays on <span class="css-ref">.navbar-brand</span> with the logo and hamburger. The four sub-menu values are exposed as <span class="code-ref">--jf-navbar-sublink-*</span> on <span class="code-ref">:root</span>, so one override retunes the dropdown, mobile menu and drawer together. Dropdown arrows and link borders draw with <span class="code-ref">currentColor</span>, so they sit right on whatever surface they're on. Structure and markup are unchanged &mdash; this is the token wiring.</p>
-
-<h2 class="h3">New heading mixin</h2>
-<p>Sometimes you want to add the font sizes of a heading level element (eg. h2) but don't want to - or can't - add a .h2 class (e.g. when modifying vendor markup).</p>
-<p>Previously you might have used <span class="code-ref">@extend .h2;</span> to do this, but this is problematic as css could get unwieldly due to any reference to the .h2 class being included in the generated css.</p>
-<p>Now you can simply <span class="code-ref">@include h2();</span> to apply line height and responsive font-size without the need for a specific class.</p>
-<p class="is-h3-size">This will have the same font-size and line-height as a h3 tag</p>
-<pre class="language-scss">
-      <code>
-        .is-h3-size {
-          @include h3(); // Applies h3 font-size and line-height
-        }
-      </code>
-    </pre>
-
-
-<h2 class="h3">More CSS Properties</h2>
-<p>The following variables are now exposed as CSS custom properties to the <span class="code-ref">:root</span> for easier manipulation of elements. Initial values are still set with SASS variables for backwards-compatibility.</p>
-<pre class="language-scss line-numbers">
-    <code>
-
-      // Anchor links. $link-color is a palette *family*; all three link tokens
-      // are step-role aliases of it, so they flip in dark mode.
-      --jf-link-color: var(--jf-color-primary-emphasis);
-      --jf-link-color-active: var(--jf-color-primary-strong);
-      --jf-link-color-visited: var(--jf-color-primary-muted);
-
-      // Semantic aliases - emitted for every family in the $colors map.
-      // Bare = 500; the four roles map to $color-role-shades (retune once).
-      --jf-color-primary: var(--jf-color-primary-500);
-      --jf-color-primary-subtle: var(--jf-color-primary-50);
-      --jf-color-primary-muted: var(--jf-color-primary-300);
-      --jf-color-primary-emphasis: var(--jf-color-primary-700);
-      --jf-color-primary-strong: var(--jf-color-primary-900);
-
-      // Shared hairline. Card / table / accordion borders fall back to this when
-      // their own --jf-{component}-border-color isn't set (those aren't emitted).
-      --jf-border-color: var(--jf-color-neutral-muted);
-
-      // Shared code surface: inline code, pre and var (not kbd).
-      --jf-code-background: var(--jf-color-neutral-subtle);
-      --jf-code-color: var(--jf-color-text);
-
-      --jf-card-border-radius: #{$card-border-radius};
-      --jf-card-border-style: #{$card-border-style};
-      --jf-card-border-width: #{$card-border-width};
-      --jf-card-padding: #{$card-padding};
-
-      --jf-modal-max-width: #{$modal-max-width};
-      --jf-modal-padding: #{$modal-padding};
-
-      --jf-form-input-background: #{$input-background};
-      --jf-form-input-border-width: #{$border-width};
-      --jf-form-input-border-style: #{$border-style};
-      --jf-form-input-border-color: #{$border-color};
-      --jf-form-input-border-radius: #{$border-radius};
-      --jf-form-input-placeholder-color: #{$placeholder-color};
-      --jf-form-select-bg-img: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23010101' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
-
-      --jf-table-font-size: #{$table-font-size};
-      --jf-table-stripe-bg-color: var(--jf-color-neutral-subtle);
-      --jf-table-hover-background: var(--jf-color-neutral-muted);
-      --jf-table-cell-background: transparent;
-
-      --jf-navbar-bg-color: #{$navbar-bg-color};
-      --jf-navbar-link-color: #{$navbar-link-color};
-      --jf-navbar-link-bg-color: #{$navbar-link-bg-color};
-      --jf-navbar-link-hover-color: #{$navbar-link-hover-color};
-      --jf-navbar-link-hover-bg-color: #{$navbar-link-hover-bg-color};
-      --jf-navbar-link-hover-weight: #{$navbar-link-hover-weight};
-      --jf-navbar-link-border: #{$navbar-link-border};
-
-      --jf-navbar-text-transform: #{$navbar-text-transform};
-      --jf-navbar-font-size: #{$navbar-font-size};
-      --jf-navbar-font-family: #{$navbar-font-family};
-      --jf-navbar-font-weight: #{$navbar-font-weight};
-
-      --jf-navbar-link-padding-x: #{$navbar-link-padding-x};
-      --jf-navbar-link-padding-y: #{$navbar-link-padding-y};
-      --jf-navbar-dropdown-width: #{$navbar-dropdown-width};
-    </code>
-  </pre>
-
-<h2 class="h3">Design token axes beyond colour</h2>
-<p>The non-colour design axes are now tokens too, each a thin semantic scale with a matching <span class="code-ref">get-*()</span> accessor (see <a href="./variables.html#spacing-scale">Variables</a> and <a href="./mixins.html">Mixins</a>):</p>
-<ul>
-  <li><span class="bold">Spacing</span> &mdash; <span class="code-ref">--jf-space-{3xs&hellip;2xl}</span> scale + <span class="code-ref">get-space()</span>, plus <span class="code-ref">--jf-flow</span> for block-flow rhythm (bottom margin between block elements) &mdash; which <span class="code-ref">$space-scale</span> step it uses is set by <span class="code-ref">$flow-step</span> (default <span class="code-ref">md</span>). The <span class="code-ref">$sizing-system</span> map stays Sass-only. v4's <span class="code-ref">$element-margin</span> / <span class="code-ref">$element-padding</span> are removed.</li>
-  <li><span class="bold">Line height</span> &mdash; <span class="code-ref">--jf-leading-{flush,tight,snug,base,loose}</span>. <span class="code-ref">get-leading()</span>.</li>
-  <li><span class="bold">Font weight</span> &mdash; the nine named weights as <span class="code-ref">--jf-font-weight-*</span>; <span class="code-ref">get-weight()</span>. Repoint <span class="code-ref">semibold</span>/<span class="code-ref">medium</span> etc. at runtime.</li>
-  <li><span class="bold">Radius</span> &mdash; <span class="code-ref">--jf-radius-{none,xs,sm,md,lg,xl,2xl,full}</span>. <span class="code-ref">get-radius()</span>. Round or sharpen every corner from the <span class="code-ref">$radius-scale</span> map.</li>
-  <li><span class="bold">Border width</span> &mdash; <span class="code-ref">--jf-border-width</span> + <span class="code-ref">--jf-border-width-strong</span> (1px / 2px).</li>
-  <li><span class="bold">Elevation</span> &mdash; <span class="code-ref">--jf-shadow-{none,xs&hellip;xl}</span>, each mixing <span class="code-ref">--jf-shadow-color</span> toward transparent at the step's alpha. Geometry in <span class="code-ref">$shadow-scale</span>; <span class="code-ref">get-shadow()</span>.</li>
-  <li><span class="bold">Motion</span> &mdash; <span class="code-ref">--jf-duration-{instant,fast,base,slow,slower}</span>, <span class="code-ref">--jf-ease-{in,out,in-out,spring}</span>, composed <span class="code-ref">--jf-transition</span>. <span class="code-ref">get-duration()</span> / <span class="code-ref">get-ease()</span>. <span class="code-ref">prefers-reduced-motion</span> zeroes the durations in one place, so all framework transitions honour it automatically &mdash; the accordion chevron, off-canvas drawer and docs animations were all swept onto the token, <span class="code-ref">$accordion-transition-duration</span> is removed, and the indeterminate progress bar is clamped slow (min 10s) instead of freezing. Smooth in-page scrolling is now scoped to <span class="code-ref">html:focus-within</span> (keyboard / anchor navigation only).</li>
-</ul>
-<p>The <span class="code-ref">smooth()</span> mixin is renamed <span class="code-ref">motion()</span> (<span class="code-ref">smooth()</span> still works as an alias). For an off-tempo transition, redefine <span class="code-ref">--jf-transition</span> (or its parts) on a scope &mdash; it cascades.</p>
-
-<h2 class="h3">Grid</h2>
-<p>New <span class="css-ref">.grid</span> &mdash; a CSS Grid on the same 12-column class API as <span class="css-ref">.row</span>. Use <span class="css-ref">.grid</span> by default; keep <span class="css-ref">.row</span> (flexbox) where you need grow-to-fill columns. Also new: <span class="css-ref">.auto-grid</span> (count-agnostic equal columns), <span class="css-ref">.col-start</span> / <span class="css-ref">.col-end</span> placement utilities, and <span class="css-ref">.collapse</span> (zero-gutter) now on both engines.</p>
-<ul>
-  <li><span class="bold">Container is bleed-friendly.</span> Its side space is <span class="code-ref">100%</span>-based padding (exact &mdash; content is precisely <span class="code-ref">--jf-container-max</span>). New <span class="css-ref">.bleed</span> / <span class="css-ref">.bleed-start</span> / <span class="css-ref">.bleed-end</span> helpers (with <span class="code-ref">-{bp}</span> and <span class="code-ref">-none-{bp}</span> variants) break an element out to the page edge &mdash; put <span class="css-ref">.bleed-end</span> on the last column of a two-column <span class="css-ref">.grid</span> for the classic image-off-the-edge layout. Optional <span class="css-ref">.page</span> + <span class="code-ref">--jf-page-max</span> caps the shell on ultrawide monitors. Knobs: <span class="code-ref">--jf-container-max</span>, <span class="code-ref">--jf-container-gutter</span>, <span class="code-ref">--jf-page-max</span>.</li>
-  <li><span class="bold">Breakpoints are fixed</span> at 600 / 900 / 1200 / 1800. <span class="variable-ref">$breakpoints</span> is a flat <span class="code-ref">key: px</span> map, no longer a <span class="code-ref">!default</span>. Per-breakpoint container / gutter / root-size values moved to custom properties.</li>
-  <li><span class="bold">Removed:</span> <span class="css-ref">.offset-*</span> and push/pull; <span class="variable-ref">$cols</span>, <span class="variable-ref">$grid-has-order</span>, <span class="variable-ref">$grid-has-offset</span>, <span class="variable-ref">$base-col-name</span>, <span class="variable-ref">$base-container-gutter</span>, <span class="variable-ref">$base-col-gutter</span>; the per-breakpoint <span class="code-ref">root-font-size</span> / <span class="code-ref">root-line-height</span> retune. Full <a href="./grid.html#migration">migration table</a>.</li>
-</ul>
-
-<h2 class="h3">Tables</h2>
-<p><span class="code-ref">table</span> elements now have smaller font sizes by default with a new SASS / CSS property: <span class="css-ref">$table-font-size</span> / <span class="css-ref">--table-font-size</span> .</p>
-<p>Tables can now be <a href="./tables.html">modified with colors</a> from the <span class="variable-ref">$colors</span> map.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Color</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Primary</td>
-      <td>
-        <table class="primary">
-          <thead>
-            <tr>
-              <th>Header 1</th>
-              <th>Header 2</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Data 1</td>
-              <td>Data 2</td>
-            </tr>
-            <tr>
-              <td>Data 3</td>
-              <td>Data 4</td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
-    <tr>
-      <td>Mixed</td>
-      <td>
-        <table class="is-striped is-hoverable">
-          <thead>
-            <tr class="secondary">
-              <th>Header 1</th>
-              <th>Header 2</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="secondary">Data 1</td>
-              <td class="success">Data 2</td>
-            </tr>
-            <tr>
-              <td class="warning">Data 3</td>
-              <td class="error">Data 4</td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 class="h3">Forms</h2>
-<ul>
-  <li><span class="bold"><span class="code-ref">&lt;select&gt;</span> sizes to its widest option.</span> The arbitrary <span class="code-ref">width: 300px; max-width: 60%</span> default is gone &mdash; <span class="code-ref">&lt;select&gt;</span> is now <span class="code-ref">width: fit-content</span> with <span class="code-ref">max-width: 100%</span>, so it never overflows its container. It still fills a <span class="css-ref">.col</span> / <span class="css-ref">.form-row</span>; set <span class="code-ref">width</span> yourself for a fixed size.</li>
-  <li><span class="bold">Control font size is <span class="code-ref">max(16px, 1em)</span></span>, not <span class="code-ref">16px !important</span> &mdash; still no iOS focus-zoom, but it scales with context and the <span class="code-ref">!important</span> is gone.</li>
-  <li><span class="bold"><span class="code-ref">&lt;textarea&gt;</span> auto-grows</span> via <span class="code-ref">field-sizing: content</span> where supported; <span class="code-ref">rows</span> sets the starting height.</li>
-  <li><span class="bold">Validation states.</span> <span class="code-ref">:user-invalid</span> (and <span class="code-ref">[aria-invalid="true"]</span> for server-rendered errors) turn a field's border <span class="variable-ref">error</span> after interaction &mdash; no JS. New <span class="css-ref">.form-hint</span> / <span class="css-ref">.form-error</span> message classes. <a href="./forms.html#validation-states">See Forms.</a></li>
-  <li><span class="bold">Grouped controls.</span> The docs now model related checkbox / radio sets as <span class="code-ref">&lt;fieldset&gt;</span> + <span class="code-ref">&lt;legend&gt;</span>. New <span class="css-ref">.is-plain</span> strips a fieldset's border to read as a plain label + controls, and <span class="css-ref">.form-group-inline</span> now works on a <span class="code-ref">&lt;fieldset&gt;</span> (legend stays above the inline row).</li>
-  <li><span class="bold">Forced-colors hardening.</span> The progress bar, the accordion chevron and the modal close / prev / next glyphs are repainted with system colours under Windows High Contrast (<span class="code-ref">forced-colors: active</span>) so they stay visible in every state. All of it lives in one block in the accessibility partial.</li>
-</ul>
-
-<h2 class="h3">Fluid type</h2>
-<p>The type scale is now <span class="code-ref">rem</span> (was <span class="code-ref">em</span>). <span class="code-ref">xs</span> / <span class="code-ref">sm</span> / <span class="code-ref">base</span> stay fixed; <span class="code-ref">md</span> and everything above &mdash; all the headings &mdash; are single <span class="code-ref">clamp()</span> values that scale smoothly with the viewport (320&ndash;1240px), no breakpoints. Each size carries its own line-height: one <span class="code-ref">type($step)</span> mixin sets font-size and the paired leading together, and <span class="code-ref">&lt;h1&gt;</span>&ndash;<span class="code-ref">&lt;h6&gt;</span>, the <span class="css-ref">.h1</span>&ndash;<span class="css-ref">.h6</span> classes and <span class="code-ref">@include h2()</span> all route through it. Retune with <a href="./variables.html#typography"><span class="variable-ref">$type-scale</span> / <span class="variable-ref">$heading-scale</span> / <span class="variable-ref">$type-leading</span></a>. <span class="variable-ref">$font-sizes-h1</span>&hellip;<span class="variable-ref">h6</span> and <span class="variable-ref">$heading-line-height</span> are gone.</p>
-<p>New optional <span class="variable-ref">$measure</span> (default <span class="code-ref">none</span>) caps reading-text line length &mdash; set <span class="code-ref">66ch</span> or so, or flip <span class="code-ref">--jf-measure</span> on per-context.</p>
-<p><span class="code-ref">--jf-root-font-size</span> now sits on <span class="code-ref">&lt;html&gt;</span>, so with the scale in <span class="code-ref">rem</span> a single override scales the whole framework's type &mdash; <span class="code-ref">:root { --jf-root-font-size: 1.25rem }</span> for a large-print build. And new <span class="variable-ref">$font-size-adjust</span> (default <span class="code-ref">none</span>) normalises apparent size when you swap in a typeface that reads small or large.</p>
-<p>Loose ends tidied with it: hard-coded <span class="code-ref">line-height</span> values across the framework (<span class="code-ref">table</span>, buttons, <span class="code-ref">pre</span>, chips, inputs, print&hellip;) now go through <a href="./mixins.html"><span class="code-ref">get-leading()</span></a>; <span class="code-ref">table</span> and buttons gain <span class="variable-ref">$table-line-height</span> / <span class="variable-ref">$button-line-height</span>. <span class="bold">Breaking:</span> the <span class="css-ref">.small</span> text utility is now <span class="css-ref">.font-size-small</span> &mdash; <span class="css-ref">.small</span> is <span class="bold">removed</span> (no alias), because it collided with the <span class="css-ref">.button.small</span> / <span class="css-ref">.chip.small</span> size modifiers. It also now carries its own line-height rather than inheriting. New <span class="css-ref">.standfirst</span> utility for a lead paragraph (one step up the scale, medium weight, paired leading).</p>
-
-<h2 class="h3">Text Balancing</h2>
-<p><span class="code-ref">h1</span>&ndash;<span class="code-ref">h3</span> use <span class="code-ref">text-wrap: balance</span> to even out short multi-line headings; <span class="code-ref">p</span>, <span class="code-ref">li</span>, <span class="code-ref">dd</span> and <span class="code-ref">figcaption</span> use <span class="code-ref">text-wrap: pretty</span> to trim orphans and bad breaks. Browsers without support ignore both.</p>
-<div class="boxed">
-  <h3>
-    This is an example of a heading that will be balanced automatically to prevent awkward line breaks in most situations.
-  </h3>
-  <p>This is an example of a paragraph that will also be balanced automatically reducing the chance for orphans to appear in most situations. This should improve the overall aesthetics of text-heavy layouts. Browser support is not currently universal (looking at you, Firefox).</p>
+<h1 class="section-heading h2">What's new in 5.0</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">Jellyfish 5.0 is a ground-up modernisation: a semantic colour system with dark mode, a full design-token layer, fluid type, a CSS Grid engine, and native <span class="code-ref">&lt;details&gt;</span> / <span class="code-ref">&lt;dialog&gt;</span> components. This page is the map &mdash; each item links to the detail.</p>
 </div>
 
-<h2 class="h3">Modern reset</h2>
-<p>The Meyer v4 reset is replaced with a small modern one (Andy Bell shape). <span class="code-ref">box-sizing: border-box</span> is set directly on every element rather than inherited from <span class="code-ref">&lt;html&gt;</span> (so a stray <span class="code-ref">html { box-sizing }</span> from another stylesheet can't cascade in); UA margins are stripped with <span class="code-ref">* { margin: 0 }</span> and Jellyfish re-adds its own flow spacing; <span class="code-ref">img</span> / <span class="code-ref">picture</span> / <span class="code-ref">video</span> / <span class="code-ref">canvas</span> are <span class="code-ref">display: block</span> and capped at <span class="code-ref">max-inline-size: 100%</span>; form controls get <span class="code-ref">font: inherit</span>; and <span class="code-ref">text-size-adjust: none</span> stops mobile browsers auto-inflating text.</p>
-<p>The old &ldquo;HTML5 display-role&rdquo; block that forced <span class="code-ref">section</span> / <span class="code-ref">article</span> / <span class="code-ref">figure</span> etc. to <span class="code-ref">display: block</span> is gone &mdash; every supported browser does that natively. <span class="bold">Breaking:</span> list-marker removal is now opt-in via <span class="code-ref">role="list"</span> &mdash; <span class="code-ref">&lt;ul role="list"&gt;</span> / <span class="code-ref">&lt;ol role="list"&gt;</span> drop the marker and indent (and keep announcing as a list in Safari/VoiceOver). Bare <span class="code-ref">&lt;ul&gt;</span> / <span class="code-ref">&lt;ol&gt;</span> are unchanged (Jellyfish still styles them by element).</p>
-
-<h2 class="h3">Floats contain themselves</h2>
-<p>With <span class="css-ref">.clearfix</span> gone, common block containers (<span class="code-ref">div</span>, <span class="code-ref">section</span>, <span class="code-ref">article</span>, <span class="code-ref">p</span>, <span class="code-ref">li</span>, <span class="code-ref">figure</span>, <span class="code-ref">blockquote</span>, <span class="code-ref">aside</span>, <span class="code-ref">header</span>, <span class="code-ref">footer</span>, <span class="code-ref">dd</span>, <span class="code-ref">main</span>) now get <span class="code-ref">display: flow-root</span> automatically when they hold a directly-floated <span class="css-ref">.align-*</span> child, via <span class="code-ref">:has()</span>. The rule has zero specificity, so an explicit <span class="code-ref">display</span> on the parent &mdash; yours, a plugin's, or a Jellyfish <span class="css-ref">.grid</span> / <span class="css-ref">.row</span> &mdash; always wins. For any other element, set <span class="code-ref">display: flow-root</span> yourself.</p>
-
-<h2 class="h3">Hyphenate long email addresses</h2>
-<p>Long email addresses in <code>&lt;a href="mailto:"&gt;</code> links will now hyphenate automatically to prevent overflow issues in small containers.</p>
-<div class="boxed" style="width:150px">
-  <a href="mailto:long.email.address@example.com">long.email.address@example.com</a>
+<div class="section is-tight bg-base">
+  <h2 class="h3">New</h2>
+  <table class="is-responsive has-border">
+    <caption class="screen-reader-text">New in 5.0</caption>
+    <thead><tr><th scope="col">Feature</th><th scope="col">What it is</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><a href="./theme-colors.html#dark-mode">Dark mode</a></th><td>On by default. Follows <span class="code-ref">prefers-color-scheme</span>; <span class="css-ref">.jf-dark</span> / <span class="css-ref">.jf-light</span> on <span class="code-ref">&lt;html&gt;</span> force a mode. <span class="code-ref">JellyfishTheme</span> JS + <span class="code-ref">[data-theme-toggle]</span> markup persist a visitor's choice with no flash.</td></tr>
+      <tr><th scope="row"><a href="./theme-colors.html">Semantic colour system</a></th><td>Every family exposes <span class="code-ref">--jf-color-{family}-{subtle&thinsp;|&thinsp;muted&thinsp;|&thinsp;emphasis&thinsp;|&thinsp;strong}</span> role aliases and paired <span class="code-ref">--jf-color-on-*</span> text colours. Components consume roles, so they flip and re-theme for free.</td></tr>
+      <tr><th scope="row"><a href="./theme-colors.html#surfaces">Surfaces</a></th><td><span class="css-ref">.bg-{family}</span>, <span class="css-ref">.bg-soft</span>, <span class="css-ref">.bg-inverse</span> and <span class="css-ref">.bg-base</span> (reset to the page canvas) set a self-contained surface &mdash; background, text, headings and the muted / subtle tiers, all readable and theme-aware. Cards, callouts and modals are surfaces too.</td></tr>
+      <tr><th scope="row"><a href="./design-tokens.html">Design tokens beyond colour</a></th><td>Spacing, line-height, radius, border width, elevation and motion are all token scales (<span class="code-ref">--jf-space-*</span>, <span class="code-ref">--jf-radius-*</span>, <span class="code-ref">--jf-shadow-*</span>, <span class="code-ref">--jf-transition</span>&hellip;) with <span class="code-ref">get-space()</span> / <span class="code-ref">get-radius()</span> / &hellip; accessors.</td></tr>
+      <tr><th scope="row"><a href="./typography.html">Fluid type</a></th><td>A <span class="code-ref">rem</span> scale where <span class="code-ref">md</span>&ndash;<span class="code-ref">6xl</span> are build-time <span class="code-ref">clamp()</span>, sliding with the viewport. New <span class="code-ref">type($step)</span> mixin sets size + paired line-height together.</td></tr>
+      <tr><th scope="row"><a href="./grid.html">CSS Grid engine</a></th><td>A real <span class="css-ref">.grid</span> alongside the flex <span class="css-ref">.row</span>. Fluid <span class="css-ref">.container</span>, an optional <span class="css-ref">.page</span> cap, <span class="css-ref">.bleed*</span> full-bleed helpers, <span class="css-ref">.auto-grid</span> and <span class="css-ref">.subgrid-rows</span>.</td></tr>
+      <tr><th scope="row"><a href="./accordions.html">Native accordions</a></th><td><span class="code-ref">&lt;details&gt;</span> / <span class="code-ref">&lt;summary&gt;</span>. Open / close, keyboard and screen-reader support are the browser's; JS is optional (events, deep-linking).</td></tr>
+      <tr><th scope="row"><a href="./modals.html">Native modals</a></th><td><span class="code-ref">&lt;dialog&gt;</span>. Focus trap, top layer and <kbd>Esc</kbd> are native; the script adds a close button, backdrop-click, groups and events.</td></tr>
+      <tr><th scope="row"><a href="./forms.html#validation-states">Native validation states</a></th><td><span class="code-ref">:user-invalid</span> / <span class="code-ref">[aria-invalid]</span> style controls automatically; new <span class="css-ref">.form-hint</span> / <span class="css-ref">.form-error</span> and <span class="css-ref">fieldset.is-plain</span>.</td></tr>
+      <tr><th scope="row"><a href="./grid.html#sections">Sections</a></th><td><span class="css-ref">.section</span> &mdash; a full-width band with consistent, fluid vertical space and a single seam between stacked sections.</td></tr>
+      <tr><th scope="row"><a href="./utilities.html#icons">Icons</a></th><td><span class="css-ref">.icon</span> + <span class="code-ref">@mixin icon()</span> &mdash; a mask-based SVG icon in the current text colour, sized to the font. Point <span class="code-ref">--jf-icon</span> at a URL.</td></tr>
+      <tr><th scope="row"><a href="./media.html#image-ratios">Image ratios &amp; fit</a></th><td><span class="css-ref">.ratio-*</span> on an <span class="code-ref">&lt;img&gt;</span> crops it; <span class="css-ref">.object-cover</span> / <span class="css-ref">.object-contain</span> utilities.</td></tr>
+      <tr><th scope="row"><a href="./getting-started.html#sticky-headers">Scroll offset</a></th><td><span class="code-ref">--jf-scroll-offset</span> &mdash; set it to a sticky header's height so <span class="code-ref">#fragment</span> landings clear it.</td></tr>
+      <tr><th scope="row"><a href="./accessibility.html">Contrast linter</a></th><td>Colour pairs are scored against WCAG 2.x contrast ratios (4.5:1) at build time; a failure is a build warning.</td></tr>
+    </tbody>
+  </table>
 </div>
 
-<h2 class="h3">@container support</h2>
-<p>There are new shorthand SASS mixins for container queries:</p>
-<pre class="language-scss line-numbers">
-    <code>
-      .parent-container {
-        container-type: inline-size;
-        container-name: parent-container;
-      }
-      .col-container {
-        container-type: inline-size;
-        container-name: column-container;
-      }
+<div class="section is-tight bg-base">
+  <h2 class="h3">Changed</h2>
+  <table class="is-responsive has-border">
+    <caption class="screen-reader-text">Behaviour changes in 5.0</caption>
+    <thead><tr><th scope="col">Area</th><th scope="col">Change</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Motion</th><td><span class="code-ref">prefers-reduced-motion: reduce</span> now zeroes every framework transition (the indeterminate progress bar slows rather than stopping).</td></tr>
+      <tr><th scope="row">Forced colours</th><td>Windows High Contrast fixups for the masked chevron, progress bar and modal buttons.</td></tr>
+      <tr><th scope="row">Logical properties</th><td>Framework CSS is writing-mode-relative, so RTL works with just <span class="code-ref">dir="rtl"</span>. Spacing / border / float utilities gained logical names (physical names kept as deprecated aliases &mdash; see below).</td></tr>
+      <tr><th scope="row">Reset</th><td>Meyer&rarr;modern reset: <span class="code-ref">&lt;img&gt;</span> is <span class="code-ref">display: block</span>; list-marker removal is opt-in via <span class="code-ref">role="list"</span>; <span class="code-ref">box-sizing</span> is set directly, not inherited.</td></tr>
+      <tr><th scope="row">Block-flow spacing</th><td><span class="variable-ref">$element-margin</span> is now <span class="variable-ref">$flow-step</span> &rarr; <span class="code-ref">--jf-flow</span> (same 1.5rem default), applied to the same elements as before <em>plus</em> block media (<span class="code-ref">&lt;img&gt;</span> / <span class="code-ref">&lt;picture&gt;</span> / <span class="code-ref">&lt;video&gt;</span> / <span class="code-ref">&lt;audio&gt;</span> / <span class="code-ref">&lt;figure&gt;</span> / <span class="code-ref">&lt;address&gt;</span>), <span class="css-ref">.progress</span> and <span class="css-ref">.form-row</span> &mdash; things the aggressive reset had left bare. Removed again for object-fit images, aspect-ratio crops, <span class="css-ref">.card-image</span>, a figure's own child, and media used directly as a grid column.</td></tr>
+      <tr><th scope="row">Grid &amp; row spacing</th><td><span class="css-ref">.grid</span>, <span class="css-ref">.row</span> and <span class="css-ref">.auto-grid</span> all space the same way: <span class="code-ref">column-gap</span> (<span class="code-ref">--jf-grid-gutter</span>) + <span class="code-ref">row-gap</span> (<span class="code-ref">--jf-flow</span>), a trailing <span class="code-ref">--jf-flow</span> margin so they flow like a block, and the last child of each <span class="code-ref">.col</span> stripped of its trailing margin (multi-element columns keep their internal rhythm). Drop the per-item <span class="css-ref">.mbe-0</span> you used to need.</td></tr>
+      <tr><th scope="row">Floats</th><td>A block that directly contains a floated <span class="css-ref">.align-*</span> child contains the float itself &mdash; no <span class="css-ref">.clearfix</span> needed.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.container</span></th><td>Full-width + fluid side padding (was fixed-px with auto margins at <span class="code-ref">lg</span> / <span class="code-ref">xl</span>). Content still caps at <span class="code-ref">--jf-container-max</span>.</td></tr>
+      <tr><th scope="row">Forms</th><td>Control <span class="code-ref">font-size</span> is <span class="code-ref">max(16px, 1em)</span> (was a hard <span class="code-ref">16px !important</span>); <span class="code-ref">&lt;select&gt;</span> is <span class="code-ref">width: fit-content; max-width: 100%</span> (was <span class="code-ref">300px</span> / <span class="code-ref">60%</span>).</td></tr>
+      <tr><th scope="row">Page background</th><td><span class="variable-ref">$body-background-color</span> default <span class="code-ref">#fff</span> &rarr; <span class="code-ref">#faf9f6</span> (a warm off-white).</td></tr>
+      <tr><th scope="row">Component tokens</th><td><span class="code-ref">--jf-card-*</span> / <span class="code-ref">--jf-chip-*</span> / <span class="code-ref">--jf-modal-*</span> / <span class="code-ref">--jf-table-*</span> are declared on their component, not <span class="code-ref">:root</span> &mdash; override them there or on a scoped selector.</td></tr>
+    </tbody>
+  </table>
+</div>
 
+<div class="section is-tight bg-base">
+  <h2 class="h3">Breaking changes &amp; migration</h2>
+  <table class="is-responsive has-border">
+    <caption class="screen-reader-text">Breaking changes and what to do</caption>
+    <thead><tr><th scope="col">Change</th><th scope="col">Migrate</th></tr></thead>
+    <tbody>
+      <tr><td>Every custom property is namespaced <span class="code-ref">--jf-*</span></td><td>Rename <span class="code-ref">--card-padding</span> &rarr; <span class="code-ref">--jf-card-padding</span> etc. Or set <span class="variable-ref">$token-prefix: ""</span> before import to keep the un-prefixed names.</td></tr>
+      <tr><td><span class="code-ref">v()</span> Sass function removed</td><td>Use <span class="code-ref">token($name, $fallback)</span>.</td></tr>
+      <tr><td><span class="code-ref">smooth()</span> mixin removed</td><td>Use <span class="code-ref">motion()</span>.</td></tr>
+      <tr><td><span class="css-ref">.small</span> removed (clashed with size modifiers)</td><td>Use <span class="css-ref">.font-size-small</span>.</td></tr>
+      <tr><td><span class="css-ref">.bg-white</span> and <span class="css-ref">.*.white</span> removed</td><td>Use <span class="css-ref">.bg-soft</span>, <span class="css-ref">.button.soft</span>, <span class="css-ref">.chip.soft</span>, <span class="css-ref">.callout.soft</span>, <span class="css-ref">.progress.soft</span>.</td></tr>
+      <tr><td><span class="css-ref">.clearfix</span> removed</td><td>Usually nothing &mdash; floats self-contain now. Otherwise <span class="code-ref">display: flow-root</span> on the parent.</td></tr>
+      <tr><td>Grid: <span class="css-ref">.offset-*</span> and push / pull removed</td><td>Use <span class="css-ref">.col-start</span> / <span class="css-ref">.col-end</span> (grid) or <span class="css-ref">.order-*</span>.</td></tr>
+      <tr><td>Spacing / border / float utilities renamed logical</td><td><span class="css-ref">.ml</span>/<span class="css-ref">.mr</span>/<span class="css-ref">.mt</span>/<span class="css-ref">.mb</span> &rarr; <span class="css-ref">.mis</span>/<span class="css-ref">.mie</span>/<span class="css-ref">.mbs</span>/<span class="css-ref">.mbe</span>; <span class="css-ref">.align-left</span>/<span class="css-ref">-right</span> &rarr; <span class="css-ref">.align-start</span>/<span class="css-ref">-end</span>. Old names still work but are deprecated &mdash; they may be dropped in later versions.</td></tr>
+      <tr><td>Font-size scale keys renamed</td><td><span class="code-ref">-2 … 8</span> &rarr; <span class="code-ref">xs, sm, base, md, lg, xl, 2xl … 6xl</span> (Tailwind convention). Update <span class="code-ref">token(font-size-*)</span> / <span class="code-ref">$font-sizes</span> references.</td></tr>
+      <tr><td><span class="variable-ref">$weight-*</span> Sass variables removed</td><td>Use <span class="code-ref">get-weight(bold)</span> or the <span class="code-ref">--jf-font-weight-*</span> tokens.</td></tr>
+      <tr><td><span class="variable-ref">$element-margin</span> / <span class="variable-ref">$element-padding</span> removed</td><td>Block-flow spacing is <span class="variable-ref">$flow-step</span> &rarr; <span class="code-ref">--jf-flow</span>.</td></tr>
+      <tr><td><span class="variable-ref">$global-transition</span> / <span class="variable-ref">$transition-timing</span> removed</td><td>Use <span class="code-ref">--jf-transition</span> / the <span class="code-ref">--jf-duration-*</span> + <span class="code-ref">--jf-ease-*</span> scales.</td></tr>
+      <tr><td><span class="variable-ref">$font-sizes-h1…h6</span> / <span class="variable-ref">$heading-line-height</span> removed</td><td>Use <span class="variable-ref">$heading-scale</span> (which step each level uses) and <span class="variable-ref">$type-leading</span>.</td></tr>
+      <tr><td>Colour role scalars &rarr; one map</td><td><span class="variable-ref">$color-subtle-shade</span> / <span class="variable-ref">-muted-shade</span> / &hellip; &rarr; <span class="variable-ref">$color-role-shades</span> map.</td></tr>
+      <tr><td><span class="variable-ref">$link-color</span> is now a family name</td><td><span class="code-ref">primary</span>, not <span class="code-ref">get-color(primary)</span>. <span class="variable-ref">$link-active</span> / <span class="variable-ref">$link-visited</span> removed &mdash; derived from <span class="variable-ref">$link-color</span>'s roles.</td></tr>
+      <tr><td><span class="code-ref">--jf-color-headings-preferred</span> &rarr; <span class="code-ref">--jf-color-headings</span>; <span class="code-ref">*-fg</span> &rarr; <span class="code-ref">--jf-color-on-*</span></td><td>Rename any references.</td></tr>
+      <tr><td>v4 class + JS accordion removed</td><td>Move to native <span class="code-ref">&lt;details class="accordion-item"&gt;</span> &mdash; see <a href="./accordions.html">Accordions</a>. <span class="code-ref">name</span> replaces <span class="code-ref">data-allow-multiple</span>; <span class="code-ref">open</span> replaces <span class="code-ref">data-start-collapsed</span>.</td></tr>
+      <tr><td>Modal trigger</td><td><span class="code-ref">onclick="toggleModal('id')"</span> &rarr; <span class="code-ref">data-modal-target="id"</span> on a button (CSP-safe). <span class="css-ref">.has-open-modal</span> body class removed.</td></tr>
+      <tr><td><span class="code-ref">abstracts/02-settings/_grid.scss</span> deleted</td><td><span class="variable-ref">$breakpoints</span> is a flat constant <span class="code-ref">(sm 600, md 900, lg 1200, xl 1800)</span>; <span class="variable-ref">$cols</span> / <span class="variable-ref">$grid-has-order</span> / <span class="variable-ref">$grid-has-offset</span> / <span class="variable-ref">$base-*</span> gone.</td></tr>
+      <tr><td>Debug overlay removed</td><td><span class="css-ref">.jf-debug</span>, <span class="code-ref">jfDebug()</span>, <span class="variable-ref">$debug-mode-on</span> and <span class="code-ref">debug.html</span> are gone.</td></tr>
+    </tbody>
+  </table>
+</div>
 
-      // 1. Applies when the nearest container is >= 400px
-      .card.container-query-1 {
-        @include container-above(400px) {
-          flex-direction: row;
-        }
-      }
-      // 2. Applies when the nearest container is < 400px
-      .card.container-query-2 {
-        @include container-below(400px) {
-          border-color: var(--jf-color-primary-500);
-          border-width: 4px;
-        }
-      }
-      // 3. Applies when the nearest container is < 420px and >= 400px
-      .card.container-query-3 {
-        @include container-between(400px, 420px) {
-          background: var(--jf-color-secondary-200);
-        }
-      }
-      // 4. Applies when the nearest named container is < 400px and >= 800px
-      .card.container-query-4 {
-        @include container-between(400px, 800px, "parent-container") {
-          box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.6);
-        }
-      }
-      // 5. Applies when a named container is >= 800px
-      .card.container-query-5 {
-        @include container-above(800px, "parent-container") {
-          font-family: $font-monospace;
-        }
-      }
-      // 6. Applies when the nearest container is >= 400px, only below lg breakpoint
-      .card.container-query-6 {
-        @include below(lg) {
-          @include container-above(400px) {
-            border-color: var(--jf-color-primary-500);
-            border-width: 4px;
-          }
-        }
-      }
-    </code>
-  </pre>
-<!-- <p>You can combine with <a href="./breakpoints.html">breakpoint mixins</a> for even more flexibility.</p> -->
-
-<pre class="language-markup">
-    <code><!--
-      <div class="parent-container">
-        <div class="row">
-          <div class="col col-container sm-6">
-            <div class="card container-query-1">
-              ...
-            </div>
-          </div>
-          <div class="col col-container sm-6">
-            <div class="card container-query-2">
-              ...
-            </div>
-          </div>
-          <div class="col col-container sm-6">
-            <div class="card container-query-3">
-              ...
-            </div>
-          </div>
-          <div class="col col-container sm-6">
-            <div class="card container-query-4">
-              ...
-            </div>
-          </div>
-          <div class="col col-container sm-6">
-            <div class="card container-query-5">
-              ...
-            </div>
-          </div>
-          <div class="col col-container sm-6">
-            <div class="card container-query-6">
-              ...
-            </div>
-          </div>
-        </div>
-      </div>
-  --></code>
-  </pre>
-
-
-<div class="parent-container">
-  <div class="row">
-    <div class="col col-container sm-6">
-      <div class="card container-query-1">
-        <div class="card-section">
-          <p class="h3">#1</p>
-        </div>
-        <div class="card-section">
-          <p>Flex:Row when Column Width >= 400px</p>
-        </div>
-      </div>
-    </div>
-    <div class="col col-container sm-6">
-      <div class="card container-query-2">
-        <div class="card-section">
-          <p class="h3">#2</p>
-        </div>
-        <div class="card-section">
-          <p>Border when Column Width < 400px</p>
-        </div>
-      </div>
-    </div>
-    <div class="col col-container sm-6">
-      <div class="card container-query-3">
-        <div class="card-section">
-          <p class="h3">#3</p>
-        </div>
-        <div class="card-section">
-          <p>Background when Column Width Between 400px and 420px</p>
-        </div>
-      </div>
-    </div>
-    <div class="col col-container sm-6">
-      <div class="card container-query-4">
-        <div class="card-section">
-          <p class="h3">#4</p>
-        </div>
-        <div class="card-section">
-          <p>Box shadow when Parent Container Width Between 400px and 800px</p>
-        </div>
-      </div>
-    </div>
-    <div class="col col-container sm-6">
-      <div class="card container-query-5">
-        <div class="card-section">
-          <p class="h3">#5</p>
-        </div>
-        <div class="card-section">
-          <p>Change typeface when Parent Container Width >= 800px</p>
-        </div>
-      </div>
-    </div>
-    <div class="col col-container sm-6">
-      <div class="card container-query-6">
-        <div class="card-section">
-          <p class="h3">#6</p>
-        </div>
-        <div class="card-section">
-          <p>Border when Column Width >=400px, only below <span class="variable-ref">breakPoints.lg</span></p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="section is-tight bg-base">
+  <h2 class="h3">Also changed</h2>
+  <p>Smaller housekeeping that shouldn't need any action:</p>
+  <ul>
+    <li>Dropped the <span class="code-ref">hamburgers</span>, <span class="code-ref">stickybits</span> and <span class="code-ref">es6-promise</span> dependencies; <span class="code-ref">lazyload-bg.js</span> for backgrounds is kept.</li>
+    <li>Removed all IE-only vendor pseudo-elements (<span class="code-ref">::-ms-*</span>) and hand-written prefixes autoprefixer now manages.</li>
+    <li>Removed dead Sass helpers (<span class="code-ref">map-deep-get</span>, <span class="code-ref">n</span>, <span class="code-ref">h</span>, <span class="code-ref">nh</span>, <span class="code-ref">hn</span>).</li>
+    <li><span class="code-ref">gulp-uglify</span> &rarr; <span class="code-ref">gulp-terser</span> (handles modern JS).</li>
+    <li>Spacing literals snapped to the nearest scale step; a few component paddings and grid gutters shifted a pixel or two as a result.</li>
+    <li><span class="code-ref">::selection</span>, <span class="code-ref">mark</span>, <span class="code-ref">figcaption</span> / <span class="code-ref">caption</span> now set an explicit colour so they read on any surface.</li>
+  </ul>
 </div>
 @@include('./src/docs/partials/html-footer.html')

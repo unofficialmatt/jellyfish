@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Modals ~ 🎐 Jellyfish UI</title>
-    <meta name="description" content="Support for modals via the native HTML5 dialog element.">
+    <meta name="description" content="Modals built on the native dialog element — no library, accessible by default.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
@@ -54,7 +54,7 @@
             Latest
           </li>
           <li>
-            <a href="./whats-new.html">What's New in 4.3.0</a>
+            <a href="./whats-new.html">What's new in 5.0</a>
           </li>
           <li class="li-title mt-0">
             HTML
@@ -108,6 +108,9 @@
             <a href="./breakpoints.html">Breakpoints</a>
           </li>
           <li>
+            <a href="./container-queries.html">Container Queries</a>
+          </li>
+          <li>
             <a href="./mixins.html">Mixins</a>
           </li>
           <li>
@@ -129,6 +132,9 @@
             <a href="./theme-colors.html">Theme Colors</a>
           </li>
           <li>
+            <a href="./palette-generator.html">Palette Generator</a>
+          </li>
+          <li>
             <a href="./accessibility.html">Accessibility</a>
           </li>
           <li>
@@ -144,183 +150,153 @@
     <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
-<h1 class="section-heading h2">Modals<a href="./variables.html#modals">[ Variable Reference ]</a></h1>
-<div>
-  <p class="standfirst">Since v4.1.0, Jellyfish has included support for native <span class="code-ref">&lt;dialog></span> elements for the display of modals. This removes dependencies on external Javascript libraries and ensures that modal elements are accessible as standard.</p>
-  <p>To avoid being opinionated on the <span class="code-ref">&lt;dialog></span> element, the <span class="css-ref">.modal</span> class is required on the element. Open a modal with a <span class="code-ref">data-modal-target="id"</span> attribute on any button (the argument is the dialog's <span class="code-ref">id</span>); the bundled script handles the click by delegation, so no inline <span class="code-ref">onclick</span> is needed and it works under a Content-Security-Policy. A close button is appended to every modal automatically; you can also put <span class="code-ref">data-modal-close</span> on your own button anywhere inside the modal.</p>
-  <p>To preserve padding and layout, a <span class="css-ref">.modal</span> should contain a <span class="css-ref">.modal-content</span> element, used to contain the modal's content. The <span class="css-ref">.modal</span> element is a flex element; consequently adding <span class="css-ref">.modal-header</span> or <span class="css-ref">.modal-footer</span> will ensure they are always visible. This allows for key information or call-to-actions to always be in sight.</p>
-  <p>The dialog is its own <a href="./theme-colors.html">surface</a> at the <span class="css-ref">.bg-soft</span> level &mdash; white-ish in light, a raised dark tint in dark &mdash; so its text, headings and muted tiers are set against the panel, not inherited from the page. You don't need (and shouldn't add) a <span class="css-ref">.bg-*</span> class on the <span class="code-ref">&lt;dialog></span>; override <span class="css-ref">--jf-color-surface</span> on <span class="css-ref">.modal</span> if you want a different fill.</p>
+<h1 class="section-heading h2">Modals</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">A modal is a native <span class="code-ref">&lt;dialog class="modal"&gt;</span>. The browser handles the focus trap, the top layer and <kbd>Esc</kbd>; the bundled script adds a close button, backdrop-click, groups and events. No library, no inline handlers.</p>
 </div>
-<div>
-  <h2 class="h3">A basic modal</h2>
-  <pre class="language-markup">
-    <code><!--
-      <button data-modal-target="dialog">Open modal</button>
-      <dialog id="dialog" class="modal" closedby="any">
-        <div class="modal-header">
-          <h2>This is a modal</h2>
-        </div>
-        <div class="modal-content">
-          <img src="https://placehold.co/870x2000" alt="Placeholder image" class="mb">
-          <p>Sed a sollicitudin dolor. Nulla vel lacus a mauris rutrum pellentesque eget cursus arcu. Sed finibus gravida dui, in tempor velit suscipit eu. Fusce molestie purus pretium tellus suscipit, non rutrum libero mattis. Morbi consequat est ac diam efficitur, quis consectetur sapien finibus. In varius lacus turpis, et tincidunt metus malesuada et. Curabitur venenatis commodo ante ac sollicitudin. Aliquam quis condimentum ipsum, eget dignissim dolor. Praesent feugiat laoreet odio, eget suscipit metus pretium eget. Nunc tincidunt nulla sapien, a eleifend eros posuere commodo. Duis volutpat elit sed risus semper gravida. Morbi ultricies pharetra ante ac condimentum. Donec euismod erat felis, non viverra nunc tincidunt eu. Nam hendrerit rhoncus libero sit amet fermentum. Curabitur quis gravida orci.</p>
-        </div>
-      </dialog>
-  --></code>
-  </pre>
-  <button data-modal-target="dialog">Open modal</button>
-  <dialog id="dialog" class="modal" closedby="any">
-    <div class="modal-header">
-      <h2>This is a modal</h2>
-    </div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Keyboard</h2>
+  <table class="has-border">
+    <caption class="screen-reader-text">Modal keyboard interaction</caption>
+    <thead><tr><th scope="col">Key</th><th scope="col">Action</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><kbd>Esc</kbd></th><td>Close the modal; focus returns to the trigger (native).</td></tr>
+      <tr><th scope="row"><kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd></th><td>Move between focusable elements, trapped inside the dialog (native).</td></tr>
+      <tr><th scope="row"><kbd>Enter</kbd> / <kbd>Space</kbd></th><td>Activate the focused control.</td></tr>
+      <tr><th scope="row"><kbd>&larr;</kbd> / <kbd>&rarr;</kbd></th><td>In a <a href="#groups">group</a>, step to the previous / next modal. Ignored while a form field is focused.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Markup</h2>
+  <pre class="language-markup"><code><!--
+    <button data-modal-target="demo">Open modal</button>
+
+    <dialog id="demo" class="modal" closedby="any">
+      <div class="modal-header"><h2>Modal title</h2></div>
+      <div class="modal-content"> … scrolls if it overflows … </div>
+      <div class="modal-footer"> … always visible … </div>
+    </dialog>
+    --></code></pre>
+  <ul>
+    <li><span class="code-ref">data-modal-target="id"</span> on any button opens that dialog; <span class="code-ref">data-modal-close</span> on anything inside closes it. Both work under a CSP. From your own code, <span class="code-ref">toggleModal('id')</span> is global.</li>
+    <li><span class="css-ref">.modal-content</span> is the scrolling body; <span class="css-ref">.modal-header</span> / <span class="css-ref">.modal-footer</span> stay pinned and visible (the dialog is a flex column).</li>
+    <li><span class="code-ref">closedby="any"</span> gives native click-outside-to-close where supported; the script covers the rest.</li>
+    <li>The dialog is its own <a href="./theme-colors.html">surface</a> at the <span class="css-ref">.bg-soft</span> level &mdash; don't add a <span class="css-ref">.bg-*</span> class. Override <span class="code-ref">--jf-color-surface</span> on <span class="css-ref">.modal</span> for a different fill.</li>
+  </ul>
+  <button data-modal-target="demo">Open modal</button>
+  <dialog id="demo" class="modal" closedby="any">
+    <div class="modal-header"><h2>Modal title</h2></div>
     <div class="modal-content">
-      <img src="https://placehold.co/870x2000" alt="Placeholder image" class="mb">
-      <p>Sed a sollicitudin dolor. Nulla vel lacus a mauris rutrum pellentesque eget cursus arcu. Sed finibus gravida dui, in tempor velit suscipit eu. Fusce molestie purus pretium tellus suscipit, non rutrum libero mattis. Morbi consequat est ac diam efficitur, quis consectetur sapien finibus. In varius lacus turpis, et tincidunt metus malesuada et. Curabitur venenatis commodo ante ac sollicitudin. Aliquam quis condimentum ipsum, eget dignissim dolor. Praesent feugiat laoreet odio, eget suscipit metus pretium eget. Nunc tincidunt nulla sapien, a eleifend eros posuere commodo. Duis volutpat elit sed risus semper gravida. Morbi ultricies pharetra ante ac condimentum. Donec euismod erat felis, non viverra nunc tincidunt eu. Nam hendrerit rhoncus libero sit amet fermentum. Curabitur quis gravida orci.</p>
+      <img src="https://placehold.co/870x1400" alt="" class="mb full-width">
+      <p>The body scrolls when it's taller than the viewport; the header and footer stay put. Press <kbd>Esc</kbd>, click the backdrop, or use the close button.</p>
+      <p>Jellyfish have no brain, heart, bones or eyes &mdash; a decentralised nerve net is enough to hunt, flee and mate. This paragraph, the image above and the next few are here purely to make the panel tall enough to demonstrate the scroll.</p>
+      <p>Almost entirely water by mass, which is part of why they fossilise so rarely despite being older than trees.</p>
+      <p>A lion's mane jellyfish can trail tentacles longer than a blue whale is long.</p>
+    </div>
+    <div class="modal-footer">
+      <div class="button-list">
+        <button type="button" class="button soft small" data-modal-close>Cancel</button>
+        <button type="button" class="button primary small">Confirm</button>
+      </div>
     </div>
   </dialog>
 </div>
 
-<div>
-  <h2 class="h3">Opening and closing</h2>
-  <p><span class="code-ref">data-modal-target="id"</span> on a button opens (or toggles) that modal; <span class="code-ref">data-modal-close</span> on any element inside a modal closes it. Both are handled by delegation in the bundled script. If you drive modals from your own code, <span class="code-ref">toggleModal('id')</span> is still exposed globally.</p>
-  <p><strong>Dismiss:</strong> Escape always closes a modal, and a click on the dark backdrop closes it too. Add <span class="code-ref">closedby="any"</span> to the <span class="code-ref">&lt;dialog></span> (as in the example above) so browsers that support it handle the click-outside natively; the bundled script does the same for those that don't.</p>
-  <p><strong>Animation:</strong> opening slides the modal up and scales it in, with the backdrop fading, over <span class="code-ref">--jf-transition</span> (via <span class="code-ref">@starting-style</span>). Closing is an opacity-only dissolve at the slightly slower <span class="code-ref">--jf-duration-slow</span>, held in place with <span class="code-ref">transition-behavior: allow-discrete</span> &mdash; that leg needs the <span class="code-ref">overlay</span> property, so the fade-out runs in Chromium and Safari but Firefox cuts straight to closed (it opens the same everywhere). <span class="code-ref">prefers-reduced-motion: reduce</span> collapses both to an instant change. Retune per modal by redeclaring <span class="code-ref">--jf-transition</span> / <span class="code-ref">--jf-duration-slow</span> on <span class="css-ref">.modal</span>, or the whole entry by overriding the <span class="code-ref">@starting-style</span> transform. Stepping through a <a href="#modal-groups">group</a> with the arrows / arrow keys is a hard cut &mdash; the animation only runs when a modal opens or closes on its own.</p>
-  <p><strong>Nested modals:</strong> a modal opened from a button inside another modal (outside of <a href="#modal-groups">modal groups</a>) isn't supported &mdash; the script tracks a single open modal, so the first one's state is lost. Close one before opening the next, or use a modal group.</p>
-</div>
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="groups">Groups</h2>
+  <p>Give modals a shared <span class="code-ref">data-modalgroup="name"</span> and the script adds prev / next arrows and wires the arrow keys. Stepping between grouped modals is a hard cut &mdash; the open / close animation only runs for a standalone modal. A nested modal (opened from inside another, outside a group) isn't supported: close one first.</p>
+  <pre class="language-markup"><code><!--
+    <button data-modal-target="g1">Modal 1</button>
+    <button data-modal-target="g2">Modal 2</button>
+    <button data-modal-target="g3">Modal 3</button>
 
-<div>
-  <h2 class="h3" id="modal-groups">Modal groups</h2>
-  <p>You can combine modals into a group, which will automatically append navigation arrows to the modals within the group. The user can also navigate via keyboard (left and right arrows). Just add a <span class="code-ref">data-modalgroup</span> attribute to the modals within the group.</p>
-  <p>None of these modals have a heading, so their <span class="code-ref">modalTitle</span> (see <a href="#javascript-api">Javascript API</a> below) falls back to their first paragraph's text - eg. "This content is in the first modal of the group" for Modal 1. <span class="css-ref">modal-group-4</span> instead has a <span class="css-ref">data-title</span> attribute, which takes priority over its paragraph text.</p>
-
-  <pre class="language-markup">
-    <code><!--
-      <button data-modal-target="modal-group-1">Open modal 1</button>
-      <button data-modal-target="modal-group-2">Open modal 2</button>
-      <button data-modal-target="modal-group-3">Open modal 3</button>
-      <button data-modal-target="modal-group-4">Open modal 4</button>
-      <button data-modal-target="modal-group-5">Open modal 5</button>
-
-      <dialog id="modal-group-1" class="modal" data-modalgroup="modalGroup">
-          ...
-      </dialog>
-      <dialog id="modal-group-2" class="modal" data-modalgroup="modalGroup">
-          ...
-      </dialog>
-      <dialog id="modal-group-3" class="modal" data-modalgroup="modalGroup">
-          ...
-      </dialog>
-      <dialog id="modal-group-4" class="modal" data-modalgroup="modalGroupAlt" data-title="Modal Four">
-          ...
-      </dialog>
-      <dialog id="modal-group-5" class="modal" data-modalgroup="modalGroupAlt">
-          ...
-      </dialog>
-
-  --></code>
-  </pre>
-
-  <h3 class="h4">Modal Group One</h3>
+    <dialog id="g1" class="modal" data-modalgroup="demo">
+      <div class="modal-content"> … </div>
+    </dialog>
+    <dialog id="g2" class="modal" data-modalgroup="demo">
+      <div class="modal-content"> … </div>
+    </dialog>
+    <dialog id="g3" class="modal" data-modalgroup="demo" data-title="The Third One">
+      <div class="modal-content"> … </div>
+    </dialog>
+    --></code></pre>
   <div class="button-list">
-    <button class="button small" data-modal-target="modal-group-1">Open modal 1</button>
-    <button class="button small" data-modal-target="modal-group-2">Open modal 2</button>
-    <button class="button small" data-modal-target="modal-group-3">Open modal 3</button>
+    <button class="button small" data-modal-target="g1">Modal 1</button>
+    <button class="button small" data-modal-target="g2">Modal 2</button>
+    <button class="button small" data-modal-target="g3">Modal 3</button>
   </div>
-
-  <h3 class="h4">Modal Group Two</h3>
-  <div class="button-list">
-    <button class="button small" data-modal-target="modal-group-4">Open modal 4</button>
-    <button class="button small" data-modal-target="modal-group-5">Open modal 5</button>
-  </div>
-
-  <dialog id="modal-group-1" class="modal" data-modalgroup="modalGroup">
+  <dialog id="g1" class="modal" data-modalgroup="demo">
     <div class="modal-content">
-      <img src="https://placehold.co/400x200" alt="Placeholder image" class="mb full-width">
-      <p class="h4">This content is in the first modal of the group</p>
+      <p class="h4">First modal in the group</p>
+      <p>Jellyfish have drifted through Earth's oceans for over 500 million years &mdash; older than trees, older than dinosaurs, older than bones.</p>
     </div>
   </dialog>
-  <dialog id="modal-group-2" class="modal" data-modalgroup="modalGroup">
+  <dialog id="g2" class="modal" data-modalgroup="demo">
     <div class="modal-content">
-      <img src="https://placehold.co/400x200" alt="Placeholder image" class="mb full-width">
-      <p class="h4">This content is in the second modal of the group</p>
+      <p class="h4">Second modal in the group</p>
+      <p>Not actually fish &mdash; invertebrate medusae in the phylum Cnidaria, related to corals and sea anemones.</p>
     </div>
   </dialog>
-  <dialog id="modal-group-3" class="modal" data-modalgroup="modalGroup">
+  <dialog id="g3" class="modal" data-modalgroup="demo" data-title="The Third One">
     <div class="modal-content">
-      <img src="https://placehold.co/400x200" alt="Placeholder image" class="mb full-width">
-      <p class="h4">This content is in the third modal of the group</p>
-    </div>
-  </dialog>
-  <dialog id="modal-group-4" class="modal" data-modalgroup="modalGroupAlt" data-title="Modal Four">
-    <div class="modal-content">
-      <img src="https://placehold.co/400x200" alt="Placeholder image" class="mb full-width">
-      <p class="h4">This content is in the first modal of the second group</p>
-    </div>
-  </dialog>
-  <dialog id="modal-group-5" class="modal" data-modalgroup="modalGroupAlt">
-    <div class="modal-content">
-      <img src="https://placehold.co/400x200" alt="Placeholder image" class="mb full-width">
-      <p class="h4">This content is in the second modal of the second group</p>
+      <p class="h4">Third modal &mdash; this one has a <span class="code-ref">data-title</span></p>
+      <p>Used wherever the modal's own heading isn't a reliable label &mdash; the <a href="#events">events / dataLayer</a> below read <span class="code-ref">data-title</span> first, falling back to the first heading, then the first non-empty text.</p>
     </div>
   </dialog>
 </div>
 
-<div>
-  <h2 class="h3" id="javascript-api">Javascript API</h2>
-  <p>When a modal is opened, a <span class="code-ref">jfModalOpened</span> event is fired. This event can be hooked into, for example to autoplay a video that is embedded in the modal. The <span class="code-ref">event.detail</span> property contains the ID of the modal element.</p>
-  <pre>
-    <code class="language-javascript">
-      document.addEventListener("jfModalOpened", function (event) {
-        console.log(event.detail);
-        // Object { newModalId: "modal-group-1" }
-      });
-    </code>
-  </pre>
-  <p>Likewise, when a modal is closed, a <span class="code-ref">jfModalClosed</span> event is fired. This event is triggered when the user presses Escape, clicks on the close button, clicks outside of the dialog (on the overlay) or uses the navigation keys to move through a modalGroup.</p>
-  <pre>
-    <code class="language-javascript">
-      document.addEventListener("jfModalClosed", function (event) {
-        console.log(event.detail);
-        // Object { closedModalId: "modal-group-1" }
-      });
-    </code>
-  </pre>
-  <p><strong>Note:</strong> alongside these events, Jellyfish automatically pushes <span class="code-ref">modalOpened</span> and <span class="code-ref">modalClosed</span> events to <span class="code-ref">window.dataLayer</span> if it exists, for Google Tag Manager. Nothing is sent if <span class="code-ref">dataLayer</span> isn't present on the page. <span class="code-ref">modalTitle</span> is resolved in priority order: a <span class="css-ref">data-title</span> attribute on the modal, then the first heading (<span class="code-ref">h1</span>-<span class="code-ref">h6</span>) found in the modal, then the first non-empty text content found in the modal - an empty string if none of these are present.</p>
-  <pre>
-    <code class="language-javascript">
-      // On open (modal has a heading):
-      dataLayer.push({
-        event: "modalOpened",
-        modalId: "#dialog",
-        modalTitle: "This is a modal",
-      });
-
-      // On open (modal has a data-title attribute - takes priority over its content):
-      dataLayer.push({
-        event: "modalOpened",
-        modalId: "#modal-group-4",
-        modalTitle: "Modal Four",
-      });
-
-      // On open (modal has no data-title or heading - falls back to its first text content):
-      dataLayer.push({
-        event: "modalOpened",
-        modalId: "#modal-group-1",
-        modalTitle: "This content is in the first modal of the group",
-      });
-
-      // On close:
-      dataLayer.push({
-        event: "modalClosed",
-        modalId: "#dialog",
-        modalTitle: "This is a modal",
-        timeOpen: 4, // seconds the modal was open for
-      });
-    </code>
-  </pre>
+<div class="section is-tight bg-base">
+  <h2 class="h3">Animation</h2>
+  <p>Opening slides up + scales in over <span class="code-ref">--jf-transition</span> (<span class="code-ref">@starting-style</span>); closing is a slower opacity dissolve (<span class="code-ref">--jf-duration-slow</span>) held with <span class="code-ref">allow-discrete</span> &mdash; the fade-out needs the <span class="code-ref">overlay</span> property, so Firefox cuts straight to closed while Chromium and Safari fade. <span class="code-ref">prefers-reduced-motion</span> makes both instant. Retune by redeclaring <span class="code-ref">--jf-transition</span> / <span class="code-ref">--jf-duration-slow</span> on <span class="css-ref">.modal</span>.</p>
 </div>
 
+<div class="section is-tight bg-base">
+  <h2 class="h3">Events</h2>
+  <p><span class="code-ref">jfModalOpened</span> and <span class="code-ref">jfModalClosed</span> fire on <span class="code-ref">document</span> however the modal opened or closed.</p>
+  <pre class="language-javascript"><code>
+    document.addEventListener("jfModalOpened", (e) => {
+      e.detail; // { newModalId, prevModalId, nextModalId }
+    });
+    document.addEventListener("jfModalClosed", (e) => {
+      e.detail; // { closedModalId }
+    });
+  </code></pre>
+  <p>Every open and close also pushes to <span class="code-ref">window.dataLayer</span> (GTM), if it exists &mdash; a <em>different</em>, richer shape than the event <span class="code-ref">detail</span> above, not a copy of it:</p>
+  <pre class="language-javascript"><code>
+    // on open
+    { event: "modalOpened", modalId: "#demo", modalTitle: "Modal title" }
+    // on close
+    { event: "modalClosed", modalId: "#demo", modalTitle: "Modal title", timeOpen: 12.4 }
+  </code></pre>
+  <p><span class="code-ref">modalId</span> is <span class="code-ref">#</span>-prefixed; <span class="code-ref">modalTitle</span> resolves to a <span class="code-ref">data-title</span> on the <span class="code-ref">&lt;dialog&gt;</span>, then its first heading, then its first non-empty text. <span class="code-ref">timeOpen</span> (seconds, close only) has no equivalent on the <span class="code-ref">jfModalClosed</span> event above &mdash; it's dataLayer-only.</p>
+</div>
 
+<div class="section is-tight bg-soft">
+  <h2 class="h3" id="overriding">Overriding</h2>
+  <ul>
+    <li><strong>One modal</strong> &mdash; <span class="code-ref">--jf-modal-max-width</span>, <span class="code-ref">--jf-modal-padding</span>, <span class="code-ref">--jf-color-surface</span> on <span class="css-ref">.modal</span>.</li>
+    <li><strong>Everywhere</strong> &mdash; the Sass variables below. The close / arrow glyphs are SVG data-URIs (<span class="variable-ref">$modal-close-icon-svg</span>, <span class="variable-ref">$modal-arrow-icon-svg</span>).</li>
+  </ul>
 
+  <h3 class="h4">Variables</h3>
+  <div class="variables-reference">
+    <table class="is-responsive has-border">
+          <caption class="screen-reader-text">Modal Sass variables and custom properties</caption>
+          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+          <tbody>
+            <tr><td><span class="variable-ref">$modal-max-width</span></td><td><span class="code-ref">900px</span></td><td>&rarr; <span class="code-ref">--jf-modal-max-width</span>. Actual width is <span class="code-ref">min(that, 100vw − margin)</span>.</td></tr>
+            <tr><td><span class="variable-ref">$modal-padding</span></td><td><span class="code-ref">token(space-md)</span></td><td>&rarr; <span class="code-ref">--jf-modal-padding</span>.</td></tr>
+            <tr><td><span class="variable-ref">$modal-outer-margin</span></td><td><span class="code-ref">get-size(3)</span></td><td>Minimum gap between the dialog and the viewport edge.</td></tr>
+            <tr><td><span class="variable-ref">$modal-border</span> / <span class="variable-ref">-border-radius</span></td><td><span class="code-ref">none</span> / <span class="code-ref">token(radius-md)</span></td><td>Panel border.</td></tr>
+            <tr><td><span class="variable-ref">$modal-backdrop-color</span> / <span class="variable-ref">-opacity</span></td><td><span class="code-ref">black</span> / <span class="code-ref">0.9</span></td><td>The <span class="code-ref">::backdrop</span> (baked at build).</td></tr>
+            <tr><td><span class="variable-ref">$modal-navigation-arrow-size</span></td><td><span class="code-ref">get-size(2)</span></td><td>Group prev / next button size.</td></tr>
+          </tbody>
+        </table>
+  </div>
+</div>
 </section>
 </main>
 </div>

@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Chips ~ 🎐 Jellyfish UI</title>
-    <meta name="description" content="Provide context to text, or display information in a small space.">
+    <meta name="description" content="Small inline labels for counts, tags, statuses and metadata.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
@@ -34,6 +34,7 @@
 
   <body>
     <a href="#content" class="skip-link">Skip to content</a>
+
 <div class="container is-wide">
   <div class="grid">
     <aside class="col xs-12 md-3">
@@ -53,7 +54,7 @@
             Latest
           </li>
           <li>
-            <a href="./whats-new.html">What's New in 4.3.0</a>
+            <a href="./whats-new.html">What's new in 5.0</a>
           </li>
           <li class="li-title mt-0">
             HTML
@@ -107,6 +108,9 @@
             <a href="./breakpoints.html">Breakpoints</a>
           </li>
           <li>
+            <a href="./container-queries.html">Container Queries</a>
+          </li>
+          <li>
             <a href="./mixins.html">Mixins</a>
           </li>
           <li>
@@ -128,6 +132,9 @@
             <a href="./theme-colors.html">Theme Colors</a>
           </li>
           <li>
+            <a href="./palette-generator.html">Palette Generator</a>
+          </li>
+          <li>
             <a href="./accessibility.html">Accessibility</a>
           </li>
           <li>
@@ -143,143 +150,76 @@
     <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
-<h1 class="section-heading h2">Chips<a href="./variables.html#chips">[ Variable Reference ]</a></h1>
-<div>
-  <p class="standfirst">Jellyfish contains simple styles for chips; elements which can be used to display relevant information to the side of a parent or independently. They are sized with em units, to scale based on the parent.</p>
-  <h1>Heading 1 <span class="chip">Chip</span></h1>
-  <h2>Heading 2 <span class="chip">Chip</span></h2>
-  <h3>Heading 3 <span class="chip">Chip</span></h3>
-  <h4>Heading 4 <span class="chip">Chip</span></h4>
-  <h5>Heading 5 <span class="chip">Chip</span></h5>
-  <h6>Heading 6 <span class="chip">Chip</span></h6>
-  <p>Paragraph <span class="chip">Chip</span></p>
-  <span class="chip">A stand-alone chip</span>
+<h1 class="section-heading h2">Chips</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">A small inline label &mdash; a count, tag, status or scrap of metadata. <span class="css-ref">.chip</span> on an inline element, usually a <span class="code-ref">&lt;span&gt;</span>.</p>
+  <pre class="language-markup"><code><!--
+    <span class="chip">New</span>
+    <h2>Watery beasts <span class="chip">12</span></h2>
+    --></code></pre>
+  <p>A chip sits to the font's baseline and shrinks inside a heading, so it reads as part of the line: <span class="chip">New</span> &mdash; <span class="h4" style="display:inline">Watery beasts <span class="chip">12</span></span></p>
 </div>
-<div>
-  <h2 class="h3">Chip List</h2>
-  <p>Wrap chips in an element with class <span class="css-ref">.chip-list</span> to group them into a list. Chips in a chip list have consistent spacing and will wrap over multiple lines.</p>
-  <pre class="language-markup">
-      <code><!--
-        <div class="chip-list">
-          <span class="chip">One</span>
-          ...
-        </div>
-      --></code>
-    </pre>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Variants</h2>
+  <p>One modifier changes the colour: a palette family (<span class="css-ref">.primary</span>, <span class="css-ref">.secondary</span>, <span class="css-ref">.success</span>, <span class="css-ref">.warning</span>, <span class="css-ref">.error</span>), <span class="css-ref">.soft</span> (neutral, lifted off the canvas), <span class="css-ref">.inverse</span> (the opposite of the current surface), or <span class="css-ref">.outline</span> (border only, text inherits).</p>
+  <p>
+    <span class="chip">default</span>
+    <span class="chip primary">primary</span>
+    <span class="chip secondary">secondary</span>
+    <span class="chip success">success</span>
+    <span class="chip warning">warning</span>
+    <span class="chip error">error</span>
+    <span class="chip soft">soft</span>
+    <span class="chip inverse">inverse</span>
+    <span class="chip outline">outline</span>
+    <span class="chip outline primary">outline primary</span>
+  </p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Grouping</h2>
+  <ul>
+    <li><span class="css-ref">.chip-group</span> &mdash; chips butt together into one segmented pill (shared corners). Good for a key/value pair: <span class="chip-group"><span class="chip">version</span><span class="chip soft">5.0</span></span></li>
+    <li><span class="css-ref">.chip-list</span> &mdash; a wrapping, evenly-spaced row of separate chips or groups.</li>
+    <li>Nest a <span class="css-ref">.chip</span> inside a <span class="css-ref">.chip</span> for a count-within-a-label: <span class="chip">Errors <span class="chip soft bold">14</span></span></li>
+  </ul>
+  <pre class="language-markup"><code><!--
+    <span class="chip-list">
+      <span class="chip primary">Draft</span>
+      <span class="chip-group"><span class="chip">PR</span><span class="chip soft">#412</span></span>
+    </span>
+    --></code></pre>
   <div class="chip-list">
-    <span class="chip">One</span>
-    <span class="chip">Two</span>
-    <span class="chip">Three</span>
-    <span class="chip">Four</span>
-    <span class="chip">Five</span>
-    <span class="chip">Six</span>
-    <span class="chip">Seven</span>
-    <span class="chip">Eight</span>
-    <span class="chip">Nine</span>
-    <span class="chip">Ten</span>
-    <span class="chip">Eleven</span>
-    <span class="chip">Twelve</span>
-    <span class="chip">Thirteen</span>
-    <span class="chip">Fourteen</span>
-    <span class="chip">Fifteen</span>
-    <span class="chip">Sixteen</span>
-    <span class="chip">Seventeen</span>
-    <span class="chip">Eighteen</span>
-    <span class="chip">Nineteen</span>
-    <span class="chip">Twenty</span>
+    <span class="chip primary">Draft</span>
+    <span class="chip success">Approved</span>
+    <span class="chip-group"><span class="chip">PR</span><span class="chip soft">#412</span></span>
+    <span class="chip-group"><span class="chip">branch</span><span class="chip soft">refactor-2026</span></span>
   </div>
 </div>
-<div>
-  <h2 class="h3">Chip Group</h2>
-  <p>Wrap two or more chips in a <span class="css-ref">.chip-group</span> class to group them together.</p>
-  <pre class="language-markup">
-      <code><!--
-      <div class="chip-list">
-        <div class="chip-group">
-          <span class="chip">Species of Jellyfish found in the UK</span>
-          <span class="chip error bold">6</span>
-        </div>
-        <div class="chip-group">
-          <span class="chip">Species of Jellyfish found worldwide</span>
-          <span class="chip warning bold">2,000</span>
-          <span class="chip italic">(~ 300,000 undiscovered)</span>
-        </div>
-      </div>
-    --></code>
-    </pre>
-  <div class="chip-list">
-    <div class="chip-group">
-      <span class="chip">Species of Jellyfish found in the UK</span>
-      <span class="chip error bold">6</span>
-    </div>
-    <div class="chip-group">
-      <span class="chip">Species of Jellyfish found worldwide</span>
-      <span class="chip warning bold">2,000</span>
-      <span class="chip italic">(~ 300,000 undiscovered)</span>
-    </div>
+
+<div class="section is-tight bg-soft">
+  <h2 class="h3" id="overriding">Overriding</h2>
+  <ul>
+    <li><strong>One chip / a scoped rule</strong> &mdash; <span class="code-ref">--jf-chip-color-theme</span> (fill + border) and <span class="code-ref">--jf-chip-color-text</span> on <span class="css-ref">.chip</span>.</li>
+    <li><strong>A new colour everywhere</strong> &mdash; add a family to <a href="./theme-colors.html"><span class="variable-ref">$colors</span></a>; <span class="css-ref">.chip.{family}</span> is generated.</li>
+    <li><strong>Shape / size</strong> &mdash; the Sass variables below, before import.</li>
+  </ul>
+
+  <h3 class="h4">Variables</h3>
+  <div class="variables-reference">
+    <table class="is-responsive has-border">
+          <caption class="screen-reader-text">Chip Sass variables and custom properties</caption>
+          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+          <tbody>
+            <tr><td><span class="variable-ref">$generate-chips</span></td><td><span class="code-ref">true</span></td><td>Emit the <span class="css-ref">.chip</span> CSS at all.</td></tr>
+            <tr><td><span class="variable-ref">$chip-padding</span></td><td><span class="code-ref">0.25em 0.3em</span></td><td>Inner padding (em, so it tracks the chip's font size).</td></tr>
+            <tr><td><span class="variable-ref">$chip-font-size</span> / <span class="variable-ref">-weight</span></td><td><span class="code-ref">font-size-sm</span> / <span class="code-ref">normal</span></td><td>Text.</td></tr>
+            <tr><td><span class="variable-ref">$chip-border-radius</span> / <span class="variable-ref">-width</span> / <span class="variable-ref">-style</span></td><td><span class="code-ref">radius-sm</span> / <span class="code-ref">border-width</span> / <span class="code-ref">solid</span></td><td>Border. <span class="css-ref">.chip-group</span> zeroes the inner corners.</td></tr>
+            <tr><td><span class="css-ref">--jf-chip-color-theme</span> / <span class="css-ref">-text</span></td><td><span class="code-ref">neutral / subtle</span> + its on-colour</td><td>Fill/border and text. The family / <span class="css-ref">.soft</span> / <span class="css-ref">.inverse</span> modifiers repoint these.</td></tr>
+          </tbody>
+        </table>
   </div>
-</div>
-<div>
-  <h2 class="h3">Colors and Outlines</h2>
-  <p>Use modifier classes to change the coloring / semantics of the chip, or to display the chip as an outlined chip. <span class="css-ref">.soft</span> and <span class="css-ref">.inverse</span> are neutral surfaces that flip with the theme &mdash; a step off the canvas, and the reverse of the page.</p>
-  <pre class="language-markup">
-    <code><!--
-    <div class="chip-list">
-      <span class="chip">Normal</span>
-      <span class="chip outline">Outline</span>
-      <span class="chip primary">Primary</span>
-      <span class="chip primary outline">Primary Outline</span>
-      <span class="chip secondary">Secondary</span>
-      <span class="chip secondary outline">Secondary Outline</span>
-      <span class="chip success">Success</span>
-      <span class="chip success outline">Success Outline</span>
-      <span class="chip warning">Warning</span>
-      <span class="chip warning outline">Warning Outline</span>
-      <span class="chip error">Error</span>
-      <span class="chip error outline">Error Outline</span>
-      <span class="chip soft">Soft</span>
-      <span class="chip soft outline">Soft Outline</span>
-      <span class="chip inverse">Inverse</span>
-      <span class="chip inverse outline">Inverse Outline</span>
-    </div>
-  --></code>
-  </pre>
-  <div class="chip-list">
-    <span class="chip">Normal</span>
-    <span class="chip outline">Outline</span>
-    <span class="chip primary">Primary</span>
-    <span class="chip primary outline">Primary Outline</span>
-    <span class="chip secondary">Secondary</span>
-    <span class="chip secondary outline">Secondary Outline</span>
-    <span class="chip success">Success</span>
-    <span class="chip success outline">Success Outline</span>
-    <span class="chip warning">Warning</span>
-    <span class="chip warning outline">Warning Outline</span>
-    <span class="chip error">Error</span>
-    <span class="chip error outline">Error Outline</span>
-    <span class="chip soft">Soft</span>
-    <span class="chip soft outline">Soft Outline</span>
-    <span class="chip inverse">Inverse</span>
-    <span class="chip inverse outline">Inverse Outline</span>
-  </div>
-</div>
-<div>
-  <h2 class="h3">Nesting Chips</h2>
-  <p>Chips can be nested...</p>
-  <pre class="language-markup">
-    <code><!--
-    <h2>Heading 2 <span class="chip">Notifications <span class="chip soft bold">5</span></span></h2>
-    <h2>Heading 2 <span class="chip error">Errors <span class="chip soft bold">14</span></span></h2>
-    <h2>Heading 2 <span class="chip warning">OK <span class="chip soft">That's<span class="chip success bold">enough!</span></span></span></h2>
-  --></code>
-  </pre>
-  <h2>Heading 2 <span class="chip">Notifications <span class="chip soft bold">5</span></span></h2>
-  <h2>Heading 2 <span class="chip error">Errors <span class="chip soft bold">14</span></span></h2>
-  <h2>Heading 2 <span class="chip warning">OK <span class="chip soft">That's<span class="chip success bold">enough!</span></span></span></h2>
-</div>
-<div>
-  <h2 class="h3">Create-your-own</h2>
-  <p>It's easy to create chips with additional color schemes; simply add a new color to the <span class="variable-ref">$colors</span> SCSS map. As with buttons, Jellyfish will automatically determine the best text color for the chip based on the contrast ratio against the chip background color.</p>
 </div>
 </section>
 </main>
@@ -350,3 +290,4 @@
 </body>
 
 </html>
+

@@ -16,11 +16,14 @@ document.addEventListener("DOMContentLoaded", function () {
           // Loop through all tr elements inside the tbody
           var trs = tbody.querySelectorAll("tr");
           for (var k = 0; k < trs.length; k++) {
-            // Loop through all td elements inside the tr
-            var tds = trs[k].querySelectorAll("td");
-            for (var l = 0; l < tds.length; l++) {
-              // Add the th innerhtml as a data attribute to the td
-              tds[l].setAttribute("data-label", thsArray[l]);
+            // Loop through all td/th cells inside the tr, in document order —
+            // a row using <th scope="row"> for its first column needs its
+            // label too, and dropping it would also shift every td's index
+            // out of alignment with thsArray.
+            var cells = trs[k].querySelectorAll("td, th");
+            for (var l = 0; l < cells.length; l++) {
+              // Add the thead th innerhtml as a data attribute to the cell
+              cells[l].setAttribute("data-label", thsArray[l]);
             }
           }
         }

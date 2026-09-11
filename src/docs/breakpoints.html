@@ -1,77 +1,39 @@
 @@include('./src/docs/partials/html-head.html', {
 "title": "Breakpoints",
-"description": "Useful breakpoints to cover the most common device sizes.",
+"description": "The four fixed breakpoints and the above / below / between media-query mixins.",
 })
 
 @@include('./src/docs/partials/navigation.html')
-<h1 class="section-heading h2">Breakpoints<a href="./variables.html#breakpoints">[ Variable Reference ]</a></h1>
-<div>
-  <p class="standfirst">Four fixed breakpoints &mdash; <span class="code-ref">sm</span> 600px, <span class="code-ref">md</span> 900px, <span class="code-ref">lg</span> 1200px, <span class="code-ref">xl</span> 1800px.</p>
-  <p>They live in the <span class="variable-ref">$breakpoints</span> SCSS map as a flat <span class="code-ref">key: px</span> lookup. The keys are the class-name namespace for the grid and visibility APIs (<span class="css-ref">.md-6</span>, <span class="css-ref">.order-sm-3</span>, <span class="css-ref">.hide-lg</span>&hellip;); the values feed the media-query mixins below.</p>
-  <p><span class="bold">The map is fixed &mdash; not a consumer override surface.</span> Pre-container-query, fine-grained breakpoint tuning had to happen in the Sass map; it doesn't now. That doesn't lock you to four widths: the <a href="#media-queries">media-query mixins</a> take a raw px value too, so <span class="code-ref">@include above(950px)</span> works and compiles to a plain <span class="code-ref">@media (min-width: 59.375em)</span> &mdash; you're just not registering a <em>named</em> breakpoint (no <span class="css-ref">.950-6</span> column classes get generated). <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries" target="_blank">Container queries</a> and hand-written <span class="code-ref">@media</span> cover the rest.</p>
-  <p>What the map used to carry <em>per breakpoint</em> &mdash; container width / max-width / gutter, column gutter, root font-size / line-height &mdash; is now custom properties you override at <span class="code-ref">:root</span> or a scope: <span class="code-ref">--jf-container-max</span>, <span class="code-ref">--jf-container-gutter</span>, <span class="code-ref">--jf-grid-gutter</span>, <span class="code-ref">--jf-root-font-size</span>, <span class="code-ref">--jf-root-line-height</span>. See the <a href="./grid.html#migration">grid migration table</a>.</p>
-  <pre class="language-scss"><code><!--
-      // reintroduce responsive root type in your own stylesheet
-      @media (min-width: 56.25em) {
-        :root { --jf-root-font-size: 1.0625rem; --jf-root-line-height: 1.6; }
-      }
-      --></code></pre>
-  <p><span class="bold">Note:</span> the JavaScript <span class="variable-ref">breakPoints</span> object (<span class="code-ref">src/js/breakpoints.js</span>) mirrors these values for scripts that need them. It's already in sync and, now the values are fixed, stays that way.</p>
+<h1 class="section-heading h2">Breakpoints</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">Four fixed breakpoints &mdash; <span class="code-ref">sm</span> 600px, <span class="code-ref">md</span> 900px, <span class="code-ref">lg</span> 1200px, <span class="code-ref">xl</span> 1800px &mdash; in the <span class="variable-ref">$breakpoints</span> map. The keys name the grid / visibility classes (<span class="css-ref">.md-6</span>, <span class="css-ref">.order-sm-3</span>, <span class="css-ref">.hide-lg</span>); the values feed the media-query mixins.</p>
+  <p>The map is fixed &mdash; not a consumer override surface. For other widths, the mixins also take a raw px value (<span class="code-ref">@include above(950px)</span>), and <a href="./container-queries.html">container queries</a> cover component-level responsiveness. Per-breakpoint container / gutter / root-type tuning is now custom properties &mdash; <span class="code-ref">--jf-container-max</span>, <span class="code-ref">--jf-container-gutter</span>, <span class="code-ref">--jf-grid-gutter</span>, <span class="code-ref">--jf-root-font-size</span> &mdash; set at <span class="code-ref">:root</span> or a scope:</p>
+  <pre class="language-scss"><code>
+    @include above(md) {
+      :root { --jf-root-font-size: 1.0625rem; }
+    }
+  </code></pre>
+  <p>The JS <span class="variable-ref">breakPoints</span> object (<span class="code-ref">src/js/breakpoints.js</span>) mirrors the same values for scripts.</p>
 </div>
-<div>
-  <h2 id="media-queries" class="h3">Media queries</h2>
-  <p>Jellyfish comes with three media query mixins. Pass either a <span class="variable-ref">$breakpoint</span> name (<span class="code-ref">sm</span> / <span class="code-ref">md</span> / <span class="code-ref">lg</span> / <span class="code-ref">xl</span>) or an arbitrary px value &mdash; both resolve to an <span class="code-ref">em</span>-based <span class="code-ref">@media</span> query. The examples below are all valid.</p>
-  <pre class="language-scss">
-    <code>
-      // 1. Use the mixin within an element declaration
-      body {
-        @include above(sm) {
-            background-color: #ff3c74;
-        }
-      }
-      // 2. Add element declarations within the mixin
-      @include between(sm,md) {
-        .element {
-            background: linear-gradient(to right, #ff3c74 0%, #ffa0cd 100%);
-        }
-      }
-      .element {
-        // Pass a pixel value
-        @include below(600px) {
-          transform: rotate(100deg);
-        }
-        // Mix pixel values with breakpoint names
-        @include between(600px,lg) {
-          transition-duration: 10s;
-        }
-        // Pass a breakpoint name
-        @include above(lg) {
-          transition-timing-function: cubic-bezier(0.9, 0.1, .2, .4);
-        }
-      }
-    </code>
-  </pre>
+
+<div class="section is-tight bg-base">
+  <h2 id="media-queries" class="h3">Media-query mixins</h2>
+  <p>Each takes a breakpoint name or a raw px value; both compile to an <span class="code-ref">em</span>-based <span class="code-ref">@media</span> query. Prefer <span class="code-ref">above()</span> (mobile-first) over <span class="code-ref">below()</span>.</p>
   <table class="has-border">
-    <thead>
-      <tr>
-        <th>Mixin</th>
-        <th>Result</th>
-      </tr>
-    </thead>
+    <caption class="screen-reader-text">Media-query mixins</caption>
+    <thead><tr><th scope="col">Mixin</th><th scope="col">Applies</th></tr></thead>
     <tbody>
-      <tr>
-        <td><span class="code-ref">@include above($min) {...}</span></td>
-        <td>CSS contained within the brackets will apply above the given breakpoint, until overwritten by specificity or a higher breakpoint.</td>
-      </tr>
-      <tr>
-        <td><span class="code-ref">@include between($min, $max) {...}</span></td>
-        <td>CSS will apply between the two specified breakpoints only.</td>
-      </tr>
-      <tr>
-        <td><span class="code-ref">@include below($max) {...}</span></td>
-        <td>CSS applies below the given breakpoint, unless overridden by specificity. As a general rule, it's best to use <code class="code-ref">above()</code> rather than <code class="code-ref">below()</code>.</td>
-      </tr>
+      <tr><th scope="row"><span class="code-ref">above($min)</span></th><td>At and above <span class="code-ref">$min</span>.</td></tr>
+      <tr><th scope="row"><span class="code-ref">below($max)</span></th><td>Below <span class="code-ref">$max</span>.</td></tr>
+      <tr><th scope="row"><span class="code-ref">between($min, $max)</span></th><td>Between the two, inclusive of <span class="code-ref">$min</span>.</td></tr>
     </tbody>
   </table>
+  <pre class="language-scss"><code>
+    .hero {
+      padding-block: get-space(lg);
+      @include above(md)         { padding-block: get-space(xl); }
+      @include between(600px, lg) { text-align: center; }
+    }
+  </code></pre>
 </div>
 @@include('./src/docs/partials/html-footer.html')

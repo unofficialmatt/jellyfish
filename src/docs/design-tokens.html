@@ -4,16 +4,16 @@
 })
 
 @@include('./src/docs/partials/navigation.html')
-<h1 class="section-heading h2">Design Tokens<a href="./variables.html#spacing-scale">[ Variable Reference ]</a></h1>
-<div>
-  <p class="standfirst">Every non-colour design axis is a thin semantic scale of CSS custom properties, each with a matching <code class="code-ref">get-*()</code> Sass accessor. The value tables live on the <a href="./variables.html#spacing-scale">Variables</a> page and the accessors on <a href="./mixins.html">Mixins</a> &mdash; this page shows them rendered, and the last section demonstrates what happens when you retune a token.</p>
+<h1 class="section-heading h2">Design tokens</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">Every non-colour design axis is a thin semantic scale of CSS custom properties, each with a matching <code class="code-ref">get-*()</code> Sass accessor. Value tables are on the <a href="./variables.html">Variables</a> page; this page shows them rendered, and the last section is the visual check for the token cascade.</p>
   <p>Reference a token from CSS with its full <code class="code-ref">--jf-*</code> name, or from SCSS with the accessor: <code class="code-ref">padding: get-space(md);</code>, <code class="code-ref">border-radius: get-radius(lg);</code>, <code class="code-ref">box-shadow: get-shadow(md);</code>.</p>
   <p><span class="bold">Extending a scale.</span> Every scale (<span class="variable-ref">$space-scale</span>, <span class="variable-ref">$radius-scale</span>, <span class="variable-ref">$leading-scale</span>, <span class="variable-ref">$duration-scale</span>, <span class="variable-ref">$ease-scale</span>) uses the empty-map + merge pattern &mdash; your map is merged <span class="italic">over</span> the defaults. Set one <span class="italic">before</span> importing Jellyfish: a matching key <span class="bold">overwrites</span> (<code class="code-ref">$radius-scale: ("md": 20px)</code> makes <code class="code-ref">--jf-radius-md</code> 20px), a new key <span class="bold">appends</span> (<code class="code-ref">("xxl": 40px)</code> adds <code class="code-ref">--jf-radius-xxl</code>, resolvable as <code class="code-ref">get-radius(xxl)</code>). Everything you don't mention keeps its default. Setting it <span class="italic">after</span> the import is too late &mdash; the <code class="code-ref">!default</code> has already fired.</p>
 </div>
 
-<div>
+<div class="section is-tight bg-base">
   <h2 class="h3">Spacing <span class="chip">--jf-space-*</span></h2>
-  <p>A t-shirt scale for flow between elements &mdash; margin, padding, gap &mdash; pointing at <span class="variable-ref">$sizing-system</span> steps. <code class="code-ref">--jf-flow</code> is the block-flow rhythm (bottom margin between block elements) &mdash; <code class="code-ref">$flow-step</code> picks which step it uses, <code class="code-ref">md</code> by default. For the fixed size of a thing (width, height, icon dimensions) use <code class="code-ref">get-size()</code> against the Sass-only <code class="code-ref">$sizing-system</code> map instead.</p>
+  <p>A t-shirt scale for flow between elements &mdash; margin, padding, gap &mdash; pointing at <span class="variable-ref">$sizing-system</span> steps. Reference with <a href="./mixins.html">get-space()</a> or the token name. <code class="code-ref">--jf-flow</code> is the block-flow rhythm (bottom margin between block elements) &mdash; <code class="code-ref">$flow-step</code> picks which step it uses, <code class="code-ref">md</code> by default. For the fixed size of a thing (width, height, icon dimensions) use <code class="code-ref">get-size()</code> against the Sass-only <code class="code-ref">$sizing-system</code> map instead.</p>
   <div style="display:flex; flex-direction:column; gap:0.5rem;">
     <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-3xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-3xs);"></span><span>4px</span></div>
     <div style="display:flex; align-items:center; gap:1rem;"><code class="code-ref" style="flex:0 0 12ch;">--jf-space-2xs</code><span class="bg-primary" style="display:block; block-size:1rem; inline-size:var(--jf-space-2xs);"></span><span>8px</span></div>
@@ -26,9 +26,9 @@
   </div>
 </div>
 
-<div>
+<div class="section is-tight bg-base">
   <h2 class="h3">Line height <span class="chip">--jf-leading-*</span></h2>
-  <p>Unitless leading steps. <code class="code-ref">--jf-leading-base</code> (1.5) matches body copy; the responsive <span class="variable-ref">$root-line-height</span> stays the source for the <code class="code-ref">body</code> element itself.</p>
+  <p>Unitless leading steps. Reference with <a href="./mixins.html">get-leading()</a> or the token name. <code class="code-ref">--jf-leading-base</code> (1.5) matches body copy; the responsive <span class="variable-ref">$root-line-height</span> stays the source for the <code class="code-ref">body</code> element itself.</p>
   <div class="grid">
     <div class="col xs-12 md-6 lg-4" style="line-height:var(--jf-leading-flush);"><p class="mb-0"><code class="code-ref">--jf-leading-flush</code> (1)<br>Wibble wobble goes the jelly, drifting slow across the bay. Wibble wobble goes the jelly.</p></div>
     <div class="col xs-12 md-6 lg-4" style="line-height:var(--jf-leading-tight);"><p class="mb-0"><code class="code-ref">--jf-leading-tight</code> (1.2)<br>Wibble wobble goes the jelly, drifting slow across the bay. Wibble wobble goes the jelly.</p></div>
@@ -38,9 +38,9 @@
   </div>
 </div>
 
-<div>
+<div class="section is-tight bg-base">
   <h2 class="h3">Border radius <span class="chip">--jf-radius-*</span></h2>
-  <p>A t-shirt scale with values drawn from <span class="variable-ref">$sizing-system</span>. Component defaults map onto it; retune the whole framework's corners from <span class="variable-ref">$radius-scale</span>.</p>
+  <p>A t-shirt scale with values drawn from <span class="variable-ref">$sizing-system</span>. Reference with <a href="./mixins.html">get-radius()</a> or the token name. Component defaults map onto it; retune the whole framework's corners from <span class="variable-ref">$radius-scale</span>.</p>
   <div style="display:flex; flex-wrap:wrap; gap:1rem;">
     <span class="dt-swatch bg-primary" style="border-radius:var(--jf-radius-none);">none</span>
     <span class="dt-swatch bg-primary" style="border-radius:var(--jf-radius-xs);">xs</span>
@@ -53,16 +53,16 @@
   </div>
 </div>
 
-<div>
+<div class="section is-tight bg-base">
   <h2 class="h3">Border width <span class="chip">--jf-border-width</span></h2>
-  <p>Two widths only. Naming mirrors the colour role ladder.</p>
+  <p>Two widths only &mdash; not a stepped scale, so there's no <code class="code-ref">get-*()</code> accessor; reference with <code class="code-ref">token(border-width)</code> / <code class="code-ref">token(border-width-strong)</code> in Sass, or the custom property directly. Naming mirrors the colour role ladder.</p>
   <div style="display:flex; flex-wrap:wrap; gap:1rem;">
     <span class="dt-swatch" style="inline-size:12rem; block-size:4rem; border:var(--jf-border-width) solid var(--jf-border-color); border-radius:var(--jf-radius-sm);"><code class="code-ref">--jf-border-width</code> &mdash; 1px</span>
     <span class="dt-swatch" style="inline-size:12rem; block-size:4rem; border:var(--jf-border-width-strong) solid var(--jf-border-color); border-radius:var(--jf-radius-sm);"><code class="code-ref">--jf-border-width-strong</code> &mdash; 2px</span>
   </div>
 </div>
 
-<div>
+<div class="section is-tight bg-base">
   <h2 class="h3">Elevation <span class="chip">--jf-shadow-*</span></h2>
   <p>Box-shadows that mix <code class="code-ref">--jf-shadow-color</code> toward transparent at each step's alpha. Reference with <a href="./mixins.html">get-shadow()</a> or the token name. Geometry in <span class="variable-ref">$shadow-scale</span>; hue in <span class="variable-ref">$shadow-color</span> / <code class="code-ref">--jf-shadow-color</code>.</p>
   <div style="display:flex; flex-wrap:wrap; gap:2rem; padding:1.5rem 0;">
@@ -74,7 +74,7 @@
   </div>
 </div>
 
-<div>
+<div class="section is-tight bg-base">
   <h2 class="h3">Motion <span class="chip">--jf-transition</span></h2>
   <p>Hover the boxes. Each declares its own <code class="code-ref">transition</code> from the motion tokens; the OS "reduce motion" setting zeroes the durations and stops all of them.</p>
   <div style="display:flex; flex-wrap:wrap; gap:1rem;">
@@ -92,17 +92,17 @@
   </div>
 </div>
 
-<div>
+<div class="section is-tight bg-base">
   <h2 class="h3">Retuning tokens</h2>
-  <p>The wrapper below sets four tokens to non-default values inline. Anything inside that reads them re-resolves with no other change &mdash; a single scope override cascades. This section is the permanent visual check for the token cascade: if a swatch stops responding, something's regressed.</p>
-  <div class="boxed" style="--jf-radius-lg:1px; --jf-space-md:0.375rem; --jf-border-width:4px; --jf-shadow-lg:0 8px 24px rgba(0,128,128,0.35);">
+  <p>The wrapper below deliberately overrides four tokens <em>on this one box</em> to values nothing like their real defaults (<code class="code-ref">--jf-radius-lg</code> is normally a generous rounded corner, not <code class="code-ref">1px</code> &mdash; it's squashed down here purely so the override is unmistakable at a glance). Anything inside that reads them re-resolves with no other change &mdash; a single scope override cascades. This section is the permanent visual check for the token cascade: if a swatch stops responding to its overridden value, something's regressed.</p>
+  <div class="boxed bg-soft" style="--jf-radius-lg:1px; --jf-space-md:0.375rem; --jf-border-width:4px; --jf-shadow-lg:0 8px 24px rgba(0,128,128,0.35);">
     <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:flex-start;">
-      <span class="dt-swatch bg-primary" style="inline-size:8rem; border-radius:var(--jf-radius-lg);"><code class="code-ref">radius-lg</code> &rarr; 1px</span>
-      <span class="dt-swatch" style="inline-size:8rem; border:var(--jf-border-width) solid var(--jf-border-color); border-radius:var(--jf-radius-sm);"><code class="code-ref">border-width</code> &rarr; 4px</span>
-      <span class="bg-neutral" style="display:block; padding:var(--jf-space-md); border-radius:var(--jf-radius-sm); font-size:0.8rem;">padding: <code class="code-ref">--jf-space-md</code> &rarr; 6px</span>
-      <span class="dt-swatch bg-soft" style="inline-size:8rem; border-radius:var(--jf-radius-sm); box-shadow:var(--jf-shadow-lg);"><code class="code-ref">--jf-shadow-lg</code> full override</span>
+      <span class="dt-swatch bg-primary" style="inline-size:8rem; border-radius:var(--jf-radius-lg);"><code class="code-ref">--jf-radius-lg</code> overridden to 1px here</span>
+      <span class="dt-swatch" style="inline-size:8rem; border:var(--jf-border-width) solid var(--jf-border-color); border-radius:var(--jf-radius-sm);"><code class="code-ref">--jf-border-width</code> overridden to 4px here</span>
+      <span class="bg-neutral" style="display:block; padding:var(--jf-space-md); border-radius:var(--jf-radius-sm); font-size:0.8rem;"><code class="code-ref">--jf-space-md</code> overridden to 6px here (padding)</span>
+      <span class="dt-swatch bg-soft" style="inline-size:8rem; border-radius:var(--jf-radius-sm); box-shadow:var(--jf-shadow-lg);"><code class="code-ref">--jf-shadow-lg</code> fully replaced here</span>
     </div>
   </div>
-  <p class="mt-3"><span class="bold">Components:</span> the framework's own <code class="code-ref">$*-border-radius</code>, border widths and element spacing move onto these tokens in Tranche 2 &mdash; after that, a wrapper override like this restyles a <span class="css-ref">.card</span> / <span class="css-ref">.button</span> / <span class="css-ref">.callout</span> the same way.</p>
+  <p class="mt-3"><span class="bold">Components</span> build their own radius / border / spacing defaults from these tokens, so a wrapper override like this restyles a nested <span class="css-ref">.card</span> / <span class="css-ref">.button</span> / <span class="css-ref">.callout</span> too.</p>
 </div>
 @@include('./src/docs/partials/html-footer.html')

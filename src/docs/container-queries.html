@@ -1,0 +1,109 @@
+@@include('./src/docs/partials/html-head.html', {
+"title": "Container Queries",
+"description": "Style a component by its own container's size, not the viewport — the container-above / -below / -between mixins.",
+})
+
+@@include('./src/docs/partials/navigation.html')
+<h1 class="section-heading h2">Container queries</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">A <a href="./breakpoints.html">breakpoint</a> reacts to the viewport; a container query reacts to the size of a component's own ancestor &mdash; the same card can stack in a narrow sidebar and sit side-by-side in a wide one, on the same page, at the same viewport width.</p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Setting up a container</h2>
+  <p>An element only becomes a query target once something gives it <span class="code-ref">container-type</span>. There's no Sass helper for this half &mdash; it's one line, so just write it:</p>
+  <pre class="language-scss"><code>
+    .card-slot {
+      container-type: inline-size;
+      // container-name: sidebar; // optional — scope a query to this one
+    }
+  </code></pre>
+  <p><span class="code-ref">inline-size</span> (width, in a horizontal writing mode) is what you want almost always &mdash; querying both axes (<span class="code-ref">size</span>) forces the browser to know the element's height up front, which usually means giving it an explicit one.</p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Mixins</h2>
+  <p>Once an ancestor has <span class="code-ref">container-type</span>, query it with the same shape as the <a href="./breakpoints.html#media-queries"><span class="code-ref">above()</span> / <span class="code-ref">below()</span> / <span class="code-ref">between()</span></a> viewport mixins:</p>
+  <table class="is-responsive has-border">
+    <caption class="screen-reader-text">Container-query mixins</caption>
+    <thead><tr><th scope="col">Mixin</th><th scope="col">Applies</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><span class="code-ref">container-above($min, $containerName?)</span></th><td>At and above <span class="code-ref">$min</span>.</td></tr>
+      <tr><th scope="row"><span class="code-ref">container-below($max, $containerName?)</span></th><td>Below <span class="code-ref">$max</span>.</td></tr>
+      <tr><th scope="row"><span class="code-ref">container-between($min, $max, $containerName?)</span></th><td>Between the two, inclusive of <span class="code-ref">$min</span>.</td></tr>
+    </tbody>
+  </table>
+  <p><span class="code-ref">$containerName</span> matches the query to one specific named container (for when more than one ancestor has <span class="code-ref">container-type</span>) &mdash; leave it off to match the nearest one, named or not. Pixel args convert to <span class="code-ref">rem</span> at build time, so the query still scales with the user's root font size.</p>
+  <pre class="language-scss"><code>
+    .card {
+      @include container-above(400px) { flex-direction: row; }
+    }
+    .card {
+      @include container-between(400px, 800px, "sidebar") { box-shadow: token(shadow-md); }
+    }
+  </code></pre>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Live example</h2>
+  <p>A profile card &mdash; the same component, the same markup, the same viewport width, only the width of its own wrapping container differs. Below 420px the photo overlaps the top of the card on a negative margin and everything stacks; at 420px and up, <span class="code-ref">container-above(420px)</span> switches it to a two-column layout with a bigger photo:</p>
+  <pre class="language-markup"><code><!--
+    <div class="profile-card-container">
+      <article class="profile-card">
+        <img class="profile-card-photo" src="jane.jpg" alt="">
+        <div class="profile-card-body">
+          <h3>Jane Otter</h3>
+          <p class="profile-card-role">Marine Biologist</p>
+          <dl class="profile-card-details">
+            <dt>Email</dt><dd><a href="mailto:jane@example.com">jane@example.com</a></dd>
+            <dt>Telephone</dt><dd><a href="tel:+15551234567">+1 555 123 4567</a></dd>
+          </dl>
+          <a href="#" class="button primary small">Get in touch</a>
+        </div>
+      </article>
+    </div>
+    --></code></pre>
+  <div class="grid">
+    <div class="col sm-6">
+      <p class="h5">Narrow container (&lt; 420px)</p>
+      <div class="profile-card-container" style="max-width: 280px;">
+        <article class="profile-card">
+          <img class="profile-card-photo" src="https://picsum.photos/id/64/200/200" alt="">
+          <div class="profile-card-body">
+            <h3>Jane Otter</h3>
+            <p class="profile-card-role">Marine Biologist</p>
+            <dl class="profile-card-details">
+              <dt>Email</dt><dd><a href="#">jane@example.com</a></dd>
+              <dt>Telephone</dt><dd><a href="#">+1 555 123 4567</a></dd>
+            </dl>
+            <a href="#" class="button primary small">Get in touch</a>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="col sm-6">
+      <p class="h5">Wide container (&ge; 420px)</p>
+      <div class="profile-card-container" style="max-width: 520px;">
+        <article class="profile-card">
+          <img class="profile-card-photo" src="https://picsum.photos/id/64/300/400" alt="">
+          <div class="profile-card-body">
+            <h3>Jane Otter</h3>
+            <p class="profile-card-role">Marine Biologist</p>
+            <dl class="profile-card-details">
+              <dt>Email</dt><dd><a href="#">jane@example.com</a></dd>
+              <dt>Telephone</dt><dd><a href="#">+1 555 123 4567</a></dd>
+            </dl>
+            <a href="#" class="button primary small">Get in touch</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <p>The card's own CSS (<span class="code-ref">.profile-card*</span>) is a docs-only example component in <span class="code-ref">pages/_docs.scss</span>, not part of the framework &mdash; the point here is the <span class="code-ref">container-type</span> + <span class="code-ref">container-above()</span> pattern, not a new shipped class.</p>
+</div>
+
+<div class="section is-tight bg-soft">
+  <h2 class="h3" id="overriding">Overriding</h2>
+  <p>There's nothing to configure &mdash; <span class="code-ref">container-above()</span> / <span class="code-ref">-below()</span> / <span class="code-ref">-between()</span> are build-time Sass mixins, not a runtime system with tokens or settings. Use them anywhere you'd use <span class="code-ref">above()</span> / <span class="code-ref">below()</span> / <span class="code-ref">between()</span>, once the target has <span class="code-ref">container-type</span> on an ancestor.</p>
+</div>
+@@include('./src/docs/partials/html-footer.html')

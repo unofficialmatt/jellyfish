@@ -58,8 +58,11 @@ tfoot th {
 }
 
 table.is-striped {
-  tr:nth-child(odd) td {
-    #{token-name("table-cell-background")}: token(table-stripe-bg-color);
+  tbody tr:nth-child(odd) {
+    td,
+    th {
+      #{token-name("table-cell-background")}: token(table-stripe-bg-color);
+    }
   }
 }
 
@@ -79,12 +82,15 @@ table.has-border {
 }
 
 table.is-hoverable {
-  tr:hover td {
-    #{token-name("table-text-color")}: token(
-      table-text-hover-color,
-      #{token(color-on-neutral-muted)}
-    );
-    #{token-name("table-cell-background")}: token(table-hover-background);
+  tbody tr:hover {
+    td,
+    th {
+      #{token-name("table-text-color")}: token(
+        table-text-hover-color,
+        #{token(color-on-neutral-muted)}
+      );
+      #{token-name("table-cell-background")}: token(table-hover-background);
+    }
   }
 }
 
@@ -114,7 +120,8 @@ table.is-responsive {
       display: block;
     }
 
-    td {
+    tbody td,
+    tbody th {
       display: block;
       &::before {
         content: attr(data-label) ":";

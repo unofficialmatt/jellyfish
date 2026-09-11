@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Utilities ~ 🎐 Jellyfish UI</title>
-    <meta name="description" content="Utility classes for manipulating elements - for when you need to break the rules.">
+    <meta name="description" content="Single-purpose classes for spacing, floats, display, flex/grid alignment, icons and image fit.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
@@ -54,7 +54,7 @@
             Latest
           </li>
           <li>
-            <a href="./whats-new.html">What's New in 4.3.0</a>
+            <a href="./whats-new.html">What's new in 5.0</a>
           </li>
           <li class="li-title mt-0">
             HTML
@@ -108,6 +108,9 @@
             <a href="./breakpoints.html">Breakpoints</a>
           </li>
           <li>
+            <a href="./container-queries.html">Container Queries</a>
+          </li>
+          <li>
             <a href="./mixins.html">Mixins</a>
           </li>
           <li>
@@ -129,6 +132,9 @@
             <a href="./theme-colors.html">Theme Colors</a>
           </li>
           <li>
+            <a href="./palette-generator.html">Palette Generator</a>
+          </li>
+          <li>
             <a href="./accessibility.html">Accessibility</a>
           </li>
           <li>
@@ -145,321 +151,149 @@
       <section class="docs-section">
 
 <h1 class="section-heading h2">Utilities</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">Single-purpose classes, all <span class="code-ref">!important</span>. Spacing / border / float utilities use <strong>logical</strong> axes (<span class="code-ref">i</span> = inline, <span class="code-ref">b</span> = block; <span class="code-ref">s</span> = start, <span class="code-ref">e</span> = end). The old physical names (<span class="css-ref">.ml</span>, <span class="css-ref">.text-right</span>&hellip;) still work as deprecated aliases &mdash; they may be dropped in later versions.</p>
+</div>
 
-<div>
-  <h2 class="h3">Floats</h2>
-  <p>Elements can be floated with the <span class="css-ref">.align-left</span> / <span class="css-ref">.align-right</span> / <span class="css-ref">.align-none</span> classes.</p>
-  <p>Common block containers (<span class="code-ref">div</span>, <span class="code-ref">section</span>, <span class="code-ref">article</span>, <span class="code-ref">p</span>, <span class="code-ref">li</span>, <span class="code-ref">figure</span>, <span class="code-ref">blockquote</span>, <span class="code-ref">aside</span>, <span class="code-ref">header</span>, <span class="code-ref">footer</span>, <span class="code-ref">dd</span>, <span class="code-ref">main</span>) <strong>contain a directly-floated <span class="css-ref">.align-*</span> child automatically</strong> &mdash; they get <span class="code-ref">display: flow-root</span> via <span class="code-ref">:has()</span>, the modern replacement for the old <span class="code-ref">.clearfix</span> hack (removed in v5). For any other element, or a parent you have set to <span class="code-ref">display: flex</span> / <span class="code-ref">grid</span> (which wins over the auto-rule), add <span class="code-ref">display: flow-root</span> yourself. Note it establishes a block formatting context, so margins no longer collapse through that parent.</p>
-  <p>Floats should generally be avoided &mdash; reach for flexbox or grid instead.</p>
-  <pre class="language-markup">
-    <code><!--
-    <div>
-      <div class="align-right boxed">Float Right</div>
-      <div class="align-left boxed">Float Left</div>
-    </div>
-    <div class="align-none boxed">Float None</div>
-  --></code>
-  </pre>
-  <div>
-    <div class="align-right boxed">
-      Float Right
-    </div>
-    <div class="align-left boxed">
-      Float Left
-    </div>
-  </div>
-  <div class="align-none boxed">Float None</div>
+<div class="section is-tight bg-base">
+  <h2 class="h3">Spacing &amp; border</h2>
+  <table class="is-responsive has-border">
+    <caption class="screen-reader-text">Spacing and border reset utilities</caption>
+    <thead><tr><th scope="col">Class</th><th scope="col">Sets</th><th scope="col">Old name</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><span class="css-ref">.mbe</span></th><td><span class="code-ref">margin-block-end: var(--jf-flow)</span></td><td><span class="css-ref">.mb</span></td></tr>
+      <tr><th scope="row"><span class="css-ref">.mbs</span> / <span class="css-ref">.mie</span> / <span class="css-ref">.mis</span></th><td>the same, on that edge</td><td><span class="css-ref">.mt</span> / <span class="css-ref">.mr</span> / <span class="css-ref">.ml</span></td></tr>
+      <tr><th scope="row"><span class="css-ref">.m-0</span></th><td><span class="code-ref">margin: 0</span></td><td>&mdash;</td></tr>
+      <tr><th scope="row"><span class="css-ref">.mbs-0</span> / <span class="css-ref">.mbe-0</span> / <span class="css-ref">.mis-0</span> / <span class="css-ref">.mie-0</span></th><td><span class="code-ref">margin-&lt;edge&gt;: 0</span></td><td><span class="css-ref">.mt-0</span> / <span class="css-ref">.mb-0</span> / <span class="css-ref">.ml-0</span> / <span class="css-ref">.mr-0</span></td></tr>
+      <tr><th scope="row"><span class="css-ref">.p-0</span></th><td><span class="code-ref">padding: 0</span></td><td>&mdash;</td></tr>
+      <tr><th scope="row"><span class="css-ref">.pbs-0</span> / <span class="css-ref">.pbe-0</span> / <span class="css-ref">.pis-0</span> / <span class="css-ref">.pie-0</span></th><td><span class="code-ref">padding-&lt;edge&gt;: 0</span></td><td><span class="css-ref">.pt-0</span> / <span class="css-ref">.pb-0</span> / <span class="css-ref">.pl-0</span> / <span class="css-ref">.pr-0</span></td></tr>
+      <tr><th scope="row"><span class="css-ref">.b-0</span></th><td><span class="code-ref">border: none</span></td><td>&mdash;</td></tr>
+      <tr><th scope="row"><span class="css-ref">.bbs-0</span> / <span class="css-ref">.bbe-0</span> / <span class="css-ref">.bis-0</span> / <span class="css-ref">.bie-0</span></th><td><span class="code-ref">border-&lt;edge&gt;: none</span></td><td><span class="css-ref">.bt-0</span> / <span class="css-ref">.bb-0</span> / <span class="css-ref">.bl-0</span> / <span class="css-ref">.br-0</span></td></tr>
+    </tbody>
+  </table>
+  <p>Text-weight, style and size utilities are on <a href="./typography.html#utilities">Typography</a>.</p>
 </div>
-<div>
-  <h2 class="h3">Margin, padding and borders</h2>
-  <p>Use <span class="css-ref">m*-0</span>, <span class="css-ref">p*-0</span> and <span class="css-ref">b*-0</span> modifiers to reset margin/padding/border to 0 for a given side.</p>
-  <ul>
-    <li>Margin:
-      <ul>
-        <li><span class="css-ref">m-0</span> sets margin: 0px !important</li>
-        <li><span class="css-ref">mt-0</span> sets margin-top: 0px !important</li>
-        <li><span class="css-ref">mr-0</span> sets margin-right: 0px !important</li>
-        <li><span class="css-ref">mb-0</span> sets margin-bottom: 0px !important</li>
-        <li><span class="css-ref">ml-0</span> sets margin-left: 0px !important</li>
-        <li><span class="css-ref">mb</span> sets margin-bottom: <span class="code-ref">var(--jf-flow)</span> !important</li>
-      </ul>
-    </li>
-    <li>Padding:
-      <ul>
-        <li><span class="css-ref">p-0</span> sets padding: 0px !important</li>
-        <li><span class="css-ref">pt-0</span> sets padding-top: 0px !important</li>
-        <li><span class="css-ref">pr-0</span> sets padding-right: 0px !important</li>
-        <li><span class="css-ref">pb-0</span> sets padding-bottom: 0px !important</li>
-        <li><span class="css-ref">pl-0</span> sets padding-left: 0px !important</li>
-      </ul>
-    </li>
-    <li>Border:
-      <ul>
-        <li><span class="css-ref">b-0</span> sets border: 0px !important</li>
-        <li><span class="css-ref">bt-0</span> sets border-top: 0px !important</li>
-        <li><span class="css-ref">br-0</span> sets border-right: 0px !important</li>
-        <li><span class="css-ref">bb-0</span> sets border-bottom: 0px !important</li>
-        <li><span class="css-ref">bl-0</span> sets border-left: 0px !important</li>
-      </ul>
-    </li>
-  </ul>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Floats &amp; text alignment</h2>
+  <table class="has-border">
+    <caption class="screen-reader-text">Float and text-alignment utilities</caption>
+    <thead><tr><th scope="col">Class</th><th scope="col">Effect</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><span class="css-ref">.align-start</span> / <span class="css-ref">.align-end</span></th><td>Float to the inline start / end (<span class="css-ref">.align-left</span> / <span class="css-ref">-right</span> deprecated).</td></tr>
+      <tr><th scope="row"><span class="css-ref">.align-none</span> / <span class="css-ref">.align-center</span></th><td>No float; block, centred (images).</td></tr>
+      <tr><th scope="row"><span class="css-ref">.text-start</span> / <span class="css-ref">.text-end</span> / <span class="css-ref">.text-center</span> / <span class="css-ref">.text-justify</span></th><td><span class="code-ref">text-align</span> (<span class="css-ref">.text-left</span> / <span class="css-ref">-right</span> deprecated).</td></tr>
+    </tbody>
+  </table>
+  <p>A block that <em>directly</em> contains a floated <span class="css-ref">.align-*</span> child contains the float itself (<span class="code-ref">display: flow-root</span> via <span class="code-ref">:has()</span>) &mdash; no <span class="css-ref">.clearfix</span>. The rule is wrapped in <span class="code-ref">:where()</span> on purpose, giving it <em>zero</em> specificity: <strong>any</strong> other <span class="code-ref">display</span> declaration on that same element wins, no matter how it got there &mdash; a plugin's, an explicit <span class="code-ref">flex</span> / <span class="code-ref">grid</span> of your own, Jellyfish's own <span class="css-ref">.grid</span> / <span class="css-ref">.row</span>, or even <span class="css-ref">.boxed</span> itself (<span class="code-ref">display: inherit</span>). Put <span class="css-ref">.boxed</span> only on the floated children, not the containing box, or its <span class="code-ref">display: inherit</span> silently cancels the auto-containment and you're back to setting <span class="code-ref">flow-root</span> by hand. Prefer flex / grid over floats.</p>
+  <div style="border: var(--jf-border-width) solid var(--jf-border-color); padding: 0.75rem 1rem;">
+    <div class="align-end bg-soft boxed">float end</div>
+    <div class="align-start bg-soft boxed">float start</div>
+    Text wraps around both; this box has no competing <span class="code-ref">display</span> of its own, so the auto <span class="code-ref">flow-root</span> actually applies &mdash; nothing spills out below.
+  </div>
 </div>
-<div>
-  <h2 class="h3" id="display-utilities">Display utilities</h2>
-    <p>Jellyfish comes with a number of display utilities to allow you to hide and show elements based on the current breakpoint.</p>
-    <p>An element with a class of <span class="css-ref">.hide</span> is hidden at all breakpoints. An element can also be set to be hidden (but still take up space on the page) with the class <span class="css-ref">.invisible</span>.</p>
-    <p>Use <span class="css-ref">.hide-*</span> to hide an element only at a specific breakpoint. Use <span class="css-ref">.hide-above-*</span> to hide an element at and above a specific breakpoint. Use <span class="css-ref">hide-below-*</span> to hide an element at and below a specific breakpoint.</p>
-    <table class="has-border">
-      <thead>
-        <tr>
-          <th>Class</th>
-          <th>Result</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>.invisible</td>
-          <td><span class="invisible">This text is invisible but still takes up space on the page. So if it falls across multiple lines, the table cell will grow to fit it.</span></td>
-        </tr>
-        <tr>
-          <td>.hide</td>
-          <td><span class="hide">This text will be hidden on all devices.</span></td>
-        </tr>
-        <tr>
-          <td>.hide-*</td>
-          <td><span class="hide-xs boxed">hide-xs</span><span class="hide-sm boxed">hide-sm</span><span class="hide-md boxed">hide-md</span><span class="hide-lg boxed">hide-lg</span><span class="hide-xl boxed">hide-xl</span></td>
-        </tr>
-        <tr>
-          <td>.hide-below-*</td>
-          <td><span class="hide-below-sm boxed">hide-below-sm</span><span class="hide-below-md boxed">hide-below-md</span><span class="hide-below-lg boxed">hide-below-lg</span><span class="hide-below-xl boxed">hide-below-xl</span></td>
-        </tr>
-        <tr>
-          <td>.hide-above-*</td>
-          <td><span class="hide-above-sm boxed">hide-above-sm</span><span class="hide-above-md boxed">hide-above-md</span><span class="hide-above-lg boxed">hide-above-lg</span><span class="hide-above-xl boxed">hide-above-xl</span></td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- TODO: Add other hide/show for example navbar -->
+
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="display-utilities">Display</h2>
+  <table class="has-border">
+    <caption class="screen-reader-text">Display and visibility utilities</caption>
+    <thead><tr><th scope="col">Class</th><th scope="col">Effect</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><span class="css-ref">.hide</span></th><td><span class="code-ref">display: none</span> at every width.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.invisible</span></th><td><span class="code-ref">visibility: hidden</span> &mdash; hidden but still takes space.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.hide-{bp}</span></th><td>Hidden only at that breakpoint band.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.hide-above-{bp}</span> / <span class="css-ref">.hide-below-{bp}</span></th><td>Hidden at and above / below the breakpoint.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.hide-above-nav</span> / <span class="css-ref">.hide-below-nav</span></th><td>Same, keyed to <span class="variable-ref">$nav-expands</span> (for navbar items).</td></tr>
+    </tbody>
+  </table>
 </div>
-<div>
-  <h2 class="h3">Working with flexboxes</h2>
-  <h3 class="h4">Align items</h3>
-  <p>Jellyfish contains a number of flexbox alignment classes to help position columns inside a flexbox row.</p>
-  <p><span class="css-ref">.align-*</span> classes are added to the parent row to align elements vertically within a row. <span class="css-ref">.align-self-*</span> classes are applied to the columns themselves to achieve the same outcome.</p>
-  <pre class="language-markup">
-    <code><!--
-    <div class="row align-top">
-      ...
-    </div>
-    <div class="row align-middle">
-      ...
-    </div>
-    <div class="row align-bottom">
-      ...
-    </div>
-    <div class="row align-baseline">
-      ...
-    </div>
-    <div class="row align-stretch">
-      ...
-    </div>
-    <div class="row">
-      <div class="col align-self-top">align-self-top</div>
-      <div class="col align-self-middle">align-self-middle</div>
-      <div class="col align-self-bottom">align-self-bottom</div>
-    </div>
-  --></code>
-  </pre>
-  <div class="row align-top row-boxed">
-    <div class="col">
-      <div class="boxed">align-top</div>
-    </div>
-    <div class="col">
-      <div class="boxed">align-top</div>
-    </div>
-    <div class="col">
-      <div class="boxed">align-top</div>
-    </div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Flex &amp; grid alignment</h2>
+  <p>On a <span class="css-ref">.row</span> or <span class="css-ref">.grid</span> unless noted. Values are writing-mode-relative, so they work on both engines.</p>
+  <table class="is-responsive has-border">
+    <caption class="screen-reader-text">Alignment utilities</caption>
+    <thead><tr><th scope="col">Class</th><th scope="col">Effect</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><span class="css-ref">.flex</span> / <span class="css-ref">.flex-column</span></th><td>Make any element a flex container (optionally column).</td></tr>
+      <tr><th scope="row"><span class="css-ref">.equal-height</span></th><td>On a <span class="css-ref">.row</span>: make child <span class="css-ref">.col</span>s equal height (<span class="css-ref">.grid</span> does this already).</td></tr>
+      <tr><th scope="row"><span class="css-ref">.subgrid-rows</span></th><td>On a <span class="css-ref">.grid</span> / <span class="css-ref">.auto-grid</span>: align each item's internal rows via <span class="code-ref">subgrid</span> (set <span class="code-ref">--jf-subgrid-rows</span>). See <a href="./grid.html">Grid</a>.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.align-top</span> / <span class="css-ref">-middle</span> / <span class="css-ref">-bottom</span> / <span class="css-ref">-baseline</span> / <span class="css-ref">-stretch</span></th><td><span class="code-ref">align-items</span> on the container.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.align-self-top</span> / <span class="css-ref">-middle</span> / <span class="css-ref">-bottom</span></th><td><span class="code-ref">align-self</span> on one item.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.justify-start</span> / <span class="css-ref">-center</span> / <span class="css-ref">-end</span> / <span class="css-ref">-around</span> / <span class="css-ref">-between</span> / <span class="css-ref">-evenly</span></th><td><span class="code-ref">justify-content</span> on the container.</td></tr>
+    </tbody>
+  </table>
+  <p><span class="code-ref">align-items</span> (on the container), one row per value, with a taller item in each to make the effect visible:</p>
+  <div class="row row-boxed align-top">
+    <div class="col md-4"><div class="boxed bg-soft">align-top</div></div>
+    <div class="col md-4"><div class="boxed bg-soft" style="padding-block:1.5rem">taller</div></div>
+    <div class="col md-4 align-self-bottom"><div class="boxed bg-soft">align-self-bottom</div></div>
   </div>
-  <div class="row align-middle row-boxed">
-    <div class="col">
-      <div class="boxed">align-middle</div>
-    </div>
-    <div class="col">
-      <div class="boxed">align-middle</div>
-    </div>
-    <div class="col">
-      <div class="boxed">align-middle</div>
-    </div>
+  <div class="row row-boxed align-middle">
+    <div class="col md-4"><div class="boxed bg-soft">align-middle</div></div>
+    <div class="col md-4"><div class="boxed bg-soft" style="padding-block:1.5rem">taller</div></div>
+    <div class="col md-4"><div class="boxed bg-soft">align-middle</div></div>
   </div>
-  <div class="row align-bottom row-boxed">
-    <div class="col">
-      <div class="boxed">align-bottom</div>
-    </div>
-    <div class="col">
-      <div class="boxed">align-bottom</div>
-    </div>
-    <div class="col">
-      <div class="boxed">align-bottom</div>
-    </div>
+  <div class="row row-boxed align-bottom">
+    <div class="col md-4"><div class="boxed bg-soft">align-bottom</div></div>
+    <div class="col md-4"><div class="boxed bg-soft" style="padding-block:1.5rem">taller</div></div>
+    <div class="col md-4 align-self-top"><div class="boxed bg-soft">align-self-top</div></div>
   </div>
-  <div class="row align-baseline row-boxed">
-    <div class="col">
-      <div class="boxed">align-baseline</div>
-    </div>
-    <div class="col">
-      <div class="boxed" style="font-size: 1.4em">align-baseline</div>
-    </div>
-    <div class="col">
-      <div class="boxed">align-baseline</div>
-    </div>
+  <div class="row row-boxed align-stretch">
+    <div class="col md-4"><div class="boxed bg-soft mbe-0">align-stretch (default)</div></div>
+    <div class="col md-4"><div class="boxed bg-soft mbe-0" style="padding-block:1.5rem">taller</div></div>
+    <div class="col md-4"><div class="boxed bg-soft mbe-0">stretches to match</div></div>
   </div>
-  <div class="row align-stretch row-boxed">
-    <div class="col">
-      <div class="boxed" style="height:100%;">align-stretch (any elements inside the .col must be 100% height)</div>
-    </div>
-    <div class="col">
-      <div class="boxed" style="height:100%;">align-stretch (any elements inside the .col must be 100% height)</div>
-    </div>
-    <div class="col">
-      <div class="boxed" style="height:100%;">align-stretch (any elements inside the .col must be 100% height)</div>
-    </div>
-  </div>
-  <div class="row row-boxed">
-    <div class="col align-self-top">
-      <div class="boxed">align-self-top</div>
-    </div>
-    <div class="col align-self-middle">
-      <div class="boxed">align-self-middle</div>
-    </div>
-    <div class="col align-self-bottom">
-      <div class="boxed">align-self-bottom</div>
-    </div>
-  </div>
-  <p>Adding a class of <span class="css-ref">.flex</span> will convert any element into <code class="code-ref">display: flex;</code>. Apply an <span class="css-ref">.equal-height</span> class to a parent row to make all immediate child columns <code class="code-ref">display:flex;</code></p>
-  <pre class="language-markup">
-    <code><!--
-    <div class="row">
-      <div class="col">Flex item</div>
-      <div class="col flex">Flex item with .flex...</div>
-    </div>
-    <div class="row equal-height">
-      ...
-    </div>
-  --></code>
-  </pre>
-  <div class="row row-boxed">
-    <div class="col">
-      <div class="boxed">Flex item</div>
-    </div>
-    <div class="col flex">
-      <div class="boxed">Flex item with .flex converts this column to a flex. The child element has flex:1 which makes it take up 100% height.</div>
-    </div>
-  </div>
-  <div class="row equal-height row-boxed">
-    <div class="col">
-      <div class="boxed">equal-height</div>
-    </div>
-    <div class="col">
-      <div class="boxed">equal-height</div>
-    </div>
-  </div>
-  <p></p>
-  <h3 class="h4">Justify content</h3>
-  <p>Use the <span class="css-ref">.justify-*</span> modifiers on a row to justify the child columns.</p>
-  <pre class="language-markup">
-    <code><!--
-    <div class="row justify-start">
-      ...
-    </div>
-     <div class="row justify-center">
-      ...
-    </div>
-     <div class="row justify-end">
-      ...
-    </div>
-     <div class="row justify-around">
-      ...
-    </div>
-     <div class="row justify-between">
-      ...
-    </div>
-    <div class="row justify-evenly">
-      ...
-    </div>
-  --></code>
-  </pre>
+  <p class="mt-3"><span class="code-ref">justify-content</span> (on the container):</p>
   <div class="row row-boxed justify-start">
-    <div class="col md-3">
-      <div class="boxed">justify-start</div>
-    </div>
-    <div class="col md-3">
-      <div class="boxed">justify-start</div>
-    </div>
-    <div class="col md-3">
-      <div class="boxed">justify-start</div>
-    </div>
+    <div class="col md-3"><div class="boxed bg-soft">justify-start</div></div>
+    <div class="col md-3"><div class="boxed bg-soft">justify-start</div></div>
   </div>
   <div class="row row-boxed justify-center">
-    <div class="col md-3">
-      <div class="boxed">justify-center</div>
-    </div>
-    <div class="col md-3">
-      <div class="boxed">justify-center</div>
-    </div>
-    <div class="col md-3">
-      <div class="boxed">justify-center</div>
-    </div>
-  </div>
-  <div class="row row-boxed justify-end">
-    <div class="col md-3">
-      <div class="boxed">justify-end</div>
-    </div>
-    <div class="col md-3">
-      <div class="boxed">justify-end</div>
-    </div>
-    <div class="col md-3">
-      <div class="boxed">justify-end</div>
-    </div>
-  </div>
-  <div class="row row-boxed justify-around">
-    <div class="col md-3">
-      <div class="boxed">justify-around</div>
-    </div>
-    <div class="col md-3">
-      <div class="boxed">justify-around</div>
-    </div>
-    <div class="col md-3">
-      <div class="boxed">justify-around</div>
-    </div>
+    <div class="col md-3"><div class="boxed bg-soft">justify-center</div></div>
+    <div class="col md-3"><div class="boxed bg-soft">justify-center</div></div>
   </div>
   <div class="row row-boxed justify-between">
-    <div class="col md-3">
-      <div class="boxed">justify-between</div>
-    </div>
-    <div class="col md-3">
-      <div class="boxed">justify-between</div>
-    </div>
-    <div class="col md-3">
-      <div class="boxed">justify-between</div>
-    </div>
+    <div class="col md-3"><div class="boxed bg-soft">justify-between</div></div>
+    <div class="col md-3"><div class="boxed bg-soft">justify-between</div></div>
+  </div>
+  <div class="row row-boxed justify-around">
+    <div class="col md-3"><div class="boxed bg-soft">justify-around</div></div>
+    <div class="col md-3"><div class="boxed bg-soft">justify-around</div></div>
   </div>
   <div class="row row-boxed justify-evenly">
-    <div class="col md-3">
-      <div class="boxed">justify-evenly</div>
-    </div>
-    <div class="col md-3">
-      <div class="boxed">justify-evenly</div>
-    </div>
-    <div class="col md-3">
-      <div class="boxed">justify-evenly</div>
-    </div>
+    <div class="col md-3"><div class="boxed bg-soft">justify-evenly</div></div>
+    <div class="col md-3"><div class="boxed bg-soft">justify-evenly</div></div>
+  </div>
+  <p class="mt-3"><span class="css-ref">.flex</span> / <span class="css-ref">.flex-column</span> on a plain element (not a <span class="css-ref">.row</span>):</p>
+  <div class="flex bg-soft boxed" style="gap:0.5rem;">
+    <span>.flex</span><span>row</span><span>(default direction)</span>
+  </div>
+  <div class="flex-column bg-soft boxed" style="gap:0.5rem;">
+    <span>.flex-column</span><span>stacks</span><span>instead</span>
   </div>
 </div>
-<div>
-  <h2 class="h3">Manipulating width</h2>
-  <p>The utility class <span class="css-ref">.full-width</span> can be applied to any element to make <code class="code-ref">width: 100%</code>.</p>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Width</h2>
+  <p><span class="css-ref">.full-width</span> &rarr; <span class="code-ref">width: 100%</span>.</p>
 </div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="icons">Icons</h2>
+  <p><span class="css-ref">.icon</span> paints an SVG in the current text colour, sized to the font. Point <span class="code-ref">--jf-icon</span> at a <span class="code-ref">url()</span> &mdash; a <span class="code-ref">data:</span> URI or a path &mdash; per instance or in your own rule:</p>
+  <pre class="language-markup"><code><!--
+    <span class="icon" style="--jf-icon: url('/icons/star.svg')"></span>
+    --></code></pre>
+  <p>Three inline data-URI SVGs, so no external file is needed for this demo &mdash; they inherit <span class="code-ref">color</span> from their surrounding text, and scale with <span class="code-ref">font-size</span>:</p>
+  <p style="font-size: 2em;">
+    <span class="icon" style="--jf-icon: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 1l3.09 7.26L22 9.27l-5.91 5.76L17.18 23 12 19.27 6.82 23l1.09-7.97L2 9.27l6.91-1.01L12 1z%22/%3E%3C/svg%3E');" aria-hidden="true"></span>
+    <span class="icon" style="--jf-icon: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 21s-8-4.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 6.5-8 11-8 11z%22/%3E%3C/svg%3E');" aria-hidden="true"></span>
+    <span class="icon text-primary" style="--jf-icon: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M20 6L9 17l-5-5%22 fill=%22none%22 stroke=%22black%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E');" aria-hidden="true"></span>
+  </p>
+  <p>In your CSS, e.g. an arrow after external links: <span class="code-ref">a[target="_blank"]::after { --jf-icon: url("data:image/svg+xml,…") }</span> with <span class="css-ref">.icon</span> on the pseudo. In Sass, <span class="code-ref">@include icon($url, $size)</span> does the same on any selector.</p>
+</div>
+
 </section>
 </main>
 </div>

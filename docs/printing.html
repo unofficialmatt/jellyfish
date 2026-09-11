@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Printing ~ 🎐 Jellyfish UI</title>
-    <meta name="description" content="Helpful base styles for printing.">
+    <meta name="description" content="The small print-stylesheet Jellyfish ships, and how to hide elements from print.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
@@ -54,7 +54,7 @@
             Latest
           </li>
           <li>
-            <a href="./whats-new.html">What's New in 4.3.0</a>
+            <a href="./whats-new.html">What's new in 5.0</a>
           </li>
           <li class="li-title mt-0">
             HTML
@@ -108,6 +108,9 @@
             <a href="./breakpoints.html">Breakpoints</a>
           </li>
           <li>
+            <a href="./container-queries.html">Container Queries</a>
+          </li>
+          <li>
             <a href="./mixins.html">Mixins</a>
           </li>
           <li>
@@ -129,6 +132,9 @@
             <a href="./theme-colors.html">Theme Colors</a>
           </li>
           <li>
+            <a href="./palette-generator.html">Palette Generator</a>
+          </li>
+          <li>
             <a href="./accessibility.html">Accessibility</a>
           </li>
           <li>
@@ -144,32 +150,24 @@
     <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
-<h1 class="section-heading h2">Printing Jellyfish Projects</h1>
-<div>
-  <p class="standfirst">Jellyfish applies a few small tweaks to make projects more printer-friendly.</p>
-  <p>That said, the framework is by no means printer-optimised so caution should be taken if a project will rely heavily on the ability for users to print web pages.</p>
+<h1 class="section-heading h2">Printing</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">Jellyfish ships a light <span class="code-ref">@media print</span> block &mdash; black text, underlined links with their URL shown, smaller type, a 100%-width container. It's a sensible baseline, not a print-optimised layout.</p>
 </div>
-<div>
-  <h2 class="h3">Non-printing elements</h2>
-  <p>There are several ways of preventing certain elements from printing; by using a class <span class="css-ref">.do-not-print</span>, by @extending that class <code class="code-ref">@extend .do-not-print</code> or by using a mixin <code class="code-ref">@include do-not-print()</code>. Each of these options result in the compiled code of <code class="code-ref">display:none;</code> for <span class="bold">@media print</span>.</p>
-  <p>By default, the following elements will not print: <span class="css-ref">.navbar</span>, iframe.</p>
-  <pre class="language-scss"><code>
-    .element {
-      @extend do-not-print;
-    }
-    .element-2 {
-      @include do-not-print();
-    }
-    // Compiled output:
-    @media print {
-      .do-not-print, .element {
-        display: none; } }
 
-    @media print {
-      .element-2 {
-        display: none; } }
-  </code>
-  </pre>
+<div class="section is-tight bg-base">
+  <h2 class="h3">Hiding elements from print</h2>
+  <p>Three equivalent ways to get <span class="code-ref">display: none</span> inside <span class="code-ref">@media print</span>:</p>
+  <table class="has-border">
+    <caption class="screen-reader-text">Ways to hide an element from print</caption>
+    <thead><tr><th scope="col">Form</th><th scope="col">Use</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><span class="css-ref">.do-not-print</span></th><td>Add the class in your markup.</td></tr>
+      <tr><th scope="row"><span class="code-ref">@extend .do-not-print</span></th><td>Fold an existing selector into the shared rule.</td></tr>
+      <tr><th scope="row"><span class="code-ref">@include do-not-print()</span></th><td>Emit a standalone <span class="code-ref">@media print</span> block for one selector.</td></tr>
+    </tbody>
+  </table>
+  <p><span class="css-ref">.navbar</span> and <span class="code-ref">&lt;iframe&gt;</span> are hidden from print by default.</p>
 </div>
 </section>
 </main>
@@ -240,3 +238,4 @@
 </body>
 
 </html>
+

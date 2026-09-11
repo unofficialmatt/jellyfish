@@ -1,79 +1,88 @@
 @@include('./src/docs/partials/html-head.html', {
 "title": "Images and Media",
-"description": "Displaying images and responsively embedding media in your project.",
+"description": "Fluid images, aspect-ratio cropping, floats, figures and responsive embeds.",
 })
 
 @@include('./src/docs/partials/navigation.html')
-<h1 class="section-heading h2">Images and Media</h1>
-<div>
-  <h2 class="h3">Images <span class="chip">&lt;img></span></h2>
-  <p>All img elements have height and width set to auto, and max-width set to 100%. This prevents images from breaking out of their containers, and also allows width/height to scale as appropriate when a more specific dimension is defined.</p>
-  <div style="width:900px;max-width:60%;" class="boxed">
-    <p class="bold">This image can't break out of it's container even if it wanted to!</p>
-    <img src="https://picsum.photos/700/300">
+<h1 class="section-heading h2">Images and media</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">Every <span class="code-ref">&lt;img&gt;</span> is <span class="code-ref">display: block</span>, <span class="code-ref">max-inline-size: 100%</span> and <span class="code-ref">block-size: auto</span> &mdash; it never overflows its container and keeps its ratio when a width is set. Always give it <span class="code-ref">alt</span>, and <span class="code-ref">width</span> / <span class="code-ref">height</span> attributes to reserve space; add <span class="code-ref">loading="lazy"</span> below the fold.</p>
+  <div class="boxed bg-soft" style="width:900px;max-width:60%;">
+    <p class="bold">This image can't break out of its container.</p>
+    <img src="https://picsum.photos/700/300" alt="" width="700" height="300">
   </div>
-  <h3 class="h4">Floating images</h3>
-  <p>Images can be floated by applying utility classes. Additional styling automatically applies margins to create white space when images are floated alongside text.</p>
-  <pre class="language-markup line-numbers"><code><!--
-    <p><img src="https://picsum.photos/200/100" class="align-none">...text...</p>
-    <p><img src="https://picsum.photos/200/100" class="align-left">...text...</p>
-    <p><img src="https://picsum.photos/200/100" class="align-right">...text...</p>
-    <p><img src="https://picsum.photos/200/100" class="align-center">...text...</p>
-      --></code>
-    </pre>
-  <p><img src="https://picsum.photos/200/100" class="align-none"><span class="bold">align-none</span><br>Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
-  <p><img src="https://picsum.photos/200/100" class="align-left"><span class="bold">align-left</span><br>Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
-  <p><img src="https://picsum.photos/200/100" class="align-right"><span class="bold">align-right</span><br>Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
-  <p><img src="https://picsum.photos/200/100" class="align-center"><span class="bold">align-center</span><br>Aliquam et nunc in risus consequat tincidunt. Quisque est orci, gravida a accumsan at, ultricies vitae dolor. Fusce pretium eros quis metus feugiat auctor. Etiam tincidunt tincidunt lectus ac lacinia. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit. Suspendisse lobortis semper lectus vel convallis. Duis dictum a metus nec vestibulum. Maecenas quis diam varius, laoreet odio vel, cursus justo. Morbi lectus massa, consectetur sit amet nulla eu, scelerisque volutpat diam. Ut ipsum dolor, elementum vitae magna vitae, pellentesque eleifend nibh. Ut tincidunt neque vel viverra aliquam.</p>
 </div>
 
-<div>
-  <h2 class="h3">Responsive Embeds</h2>
-  <p>Wrap an iFrame in a container with class <span class="css-ref">.embed-container</span> to ensure the iFrame is responsively resized.</p>
-  <p>Use modifiers to account for different aspect ratios. <span class="strong">Note: these modifiers can be used on any element - not just embed-containers.</span></p>
-  <pre class="language-markup">
-    <code><!--
-    <div class="embed-container">
-      <iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow"></iframe>
-    </div>
-    <div class="embed-container ratio-16x9">
-      ...
-    </div>
-    <div class="embed-container ratio-21x9">
-      ...
-    </div>
-    <div class="embed-container ratio-1x1">
-      ...
-    </div>
-    <div class="ratio-4x3">
-      Hello world!
-    </div>
-  --></code>
-  </pre>
-  <div class="embed-container">
-    <iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="image-ratios">Cropping to a ratio</h2>
+  <p>Put a <span class="css-ref">.ratio-*</span> class (<span class="code-ref">ratio-1x1</span>, <span class="code-ref">ratio-4x3</span>, <span class="code-ref">ratio-16x9</span>, <span class="code-ref">ratio-21x9</span>) on an <span class="code-ref">&lt;img&gt;</span>, or on a box wrapping one, and it's cropped to fill that ratio.</p>
+  <pre class="language-markup"><code><!--
+    <img class="ratio-1x1" src="photo.jpg" alt="…">
+    <a class="ratio-16x9" href="…"><img src="photo.jpg" alt="…"></a>
+    --></code></pre>
+  <div class="row">
+    <div class="col xs-6 sm-3"><img class="ratio-1x1" src="https://picsum.photos/400/600" alt=""></div>
+    <div class="col xs-6 sm-3"><img class="ratio-4x3" src="https://picsum.photos/400/600" alt=""></div>
+    <div class="col xs-6 sm-3"><img class="ratio-16x9" src="https://picsum.photos/600/400" alt=""></div>
+    <div class="col xs-6 sm-3"><a class="ratio-21x9" href="#"><img src="https://picsum.photos/600/400" alt=""></a></div>
   </div>
+  <p>The last one is the anchor-wrapped pattern from the code sample above &mdash; the ratio class goes on the <span class="code-ref">&lt;a&gt;</span>, not the <span class="code-ref">&lt;img&gt;</span>, when the image is a link.</p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="object-fit">Object fit</h2>
+  <p><span class="css-ref">.object-cover</span> and <span class="css-ref">.object-contain</span> set <code class="code-ref">object-fit</code> on an image that has been given a size (a width and height, an <code class="code-ref">aspect-ratio</code>, or a fixed box). <span class="css-ref">.object-cover</span> crops to fill; <span class="css-ref">.object-contain</span> letterboxes so the whole image shows.</p>
+  <p>A <span class="css-ref">.ratio-*</span> class already applies <code class="code-ref">object-fit: cover</code> &mdash; add <span class="css-ref">.object-contain</span> alongside it to letterbox within that ratio instead.</p>
+  <pre class="language-markup"><code><!--
+    <img src="photo.jpg" alt="…" width="400" height="400" class="object-cover">
+    <img class="ratio-16x9 object-contain bg-soft" src="logo.svg" alt="…">
+    --></code></pre>
+  <div class="row">
+    <img src="https://picsum.photos/500/800" alt="" width="400" height="400" class="object-cover col xs-6 sm-3">
+    <img class="ratio-16x9 object-contain bg-soft col xs-6 sm-3" src="https://picsum.photos/500/800" alt="">
+  </div>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Figures</h2>
+  <p>Use <span class="code-ref">&lt;figure&gt;</span> / <span class="code-ref">&lt;figcaption&gt;</span> for an image with a caption. Inside a <a href="./callouts.html">callout</a> or themed section the caption re-tints to that surface.</p>
+  <pre class="language-markup"><code><!--
+    <figure>
+      <img class="ratio-16x9" src="photo.jpg" alt="A moon jellyfish drifting in dark water">
+      <figcaption>Moon jellyfish (<em>Aurelia aurita</em>), Monterey Bay.</figcaption>
+    </figure>
+    --></code></pre>
+  <figure>
+    <img class="ratio-16x9" src="https://picsum.photos/900/500" alt="">
+    <figcaption>Moon jellyfish (<em>Aurelia aurita</em>), Monterey Bay.</figcaption>
+  </figure>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Floating images</h2>
+  <p>Add a <span class="css-ref">.align-*</span> class to an <span class="code-ref">&lt;img&gt;</span> in running text; margins for the gap are added automatically, and the containing block clears the float itself (no <span class="code-ref">.clearfix</span>). Below <span class="code-ref">sm</span> every image goes full-width and centred.</p>
+  <table class="has-border">
+    <caption class="screen-reader-text">Image float classes</caption>
+    <thead><tr><th scope="col">Class</th><th scope="col">Effect (≥ sm)</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><span class="css-ref">.align-start</span> / <span class="css-ref">.align-end</span></th><td>Float to the inline start / end with text wrapping round it.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.align-center</span></th><td>Block, centred.</td></tr>
+      <tr><th scope="row"><span class="css-ref">.align-none</span></th><td>Block, flush to the inline start.</td></tr>
+    </tbody>
+  </table>
+  <p><img src="https://picsum.photos/200/120" class="align-start" alt=""><strong>align-start.</strong> Despite their name, jellyfish aren't fish &mdash; they're invertebrates that drift with the current, pulsing their bell to move. Text flows around the floated image, and the paragraph contains the float so the next block starts cleanly below it. Nunc ac dolor quis odio egestas accumsan ac eu nibh. Nullam at dui at elit egestas posuere. Aenean aliquam metus at efficitur blandit.</p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Responsive embeds</h2>
+  <p>Wrap an <span class="code-ref">&lt;iframe&gt;</span> in <span class="css-ref">.embed-container</span> for a fluid 16:9 frame. Add a <span class="css-ref">.ratio-*</span> class for another ratio &mdash; those classes work on any element, not just embeds.</p>
+  <pre class="language-markup"><code><!--
+    <div class="embed-container"><iframe src="…"></iframe></div>
+    <div class="embed-container ratio-1x1"><iframe src="…"></iframe></div>
+    --></code></pre>
   <div class="grid">
-    <div class="col sm-10 md-9 lg-7">
-      <div class="embed-container ratio-16x9">
-        <iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-    <div class="col sm-10 md-9 lg-7">
-      <div class="embed-container ratio-21x9">
-        <iframe src="https://www.youtube.com/embed/1jdknVf5mxw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-    <div class="col sm-10 md-9 lg-7">
-      <div class="embed-container ratio-1x1">
-        <iframe src="https://player.vimeo.com/video/170780266?h=2912c26a2d" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-    <div class="col sm-10 md-9 lg-7">
-      <div class="boxed ratio-4x3">
-        Hello world!
-      </div>
-    </div>
+    <div class="embed-container col md-6"><iframe src="https://www.youtube.com/embed/b3B1Jh9Xrow" title="Video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <div class="embed-container ratio-1x1 col md-6"><iframe src="https://player.vimeo.com/video/170780266" title="Video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
   </div>
 </div>
 @@include('./src/docs/partials/html-footer.html')

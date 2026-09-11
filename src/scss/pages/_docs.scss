@@ -145,7 +145,6 @@ html {
 // Inline references
 %reference {
   @extend %inline-code;
-  display: inline-block;
   font-weight: get-weight(semibold);
   background-color: token(code-background);
   color: token(code-color);
@@ -322,20 +321,15 @@ div.code-toolbar {
 
 // Boxed Out Example
 .boxed {
-  background: get-color-role(neutral, subtle);
-  color: token(color-on-neutral-subtle);
-  border: 1px solid get-color-role(neutral, muted);
   padding: get-space(xs) get-space(sm);
+  box-shadow: get-shadow(sm);
   line-height: 1.2;
   margin: 0 0 token(flow) 0;
-  display: inherit;
   font-size: token(font-size-sm);
   flex: 1 1 auto;
 }
 
 .row-boxed {
-  background-color: get-color-role(neutral, subtle);
-  color: token(color-on-neutral-subtle);
   min-height: 160px;
   margin-block-end: token(flow);
   padding: token(flow) 0;
@@ -487,6 +481,81 @@ div.code-toolbar {
 
 .is-h3-size {
   @include h3(); // Applies h3 font-size and line-height
+}
+
+// Practical container-query example (container-queries.html)
+.profile-card-container {
+  container-type: inline-size;
+}
+
+.profile-card {
+  position: relative;
+  background: token(color-surface);
+  border: token(border-width) token(border-style) token(border-color);
+  border-radius: get-radius(none);
+  margin: 0;
+  margin-block-start: 3rem;
+}
+
+.profile-card-photo {
+  display: block;
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+  border-radius: get-radius(full);
+  border: 3px solid token(color-surface);
+  margin-block: -3rem;
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.profile-card-body {
+  padding: 3.5rem get-space(md) get-space(md);
+  text-align: center;
+
+  h3 {
+    margin-block-end: 0;
+  }
+}
+
+.profile-card-role {
+  color: token(color-text-muted);
+}
+
+.profile-card-details {
+  text-align: start;
+  dt {
+    font-weight: get-weight(semibold);
+    font-size: token(font-size-sm);
+    color: token(color-text-muted);
+  }
+  dd {
+    margin: 0 0 get-space(xs);
+  }
+}
+
+@include container-above(420px) {
+  .profile-card {
+    display: flex;
+    align-items: stretch;
+  }
+  .profile-card-photo {
+    width: 40%;
+    height: auto;
+    // aspect-ratio: 3 / 4;
+    border-radius: 0;
+    border: 0;
+    margin: 0;
+  }
+  .profile-card-body {
+    flex: 1 1 auto;
+    text-align: start;
+    padding: get-space(lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 // select-bg() mixin example: recolour the select chevron against a dark background

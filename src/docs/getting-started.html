@@ -1,89 +1,86 @@
 @@include('./src/docs/partials/html-head.html', {
 "title": "Getting Started",
-"description": "How to set up a new project and get started with Jellyfish UI",
+"description": "Install Jellyfish UI, set up the SCSS import order, and wire up the JS.",
 })
 @@include('./src/docs/partials/navigation.html')
-<h1 class="section-heading h2">
-  Getting Started
-</h1>
+<h1 class="section-heading h2">Getting started</h1>
 
-<div>
-  <p class="standfirst">Jellyfish is a lightweight SCSS and JS framework to add to the <a href="https://github.com/search?q=css+frameworks" rel="external">ever-growing list</a>.</p>
-  <p>Jellyfish is mobile-first, flexible and scalable - providing browser-consistent styles for default HTML elements, along with some useful components and modifiers. Jellyfish uses <a href="./variables.html">SASS variables</a> throughout, with a handful of variables being converted and exposed as CSS custom properties to allow for in-browser modification.
-    Jellyfish also <del>ships</del> swims with a small handful of helpful <a href="./javascript.html">Javascript functions and utilities</a>.</p>
+<div class="section is-tight bg-base">
+  <p class="standfirst">Jellyfish is a mobile-first SCSS + vanilla-JS framework, consumed as an npm dependency and compiled into your project's stylesheet. Settings are <a href="./variables.html">Sass <span class="code-ref">!default</span> variables</a>; a subset are also exposed as <span class="code-ref">--jf-*</span> custom properties for runtime theming.</p>
+  <p>The HTML/PHP <a href="https://github.com/unofficialmatt/Jellyfish-HTML5" target="_blank" rel="noopener">starter repo</a> provides a good example of use.</p>
+  <pre class="language-markup"><code class="code-ref">npm install jellyfish-ui</code></pre>
 </div>
 
-<!-- TODO: COME BACK TO THIS AND TEST IF CAN JUST IMPORT JP -->
-<div>
-  <h2 class="h3">Using Jellyfish in your project</h2>
-  <p>Jellyfish is intended to be used as a dependency, via npm. The HTML/php <a href="https://github.com/unofficialmatt/Jellyfish-HTML5" target="_blank">starter repo</a> provides a good example of use.</p>
-  <pre class="language-markup"><code class="code-ref">$ npm install jellyfish-ui</code></pre>
-  <h3 class="h4">SASS 7-1 Pattern</h3>
-  <p>Jellyfish is built with the <a href="https://sass-guidelin.es/#the-7-1-pattern" target="_blank">SASS 7-1 pattern</a> at it's core. In order to preserve this in your project's output CSS, you should import the SCSS files in the appropriate order:</p>
-  <pre class="language-scss">
-      <code>
-        @charset "UTF-8";
+<div class="section is-tight bg-base">
+  <h2 class="h3">SCSS import order</h2>
+  <p>Jellyfish follows the <a href="https://sass-guidelin.es/#the-7-1-pattern" target="_blank" rel="noopener">7-1 pattern</a>. Import each Jellyfish layer, then your matching layer, so your rules land after the framework's:</p>
+  <pre class="language-scss"><code>
+    @charset "UTF-8";
 
-        @import "jellyfish-ui/src/scss/abstracts/__all";
-        @import "PROJECT_SCSS_DIR/abstracts/__all";
+    @import "jellyfish-ui/src/scss/abstracts/__all";
+    @import "my-theme/abstracts/__all";
 
-        @import "jellyfish-ui/src/scss/base/__all";
-        @import "PROJECT_SCSS_DIR/base/__all";
+    @import "jellyfish-ui/src/scss/base/__all";
+    @import "my-theme/base/__all";
 
-        @import "jellyfish-ui/vendors/hamburgers/hamburgers";
-        @import "PROJECT_SCSS_DIR/vendors/__all";
+    @import "jellyfish-ui/vendors/hamburgers/hamburgers";
+    @import "my-theme/vendors/__all";
 
-        @import "jellyfish-ui/src/scss/layout/__all";
-        @import "PROJECT_SCSS_DIR/layout/__all";
+    @import "jellyfish-ui/src/scss/layout/__all";
+    @import "my-theme/layout/__all";
 
-        @import "jellyfish-ui/src/scss/components/__all";
-        @import "PROJECT_SCSS_DIR/components/__all";
+    @import "jellyfish-ui/src/scss/components/__all";
+    @import "my-theme/components/__all";
 
-        @import "PROJECT_SCSS_DIR/pages/__all";
+    @import "my-theme/pages/__all";
 
-        @import "jellyfish-ui/src/scss/themes/__all";
-        @import "PROJECT_SCSS_DIR/themes/__all";
+    @import "jellyfish-ui/src/scss/themes/__all";
+    @import "my-theme/themes/__all";
 
-        @import "jellyfish-ui/src/scss/utilities/__all";
-        @import "PROJECT_SCSS_DIR/utilities/__all";
-
-      </code>
-    </pre>
-  <p>Most settings can be overridden in your own <span class="code-ref">PROJECT_SCSS_DIR/abstracts/__all</span> above, since they're consumed later in the cascade. A few are read <span class="italic">while the framework's own settings load</span> &mdash; notably <span class="variable-ref">$token-prefix</span> (the <a href="./variables.html#abstracts">custom-property namespace</a>, default <span class="code-ref">jf</span>) and the <span class="variable-ref">$colors</span> palette map (its <span class="code-ref">makeColorPalette()</span> calls run inline, and other settings call <span class="code-ref">get-color()</span> straight away). Those must be set <span class="bold">before</span> the first <span class="code-ref">@import "jellyfish-ui/&hellip;"</span> line, at the top of your entry stylesheet:</p>
-  <pre class="language-scss">
-      <code>
-        @charset "UTF-8";
-
-        $token-prefix: "myproject";   // or "" to keep un-prefixed --card-padding names
-
-        @import "jellyfish-ui/src/scss/abstracts/__all";
-        // ...rest of the imports as above
-      </code>
-    </pre>
-  <h3 class="h4">Javascript</h3>
-  <p>You should also include the Javascript files - either by importing the src files into your build process or by including the dist file <span class="code-ref">/dist/js/jellyfish.min.js</span> in your project's markup.</p>
-  <h3 class="h4" id="dark-mode">Dark mode</h3>
-  <p>Dark mode ships on by default (set <span class="variable-ref">$dark-mode-enabled: false</span> to drop it). With no opt-in the page follows the OS <code class="code-ref">prefers-color-scheme</code>. To let visitors choose &mdash; and to persist that choice (plus the <a href="./accessibility.html">text-size preference</a>) without a flash on the next load &mdash; add this to your <span class="code-ref">&lt;head&gt;</span>, before the stylesheet:</p>
-  <pre class="language-markup">
-      <code>
-        &lt;meta name="color-scheme" content="light dark"&gt;
-        &lt;script&gt;
-          (function () {
-            var el = document.documentElement;
-            try {
-              var t = localStorage.getItem("jf-theme");
-              if (t === "dark" || t === "light") el.classList.add("jf-" + t);
-            } catch (e) {}
-            try {
-              var f = localStorage.getItem("jf-font-size");
-              if (f === "smaller" || f === "larger" || f === "largest")
-                el.classList.add("font-size-" + f);
-            } catch (e) {}
-          })();
-        &lt;/script&gt;
-      </code>
-    </pre>
-  <p>Then add a control &mdash; any <span class="code-ref">[data-theme-toggle]</span> element toggles, <span class="code-ref">[data-theme-set="dark|light|system"]</span> picks a mode &mdash; or drive it from your own code via <code class="code-ref">window.JellyfishTheme</code>. Full detail on the <a href="./theme-colors.html#dark-mode">Theme Colors</a> and <a href="./javascript.html#theme">Javascript</a> pages.</p>
+    @import "jellyfish-ui/src/scss/utilities/__all";
+    @import "my-theme/utilities/__all";
+  </code></pre>
+  <p>Most settings can go in your <span class="code-ref">abstracts/__all</span> above (they're consumed later), including the <span class="variable-ref">$colors</span> palette map &mdash; merge into it with the standard <span class="code-ref">map-merge</span> pattern to add your own families. One setting must be set at the very top, before the first Jellyfish <span class="code-ref">@import</span>, because the framework's own settings read it as they load:</p>
+  <ul>
+    <li><span class="variable-ref">$token-prefix</span> &mdash; the custom-property namespace (default <span class="code-ref">jf</span>; <span class="code-ref">""</span> for un-prefixed <span class="code-ref">--card-padding</span> names).</li>
+  </ul>
+  <pre class="language-scss"><code>
+    @charset "UTF-8";
+    $token-prefix: "myproject";
+    @import "jellyfish-ui/src/scss/abstracts/__all";
+    /* …rest as above… */
+  </code></pre>
 </div>
 
+<div class="section is-tight bg-base">
+  <h2 class="h3">JavaScript</h2>
+  <p>Include <span class="code-ref">dist/js/jellyfish.min.js</span>, or import <span class="code-ref">src/js/</span> into your own build. It powers the navbar, modals, theme toggle, accessibility control and the <a href="./javascript.html">helper functions</a>.</p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="dark-mode">Dark mode</h2>
+  <p>On by default (<span class="variable-ref">$dark-mode-enabled: false</span> to drop it). With no opt-in the page follows <span class="code-ref">prefers-color-scheme</span>. To let visitors choose &mdash; and restore it without a flash &mdash; add this to <span class="code-ref">&lt;head&gt;</span> before the stylesheet, then use any <span class="code-ref">[data-theme-toggle]</span> control. Full detail on <a href="./theme-colors.html#dark-mode">Theme Colours</a>.</p>
+  <pre class="language-markup"><code><!--
+    <meta name="color-scheme" content="light dark">
+    <script>
+      (function () {
+        var el = document.documentElement;
+        try {
+          var t = localStorage.getItem("jf-theme");
+          if (t === "dark" || t === "light") el.classList.add("jf-" + t);
+          var f = localStorage.getItem("jf-font-size");
+          if (/^(smaller|larger|largest)$/.test(f)) el.classList.add("font-size-" + f);
+        } catch (e) {}
+      })();
+    </script>
+    --></code></pre>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="sticky-headers">Sticky headers and deep links</h2>
+  <p>If your site has a sticky or fixed header, set <span class="code-ref">--jf-scroll-offset</span> to its height so <span class="code-ref">#fragment</span> links (and the <a href="./accordions.html#deep-linking">accordion deep-link</a>) don't land underneath it. Jellyfish applies it via <span class="code-ref">scroll-padding</span> on <span class="css-ref">&lt;html&gt;</span>.</p>
+  <pre class="language-css"><code>
+    :root { --jf-scroll-offset: 5rem; /* or calc(var(--header-height) + 1rem) */ }
+  </code></pre>
+</div>
 @@include('./src/docs/partials/html-footer.html')

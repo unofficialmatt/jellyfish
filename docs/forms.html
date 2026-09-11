@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Forms ~ 🎐 Jellyfish UI</title>
-    <meta name="description" content="Forms don't have to be ugly.">
+    <meta name="description" content="Every form control styled with no classes, plus native validation states and layout helpers.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
@@ -53,7 +53,7 @@
             Latest
           </li>
           <li>
-            <a href="./whats-new.html">What's New in 4.3.0</a>
+            <a href="./whats-new.html">What's new in 5.0</a>
           </li>
           <li class="li-title mt-0">
             HTML
@@ -107,6 +107,9 @@
             <a href="./breakpoints.html">Breakpoints</a>
           </li>
           <li>
+            <a href="./container-queries.html">Container Queries</a>
+          </li>
+          <li>
             <a href="./mixins.html">Mixins</a>
           </li>
           <li>
@@ -128,6 +131,9 @@
             <a href="./theme-colors.html">Theme Colors</a>
           </li>
           <li>
+            <a href="./palette-generator.html">Palette Generator</a>
+          </li>
+          <li>
             <a href="./accessibility.html">Accessibility</a>
           </li>
           <li>
@@ -143,493 +149,247 @@
     <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
-<h1 class="section-heading h2">
-  Forms<a href="./variables.html#forms">[ Variable Reference ]</a>
-</h1>
-<div>
-  <p class="standfirst">
-    Jellyfish applies styling to all standard form elements to make them look
-    great without hassle or additional classes.
-  </p>
-  <p>
-    Use the <span class="variable-ref">$form-accent-color</span> variable to
-    apply
-    <a
-      href="https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color"
-      target="_blank"
-      >accent color</a
-    >
-    to form elements.
-  </p>
-
-  <pre class="language-markup line-numbers">
-    <code><!--
+<h1 class="section-heading h2">Forms</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">Every standard control is styled with no classes. Labels are block; controls take <span class="code-ref">accent-color</span> from <span class="variable-ref">$form-accent-color</span>. Control <span class="code-ref">font-size</span> is <span class="code-ref">max(16px, 1em)</span> so iOS doesn't zoom on focus.</p>
+  <pre class="language-markup"><code><!--
     <form>
-      <label for="text">Name</label>
-      <input id="text" type="text" placeholder="First Name">
-      <label for="email">Email Address</label>
-      <input id="email" type="email" placeholder="email@jellyfishrule.com">
-      <label for="select">My message is about</label>
-      <select id="select">
-        <option disabled selected>Please select</option>
-        <option>Jellyfish</option>
-        <option>CSS</option>
-        <option>Coffee</option>
-        <option>Other</option>
+      <label for="name">Name</label>
+      <input id="name" type="text" autocomplete="name">
+
+      <label for="topic">Topic</label>
+      <select id="topic">
+        <option disabled selected>Choose…</option>
+        <option>Jellyfish</option><option>CSS</option>
       </select>
-      <label for="textarea">Any other comments?</label>
-      <textarea id="textarea" rows="5" cols="30" placeholder="Message"></textarea>
-      <div class="form-group">
-        <label for="rememberme"><input id="rememberme" name="checkbox" type="checkbox"> Remember Me</label>
-      </div>
-      <input type="submit" value="Submit">
-      <input type="reset" value="Reset">
+
+      <label for="msg">Message</label>
+      <textarea id="msg" rows="4"></textarea>
+
+      <button type="submit">Send</button>
     </form>
-  --></code>
-  </pre>
+    --></code></pre>
   <form>
-    <label for="text">Name</label>
-    <input id="text" type="text" placeholder="First Name" />
-    <label for="email">Email Address</label>
-    <input id="email" type="email" placeholder="email@jellyfishrule.com" />
-    <label for="select">My message is about</label>
-    <select id="select">
-      <option disabled selected>Please select</option>
-      <option>Jellyfish</option>
-      <option>CSS</option>
-      <option>Coffee</option>
-      <option>Other</option>
-    </select>
-    <label for="textarea">Any other comments?</label>
-    <textarea id="textarea" rows="5" cols="30" placeholder="Message"></textarea>
-    <div class="form-group">
-      <label for="rememberme"
-        ><input id="rememberme" name="checkbox" type="checkbox" /> Remember
-        Me</label
-      >
-    </div>
-    <input type="submit" value="Submit" />
-    <input type="reset" value="Reset" />
+    <label for="name">Name</label>
+    <input id="name" type="text" autocomplete="name">
+    <label for="topic">Topic</label>
+    <select id="topic"><option disabled selected>Choose&hellip;</option><option>Jellyfish</option><option>CSS</option><option>Coffee</option></select>
+    <label for="msg">Message</label>
+    <textarea id="msg" rows="4"></textarea>
+    <button type="submit">Send</button>
   </form>
 </div>
-<div>
+
+<div class="section is-tight bg-base">
   <h2 class="h3">Form elements</h2>
-  <table class="table has-border">
-    <thead>
-      <tr>
-        <th>Input Type</th>
-        <th>Example</th>
-      </tr>
-    </thead>
+  <table class="has-border is-responsive">
+    <caption class="screen-reader-text">Every native form control, styled with no classes</caption>
+    <thead><tr><th scope="col">Type</th><th scope="col">Example</th></tr></thead>
     <tbody>
-      <tr>
-        <td>checkbox</td>
-        <td>
-          <div class="form-group">
-            <label><input type="checkbox" checked="" /> Checkbox 1</label>
-            <label><input type="checkbox" /> Checkbox 2</label>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>color</td>
-        <td><input type="color" value="#b22d4f" /></td>
-      </tr>
-      <tr>
-        <td>date</td>
-        <td><input type="date" /></td>
-      </tr>
-      <tr>
-        <td>datetime-local</td>
-        <td><input type="datetime-local" /></td>
-      </tr>
-      <tr>
-        <td>time</td>
-        <td><input type="time" /></td>
-      </tr>
-      <tr>
-        <td>email</td>
-        <td><input type="email" /></td>
-      </tr>
-      <tr>
-        <td>number</td>
-        <td><input type="number" /></td>
-      </tr>
-      <tr>
-        <td>password</td>
-        <td><input type="password" autocomplete="off" /></td>
-      </tr>
-      <tr>
-        <td>radio</td>
-        <td>
-          <div class="form-group">
-            <label
-              ><input type="radio" name="radio" checked="" /> Radio 1</label
-            >
-            <label><input type="radio" name="radio" /> Radio 2</label>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>range</td>
-        <td><input type="range" /></td>
-      </tr>
-      <tr>
-        <td>search</td>
-        <td><input type="search" /></td>
-      </tr>
-      <tr>
-        <td>text</td>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
-        <td>select</td>
-        <td>
-          <select>
-            <option>Item 1</option>
-            <option>Item 2</option>
-            <option>Item 3</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>textarea</td>
-        <td><textarea rows="4"></textarea></td>
-      </tr>
+      <tr><th scope="row">checkbox</th><td data-label="Example"><div class="form-group"><label><input type="checkbox" checked> Checkbox 1</label><label><input type="checkbox"> Checkbox 2</label></div></td></tr>
+      <tr><th scope="row">radio</th><td data-label="Example"><div class="form-group"><label><input type="radio" name="fe-radio" checked> Radio 1</label><label><input type="radio" name="fe-radio"> Radio 2</label></div></td></tr>
+      <tr><th scope="row">color</th><td data-label="Example"><input type="color" value="#eb567d" aria-label="Colour"></td></tr>
+      <tr><th scope="row">date</th><td data-label="Example"><input type="date" aria-label="Date"></td></tr>
+      <tr><th scope="row">datetime-local</th><td data-label="Example"><input type="datetime-local" aria-label="Date and time"></td></tr>
+      <tr><th scope="row">time</th><td data-label="Example"><input type="time" aria-label="Time"></td></tr>
+      <tr><th scope="row">email</th><td data-label="Example"><input type="email" aria-label="Email"></td></tr>
+      <tr><th scope="row">number</th><td data-label="Example"><input type="number" aria-label="Number"></td></tr>
+      <tr><th scope="row">password</th><td data-label="Example"><input type="password" autocomplete="off" aria-label="Password"></td></tr>
+      <tr><th scope="row">range</th><td data-label="Example"><input type="range" aria-label="Range"></td></tr>
+      <tr><th scope="row">search</th><td data-label="Example"><input type="search" aria-label="Search"></td></tr>
+      <tr><th scope="row">text</th><td data-label="Example"><input type="text" aria-label="Text"></td></tr>
+      <tr><th scope="row">select</th><td data-label="Example"><select aria-label="Select"><option>Item 1</option><option>Item 2</option><option>Item 3</option></select></td></tr>
+      <tr><th scope="row">textarea</th><td data-label="Example"><textarea rows="4" aria-label="Textarea"></textarea></td></tr>
     </tbody>
   </table>
-  <p>Textareas use <span class="code-ref">field-sizing: content</span>, so where the browser supports it they grow to fit what's typed (the <span class="code-ref">rows</span> attribute sets the starting height). Elsewhere they stay at <span class="code-ref">rows</span> height and scroll, as before.</p>
-  <p><span class="code-ref">&lt;select&gt;</span> now sizes to its widest <span class="code-ref">&lt;option&gt;</span> (<span class="code-ref">width: fit-content</span>) and is capped at <span class="code-ref">max-width: 100%</span> so a long option can't overflow its container. The old <span class="code-ref">300px</span> / <span class="code-ref">60%</span> default is gone. Inside a <span class="css-ref">.col</span> or <span class="css-ref">.form-row</span> it fills the column as before; set <span class="code-ref">width</span> yourself for a fixed size.</p>
+  <p><span class="code-ref">&lt;textarea&gt;</span> uses <span class="code-ref">field-sizing: content</span> where supported, so it grows to fit what's typed (<span class="code-ref">rows</span> sets the starting height); elsewhere it stays at <span class="code-ref">rows</span> height and scrolls.</p>
 </div>
-<div>
-  <h2 class="h3">Working with checkboxes and radio buttons</h2>
-  <p>
-    A set of related checkboxes or radio buttons that answers one question is a
-    <em>group</em>: wrap it in a <code class="code-ref">&lt;fieldset></code> with a
-    <code class="code-ref">&lt;legend></code> naming the choice. Each control
-    keeps its own <code class="code-ref">&lt;label></code>; the
-    <code class="code-ref">&lt;legend></code> is what a screen reader announces
-    for the group as a whole.
-  </p>
-  <pre class="language-markup">
-    <code><!--
-    <fieldset>
-      <legend>Notify me</legend>
-      <label><input type="radio" name="notify" checked> By email</label>
-      <label><input type="radio" name="notify"> By text message</label>
-      <label><input type="radio" name="notify"> Not at all</label>
-    </fieldset>
-  --></code>
-  </pre>
-  <fieldset>
-    <legend>Notify me</legend>
-    <label><input type="radio" name="notify" checked="" /> By email</label>
-    <label><input type="radio" name="notify" /> By text message</label>
-    <label><input type="radio" name="notify" /> Not at all</label>
-  </fieldset>
-  <p>
-    For a single control, or to group controls for spacing only (no group
-    label), use <span class="css-ref">.form-group</span> instead.
-  </p>
-  <pre class="language-markup">
-    <code><!--
-    <div class="form-group">
-      <label><input type="checkbox" name="terms"> I accept the terms</label>
-    </div>
-  --></code>
-  </pre>
-  <div class="form-group">
-    <label><input type="checkbox" name="terms" /> I accept the terms</label>
-  </div>
-  <p>
-    Add <span class="css-ref">.form-group-inline</span> to lay the controls out
-    inline rather than stacked. It works on a
-    <code class="code-ref">&lt;fieldset></code> too &mdash; the
-    <code class="code-ref">&lt;legend></code> stays on its own line above the
-    row.
-  </p>
-  <pre class="language-markup">
-    <code><!--
-    <fieldset class="form-group-inline">
-      <legend>Size</legend>
-      <label><input type="radio" name="size" checked> Small</label>
-      <label><input type="radio" name="size"> Medium</label>
-      <label><input type="radio" name="size"> Large</label>
-    </fieldset>
-  --></code>
-  </pre>
-  <fieldset class="form-group-inline">
-    <legend>Size</legend>
-    <label><input type="radio" name="size" checked="" /> Small</label>
-    <label><input type="radio" name="size" /> Medium</label>
-    <label><input type="radio" name="size" /> Large</label>
-  </fieldset>
-  <p>
-    Checkboxes and radio buttons will scale to remain in proportion to their
-    label.
-  </p>
-  <pre class="language-markup">
-        <code><!--
-        <label style="font-size:2em"><input type="radio" name="radio" checked=""> Radio 1</label>
-        <label style="font-size:1.5em"><input type="radio" name="radio"> Radio 2</label>
-        <label><input type="radio" name="radio"> Radio 3</label>
-      --></code>
-      </pre>
-  <div class="form-group">
-    <label style="font-size: 1.8em"
-      ><input type="radio" name="radio" checked="" /> Radio 1</label
-    >
-    <label style="font-size: 1.4em"
-      ><input type="radio" name="radio" /> Radio 2</label
-    >
-    <label><input type="radio" name="radio" /> Radio 3</label>
-  </div>
-</div>
-<div>
-  <h2 class="h3">Fieldsets</h2>
-  <p>
-    Any set of related controls can sit in a
-    <code class="code-ref">&lt;fieldset></code> &mdash; the radio group above is
-    the common case, but it also suits a larger block such as a sign-in or
-    address section. Add a <code class="code-ref">&lt;legend></code> whenever the
-    group needs a name; Jellyfish styles it to sit across the top border.
-  </p>
-  <pre class="language-markup">
-    <code><!--
-    <fieldset>
-    <legend>Login</legend>
-      ...
-    </fieldset>
-  --></code>
-  </pre>
-  <fieldset>
-    <legend>Login</legend>
-    <label>Username</label>
-    <input type="text" />
-    <label>Password</label>
-    <input type="password" autocomplete="off" />
-    <div class="form-group">
-      <label> <input type="checkbox" /> Remember me </label>
-    </div>
-    <button type="button">Login</button>
-  </fieldset>
-  <p>
-    Add <span class="css-ref">.is-plain</span> to drop the border and padding so
-    the group reads as a plain label followed by its controls. Combine it with
-    <span class="css-ref">.form-group-inline</span> for a label with an inline
-    row of options.
-  </p>
-  <pre class="language-markup">
-    <code><!--
-    <fieldset class="is-plain">
-      <legend>Contact preference</legend>
-      <label><input type="radio" name="contact" checked> Email</label>
-      <label><input type="radio" name="contact"> Phone</label>
-    </fieldset>
 
-    <fieldset class="is-plain form-group-inline">
-      <legend>Delivery speed</legend>
-      <label><input type="radio" name="speed" checked> Standard</label>
-      <label><input type="radio" name="speed"> Express</label>
-    </fieldset>
-  --></code>
-  </pre>
-  <fieldset class="is-plain">
-    <legend>Contact preference</legend>
-    <label><input type="radio" name="contact" checked="" /> Email</label>
-    <label><input type="radio" name="contact" /> Phone</label>
-  </fieldset>
-  <fieldset class="is-plain form-group-inline">
-    <legend>Delivery speed</legend>
-    <label><input type="radio" name="speed" checked="" /> Standard</label>
-    <label><input type="radio" name="speed" /> Express</label>
-  </fieldset>
-</div>
-<div>
-  <h2 id="validation-states" class="h3">Validation states</h2>
-  <p>
-    Once a field has been interacted with,
-    <span class="code-ref">:user-invalid</span> turns its border
-    <span class="variable-ref">error</span> &mdash; no class or JavaScript. Unlike
-    <span class="code-ref">:invalid</span> it won't flag empty required fields on
-    load. Only the invalid state is styled; there's no green
-    <span class="code-ref">:user-valid</span> treatment.
-  </p>
-  <form>
-    <label for="v-email">Email address</label>
-    <input type="email" id="v-email" required placeholder="you@example.com" />
-    <p class="form-hint">
-      Helper text like this uses <span class="css-ref">.form-hint</span> (muted).
-      Type something that isn't an email and blur the field to see the invalid
-      state.
-    </p>
-  </form>
-  <p>
-    For a server- or script-rendered error, set
-    <span class="code-ref">aria-invalid="true"</span> on the field &mdash; the
-    framework styles it identically to
-    <span class="code-ref">:user-invalid</span> &mdash; and point
-    <span class="code-ref">aria-describedby</span> at the message. Style the
-    message with <span class="css-ref">.form-error</span>
-    (<span class="variable-ref">error</span> colour, semibold). The ARIA is what a
-    screen reader needs; <span class="code-ref">:user-invalid</span> on its own
-    isn't announced. Add <span class="code-ref">role="alert"</span> to a message
-    inserted after load.
-  </p>
-  <pre class="language-markup">
-    <code><!--
-    <label for="email">Email address</label>
-    <input type="email" id="email" required
-           aria-invalid="true" aria-describedby="email-error">
-    <p id="email-error" class="form-error">Enter a valid email address.</p>
-  --></code>
-  </pre>
-  <form>
-    <label for="v-email2">Email address</label>
-    <input
-      type="email"
-      id="v-email2"
-      value="not-an-email"
-      aria-invalid="true"
-      aria-describedby="v-email2-error"
-    />
-    <p id="v-email2-error" class="form-error">Enter a valid email address.</p>
-  </form>
-</div>
-<div>
-  <h2 class="h3">Form Layout</h2>
-  <p>
-    You can layout forms with the same classes as the grid - with
-    <span class="css-ref">.row</span> and
-    <span class="css-ref">.col</span> elements.
-  </p>
-  <pre class="language-markup">
-    <code><!--
-    <form>
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="First name">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Last name">
-      </div>
+<div class="section is-tight bg-base">
+  <h2 class="h3">Checkboxes, radios &amp; groups</h2>
+  <p>Wrap a checkbox / radio in its <span class="code-ref">&lt;label&gt;</span>. <span class="css-ref">.form-group</span> adds vertical spacing around a control or a checkbox row.</p>
+  <pre class="language-markup"><code><!--
+    <div class="form-group">
+      <label><input type="checkbox"> Keep me posted</label>
     </div>
-    <div class="row">
-      <div class="col">
-        <textarea rows="5" placeholder="Your Message"></textarea>
-      </div>
-    </div>
-  </form>
-  --></code>
-  </pre>
-  <form>
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="First name" />
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Last name" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <textarea rows="5" placeholder="Your Message"></textarea>
-      </div>
-    </div>
-  </form>
-  <p>
-    For a tighter column gutter, you can use the class
-    <span class="css-ref">.form-row</span>.
-  </p>
-  <pre class="language-markup">
-    <code><!--
-    <form>
-    <div class="form-row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="First name">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Last name">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="col">
-        <textarea rows="5" placeholder="Your Message"></textarea>
-      </div>
-    </div>
-  </form>
-  --></code>
-  </pre>
-  <form>
-    <div class="form-row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="First name" />
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Last name" />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="col">
-        <textarea rows="5" placeholder="Your Message"></textarea>
-      </div>
-    </div>
-  </form>
-</div>
-<div>
-  <h2 class="h3">Disabled forms</h2>
-  <p>
-    Add the <code class="code-ref">disabled</code> attribute to an input to
-    disable it.
-  </p>
-  <input type="text" disabled placeholder="Disabled text input" />
-  <textarea rows="5" placeholder="Disabled textarea" disabled></textarea>
-</div>
-<div>
-  <h2 id="recolouring-the-select-chevron" class="h3">
-    Recolouring the select chevron
-  </h2>
-  <p>
-    The select chevron is drawn from
-    <span class="variable-ref">$select-chevron-icon-svg</span>, coloured by
-    <span class="variable-ref">$select-chevron-color</span>. Custom properties
-    can't be used inside an embedded SVG data-URI, so to recolour the chevron
-    for a given context (eg. a dark background), use the
-    <span class="code-ref">select-bg()</span> mixin rather than overriding a CSS
-    variable directly.
-  </p>
-  <pre class="language-scss">
-    <code>
-      .my-dark-section select {
-        @include select-bg(#fff);
-      }
-    </code>
-  </pre>
-  <select>
-    <option>Item 1</option>
-    <option>Item 2</option>
-    <option>Item 3</option>
-  </select>
-  <div class="select-bg-demo">
-    <select>
-      <option>Item 1</option>
-      <option>Item 2</option>
-      <option>Item 3</option>
-    </select>
+    --></code></pre>
+  <div class="form-group"><label><input type="checkbox"> Keep me posted</label></div>
+
+  <p>Both are sized in <span class="code-ref">em</span>, so they scale with whatever <span class="code-ref">font-size</span> the label sits in &mdash; no separate size classes:</p>
+  <pre class="language-markup"><code><!--
+    <label style="font-size: 2em"><input type="radio" name="r" checked> Large</label>
+    --></code></pre>
+  <div class="form-group">
+    <label style="font-size: 2em"><input type="radio" name="r" checked> Large</label>
+    <label style="font-size: 1.5em"><input type="radio" name="r"> Medium</label>
+    <label><input type="radio" name="r"> Default</label>
   </div>
-  <p>
-    To change the chevron's shape entirely, override
-    <span class="variable-ref">$select-chevron-icon-svg</span> before Jellyfish
-    is imported &mdash; keep the <code class="code-ref">{{color}}</code> token
-    in your replacement SVG so <span class="code-ref">select-bg()</span> can
-    still substitute the colour.
-  </p>
-  <p>
-    The chevron is a background image, so in forced-colors modes (Windows High
-    Contrast) it keeps rendering but in its fixed colour rather than a palette
-    one. The <span class="code-ref">&lt;select&gt;</span>'s border and text take
-    system colours as normal.
-  </p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Fieldsets</h2>
+  <p>Group related controls in a <span class="code-ref">&lt;fieldset&gt;</span> with a <span class="code-ref">&lt;legend&gt;</span> (styled across the top border). Add <span class="css-ref">.is-plain</span> to drop the border / padding so it reads as a plain label plus its controls; add <span class="css-ref">.form-group-inline</span> for an inline row of options.</p>
+  <pre class="language-markup"><code><!--
+    <fieldset>
+      <legend>Sign in</legend>
+      <label for="u">Username</label>
+      <input id="u" type="text" autocomplete="username">
+      <label for="p">Password</label>
+      <input id="p" type="password" autocomplete="current-password">
+      <div class="form-group"><label><input type="checkbox"> Remember me</label></div>
+      <button type="button">Sign in</button>
+    </fieldset>
+    --></code></pre>
+  <fieldset>
+    <legend>Sign in</legend>
+    <label for="u">Username</label>
+    <input id="u" type="text" autocomplete="username">
+    <label for="p">Password</label>
+    <input id="p" type="password" autocomplete="current-password">
+    <div class="form-group"><label><input type="checkbox"> Remember me</label></div>
+    <button type="button">Sign in</button>
+  </fieldset>
+  <pre class="language-markup"><code><!--
+    <fieldset class="is-plain form-group-inline">
+      <legend>Contact preference</legend>
+      <label><input type="radio" name="c" checked> Email</label>
+      <label><input type="radio" name="c"> Phone</label>
+    </fieldset>
+    --></code></pre>
+  <fieldset class="is-plain form-group-inline">
+    <legend>Contact preference</legend>
+    <label><input type="radio" name="c" checked> Email</label>
+    <label><input type="radio" name="c"> Phone</label>
+  </fieldset>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="validation-states">Validation states</h2>
+  <ul>
+    <li><span class="code-ref">:user-invalid</span> &mdash; after the user has interacted, an invalid field's border turns <span class="variable-ref">error</span>. No class, no JS; unlike <span class="code-ref">:invalid</span> it doesn't flag empty required fields on load. There's no green <span class="code-ref">:user-valid</span> style.</li>
+    <li><span class="code-ref">aria-invalid="true"</span> &mdash; for a server- or script-rendered error; styled identically. Point <span class="code-ref">aria-describedby</span> at the message (this is what a screen reader needs).</li>
+    <li><span class="css-ref">.form-hint</span> &mdash; muted helper text. <span class="css-ref">.form-error</span> &mdash; the <span class="variable-ref">error</span>-coloured message; add <span class="code-ref">role="alert"</span> if inserted after load.</li>
+  </ul>
+  <pre class="language-markup"><code><!--
+    <label for="email">Email</label>
+    <input id="email" type="email" required aria-describedby="email-hint">
+    <p id="email-hint" class="form-hint">We'll only use it to reply.</p>
+    --></code></pre>
+  <p>On error, add <span class="code-ref">aria-invalid="true"</span> to the input and swap the hint for the same element restyled:</p>
+  <pre class="language-markup"><code><!--
+    <input id="email" type="email" required aria-invalid="true" aria-describedby="email-hint">
+    <p id="email-hint" class="form-error">Enter a valid email address.</p>
+    --></code></pre>
+  <form>
+    <label for="v-email">Email</label>
+    <input id="v-email" type="email" required placeholder="you@example.com" aria-describedby="v-hint">
+    <p id="v-hint" class="form-hint">Type something that isn't an email, then blur the field.</p>
+  </form>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Search</h2>
+  <p>Wrap a search field and its button in <span class="code-ref">&lt;search&gt;</span> so assistive tech exposes it as a search landmark.</p>
+  <pre class="language-markup"><code><!--
+    <search>
+      <form role="search">
+        <label for="q" class="screen-reader-text">Search</label>
+        <input id="q" type="search" name="q" placeholder="Search…">
+        <button type="submit">Go</button>
+      </form>
+    </search>
+    --></code></pre>
+  <search>
+    <form role="search" class="form-row">
+      <label for="q" class="screen-reader-text">Search</label>
+      <input id="q" type="search" name="q" placeholder="Search&hellip;" class="col">
+      <button type="submit" class="col col-auto">Go</button>
+    </form>
+  </search>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Layout</h2>
+  <p>Lay a form out with the <a href="./grid.html">grid</a> classes for full control over sizing per breakpoint:</p>
+  <pre class="language-markup"><code><!--
+    <form class="grid">
+      <label class="col md-6" for="fn">First name<input id="fn" type="text"></label>
+      <label class="col md-6" for="ln">Last name<input id="ln" type="text"></label>
+    </form>
+    --></code></pre>
+  <form class="grid">
+    <label class="col md-6" for="fn">First name<input id="fn" type="text" autocomplete="given-name"></label>
+    <label class="col md-6" for="ln">Last name<input id="ln" type="text" autocomplete="family-name"></label>
+  </form>
+  <p>Or <span class="css-ref">.form-row</span> &mdash; a tighter-gutter flex row where bare <span class="css-ref">.col</span> children just share the space equally, for a quick pair of fields with no sizing to think about:</p>
+  <pre class="language-markup"><code><!--
+    <form class="form-row">
+      <label class="col" for="fn2">First name<input id="fn2" type="text"></label>
+      <label class="col" for="ln2">Last name<input id="ln2" type="text"></label>
+    </form>
+    --></code></pre>
+  <form class="form-row">
+    <label class="col" for="fn2">First name<input id="fn2" type="text" autocomplete="given-name"></label>
+    <label class="col" for="ln2">Last name<input id="ln2" type="text" autocomplete="family-name"></label>
+  </form>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Range &amp; select</h2>
+  <ul>
+    <li><span class="code-ref">&lt;input type="range"&gt;</span> is styled full-width; the focus ring is on the thumb, not the track.</li>
+    <li><span class="code-ref">&lt;select&gt;</span> is <span class="code-ref">width: fit-content; max-width: 100%</span> with a custom chevron. On a dark surface, recolour it with <span class="code-ref">@include select-bg(#fff)</span> or set <span class="code-ref">--jf-form-select-bg-img</span>.</li>
+  </ul>
+  <input type="range" min="0" max="100" value="40" aria-label="Example range">
+  <select aria-label="Topic"><option>Jellyfish</option><option>CSS</option><option>Coffee</option></select>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="recolouring-the-select-chevron">Recolouring the select chevron</h2>
+  <p>The chevron is drawn from <span class="variable-ref">$select-chevron-icon-svg</span>, coloured by <span class="variable-ref">$select-chevron-color</span>. Custom properties can't be used inside an embedded SVG data-URI, so to recolour the chevron for a given context (e.g. a dark background), use the <span class="code-ref">select-bg()</span> mixin rather than overriding a CSS variable directly.</p>
+  <pre class="language-scss"><code>
+    .my-dark-section select {
+      @include select-bg(#fff);
+    }
+  </code></pre>
+  <select><option>Item 1</option><option>Item 2</option><option>Item 3</option></select>
+  <div class="select-bg-demo mb">
+    <select><option>Item 1</option><option>Item 2</option><option>Item 3</option></select>
+  </div>
+  <p>To change the chevron's shape entirely, override <span class="variable-ref">$select-chevron-icon-svg</span> before Jellyfish is imported &mdash; keep the <span class="code-ref">{{color}}</span> token in your replacement SVG so <span class="code-ref">select-bg()</span> can still substitute the colour.</p>
+  <p>The chevron is a background image, so in forced-colors modes (Windows High Contrast) it keeps rendering but in its fixed colour rather than a palette one. The <span class="code-ref">&lt;select&gt;</span>'s border and text take system colours as normal.</p>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Disabled</h2>
+  <p><span class="code-ref">:disabled</span> / <span class="code-ref">[disabled]</span> dims the control and shows <span class="code-ref">not-allowed</span> &mdash; native, no class.</p>
+  <input type="text" value="Can't touch this" disabled>
+</div>
+
+<div class="section is-tight bg-soft">
+  <h2 class="h3" id="overriding">Overriding</h2>
+  <ul>
+    <li><strong>Runtime</strong> &mdash; <span class="code-ref">--jf-form-input-background</span>, <span class="code-ref">--jf-form-input-border-color</span> / <span class="code-ref">-border-width</span> / <span class="code-ref">-border-style</span> / <span class="code-ref">-border-radius</span>, <span class="code-ref">--jf-form-input-placeholder-color</span>, <span class="code-ref">--jf-form-select-bg-img</span>. These stay on <span class="code-ref">:root</span> (a bare <span class="code-ref">&lt;input&gt;</span> outside a <span class="code-ref">&lt;form&gt;</span> still needs them).</li>
+    <li><strong>Build</strong> &mdash; the Sass variables below. <span class="variable-ref">$form-items</span> is the selector list every rule targets.</li>
+  </ul>
+  <h3 class="h4">Variables</h3>
+  <div class="variables-reference">
+    <table class="is-responsive has-border">
+          <caption class="screen-reader-text">Form Sass variables</caption>
+          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+          <tbody>
+            <tr><td><span class="variable-ref">$form-items</span></td><td>the text-ish input types + <span class="code-ref">select</span> + <span class="code-ref">textarea</span></td><td>Selector stack every form rule uses.</td></tr>
+            <tr><td><span class="variable-ref">$form-accent-color</span></td><td><span class="code-ref">get-color(primary)</span></td><td><span class="code-ref">accent-color</span> for checkboxes / radios / range / progress.</td></tr>
+            <tr><td><span class="variable-ref">$input-background</span> / <span class="variable-ref">$placeholder-color</span></td><td><span class="code-ref">color-bg</span> / <span class="code-ref">color-text-subtle</span></td><td>&rarr; <span class="code-ref">--jf-form-input-background</span> / <span class="code-ref">-placeholder-color</span>.</td></tr>
+            <tr><td><span class="variable-ref">$border-width</span> / <span class="variable-ref">-style</span> / <span class="variable-ref">-color</span> / <span class="variable-ref">-radius</span></td><td><span class="code-ref">1px</span> / <span class="code-ref">solid</span> / <span class="code-ref">neutral muted</span> / <span class="code-ref">radius-sm</span></td><td>Shared border primitives (used well beyond forms).</td></tr>
+            <tr><td><span class="variable-ref">$form-focus-border-color</span> / <span class="variable-ref">$form-focus-shadow-inner</span> / <span class="variable-ref">-outer</span></td><td><span class="code-ref">neutral</span> + bevel</td><td>The focus treatment on inputs.</td></tr>
+            <tr><td><span class="variable-ref">$form-border-hover</span></td><td><span class="code-ref">get-color(neutral)</span></td><td>Hover border.</td></tr>
+            <tr><td><span class="variable-ref">$form-label-size</span> / <span class="variable-ref">-weight</span></td><td><span class="code-ref">font-size-base</span> / <span class="code-ref">semibold</span></td><td>Labels.</td></tr>
+            <tr><td><span class="variable-ref">$select-chevron-color</span> / <span class="variable-ref">-icon-svg</span></td><td>neutral 500</td><td>The <span class="code-ref">&lt;select&gt;</span> arrow (baked into a data-URI at build; use <span class="code-ref">select-bg()</span> to recolour per scope).</td></tr>
+            <tr><td><span class="variable-ref">$range-thumb-*</span> / <span class="variable-ref">$range-track-*</span></td><td>neutral roles</td><td>Range slider thumb and track.</td></tr>
+          </tbody>
+        </table>
+  </div>
 </div>
 </section>
 </main>

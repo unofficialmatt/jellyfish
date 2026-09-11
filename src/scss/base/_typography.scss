@@ -130,6 +130,8 @@ q {
   line-height: get-leading(flush);
   border-radius: $border-radius;
   padding: 0.3em 0.35em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 // Keyboard Input

@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Cards ~ 🎐 Jellyfish UI</title>
-    <meta name="description" content="A simple element to display self-contained information such as a news post or call to action.">
+    <meta name="description" content="A bordered content container with padded sections and full-bleed images.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="color-scheme" content="light dark">
@@ -54,7 +54,7 @@
             Latest
           </li>
           <li>
-            <a href="./whats-new.html">What's New in 4.3.0</a>
+            <a href="./whats-new.html">What's new in 5.0</a>
           </li>
           <li class="li-title mt-0">
             HTML
@@ -108,6 +108,9 @@
             <a href="./breakpoints.html">Breakpoints</a>
           </li>
           <li>
+            <a href="./container-queries.html">Container Queries</a>
+          </li>
+          <li>
             <a href="./mixins.html">Mixins</a>
           </li>
           <li>
@@ -129,6 +132,9 @@
             <a href="./theme-colors.html">Theme Colors</a>
           </li>
           <li>
+            <a href="./palette-generator.html">Palette Generator</a>
+          </li>
+          <li>
             <a href="./accessibility.html">Accessibility</a>
           </li>
           <li>
@@ -144,203 +150,121 @@
     <main class="col xs-12 md-9 content" id="content">
       <section class="docs-section">
 
-<h1 class="section-heading h2">Cards<a href="./variables.html#cards">[ Variable Reference ]</a></h1>
-<div>
-  <p class="standfirst">Most websites use cards in some form or another. A card can contain all sorts of content. Jellyfish provides a straightforward card component and a set of useful child styles.</p>
-  <p>A card container has no padding, allowing images to bleed to full-width if desired. The <span class="css-ref">.card-section</span> element is used when you want to add a padded section within a card. You can have multiple <span class="css-ref">.card-section</span> elements in a card; when they are stacked the top-padding is removed from subsequent sections.</p>
-  <p>Cards will take up 100% width of their parent container, however this can of course be manually overridden as shown below.</p>
-  <p>A plain card has no background of its own. To theme one, add a <a href="./theme-colors.html">background modifier</a> &mdash; <span class="css-ref">.card.bg-primary</span>, <span class="css-ref">.card.bg-neutral</span>, etc. That sets the surface plus its contrast-picked text and heading colours; anything inside (headings, <span class="css-ref">.text-muted</span>, links) follows automatically. Don't hand-set the colour custom properties.</p>
-</div>
-<div>
-  <h2 class="h3">A basic card</h2>
-  <pre class="language-markup">
-    <code><!--
-      <div class="card bg-soft" style="max-width: 280px">
-        <img class="card-image" src="https://picsum.photos/300/180">
-        <div class="card-section">
-          <h3 class="h4">Example Title</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <a href="#" class="button secondary small">Click Here</a>
-        </div>
-        <div class="card-section">
-          <p class="font-size-small">This is the small print.</p>
-        </div>
+<h1 class="section-heading h2">Cards</h1>
+<div class="section is-tight bg-base">
+  <p class="standfirst">A bordered container &mdash; usually an <span class="code-ref">&lt;article&gt;</span> &mdash; with no padding of its own. Padding comes from <span class="css-ref">.card-section</span>, so images can bleed to the edge.</p>
+  <pre class="language-markup"><code><!--
+    <article class="card">
+      <img class="card-image" src="photo.jpg" alt="…">
+      <div class="card-section">
+        <h3>Title</h3>
+        <p>Body copy.</p>
       </div>
-  --></code>
-  </pre>
-  <div class="card bg-soft" style="max-width: 280px">
-    <img class="card-image" src="https://picsum.photos/300/180">
-    <div class="card-section">
-      <h3 class="h4">Example Title</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <a href="#" class="button secondary small">Click Here</a>
-    </div>
-    <div class="card-section">
-      <p class="font-size-small">This is the small print.</p>
-    </div>
-  </div>
-</div>
-<div>
-  <h2 class="h3">Card Images</h2>
-  <p>An element with the class <span class="css-ref">.card-image</span> will expand to 100% width of it's parent. Card images can be used outside of the <span class="css-ref">.card-section</span> to bleed to the edges, or inside the <span class="css-ref">.card-section</span> to have padding.</p>
-  <pre class="language-markup">
-    <code><!--
-      <div class="card bg-soft">
-        <img class="card-image" src="https://picsum.photos/300/170">
-        <div class="card-section">
-          <p>This card has an image outside of the <span class="css-ref">.card-section</span> element.</p>
-        </div>
-      </div>
-
-      <div class="card bg-soft">
-        <div class="card-section">
-          <img class="card-image" src="https://picsum.photos/300/200">
-          <p>This card has an image within the <span class="css-ref">.card-section</span> element.</p>
-        </div>
-      </div>
-  --></code>
-  </pre>
+    </article>
+    --></code></pre>
   <div class="grid">
-    <div class="col sm-6 lg-4">
-      <div class="card bg-soft">
-        <img class="card-image" src="https://picsum.photos/300/170">
-        <div class="card-section">
-          <p>This card has an image outside of the <span class="css-ref">.card-section</span> element.</p>
-        </div>
+    <article class="card col sm-6 lg-4">
+      <img class="card-image" src="https://picsum.photos/300/180" alt="">
+      <div class="card-section">
+        <h3 class="h4">Title</h3>
+        <p>Body copy. The image sits outside <span class="css-ref">.card-section</span>, so it runs to the card edge.</p>
+        <a class="button secondary small" href="#">Read on</a>
       </div>
+    </article>
+    <article class="card col sm-6 lg-4">
+      <div class="card-section">
+        <img class="card-image" src="https://picsum.photos/300/160" alt="">
+        <h3 class="h4">Title</h3>
+        <p>Here the image is <em>inside</em> <span class="css-ref">.card-section</span>, so it's inset with the text and gets flow spacing below it.</p>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3">Parts</h2>
+  <ul>
+    <li><span class="css-ref">.card-section</span> &mdash; a padded block. Stack several; the top padding collapses between adjacent ones.</li>
+    <li><span class="css-ref">.card-image</span> &mdash; on an <span class="code-ref">&lt;img&gt;</span> (or a wrapper). Full-width; inside a section it also gets bottom spacing.</li>
+    <li><span class="css-ref">.card-footer</span> &mdash; a section pinned to the bottom of the card. Handy in an equal-height row for a call-to-action.</li>
+  </ul>
+</div>
+
+<div class="section is-tight bg-base">
+  <h2 class="h3" id="equal-height">Equal height</h2>
+  <p>In a <span class="css-ref">.grid</span>, cards in a row are the same height automatically, and <span class="css-ref">.card-footer</span> pins to the bottom.</p>
+  <pre class="language-markup"><code><!--
+    <div class="grid">
+      <article class="card col md-4"> … </article>
+      <article class="card col md-4"> … </article>
+      <article class="card col md-4"> … </article>
+    </div>
+    --></code></pre>
+  <div class="grid">
+    <article class="card col md-4">
+      <img class="card-image" src="https://picsum.photos/300/180" alt="">
+      <div class="card-section"><h3 class="h4">Short</h3><p>A little text.</p></div>
+      <footer class="card-section card-footer"><a class="button small secondary" href="#">Go</a></footer>
+    </article>
+    <article class="card col md-4">
+      <img class="card-image" src="https://picsum.photos/301/180" alt="">
+      <div class="card-section"><h3 class="h4">Tall</h3><p>Much more text, so this card is taller. The other two stretch to match, and their footers still line up along the bottom edge.</p></div>
+      <footer class="card-section card-footer"><a class="button small secondary" href="#">Go</a></footer>
+    </article>
+    <article class="card col md-4">
+      <img class="card-image" src="https://picsum.photos/302/180" alt="">
+      <div class="card-section"><h3 class="h4">Short</h3><p>A little text.</p></div>
+      <footer class="card-section card-footer"><a class="button small secondary" href="#">Go</a></footer>
+    </article>
+  </div>
+  <p>The flex <span class="css-ref">.row</span> engine needs <span class="css-ref">.equal-height</span> added explicitly for the same result. <span class="css-ref">.row</span> children should only ever be <span class="css-ref">.col</span> &mdash; wrap the card rather than putting <span class="css-ref">.col</span> on the <span class="css-ref">.card</span> itself:</p>
+  <pre class="language-markup"><code><!--
+    <div class="row equal-height">
+      <div class="col sm-6 lg-4"><article class="card"> … </article></div>
+      <div class="col sm-6 lg-4"><article class="card"> … </article></div>
+      <div class="col sm-6 lg-4"><article class="card"> … </article></div>
+    </div>
+    --></code></pre>
+  <div class="row equal-height">
+    <div class="col sm-6 lg-4">
+      <article class="card">
+        <img class="card-image" src="https://picsum.photos/303/180" alt="">
+        <div class="card-section"><h3 class="h4">Short</h3><p>A little text.</p></div>
+        <footer class="card-section card-footer"><a class="button small secondary" href="#">Go</a></footer>
+      </article>
     </div>
     <div class="col sm-6 lg-4">
-      <div class="card bg-soft">
-        <div class="card-section">
-          <img class="card-image" src="https://picsum.photos/300/200">
-          <p>This card has an image within the <span class="css-ref">.card-section</span> element.</p>
-        </div>
-      </div>
+      <article class="card">
+        <img class="card-image" src="https://picsum.photos/304/180" alt="">
+        <div class="card-section"><h3 class="h4">Tall</h3><p>Much more text, so this card is taller. The other two stretch to match, and their footers still line up along the bottom edge.</p></div>
+        <footer class="card-section card-footer"><a class="button small secondary" href="#">Go</a></footer>
+      </article>
+    </div>
+    <div class="col sm-6 lg-4">
+      <article class="card">
+        <img class="card-image" src="https://picsum.photos/305/180" alt="">
+        <div class="card-section"><h3 class="h4">Short</h3><p>A little text.</p></div>
+        <footer class="card-section card-footer"><a class="button small secondary" href="#">Go</a></footer>
+      </article>
     </div>
   </div>
 </div>
-<div>
-  <h2 class="h3">Same-height cards</h2>
-  <p>If you are using cards within a <span class="css-ref">.row</span> and <span class="css-ref">.col</span> structure, you can append the <span class="css-ref">.equal-height</span> class to the <span class="css-ref">.row</span> to force all cards in the row to be 100% height, regardless of their content.</p>
-  <pre class="language-markup">
-  <code><!--
-  <div class="row equal-height">
-    <div class="col">
-      <div class="card bg-soft">
-        ...
-      </div>
-    </div>
-    <div class="col">
-      <div class="card bg-soft">
-        This card has more content in it...
-      </div>
-    </div>
-    <div class="col">
-      <div class="card bg-soft">
-        ...
-      </div>
-    </div>
-  </div>
---></code>
-</pre>
-  <div class="row equal-height">
-    <div class="col">
-      <div class="card bg-soft">
-        <img class="card-image" src="https://picsum.photos/300/180">
-        <div class="card-section">
-          <h3 class="h4">My Awesome Card</h3>
-          <p>This card has just a small amount of text.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card bg-soft">
-        <img class="card-image" src="https://picsum.photos/300/180">
-        <div class="card-section">
-          <h3 class="h4">My Awesome Card</h3>
-          <p>This card has just a a lot of text. I am going to write a few sentences of gibberish so that the height of this card grows. This will force other cards in the same row to expand to 100% height. You'll see the effect on the card border.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card bg-soft">
-        <img class="card-image" src="https://picsum.photos/300/180">
-        <div class="card-section">
-          <h3 class="h4">My Awesome Card</h3>
-          <p>This card has just a small amount of text.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div>
-  <h2 class="h3">Pushing content to the bottom of a card</h2>
-  <p>If you have a row of same-height cards, you might want to push content to the bottom of the card, for example a call-to-action. Simply put this content into a <span class="css-ref">.card-section</span> with the additional class <span class="css-ref">.card-footer</span>.</p>
-  <pre class="language-markup">
-  <code><!--
-  <div class="row equal-height">
-    <div class="col">
-      <div class="card bg-soft">
-        <img class="card-image" src="https://picsum.photos/300/180">
-        <div class="card-section">
-          <h3 class="h4">My Awesome Card</h3>
-          <p>This card has just a small amount of text.</p>
-        </div>
-        <footer class="card-section card-footer">
-          <a href="#" class="button small secondary">Awesome!</a>
-        </footer>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card bg-soft">
-        ...
-      </div>
-    </div>
-    <div class="col">
-      <div class="card bg-soft">
-        ...
-      </div>
-    </div>
-  </div>
---></code>
-</pre>
-  <div class="row equal-height">
-    <div class="col">
-      <div class="card bg-soft">
-        <img class="card-image" src="https://picsum.photos/300/180">
-        <div class="card-section">
-          <h3 class="h4">My Awesome Card</h3>
-          <p>This card has just a small amount of text.</p>
-        </div>
-        <footer class="card-section card-footer">
-          <a href="#" class="button small secondary">Awesome!</a>
-        </footer>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card bg-soft">
-        <img class="card-image" src="https://picsum.photos/300/180">
-        <div class="card-section">
-          <h3 class="h4">My Awesome Card</h3>
-          <p>This card has just a a lot of text. I am going to write a few sentences of gibberish so that the height of this card grows. This will force other cards in the same row to expand to 100% height. You'll see the effect on the card border.</p>
-        </div>
-        <footer class="card-section card-footer">
-          <a href="#" class="button small secondary">Awesome!</a>
-        </footer>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card bg-soft">
-        <img class="card-image" src="https://picsum.photos/300/180">
-        <div class="card-section">
-          <h3 class="h4">My Awesome Card</h3>
-          <p>This card has just a small amount of text.</p>
-        </div>
-        <footer class="card-section card-footer">
-          <a href="#" class="button small secondary">Awesome!</a>
-        </footer>
-      </div>
-    </div>
+
+<div class="section is-tight bg-soft">
+  <h2 class="h3" id="overriding">Overriding</h2>
+  <p>Set the custom properties on <span class="css-ref">.card</span>, a card modifier or a scoped selector: <span class="code-ref">--jf-card-padding</span>, <span class="code-ref">--jf-card-border-radius</span>, <span class="code-ref">--jf-card-border-width</span> / <span class="code-ref">-border-style</span>, and <span class="code-ref">--jf-card-border-color</span> (falls back to <span class="code-ref">--jf-border-color</span>). Or the Sass variables below, before import.</p>
+
+  <h3 class="h4">Variables</h3>
+  <div class="variables-reference">
+    <table class="is-responsive has-border">
+          <caption class="screen-reader-text">Card Sass variables and custom properties</caption>
+          <thead><tr><th scope="col">Name</th><th scope="col">Default</th><th scope="col">Notes</th></tr></thead>
+          <tbody>
+            <tr><td><span class="variable-ref">$card-padding</span></td><td><span class="code-ref">token(space-md)</span></td><td><span class="css-ref">.card-section</span> padding &rarr; <span class="code-ref">--jf-card-padding</span>.</td></tr>
+            <tr><td><span class="variable-ref">$card-border-radius</span></td><td><span class="code-ref">token(radius-lg)</span></td><td>&rarr; <span class="code-ref">--jf-card-border-radius</span>.</td></tr>
+            <tr><td><span class="variable-ref">$card-border-width</span><br>/ <span class="variable-ref">-style</span></td><td><span class="code-ref">token(border-width)</span><br>/ <span class="code-ref">solid</span></td><td>&rarr; <span class="code-ref">--jf-card-border-width</span> / <span class="code-ref">-border-style</span>. Colour is <span class="code-ref">--jf-card-border-color</span> (unset; falls back to the shared border colour).</td></tr>
+          </tbody>
+        </table>
   </div>
 </div>
 </section>

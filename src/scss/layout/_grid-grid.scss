@@ -42,6 +42,12 @@
       column-gap: token(grid-gutter);
       row-gap: token(flow);
     }
+    .grid > .col.col-start-#{$point} {
+      grid-column: 1 / span var(#{token-name("col-span")});
+    }
+    .grid > .col.col-end-#{$point} {
+      grid-column: span var(#{token-name("col-span")}) / -1;
+    }
   }
 }
 
