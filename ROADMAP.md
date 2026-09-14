@@ -27,12 +27,13 @@ What shipped in the v5 modernisation, what's still open, and what was deliberate
 - Three-surface model — base / `.bg-soft` / `.bg-inverse`; `.bg-white` and all `.white` modifiers removed in favour of `.soft` (`8bb83d3`)
 - `.callout` promoted to a full surface; navbar colours wired to the semantic layer, structure unchanged (`f66036d`)
 - `--jf-color-on-{family}-{role}` companions keep a role and its paired text flipping together
+- `<html data-default-theme="dark|light|system">` declares the site's own default, used when the visitor hasn't chosen — `dark` / `light` ignore the OS outright, `system` (or no attribute) follows it. Resolved in CSS, so it holds before paint and without JS. Fills a gap that had no expression before: "light by default, dark available via the toggle" — previously the only options were `$dark-mode-enabled: false` (no dark at all) or letting the OS decide. `localStorage["jf-theme"]` gained a `"system"` value so an explicit "follow my OS" is distinguishable from "hasn't chosen" and can outrank a declared default
 
 ### Grid & layout
 
 - New `.grid` (CSS Grid) engine alongside the kept `.row` (flex), sharing one `.col` / breakpoint / ordering API; offsets and push/pull removed (`7eb1519`)
 - `.container` / `.page` / bleed helpers rebuilt on custom properties — `--jf-container-max`, `--jf-grid-gutter`, `--jf-page-max`, `--jf-bleed-space`; breakpoints locked to fixed constants (`7eb1519`)
-- `.section` band — padding-only, seam-collapsing between same-surface siblings
+- `.section` band — padding-only, seam-collapsing between same-surface siblings. Its trailing-margin reset also reaches through a `.container` sitting directly inside it, so the near-universal `.section > .container > .grid` structure doesn't leave a stray `--jf-flow` below the band (the reset was direct-child only, which the grid docs had already promised otherwise)
 - Debug overlay removed outright
 
 ### Components
@@ -94,7 +95,7 @@ What shipped in the v5 modernisation, what's still open, and what was deliberate
 ## Outstanding for 5.0
 
 - **Docs SEO** — per-page canonical and Open Graph meta, JSON-LD (`TechArticle`, `BreadcrumbList`) and an `llms.txt` index. Not started. The head partial also still carries an `x-ua-compatible` meta that can go.
-- **Migration audit against real projects** — grep the consumer themes for removed APIs (`offset-*`, re-keyed `$breakpoints`, `$cols`, `$base-*`, per-breakpoint `root-font-size`, `$element-margin`, `$global-transition`, `.white` modifiers, `v()`) and confirm the grid page's migration table covers every hit. Needs the real repos.
+- **Migration audit against real projects** — JellyPress (WordPress) is done and drove the two fixes above. Hits the migration table did *not* cover, worth adding to it: `.vw-100` (v4 full-bleed utility → `.bleed`), `.no-border` on cards (→ `--jf-card-border-width`), and `$borders` quietly becoming form-input-scoped, which reads oddly on non-form elements. Also worth a migration note: because `$borders`, `$border-radius` and friends are `token()` references now rather than literals, any consumer doing Sass maths on them (`$border-radius * 0.5`) breaks and needs `calc()`. Drupal themes still to audit.
 
 ---
 

@@ -152,7 +152,7 @@
 </div>
 <div class="section is-tight bg-base" id="dark-mode">
   <h2 class="h3">Dark mode</h2>
-  <p>Dark mode is a class on <span class="css-ref">&lt;html&gt;</span>, not <code class="code-ref">light-dark()</code>. With no class set, the OS <code class="code-ref">prefers-color-scheme</code> decides; <span class="css-ref">.jf-dark</span> or <span class="css-ref">.jf-light</span> forces a choice (<span class="css-ref">.jf-light</span> wins even on a dark OS).</p>
+  <p>Dark mode is a class on <span class="css-ref">&lt;html&gt;</span>, not <code class="code-ref">light-dark()</code>. <span class="css-ref">.jf-dark</span> or <span class="css-ref">.jf-light</span> forces a choice and wins over everything else; failing that, <a href="./getting-started.html#default-theme"><span class="code-ref">data-default-theme</span></a> sets the site's default; failing that, the OS <code class="code-ref">prefers-color-scheme</code> decides.</p>
   <p>Only the <a href="./variables.html#colors">semantic tokens</a> and the <span class="bold">role aliases</span> above are repointed in dark &mdash; the numbered primitives (<span class="css-ref">--jf-color-primary-500</span> &hellip;) and their build-time <span class="css-ref">--jf-color-on-*</span> companions are untouched. So a <span class="css-ref">.bg-primary</span> section and a <span class="css-ref">.button.error</span> look the same in both modes, while surfaces, body text, borders and links flip. Which numbered shade each role points at once dark is set by <span class="variable-ref">$dark-color-role-shades</span> (backgrounds move toward the dark end, accent text toward the light end).</p>
   <h3 class="h5">Wiring it up</h3>
   <p>Add the colour-scheme hint and a pre-paint script to your <span class="css-ref">&lt;head&gt;</span> so a stored preference applies before the first paint (no flash):</p>
@@ -183,5 +183,15 @@
     <button type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle dark mode">…</button>
     --></code></pre>
   <p>Any <span class="css-ref">[data-theme-toggle]</span> element toggles; <span class="css-ref">[data-theme-set="dark|light|system"]</span> sets a specific mode. A <code class="code-ref">jfThemeChange</code> event fires on <span class="css-ref">&lt;html&gt;</span> with <code class="code-ref">detail.theme</code>. Set <span class="variable-ref">$dark-mode-enabled: false</span> to drop the dark block from the compiled CSS.</p>
+  <h3 class="h5">Non-token overrides</h3>
+  <p>Reach for a <a href="#roles">semantic token</a> first &mdash; that's what flips automatically. For the rest (an <span class="code-ref">invert()</span> filter on a logo, swapping a background image, anything a token can't express &mdash; useful once Jellyfish is compiled into a WordPress or Drupal theme alongside markup it doesn't own), nest <span class="code-ref">@include in-dark-mode</span> / <span class="code-ref">@include in-light-mode</span> inside the selector that needs it. Each resolves the same three-way precedence as the <a href="#dark-mode">:root</a> block, scoped to that selector:</p>
+  <pre class="language-scss"><code>
+    .wp-block-logo {
+      @include in-dark-mode {
+        filter: invert(1);
+      }
+    }
+  </code></pre>
+  <p>With <span class="variable-ref">$dark-mode-enabled: false</span>, <span class="code-ref">in-dark-mode</span> compiles to nothing and <span class="code-ref">in-light-mode</span>'s content applies unconditionally &mdash; light is the only mode.</p>
 </div>
 @@include('./src/docs/partials/html-footer.html')

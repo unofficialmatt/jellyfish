@@ -67,13 +67,33 @@
         var el = document.documentElement;
         try {
           var t = localStorage.getItem("jf-theme");
-          if (t === "dark" || t === "light") el.classList.add("jf-" + t);
+          if (t === "dark" || t === "light") {
+            el.classList.remove("jf-dark", "jf-light");
+            el.classList.add("jf-" + t);
+          }
           var f = localStorage.getItem("jf-font-size");
           if (/^(smaller|larger|largest)$/.test(f)) el.classList.add("font-size-" + f);
         } catch (e) {}
       })();
     </script>
     --></code></pre>
+  <h3 class="h4" id="default-theme">Declaring a default</h3>
+  <p><span class="code-ref">data-default-theme</span> on <span class="code-ref">&lt;html&gt;</span> sets the site's own default, used when the visitor hasn't chosen. <span class="code-ref">dark</span> and <span class="code-ref">light</span> <em>ignore the OS entirely</em> &mdash; only the toggle moves off them. <span class="code-ref">system</span> (or leaving the attribute off) follows <span class="code-ref">prefers-color-scheme</span>.</p>
+  <pre class="language-markup"><code><!--
+    <html data-default-theme="light" lang="en">
+    --></code></pre>
+  <p>This is resolved in CSS, so it holds before first paint and works with JavaScript disabled &mdash; the attribute alone is enough, no snippet required for it. Precedence is: the visitor's stored choice, then this attribute, then the OS.</p>
+  <table class="has-border">
+    <caption class="screen-reader-text">How the stored choice and the declared default combine</caption>
+    <thead><tr><th scope="col">Stored choice</th><th scope="col"><span class="code-ref">data-default-theme</span></th><th scope="col">Result</th></tr></thead>
+    <tbody>
+      <tr><td>none</td><td><span class="code-ref">system</span> / absent</td><td>Follows the OS</td></tr>
+      <tr><td>none</td><td><span class="code-ref">light</span> / <span class="code-ref">dark</span></td><td>That one, OS ignored</td></tr>
+      <tr><td><span class="code-ref">light</span> / <span class="code-ref">dark</span></td><td>anything</td><td>The visitor's choice</td></tr>
+      <tr><td><span class="code-ref">system</span></td><td>anything</td><td>Follows the OS &mdash; an explicit "use my OS" outranks the site default</td></tr>
+    </tbody>
+  </table>
+  <p><span class="code-ref">[data-theme-set="system"]</span> is what stores that last state, so a visitor can always get back to following their OS even on a site that declares a default.</p>
 </div>
 
 <div class="section is-tight bg-base">

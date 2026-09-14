@@ -381,7 +381,7 @@
   </table>
 
   <h3 id="dark-mode" class="h6">Dark mode</h3>
-  <p>Dark mode is a class on <span class="css-ref">&lt;html&gt;</span> (<span class="css-ref">.jf-dark</span> / <span class="css-ref">.jf-light</span>), with <span class="code-ref">prefers-color-scheme</span> as the fallback. In dark, the semantic tokens and the step-role aliases are repointed; the numbered primitives and their <span class="code-ref">--jf-color-on-*</span> companions are left alone. See <a href="./theme-colors.html#dark-mode">Theme Colors &rarr; Dark mode</a>.</p>
+  <p>Dark mode is a class on <span class="css-ref">&lt;html&gt;</span> (<span class="css-ref">.jf-dark</span> / <span class="css-ref">.jf-light</span>), then <a href="./getting-started.html#default-theme"><span class="code-ref">data-default-theme</span></a>, with <span class="code-ref">prefers-color-scheme</span> as the fallback. In dark, the semantic tokens and the step-role aliases are repointed; the numbered primitives and their <span class="code-ref">--jf-color-on-*</span> companions are left alone. See <a href="./theme-colors.html#dark-mode">Theme Colors &rarr; Dark mode</a>.</p>
   <table class="is-responsive has-border">
     <thead>
       <tr>
@@ -394,7 +394,7 @@
       <tr>
         <td><span class="variable-ref">$dark-mode-enabled</span></td>
         <td><span class="code-ref">true</span></td>
-        <td>Master switch. <span class="code-ref">false</span> drops the entire dark-mode block (the <span class="code-ref">@media (prefers-color-scheme: dark)</span> rules and the <span class="css-ref">.jf-dark</span> rules) from the compiled CSS &mdash; output size is a feature. Not a token.</td>
+        <td>Master switch. <span class="code-ref">false</span> drops the entire dark-mode block (the <span class="code-ref">@media (prefers-color-scheme: dark)</span> rules, the <span class="css-ref">.jf-dark</span> rules and the <span class="code-ref">data-default-theme</span> rules) from the compiled CSS &mdash; output size is a feature. Useful per-entry-point: a consumer can leave it on for the site build and off for an editor build. Not a token.</td>
       </tr>
       <tr>
         <td><span class="variable-ref">$dark-body-background-color</span></td>

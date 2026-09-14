@@ -5,7 +5,6 @@
   margin-inline: calc(#{token(grid-gutter)} * -0.5);
   row-gap: token(flow);
   margin-block-end: token(flow);
-
   > .col {
     padding-inline: calc(#{token(grid-gutter)} * 0.5);
   }

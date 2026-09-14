@@ -151,7 +151,7 @@ blockquote {
     }
     font-style: normal;
     display: block;
-    font-size: token(font-size-sm);
+    @include type(sm);
     font-weight: get-weight(bold);
   }
 }

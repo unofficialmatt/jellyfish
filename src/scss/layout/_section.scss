@@ -1,6 +1,9 @@
 .section {
   padding-block: token(section-space);
-  > *:last-child {
+  // Also through a single .container wrapper — the usual section structure, so
+  // a trailing .grid / .row margin doesn't add space below the band.
+  > *:last-child,
+  > .container:last-child > *:last-child {
     margin-block-end: 0;
   }
 }

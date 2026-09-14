@@ -153,17 +153,25 @@
   }
 }
 
-// Dark mode. .jf-light forces light even on a dark OS; .jf-dark forces dark;
-// with neither class, prefers-color-scheme decides.
+// Dark mode, in precedence order:
+//   1. .jf-dark / .jf-light on <html> — the visitor's own choice (theme.js).
+//   2. <html data-default-theme="dark|light"> — the site's default, which
+//      outranks the OS. "system" or absent leaves it to the OS.
+//   3. prefers-color-scheme.
+// Resolved in CSS so a declared default holds before paint and without JS.
 @if $dark-mode-enabled {
   @include jf-dark-contrast-lint;
-  :root.jf-light {
+  :root.jf-light,
+  :root[data-default-theme="light"]:not(.jf-dark) {
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
-    :root:not(.jf-light) {
+    :root:not(.jf-light):not([data-default-theme="light"]):not([data-default-theme="dark"]) {
       @include jf-dark-tokens;
     }
+  }
+  :root[data-default-theme="dark"]:not(.jf-light) {
+    @include jf-dark-tokens;
   }
   :root.jf-dark {
     @include jf-dark-tokens;

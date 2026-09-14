@@ -45,7 +45,7 @@
 
 <div class="section is-tight bg-base">
   <h2 class="h3" id="theme">Theme</h2>
-  <p><span class="code-ref">theme.js</span> owns the <span class="css-ref">.jf-dark</span> / <span class="css-ref">.jf-light</span> class on <span class="code-ref">&lt;html&gt;</span>, stored in <span class="code-ref">localStorage["jf-theme"]</span> (absent = follow the OS). Wire-up and the pre-paint snippet are on <a href="./theme-colors.html#dark-mode">Theme Colours</a>.</p>
+  <p><span class="code-ref">theme.js</span> owns the <span class="css-ref">.jf-dark</span> / <span class="css-ref">.jf-light</span> class on <span class="code-ref">&lt;html&gt;</span>, stored in <span class="code-ref">localStorage["jf-theme"]</span> as <span class="code-ref">"dark"</span> / <span class="code-ref">"light"</span> / <span class="code-ref">"system"</span> (absent = hasn't chosen). A stored choice outranks the <a href="./getting-started.html#default-theme"><span class="code-ref">data-default-theme</span></a> the site declares, which in turn outranks the OS. Wire-up and the pre-paint snippet are on <a href="./theme-colors.html#dark-mode">Theme Colours</a>.</p>
   <pre class="language-javascript"><code>
     JellyfishTheme.get();          // "dark" | "light"  (resolved)
     JellyfishTheme.set("dark");    // "dark" | "light" | "system"

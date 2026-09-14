@@ -70,7 +70,7 @@ button,
   display: flex;
   align-items: center;
   @extend %button-groups;
-  gap: calc(#{$button-list-button-margin} * 2);
+  gap: $button-list-button-margin;
   margin-block-end: token(flow);
   > *,
   > .button {

@@ -163,8 +163,7 @@
       ),
       (
         "dark link visited"
-          get-color-raw($link-color, $dark-link-visited-color-shade)
-          $bg
+          get-color-raw($link-color, $dark-link-visited-color-shade) $bg
       )
     ),
     "dark mode core pairs"
@@ -183,6 +182,46 @@
     ),
     "surface modifiers (.bg-soft / .bg-inverse)"
   );
+}
+
+// in-dark-mode / in-light-mode wrap a component-level override in the
+// same precedence used at :root (visitor choice via .jf-dark/.jf-light >
+// declared default via [data-default-theme] > prefers-color-scheme).
+@mixin in-dark-mode {
+  @if $dark-mode-enabled {
+    :root.jf-dark &,
+    :root[data-default-theme="dark"]:not(.jf-light) & {
+      @content;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not(.jf-light):not([data-default-theme="light"]):not(
+          [data-default-theme="dark"]
+        )
+        & {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin in-light-mode {
+  @if $dark-mode-enabled {
+    :root.jf-light &,
+    :root[data-default-theme="light"]:not(.jf-dark) & {
+      @content;
+    }
+    @media (prefers-color-scheme: light) {
+      :root:not(.jf-dark):not([data-default-theme="light"]):not(
+          [data-default-theme="dark"]
+        )
+        & {
+        @content;
+      }
+    }
+  } @else {
+    // No dark block compiled at all — light is the only mode, unconditionally.
+    @content;
+  }
 }
 
 // Apply the framework transition to one or more properties.
